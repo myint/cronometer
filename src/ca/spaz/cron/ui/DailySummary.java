@@ -44,6 +44,7 @@ public class DailySummary extends JPanel {
    private JButton nextButton; 
    private JButton prevButton;
    private JButton titleLabel;
+   private JButton copyPrevDayButton;
    private JPanel toolBar;
    private NutritionSummaryPanel totals;
    boolean asked = false; 
@@ -140,6 +141,7 @@ public class DailySummary extends JPanel {
          }); 
          nextButton.setFocusable(false); 
          FoodDBToolBar.fixButton(nextButton); 
+         nextButton.setToolTipText("Next Day");          
       }
       return nextButton;
    }
@@ -154,11 +156,35 @@ public class DailySummary extends JPanel {
             }  
          }); 
          FoodDBToolBar.fixButton(prevButton);
+         prevButton.setToolTipText("Previous Day");         
          prevButton.setFocusable(false); 
       }
       return prevButton;
    }
+   
+   private JButton getCopyPreviousDayButton() {
+	      if (null == copyPrevDayButton) {
+	    	  copyPrevDayButton = new JButton(new ImageIcon(ImageFactory.getInstance().loadImage("/img/Copy24.gif")));
+	    	  copyPrevDayButton.addActionListener(new ActionListener() {
+	            public void actionPerformed(ActionEvent e) {
+	               copyPreviousDay();
+	            }  
+	         }); 
+	         FoodDBToolBar.fixButton(copyPrevDayButton);
+	         copyPrevDayButton.setToolTipText("Copy Previous Day"); 	         
+	         copyPrevDayButton.setFocusable(false); 
+	      }
+	      return copyPrevDayButton;
+	   }   
 
+   /**
+    * Copies the foods from the previous day into this day.
+    */
+   private void copyPreviousDay() {
+	   Date previousDay = new Date(curDate.getTime() - ONE_DAY);
+	   Datasources.getFoodHistory().copyConsumedOn(previousDay, curDate);
+	   notifyObservers();
+   }
 
    /**
     * @return the title label for this component
@@ -191,6 +217,7 @@ public class DailySummary extends JPanel {
          toolBar.add(Box.createHorizontalStrut(5));
          toolBar.add(getNextButton());
          toolBar.add(Box.createHorizontalGlue());
+         toolBar.add(getCopyPreviousDayButton());         
       }
       return toolBar;
    }

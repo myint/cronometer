@@ -57,6 +57,24 @@ public class FoodHistory {
       return res;
    }
    
+   /**
+    * Copies the servings from one day to another.
+    * @param fromDate the day to copy from	
+    * @param toDate the day to copy to
+    * @return the copied servings
+    */
+   public synchronized List copyConsumedOn(Date fromDate, Date toDate) {
+	   List prevConsumed = getConsumedOn(fromDate);
+	   List consumed = new ArrayList();
+	   Iterator iter = prevConsumed.iterator();
+	   while (iter.hasNext()) {
+		   Serving serving = new Serving((Serving) iter.next());
+		   serving.setDate(toDate);
+		   addServing(serving);
+	   }
+	   return consumed;
+   }
+   
    public synchronized List getServings(FoodProxy fp) {     
       ArrayList res = new ArrayList();
       for (int i=0; i<servings.size(); i++) {
