@@ -83,10 +83,14 @@ public class SpazMenuBar extends JMenuBar implements ActionListener {
 
    public void loadXMLMenu(Element elm) {
       String title = elm.getAttribute("title");
-      String key = elm.getAttribute("key");
       JMenu menu = new JMenu(title);
+      String key = elm.getAttribute("key");      
       if (key != null && key.length() > 0) {
         menu.setMnemonic(key.charAt(0));
+      }
+      String index = elm.getAttribute("index");
+      if (index != null && index.length() > 0) {
+          menu.setDisplayedMnemonicIndex(Integer.parseInt(index));	
       }
       loadXMLMenuItems(elm, menu);
       add(menu);
@@ -124,6 +128,7 @@ public class SpazMenuBar extends JMenuBar implements ActionListener {
       String tooltip = elm.getAttribute("tooltip");
       String action = elm.getAttribute("action");
       String key = elm.getAttribute("key");
+      String index = elm.getAttribute("index");      
       String acc = elm.getAttribute("acc");
       String checkbox = elm.getAttribute("checkbox");
       JMenuItem item = new JMenuItem(title);
@@ -138,6 +143,10 @@ public class SpazMenuBar extends JMenuBar implements ActionListener {
       if (key != null && key.length() > 0) {
          item.setMnemonic(key.charAt(0));
       }
+
+      if (index != null && index.length() > 0) {
+    	  item.setDisplayedMnemonicIndex(Integer.parseInt(index));	
+      }      
       if (acc != null && acc.length() > 0) {
          try {
             Class c = KeyEvent.class;

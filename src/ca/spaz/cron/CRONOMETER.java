@@ -253,7 +253,7 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
       FoodEditor.editFood(new Food());
    }
 
-   public void doCreateNewRecipie() {
+   public void doCreateNewRecipe() {
       List servings = getDailySummary().getServingTable().getSelectedServings();
       CreateRecipeAction.execute(servings);
    }
