@@ -418,9 +418,15 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
             final String www = e.getAttribute("url");
             SwingUtilities.invokeLater(new Runnable() {
                public void run() {
-                  JOptionPane.showMessageDialog(  CRONOMETER.getInstance(), 
-                        "A new version of "+TITLE+" is available!");
-                  if (www != null) {
+            	   int result = JOptionPane.showOptionDialog(CRONOMETER.getInstance(),
+            			   "A new version of " + TITLE + " is available!",
+                           "New Version",
+                           JOptionPane.OK_CANCEL_OPTION,
+                           JOptionPane.INFORMATION_MESSAGE,
+                           null,
+                           null,
+                           null);
+                  if (result == JOptionPane.OK_OPTION  && www != null) {
                      launchURL(CRONOMETER.mainFrame, www);
                   }                  
                }
