@@ -419,7 +419,7 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
             SwingUtilities.invokeLater(new Runnable() {
                public void run() {
                   JOptionPane.showMessageDialog(  CRONOMETER.getInstance(), 
-                        "A new version of "+TITLE+" is avaialble!");
+                        "A new version of "+TITLE+" is available!");
                   if (www != null) {
                      launchURL(CRONOMETER.mainFrame, www);
                   }                  
