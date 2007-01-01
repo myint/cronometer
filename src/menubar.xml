@@ -1,0 +1,25 @@
+<menubar>
+	
+	<menu title="File" key="f">	
+		<item title="Edit Nutritional Targets..." acc="VK_T" action="doEditUserSettings" />
+		<item separator="true"></item>
+		<item title="Quit" key="q" acc="VK_Q" action="doQuit"/>
+	</menu>	 	 
+	
+	<menu title="Reports" key="r">	
+		<item title="Nutrition Report" key="n" acc="VK_N" action="doNutritionReport"/>
+	</menu>
+
+	<menu title="Food" key="i">
+		<item title="Import Food..." key="i" acc="VK_I" action="doImportFood"/>
+		<item title="Create New Food" key="n" acc="VK_F" action="doCreateNewFood"/>
+		<item title="Create New Recipie" key="n" acc="VK_R" action="doCreateNewRecipie"/>
+	</menu>
+	
+	<menu title="Help" key="h">
+		<item title="Help..." key="h" acc="VK_H" action="doHelp"/>
+		<item separator="true"/>
+		<item title="About CRONOMETER" action="doAbout"/>
+	</menu>
+
+</menubar>

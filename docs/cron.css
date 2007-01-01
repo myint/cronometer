@@ -1,0 +1,29 @@
+.va-middle {vertical-align:middle;}
+body 
+{ font-family: verdana, arial, serif;
+  color: #000000;
+  background:  #ffffff;
+  font-size: 10pt;
+  margin-top: 10;
+  margin-bottom: 10;
+  margin-left: 10;
+  margin-right: 10;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+td {font-family: verdana, arial, serif; 
+font-size: 10pt;
+font-weight: lighter;
+ } 
+ 
+li {text-align: justify} 
+h1 {font-family: verdana, arial, serif; 
+font-size: 18pt;
+font-weight: lighter;
+ } 
+h2 {font-family: verdana, arial, serif; 
+font-size: 16pt;
+font-weight: lighter;
+} 
+ 

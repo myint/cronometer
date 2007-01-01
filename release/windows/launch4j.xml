@@ -1,0 +1,30 @@
+<launch4jConfig>
+  <dontWrapJar>true</dontWrapJar>
+  <headerType>gui</headerType>
+  <jar></jar>
+  <outfile>release\windows\CRON-O-METER.exe</outfile>
+  <errTitle></errTitle>
+  <cmdLine></cmdLine>
+  <chdir></chdir>
+  <priority>normal</priority>
+  <downloadUrl>http://java.com/download</downloadUrl>
+  <supportUrl></supportUrl>
+  <customProcName>true</customProcName>
+  <stayAlive>true</stayAlive>
+  <icon>release\windows\icon.ico</icon>
+  <classPath>
+    <mainClass>ca.spaz.cron.CRONOMETER</mainClass>
+    <cp>lib/cronometer.jar</cp>
+    <cp>lib/jcalendar.jar</cp>
+    <cp>lib/jcommon-1.0.0.jar</cp>
+    <cp>lib/jfreechart-1.0.1.jar</cp>
+  </classPath>
+  <jre>
+    <path></path>
+    <minVersion>1.4.0</minVersion>
+    <maxVersion></maxVersion>
+    <dontUsePrivateJres>false</dontUsePrivateJres>
+    <initialHeapSize>128</initialHeapSize>
+    <maxHeapSize>128</maxHeapSize>
+  </jre>
+</launch4jConfig>
