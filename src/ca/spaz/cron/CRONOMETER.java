@@ -37,7 +37,12 @@ import com.apple.mrj.MRJQuitHandler;
  * The main app.  
  * 
  * TODO: Backup files, especially on startup-error.
- *
+ * 
+ *   0.7.0 changelist
+ *      - added edit menu and copy/paste shortcuts to food list
+ *      - does not show pie-chart if no calories == 0
+ *      
+ *      
  * @author davidson
  */
 public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, MRJAboutHandler, ClipboardOwner  {
