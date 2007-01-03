@@ -126,7 +126,7 @@ public class TargetEditor extends WrappedPanel {
     
  
    public static void editTargets() {
-      WrapperDialog.showDialog(CRONOMETER.getInstance(), new TargetEditor(User.getUser()));      
+      WrapperDialog.showDialog(CRONOMETER.getInstance(), new TargetEditor(User.getUser()), true);      
    }
    
    

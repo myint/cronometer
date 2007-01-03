@@ -18,6 +18,7 @@ public class AboutScreen extends WrappedPanel {
          + "<table width=\"475\"> "
          + "<tr><td>Aaron Davidson</td><td>aaron@spaz.ca</td><td>Programming</td></tr>"
          + "<tr><td>Chris Rose</td><td>chris@offlineblog.com</td><td>Programming</td></tr>"
+         + "<tr><td>Gerald Turnquist</td><td>geraldt@sasktel.net</td><td>Programming</td></tr>"         
          + "<tr><td>Michael Rae</td><td>mikalra@cadvision.com</td><td>Consulting</td></tr>"
          + "<tr><td>Antonio Zamora</td><td>zamora@scientificpsychic.com</td><td>Technical Writing</td></tr>"
          + "</div>" + "</html>",

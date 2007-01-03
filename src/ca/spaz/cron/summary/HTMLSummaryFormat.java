@@ -30,10 +30,11 @@ public class HTMLSummaryFormat extends SummaryFormat {
       } else {
          sb.append("<h2>Nutrition Summary for " + dateFormat.format(end) + "</h2>\n");
       }
-       
+      sb.append("<small><table border=0 width=\"100%\" cellpadding=\"0\" cellspacing=\"1\">");       
       for (int i=0; i<NutrientInfo.CATEGORIES.length; i++) {
          sb.append(exportCategory(NutrientInfo.CATEGORIES[i], servings, days, targetsOnly));
       }
+      sb.append("</table></small>");      
       sb.append("</body>\n");
       sb.append("</html>\n");
       return sb.toString();
@@ -45,7 +46,6 @@ public class HTMLSummaryFormat extends SummaryFormat {
       StringBuffer sb = new StringBuffer();
       List nutrients = NutrientInfo.getCategory(category);
       
-      sb.append("<small><table border=0 width=\"100%\" cellpadding=\"0\" cellspacing=\"1\">");
       sb.append("<tr bgcolor=\"#bbbbbb\"><td colspan=\"4\"><b>");
       sb.append(category);
       
@@ -77,7 +77,6 @@ public class HTMLSummaryFormat extends SummaryFormat {
          sb.append(export(ni, servings, days, targetsOnly)); 
          sb.append("</tr>\n"); 
       }
-      sb.append("</table></small>");
 
       return sb.toString();
    }

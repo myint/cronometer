@@ -98,7 +98,7 @@ public class NutritionSummaryPanel extends JTabbedPane {
 
    public void generateReport() { 
       ReportWindow wp = new ReportWindow(this);
-      WrapperDialog.showDialog(this, wp);
+      WrapperDialog.showDialog(this, wp, true);
    }
 
 }

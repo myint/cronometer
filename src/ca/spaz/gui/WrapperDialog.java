@@ -24,6 +24,19 @@ public class WrapperDialog extends JDialog {
    public WrapperDialog(Component parent, WrappedPanel wp) {
       super(JOptionPane.getFrameForComponent(parent));
       init(wp);
+      setResizable(false);      
+   } 
+   
+   /**
+    * Construct an instance specifying the parent, a panel, and whether the dialog is resizeable.
+    * @param parent
+    * @param wp
+    * @param resizeable
+    */
+   public WrapperDialog(Component parent, WrappedPanel wp, boolean resizeable) {
+	   super(JOptionPane.getFrameForComponent(parent));
+	   init(wp);
+	   setResizable(resizeable);      
    }    
    
    private void init(WrappedPanel wp) {
@@ -32,7 +45,6 @@ public class WrapperDialog extends JDialog {
       setTitle(wp.getTitle());
       getContentPane().setLayout(new BorderLayout(4,4));
       getContentPane().add(getMainPanel(), BorderLayout.CENTER);      
-      setResizable(false);
       setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
       pack();   
    }
@@ -43,7 +55,21 @@ public class WrapperDialog extends JDialog {
       wd.setVisible(true);
       return wd.accepted;
    }
-   
+
+   /**
+    * Show a dialog specifying the parent, a panel, and whether the dialog is resizeable.
+    * @param parent
+    * @param wp
+    * @param isResizeable
+    * @return
+    */
+   public static boolean showDialog(Component parent, WrappedPanel wp, boolean isResizeable) {
+	   WrapperDialog wd = new WrapperDialog(parent, wp, isResizeable);
+	   wd.setLocationRelativeTo(parent);
+	   wd.setVisible(true);
+	   return wd.accepted;
+   }
+
    private JPanel getMainPanel() {
       if (mainPanel == null) {
          mainPanel = new JPanel(new BorderLayout(4,4));

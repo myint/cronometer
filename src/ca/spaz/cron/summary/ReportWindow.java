@@ -166,6 +166,7 @@ public class ReportWindow extends WrappedPanel {
    private JComboBox getFormatBox() {
       if (formatBox == null) {
          formatBox = new JComboBox(getFormats());
+         formatBox.setPreferredSize(new Dimension(60, 12));
          formatBox.addItemListener(new ItemListener() {
             public void itemStateChanged(ItemEvent e) {
                if (e.getStateChange() == ItemEvent.SELECTED) {
