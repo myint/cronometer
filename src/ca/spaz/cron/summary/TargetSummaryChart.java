@@ -127,16 +127,16 @@ public class TargetSummaryChart extends JComponent implements UserChangeListener
       
       Target energyTarget = user.getTarget(NutrientInfo.getByName("Energy"));
       g.setColor(Color.LIGHT_GRAY);
-      g.fillRect(xo,yo,w,barHeight);
+      g.fillRect(xo,yo,w-pieRadius,barHeight);
       g.setColor(CALORIE_COLOR);      
       if (energy > 0) {
          barFill = energy/energyTarget.getMin();
          if (barFill > 1) {
             barFill = 1;
             g.setColor(CALORIE_COLOR.brighter());
-            g.fill3DRect(xo,yo,(int)(w*barFill), barHeight, false);
+            g.fill3DRect(xo,yo,(int)((w-pieRadius)*barFill), barHeight, false);
          } else {
-            g.fill3DRect(xo,yo,(int)(w*barFill), barHeight, true);
+            g.fill3DRect(xo,yo,(int)((w-pieRadius)*barFill), barHeight, true);
          }
       }
       g.setColor(Color.BLACK);
