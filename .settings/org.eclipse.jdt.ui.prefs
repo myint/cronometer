@@ -1,5 +1,7 @@
-#Sun Jul 09 12:03:59 PDT 2006
+#Sat Jan 06 23:26:26 GMT 2007
 eclipse.preferences.version=1
+formatter_profile=_Spaz.ca
+formatter_settings_version=10
 internal.default.compliance=user
 org.eclipse.jdt.ui.exception.name=e
 org.eclipse.jdt.ui.gettersetter.use.is=true
