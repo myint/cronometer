@@ -31,7 +31,7 @@ public class DoubleField extends JTextField {
       try {
          retVal = Double.parseDouble(getText());
       } catch (NumberFormatException e) {
-         toolkit.beep();
+         //toolkit.beep();
       }
       if (retVal < min) retVal = min;
       if (retVal > max) retVal = max;
