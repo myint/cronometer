@@ -23,7 +23,11 @@ public class EditFoodAction extends AbstractAction {
       this.food = food;
       this.parent = parent;
       putValue(SMALL_ICON, new ImageIcon(ImageFactory.getInstance().loadImage("/img/Edit24.gif")));
-      putValue(SHORT_DESCRIPTION, "Edit this food");      
+      putValue(SHORT_DESCRIPTION, "Edit this food");
+      if (!food.getSource().isMutable()) {
+         putValue(SHORT_DESCRIPTION, "Edit a copy of this food");
+         putValue(NAME, "Edit a Copy of Food");
+      }
    }      
    
    public void actionPerformed(ActionEvent e) {
