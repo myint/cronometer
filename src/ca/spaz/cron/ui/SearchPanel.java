@@ -168,7 +168,7 @@ public class SearchPanel extends JPanel implements ItemListener {
      
       
       JScrollPane jsp = new JScrollPane(resultTable);
-      jsp.setPreferredSize(new Dimension(400, 300));
+      jsp.setPreferredSize(new Dimension(500, 200));
       jsp.getViewport().setBackground(Color.WHITE);
       jsp.setBorder(BorderFactory.createEtchedBorder());
       return jsp;

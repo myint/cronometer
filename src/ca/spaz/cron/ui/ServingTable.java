@@ -6,6 +6,8 @@ package ca.spaz.cron.ui;
 import java.awt.*;
 import java.awt.datatransfer.Transferable;
 import java.awt.event.*;
+import java.awt.print.PrinterException;
+import java.text.MessageFormat;
 import java.util.*;
 import java.util.List;
 
@@ -19,6 +21,7 @@ import ca.spaz.cron.actions.*;
 import ca.spaz.cron.datasource.FoodProxy;
 import ca.spaz.cron.foods.Serving;
 import ca.spaz.gui.PrettyTable;
+import ca.spaz.util.ImageFactory;
 
 public class ServingTable extends JPanel {
 
@@ -27,10 +30,13 @@ public class ServingTable extends JPanel {
    private ServingTableModel model;
    private Vector listeners = new Vector();
    private Vector servingListeners = new Vector();
+   private JToolBar toolBar;
+   private JButton addBtn, delBtn, printBtn;
    
    public ServingTable() {
       model = new ServingTableModel(this);
       setLayout(new BorderLayout(4,4));
+      add(getToolBar(), BorderLayout.NORTH);
       add(makeJScrollPane(), BorderLayout.CENTER);
    }
    
@@ -56,12 +62,88 @@ public class ServingTable extends JPanel {
       while (iter.hasNext()) {
          ((ChangeListener)iter.next()).stateChanged(e);
       }
+      getDeleteButton().setEnabled(table.getSelectedRow() != -1);
    }
+ 
+   public JToolBar getToolBar() {
+      if (null == toolBar) {
+          toolBar = new JToolBar();
+          toolBar.setRollover(true);
+          toolBar.setOrientation(JToolBar.HORIZONTAL);
+          toolBar.setFloatable(false);
+          toolBar.setBorder(BorderFactory.createEmptyBorder(1,1,1,1));
+          toolBar.add(getAddButton());
+          toolBar.add(Box.createHorizontalStrut(10));
+          toolBar.add(getDeleteButton());
+          toolBar.add(Box.createHorizontalStrut(10));
+          toolBar.add(Box.createGlue());
+          toolBar.add(getPrintButton()); 
+          //toolBar.add(Box.createGlue());
+      }
+      return toolBar;
+  }
+   
+   
+   private JButton getDeleteButton() {
+      if (null == delBtn) {
+          ImageIcon icon = new ImageIcon(ImageFactory.getInstance().loadImage("/img/trash.gif"));
+          delBtn = new JButton(icon);
+          delBtn.setEnabled(false);
+          delBtn.setToolTipText("Delete the selected serving.");
+          delBtn.addActionListener(new ActionListener() {
+              public void actionPerformed(ActionEvent e) {
+                 deleteSelectedServings();
+              }
+          });
+          FoodDBToolBar.fixButton(delBtn);
+      }
+      return delBtn;
+  }
+   
+   private JButton getAddButton() {
+      if (null == addBtn) {
+          ImageIcon icon = new ImageIcon(ImageFactory.getInstance().loadImage("/img/add_obj.gif"));
+          addBtn = new JButton(icon);
+          addBtn.setToolTipText("Add a new serving.");
+          addBtn.addActionListener(new ActionListener() {
+              public void actionPerformed(ActionEvent e) {
+                 doAddFood();
+              }
+          });
+          FoodDBToolBar.fixButton(addBtn);
+      }
+      return addBtn;
+  }
 
+   private void doAddFood() {
+      SearchDialog sd = new SearchDialog(this);
+      sd.display();
+      Serving s = sd.getSelectedServing();
+      if (s != null) {
+        //addServing(s);
+        
+        if (CRONOMETER.getInstance().getDailySummary().isOkToAddServings()) {
+          CRONOMETER.getInstance().getDailySummary().addServing(s);           
+        }
+        
+      }
+      
+     /*// a crazy idea:
+      SearchPanel searchPanel = new SearchPanel(); 
+      JPopupMenu menu = new JPopupMenu();
+      menu.add(searchPanel);
+      menu.show(getAddButton(), 0,0);
+    
+      FoodProxy fp = searchPanel.getSelectedFood();
+      if (fp != null) {
+         addServing(new Serving(fp));
+      }*/
+      
+   }
    
    private JComponent makeJScrollPane() {
       JScrollPane jsp = new JScrollPane(getTable());
-      jsp.setPreferredSize(new Dimension(400, 200));
+      jsp.setPreferredSize(new Dimension(400, 150));
       jsp.getViewport().setBackground(Color.WHITE);
       jsp.setBorder(BorderFactory.createEtchedBorder());
       return jsp;
@@ -89,7 +171,7 @@ public class ServingTable extends JPanel {
 
          table.getColumnModel().getColumn(ServingTableModel.MEASURE_COL).setCellEditor(
                      new DefaultCellEditor(measureBox));
-         
+                   
          // right align last column
          TableColumnModel tcm = table.getColumnModel();
          DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
@@ -263,11 +345,12 @@ public class ServingTable extends JPanel {
    private void fireServingSelected(Serving s) {
       if (s == null) return;
       setMeasureBox(s);
+      getDeleteButton().setEnabled(!getSelectedServings().isEmpty());
       Iterator iter = servingListeners.iterator();
       while (iter.hasNext()) {
          ((ServingSelectionListener)iter.next()).servingSelected(s);
       }
-      getTable().requestFocus();
+      getTable().requestFocus();      
    }
    
    private void fireServingDoubleClicked(Serving s) {
@@ -277,7 +360,6 @@ public class ServingTable extends JPanel {
          ((ServingSelectionListener)iter.next()).servingDoubleClicked(s);
       }
    }
-
    
    public void deselect() {
       getTable().getSelectionModel().clearSelection();
@@ -325,5 +407,37 @@ public class ServingTable extends JPanel {
          menu.show(table, e.getX(), e.getY());
       }      
    }
+  
 
+   private JButton getPrintButton() {
+      if (null == printBtn) {
+         ImageIcon icon = new ImageIcon(ImageFactory.getInstance().loadImage(
+               "/img/print.gif"));
+         printBtn = new JButton(icon);
+         printBtn.setToolTipText("Print the food listing.");
+         printBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+               doPrint();
+            }
+         });
+         FoodDBToolBar.fixButton(printBtn);
+      }
+      return printBtn;
+   }
+   
+   /**
+    * Does a very simple print-out of the recipe.
+    */
+   public void doPrint() {
+      try {         
+         MessageFormat headerFormat = new MessageFormat("Daily Log");
+         MessageFormat footerFormat = new MessageFormat("- {0} -");
+         getTable().print(JTable.PrintMode.FIT_WIDTH, headerFormat, footerFormat);          
+      } catch (PrinterException e) {
+         e.printStackTrace();
+         JOptionPane.showMessageDialog(this, e.getMessage());
+      }
+   }     
+   
+  
 }

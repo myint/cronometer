@@ -46,14 +46,16 @@ import com.apple.mrj.MRJQuitHandler;
  *      - Spiffed up nutrition report (lined up columns).
  *      - Made a couple dialogs resizeable.
  *      - fixed beep
+ *      - fixed several bugs with save/cancel of foods and recipes
+ *      - bugs stomped?
 
  *   0.7.0 TODOs
- *      - new icon set?
+ *      - get new icon set?
  *      - better search ranking algorithm
- *      - bug stomp
- *      - try new collapsables in food editor
+ *      - bug stomp !
  *      - fix missing checkbox bug in ReportWindow
  *      - make sure mac version looks ok
+ *      - try crazy dialog idea 
  *      
  * @author davidson
  */
@@ -236,10 +238,10 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
       if (null == mainPanel) {
          mainPanel = new JPanel(new BorderLayout(4, 4));
          mainPanel.setBorder(BorderFactory.createEmptyBorder(4, 4, 4, 4));
-         JSplitPane jsplit = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,
+      /*   JSplitPane jsplit = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,
                getDBPanel(), getDailySummary());
-         jsplit.setBorder(BorderFactory.createEmptyBorder(4, 4, 4, 4));
-         mainPanel.add(jsplit, BorderLayout.CENTER);       
+         jsplit.setBorder(BorderFactory.createEmptyBorder(4, 4, 4, 4));*/
+         mainPanel.add(getDailySummary(), BorderLayout.CENTER);       
       }
       return mainPanel;
    }

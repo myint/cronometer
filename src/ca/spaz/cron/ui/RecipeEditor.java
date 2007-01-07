@@ -4,12 +4,14 @@
 package ca.spaz.cron.ui;
 
 import java.awt.BorderLayout;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.print.PrinterException;
 import java.text.MessageFormat;
 
 import javax.swing.*;
-import javax.swing.event.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import ca.spaz.cron.CRONOMETER;
 import ca.spaz.cron.foods.*;
@@ -24,8 +26,7 @@ public class RecipeEditor extends FoodEditor {
    private JToolBar toolBar;
    
    public RecipeEditor(CRONOMETER app, Recipe r) {
-      super(app, r);
-      
+      super(app, r);      
    }
    
    /**
@@ -100,7 +101,7 @@ public class RecipeEditor extends FoodEditor {
                getMeasureEditor().resetMeasures();
                getDeleteButton().setEnabled(!servingTable.getSelectedServings().isEmpty());
                updateNutrients(); 
-            }           
+            }
          });   
          servingTable.addServingSelectionListener(new ServingSelectionListener() {
             public void servingSelected(Serving food) {
@@ -147,8 +148,10 @@ public class RecipeEditor extends FoodEditor {
       if (null == servingPanel) {
          servingPanel = new JPanel(new BorderLayout(4,4));
          servingPanel.setBorder(BorderFactory.createEmptyBorder(4, 4, 4, 4));        
-         servingPanel.add(getToolBar(),BorderLayout.NORTH);
+         //servingPanel.add(getToolBar(),BorderLayout.NORTH);
          servingPanel.add(getServingTable(),BorderLayout.CENTER);
+         getServingTable().getToolBar().add(Box.createGlue());
+         getServingTable().getToolBar().add(getGramsLabel());
       }
       return servingPanel;
    }
@@ -171,7 +174,7 @@ public class RecipeEditor extends FoodEditor {
    private JButton getPrintButton() {
       if (null == printBtn) {
          ImageIcon icon = new ImageIcon(ImageFactory.getInstance().loadImage(
-               "/img/Print24.gif"));
+               "/img/print.gif"));
          printBtn = new JButton(icon);
          printBtn.setToolTipText("Print the recipe.");
          printBtn.addActionListener(new ActionListener() {
@@ -204,8 +207,9 @@ public class RecipeEditor extends FoodEditor {
      getServingTable().deleteSelectedServings();
   }
 
+  // TODO: decommission
    private void doAddFood() {
-      SearchDialog sd = new SearchDialog(getDialog());
+      SearchDialog sd = new SearchDialog(this);
       sd.display();
       Serving s = sd.getSelectedServing();
       if (s != null) {

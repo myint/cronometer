@@ -7,6 +7,7 @@ import java.awt.BorderLayout;
 
 import javax.swing.*;
 
+import ca.spaz.cron.CRONOMETER;
 import ca.spaz.cron.datasource.FoodProxy;
 import ca.spaz.cron.foods.Serving;
 
@@ -20,13 +21,19 @@ public class SearchDialog extends JDialog implements ServingEditorListener {
    
    public SearchDialog(JDialog parent) {
       super(parent);
-      setLocationRelativeTo(parent);
+      setLocationRelativeTo(CRONOMETER.getInstance());
       init();
    }   
    
    public SearchDialog(JFrame parent) {
      super(parent);
-     setLocationRelativeTo(parent);
+     setLocationRelativeTo(CRONOMETER.getInstance());
+     init();
+   }
+   
+   public SearchDialog(JComponent parent) {
+     super(JOptionPane.getFrameForComponent(parent));
+     setLocationRelativeTo(CRONOMETER.getInstance());
      init();
    }
    
@@ -76,6 +83,7 @@ public class SearchDialog extends JDialog implements ServingEditorListener {
    public ServingEditor getServingEditor() {
       if (servingEditor == null) {
          servingEditor = new ServingEditor();
+         servingEditor.setBorder(BorderFactory.createEmptyBorder(12,12,12,12));
          servingEditor.addServingEditorListener(this);
       }
       return servingEditor;
@@ -86,6 +94,8 @@ public class SearchDialog extends JDialog implements ServingEditorListener {
       abort = false;
       dispose();
    }
+   
+   
 
    
 }

@@ -281,24 +281,29 @@ public class TargetSummaryChart extends JComponent implements UserChangeListener
          str += ":"+valFormat.format(((int)Math.round(100*(acals/total))));
       }
       int sw = xo  + radius/2 - g.getFontMetrics().stringWidth(str)/2;
+       
+      str = valFormat.format(((int)Math.round(100*(pcals/total))))+":";
       g.setColor(getBackground().darker());
-      g.drawString(str, sw, yo+radius+8);
-      
-      str = valFormat.format(((int)Math.round(100*(pcals/total))));
+      g.drawString(str, sw-1+1, yo+radius+7+1);
       g.setColor(PROTEIN_COLOR.darker());       
       g.drawString(str, sw-1, yo+radius+7);
       
-      str = "   "+valFormat.format(((int)Math.round(100*(ccals/total))));
-      g.setColor(CARB_COLOR);       
+      str = "   "+valFormat.format(((int)Math.round(100*(ccals/total))))+":";
+      g.setColor(getBackground().darker());       
+      g.drawString(str, sw-1+1, yo+radius+7+1);
+      g.setColor(CARB_COLOR); 
       g.drawString(str, sw-1, yo+radius+7);
       
       str = "      "+valFormat.format(((int)Math.round(100*(fcals/total))));
+      if (acals > 0) str += ":";
+      g.setColor(getBackground().darker());   
+      g.drawString(str, sw-1+1, yo+radius+7+1);
       g.setColor(LIPID_COLOR);       
       g.drawString(str, sw-1, yo+radius+7);
       
       if (acals > 0) {
          str = "         "+valFormat.format(((int)Math.round(100*(acals/total))));
-         g.setColor(ALCOHOL_COLOR.darker());       
+         g.setColor(ALCOHOL_COLOR.darker()); 
          g.drawString(str, sw-1, yo+radius+7);
       }   
    }
