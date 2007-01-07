@@ -25,16 +25,22 @@ public class RecipeEditor extends FoodEditor {
    
    public RecipeEditor(CRONOMETER app, Recipe r) {
       super(app, r);
-      this.food = new Recipe(r);
-      getServingTable().setServings(getRecipe().getServings());      
+      
    }
    
    /**
     * Copy changes to original and save.
     */
    public void updateOriginal() {
-      original.copy(getRecipe());
+      ((Recipe)original).copy(getRecipe());
       original.update();
+   }
+   
+
+   public void setFood(Food f) {
+      this.original = f;
+      this.food = new Recipe((Recipe)f); // edit on a copy
+      getServingTable().setServings(getRecipe().getServings());      
    }
    
    protected String getTitle() {

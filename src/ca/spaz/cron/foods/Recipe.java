@@ -19,7 +19,10 @@ public class Recipe extends Food {
    public void copy(Recipe r) {
       super.copy(r);
       if (r.servings != null) {
-         servings = new ArrayList(r.servings);
+         getServings().clear();
+         for (int i=0; i<r.servings.size(); i++) {
+            getServings().add(new Serving((Serving)r.servings.get(i)));
+         }
       }
    }
    

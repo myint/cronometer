@@ -42,6 +42,11 @@ import com.apple.mrj.MRJQuitHandler;
  *      - added edit menu and copy/paste shortcuts to food list
  *      - does not show pie-chart if no calories == 0
  *      
+ *   0.7.0 TODOs
+ *      - new icon set?
+ *      - better search ranking algorithm
+ *      - bug stomp
+ *      - try new collapsables in food editor
  *      
  * @author davidson
  */
