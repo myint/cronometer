@@ -309,9 +309,14 @@ public class TargetSummaryChart extends JComponent implements UserChangeListener
    }
 
    public Dimension getPreferredSize() {
-      return new Dimension(300, 180);
+      return new Dimension(500, 180);
    }
 
+
+   public Dimension getMinimumSize() {
+      return new Dimension(500, 180);
+   }
+   
    public void userChanged(User user) {
       update();
    }

@@ -22,8 +22,8 @@ public class SplashScreen extends JFrame implements TaskListener {
    private Task task;
    
    public static void showSplashScreen(Task startupTasks) {
-        SplashScreen scr = new SplashScreen(startupTasks);
-        scr.start();
+      SplashScreen scr = new SplashScreen(startupTasks);
+      scr.start();
    }
    
    public SplashScreen(Task startupTasks) {

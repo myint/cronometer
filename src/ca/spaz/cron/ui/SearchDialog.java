@@ -10,6 +10,7 @@ import javax.swing.*;
 import ca.spaz.cron.CRONOMETER;
 import ca.spaz.cron.datasource.FoodProxy;
 import ca.spaz.cron.foods.Serving;
+import ca.spaz.util.ToolBox;
 
 public class SearchDialog extends JDialog implements ServingEditorListener {
 
@@ -19,29 +20,19 @@ public class SearchDialog extends JDialog implements ServingEditorListener {
    private boolean abort = true;
    private Serving serving = null;
    
-   public SearchDialog(JDialog parent) {
-      super(parent);
-      setLocationRelativeTo(CRONOMETER.getInstance());
-      init();
-   }   
-   
-   public SearchDialog(JFrame parent) {
-     super(parent);
-     setLocationRelativeTo(CRONOMETER.getInstance());
-     init();
-   }
-   
+  
    public SearchDialog(JComponent parent) {
      super(JOptionPane.getFrameForComponent(parent));
      setLocationRelativeTo(CRONOMETER.getInstance());
      init();
    }
    
-   private void init() {      
-       this.setTitle("Select a Food");
-       this.getContentPane().add(getMainPanel());
-       this.pack();
-       this.setModal(true);      
+   private void init() {
+      this.setTitle("Select a Food");
+      this.getContentPane().add(getMainPanel());
+      this.pack(); 
+      ToolBox.centerFrame(this);
+      this.setModal(true);
    }
 
    public void display() {
@@ -57,6 +48,20 @@ public class SearchDialog extends JDialog implements ServingEditorListener {
    public SearchPanel getSearchPanel() {
       if (null == searchPanel) {
          searchPanel = new SearchPanel(); 
+         
+         searchPanel.addFoodSelectionListener(new FoodSelectionListener() {
+            public void foodSelected(FoodProxy food) {                  
+               getServingEditor().setServing(new Serving(food));
+               getServingEditor().getMeasure().setFocus();
+               getToolBar().setSelectedFood(food);
+            }
+            public void foodDoubleClicked(FoodProxy food) {
+               if (food != null) {
+                  FoodEditor.editFood(food.getFood()); 
+               }
+            } 
+         });
+
          searchPanel.addFoodSelectionListener(new FoodSelectionListener() {
             public void foodSelected(FoodProxy food) {
                 getServingEditor().setServing(new Serving(food));
@@ -70,16 +75,28 @@ public class SearchDialog extends JDialog implements ServingEditorListener {
       return searchPanel;
    }
    
-   private JPanel getMainPanel() {
+   public JPanel getMainPanel() {
       if (null == mainPanel) {
          mainPanel = new JPanel(new BorderLayout(4,4));
          mainPanel.setBorder(BorderFactory.createEmptyBorder(4, 4, 4, 4));
+         //mainPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 4));
+         
+         mainPanel.add(getToolBar(), BorderLayout.NORTH);
          mainPanel.add(getServingEditor(), BorderLayout.SOUTH);
          mainPanel.add(getSearchPanel(), BorderLayout.CENTER); 
       }
       return mainPanel;
    }
 
+   private FoodDBToolBar toolBar;
+   
+   public FoodDBToolBar getToolBar() {
+      if (toolBar == null) {
+         toolBar = new FoodDBToolBar();
+      }
+      return toolBar;
+   }
+   
    public ServingEditor getServingEditor() {
       if (servingEditor == null) {
          servingEditor = new ServingEditor();

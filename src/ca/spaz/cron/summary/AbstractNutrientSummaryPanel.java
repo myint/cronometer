@@ -30,12 +30,22 @@ public abstract class AbstractNutrientSummaryPanel extends JPanel {
    protected JScrollPane getNutrientTablePane() {
       if (scrollPane == null) {
          scrollPane = new JScrollPane(getNutrientTable());
-         scrollPane.setPreferredSize(new Dimension(300, 160));
+         scrollPane.setPreferredSize(new Dimension(500, 160));
          scrollPane.getViewport().setBackground(Color.WHITE);
          scrollPane.setBorder(BorderFactory.createEtchedBorder());
          scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
       }
       return scrollPane;
+   }
+
+
+   public Dimension getPreferredSize() {
+      return new Dimension(500, 180);
+   }
+
+
+   public Dimension getMinimumSize() {
+      return new Dimension(500, 180);
    }
    
    

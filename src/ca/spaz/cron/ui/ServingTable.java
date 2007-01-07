@@ -115,29 +115,23 @@ public class ServingTable extends JPanel {
       return addBtn;
   }
 
+  
+   
    private void doAddFood() {
-      SearchDialog sd = new SearchDialog(this);
-      sd.display();
-      Serving s = sd.getSelectedServing();
-      if (s != null) {
-        //addServing(s);
+     SearchDialog sd = new SearchDialog(this);
+     sd.display();
         
+     //a crazy idea: 
+     /* JPopupMenu menu = new JPopupMenu();
+      menu.add(sd.getMainPanel());
+      menu.show(getAddButton(), -50,-50);*/
+      
+      Serving s = sd.getSelectedServing();
+      if (s != null) { 
         if (CRONOMETER.getInstance().getDailySummary().isOkToAddServings()) {
           CRONOMETER.getInstance().getDailySummary().addServing(s);           
-        }
-        
+        }        
       }
-      
-     /*// a crazy idea:
-      SearchPanel searchPanel = new SearchPanel(); 
-      JPopupMenu menu = new JPopupMenu();
-      menu.add(searchPanel);
-      menu.show(getAddButton(), 0,0);
-    
-      FoodProxy fp = searchPanel.getSelectedFood();
-      if (fp != null) {
-         addServing(new Serving(fp));
-      }*/
       
    }
    

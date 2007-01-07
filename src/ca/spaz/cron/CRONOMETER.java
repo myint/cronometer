@@ -272,11 +272,13 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
 
    public void doCreateNewFood() {
       FoodEditor.editFood(new Food());
+      refreshDisplays();
    }
 
    public void doCreateNewRecipe() {
       List servings = getDailySummary().getServingTable().getSelectedServings();
       CreateRecipeAction.execute(servings);
+      refreshDisplays();
    }
     
 
@@ -286,6 +288,7 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
    
    public void doImportFood() {
       getDBPanel().getToolBar().doImportFood();
+      refreshDisplays();
    }
 
    public void doAbout() {

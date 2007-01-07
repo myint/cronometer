@@ -152,7 +152,7 @@ public class UserFoods implements FoodDataSource {
       }
       FoodProxy fp = getFoodProxy(f.getSourceUID());
       assert (fp != null);
-      if (!f.getDescription().equals(fp.getDescription())) {
+      if (f.getDescription() == null || !f.getDescription().equals(fp.getDescription())) {
          fp.setDescription(f.getDescription());
          writeIndex();
       }

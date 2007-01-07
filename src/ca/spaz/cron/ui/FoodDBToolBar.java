@@ -28,7 +28,7 @@ public class FoodDBToolBar extends JToolBar {
    private JButton prefsButton;
 
    public FoodDBToolBar() {
-    //setFloatable(false);
+      setFloatable(false);
       setRollover(true);      
       setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
       setOpaque(false);
@@ -49,8 +49,8 @@ public class FoodDBToolBar extends JToolBar {
       add(Box.createHorizontalStrut(4));
       add(getDeleteButton());
       add(Box.createHorizontalStrut(4));
-      add(Box.createHorizontalGlue());
-      add(getPrefsButton());
+      /*add(Box.createHorizontalGlue());
+      add(getPrefsButton());*/
       add(Box.createHorizontalStrut(4));
 
       setSelectedFood(null);

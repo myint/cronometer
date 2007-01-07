@@ -14,6 +14,7 @@ import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import ca.spaz.cron.CRONOMETER;
 import ca.spaz.cron.datasource.Datasources;
 import ca.spaz.cron.foods.Serving;
 import ca.spaz.cron.summary.NutritionSummaryPanel;
@@ -48,6 +49,8 @@ public class DailySummary extends JPanel {
    private JButton titleLabel;
    private JButton copyPrevDayButton;
    private JButton todayButton;
+   private JButton prefsButton;
+   
    private TranslucentToolBar toolBar;
    private NutritionSummaryPanel totals;
    boolean asked = false; 
@@ -134,6 +137,22 @@ public class DailySummary extends JPanel {
       return servingTable;
    }
 
+
+   
+   private JButton getPrefsButton() {
+      if (null == prefsButton) {
+         ImageIcon icon = new ImageIcon(ImageFactory.getInstance().loadImage("/img/Preferences24.gif"));
+         prefsButton = new JButton(icon);         
+         FoodDBToolBar.fixButton(prefsButton);    
+         prefsButton.setToolTipText("Edit Preferences");
+         prefsButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+               CRONOMETER.getInstance().doEditUserSettings();
+            }
+         });
+      }
+      return prefsButton;
+   }
      
 
    private JButton getNextButton() {
@@ -208,9 +227,11 @@ public class DailySummary extends JPanel {
     * Copies the foods from the previous day into this day.
     */
    private void copyPreviousDay() {
-	   Date previousDay = new Date(curDate.getTime() - ONE_DAY);
-	   Datasources.getFoodHistory().copyConsumedOn(previousDay, curDate);
-	   notifyObservers();
+      if (isOkToAddServings()) {
+   	   Date previousDay = new Date(curDate.getTime() - ONE_DAY);
+   	   Datasources.getFoodHistory().copyConsumedOn(previousDay, curDate);
+   	   notifyObservers();
+      }
    }
 
    /**
@@ -245,7 +266,9 @@ public class DailySummary extends JPanel {
          toolBar.add(Box.createHorizontalStrut(5));
          toolBar.add(getNextButton());
          toolBar.add(Box.createHorizontalGlue());
-         toolBar.add(getCopyPreviousDayButton());         
+         toolBar.add(getCopyPreviousDayButton());  
+         toolBar.add(Box.createHorizontalStrut(5));
+         toolBar.add(getPrefsButton()); 
       }
       return toolBar;
    }
