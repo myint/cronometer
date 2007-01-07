@@ -163,6 +163,7 @@ public class RecipeEditor extends FoodEditor {
                  doAddFood();
               }
           });
+          FoodDBToolBar.fixButton(addBtn);
       }
       return addBtn;
   }
@@ -178,6 +179,7 @@ public class RecipeEditor extends FoodEditor {
                doPrint();
             }
          });
+         FoodDBToolBar.fixButton(printBtn);
       }
       return printBtn;
    }
@@ -193,6 +195,7 @@ public class RecipeEditor extends FoodEditor {
                   doDeleteServing();
               }
           });
+          FoodDBToolBar.fixButton(delBtn);
       }
       return delBtn;
   }

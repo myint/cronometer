@@ -137,6 +137,7 @@ public class MeasureEditor extends JPanel {
                     addMeasure();
                 }
             });
+            FoodDBToolBar.fixButton(addBtn);
         }
         return addBtn;
     }
@@ -151,6 +152,7 @@ public class MeasureEditor extends JPanel {
                     deleteSelectedWeight();
                 }
             });
+            FoodDBToolBar.fixButton(delBtn);
         }
         return delBtn;
     }

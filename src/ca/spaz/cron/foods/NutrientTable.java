@@ -3,9 +3,6 @@
  */
 package ca.spaz.cron.foods;
 
-import java.util.Arrays;
-
-
 /**
  * A base class for a group of related nutrient values Provides common support
  * for loading and updating the database.
@@ -18,14 +15,12 @@ import java.util.Arrays;
  */
 public class NutrientTable {
 
-   public double[] nutrients;
+   public double[] nutrients = new double[NutrientInfo.getGlobalList().size()];
    
-   public NutrientTable() {
-      nutrients = new double[NutrientInfo.getGlobalList().size()];
-   }
+   public NutrientTable() {}
 
    public NutrientTable(NutrientTable nt) {
-      nutrients = Arrays.copyOf(nt.nutrients, nt.nutrients.length);
+      System.arraycopy(nt.nutrients, 0, nutrients, 0, nutrients.length);
    }
 
    public double getAmount(int index) {

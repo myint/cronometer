@@ -3,8 +3,7 @@
  */
 package ca.spaz.cron.ui;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.io.File;
 
 import javax.swing.*;
@@ -15,6 +14,7 @@ import ca.spaz.cron.actions.ExportFoodAction;
 import ca.spaz.cron.datasource.*;
 import ca.spaz.cron.foods.Food;
 import ca.spaz.util.ImageFactory;
+import ca.spaz.util.ToolBox;
 
 public class FoodDBToolBar extends JToolBar {
  
@@ -82,26 +82,23 @@ public class FoodDBToolBar extends JToolBar {
       btn.setOpaque(false);
       btn.setFocusable(false);
       btn.setRolloverEnabled(true); 
-      /* btn.setMargin(new Insets(3,3,3,3));
-      btn.setBorderPainted(false);
-      btn.setRolloverEnabled(true);           
-      btn.setBorder(BorderFactory.createCompoundBorder(
-            BorderFactory.createEtchedBorder(),
-            BorderFactory.createEmptyBorder(2,2,2,2)));
-      btn.setContentAreaFilled(false);
-      btn.addMouseListener(new MouseAdapter() {
-         public void mouseEntered(MouseEvent e) {
-            if (btn.isEnabled()) {
-               btn.setContentAreaFilled(true);
-               btn.setOpaque(false);
-               btn.setBorderPainted(true);
+      if (ToolBox.isMacOSX()) {
+         btn.setBorderPainted(false);
+         btn.setContentAreaFilled(false);
+         btn.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent e) {
+               if (btn.isEnabled()) {
+                  btn.setContentAreaFilled(true);
+                  btn.setOpaque(false);
+                  btn.setBorderPainted(true);
+               }
+            } 
+            public void mouseExited(MouseEvent e) {
+               btn.setContentAreaFilled(false);
+               btn.setBorderPainted(false);
             }
-         } 
-         public void mouseExited(MouseEvent e) {
-            btn.setContentAreaFilled(false);
-            btn.setBorderPainted(false);
-         }
-      });*/
+         });
+      }
    }
     
    private JButton getDeleteButton() {
