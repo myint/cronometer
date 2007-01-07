@@ -155,7 +155,7 @@ public class RecipeEditor extends FoodEditor {
    
    private JButton getAddButton() {
       if (null == addBtn) {
-          ImageIcon icon = new ImageIcon(ImageFactory.getInstance().loadImage("/img/Add24.gif"));
+          ImageIcon icon = new ImageIcon(ImageFactory.getInstance().loadImage("/img/add_obj.gif"));
           addBtn = new JButton(icon);
           addBtn.setToolTipText("Add a new serving.");
           addBtn.addActionListener(new ActionListener() {
@@ -184,7 +184,7 @@ public class RecipeEditor extends FoodEditor {
    
    private JButton getDeleteButton() {
       if (null == delBtn) {
-          ImageIcon icon = new ImageIcon(ImageFactory.getInstance().loadImage("/img/Delete24.gif"));
+          ImageIcon icon = new ImageIcon(ImageFactory.getInstance().loadImage("/img/trash.gif"));
           delBtn = new JButton(icon);
           delBtn.setEnabled(false);
           delBtn.setToolTipText("Delete the selected serving.");

@@ -33,16 +33,16 @@ public class NutritionSummaryPanel extends JTabbedPane {
     private LipidSummaryPanel lipidsPanel;
 
     public NutritionSummaryPanel() {
-       if (ToolBox.isMacOSX()){
-          setFont(getFont().deriveFont(10.0f));
-       }
-        add("Summary", getTargetSummaryPanel());
-        add("General", getGeneralPanel());
-        add("Vitamins", getVitaminsPanel());
-        add("Minerals", getMineralsPanel());
-        add("Amino Acids", getAminoAcidsPanel());
-        add("Lipids", getLipidsPanel());
-    }
+      if (ToolBox.isMacOSX()) {
+         setFont(getFont().deriveFont(10.0f));
+      }
+      add("Summary", getTargetSummaryPanel());
+      add("General", getGeneralPanel());
+      add("Vitamins", getVitaminsPanel());
+      add("Minerals", getMineralsPanel());
+      add("Amino Acids", getAminoAcidsPanel());
+      add("Lipids", getLipidsPanel());
+   }
 
     public void setServings(List consumed) {
         getGeneralPanel().update(consumed);        
@@ -55,7 +55,7 @@ public class NutritionSummaryPanel extends JTabbedPane {
 
     protected TargetSummaryChart getTargetSummaryPanel() {
        if (null == targetPanel) {
-          targetPanel = new TargetSummaryChart(this);
+          targetPanel = new TargetSummaryChart(this);          
        }
        return targetPanel;
    }
@@ -70,7 +70,7 @@ public class NutritionSummaryPanel extends JTabbedPane {
 
     protected VitaminSummaryPanel getVitaminsPanel() {
         if (null == vitaminPanel) {
-            vitaminPanel = new VitaminSummaryPanel();
+            vitaminPanel = new VitaminSummaryPanel();            
         }
         return vitaminPanel;
     }

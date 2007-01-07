@@ -52,6 +52,8 @@ import com.apple.mrj.MRJQuitHandler;
  *      - better search ranking algorithm
  *      - bug stomp
  *      - try new collapsables in food editor
+ *      - fix missing checkbox bug in ReportWindow
+ *      - make sure mac version looks ok
  *      
  * @author davidson
  */

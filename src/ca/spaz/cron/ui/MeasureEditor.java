@@ -129,7 +129,7 @@ public class MeasureEditor extends JPanel {
 
     private JButton getAddButton() {
         if (null == addBtn) {
-            ImageIcon icon = new ImageIcon(ImageFactory.getInstance().loadImage("/img/Add24.gif"));
+            ImageIcon icon = new ImageIcon(ImageFactory.getInstance().loadImage("/img/add_obj.gif"));
             addBtn = new JButton(icon);
             addBtn.setToolTipText("Add a new measurement.");
             addBtn.addActionListener(new ActionListener() {
@@ -143,7 +143,7 @@ public class MeasureEditor extends JPanel {
 
     private JButton getDeleteButton() {
         if (null == delBtn) {
-            ImageIcon icon = new ImageIcon(ImageFactory.getInstance().loadImage("/img/Delete24.gif"));
+            ImageIcon icon = new ImageIcon(ImageFactory.getInstance().loadImage("/img/trash.gif"));
             delBtn = new JButton(icon);
             delBtn.setToolTipText("Delete the selected measurement.");
             delBtn.addActionListener(new ActionListener() {

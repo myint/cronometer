@@ -4,18 +4,20 @@
 package ca.spaz.cron.ui;
 
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.DateFormat;
-import java.util.*;
+import java.util.Date;
 import java.util.List;
 
 import javax.swing.*;
-import javax.swing.event.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import ca.spaz.cron.datasource.Datasources;
 import ca.spaz.cron.foods.Serving;
 import ca.spaz.cron.summary.NutritionSummaryPanel;
-import ca.spaz.gui.TranslucentPanel;
+import ca.spaz.gui.TranslucentToolBar;
 import ca.spaz.util.ImageFactory;
 import ca.spaz.util.ToolBox;
 
@@ -46,7 +48,7 @@ public class DailySummary extends JPanel {
    private JButton titleLabel;
    private JButton copyPrevDayButton;
    private JButton todayButton;
-   private JPanel toolBar;
+   private TranslucentToolBar toolBar;
    private NutritionSummaryPanel totals;
    boolean asked = false; 
    
@@ -101,6 +103,7 @@ public class DailySummary extends JPanel {
          dailyTracker = new JTabbedPane();
          dailyTracker.add("Diet", getDietPanel()); 
          dailyTracker.add("Biomarkers", getBioMarkersPanel());
+         
       }
       return dailyTracker;
    }
@@ -230,7 +233,7 @@ public class DailySummary extends JPanel {
 
    private JComponent getToolbar() {
       if (null == toolBar) {
-         toolBar = new TranslucentPanel(0.25);
+         toolBar = new TranslucentToolBar(0.25);
          toolBar.setBackground(Color.BLACK); 
          toolBar.setLayout(new BoxLayout(toolBar, BoxLayout.X_AXIS));
          toolBar.setBorder(BorderFactory.createEmptyBorder(4, 5, 4, 5));

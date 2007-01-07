@@ -23,7 +23,7 @@ import com.toedter.calendar.JDateChooser;
 
 public class ReportWindow extends WrappedPanel { 
    private WebViewer htmlViewer;
-   private JPanel toolbar;
+   private JToolBar toolbar;
    private JComboBox formatBox;
    private JCheckBox targetsOnlyBox;
    private JButton saveBtn;
@@ -87,9 +87,11 @@ public class ReportWindow extends WrappedPanel {
       return formats;
    }
    
-   private JPanel getToolbar() {
+   private JToolBar getToolbar() {
       if (toolbar == null) {
-         toolbar = new JPanel();
+         toolbar = new JToolBar();
+         toolbar.setFloatable(false);
+         toolbar.setRollover(true);
          toolbar.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
          toolbar.setLayout(new BoxLayout(toolbar, BoxLayout.X_AXIS));
 
@@ -125,6 +127,8 @@ public class ReportWindow extends WrappedPanel {
    private JButton getStartDateButton() {
       if (startDateBtn == null) {
          startDateBtn = new JButton(df.format(startDate));
+         startDateBtn.setRolloverEnabled(true);
+         startDateBtn.setFocusable(false);
          startDateBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                startDate = pickDate(startDate);
@@ -144,6 +148,8 @@ public class ReportWindow extends WrappedPanel {
    private JButton getEndDateButton() {
       if (endDateBtn == null) {
          endDateBtn = new JButton(df.format(endDate));
+         endDateBtn.setRolloverEnabled(true);
+         endDateBtn.setFocusable(false);
          endDateBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                endDate = pickDate(endDate);
@@ -185,6 +191,7 @@ public class ReportWindow extends WrappedPanel {
    private JCheckBox getTargetsOnlyBox() {
       if (targetsOnlyBox == null) {
          targetsOnlyBox = new JCheckBox("Targets Only", true);
+         targetsOnlyBox.setRolloverEnabled(true);
          targetsOnlyBox.setToolTipText("Show only items with valid targets.");
          targetsOnlyBox.addItemListener(new ItemListener() {
             public void itemStateChanged(ItemEvent e) {
@@ -200,11 +207,11 @@ public class ReportWindow extends WrappedPanel {
    
    private JButton getSaveButton() {
       if (null == saveBtn) {
-         saveBtn = new JButton(new ImageIcon(ImageFactory.getInstance().loadImage("/img/Save24.gif")));
+         saveBtn = new JButton(new ImageIcon(ImageFactory.getInstance().loadImage("/img/save_edit.gif")));
          saveBtn.setToolTipText("Save to File");       
          saveBtn.setBorderPainted(false);
          saveBtn.setRolloverEnabled(true);
-         saveBtn.setMargin(new Insets(0,0,0,0));
+         saveBtn.setMargin(new Insets(1,1,1,1));
          saveBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                doSaveReport();

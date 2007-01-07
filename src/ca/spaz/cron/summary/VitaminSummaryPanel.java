@@ -12,7 +12,7 @@ import ca.spaz.cron.foods.NutrientInfo;
 
 public class VitaminSummaryPanel extends AbstractNutrientSummaryPanel {
    
-   public VitaminSummaryPanel() { 
+   public VitaminSummaryPanel() {
       setLayout(new BorderLayout());
       setBorder(BorderFactory.createEmptyBorder(4,4,4,4));      
       add(getNutrientTablePane(), BorderLayout.CENTER);

@@ -3,19 +3,20 @@
  */
 package ca.spaz.cron.ui;
 
-import java.awt.Insets;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 
 import javax.swing.*;
 
 import ca.spaz.cron.CRONOMETER;
-import ca.spaz.cron.actions.*;
+import ca.spaz.cron.actions.DeleteFoodAction;
+import ca.spaz.cron.actions.ExportFoodAction;
 import ca.spaz.cron.datasource.*;
 import ca.spaz.cron.foods.Food;
 import ca.spaz.util.ImageFactory;
 
-public class FoodDBToolBar extends JPanel {
+public class FoodDBToolBar extends JToolBar {
  
    private FoodProxy selectedFood;
 
@@ -27,8 +28,8 @@ public class FoodDBToolBar extends JPanel {
    private JButton prefsButton;
 
    public FoodDBToolBar() {
-    //  setFloatable(false);
-    //  setRollover(true);
+    //setFloatable(false);
+      setRollover(true);      
       setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
       setOpaque(false);
       setBorder(BorderFactory.createEmptyBorder(4,2,4,2)); 
@@ -79,10 +80,11 @@ public class FoodDBToolBar extends JPanel {
    
    public static void fixButton(final JButton btn) {
       btn.setOpaque(false);
-      btn.setMargin(new Insets(3,3,3,3));
-      btn.setBorderPainted(false);
-      btn.setRolloverEnabled(true);     
       btn.setFocusable(false);
+      btn.setRolloverEnabled(true); 
+      /* btn.setMargin(new Insets(3,3,3,3));
+      btn.setBorderPainted(false);
+      btn.setRolloverEnabled(true);           
       btn.setBorder(BorderFactory.createCompoundBorder(
             BorderFactory.createEtchedBorder(),
             BorderFactory.createEmptyBorder(2,2,2,2)));
@@ -99,7 +101,7 @@ public class FoodDBToolBar extends JPanel {
             btn.setContentAreaFilled(false);
             btn.setBorderPainted(false);
          }
-      });
+      });*/
    }
     
    private JButton getDeleteButton() {
