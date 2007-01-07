@@ -154,6 +154,7 @@ public class FoodEditor extends JPanel {
          food.update();
       }
       getDialog().dispose();
+      CRONOMETER.getInstance().getDBPanel().getSearchPanel().doDBSearch();
    }
 
    private JPanel getButtonPanel() {
