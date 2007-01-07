@@ -54,8 +54,7 @@ public class DeleteFoodAction extends AbstractAction {
             fp.getFood().delete();
             Datasources.getFoodHistory().deleteServings(servings);
             // TODO: must also delete from recipes that refer to it
-            CRONOMETER.getInstance().getDBPanel().getSearchPanel().doDBSearch();
-            CRONOMETER.getInstance().getDailySummary().notifyObservers();
+            CRONOMETER.getInstance().refreshDisplays();            
          }
       }
    }

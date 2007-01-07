@@ -24,6 +24,8 @@ public class TargetSummaryChart extends JComponent implements UserChangeListener
    public static final Color VITAMIN_COLOR = new Color(120,180,20);
    public static final Color MINERAL_COLOR = new Color(80,180,180);
    
+   private static final double DISPLAY_THRESH = 0.005;
+   
    DecimalFormat valFormat = new DecimalFormat("00");
    
    NutritionSummaryPanel summary;
@@ -129,7 +131,7 @@ public class TargetSummaryChart extends JComponent implements UserChangeListener
       g.setColor(Color.LIGHT_GRAY);
       g.fillRect(xo,yo,w-pieRadius,barHeight);
       g.setColor(CALORIE_COLOR);      
-      if (energy > 0) {
+      if (energy > DISPLAY_THRESH) {
          barFill = energy/energyTarget.getMin();
          if (barFill > 1) {
             barFill = 1;
@@ -149,7 +151,7 @@ public class TargetSummaryChart extends JComponent implements UserChangeListener
       g.setColor(Color.LIGHT_GRAY);
       g.fillRect(xo,yo+(barHeight+5),w-pieRadius,barHeight);
       g.setColor(PROTEIN_COLOR);
-      if (protein > 0) {
+      if (protein > DISPLAY_THRESH) {
          barFill = protein/proteinTarget.getMin();
          if (barFill > 1) {
             barFill = 1;
@@ -169,7 +171,7 @@ public class TargetSummaryChart extends JComponent implements UserChangeListener
       g.setColor(Color.LIGHT_GRAY);
       g.fillRect(xo,yo+(barHeight+5)*2,w-pieRadius,barHeight);
       g.setColor(CARB_COLOR);
-      if (carbs > 0) {
+      if (carbs > DISPLAY_THRESH) {
          barFill = carbs/carbTarget.getMin();
          if (barFill > 1) {
             barFill = 1;
@@ -188,7 +190,7 @@ public class TargetSummaryChart extends JComponent implements UserChangeListener
       g.setColor(Color.LIGHT_GRAY);
       g.fillRect(xo,yo+(barHeight+5)*3,w-pieRadius,barHeight);
       g.setColor(LIPID_COLOR);
-      if (lipid > 0) {
+      if (lipid > DISPLAY_THRESH) {
          barFill = lipid/lipidTarget.getMin();
          if (barFill > 1) {
             barFill = 1;
@@ -207,7 +209,7 @@ public class TargetSummaryChart extends JComponent implements UserChangeListener
       g.setColor(Color.LIGHT_GRAY);
       g.fillRect(xo,yo+(barHeight+5)*4,w-pieRadius,barHeight);
       g.setColor(VITAMIN_COLOR);
-      if (vitamins > 0) {
+      if (vitamins > DISPLAY_THRESH) {
          barFill = vitamins;
          if (barFill > 1) {
             barFill = 1;
@@ -224,7 +226,7 @@ public class TargetSummaryChart extends JComponent implements UserChangeListener
       g.setColor(Color.LIGHT_GRAY);
       g.fillRect(xo,yo+(barHeight+5)*5,w-pieRadius,barHeight);
       g.setColor(MINERAL_COLOR);
-      if (minerals > 0) {
+      if (minerals > DISPLAY_THRESH) {
          barFill = minerals;
          if (barFill > 1) {
             barFill = 1;

@@ -24,7 +24,31 @@ public class Food {
    
    public Food() {}
     
-  
+   /**
+    * Copy Constructor
+    * @param f create a copy of this food
+    */
+   public Food(Food f) {
+      copy(f);
+   }
+   
+   public void copy(Food f) {
+      this.description = f.description;
+      if (f.measures != null) {
+         this.measures = new ArrayList(f.measures);
+      }
+      this.dataSource = f.dataSource;
+      if (f.nutrients != null) {
+         this.nutrients = new NutrientTable(f.nutrients);
+      }
+      this.sourceUID = f.sourceUID;
+      this.dirty = f.dirty;
+      this.comment = f.comment;
+      this.pCF = f.pCF;
+      this.fCF = f.fCF;
+      this.cCF = f.cCF;
+   }
+   
    public void appendComment(String str) {
       if (comment == null) {
          comment = str;

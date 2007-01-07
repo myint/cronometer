@@ -452,7 +452,19 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
       // unused interface
       // grey out paste menu?
    }
-   
+
+   /**
+    * Some unspecified change has occurred in the underlying data, so refresh the current views.
+    * For instance a food may have been edited and the search results and servings table need to
+    * reflect the changes made.
+    */
+   public void refreshDisplays() {
+      repaint();
+      getDBPanel().getSearchPanel().doDBSearch();  
+      CRONOMETER.getInstance().getDailySummary().notifyObservers();
+   }
+
+
    public static void main(String[] args) {
       try {
          if (!ToolBox.isMacOSX()) {
@@ -478,7 +490,6 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
       scr.addTaskListener(cron);
       scr.start();      
    }
-
 
 }
 

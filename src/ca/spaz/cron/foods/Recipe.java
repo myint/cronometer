@@ -9,8 +9,20 @@ import ca.spaz.util.XMLNode;
 
 public class Recipe extends Food {
    private List servings;   
+
+   public Recipe() {}
    
-    
+   public Recipe(Recipe r) {
+      copy(r);
+   }
+   
+   public void copy(Recipe r) {
+      super.copy(r);
+      if (r.servings != null) {
+         servings = new ArrayList(r.servings);
+      }
+   }
+   
    protected String getTagName() {
       return "recipe";
    }
@@ -82,7 +94,7 @@ public class Recipe extends Food {
       if (!found) {
          getMeasures().add( new Measure(1.0, "full recipe", total) );
       }
-      update();
+      //update();
    }
    
    public double getTotalGrams() {

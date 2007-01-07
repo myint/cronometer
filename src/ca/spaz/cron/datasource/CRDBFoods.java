@@ -3,12 +3,15 @@
  */
 package ca.spaz.cron.datasource;
 
+import java.awt.Color;
+
 import ca.spaz.cron.foods.Food;
 
 
 public class CRDBFoods extends ZipXMLFoodDataSource {
    
-
+   private static final Color CRDB_COL = new Color(0x00, 0x00, 0x70);
+   
    public String getZipFileName() {
       return "crdb_r002.zip";
    }
@@ -35,6 +38,10 @@ public class CRDBFoods extends ZipXMLFoodDataSource {
    public void removeFood(Food f) {
       
    }
-   
+
+   public Color getDisplayColor() { 
+      return CRDB_COL;
+   }
+
    
 }

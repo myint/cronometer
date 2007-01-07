@@ -20,8 +20,6 @@ import ca.spaz.util.ToolBox;
  * An editor panel for a food item in the database. The editor must be able to
  * add / update / delete a food which includes all nutrient entries, and weights
  * 
- * @todo: Import/Export
- * 
  * @author davidson
  */
 public class FoodEditor extends JPanel {
@@ -30,7 +28,7 @@ public class FoodEditor extends JPanel {
 
    private JDialog dialog;
 
-   private Food food;
+   protected Food food, original;
 
    private JTextField name;
 
@@ -52,9 +50,22 @@ public class FoodEditor extends JPanel {
 
    public FoodEditor(CRONOMETER app, Food f) {
       this.cwapp = app;
-      this.food = f;
+      setFood(f);
       initialize();
       getMeasureSelector().setFocus();      
+   }
+
+   public void setFood(Food f) {
+      this.original = f;
+      this.food = new Food(f); // edit on a copy
+   }
+   
+   /**
+    * Copy changes to original and save.
+    */
+   public void updateOriginal() {
+      original.copy(food);
+      original.update();
    }
    
    public void display() {
@@ -122,9 +133,12 @@ public class FoodEditor extends JPanel {
    public void doCancel() {
       getDialog().dispose();
    }
-
-   public void doSave() {
-      
+ 
+   
+   /**
+    * Commit any changes made to the food
+    */
+   public void doSave() {      
       String name = getNameField().getText().trim();
       if (name.length() == 0) {
          JOptionPane.showMessageDialog(this, 
@@ -142,19 +156,20 @@ public class FoodEditor extends JPanel {
          if (rc == JOptionPane.CANCEL_OPTION) {
             return;
          }
-      }  
+      }
+      
       food.setDescription(name);     
       food.setMeasures(getMeasureEditor().getMeasures());
       food.setComment(getCommentEditor().getText());
       if (food.getSource() != Datasources.getUserFoods()) {
          if (rc == JOptionPane.YES_OPTION) {
-            Datasources.getUserFoods().addFood(food);
+            Datasources.getUserFoods().addFood(original);
          }  
       } else {
-         food.update();
+         updateOriginal(); // commit changes         
       }
       getDialog().dispose();
-      CRONOMETER.getInstance().getDBPanel().getSearchPanel().doDBSearch();
+      CRONOMETER.getInstance().refreshDisplays();
    }
 
    private JPanel getButtonPanel() {

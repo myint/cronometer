@@ -16,8 +16,7 @@ import ca.spaz.cron.foods.*;
 import ca.spaz.util.ImageFactory;
 
 public class RecipeEditor extends FoodEditor {
- 
-   private Recipe recipe;
+  
    private ServingTable servingTable;
    private JButton addBtn, delBtn, printBtn;
    private JLabel gramsLabel;
@@ -26,9 +25,16 @@ public class RecipeEditor extends FoodEditor {
    
    public RecipeEditor(CRONOMETER app, Recipe r) {
       super(app, r);
-      this.recipe = r;
-
-      getServingTable().setServings(r.getServings());      
+      this.food = new Recipe(r);
+      getServingTable().setServings(getRecipe().getServings());      
+   }
+   
+   /**
+    * Copy changes to original and save.
+    */
+   public void updateOriginal() {
+      original.copy(getRecipe());
+      original.update();
    }
    
    protected String getTitle() {
@@ -52,13 +58,17 @@ public class RecipeEditor extends FoodEditor {
    private void updateNutrients() { 
       getMeasureSelector().updateMeasure();
 
-      getMacroNutrientsTable().setFood(recipe);
-      getMineralsTable().setFood(recipe);
-      getVitaminsTable().setFood(recipe);
-      getAminoAcidsTable().setFood(recipe);
-      getLipidsTable().setFood(recipe);
+      getMacroNutrientsTable().setFood(food);
+      getMineralsTable().setFood(food);
+      getVitaminsTable().setFood(food);
+      getAminoAcidsTable().setFood(food);
+      getLipidsTable().setFood(food);
       getGramsLabel().setText("Recipe Weight: "+
-            Math.round(recipe.getTotalGrams()*10)/10.0+"g");
+            Math.round(getRecipe().getTotalGrams()*10)/10.0+"g");
+   }
+   
+   private Recipe getRecipe() {
+      return (Recipe)food;
    }
    
    private JLabel getGramsLabel() {
@@ -80,7 +90,7 @@ public class RecipeEditor extends FoodEditor {
          servingTable = new ServingTable();
          servingTable.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent e) {
-               recipe.setServings(servingTable.getServings());
+               getRecipe().setServings(servingTable.getServings());
                getMeasureEditor().resetMeasures();
                getDeleteButton().setEnabled(!servingTable.getSelectedServings().isEmpty());
                updateNutrients(); 
@@ -113,30 +123,19 @@ public class RecipeEditor extends FoodEditor {
       return toolBar;
   }
    
-
+   /**
+    * Does a very simple print-out of the recipe.
+    */
    public void doPrint() {
       try {         
-         MessageFormat headerFormat = new MessageFormat("Recipe '"+recipe.getDescription()+"'");
+         MessageFormat headerFormat = new MessageFormat("Recipe '"+food.getDescription()+"'");
          MessageFormat footerFormat = new MessageFormat("- {0} -");
          getServingTable().getTable().print(JTable.PrintMode.FIT_WIDTH, headerFormat, footerFormat);          
       } catch (PrinterException e) {
          e.printStackTrace();
          JOptionPane.showMessageDialog(this, e.getMessage());
       }
-   }
-   
-   
-  /* public void doSave() {
-      recipe.setDescription(getNameField().getText());     
-      recipe.setComment(getCommentEditor().getText());
-      recipe.setMeasures(getMeasureEditor().getMeasures());     
-      if (recipe.getSource() != Datasources.getUserFoods()) {
-         Datasources.getUserFoods().addFood(recipe);
-      } else {
-         recipe.update();
-      }
-      getDialog().dispose();
-   }*/
+   }    
 
    private JPanel getServingPanel() {
       if (null == servingPanel) {
@@ -201,16 +200,13 @@ public class RecipeEditor extends FoodEditor {
       sd.display();
       Serving s = sd.getSelectedServing();
       if (s != null) {
-         if (s.getFoodProxy().getSource() == recipe.getSource() && 
-               s.getFoodProxy().getSourceID() == recipe.getSourceUID()) {
+         if (s.getFoodProxy().getSource() == food.getSource() && 
+             s.getFoodProxy().getSourceID() == food.getSourceUID()) {
             JOptionPane.showMessageDialog(this, "A recipe can not contain itself!");
          } else {
             getServingTable().addServing(s);
          }
       }
    }
- 
-   
-   
-   
+  
 }

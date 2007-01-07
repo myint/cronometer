@@ -31,9 +31,6 @@ import ca.spaz.gui.PrettyTableModel;
  */
 public class SearchPanel extends JPanel implements ItemListener {
    public static final String SELECTED_FOOD = "SELECTED_FOOD";
-
-   private static final Color USER_COL = new Color(0x00, 0x88, 0x00);
-   private static final Color CRDB_COL = new Color(0x00, 0x00, 0x88);
    
    private JComboBox sourceBox;
    private JTextField queryField; 
@@ -280,23 +277,7 @@ public class SearchPanel extends JPanel implements ItemListener {
     * appear first.
     */
    private void sortResults(final String query) {
-      Comparator c = new Comparator() {
-         public int compare(Object a1, Object b1) {
-            FoodProxy a = (FoodProxy) a1;
-            FoodProxy b = (FoodProxy) b1;
-                        
-            Integer ai = new Integer(a.getReferences());
-            Integer bi = new Integer(b.getReferences());
-            int i = bi.compareTo(ai);
-            
-            if (i == 0) {                
-               i = a.getDescription().compareToIgnoreCase(b.getDescription());            
-            }
-            
-            return i;             
-         }
-      };
-      Collections.sort(result, c);
+      model.sort(resultTable);
    }
 
    public class ResultsTableModel extends PrettyTableModel {
@@ -365,9 +346,25 @@ public class SearchPanel extends JPanel implements ItemListener {
       }
 
       public void sort(PrettyTable table) {
-         // TODO Auto-generated method stub
-         
+         Comparator c = new Comparator() {
+            public int compare(Object a1, Object b1) {
+               FoodProxy a = (FoodProxy) a1;
+               FoodProxy b = (FoodProxy) b1;
+                           
+               Integer ai = new Integer(a.getReferences());
+               Integer bi = new Integer(b.getReferences());
+               int i = bi.compareTo(ai);
+               
+               if (i == 0) {                
+                  i = a.getDescription().compareToIgnoreCase(b.getDescription());            
+               }
+               
+               return i;             
+            }
+         };
+         Collections.sort(result, c);
       }
+      
       /**
        * Allows custom rendering for a row and column. Can just return c, if no
        * changes to default are desired.
@@ -380,12 +377,7 @@ public class SearchPanel extends JPanel implements ItemListener {
          FoodProxy f = getFoodProxy(row);
          if (f != null) {
             if (col == 0) {
-               c.setForeground(Color.BLACK);
-               if (f.getSource() == Datasources.getUserFoods()) {
-                  c.setForeground(USER_COL);
-               } else if (f.getSource() == Datasources.getCRDBFoods()) {
-                  c.setForeground(CRDB_COL);
-               }
+               c.setForeground(f.getSource().getDisplayColor());               
             }
          }
          return c;

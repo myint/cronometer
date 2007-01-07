@@ -3,15 +3,17 @@
  */
 package ca.spaz.cron.ui;
 
+import java.awt.Component;
 import java.text.DecimalFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
-import javax.swing.table.AbstractTableModel;
+import ca.spaz.cron.foods.Measure;
+import ca.spaz.cron.foods.Serving;
+import ca.spaz.gui.PrettyTable;
+import ca.spaz.gui.PrettyTableModel;
 
-
-import ca.spaz.cron.foods.*;
-
-public class ServingTableModel extends AbstractTableModel {
+public class ServingTableModel extends PrettyTableModel {
    public static final int FOOD_COL = 0;
    public static final int AMOUNT_COL = 1;
    public static final int MEASURE_COL = 2;
@@ -137,6 +139,28 @@ public class ServingTableModel extends AbstractTableModel {
    public void addServing(Serving s) {
       servings.add(s);
       fireTableDataChanged();      
+   }
+
+   public void sort(PrettyTable table) {
+      // no sorting in this table for now.
+   }
+   
+   /**
+    * Allows custom rendering for a row and column. Can just return c, if no
+    * changes to default are desired.
+    * @param c the component used for rendering the cell
+    * @param row the row to render
+    * @param col the column to render
+    * @return a custom rendering component
+    */
+   public Component customRender(Component c, PrettyTable table, int row, int col) {
+      Serving s = getServing(row);
+      if (s != null) {
+         if (col == 0) {
+            c.setForeground(s.getFoodProxy().getSource().getDisplayColor());               
+         }
+      }
+      return c;
    }
 
 }

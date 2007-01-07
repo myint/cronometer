@@ -3,6 +3,8 @@
  */
 package ca.spaz.cron.datasource;
 
+import java.awt.Color;
+
 import ca.spaz.cron.foods.Food;
 
 
@@ -36,5 +38,9 @@ public class USDAFoods extends ZipXMLFoodDataSource {
       
    }
    
-   
+
+   public Color getDisplayColor() { 
+      return Color.BLACK;
+   }
+
 }

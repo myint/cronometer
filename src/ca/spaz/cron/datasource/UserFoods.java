@@ -3,6 +3,7 @@
  */
 package ca.spaz.cron.datasource;
 
+import java.awt.Color;
 import java.io.*;
 import java.util.*;
 
@@ -14,6 +15,7 @@ import ca.spaz.util.Logger;
 public class UserFoods implements FoodDataSource {
    private static final String FOODS_INDEX = "foods.index";
 
+   private static final Color USER_COL = new Color(0x00, 0x70, 0x00);
  
    private int maxUID = 0;
    private HashMap map; // maps sourceID to FoodProxy
@@ -193,6 +195,10 @@ public class UserFoods implements FoodDataSource {
          }
       }
       return null;
+   }
+
+   public Color getDisplayColor() { 
+      return USER_COL;
    }
 
    

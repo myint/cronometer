@@ -3,9 +3,10 @@
  */
 package ca.spaz.cron.datasource;
 
+import java.awt.Color;
 import java.util.List;
 
-import ca.spaz.cron.foods.*;
+import ca.spaz.cron.foods.Food;
 
 /**
  * This interface defines the interaction the application will have with a static,
@@ -88,5 +89,10 @@ public interface FoodDataSource {
    public void addFood(Food f);
    public void removeFood(Food f);
 
+   /**
+    * Get a unique display color for list views.
+    * @return a unique display color for highlighting in lists with multiple datasources.
+    */
+   public Color getDisplayColor();
 
 }

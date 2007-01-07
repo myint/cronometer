@@ -3,6 +3,8 @@
  */
 package ca.spaz.cron.foods;
 
+import java.util.Arrays;
+
 
 /**
  * A base class for a group of related nutrient values Provides common support
@@ -15,33 +17,41 @@ package ca.spaz.cron.foods;
  * @author davidson
  */
 public class NutrientTable {
-    
-    public double[] nutrients = new double[NutrientInfo.getGlobalList().size()];    
-        
-    public double getAmount(int index) {
+
+   public double[] nutrients;
+   
+   public NutrientTable() {
+      nutrients = new double[NutrientInfo.getGlobalList().size()];
+   }
+
+   public NutrientTable(NutrientTable nt) {
+      nutrients = Arrays.copyOf(nt.nutrients, nt.nutrients.length);
+   }
+
+   public double getAmount(int index) {
       return nutrients[index];
-    }
+   }
 
-    public void setAmount(int index, double val) {
-       nutrients[index] = val;
-    }
+   public void setAmount(int index, double val) {
+      nutrients[index] = val;
+   }
 
-    /**
-     * Add the nutrients in the given table to our total
-     * 
-     * @param toAdd
-     *            the nutrients ratios to add
-     * @param weight
-     *            multiplier for the amount in the added nutrients
-     */
-    public void addFood(NutrientTable toAdd, double weight) {
-       for (int i = 0; i < nutrients.length; i++) {
-          nutrients[i] += toAdd.getAmount(i) * weight;
-       }
-    } 
+   /**
+    * Add the nutrients in the given table to our total
+    * 
+    * @param toAdd
+    *            the nutrients ratios to add
+    * @param weight
+    *            multiplier for the amount in the added nutrients
+    */
+   public void addFood(NutrientTable toAdd, double weight) {
+      for (int i = 0; i < nutrients.length; i++) {
+         nutrients[i] += toAdd.getAmount(i) * weight;
+      }
+   }
 
-    public void addFood(Serving food) {
-       addFood(food.getFood().getNutrients(), food.getGrams() / 100.0);       
-    }
-     
+   public void addFood(Serving food) {
+      addFood(food.getFood().getNutrients(), food.getGrams() / 100.0);
+   }
+
 }
