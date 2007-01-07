@@ -59,8 +59,9 @@ public class DailySummary extends JPanel {
 
    public void addServing(Serving c) {
       if (isOkToAddServings()) {
-         c.setDate(curDate);
-         Datasources.getFoodHistory().addServing(c);
+         Serving copy = new Serving(c);
+         copy.setDate(curDate);
+         Datasources.getFoodHistory().addServing(copy);
          notifyObservers(); 
       }
    }

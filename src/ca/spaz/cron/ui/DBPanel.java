@@ -58,7 +58,8 @@ public class DBPanel extends JPanel {
          info = new ServingEditor();
          info.addServingEditorListener(new ServingEditorListener() {
             public void servingChosen(Serving s) {
-               CRONOMETER.getInstance().getDailySummary().addServing(s);               
+               CRONOMETER.getInstance().getDailySummary().addServing(s);
+               getSearchPanel().doDBSearch(); // recalibrate results
             }           
          });
       }
