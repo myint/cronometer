@@ -41,7 +41,12 @@ import com.apple.mrj.MRJQuitHandler;
  *   0.7.0 changelist
  *      - added edit menu and copy/paste shortcuts to food list
  *      - does not show pie-chart if no calories == 0
- *      
+ *      - added copy last day button
+ *      - fixes to new update dialog
+ *      - Spiffed up nutrition report (lined up columns).
+ *      - Made a couple dialogs resizeable.
+ *      - fixed beep
+
  *   0.7.0 TODOs
  *      - new icon set?
  *      - better search ranking algorithm
