@@ -12,6 +12,7 @@ import ca.spaz.gui.*;
 import com.toedter.calendar.JCalendar;
 
 public class DateChooser extends WrappedPanel {
+   private String subtitle = "Pick a Date to view";
 
    private JCalendar cal;
    
@@ -34,13 +35,24 @@ public class DateChooser extends WrappedPanel {
       WrapperDialog.showDialog(parent, dc);
       return dc.cal.getDate(); 
    }
+   
+   public static Date pickDate(JComponent parent, Date d, String subtitle) {
+      DateChooser dc = new DateChooser(d); 
+      dc.setSubtitle(subtitle);
+      WrapperDialog.showDialog(parent, dc);
+      return dc.cal.getDate(); 
+   }   
 
    public String getTitle() {
       return "Choose Date";
    }
 
    public String getSubtitle() {
-      return "Pick a Date to view";
+      return subtitle;
+   }
+   
+   public void setSubtitle(String subtitle) {
+      this.subtitle = subtitle;
    }
 
    public String getInfoString() {

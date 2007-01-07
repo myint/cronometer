@@ -60,6 +60,8 @@ public class User {
    public static final String PREGNANT_FEMALE = "Pregnant";
    public static final String LACTATING_FEMALE = "Lactating";
    
+   public static String subdirectory = "cronometer";
+   
    private static User instance = null;
    
    private Settings settings;
@@ -82,9 +84,16 @@ public class User {
       settings.save();
    }
    
+   /**
+    * Sets the subdirectory to use for user data. 
+    * @param aSubdirectory
+    */
+   public static void setSubdirectory(String aSubdirectory) {
+      subdirectory = aSubdirectory;
+   }
  
    public static File getUserDirectory() {
-      File appDir = ToolBox.getUserAppDirectory("cronometer");
+      File appDir = ToolBox.getUserAppDirectory(subdirectory);
       if (!appDir.exists()) {
          appDir.mkdirs();
          if (!appDir.exists()) {

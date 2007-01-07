@@ -10,6 +10,12 @@ import java.text.DecimalFormat;
 import javax.swing.JTextField;
 import javax.swing.text.*;
 
+/**
+ * A text field for entering floating point data. The only characters it accepts are the 
+ * digits 0-9 and one (optional) decimal point. 
+ * @author Aaron
+ *
+ */
 public class DoubleField extends JTextField {
    private Toolkit toolkit;
    private double min = Integer.MIN_VALUE, max = Integer.MAX_VALUE;
@@ -17,6 +23,7 @@ public class DoubleField extends JTextField {
 
    public DoubleField(double value, int columns) {
       super(columns);
+      setHorizontalAlignment(JTextField.RIGHT);
       toolkit = Toolkit.getDefaultToolkit();
       setValue(value);
    }
@@ -27,11 +34,15 @@ public class DoubleField extends JTextField {
    }
 
    public double getValue() {
-      double retVal = 0;
-      try {
-         retVal = Double.parseDouble(getText());
-      } catch (NumberFormatException e) {
-         //toolkit.beep();
+      double retVal = 0.0;
+      // If the text is empty or just a decimal, don't try and parse it, just leave the value as 0.
+      String text = getText().trim();
+      if (!text.equals("") && !text.equals(".")) {
+         try {
+            retVal = Double.parseDouble(getText());
+         } catch (NumberFormatException e) {
+            toolkit.beep();
+         }
       }
       if (retVal < min) retVal = min;
       if (retVal > max) retVal = max;
@@ -41,9 +52,18 @@ public class DoubleField extends JTextField {
    public void setValue(double value) {
       if (value < min) value = min;
       if (value > max) value = max;
-      setText(df.format(value));
+      if (value == 0.0) {
+         setText("");
+      }
+      else {
+         setText(df.format(value));
+      }
       selectAll();
       //setText(Double.toString(value));
+   }
+   
+   public void setValue(String value) {
+      setText(value);
    }
 
    protected Document createDefaultModel() {
@@ -55,13 +75,16 @@ public class DoubleField extends JTextField {
    }
 
    protected class DoubleDocument extends PlainDocument {
+      // Overidden to allow only digits and one decimal point e.g. 1.00
+      // Note that not all data that would allowed by Double.parseDouble() is supported, e.g.
+      // exponential notation, negative signs, hex notation etc.
       public void insertString(int offs, String str, AttributeSet a) throws BadLocationException {
          char[] source = str.toCharArray();
          char[] result = new char[source.length];
          int j = 0;
          for (int i = 0; i < result.length; i++) {
             char c = source[i];
-            if (Character.isDigit(c) || (c=='.' && getCurrentText().indexOf('.')==-1)) {
+            if (Character.isDigit(c) || (c == '.' && getCurrentText().indexOf('.') == -1)) {
                result[j++] = c;
             } else {
                toolkit.beep();

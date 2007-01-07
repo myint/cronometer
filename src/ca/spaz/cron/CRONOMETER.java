@@ -456,6 +456,13 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
       } catch (Exception e) {
          Logger.error("main() - Error configuring UI delegate", e);
       }
+      // The optional program argument sets the name of the subdirectory for user data.
+      // This permits using a different subdirectory for development and testing 
+      // (by setting the argument in your IDE's run configuration) than for
+      // daily use of the application.
+      if (args.length > 0) {
+         User.setSubdirectory(args[0]);
+      }
       
       final CRONOMETER cron = CRONOMETER.getInstance();
       SplashScreen scr = new SplashScreen(new SplashScreenTask());

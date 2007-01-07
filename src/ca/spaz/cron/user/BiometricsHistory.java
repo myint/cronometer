@@ -73,6 +73,7 @@ public class BiometricsHistory {
    public void delete(Metric m) {
       metrics.remove(m);
       dirty = true;
+      Logger.debug("Remove Metric: " + m);      
    }
 
    public void update(Metric m) {

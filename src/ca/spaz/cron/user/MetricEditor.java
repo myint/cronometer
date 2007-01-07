@@ -3,6 +3,7 @@
  */
 package ca.spaz.cron.user;
 
+import java.awt.*;
 import java.awt.event.*;
 import java.text.ParseException;
 import java.util.*;
@@ -15,39 +16,74 @@ import org.jfree.ui.RefineryUtilities;
 import ca.spaz.cron.CRONOMETER;
 import ca.spaz.cron.chart.TimeSeriesTest;
 import ca.spaz.cron.ui.BiomarkerPanel;
+import ca.spaz.gui.DoubleField;
 import ca.spaz.util.ImageFactory;
+import ca.spaz.gui.ErrorReporter;
 
+/**
+ * A panel for editing a biomarker metric.  
+ */
 public class MetricEditor extends JPanel {
    private JCheckBox toggle;
-   private JSpinner spinner;
+   private JLabel label;
+   private DoubleField entryField;
    private String metricType;
    private Metric curMetric;
+   private JButton saveBtn;
+   private JButton deleteBtn;   
    private JButton plotBtn;
 
    private BiomarkerPanel bmp;
-   
+
    public MetricEditor(BiomarkerPanel bmp, String type) {
       this.metricType = type;
       this.bmp = bmp;
    }   
-   
-   public JCheckBox getToggle() {
-      if (toggle == null) {
-         toggle = new JCheckBox(metricType);
-         toggle.addActionListener(new ActionListener() {
+
+   public JButton getSaveButton() {
+      if (saveBtn == null) {
+         saveBtn = new JButton("Save");
+         saveBtn.setEnabled(false);         
+         saveBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-               getSpinner().setVisible(toggle.isSelected());
-               if (toggle.isSelected()) {
+               if (entryField.getValue() == 0.0) {
+                  ErrorReporter.showError("0.0 is not a valid biomarker value (unless you are deceased)", bmp);
+               }
+               else {
+                  getMetric().setValue(Double.toString(entryField.getValue()));     
                   User.getUser().addMetric(getMetric());
-               } else {
-                  User.getUser().removeMetric(getMetric());
+                  saveBtn.setEnabled(false);
+                  deleteBtn.setEnabled(true);
                }
             }
          });
       }
-      return toggle;
+      return saveBtn;
+   }  
+
+   public JButton getDeleteButton() {
+      if (deleteBtn == null) {
+         deleteBtn = new JButton("Delete");
+         deleteBtn.setEnabled(false);           
+         deleteBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+               User.getUser().removeMetric(getMetric());
+               saveBtn.setEnabled(false);
+               deleteBtn.setEnabled(false);
+               entryField.setValue("");
+            }
+         });
+      }
+      return deleteBtn;
    }   
-   
+
+   public JLabel getLabel() {
+      if (label == null) {
+         label = new JLabel(metricType);
+      }
+      return label;
+   }    
+
    public JButton getPlotButton() {
       if (plotBtn == null) {
          ImageIcon icon = new ImageIcon(ImageFactory.getInstance().loadImage("/img/Graph24.png"));
@@ -60,8 +96,7 @@ public class MetricEditor extends JPanel {
       }
       return plotBtn;
    }   
-   
-   
+
    public void plotMetric() {
       TimeSeriesTest demo = new TimeSeriesTest(metricType);
       demo.pack();
@@ -69,7 +104,7 @@ public class MetricEditor extends JPanel {
       RefineryUtilities.centerFrameOnScreen(demo);
       demo.setVisible(true);
    }
-   
+
    public Metric getMetric() {
       if (curMetric == null) {
          validateMetric();
@@ -77,59 +112,59 @@ public class MetricEditor extends JPanel {
       }
       return curMetric;
    }
-   
-   private SpinnerNumberModel getSpinnerModel() {
-      if (metricType.equals(Metric.WEIGHT)) {
-         return new SpinnerNumberModel(150,0,1000,0.5);
-      }
-      if (metricType.equals(Metric.BODY_TEMPERATURE)) {
-         return new SpinnerNumberModel(37,0.0,1000.0,0.1);
-      }
-      return new SpinnerNumberModel(0,0,1000000,0.1);
-   }
-   
-   public JSpinner getSpinner() {
-      if (spinner == null) {         
-         spinner = new JSpinner(getSpinnerModel());
-         spinner.setVisible(false);
-         spinner.addChangeListener(new ChangeListener() {
-            public void stateChanged(ChangeEvent e) {
-               if (spinner.isEnabled()) {
-                  getMetric().setValue((Number)spinner.getValue());
-               }
+
+   public DoubleField getEntryField() {
+      if (entryField == null) {         
+         entryField = new DoubleField(0,8); 
+         entryField.addFocusListener(new FocusListener() {
+            public void focusGained(FocusEvent e) {
+               entryField.selectAll();   
+               saveBtn.setEnabled(true);               
             }
-         });               
+            public void focusLost(FocusEvent e) {
+               saveBtn.setEnabled(true);
+            }
+         });             
+         entryField.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+
+            }
+         });  
       }
-      return spinner;
+      return entryField;
    }
 
-   public void setMetrics(List metrics) {
+   public void setMetrics(java.util.List metrics) {
       // loop through array and find an appropriate metric to install
       Iterator iter = metrics.iterator();
       while (iter.hasNext()) {
          Metric m = (Metric)iter.next();
          if (m.getName().equals(metricType) && m.getValue() != null) {
             curMetric = m;
-            spinner.setValue(m.getValue());
-            getToggle().setSelected(true);
-            getSpinner().setVisible(toggle.isSelected());
+            if (m.getValue().doubleValue() == 0.0) {
+               entryField.setValue("");
+            }
+            else {
+               entryField.setValue(Double.parseDouble(m.getValue().toString()));
+            }
+            saveBtn.setEnabled(false);
+            deleteBtn.setEnabled(true);            
             return;
          }
       }
       // no matches found, so disable the control
       curMetric = null;
-      getToggle().setSelected(false);
-      getSpinner().setVisible(toggle.isSelected());
    }
-   
+
    public boolean validateMetric() {
-      try {
-         getSpinner().commitEdit();
-         return true;
-      } catch (ParseException e) {
-         e.printStackTrace();
-         return false;
-      }
+      return true;
+//    try {
+//    getEntryField().commitEdit();
+//    return true;
+//    } catch (ParseException e) {
+//    e.printStackTrace();
+//    return false;
+//    }
    }
-   
+
 }
