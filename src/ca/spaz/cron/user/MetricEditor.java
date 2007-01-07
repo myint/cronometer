@@ -3,13 +3,10 @@
  */
 package ca.spaz.cron.user;
 
-import java.awt.*;
 import java.awt.event.*;
-import java.text.ParseException;
-import java.util.*;
+import java.util.Iterator;
 
 import javax.swing.*;
-import javax.swing.event.*;
 
 import org.jfree.ui.RefineryUtilities;
 
@@ -17,8 +14,8 @@ import ca.spaz.cron.CRONOMETER;
 import ca.spaz.cron.chart.TimeSeriesTest;
 import ca.spaz.cron.ui.BiomarkerPanel;
 import ca.spaz.gui.DoubleField;
-import ca.spaz.util.ImageFactory;
 import ca.spaz.gui.ErrorReporter;
+import ca.spaz.util.ImageFactory;
 
 /**
  * A panel for editing a biomarker metric.  
