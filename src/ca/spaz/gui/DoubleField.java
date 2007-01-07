@@ -35,14 +35,10 @@ public class DoubleField extends JTextField {
 
    public double getValue() {
       double retVal = 0.0;
-      // If the text is empty or just a decimal, don't try and parse it, just leave the value as 0.
-      String text = getText().trim();
-      if (!text.equals("") && !text.equals(".")) {
-         try {
-            retVal = Double.parseDouble(getText());
-         } catch (NumberFormatException e) {
-            toolkit.beep();
-         }
+      try {
+         retVal = Double.parseDouble(getText());
+      } catch (NumberFormatException e) {
+//       toolkit.beep();
       }
       if (retVal < min) retVal = min;
       if (retVal > max) retVal = max;
