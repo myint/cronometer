@@ -10,13 +10,16 @@ import java.util.List;
 
 import javax.swing.*;
 import javax.swing.border.CompoundBorder;
-import javax.swing.event.*;
-import javax.swing.table.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumn;
 
 import se.datadosen.component.RiverLayout;
 import ca.spaz.cron.actions.*;
 import ca.spaz.cron.datasource.*;
 import ca.spaz.gui.PrettyTable;
+import ca.spaz.gui.PrettyTableModel;
 
 /**
  * The search panel allows fast and easy searching of the food database, and
@@ -29,10 +32,13 @@ import ca.spaz.gui.PrettyTable;
 public class SearchPanel extends JPanel implements ItemListener {
    public static final String SELECTED_FOOD = "SELECTED_FOOD";
 
+   private static final Color USER_COL = new Color(0x00, 0x88, 0x00);
+   private static final Color CRDB_COL = new Color(0x00, 0x00, 0x88);
+   
    private JComboBox sourceBox;
    private JTextField queryField; 
    private ResultsTableModel model = new ResultsTableModel();
-   private JTable resultTable;
+   private PrettyTable resultTable;
    private ArrayList result = new ArrayList();  
    private Action searchAction;
    private FoodProxy selectedFood;
@@ -110,11 +116,7 @@ public class SearchPanel extends JPanel implements ItemListener {
    }
 
    private JComponent makeResultPanel() {
-      resultTable = new PrettyTable() {
-         public String getToolTipText(MouseEvent e) {
-            return model.getToolTipText(rowAtPoint(e.getPoint()));
-         }
-      };
+      resultTable = new PrettyTable();
       
       resultTable.setModel(model);
       resultTable.getSelectionModel().setSelectionMode(
@@ -297,25 +299,14 @@ public class SearchPanel extends JPanel implements ItemListener {
       Collections.sort(result, c);
    }
 
-   public class ResultsTableModel extends AbstractTableModel {
+   public class ResultsTableModel extends PrettyTableModel {
  
       private String[] columnNames = { "Description", "%" };
 
       public String getColumnName(int col) {
          return columnNames[col].toString();
       }
-
-      public String getToolTipText(int row) {
-         FoodProxy f = getFoodProxy(row);
-         if (f != null) {
-            return "<html><table width=\"220\"><tr><td align=\"center\">" +
-               f.getDescription() +
-               "<br>["+f.getSource()+"]" +
-               "</td></tr></table></html>";
-         }
-         return "";
-      }
-
+ 
       public int getRowCount() {
          synchronized (result) {
             return result.size();
@@ -362,6 +353,43 @@ public class SearchPanel extends JPanel implements ItemListener {
          fireTableCellUpdated(row, col);
       }
 
+      public String getToolTipText(int r, int c) {
+         FoodProxy f = getFoodProxy(r);
+         if (f != null) {
+            return "<html><table width=\"220\"><tr><td align=\"center\">" +
+               f.getDescription() +
+               "<br>["+f.getSource()+"]" +
+               "</td></tr></table></html>";
+         }
+         return "";
+      }
+
+      public void sort(PrettyTable table) {
+         // TODO Auto-generated method stub
+         
+      }
+      /**
+       * Allows custom rendering for a row and column. Can just return c, if no
+       * changes to default are desired.
+       * @param c the component used for rendering the cell
+       * @param row the row to render
+       * @param col the column to render
+       * @return a custom rendering component
+       */
+      public Component customRender(Component c, PrettyTable table, int row, int col) {
+         FoodProxy f = getFoodProxy(row);
+         if (f != null) {
+            if (col == 0) {
+               c.setForeground(Color.BLACK);
+               if (f.getSource() == Datasources.getUserFoods()) {
+                  c.setForeground(USER_COL);
+               } else if (f.getSource() == Datasources.getCRDBFoods()) {
+                  c.setForeground(CRDB_COL);
+               }
+            }
+         }
+         return c;
+      }
    }
 
    public void itemStateChanged(ItemEvent e) {

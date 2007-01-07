@@ -77,9 +77,17 @@ public class Datasources {
       }
       return foodHist;
    }
-   
+
    public static UserFoods getUserFoods() {
       return userDataSource;
+   }
+
+   public static CRDBFoods getCRDBFoods() {
+      return crdbDataSource;
+   }
+
+   public static USDAFoods getUSDAFoods() {
+      return usdaDataSource;
    }
 
    /**
