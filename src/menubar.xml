@@ -19,7 +19,10 @@
 	<menu title="Help" key="h">
 		<item title="Help..." key="h" acc="VK_H" action="doHelp"/>
 		<item separator="true"/>
-		<item title="About CRONOMETER" action="doAbout"/>
+		<item title="Report a Bug..." key="b"   action="doReportBug"/>
+		<item title="Request Features..." key="f"   action="doRequestFeature"/>
+		<item separator="true"/>
+		<item title="About CRON-O-Meter" action="doAbout"/>
 	</menu>
 
 </menubar>

@@ -159,12 +159,19 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
       wp.add(wv, BorderLayout.CENTER);
       WrapperDialog.showDialog(this, wp);      
    }
-   
+
    public void doHelp() {
       launchURL(CRONOMETER.getInstance(), "http://spaz.ca/cronometer/docs/");
    }
-   
-   
+
+   public void doReportBug() {
+      launchURL(CRONOMETER.getInstance(), "http://sourceforge.net/tracker/?atid=735995&group_id=136481&func=browse");
+   }
+
+   public void doRequestFeature() {
+      launchURL(CRONOMETER.getInstance(), "http://sourceforge.net/tracker/?group_id=136481&atid=735998");
+   }
+    
    public static String getFullTitle() {
       return TITLE + " v" + VERSION;
    }

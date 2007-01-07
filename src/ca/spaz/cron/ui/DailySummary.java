@@ -45,6 +45,7 @@ public class DailySummary extends JPanel {
    private JButton prevButton;
    private JButton titleLabel;
    private JButton copyPrevDayButton;
+   private JButton todayButton;
    private JPanel toolBar;
    private NutritionSummaryPanel totals;
    boolean asked = false; 
@@ -161,22 +162,44 @@ public class DailySummary extends JPanel {
       }
       return prevButton;
    }
-   
-   private JButton getCopyPreviousDayButton() {
-	      if (null == copyPrevDayButton) {
-	    	  copyPrevDayButton = new JButton(new ImageIcon(ImageFactory.getInstance().loadImage("/img/Copy24.gif")));
-	    	  copyPrevDayButton.addActionListener(new ActionListener() {
-	            public void actionPerformed(ActionEvent e) {
-	               copyPreviousDay();
-	            }  
-	         }); 
-	         FoodDBToolBar.fixButton(copyPrevDayButton);
-	         copyPrevDayButton.setToolTipText("Copy Previous Day"); 	         
-	         copyPrevDayButton.setFocusable(false); 
-	      }
-	      return copyPrevDayButton;
-	   }   
 
+   private JButton getCopyPreviousDayButton() {
+      if (null == copyPrevDayButton) {
+         copyPrevDayButton = new JButton(new ImageIcon(ImageFactory.getInstance().loadImage("/img/Copy24.gif")));
+         copyPrevDayButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+               copyPreviousDay();
+            }
+         });
+         FoodDBToolBar.fixButton(copyPrevDayButton);
+         copyPrevDayButton.setToolTipText("Copy Previous Day");
+         copyPrevDayButton.setFocusable(false);
+      }
+      return copyPrevDayButton;
+   }   
+   
+   private JButton getTodayButton() {
+      if (null == todayButton) {
+         todayButton = new JButton(new ImageIcon(ImageFactory.getInstance().loadImage("/img/Today24.gif")));
+         todayButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+               goToToday();
+            }
+         });
+         FoodDBToolBar.fixButton(todayButton);
+         todayButton.setToolTipText("Go To Today");
+         todayButton.setFocusable(false);
+      }
+      return todayButton;
+   }   
+
+   /**
+    * Set the current date to today
+    */
+   public void goToToday() {
+      setDate(new Date(System.currentTimeMillis()));
+   }
+   
    /**
     * Copies the foods from the previous day into this day.
     */
@@ -210,6 +233,7 @@ public class DailySummary extends JPanel {
          toolBar.setBackground(Color.BLACK); 
          toolBar.setLayout(new BoxLayout(toolBar, BoxLayout.X_AXIS));
          toolBar.setBorder(BorderFactory.createEmptyBorder(4, 5, 4, 5));
+         toolBar.add(getTodayButton());         
          toolBar.add(Box.createHorizontalGlue());
          toolBar.add(getPreviousButton());
          toolBar.add(Box.createHorizontalStrut(5));
@@ -246,6 +270,7 @@ public class DailySummary extends JPanel {
       curDate = d;
       bioMarkerPanel.setDate(d);
       asked = false;
+      getTodayButton().setEnabled(!ToolBox.isSameDay(d, new Date(System.currentTimeMillis())));
       notifyObservers();
    }
 
