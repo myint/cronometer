@@ -3,11 +3,10 @@
  */
 package ca.spaz.cron.ui;
 
-import java.awt.BorderLayout;
+import java.awt.*;
 
 import javax.swing.*;
 
-import ca.spaz.cron.CRONOMETER;
 import ca.spaz.cron.datasource.FoodProxy;
 import ca.spaz.cron.foods.Serving;
 import ca.spaz.util.ToolBox;
@@ -21,17 +20,21 @@ public class SearchDialog extends JDialog implements ServingEditorListener {
    private Serving serving = null;
    
   
-   public SearchDialog(JComponent parent) {
-     super(JOptionPane.getFrameForComponent(parent));
-     setLocationRelativeTo(CRONOMETER.getInstance());
-     init();
+   public SearchDialog(Frame parent) {
+     super(parent);
+     init(parent);
    }
    
-   private void init() {
+   public SearchDialog(Dialog parent) {
+      super(parent);
+      init(parent);
+    }
+   
+   private void init(Window parent) {
       this.setTitle("Select a Food");
       this.getContentPane().add(getMainPanel());
       this.pack(); 
-      ToolBox.centerFrame(this);
+      ToolBox.centerOver(this, parent);
       this.setModal(true);
    }
 
@@ -87,9 +90,10 @@ public class SearchDialog extends JDialog implements ServingEditorListener {
       }
       return mainPanel;
    }
-
-   private FoodDBToolBar toolBar;
    
+   // TODO: pre-0.7 add cancel (esc?)
+   // TODO: pre-0.7 move this in here, add refreshing on edit/delete
+   private FoodDBToolBar toolBar;
    public FoodDBToolBar getToolBar() {
       if (toolBar == null) {
          toolBar = new FoodDBToolBar();
@@ -111,8 +115,5 @@ public class SearchDialog extends JDialog implements ServingEditorListener {
       abort = false;
       dispose();
    }
-   
-   
-
-   
+      
 }

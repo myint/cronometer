@@ -217,6 +217,17 @@ public class ToolBox {
    }
    
    /**
+    * Centers a given frame on the screen.
+    */
+   public static void centerOver(Window top, Window bottom) { 
+      int width = top.getWidth();
+      int height = top.getHeight();
+      top.setLocation(
+            bottom.getX() + bottom.getWidth() / 2 - width / 2, 
+            bottom.getY() + bottom.getHeight() / 2 - height / 2);
+   }
+   
+   /**
     * See if the two dates fall on the same calendar day.
     * @return true if the two dates fall on the same calendar day.
     */

@@ -207,9 +207,9 @@ public class RecipeEditor extends FoodEditor {
      getServingTable().deleteSelectedServings();
   }
 
-  // TODO: decommission
+  // TODO: pre-0.7 decommission this, and toolbar
    private void doAddFood() {
-      SearchDialog sd = new SearchDialog(this);
+      SearchDialog sd = new SearchDialog(getDialog());
       sd.display();
       Serving s = sd.getSelectedServing();
       if (s != null) {

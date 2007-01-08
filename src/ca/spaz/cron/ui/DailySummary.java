@@ -42,7 +42,7 @@ public class DailySummary extends JPanel {
 
    private DateFormat df = DateFormat.getDateInstance(DateFormat.LONG);
 
-   private JPanel dietPanel;
+   private JSplitPane dietPanel;
  
    private JButton nextButton; 
    private JButton prevButton;
@@ -111,12 +111,13 @@ public class DailySummary extends JPanel {
       return dailyTracker;
    }
 
-   private JPanel getDietPanel() {
+   private JSplitPane getDietPanel() {
       if (null == dietPanel) {
-         dietPanel = new JPanel(new BorderLayout(4, 4));
+         //dietPanel = new JPanel(new BorderLayout(4, 4));
+         dietPanel = new JSplitPane(JSplitPane.VERTICAL_SPLIT, getServingTable(), getNutritionSummaryPanel());
          dietPanel.setBorder(BorderFactory.createEmptyBorder(3,3,3,3));
-         dietPanel.add(getServingTable(), BorderLayout.CENTER);
-         dietPanel.add(getNutritionSummaryPanel(), BorderLayout.SOUTH);
+         //dietPanel.add(getServingTable(), BorderLayout.CENTER);
+         //dietPanel.add(getNutritionSummaryPanel(), BorderLayout.SOUTH);
       }
       return dietPanel;
    }

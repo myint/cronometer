@@ -118,9 +118,9 @@ public class ServingTable extends JPanel {
   
    
    private void doAddFood() {
-     SearchDialog sd = new SearchDialog(this);
+     SearchDialog sd = new SearchDialog(JOptionPane.getFrameForComponent(this));
      sd.display();
-        
+    
      //a crazy idea: 
      /* JPopupMenu menu = new JPopupMenu();
       menu.add(sd.getMainPanel());
@@ -137,7 +137,7 @@ public class ServingTable extends JPanel {
    
    private JComponent makeJScrollPane() {
       JScrollPane jsp = new JScrollPane(getTable());
-      jsp.setPreferredSize(new Dimension(400, 150));
+      jsp.setPreferredSize(new Dimension(400, 250));
       jsp.getViewport().setBackground(Color.WHITE);
       jsp.setBorder(BorderFactory.createEtchedBorder());
       return jsp;

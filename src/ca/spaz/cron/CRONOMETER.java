@@ -56,6 +56,7 @@ import com.apple.mrj.MRJQuitHandler;
  *      - fix missing checkbox bug in ReportWindow
  *      - make sure mac version looks ok
  *      - try crazy dialog idea 
+ *      - pre-0.7 scan
  *      
  * @author davidson
  */
@@ -125,6 +126,17 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
          } 
          User.getUser().setLastBuild(CRONOMETER.BUILD);
          makeAutoSaveTimer();
+         
+         addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+               SwingUtilities.invokeLater(new Runnable(){
+                  public void run() {
+                     JOptionPane.showMessageDialog(mainFrame, "Hi");
+                  }
+               });
+            }
+         });
+         
       } catch (Exception e) {
          Logger.debug(e);
          ErrorReporter.showError(e, this); 
