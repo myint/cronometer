@@ -52,7 +52,7 @@ public class FoodEditor extends JPanel {
       this.cwapp = app;
       setFood(f);
       initialize();
-      getMeasureSelector().setFocus();      
+      getMeasureSelector().setFocus(); 
    }
 
    public void setFood(Food f) {
@@ -163,7 +163,10 @@ public class FoodEditor extends JPanel {
       food.setComment(getCommentEditor().getText());
       if (food.getSource() != Datasources.getUserFoods()) {
          if (rc == JOptionPane.YES_OPTION) {
-            Datasources.getUserFoods().addFood(original);
+            Datasources.getUserFoods().addFood(food);
+            JOptionPane.showMessageDialog(this, 
+                  "'"+food.getDescription()+"' has been added to your foods.", 
+                  "Food Added", JOptionPane.INFORMATION_MESSAGE);
          }  
       } else {
          updateOriginal(); // commit changes         
