@@ -4,8 +4,6 @@
 package ca.spaz.cron.ui;
 
 import java.awt.BorderLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.print.PrinterException;
 import java.text.MessageFormat;
 
@@ -15,15 +13,12 @@ import javax.swing.event.ChangeListener;
 
 import ca.spaz.cron.CRONOMETER;
 import ca.spaz.cron.foods.*;
-import ca.spaz.util.ImageFactory;
 
 public class RecipeEditor extends FoodEditor {
   
    private ServingTable servingTable;
-   private JButton addBtn, delBtn, printBtn;
    private JLabel gramsLabel;
    private JPanel servingPanel; 
-   private JToolBar toolBar;
    
    public RecipeEditor(CRONOMETER app, Recipe r) {
       super(app, r);      
@@ -98,37 +93,18 @@ public class RecipeEditor extends FoodEditor {
          servingTable.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent e) {
                getRecipe().setServings(servingTable.getServings());
-               getMeasureEditor().resetMeasures();
-               getDeleteButton().setEnabled(!servingTable.getSelectedServings().isEmpty());
+               getMeasureEditor().resetMeasures();               
                updateNutrients(); 
             }
          });   
-         servingTable.addServingSelectionListener(new ServingSelectionListener() {
-            public void servingSelected(Serving food) {
-               getDeleteButton().setEnabled(!servingTable.getSelectedServings().isEmpty());
-            }
-            public void servingDoubleClicked(Serving food) { }            
-         });
+         servingTable.setTitle("Recipe '"+food.getDescription()+"'");
+       /*  servingTable.addServingSelectionListener(new ServingSelectionListener() {
+            public void servingSelected(Serving food) {}
+            public void servingDoubleClicked(Serving food) {}            
+         });*/
       }
       return servingTable;
    }
-   
-   private JToolBar getToolBar() {
-      if (null == toolBar) {
-          toolBar = new JToolBar();
-          toolBar.setRollover(true);
-          toolBar.setOrientation(JToolBar.HORIZONTAL);
-          toolBar.setFloatable(false);
-          toolBar.setBorder(BorderFactory.createEmptyBorder(1,1,1,1));
-          toolBar.add(getAddButton());
-          toolBar.add(getDeleteButton());
-          toolBar.add(Box.createHorizontalStrut(20));
-          toolBar.add(getPrintButton());
-          toolBar.add(Box.createGlue());
-          toolBar.add(getGramsLabel());
-      }
-      return toolBar;
-  }
    
    /**
     * Does a very simple print-out of the recipe.
@@ -155,57 +131,6 @@ public class RecipeEditor extends FoodEditor {
       }
       return servingPanel;
    }
-   
-   private JButton getAddButton() {
-      if (null == addBtn) {
-          ImageIcon icon = new ImageIcon(ImageFactory.getInstance().loadImage("/img/add_obj.gif"));
-          addBtn = new JButton(icon);
-          addBtn.setToolTipText("Add a new serving.");
-          addBtn.addActionListener(new ActionListener() {
-              public void actionPerformed(ActionEvent e) {
-                 doAddFood();
-              }
-          });
-          FoodDBToolBar.fixButton(addBtn);
-      }
-      return addBtn;
-  }
-
-   private JButton getPrintButton() {
-      if (null == printBtn) {
-         ImageIcon icon = new ImageIcon(ImageFactory.getInstance().loadImage(
-               "/img/print.gif"));
-         printBtn = new JButton(icon);
-         printBtn.setToolTipText("Print the recipe.");
-         printBtn.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-               doPrint();
-            }
-         });
-         FoodDBToolBar.fixButton(printBtn);
-      }
-      return printBtn;
-   }
-   
-   private JButton getDeleteButton() {
-      if (null == delBtn) {
-          ImageIcon icon = new ImageIcon(ImageFactory.getInstance().loadImage("/img/trash.gif"));
-          delBtn = new JButton(icon);
-          delBtn.setEnabled(false);
-          delBtn.setToolTipText("Delete the selected serving.");
-          delBtn.addActionListener(new ActionListener() {
-              public void actionPerformed(ActionEvent e) {
-                  doDeleteServing();
-              }
-          });
-          FoodDBToolBar.fixButton(delBtn);
-      }
-      return delBtn;
-  }
-   
-  private void doDeleteServing() {
-     getServingTable().deleteSelectedServings();
-  }
 
   // TODO: pre-0.7 decommission this, and toolbar
    private void doAddFood() {

@@ -32,12 +32,21 @@ public class ServingTable extends JPanel {
    private Vector servingListeners = new Vector();
    private JToolBar toolBar;
    private JButton addBtn, delBtn, printBtn;
+   private String title = "Untitled";
    
    public ServingTable() {
+      setMinimumSize(new Dimension(400,150));
       model = new ServingTableModel(this);
       setLayout(new BorderLayout(4,4));
       add(getToolBar(), BorderLayout.NORTH);
       add(makeJScrollPane(), BorderLayout.CENTER);
+   }
+
+   public void setTitle(String str) {
+      this.title = str;
+   }
+   public String getTitle() {
+      return title;
    }
    
    public void addChangeListener(ChangeListener listener) {
@@ -87,7 +96,7 @@ public class ServingTable extends JPanel {
    private JButton getDeleteButton() {
       if (null == delBtn) {
           ImageIcon icon = new ImageIcon(ImageFactory.getInstance().loadImage("/img/trash.gif"));
-          delBtn = new JButton(icon);
+          delBtn = new JButton("Delete Serving", icon);
           delBtn.setEnabled(false);
           delBtn.setToolTipText("Delete the selected serving.");
           delBtn.addActionListener(new ActionListener() {
@@ -103,7 +112,7 @@ public class ServingTable extends JPanel {
    private JButton getAddButton() {
       if (null == addBtn) {
           ImageIcon icon = new ImageIcon(ImageFactory.getInstance().loadImage("/img/add_obj.gif"));
-          addBtn = new JButton(icon);
+          addBtn = new JButton("Add Serving", icon);
           addBtn.setToolTipText("Add a new serving.");
           addBtn.addActionListener(new ActionListener() {
               public void actionPerformed(ActionEvent e) {
@@ -117,7 +126,7 @@ public class ServingTable extends JPanel {
 
   
    
-   private void doAddFood() {
+   public void doAddFood() {
      SearchDialog sd = new SearchDialog(JOptionPane.getFrameForComponent(this));
      sd.display();
     
@@ -424,7 +433,7 @@ public class ServingTable extends JPanel {
     */
    public void doPrint() {
       try {         
-         MessageFormat headerFormat = new MessageFormat("Daily Log");
+         MessageFormat headerFormat = new MessageFormat(getTitle());
          MessageFormat footerFormat = new MessageFormat("- {0} -");
          getTable().print(JTable.PrintMode.FIT_WIDTH, headerFormat, footerFormat);          
       } catch (PrinterException e) {

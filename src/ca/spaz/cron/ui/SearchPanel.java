@@ -65,7 +65,8 @@ public class SearchPanel extends JPanel implements ItemListener {
    private JTextField getQueryField() {
       if (null == queryField) {
          queryField = new JTextField();
-         queryField.setAction(getSearchAction());         
+         queryField.setAction(getSearchAction());
+                   
          // for live searches as we type:
          queryField.addKeyListener(new KeyAdapter() {
             public void keyTyped(KeyEvent e) {
@@ -265,10 +266,9 @@ public class SearchPanel extends JPanel implements ItemListener {
             int score = fp.getReferences();
             maxScore = Math.max(maxScore, score); 
          }
-
          sortResults(query);  
       }
-      model.fireTableDataChanged();
+      model.fireTableDataChanged();      
    }
  
    /**

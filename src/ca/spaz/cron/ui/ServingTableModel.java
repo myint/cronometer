@@ -3,6 +3,7 @@
  */
 package ca.spaz.cron.ui;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -158,6 +159,8 @@ public class ServingTableModel extends PrettyTableModel {
       if (s != null) {
          if (col == 0) {
             c.setForeground(s.getFoodProxy().getSource().getDisplayColor());               
+         } else {
+            c.setForeground(Color.BLACK);
          }
       }
       return c;

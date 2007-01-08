@@ -30,7 +30,7 @@ public class HTMLSummaryFormat extends SummaryFormat {
       } else {
          sb.append("<h2>Nutrition Summary for " + dateFormat.format(end) + "</h2>\n");
       }
-      sb.append("<small><table border=0 width=\"100%\" cellpadding=\"0\" cellspacing=\"1\">");       
+      sb.append("<small><table width=\"100%\">");
       for (int i=0; i<NutrientInfo.CATEGORIES.length; i++) {
          sb.append(exportCategory(NutrientInfo.CATEGORIES[i], servings, days, targetsOnly));
       }
@@ -46,9 +46,8 @@ public class HTMLSummaryFormat extends SummaryFormat {
       StringBuffer sb = new StringBuffer();
       List nutrients = NutrientInfo.getCategory(category);
       
-      sb.append("<tr bgcolor=\"#bbbbbb\"><td colspan=\"4\"><b>");
+      sb.append("<tr><td colspan=\"4\"><b><u>");
       sb.append(category);
-      
       double tcp = getTargetCompletion(servings, nutrients, days, false);
       if (!Double.isNaN(tcp)) {
          sb.append(" (");
@@ -57,7 +56,8 @@ public class HTMLSummaryFormat extends SummaryFormat {
       } else {
          return "";
       }
-      sb.append("</b></td></tr>\n");
+      sb.append("</u></b>");
+      sb.append("</td></tr>\n");
       
       int i = 0;
       Iterator iter = nutrients.iterator();
@@ -69,9 +69,9 @@ public class HTMLSummaryFormat extends SummaryFormat {
          }
          i++;
          if (i%2==0) {
-            sb.append("<tr bgcolor=\"#ffffff\">");
+            sb.append("<tr>");
          } else {
-            sb.append("<tr bgcolor=\"#efefff\">");
+            sb.append("<tr>");
          }
          
          sb.append(export(ni, servings, days, targetsOnly)); 

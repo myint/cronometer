@@ -4,8 +4,7 @@
 package ca.spaz.cron.ui;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.List;
@@ -56,10 +55,10 @@ public class DailySummary extends JPanel {
    boolean asked = false; 
    
    public DailySummary() { 
-      setPreferredSize(new Dimension(450,600));
+      setPreferredSize(new Dimension(550,600));
       initialize();
       setDate(curDate);
-      notifyObservers();
+      notifyObservers();      
    }
 
    public void addServing(Serving c) {
@@ -289,7 +288,7 @@ public class DailySummary extends JPanel {
    }
 
    public void notifyObservers() {
-      getTitle().setText(df.format(curDate));
+     
       List consumed = Datasources.getFoodHistory().getConsumedOn(curDate);
       getServingTable().setServings(consumed);
    }
@@ -297,6 +296,8 @@ public class DailySummary extends JPanel {
    public void setDate(Date d) {
       curDate = d;
       bioMarkerPanel.setDate(d);
+      getTitle().setText(df.format(curDate));
+      getServingTable().setTitle(df.format(curDate));
       asked = false;
       getTodayButton().setEnabled(!ToolBox.isSameDay(d, new Date(System.currentTimeMillis())));
       notifyObservers();

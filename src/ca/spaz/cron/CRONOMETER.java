@@ -46,17 +46,27 @@ import com.apple.mrj.MRJQuitHandler;
  *      - Spiffed up nutrition report (lined up columns).
  *      - Made a couple dialogs resizeable.
  *      - fixed beep
+ *      - nutritional summary resizable
+ *      - simplified HTML in reports
  *      - fixed several bugs with save/cancel of foods and recipes
+ *      - crazy new front layout
  *      - bugs stomped?
+ *      
 
  *   0.7.0 TODOs
  *      - get new icon set?
+ *      - refreshDisplay for SearchDialog
+ *      - export daily food to CSV, text, etc...
  *      - better search ranking algorithm
  *      - bug stomp !
  *      - fix missing checkbox bug in ReportWindow
  *      - make sure mac version looks ok
  *      - try crazy dialog idea 
  *      - pre-0.7 scan
+ *      
+ *   0.8.0 TODOs
+ *      - set measure to most frequently entry 
+ *      -  
  *      
  * @author davidson
  */
@@ -125,22 +135,15 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
             doEditUserSettings(); 
          } 
          User.getUser().setLastBuild(CRONOMETER.BUILD);
-         makeAutoSaveTimer();
-         
-         addKeyListener(new KeyAdapter() {
-            public void keyTyped(KeyEvent e) {
-               SwingUtilities.invokeLater(new Runnable(){
-                  public void run() {
-                     JOptionPane.showMessageDialog(mainFrame, "Hi");
-                  }
-               });
-            }
-         });
-         
+         makeAutoSaveTimer();                  
       } catch (Exception e) {
          Logger.debug(e);
          ErrorReporter.showError(e, this); 
       }
+   }
+   
+   public void doAddFood() {
+      getDailySummary().getServingTable().doAddFood();
    }
 
    private void makeAutoSaveTimer() {
@@ -292,8 +295,7 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
       CreateRecipeAction.execute(servings);
       refreshDisplays();
    }
-    
-
+     
    public void doEditUserSettings() {
       TargetEditor.editTargets(); 
    }
@@ -318,6 +320,9 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
       System.exit(0);
    }
     
+   public void doPrint() {
+      getDailySummary().getServingTable().doPrint();
+   }
     
    public void taskStarted(Task t) {
       // Nothing

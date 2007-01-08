@@ -91,7 +91,7 @@ public class ReportWindow extends WrappedPanel {
       if (toolbar == null) {
          toolbar = new JToolBar();
          toolbar.setFloatable(false);
-         toolbar.setRollover(true);
+         //toolbar.setRollover(true);
          toolbar.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
          toolbar.setLayout(new BoxLayout(toolbar, BoxLayout.X_AXIS));
 
@@ -191,7 +191,7 @@ public class ReportWindow extends WrappedPanel {
    private JCheckBox getTargetsOnlyBox() {
       if (targetsOnlyBox == null) {
          targetsOnlyBox = new JCheckBox("Targets Only", true);
-         targetsOnlyBox.setRolloverEnabled(true);
+         //targetsOnlyBox.setRolloverEnabled(true);
          targetsOnlyBox.setToolTipText("Show only items with valid targets.");
          targetsOnlyBox.addItemListener(new ItemListener() {
             public void itemStateChanged(ItemEvent e) {
@@ -210,6 +210,7 @@ public class ReportWindow extends WrappedPanel {
          saveBtn = new JButton(new ImageIcon(ImageFactory.getInstance().loadImage("/img/save_edit.gif")));
          saveBtn.setToolTipText("Save to File");       
          saveBtn.setBorderPainted(false);
+         saveBtn.setFocusable(false);
          saveBtn.setRolloverEnabled(true);
          saveBtn.setMargin(new Insets(1,1,1,1));
          saveBtn.addActionListener(new ActionListener() {

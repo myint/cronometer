@@ -70,8 +70,7 @@ public class SearchDialog extends JDialog implements ServingEditorListener {
                 getServingEditor().setServing(new Serving(food));
             }
             public void foodDoubleClicked(FoodProxy food) {
-               /*abort = false;
-               dispose();*/
+               //servingChosen(new Serving(food));
             }            
          });       
       }
@@ -81,9 +80,7 @@ public class SearchDialog extends JDialog implements ServingEditorListener {
    public JPanel getMainPanel() {
       if (null == mainPanel) {
          mainPanel = new JPanel(new BorderLayout(4,4));
-         mainPanel.setBorder(BorderFactory.createEmptyBorder(4, 4, 4, 4));
-         //mainPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 4));
-         
+         mainPanel.setBorder(BorderFactory.createEmptyBorder(4, 4, 4, 4)); 
          mainPanel.add(getToolBar(), BorderLayout.NORTH);
          mainPanel.add(getServingEditor(), BorderLayout.SOUTH);
          mainPanel.add(getSearchPanel(), BorderLayout.CENTER); 
