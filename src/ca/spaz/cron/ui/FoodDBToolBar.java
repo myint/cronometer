@@ -59,7 +59,7 @@ public class FoodDBToolBar extends JToolBar {
    
    private JButton getEditButton() {
       if (null == editButton) {
-         ImageIcon icon = new ImageIcon(ImageFactory.getInstance().loadImage("/img/Edit24.gif"));
+         ImageIcon icon = new ImageIcon(ImageFactory.getInstance().loadImage("/img/edit.gif"));
          editButton = new JButton(icon);         
          fixButton(editButton);    
          editButton.setToolTipText("Edit Food");
@@ -103,7 +103,7 @@ public class FoodDBToolBar extends JToolBar {
     
    private JButton getDeleteButton() {
       if (null == deleteButton) {
-         deleteButton = new JButton(new ImageIcon(ImageFactory.getInstance().loadImage("/img/Delete24.gif")));
+         deleteButton = new JButton(new ImageIcon(ImageFactory.getInstance().loadImage("/img/trash.gif")));
          deleteButton.setToolTipText("Delete Food");
          fixButton(deleteButton);
          deleteButton.addActionListener(new ActionListener() {
@@ -120,7 +120,7 @@ public class FoodDBToolBar extends JToolBar {
 
    private JButton getImportButton() {
       if (null == importButton) {
-         importButton = new JButton(new ImageIcon(ImageFactory.getInstance().loadImage("/img/Import24.gif")));
+         importButton = new JButton(new ImageIcon(ImageFactory.getInstance().loadImage("/img/import.gif")));
          importButton.setToolTipText("Import Food");
          fixButton(importButton);
          importButton.addActionListener(new ActionListener() {
@@ -151,7 +151,7 @@ public class FoodDBToolBar extends JToolBar {
 
    private JButton getExportButton() {
       if (null == exportButton) {
-         exportButton = new JButton(new ImageIcon(ImageFactory.getInstance().loadImage("/img/Export24.gif")));
+         exportButton = new JButton(new ImageIcon(ImageFactory.getInstance().loadImage("/img/export.gif")));
          exportButton.setToolTipText("Export Food");
          fixButton(exportButton);     
          exportButton.addActionListener(new ActionListener() {
@@ -172,7 +172,7 @@ public class FoodDBToolBar extends JToolBar {
 
    private JButton getAddButton() {
       if (null == addButton) {
-         addButton = new JButton(new ImageIcon(ImageFactory.getInstance().loadImage("/img/Add24.gif")));
+         addButton = new JButton(new ImageIcon(ImageFactory.getInstance().loadImage("/img/add.gif")));
          addButton.setToolTipText("Create New Food");
          fixButton(addButton);    
         // addButton.setVerticalTextPosition(JButton.BOTTOM);
@@ -204,7 +204,7 @@ public class FoodDBToolBar extends JToolBar {
    
    private JButton getPrefsButton() {
       if (null == prefsButton) {
-         ImageIcon icon = new ImageIcon(ImageFactory.getInstance().loadImage("/img/Preferences24.gif"));
+         ImageIcon icon = new ImageIcon(ImageFactory.getInstance().loadImage("/img/task.gif"));
          prefsButton = new JButton(icon);         
          fixButton(prefsButton);    
          prefsButton.setToolTipText("Edit Preferences");

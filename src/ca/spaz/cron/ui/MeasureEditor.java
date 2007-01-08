@@ -129,7 +129,7 @@ public class MeasureEditor extends JPanel {
 
     private JButton getAddButton() {
         if (null == addBtn) {
-            ImageIcon icon = new ImageIcon(ImageFactory.getInstance().loadImage("/img/add_obj.gif"));
+            ImageIcon icon = new ImageIcon(ImageFactory.getInstance().loadImage("/img/add.gif"));
             addBtn = new JButton(icon);
             addBtn.setToolTipText("Add a new measurement.");
             addBtn.addActionListener(new ActionListener() {

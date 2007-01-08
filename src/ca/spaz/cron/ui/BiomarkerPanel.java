@@ -61,9 +61,10 @@ public class BiomarkerPanel extends JPanel {
       }
       JPanel x = new JPanel(new BorderLayout());
       x.add(ed, BorderLayout.NORTH);
+      //setBorder(BorderFactory.createEtchedBorder());
       setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
       setLayout(new BorderLayout(4, 4));
-      add(x, BorderLayout.WEST);
+      add(x, BorderLayout.CENTER);
    }
 
 

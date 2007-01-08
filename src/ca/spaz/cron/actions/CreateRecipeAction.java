@@ -24,7 +24,7 @@ public class CreateRecipeAction extends AbstractAction {
       super("Create Recipe");
       this.servings = servings;
       this.parent = parent;
-      putValue(SMALL_ICON, new ImageIcon(ImageFactory.getInstance().loadImage("/img/add_obj.gif")));
+      putValue(SMALL_ICON, new ImageIcon(ImageFactory.getInstance().loadImage("/img/add.gif")));
       putValue(SHORT_DESCRIPTION, "Create a new Recipe from the selection");      
    }      
    

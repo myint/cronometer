@@ -22,7 +22,7 @@ public class DeleteFoodAction extends AbstractAction {
       super("Delete Food");
       this.food = food;
       this.parent = parent;
-      putValue(SMALL_ICON, new ImageIcon(ImageFactory.getInstance().loadImage("/img/Delete24.gif")));
+      putValue(SMALL_ICON, new ImageIcon(ImageFactory.getInstance().loadImage("/img/trash.gif")));
       putValue(SHORT_DESCRIPTION, "Delete this food from the food database");
       if (!food.getSource().isMutable()) {
          setEnabled(false);

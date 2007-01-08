@@ -58,19 +58,20 @@ import com.apple.mrj.MRJQuitHandler;
  *      - refreshDisplay for SearchDialog
  *      - export daily food to CSV, text, etc...
  *      - better search ranking algorithm
+ *      - explicit database editor
  *      - bug stomp !
  *      - fix missing checkbox bug in ReportWindow
  *      - make sure mac version looks ok
- *      - try crazy dialog idea 
  *      - pre-0.7 scan
  *      
  *   0.8.0 TODOs
  *      - set measure to most frequently entry 
- *      -  
+ *      - more robust / scalable data backend
+ *      - spaz.ca account synch
  *      
  * @author davidson
  */
-public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, MRJAboutHandler, ClipboardOwner  {
+public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, MRJAboutHandler, ClipboardOwner {
    public static final String TITLE = "CRON-o-Meter";
    public static final String VERSION = "0.7";
    public static final int BUILD = 7;
@@ -142,8 +143,8 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
       }
    }
    
-   public void doAddFood() {
-      getDailySummary().getServingTable().doAddFood();
+   public void doAddServing() {
+      getDailySummary().getServingTable().doAddServing();
    }
 
    private void makeAutoSaveTimer() {

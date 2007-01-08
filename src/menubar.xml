@@ -13,7 +13,7 @@
 	</menu>
 
 	<menu title="Food" key="d">
-		<item title="Add Food..." key="a" acc="VK_E" action="doAddFood"/>
+		<item title="Add Serving..." key="a" acc="VK_E" action="doAddServing"/>
 		<item separator="true"/>
 		<item title="Import Food..." key="i" acc="VK_I" action="doImportFood"/>
 		<item title="Create New Food" key="n" acc="VK_F" action="doCreateNewFood"/>

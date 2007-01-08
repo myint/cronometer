@@ -111,12 +111,12 @@ public class ServingTable extends JPanel {
    
    private JButton getAddButton() {
       if (null == addBtn) {
-          ImageIcon icon = new ImageIcon(ImageFactory.getInstance().loadImage("/img/add_obj.gif"));
+          ImageIcon icon = new ImageIcon(ImageFactory.getInstance().loadImage("/img/add.gif"));
           addBtn = new JButton("Add Serving", icon);
           addBtn.setToolTipText("Add a new serving.");
           addBtn.addActionListener(new ActionListener() {
               public void actionPerformed(ActionEvent e) {
-                 doAddFood();
+                 doAddServing();
               }
           });
           FoodDBToolBar.fixButton(addBtn);
@@ -126,7 +126,7 @@ public class ServingTable extends JPanel {
 
   
    
-   public void doAddFood() {
+   public void doAddServing() {
      SearchDialog sd = new SearchDialog(JOptionPane.getFrameForComponent(this));
      sd.display();
     

@@ -17,7 +17,7 @@ public class DeleteServingsAction extends AbstractAction {
    public DeleteServingsAction(ServingTable servingTable) {
       super("Delete Servings");
       this.servingTable = servingTable;
-      putValue(SMALL_ICON, new ImageIcon(ImageFactory.getInstance().loadImage("/img/Delete24.gif")));
+      putValue(SMALL_ICON, new ImageIcon(ImageFactory.getInstance().loadImage("/img/trash.gif")));
       putValue(SHORT_DESCRIPTION, "Delete the selected servings from this list");
        
    }      

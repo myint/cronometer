@@ -141,7 +141,7 @@ public class DailySummary extends JPanel {
    
    private JButton getPrefsButton() {
       if (null == prefsButton) {
-         ImageIcon icon = new ImageIcon(ImageFactory.getInstance().loadImage("/img/Preferences24.gif"));
+         ImageIcon icon = new ImageIcon(ImageFactory.getInstance().loadImage("/img/task.gif"));
          prefsButton = new JButton(icon);         
          FoodDBToolBar.fixButton(prefsButton);    
          prefsButton.setToolTipText("Edit Preferences");
@@ -188,7 +188,7 @@ public class DailySummary extends JPanel {
 
    private JButton getCopyPreviousDayButton() {
       if (null == copyPrevDayButton) {
-         copyPrevDayButton = new JButton(new ImageIcon(ImageFactory.getInstance().loadImage("/img/Copy24.gif")));
+         copyPrevDayButton = new JButton(new ImageIcon(ImageFactory.getInstance().loadImage("/img/copy.gif")));
          copyPrevDayButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                copyPreviousDay();
@@ -203,7 +203,7 @@ public class DailySummary extends JPanel {
    
    private JButton getTodayButton() {
       if (null == todayButton) {
-         todayButton = new JButton(new ImageIcon(ImageFactory.getInstance().loadImage("/img/Today24.gif")));
+         todayButton = new JButton(new ImageIcon(ImageFactory.getInstance().loadImage("/img/trace.gif")));
          todayButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                goToToday();
