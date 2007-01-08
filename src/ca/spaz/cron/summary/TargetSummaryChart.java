@@ -117,10 +117,10 @@ public class TargetSummaryChart extends JComponent implements UserChangeListener
       }
       
       //int b = 4;
-      int barHeight = 21;
+      int barHeight = (h / 6) - 5;
       int pieRadius = 80;
       double barFill = 0;
-      
+       
       g.setFont(g.getFont().deriveFont(Font.BOLD));
       FontMetrics fm = g.getFontMetrics();
       Graphics2D g2d = (Graphics2D)g;      
@@ -308,14 +308,14 @@ public class TargetSummaryChart extends JComponent implements UserChangeListener
       }   
    }
 
-   public Dimension getPreferredSize() {
+  /* public Dimension getPreferredSize() {
       return new Dimension(500, 180);
    }
 
 
    public Dimension getMinimumSize() {
       return new Dimension(500, 180);
-   }
+   }*/
    
    public void userChanged(User user) {
       update();
