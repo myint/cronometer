@@ -51,13 +51,12 @@ import com.apple.mrj.MRJQuitHandler;
  *      - fixed several bugs with save/cancel of foods and recipes
  *      - crazy new front layout
  *      - bugs stomped?
- *      
+ *      - searches score by more criteria
 
  *   0.7.0 TODOs
- *      - get new icon set?
+ *      - fix transparency on import/export icons
  *      - refreshDisplay for SearchDialog
- *      - export daily food to CSV, text, etc...
- *      - better search ranking algorithm
+ *      - export daily food to CSV, text, etc...     
  *      - explicit database editor
  *      - bug stomp !
  *      - fix missing checkbox bug in ReportWindow
