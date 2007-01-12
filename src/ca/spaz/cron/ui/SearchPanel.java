@@ -6,7 +6,6 @@ package ca.spaz.cron.ui;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
-import java.util.List;
 
 import javax.swing.*;
 import javax.swing.border.CompoundBorder;
@@ -140,7 +139,7 @@ public class SearchPanel extends JPanel implements ItemListener {
                   ListSelectionModel lsm = (ListSelectionModel) e.getSource();
                   if (!lsm.isSelectionEmpty()) {
                      int selectedRow = lsm.getMinSelectionIndex();
-                     FoodProxy f = model.getFoodProxy(selectedRow);                    
+                     FoodProxy f = model.getSearchHit(selectedRow).getFoodProxy();                    
                      foodSelected(f);
                   }
                }
@@ -234,49 +233,49 @@ public class SearchPanel extends JPanel implements ItemListener {
       String query = getQueryField().getText().trim();
       String[] parts = query.split("\\s");
       clearResults();
+      ArrayList foods = new ArrayList();  
       synchronized (result) {
          if (query.length() == 0) {
-            if (ds != null) {
-               List foods = ds.getAllFoods();
-               result.addAll(foods);
+            if (ds != null) { 
+               foods.addAll(ds.getAllFoods());
             } else {
                Iterator iter = Datasources.getDatasources().iterator();
                while (iter.hasNext()) {
-                  ds = (FoodDataSource)iter.next();
-                  List foods = ds.getAllFoods();
-                  result.addAll(foods);
+                  ds = (FoodDataSource)iter.next(); 
+                  foods.addAll(ds.getAllFoods());
                }
             } 
          } else {   
             if (ds != null) {
-               result.addAll(ds.findFoods(parts));
+               foods.addAll(ds.findFoods(parts));
             } else {
                Iterator iter = Datasources.getDatasources().iterator();
                while (iter.hasNext()) {
                   ds = (FoodDataSource)iter.next();
-                  result.addAll(ds.findFoods(parts));
+                  foods.addAll(ds.findFoods(parts));
                }
             }
          }     
 
-         // score results:         
-         Iterator iter = result.iterator(); 
+         // score results:
+         Iterator iter = foods.iterator(); 
          while (iter.hasNext()) {
-            FoodProxy fp = (FoodProxy)iter.next();
-            int score = fp.getReferences();
-            maxScore = Math.max(maxScore, score); 
+            SearchHit hit = new SearchHit((FoodProxy)iter.next());
+            hit.computeScore(parts);
+            maxScore = Math.max(maxScore, hit.getScore()); 
+            result.add(hit);
          }
-         sortResults(query);  
+         sortResults();
       }
       model.fireTableDataChanged();      
-   }
+   }   
  
    /**
     * Sorts the query results by relevance. Currently sorted by number of times
     * the food has been consumed by the user so that foods they commonly eat
     * appear first.
     */
-   private void sortResults(final String query) {
+   private void sortResults() {
       model.sort(resultTable);
    }
 
@@ -294,10 +293,10 @@ public class SearchPanel extends JPanel implements ItemListener {
          }
       }
 
-      public FoodProxy getFoodProxy(int i) {
+      public SearchHit getSearchHit(int i) {
          synchronized (result) {
             if (i< 0 || i >= result.size()) return null; 
-            return (FoodProxy) result.get(i);
+            return (SearchHit) result.get(i);
          }
       }
 
@@ -306,13 +305,13 @@ public class SearchPanel extends JPanel implements ItemListener {
       }
 
       public Object getValueAt(int row, int col) {
-         FoodProxy f = getFoodProxy(row);
-         if (f != null) {
+         SearchHit hit = getSearchHit(row);
+         if (hit != null) {
             switch (col) {
                case 0:
-                  return f.getDescription();
+                  return hit.getFoodProxy().getDescription();
                case 1:
-                  return f;//Integer.toString(f.getReferences());
+                  return hit;//Integer.toString(f.getReferences());
             }
          }
          return "";
@@ -335,34 +334,19 @@ public class SearchPanel extends JPanel implements ItemListener {
       }
 
       public String getToolTipText(int r, int c) {
-         FoodProxy f = getFoodProxy(r);
+         FoodProxy f = getSearchHit(r).getFoodProxy();
          if (f != null) {
             return "<html><table width=\"220\"><tr><td align=\"center\">" +
                f.getDescription() +
                "<br>["+f.getSource()+"]" +
+               "<br>"+getSearchHit(r).getScore()+
                "</td></tr></table></html>";
          }
          return "";
       }
 
-      public void sort(PrettyTable table) {
-         Comparator c = new Comparator() {
-            public int compare(Object a1, Object b1) {
-               FoodProxy a = (FoodProxy) a1;
-               FoodProxy b = (FoodProxy) b1;
-                           
-               Integer ai = new Integer(a.getReferences());
-               Integer bi = new Integer(b.getReferences());
-               int i = bi.compareTo(ai);
-               
-               if (i == 0) {                
-                  i = a.getDescription().compareToIgnoreCase(b.getDescription());            
-               }
-               
-               return i;             
-            }
-         };
-         Collections.sort(result, c);
+      public void sort(PrettyTable table) {         
+         Collections.sort(result);
       }
       
       /**
@@ -374,7 +358,7 @@ public class SearchPanel extends JPanel implements ItemListener {
        * @return a custom rendering component
        */
       public Component customRender(Component c, PrettyTable table, int row, int col) {
-         FoodProxy f = getFoodProxy(row);
+         FoodProxy f = getSearchHit(row).getFoodProxy();
          if (f != null) {
             if (col == 0) {
                c.setForeground(f.getSource().getDisplayColor());               
@@ -432,9 +416,9 @@ public class SearchPanel extends JPanel implements ItemListener {
             Object value, boolean isSelected, boolean hasFocus, int row,
             int column) {
          
-         FoodProxy food = (FoodProxy)value;
+         SearchHit hit = (SearchHit)value;
          
-         setValue(food.getReferences() / (double)maxScore);
+         setValue(hit.getScore() / (double)maxScore);
          
          return this;
       }
