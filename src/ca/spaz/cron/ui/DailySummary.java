@@ -112,11 +112,10 @@ public class DailySummary extends JPanel {
 
    private JSplitPane getDietPanel() {
       if (null == dietPanel) {
-         //dietPanel = new JPanel(new BorderLayout(4, 4));
-         dietPanel = new JSplitPane(JSplitPane.VERTICAL_SPLIT, getServingTable(), getNutritionSummaryPanel());
-         dietPanel.setBorder(BorderFactory.createEmptyBorder(3,3,3,3));
-         //dietPanel.add(getServingTable(), BorderLayout.CENTER);
-         //dietPanel.add(getNutritionSummaryPanel(), BorderLayout.SOUTH);
+         dietPanel = new JSplitPane(JSplitPane.VERTICAL_SPLIT, 
+               getServingTable(), getNutritionSummaryPanel());
+         dietPanel.setDividerLocation(275);
+         dietPanel.setBorder(BorderFactory.createEmptyBorder(3,3,3,3)); 
       }
       return dietPanel;
    }

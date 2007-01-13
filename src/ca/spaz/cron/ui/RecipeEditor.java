@@ -84,6 +84,7 @@ public class RecipeEditor extends FoodEditor {
       JTabbedPane jp = new JTabbedPane();
       jp.add("Recipe", getServingPanel());
       jp.add("Nutrients", getNutrientPanel());
+      getNutrientPanel().setBorder(BorderFactory.createEmptyBorder(3,3,3,3));
       return jp;
    }
    
@@ -98,10 +99,6 @@ public class RecipeEditor extends FoodEditor {
             }
          });   
          servingTable.setTitle("Recipe '"+food.getDescription()+"'");
-       /*  servingTable.addServingSelectionListener(new ServingSelectionListener() {
-            public void servingSelected(Serving food) {}
-            public void servingDoubleClicked(Serving food) {}            
-         });*/
       }
       return servingTable;
    }

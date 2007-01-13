@@ -240,7 +240,7 @@ public class TargetSummaryChart extends JComponent implements UserChangeListener
       g.drawString("Minerals: " + Math.round(100*minerals) + "%", 
             xo+10, yo+(barHeight+5)*5+barHeight/2+fm.getAscent()/2);
 
-      paintPFC(g, xo+(w-pieRadius)+12, yo+(barHeight+5)+10, pieRadius-20);
+      paintPFC(g, xo+(w-pieRadius)+12, yo, pieRadius-20);
    }
    
    

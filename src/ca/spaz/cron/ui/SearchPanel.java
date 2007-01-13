@@ -40,7 +40,7 @@ public class SearchPanel extends JPanel implements ItemListener {
    private FoodProxy selectedFood;
    private Vector listeners;
    private boolean updateAsTyping = true;
-   private int maxScore = 1;
+   private int maxScore = 1, minScore = 0;;
    
    public SearchPanel() {
       listeners = new Vector();
@@ -222,7 +222,8 @@ public class SearchPanel extends JPanel implements ItemListener {
    private void clearResults() {
       synchronized (result) {
          result.clear(); 
-         maxScore = 1;
+         maxScore = Integer.MIN_VALUE;
+         minScore = Integer.MAX_VALUE;
       }
    }
 
@@ -263,6 +264,7 @@ public class SearchPanel extends JPanel implements ItemListener {
             SearchHit hit = new SearchHit((FoodProxy)iter.next());
             hit.computeScore(parts);
             maxScore = Math.max(maxScore, hit.getScore()); 
+            minScore = Math.min(minScore, hit.getScore()); 
             result.add(hit);
          }
          sortResults();
@@ -336,11 +338,15 @@ public class SearchPanel extends JPanel implements ItemListener {
       public String getToolTipText(int r, int c) {
          FoodProxy f = getSearchHit(r).getFoodProxy();
          if (f != null) {
+            if (c == 0) {
             return "<html><table width=\"220\"><tr><td align=\"center\">" +
                f.getDescription() +
                "<br>["+f.getSource()+"]" +
-               "<br>"+getSearchHit(r).getScore()+
                "</td></tr></table></html>";
+            }
+            if (c == 1) {
+               return "Score: " + (getSearchHit(r).getScore() - minScore);
+            }
          }
          return "";
       }
@@ -417,8 +423,7 @@ public class SearchPanel extends JPanel implements ItemListener {
             int column) {
          
          SearchHit hit = (SearchHit)value;
-         
-         setValue(hit.getScore() / (double)maxScore);
+         setValue((hit.getScore() - minScore) / (double)(maxScore - minScore));
          
          return this;
       }

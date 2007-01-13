@@ -169,11 +169,11 @@ public class TargetEditor extends WrappedPanel {
       return  "<div align=\"justify\" width=\"180\"><br>"         
             + "Set your nutritional targets for tracking within the program.<br><br>"
             + "Clicking 'Set to Dietary Reference Intakes' will set all the targets "
-            + "to values configured for your weight, height, gender, age, and activity level."
+            + "to values configured for your weight, height, gender, age, and activity level. "
             + "These values are based on the DRIs published by USDA.*<br><br>"
             + "You may also edit the targets directly in the table to the right "
             + "choosing customized values for your tracking. <br><br>"
-            + "<small>* Not all nutrients are specified by the DRIs.</small>"
+            + "<small>* Not all nutrients are specified by the DRIs.<br></small>"
             + "</div>";
    }
 

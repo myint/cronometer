@@ -35,7 +35,8 @@ public class ServingTable extends JPanel {
    private String title = "Untitled";
    
    public ServingTable() {
-      setMinimumSize(new Dimension(400,150));
+      setMinimumSize(new Dimension(400,200));
+      setPreferredSize(new Dimension(400,275));
       model = new ServingTableModel(this);
       setLayout(new BorderLayout(4,4));
       add(getToolBar(), BorderLayout.NORTH);

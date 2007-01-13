@@ -54,7 +54,6 @@ import com.apple.mrj.MRJQuitHandler;
  *      - searches score by more criteria
 
  *   0.7.0 TODOs
- *      - fix transparency on import/export icons
  *      - refreshDisplay for SearchDialog
  *      - export daily food to CSV, text, etc...     
  *      - explicit database editor
@@ -67,6 +66,10 @@ import com.apple.mrj.MRJQuitHandler;
  *      - set measure to most frequently entry 
  *      - more robust / scalable data backend
  *      - spaz.ca account synch
+ *      
+ *   Whevever Ideas:
+ *      - More Lickable UI
+ *      - Gradients & Transparencies
  *      
  * @author davidson
  */
