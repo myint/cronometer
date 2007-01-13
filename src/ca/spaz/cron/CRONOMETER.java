@@ -18,6 +18,7 @@ import org.w3c.dom.Element;
 
 import ca.spaz.cron.actions.CreateRecipeAction;
 import ca.spaz.cron.datasource.Datasources;
+import ca.spaz.cron.datasource.XMLFoodLoader;
 import ca.spaz.cron.foods.Food;
 import ca.spaz.cron.foods.Serving;
 import ca.spaz.cron.targets.DRITargetModel;
@@ -79,7 +80,7 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
 
    private static Clipboard clipboard = new Clipboard ("CRON-o-Meter");
    
-   private DBPanel dbp;
+//   private DBPanel dbp;
 
    private DailySummary ds;
 
@@ -262,24 +263,29 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
       return mainPanel;
    }
 
-   public DBPanel getDBPanel() {
-      if (null == dbp) {
-         dbp = new DBPanel();
-      }
-      return dbp;
-   }
+//   public DBPanel getDBPanel() {
+//      if (null == dbp) {
+//         dbp = new DBPanel();
+//      }
+//      return dbp;
+//   }
 
    public DailySummary getDailySummary() {
       if (null == ds) {
          ds = new DailySummary();
          ds.getServingTable().addServingSelectionListener(new ServingSelectionListener() {
             public void servingSelected(Serving s) {
-               getDBPanel().getSearchPanel().deselect();
-               getDBPanel().getServingEditor().setServing(new Serving(s));
-               getDBPanel().getToolBar().setSelectedFood(s.getFoodProxy());
+//               getDBPanel().getSearchPanel().deselect();
+//               getDBPanel().getServingEditor().setServing(new Serving(s));
+//               getDBPanel().getToolBar().setSelectedFood(s.getFoodProxy());
             }
             public void servingDoubleClicked(Serving s) {
                FoodEditor.editFood(s);
+            }
+            public void servingChosen(Serving s) {
+               if (getDailySummary().isOkToAddServings()) {
+                  getDailySummary().addServing(s);           
+               }
             }
          });
       }
@@ -292,8 +298,7 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
    }
 
    public void doBrowseFoodDatabase() {
-      SearchDialog sd = new SearchDialog(JOptionPane.getFrameForComponent(this));
-      sd.display(false);
+      getDailySummary().getServingTable().doAddServing();
       refreshDisplays();
    }
 
@@ -307,10 +312,21 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
       TargetEditor.editTargets(); 
    }
    
+
    public void doImportFood() {
-      getDBPanel().getToolBar().doImportFood();
-      refreshDisplays();
+      JFileChooser fd = new JFileChooser();
+      if (fd.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+         File f = fd.getSelectedFile();
+         if (f != null) {               
+            Food food = XMLFoodLoader.loadFood(f);
+            if (food != null) {
+               Datasources.getUserFoods().addFood(food);
+            }      
+            refreshDisplays();  
+         }            
+      }
    }
+    
 
    public void doAbout() {
       AboutScreen.showAbout(this);
@@ -501,10 +517,33 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
     */
    public void refreshDisplays() {
       repaint();
-      getDBPanel().getSearchPanel().doDBSearch();  
+      //getDBPanel().getSearchPanel().doDBSearch();  
       CRONOMETER.getInstance().getDailySummary().notifyObservers();
    }
 
+
+   public static void fixButton(final JButton btn) {
+      btn.setOpaque(false);
+      btn.setFocusable(false);
+      btn.setRolloverEnabled(true); 
+      if (ToolBox.isMacOSX()) {
+         btn.setBorderPainted(false);
+         btn.setContentAreaFilled(false);
+         btn.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent e) {
+               if (btn.isEnabled()) {
+                  btn.setContentAreaFilled(true);
+                  btn.setOpaque(false);
+                  btn.setBorderPainted(true);
+               }
+            } 
+            public void mouseExited(MouseEvent e) {
+               btn.setContentAreaFilled(false);
+               btn.setBorderPainted(false);
+            }
+         });
+      }
+   }
 
    public static void main(String[] args) {
       try {

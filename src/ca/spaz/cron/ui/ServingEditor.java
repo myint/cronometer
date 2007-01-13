@@ -176,7 +176,7 @@ public class ServingEditor extends JPanel {
       return measure;
    }
 
-   private JButton getAddButton() {
+   public JButton getAddButton() {
       if (null == addButton) {
          addButton = new JButton("Add");
          addButton.setOpaque(false);
@@ -258,8 +258,12 @@ public class ServingEditor extends JPanel {
 
    public void setServing(Serving c) {
       cur = c;
-      setFood(c.getFood());
-      setWeight(c.getMeasure(), c.getAmount());
+      if (c == null) {
+         cards.show(this, "EMPTY");
+      } else {
+         setFood(c.getFood());
+         setWeight(c.getMeasure(), c.getAmount());
+      }
    }
 
    /**

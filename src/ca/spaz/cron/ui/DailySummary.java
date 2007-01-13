@@ -143,7 +143,7 @@ public class DailySummary extends JPanel {
       if (null == prefsButton) {
          ImageIcon icon = new ImageIcon(ImageFactory.getInstance().loadImage("/img/task.gif"));
          prefsButton = new JButton(icon);         
-         FoodDBToolBar.fixButton(prefsButton);    
+         CRONOMETER.fixButton(prefsButton);    
          prefsButton.setToolTipText("Edit Preferences");
          prefsButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -164,7 +164,7 @@ public class DailySummary extends JPanel {
             }  
          }); 
          nextButton.setFocusable(false); 
-         FoodDBToolBar.fixButton(nextButton); 
+         CRONOMETER.fixButton(nextButton); 
          nextButton.setToolTipText("Next Day");          
       }
       return nextButton;
@@ -179,7 +179,7 @@ public class DailySummary extends JPanel {
                setDate(new Date(curDate.getTime() - ONE_DAY));
             }  
          }); 
-         FoodDBToolBar.fixButton(prevButton);
+         CRONOMETER.fixButton(prevButton);
          prevButton.setToolTipText("Previous Day");         
          prevButton.setFocusable(false); 
       }
@@ -194,7 +194,7 @@ public class DailySummary extends JPanel {
                copyPreviousDay();
             }
          });
-         FoodDBToolBar.fixButton(copyPrevDayButton);
+         CRONOMETER.fixButton(copyPrevDayButton);
          copyPrevDayButton.setToolTipText("Copy Previous Day");
          copyPrevDayButton.setFocusable(false);
       }
@@ -209,7 +209,7 @@ public class DailySummary extends JPanel {
                CRONOMETER.getInstance().doBrowseFoodDatabase();
             }
          });
-         FoodDBToolBar.fixButton(dbButton);
+         CRONOMETER.fixButton(dbButton);
          dbButton.setToolTipText("Browse Food Database");
          dbButton.setFocusable(false);
       }
@@ -224,7 +224,7 @@ public class DailySummary extends JPanel {
                goToToday();
             }
          });
-         FoodDBToolBar.fixButton(todayButton);
+         CRONOMETER.fixButton(todayButton);
          todayButton.setToolTipText("Go To Today");
          todayButton.setFocusable(false);
       }
@@ -261,7 +261,7 @@ public class DailySummary extends JPanel {
                chooseDate();
             }
          });
-         FoodDBToolBar.fixButton(titleLabel); 
+         CRONOMETER.fixButton(titleLabel); 
       }
       return titleLabel;
    }

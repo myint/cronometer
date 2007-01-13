@@ -102,9 +102,9 @@ public class TargetSummaryChart extends JComponent implements UserChangeListener
    }
 
    private void paintBar(Graphics2D g, int x, int y, int w, int h, int w2, Color col) {
-      GradientPaint gradient = new GradientPaint(0, 0, Color.GRAY, w, 20, Color.LIGHT_GRAY, false);            
+      GradientPaint gradient = new GradientPaint(0, 0, Color.GRAY, w, 0, Color.LIGHT_GRAY, false);            
       g.setPaint(gradient); 
-      g.fillRoundRect(x, y, w, h, h/2, h/2);
+      g.fillRoundRect(x, y, w, h, h/2, h/2); 
       gradient = new GradientPaint(0, 0, col.brighter(), w, 0, col.darker(), false);            
       g.setPaint(gradient); 
       if (w2 > w) { 
@@ -115,7 +115,7 @@ public class TargetSummaryChart extends JComponent implements UserChangeListener
       }
    }
    
-   // @TODO: refactor this code as it's highly redundant
+   // @TODO: refactor this code more, as it's highly redundant
    public void paintComponent(Graphics g) {
       User user = User.getUser();
       

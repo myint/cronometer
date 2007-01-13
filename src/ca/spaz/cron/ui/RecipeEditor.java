@@ -4,8 +4,6 @@
 package ca.spaz.cron.ui;
 
 import java.awt.BorderLayout;
-import java.awt.print.PrinterException;
-import java.text.MessageFormat;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
@@ -97,51 +95,34 @@ public class RecipeEditor extends FoodEditor {
                getMeasureEditor().resetMeasures();               
                updateNutrients(); 
             }
-         });   
+         }); 
+         servingTable.addServingSelectionListener(new ServingSelectionListener() {
+            public void servingChosen(Serving s) {
+               if (s.getFoodProxy().getSource() == food.getSource() && 
+                     s.getFoodProxy().getSourceID() == food.getSourceUID()) {
+                    JOptionPane.showMessageDialog(servingTable, "A recipe can not contain itself!");
+                 } else {
+                    getServingTable().addServing(s);
+                 }
+            }
+            public void servingDoubleClicked(Serving s) { }
+            public void servingSelected(Serving s) { }
+         });
          servingTable.setTitle("Recipe '"+food.getDescription()+"'");
       }
       return servingTable;
    }
    
-   /**
-    * Does a very simple print-out of the recipe.
-    */
-   public void doPrint() {
-      try {         
-         MessageFormat headerFormat = new MessageFormat("Recipe '"+food.getDescription()+"'");
-         MessageFormat footerFormat = new MessageFormat("- {0} -");
-         getServingTable().getTable().print(JTable.PrintMode.FIT_WIDTH, headerFormat, footerFormat);          
-      } catch (PrinterException e) {
-         e.printStackTrace();
-         JOptionPane.showMessageDialog(this, e.getMessage());
-      }
-   }    
 
    private JPanel getServingPanel() {
       if (null == servingPanel) {
          servingPanel = new JPanel(new BorderLayout(4,4));
-         servingPanel.setBorder(BorderFactory.createEmptyBorder(4, 4, 4, 4));        
-         //servingPanel.add(getToolBar(),BorderLayout.NORTH);
+         servingPanel.setBorder(BorderFactory.createEmptyBorder(4, 4, 4, 4));
          servingPanel.add(getServingTable(),BorderLayout.CENTER);
          getServingTable().getToolBar().add(Box.createGlue());
          getServingTable().getToolBar().add(getGramsLabel());
       }
       return servingPanel;
-   }
-
-  // TODO: pre-0.7 decommission this, and toolbar
-   private void doAddFood() {
-      SearchDialog sd = new SearchDialog(getDialog());
-      sd.display(true);
-      Serving s = sd.getSelectedServing();
-      if (s != null) {
-         if (s.getFoodProxy().getSource() == food.getSource() && 
-             s.getFoodProxy().getSourceID() == food.getSourceUID()) {
-            JOptionPane.showMessageDialog(this, "A recipe can not contain itself!");
-         } else {
-            getServingTable().addServing(s);
-         }
-      }
-   }
-  
+   } 
+   
 }

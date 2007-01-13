@@ -61,7 +61,7 @@ public class SearchPanel extends JPanel implements ItemListener {
       return jp;
    }
    
-   private JTextField getQueryField() {
+   public JTextField getQueryField() {
       if (null == queryField) {
          queryField = new JTextField();
          queryField.setAction(getSearchAction());
@@ -69,7 +69,7 @@ public class SearchPanel extends JPanel implements ItemListener {
          // for live searches as we type:
          queryField.addKeyListener(new KeyAdapter() {
             public void keyTyped(KeyEvent e) {
-               SwingUtilities.invokeLater(new Runnable(){
+               SwingUtilities.invokeLater(new Runnable() {
                   public void run() {
                      if (updateAsTyping()) {
                         doDBSearch();                        
@@ -396,7 +396,8 @@ public class SearchPanel extends JPanel implements ItemListener {
    }
 
    public void focusQuery() {
-      getQueryField().requestFocus();      
+      getQueryField().requestFocus();    
+      getQueryField().selectAll();
    }
  
    private void handleMouseClick(MouseEvent e) {

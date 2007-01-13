@@ -1,5 +1,6 @@
 package ca.spaz.cron.ui;
 
+import ca.spaz.cron.datasource.Datasources;
 import ca.spaz.cron.datasource.FoodProxy;
 
 
@@ -26,8 +27,14 @@ public class SearchHit implements Comparable {
          score -= 100; 
       }
       
+      if (fp.getSource() == Datasources.getUserFoods()) {
+         score += 100;
+      } else if (fp.getSource() == Datasources.getCRDBFoods()) {
+         score += 50;
+      }
+      
    // penalize longer strings. We're usually searching for short, simple foods.
-      score -= getFoodProxy().getDescription().length();
+      score -= 2*getFoodProxy().getDescription().length();
       
    // add bonus for search terms being early in the description
       for (int i=0; i<query.length; i++) {
@@ -44,10 +51,6 @@ public class SearchHit implements Comparable {
       
       if (getScore() > hit.getScore()) return -1;
       if (getScore() < hit.getScore()) return 1;
-
-      // break tie with name length
-     //if (getFoodProxy().getDescription().length() < hit.getFoodProxy().getDescription().length()) return -1;
-     //if (getFoodProxy().getDescription().length() > hit.getFoodProxy().getDescription().length()) return 1;
       
       // break tie with alphabetical order
       return getFoodProxy().getDescription().compareToIgnoreCase(hit.getFoodProxy().getDescription());      

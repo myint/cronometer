@@ -105,7 +105,7 @@ public class ServingTable extends JPanel {
                  deleteSelectedServings();
               }
           });
-          FoodDBToolBar.fixButton(delBtn);
+          CRONOMETER.fixButton(delBtn);
       }
       return delBtn;
   }
@@ -120,7 +120,7 @@ public class ServingTable extends JPanel {
                  doAddServing();
               }
           });
-          FoodDBToolBar.fixButton(addBtn);
+          CRONOMETER.fixButton(addBtn);
       }
       return addBtn;
   }
@@ -130,19 +130,11 @@ public class ServingTable extends JPanel {
    public void doAddServing() {
      SearchDialog sd = new SearchDialog(JOptionPane.getFrameForComponent(this));
      sd.display(true);
-    
-     //a crazy idea: 
-     /* JPopupMenu menu = new JPopupMenu();
-      menu.add(sd.getMainPanel());
-      menu.show(getAddButton(), -50,-50);*/
       
       Serving s = sd.getSelectedServing();
       if (s != null) { 
-        if (CRONOMETER.getInstance().getDailySummary().isOkToAddServings()) {
-          CRONOMETER.getInstance().getDailySummary().addServing(s);           
-        }        
-      }
-      
+         fireServingChosen(s);
+      }      
    }
    
    private JComponent makeJScrollPane() {
@@ -205,6 +197,12 @@ public class ServingTable extends JPanel {
                deleteSelectedServings();
             }
          }, "Clear", KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, 0, false), JComponent.WHEN_FOCUSED);
+         
+         table.registerKeyboardAction(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+               deleteSelectedServings();
+            }
+         }, "Clear", KeyStroke.getKeyStroke(KeyEvent.VK_BACK_SPACE, 0, false), JComponent.WHEN_FOCUSED);
          
          table.registerKeyboardAction(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -365,6 +363,14 @@ public class ServingTable extends JPanel {
       }
    }
    
+   private void fireServingChosen(Serving s) {
+      if (s == null) return;
+      Iterator iter = servingListeners.iterator();
+      while (iter.hasNext()) {
+         ((ServingSelectionListener)iter.next()).servingChosen(s);
+      }
+   }
+   
    public void deselect() {
       getTable().getSelectionModel().clearSelection();
    }
@@ -424,7 +430,7 @@ public class ServingTable extends JPanel {
                doPrint();
             }
          });
-         FoodDBToolBar.fixButton(printBtn);
+         CRONOMETER.fixButton(printBtn);
       }
       return printBtn;
    }
