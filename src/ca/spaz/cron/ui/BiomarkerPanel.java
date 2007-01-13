@@ -35,7 +35,7 @@ public class BiomarkerPanel extends JPanel {
       // column alignment works properly across the entire grid.
       JPanel ed = new JPanel(new GridBagLayout());
       GridBagConstraints c = new GridBagConstraints();
-      c.fill = GridBagConstraints.HORIZONTAL;
+      c.fill = GridBagConstraints.NONE;
       c.weightx = 0.0;
       c.insets = new Insets(8,8,8,8);   	   
       for (int i=0; i<editors.length; i++) {   	   
@@ -53,18 +53,14 @@ public class BiomarkerPanel extends JPanel {
          ed.add(editors[i].getDeleteButton(), c);   		   
          c.gridx = 4;
          c.gridy = i;	   
-         ed.add(editors[i].getPlotButton(), c);
-         c.weightx = 0.9;   		   
-         c.gridx = 5;
-         c.gridy = i;	   
-         ed.add(new JPanel(), c);   		   
+         ed.add(editors[i].getPlotButton(), c);	   
       }
       JPanel x = new JPanel(new BorderLayout());
       x.add(ed, BorderLayout.NORTH);
       //setBorder(BorderFactory.createEtchedBorder());
       setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
       setLayout(new BorderLayout(4, 4));
-      add(x, BorderLayout.CENTER);
+      add(x, BorderLayout.WEST);
    }
 
 

@@ -43,15 +43,7 @@ public class MetricEditor extends JPanel {
          saveBtn.setEnabled(false);         
          saveBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-               if (entryField.getValue() == 0.0) {
-                  ErrorReporter.showError("0.0 is not a valid biomarker value (unless you are deceased)", bmp);
-               }
-               else {
-                  getMetric().setValue(Double.toString(entryField.getValue()));     
-                  User.getUser().addMetric(getMetric());
-                  saveBtn.setEnabled(false);
-                  deleteBtn.setEnabled(true);
-               }
+               saveValue();
             }
          });
       }
@@ -84,7 +76,7 @@ public class MetricEditor extends JPanel {
    public JButton getPlotButton() {
       if (plotBtn == null) {
          ImageIcon icon = new ImageIcon(ImageFactory.getInstance().loadImage("/img/graph.gif"));
-         plotBtn = new JButton(icon);
+         plotBtn = new JButton("Chart", icon);
          plotBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                plotMetric();
@@ -113,10 +105,12 @@ public class MetricEditor extends JPanel {
    public DoubleField getEntryField() {
       if (entryField == null) {         
          entryField = new DoubleField(0,8); 
+         entryField.setColumns(8);
          entryField.addFocusListener(new FocusListener() {
             public void focusGained(FocusEvent e) {
                entryField.selectAll();   
-               saveBtn.setEnabled(true);               
+               saveBtn.setEnabled(true);  
+//               SwingUtilities.getRootPane(saveBtn).setDefaultButton(saveBtn);
             }
             public void focusLost(FocusEvent e) {
                saveBtn.setEnabled(true);
@@ -124,7 +118,7 @@ public class MetricEditor extends JPanel {
          });             
          entryField.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-
+               saveValue();
             }
          });  
       }
@@ -132,6 +126,9 @@ public class MetricEditor extends JPanel {
    }
 
    public void setMetrics(java.util.List metrics) {
+      saveBtn.setEnabled(false);
+      deleteBtn.setEnabled(false); 
+      entryField.setValue("");       
       // loop through array and find an appropriate metric to install
       Iterator iter = metrics.iterator();
       while (iter.hasNext()) {
@@ -143,16 +140,27 @@ public class MetricEditor extends JPanel {
             }
             else {
                entryField.setValue(Double.parseDouble(m.getValue().toString()));
-            }
-            saveBtn.setEnabled(false);
-            deleteBtn.setEnabled(true);            
+               saveBtn.setEnabled(false);
+               deleteBtn.setEnabled(true); 
+            }          
             return;
          }
       }
-      // no matches found, so disable the control
-      curMetric = null;
+      curMetric = null;     
    }
 
+   private void saveValue() {
+      if (entryField.getValue() == 0.0) {
+         ErrorReporter.showError("0.0 is not a valid biomarker value (unless you are deceased)", bmp);
+      }
+      else {
+         getMetric().setValue(Double.toString(entryField.getValue()));     
+         User.getUser().addMetric(getMetric());
+//         saveBtn.setEnabled(false);
+         deleteBtn.setEnabled(true);
+      }
+   }
+   
    public boolean validateMetric() {
       return true;
 //    try {

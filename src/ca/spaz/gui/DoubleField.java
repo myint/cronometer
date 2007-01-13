@@ -55,7 +55,6 @@ public class DoubleField extends JTextField {
          setText(df.format(value));
       }
       selectAll();
-      //setText(Double.toString(value));
    }
    
    public void setValue(String value) {
