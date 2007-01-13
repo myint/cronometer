@@ -49,6 +49,7 @@ public class DailySummary extends JPanel {
    private JButton copyPrevDayButton;
    private JButton todayButton;
    private JButton prefsButton;
+   private JButton dbButton;
    
    private TranslucentToolBar toolBar;
    private NutritionSummaryPanel totals;
@@ -200,6 +201,21 @@ public class DailySummary extends JPanel {
       return copyPrevDayButton;
    }   
    
+   private JButton getDatabaseButton() {
+      if (null == dbButton) {
+         dbButton = new JButton(new ImageIcon(ImageFactory.getInstance().loadImage("/img/apple-16x16.png")));
+         dbButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+               CRONOMETER.getInstance().doBrowseFoodDatabase();
+            }
+         });
+         FoodDBToolBar.fixButton(dbButton);
+         dbButton.setToolTipText("Browse Food Database");
+         dbButton.setFocusable(false);
+      }
+      return dbButton;
+   }   
+   
    private JButton getTodayButton() {
       if (null == todayButton) {
          todayButton = new JButton(new ImageIcon(ImageFactory.getInstance().loadImage("/img/trace.gif")));
@@ -257,6 +273,8 @@ public class DailySummary extends JPanel {
          toolBar.setBackground(Color.BLACK); 
          toolBar.setLayout(new BoxLayout(toolBar, BoxLayout.X_AXIS));
          toolBar.setBorder(BorderFactory.createEmptyBorder(4, 5, 4, 5));
+         toolBar.add(getDatabaseButton());         
+         toolBar.add(Box.createHorizontalStrut(5));
          toolBar.add(getTodayButton());         
          toolBar.add(Box.createHorizontalGlue());
          toolBar.add(getPreviousButton());

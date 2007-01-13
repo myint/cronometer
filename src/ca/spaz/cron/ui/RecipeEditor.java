@@ -132,7 +132,7 @@ public class RecipeEditor extends FoodEditor {
   // TODO: pre-0.7 decommission this, and toolbar
    private void doAddFood() {
       SearchDialog sd = new SearchDialog(getDialog());
-      sd.display();
+      sd.display(true);
       Serving s = sd.getSelectedServing();
       if (s != null) {
          if (s.getFoodProxy().getSource() == food.getSource() && 

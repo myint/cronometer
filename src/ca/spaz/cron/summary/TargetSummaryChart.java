@@ -5,15 +5,17 @@ package ca.spaz.cron.summary;
 
 import java.awt.*;
 import java.text.DecimalFormat;
-import java.util.*;
+import java.util.Iterator;
 import java.util.List;
 
-import javax.swing.*;
+import javax.swing.BorderFactory;
+import javax.swing.JComponent;
 import javax.swing.border.Border;
 
 import ca.spaz.cron.foods.*;
 import ca.spaz.cron.targets.Target;
-import ca.spaz.cron.user.*;
+import ca.spaz.cron.user.User;
+import ca.spaz.cron.user.UserChangeListener;
 
 public class TargetSummaryChart extends JComponent implements UserChangeListener {
    public static final Color CALORIE_COLOR = Color.ORANGE;
@@ -24,7 +26,7 @@ public class TargetSummaryChart extends JComponent implements UserChangeListener
    public static final Color VITAMIN_COLOR = new Color(120,180,20);
    public static final Color MINERAL_COLOR = new Color(80,180,180);
    
-   private static final double DISPLAY_THRESH = 0.005;
+   private static final double DISPLAY_THRESH = 3;
    
    DecimalFormat valFormat = new DecimalFormat("00");
    
@@ -98,6 +100,20 @@ public class TargetSummaryChart extends JComponent implements UserChangeListener
      }
      return total;
    }
+
+   private void paintBar(Graphics2D g, int x, int y, int w, int h, int w2, Color col) {
+      GradientPaint gradient = new GradientPaint(0, 0, Color.GRAY, w, 20, Color.LIGHT_GRAY, false);            
+      g.setPaint(gradient); 
+      g.fillRoundRect(x, y, w, h, h/2, h/2);
+      gradient = new GradientPaint(0, 0, col.brighter(), w, 0, col.darker(), false);            
+      g.setPaint(gradient); 
+      if (w2 > w) { 
+         w2 = w;
+      }
+      if (w2 > DISPLAY_THRESH) {
+         g.fillRoundRect(x, y, w2, h, h/2, h/2);
+      }
+   }
    
    // @TODO: refactor this code as it's highly redundant
    public void paintComponent(Graphics g) {
@@ -124,23 +140,12 @@ public class TargetSummaryChart extends JComponent implements UserChangeListener
       g.setFont(g.getFont().deriveFont(Font.BOLD));
       FontMetrics fm = g.getFontMetrics();
       Graphics2D g2d = (Graphics2D)g;      
-      //g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.85f));
+      //g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.9f));
       g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
       
-      Target energyTarget = user.getTarget(NutrientInfo.getByName("Energy"));
-      g.setColor(Color.LIGHT_GRAY);
-      g.fillRect(xo,yo,w-pieRadius,barHeight);
-      g.setColor(CALORIE_COLOR);      
-      if (energy > DISPLAY_THRESH) {
-         barFill = energy/energyTarget.getMin();
-         if (barFill > 1) {
-            barFill = 1;
-            g.setColor(CALORIE_COLOR.brighter());
-            g.fill3DRect(xo,yo,(int)((w-pieRadius)*barFill), barHeight, false);
-         } else {
-            g.fill3DRect(xo,yo,(int)((w-pieRadius)*barFill), barHeight, true);
-         }
-      }
+      Target energyTarget = user.getTarget(NutrientInfo.getByName("Energy"));  
+      barFill = energy/energyTarget.getMin();
+      paintBar(g2d, xo, yo+(barHeight+5)*0, w-pieRadius, barHeight, (int)((w-pieRadius)*barFill), CALORIE_COLOR);
       g.setColor(Color.BLACK);
       g.drawString("Calories: " + (int)energy +" / " + (int)energyTarget.getMin() 
             + " (" + Math.round(100*energy/energyTarget.getMin()) + "%)", 
@@ -148,19 +153,8 @@ public class TargetSummaryChart extends JComponent implements UserChangeListener
 
       
       Target proteinTarget = user.getTarget(NutrientInfo.getByName("Protein"));
-      g.setColor(Color.LIGHT_GRAY);
-      g.fillRect(xo,yo+(barHeight+5),w-pieRadius,barHeight);
-      g.setColor(PROTEIN_COLOR);
-      if (protein > DISPLAY_THRESH) {
-         barFill = protein/proteinTarget.getMin();
-         if (barFill > 1) {
-            barFill = 1;
-            g.setColor(PROTEIN_COLOR.brighter());
-            g.fill3DRect(xo,yo+(barHeight+5),(int)((w-pieRadius)*barFill), barHeight,false);
-         } else {
-            g.fill3DRect(xo,yo+(barHeight+5),(int)((w-pieRadius)*barFill), barHeight,true);
-         }
-      }
+      barFill = protein/proteinTarget.getMin();
+      paintBar(g2d, xo, yo+(barHeight+5)*1, w-pieRadius, barHeight, (int)((w-pieRadius)*barFill), PROTEIN_COLOR);
       g.setColor(Color.BLACK);
       g.drawString("Protein: " + (int)protein +"g / " + (int)proteinTarget.getMin() 
             + "g (" + Math.round(100*protein/proteinTarget.getMin()) + "%)", 
@@ -168,74 +162,30 @@ public class TargetSummaryChart extends JComponent implements UserChangeListener
 
       
       Target carbTarget = user.getTarget(NutrientInfo.getByName("Carbs"));
-      g.setColor(Color.LIGHT_GRAY);
-      g.fillRect(xo,yo+(barHeight+5)*2,w-pieRadius,barHeight);
-      g.setColor(CARB_COLOR);
-      if (carbs > DISPLAY_THRESH) {
-         barFill = carbs/carbTarget.getMin();
-         if (barFill > 1) {
-            barFill = 1;
-            g.setColor(CARB_COLOR.brighter());
-            g.fill3DRect(xo,yo+(barHeight+5)*2,(int)((w-pieRadius)*barFill), barHeight,false);
-         } else {
-            g.fill3DRect(xo,yo+(barHeight+5)*2,(int)((w-pieRadius)*barFill), barHeight,true);
-         }
-      }
+      barFill = carbs/carbTarget.getMin();
+      paintBar(g2d, xo, yo+(barHeight+5)*2, w-pieRadius, barHeight, (int)((w-pieRadius)*barFill), CARB_COLOR);
       g.setColor(Color.BLACK);
       g.drawString("Carbohydrates: " + (int)carbs +"g / " + (int)carbTarget.getMin() 
             + "g (" + Math.round(100*carbs/carbTarget.getMin()) + "%)", 
             xo+10, yo+(barHeight+5)*2+barHeight/2+fm.getAscent()/2);
 
       Target lipidTarget = user.getTarget(NutrientInfo.getByName("Fat"));
-      g.setColor(Color.LIGHT_GRAY);
-      g.fillRect(xo,yo+(barHeight+5)*3,w-pieRadius,barHeight);
-      g.setColor(LIPID_COLOR);
-      if (lipid > DISPLAY_THRESH) {
-         barFill = lipid/lipidTarget.getMin();
-         if (barFill > 1) {
-            barFill = 1;
-            g.setColor(LIPID_COLOR.brighter());
-            g.fill3DRect(xo,yo+(barHeight+5)*3,(int)((w-pieRadius)*barFill), barHeight, false);
-         } else {
-            g.fill3DRect(xo,yo+(barHeight+5)*3,(int)((w-pieRadius)*barFill), barHeight,true);
-         }
-      }
+      barFill = lipid/lipidTarget.getMin();
+      paintBar(g2d, xo, yo+(barHeight+5)*3, w-pieRadius, barHeight, (int)((w-pieRadius)*barFill), LIPID_COLOR);
       g.setColor(Color.BLACK);
       g.drawString("Lipids: " + (int)lipid +"g / " + (int)lipidTarget.getMin() 
             + "g (" + Math.round(100*lipid/lipidTarget.getMin()) + "%)", 
             xo+10, yo+(barHeight+5)*3+barHeight/2+fm.getAscent()/2);
       
       
-      g.setColor(Color.LIGHT_GRAY);
-      g.fillRect(xo,yo+(barHeight+5)*4,w-pieRadius,barHeight);
-      g.setColor(VITAMIN_COLOR);
-      if (vitamins > DISPLAY_THRESH) {
-         barFill = vitamins;
-         if (barFill > 1) {
-            barFill = 1;
-            g.setColor(VITAMIN_COLOR.brighter());
-            g.fill3DRect(xo,yo+(barHeight+5)*4,(int)((w-pieRadius)*barFill), barHeight, false);
-         } else {
-            g.fill3DRect(xo,yo+(barHeight+5)*4,(int)((w-pieRadius)*barFill), barHeight,true);
-         }
-      }
+      barFill = vitamins;
+      paintBar(g2d, xo, yo+(barHeight+5)*4, w-pieRadius, barHeight, (int)((w-pieRadius)*barFill), VITAMIN_COLOR);
       g.setColor(Color.BLACK);
       g.drawString("Vitamins: " + Math.round(100*vitamins) + "%", 
             xo+10, yo+(barHeight+5)*4+barHeight/2+fm.getAscent()/2); 
       
-      g.setColor(Color.LIGHT_GRAY);
-      g.fillRect(xo,yo+(barHeight+5)*5,w-pieRadius,barHeight);
-      g.setColor(MINERAL_COLOR);
-      if (minerals > DISPLAY_THRESH) {
-         barFill = minerals;
-         if (barFill > 1) {
-            barFill = 1;
-            g.setColor(MINERAL_COLOR.brighter());
-            g.fill3DRect(xo,yo+(barHeight+5)*5,(int)((w-pieRadius)*barFill), barHeight, false);
-         } else {
-            g.fill3DRect(xo,yo+(barHeight+5)*5,(int)((w-pieRadius)*barFill), barHeight,true);
-         }
-      }
+      barFill = minerals;
+      paintBar(g2d, xo, yo+(barHeight+5)*5, w-pieRadius, barHeight, (int)((w-pieRadius)*barFill), MINERAL_COLOR);
       g.setColor(Color.BLACK);
       g.drawString("Minerals: " + Math.round(100*minerals) + "%", 
             xo+10, yo+(barHeight+5)*5+barHeight/2+fm.getAscent()/2);

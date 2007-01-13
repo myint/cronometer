@@ -38,8 +38,9 @@ public class SearchDialog extends JDialog implements ServingEditorListener {
       this.setModal(true);
    }
 
-   public void display() {
+   public void display(boolean modal) {
       getSearchPanel().focusQuery();
+      this.setModal(modal);
       this.setVisible(true);
    }
    

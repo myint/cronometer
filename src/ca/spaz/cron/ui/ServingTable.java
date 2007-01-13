@@ -129,7 +129,7 @@ public class ServingTable extends JPanel {
    
    public void doAddServing() {
      SearchDialog sd = new SearchDialog(JOptionPane.getFrameForComponent(this));
-     sd.display();
+     sd.display(true);
     
      //a crazy idea: 
      /* JPopupMenu menu = new JPopupMenu();

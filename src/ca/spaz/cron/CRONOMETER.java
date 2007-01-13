@@ -36,8 +36,6 @@ import com.apple.mrj.MRJQuitHandler;
 /**
  * The main app.  
  * 
- * TODO: Backup files, especially on startup-error.
- * 
  *   0.7.0 changelist
  *      - added edit menu and copy/paste shortcuts to food list
  *      - does not show pie-chart if no calories == 0
@@ -63,7 +61,7 @@ import com.apple.mrj.MRJQuitHandler;
  *      - pre-0.7 scan
  *      
  *   0.8.0 TODOs
- *      - set measure to most frequently entry 
+ *      - auto-set measure to most frequent entry
  *      - more robust / scalable data backend
  *      - spaz.ca account synch
  *      
@@ -290,6 +288,12 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
 
    public void doCreateNewFood() {
       FoodEditor.editFood(new Food());
+      refreshDisplays();
+   }
+
+   public void doBrowseFoodDatabase() {
+      SearchDialog sd = new SearchDialog(JOptionPane.getFrameForComponent(this));
+      sd.display(false);
       refreshDisplays();
    }
 
