@@ -113,6 +113,8 @@ public class TargetSummaryChart extends JComponent implements UserChangeListener
       if (w2 > DISPLAY_THRESH) {
          g.fillRoundRect(x, y, w2, h, h/2, h/2);
       }
+      g.setColor(Color.GRAY);
+      g.drawRoundRect(x, y, w, h, h/2, h/2); 
    }
    
    // @TODO: refactor this code more, as it's highly redundant
@@ -219,7 +221,7 @@ public class TargetSummaryChart extends JComponent implements UserChangeListener
       g.setColor(ALCOHOL_COLOR);
       g.fillArc(xo,yo,radius-4,radius-4, amount, (int)(360*(acals/total))); 
 
-      g.setColor(getBackground().darker());
+      g.setColor(Color.GRAY);
       g.drawOval(xo, yo, radius-5, radius-5);
       
       g.setFont(new Font("Courier", Font.BOLD, 12));
@@ -258,15 +260,6 @@ public class TargetSummaryChart extends JComponent implements UserChangeListener
       }   
    }
 
-  /* public Dimension getPreferredSize() {
-      return new Dimension(500, 180);
-   }
-
-
-   public Dimension getMinimumSize() {
-      return new Dimension(500, 180);
-   }*/
-   
    public void userChanged(User user) {
       update();
    }
