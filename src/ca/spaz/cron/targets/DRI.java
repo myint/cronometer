@@ -40,7 +40,7 @@ public class DRI {
       }
       
       if (e.hasAttribute("gender")) {
-         String str = XMLNode.getString(e, "status");
+         String str = XMLNode.getString(e, "gender");
          if (str.equals("male")) gender = MALE;
          if (str.equals("female")) gender = FEMALE;
       }

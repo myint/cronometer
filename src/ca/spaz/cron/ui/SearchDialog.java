@@ -57,10 +57,9 @@ public class SearchDialog extends JDialog implements ServingEditorListener, Food
    }
 
    public void display(boolean addable) {
-      getSearchPanel().focusQuery();
       getServingEditor().getAddButton().setVisible(addable);
-      this.setVisible(true);
       getSearchPanel().focusQuery();
+      this.setVisible(true);
    }
    
    public Serving getSelectedServing() {
