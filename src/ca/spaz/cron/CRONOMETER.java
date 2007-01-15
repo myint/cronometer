@@ -51,14 +51,19 @@ import com.apple.mrj.MRJQuitHandler;
  *      - crazy new front layout
  *      - bugs stomped?
  *      - searches score by more criteria
+ *      - DRI female bug fixed
 
  *   0.7.0 TODOs 
- *      - export daily food to CSV, text, etc...     
- *      - explicit database editor..
- *      - fix missing checkbox bug in ReportWindow
+ *      - explicit database editor...
  *      - bug stomp !
  *      
  *   0.8.0 TODOs
+ *      - move biomarkers (and exercise?) to unified entry model
+ *      - add tab for free-form notes (diary/log)
+ *      - remember window sizes & positions
+ *      - export daily food to CSV, text, etc...     
+ *      - more interesting reports *      
+ *      - more interesting ratios on front nutrition summary (sinc:copper, w3:w6)
  *      - auto-set measure to most frequent entry
  *      - more robust / scalable data backend
  *      - spaz.ca account synch

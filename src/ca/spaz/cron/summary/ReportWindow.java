@@ -23,7 +23,7 @@ import com.toedter.calendar.JDateChooser;
 
 public class ReportWindow extends WrappedPanel { 
    private WebViewer htmlViewer;
-   private JToolBar toolbar;
+   private JPanel toolbar;
    private JComboBox formatBox;
    private JCheckBox targetsOnlyBox;
    private JButton saveBtn;
@@ -87,22 +87,23 @@ public class ReportWindow extends WrappedPanel {
       return formats;
    }
    
-   private JToolBar getToolbar() {
+   private JPanel getToolbar() {
       if (toolbar == null) {
-         toolbar = new JToolBar();
-         toolbar.setFloatable(false);
-         //toolbar.setRollover(true);
+         toolbar = new JPanel();
+         //toolbar.setFloatable(false);
+        // toolbar.setRollover(true);
          toolbar.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
          toolbar.setLayout(new BoxLayout(toolbar, BoxLayout.X_AXIS));
 
-         toolbar.add(Box.createHorizontalGlue());
+         toolbar.add(Box.createHorizontalStrut(5));
          toolbar.add(getStartDateButton()); 
          toolbar.add(new JLabel(" to ")); 
          toolbar.add(getEndDateButton());
-         toolbar.add(Box.createHorizontalGlue());
-         toolbar.add(getFormatBox());
-         toolbar.add(Box.createHorizontalGlue());
+         toolbar.add(Box.createHorizontalStrut(10));
          toolbar.add(getTargetsOnlyBox());
+         toolbar.add(Box.createHorizontalStrut(5));
+         toolbar.add(getFormatBox());
+         toolbar.add(Box.createHorizontalStrut(5));
          toolbar.add(Box.createHorizontalGlue());
          toolbar.add(getSaveButton()); 
       }
@@ -116,8 +117,7 @@ public class ReportWindow extends WrappedPanel {
       }
       return dateChooser;
    }
-   
-
+    
    private JButton startDateBtn;
    private Date startDate = new Date();
    private JButton endDateBtn;
@@ -139,8 +139,7 @@ public class ReportWindow extends WrappedPanel {
                startDateBtn.setText(df.format(startDate));
                generateReport();
             }
-         });
-         //startDateBtn.setEnabled(false);
+         }); 
       }
       return startDateBtn;
    }
@@ -191,7 +190,7 @@ public class ReportWindow extends WrappedPanel {
    private JCheckBox getTargetsOnlyBox() {
       if (targetsOnlyBox == null) {
          targetsOnlyBox = new JCheckBox("Targets Only", true);
-         //targetsOnlyBox.setRolloverEnabled(true);
+         //targetsOnlyBox.setRolloverEnabled(false);
          targetsOnlyBox.setToolTipText("Show only items with valid targets.");
          targetsOnlyBox.addItemListener(new ItemListener() {
             public void itemStateChanged(ItemEvent e) {
