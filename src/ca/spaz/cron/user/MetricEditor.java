@@ -87,11 +87,15 @@ public class MetricEditor extends JPanel {
    }   
 
    public void plotMetric() {
-      TimeSeriesTest demo = new TimeSeriesTest(metricType);
-      demo.pack();
-      demo.setIconImage(CRONOMETER.getWindowIcon());
-      RefineryUtilities.centerFrameOnScreen(demo);
-      demo.setVisible(true);
+      try {
+         TimeSeriesTest demo = new TimeSeriesTest(metricType);
+         demo.pack();
+         demo.setIconImage(CRONOMETER.getWindowIcon());
+         RefineryUtilities.centerFrameOnScreen(demo);
+         demo.setVisible(true);
+      } catch (Exception e) {
+         ErrorReporter.showError(e, this);
+      }
    }
 
    public Metric getMetric() {

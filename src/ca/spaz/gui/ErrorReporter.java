@@ -15,8 +15,8 @@ public class ErrorReporter extends WrappedPanel {
    public ErrorReporter(Exception e) {
       StringBuffer sb = new StringBuffer();
       if (e != null) {
-         sb.append("<html><div align=\"center\">");
-         sb.append("<u>"+e.toString()+"</u><br>");
+         sb.append("<html><div align=\"center\" width=\"600\">");
+         sb.append("<u>"+e.toString()+"</u><br><br>");
          sb.append("<div align=\"left\"><code>");
          for (int i=0; i<e.getStackTrace().length && i < 8; i++) {
             sb.append(e.getStackTrace()[i].toString() +"<br>");
