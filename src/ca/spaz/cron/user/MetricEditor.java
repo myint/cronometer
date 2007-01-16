@@ -117,7 +117,6 @@ public class MetricEditor extends JPanel {
             public void focusGained(FocusEvent e) {
                entryField.selectAll();   
                saveBtn.setEnabled(true);  
-//               SwingUtilities.getRootPane(saveBtn).setDefaultButton(saveBtn);
             }
             public void focusLost(FocusEvent e) {
                saveBtn.setEnabled(true);
@@ -170,6 +169,7 @@ public class MetricEditor extends JPanel {
          else {
             User.getUser().updateMetric(metric);
          }
+         saveBtn.setEnabled(false);
          deleteBtn.setEnabled(true);
       }
    }
