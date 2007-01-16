@@ -56,7 +56,11 @@ public class MetricEditor extends JPanel {
          deleteBtn.setEnabled(false);           
          deleteBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-               User.getUser().removeMetric(getMetric());
+               Metric metric = getMetric();
+               // Set the value to null so if we re-save it later it will be considered 
+               // new and will be added
+               metric.setValue((Number)null);
+               User.getUser().removeMetric(metric);
                saveBtn.setEnabled(false);
                deleteBtn.setEnabled(false);
                entryField.setValue("");
@@ -100,7 +104,6 @@ public class MetricEditor extends JPanel {
 
    public Metric getMetric() {
       if (curMetric == null) {
-         validateMetric();
          curMetric = new Metric(metricType, bmp.getDate());
       }
       return curMetric;
@@ -155,25 +158,19 @@ public class MetricEditor extends JPanel {
 
    private void saveValue() {
       if (entryField.getValue() == 0.0) {
-         ErrorReporter.showError("0.0 is not a valid biomarker value (unless you are deceased)", bmp);
+         ErrorReporter.showError("0.0 is not a valid biomarker value", bmp);
       }
       else {
-         getMetric().setValue(Double.toString(entryField.getValue()));     
-         User.getUser().addMetric(getMetric());
-//         saveBtn.setEnabled(false);
+         Metric metric = getMetric();
+         boolean isNewEntry = metric.getValue() == null;
+         metric.setValue(Double.toString(entryField.getValue()));          
+         if (isNewEntry) {
+            User.getUser().addMetric(metric);
+         }
+         else {
+            User.getUser().updateMetric(metric);
+         }
          deleteBtn.setEnabled(true);
       }
    }
-   
-   public boolean validateMetric() {
-      return true;
-//    try {
-//    getEntryField().commitEdit();
-//    return true;
-//    } catch (ParseException e) {
-//    e.printStackTrace();
-//    return false;
-//    }
-   }
-
 }

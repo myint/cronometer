@@ -201,6 +201,10 @@ public class User {
    public void addMetric(Metric metric) {
       Datasources.getBiometricsHistory().addMetric(metric);
    }
+   
+   public void updateMetric(Metric metric) {
+      Datasources.getBiometricsHistory().update(metric);
+   }   
 
    public void removeMetric(Metric metric) {
       Datasources.getBiometricsHistory().delete(metric);

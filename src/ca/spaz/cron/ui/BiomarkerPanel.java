@@ -81,23 +81,11 @@ public class BiomarkerPanel extends JPanel {
    }
 
    public void setDate(Date d) {
-      if (!validateMetrics()) return;
       this.curDate = d;
       curMetrics = null;
       for (int i=0; i<editors.length; i++) {
          editors[i].setMetrics(getMetrics());
       }
-   }
-
-   private boolean validateMetrics() {
-      for (int i=0; i<editors.length; i++) {
-         if (!editors[i].validateMetric()) {
-            Toolkit.getDefaultToolkit().beep();
-            editors[i].requestFocusInWindow();
-            return false;
-         }
-      }
-      return true;
    }
 
    public Date getDate() {

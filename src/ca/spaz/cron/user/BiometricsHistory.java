@@ -77,6 +77,7 @@ public class BiometricsHistory {
    }
 
    public void update(Metric m) {
+      Logger.debug("Update Metric: " + m);      
       dirty = true;
    }
    
