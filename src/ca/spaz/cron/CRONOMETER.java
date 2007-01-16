@@ -52,8 +52,8 @@ import com.apple.mrj.MRJQuitHandler;
  *      - bugs stomped?
  *      - searches score by more criteria
  *      - DRI female bug fixed
-
- *   0.7.0 TODOs 
+ *
+ *   0.7.0 TODOs  
  *      - explicit database editor...
  *      - bug stomp !
  *      
@@ -131,12 +131,29 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
             UserSettingsDialog.showDialog(User.getUser(), getMainPanel());
             TargetEditor.setDefaultTargets(new DRITargetModel(), User.getUser());
             doEditUserSettings(); 
-         } 
+         } else {
+            if (User.getUser().getLastBuild() < 7) {
+               upgradeToB7();
+            }
+         }          
          User.getUser().setLastBuild(CRONOMETER.BUILD);
          makeAutoSaveTimer();                  
       } catch (Exception e) {
          Logger.debug(e);
          ErrorReporter.showError(e, this); 
+      }
+   }
+   
+   private void upgradeToB7() {
+      if (User.getUser().isFemale()) {
+         JOptionPane.showMessageDialog(getMainPanel(), 
+               "Previous versions of CRON-o-Meter were incorrectly \n" +
+               "suggesting male nutritional targets for women.\n" +
+               "It is highly recommened that you reset your nutritional\n" +
+               "targets to values appropriate for women.");
+         UserSettingsDialog.showDialog(User.getUser(), getMainPanel());
+         TargetEditor.setDefaultTargets(new DRITargetModel(), User.getUser());
+         doEditUserSettings(); 
       }
    }
    
@@ -220,7 +237,7 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
                   getValue(Action.NAME));
          menuItem.addActionListener(actionListener);
          menuItem.setAccelerator(
-           KeyStroke.getKeyStroke(KeyEvent.VK_X, ActionEvent.CTRL_MASK));
+           KeyStroke.getKeyStroke(KeyEvent.VK_X, ActionEvent.META_MASK));
          menuItem.setMnemonic(KeyEvent.VK_T);
          mainMenu.add(menuItem);
          menuItem = new JMenuItem("Copy");
@@ -228,7 +245,7 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
                   getValue(Action.NAME));
          menuItem.addActionListener(actionListener);
          menuItem.setAccelerator(
-           KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.CTRL_MASK));
+           KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.META_MASK));
          menuItem.setMnemonic(KeyEvent.VK_C);
          mainMenu.add(menuItem);
          menuItem = new JMenuItem("Paste");
@@ -236,7 +253,7 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
                   getValue(Action.NAME));
          menuItem.addActionListener(actionListener);
          menuItem.setAccelerator(
-           KeyStroke.getKeyStroke(KeyEvent.VK_V, ActionEvent.CTRL_MASK));
+           KeyStroke.getKeyStroke(KeyEvent.VK_V, ActionEvent.META_MASK));
          menuItem.setMnemonic(KeyEvent.VK_P);
          mainMenu.add(menuItem);
          
