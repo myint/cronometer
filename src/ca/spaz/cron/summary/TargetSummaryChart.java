@@ -16,6 +16,7 @@ import ca.spaz.cron.foods.*;
 import ca.spaz.cron.targets.Target;
 import ca.spaz.cron.user.User;
 import ca.spaz.cron.user.UserChangeListener;
+import ca.spaz.util.ToolBox;
 
 public class TargetSummaryChart extends JComponent implements UserChangeListener {
    public static final Color CALORIE_COLOR = Color.ORANGE;
@@ -146,50 +147,50 @@ public class TargetSummaryChart extends JComponent implements UserChangeListener
       g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
       
       Target energyTarget = user.getTarget(NutrientInfo.getByName("Energy"));  
-      barFill = energy/energyTarget.getMin();
+      barFill = ToolBox.safeDivide(energy, energyTarget.getMin());
       paintBar(g2d, xo, yo+(barHeight+5)*0, w-pieRadius, barHeight, (int)((w-pieRadius)*barFill), CALORIE_COLOR);
       g.setColor(Color.BLACK);
       g.drawString("Calories: " + (int)energy +" / " + (int)energyTarget.getMin() 
-            + " (" + Math.round(100*energy/energyTarget.getMin()) + "%)", 
+            + " (" + Math.round(100*barFill) + "%)", 
             xo+10, yo+barHeight/2+fm.getAscent()/2);
 
       
       Target proteinTarget = user.getTarget(NutrientInfo.getByName("Protein"));
-      barFill = protein/proteinTarget.getMin();
+      barFill = ToolBox.safeDivide(protein,proteinTarget.getMin());
       paintBar(g2d, xo, yo+(barHeight+5)*1, w-pieRadius, barHeight, (int)((w-pieRadius)*barFill), PROTEIN_COLOR);
       g.setColor(Color.BLACK);
       g.drawString("Protein: " + (int)protein +"g / " + (int)proteinTarget.getMin() 
-            + "g (" + Math.round(100*protein/proteinTarget.getMin()) + "%)", 
+            + "g (" + Math.round(100*barFill) + "%)", 
             xo+10, yo+(barHeight+5)+barHeight/2+fm.getAscent()/2);
 
       
       Target carbTarget = user.getTarget(NutrientInfo.getByName("Carbs"));
-      barFill = carbs/carbTarget.getMin();
+      barFill = ToolBox.safeDivide(carbs,carbTarget.getMin());
       paintBar(g2d, xo, yo+(barHeight+5)*2, w-pieRadius, barHeight, (int)((w-pieRadius)*barFill), CARB_COLOR);
       g.setColor(Color.BLACK);
       g.drawString("Carbohydrates: " + (int)carbs +"g / " + (int)carbTarget.getMin() 
-            + "g (" + Math.round(100*carbs/carbTarget.getMin()) + "%)", 
+            + "g (" + Math.round(100*barFill) + "%)", 
             xo+10, yo+(barHeight+5)*2+barHeight/2+fm.getAscent()/2);
 
       Target lipidTarget = user.getTarget(NutrientInfo.getByName("Fat"));
-      barFill = lipid/lipidTarget.getMin();
+      barFill = ToolBox.safeDivide(lipid,lipidTarget.getMin());
       paintBar(g2d, xo, yo+(barHeight+5)*3, w-pieRadius, barHeight, (int)((w-pieRadius)*barFill), LIPID_COLOR);
       g.setColor(Color.BLACK);
       g.drawString("Lipids: " + (int)lipid +"g / " + (int)lipidTarget.getMin() 
-            + "g (" + Math.round(100*lipid/lipidTarget.getMin()) + "%)", 
+            + "g (" + Math.round(100*barFill) + "%)", 
             xo+10, yo+(barHeight+5)*3+barHeight/2+fm.getAscent()/2);
       
       
       barFill = vitamins;
       paintBar(g2d, xo, yo+(barHeight+5)*4, w-pieRadius, barHeight, (int)((w-pieRadius)*barFill), VITAMIN_COLOR);
       g.setColor(Color.BLACK);
-      g.drawString("Vitamins: " + Math.round(100*vitamins) + "%", 
+      g.drawString("Vitamins: " + Math.round(100*barFill) + "%", 
             xo+10, yo+(barHeight+5)*4+barHeight/2+fm.getAscent()/2); 
       
       barFill = minerals;
       paintBar(g2d, xo, yo+(barHeight+5)*5, w-pieRadius, barHeight, (int)((w-pieRadius)*barFill), MINERAL_COLOR);
       g.setColor(Color.BLACK);
-      g.drawString("Minerals: " + Math.round(100*minerals) + "%", 
+      g.drawString("Minerals: " + Math.round(100*barFill) + "%", 
             xo+10, yo+(barHeight+5)*5+barHeight/2+fm.getAscent()/2);
 
       paintPFC(g, xo+(w-pieRadius)+12, yo, pieRadius-20);

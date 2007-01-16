@@ -284,4 +284,22 @@ public class ToolBox {
       return Integer.toHexString(col.getRGB() & 0x00FFFFFF);
    }
 
+   /**
+    * Divide with a divide-by-zero check.
+    * Prevents strange divide by zero problems.
+    * @return a/b, or 0 if b == 0.
+    */
+   public static double safeDivide(double a, double b) {
+      return safeDivide(a,b,0);
+   }
+
+   /**
+    * Divide with a divide-by-zero check.
+    * Prevents strange divide by zero problems.
+    * @return a/b, or divByZeroResult if b == 0.
+    */
+   public static double safeDivide(double a, double b, double divByZeroResult) {
+      return (b!=0) ? a/b : divByZeroResult;
+   }
+   
 }
