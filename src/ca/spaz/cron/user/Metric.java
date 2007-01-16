@@ -1,12 +1,13 @@
 package ca.spaz.cron.user;
 
 import java.util.Date;
+import java.lang.Comparable;
 
 import org.w3c.dom.Element;
 
 import ca.spaz.util.XMLNode;
 
-public class Metric {
+public class Metric implements Comparable {
    public static final String WEIGHT = "Weight";
    public static final String BODY_TEMPERATURE = "Body Temperature";
    public static final String SYSTOLIC_BP = "Systolic BP";
@@ -31,6 +32,13 @@ public class Metric {
       setName(e.getAttribute("name"));
       setValue(e.getAttribute("value"));
       setDate(new Date(Long.parseLong(e.getAttribute("date"))));     
+   }
+   
+   /**
+    * Compares two metrics by date for sorting.
+    */
+   public int compareTo(Object object) {
+      return date.compareTo(((Metric)object).getDate());
    }
    
    public Date getDate() {

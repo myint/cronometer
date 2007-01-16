@@ -7,23 +7,30 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.Dimension;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
 import javax.swing.*;
 
-import org.jfree.chart.*;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.DateAxis;
 import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.renderer.xy.XYItemRenderer;
 import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
-import org.jfree.data.time.*;
+import org.jfree.data.time.Day;
+import org.jfree.data.time.MovingAverage;
+import org.jfree.data.time.TimeSeries;
+import org.jfree.data.time.TimeSeriesCollection;
 import org.jfree.ui.RectangleInsets;
 
 import ca.spaz.cron.datasource.Datasources;
 import ca.spaz.cron.ui.DateChooser;
 import ca.spaz.cron.user.Metric;
+import ca.spaz.gui.IntegerField;
 
 
 public class TimeSeriesTest extends JFrame {
@@ -31,8 +38,8 @@ public class TimeSeriesTest extends JFrame {
    private String metricName;
    private JPanel toolbar;
    private TimeSeriesCollection dataset;
-   private TimeSeries s1;
-   private TimeSeries s2;   
+   private TimeSeries actualData;
+   private TimeSeries movingAverageData;   
    private JFreeChart chart;
    private ChartPanel chartPanel;
 
@@ -41,6 +48,9 @@ public class TimeSeriesTest extends JFrame {
    private Date startDate = new Date();
    private JButton endDateBtn;
    private Date endDate = new Date();
+   private JCheckBox movingAverageChk;
+   private IntegerField movingAverageDaysTxt;
+   private int movingAverageDays = 7;
    private DateFormat df = DateFormat.getDateInstance(DateFormat.LONG);   
 
    /**
@@ -64,35 +74,24 @@ public class TimeSeriesTest extends JFrame {
       setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
    }
 
-
-   private ChartPanel createChartPanel() {
-      ChartPanel chartPanel = new ChartPanel(chart); 
-      chartPanel.setPreferredSize(new java.awt.Dimension(550, 300));
-      chartPanel.setMouseZoomable(true, false);
-      chartPanel.setDisplayToolTips(true);
-      return chartPanel;
-   }
-
    /**
     * Creates a dataset, consisting of two series of monthly data.
     *
     * @return The dataset.
     */
    private void createDataset() {
-      s1 = new TimeSeries(metricName, Day.class);
-
-      getData();
-
+      actualData = new TimeSeries(metricName, Day.class);
       dataset = new TimeSeriesCollection();
-      dataset.addSeries(s1);
-      dataset.addSeries(s2);        
-      //dataset.setDomainIsPointsInTime(true);
+      getData();
+      dataset.addSeries(actualData);
    }
 
 
    private void getData() {
-      s1.clear();
+      actualData.clear();
       List metrics = Datasources.getBiometricsHistory().getMetricsOfType(metricName);
+      // Sort by date
+      Collections.sort(metrics);
       for (int i=0; i<metrics.size(); i++) {
          Metric m = (Metric)metrics.get(i);
          // If the initial start date has not been changed, assume we want to start from the beginning
@@ -101,23 +100,15 @@ public class TimeSeriesTest extends JFrame {
          }
          if ((startDate.equals(m.getDate()) || startDate.before(m.getDate())) &&
                (endDate.equals(m.getDate()) || endDate.after(m.getDate()))) {
-            s1.add(new Day(m.getDate()), m.getValue());
+            actualData.add(new Day(m.getDate()), m.getValue());
          }
       }
-      TimeSeries movingAverage = MovingAverage.createMovingAverage(
-            s1, "7 Day Moving Average", 7, 0
+   }
+   
+   private void calculateMovingAverage() {
+      movingAverageData = MovingAverage.createMovingAverage(
+            actualData, movingAverageDays + " Day Moving Average", movingAverageDays, 0
       );
-      if (s2 == null) {
-         s2 = movingAverage;
-      }
-      else {
-         // Copy the new moving average data into the existing TimeSeries
-         s2.clear();
-         Iterator iter = movingAverage.getItems().iterator();
-         while (iter.hasNext()) {
-            s2.add((TimeSeriesDataItem)iter.next());
-         }
-      }
    }
 
    /**
@@ -159,7 +150,13 @@ public class TimeSeriesTest extends JFrame {
 
    }
 
-
+   private ChartPanel createChartPanel() {
+      ChartPanel chartPanel = new ChartPanel(chart); 
+      chartPanel.setPreferredSize(new java.awt.Dimension(550, 300));
+      chartPanel.setMouseZoomable(true, false);
+      chartPanel.setDisplayToolTips(true);
+      return chartPanel;
+   }
 
    private JPanel getToolbar() {
       if (toolbar == null) {
@@ -167,16 +164,13 @@ public class TimeSeriesTest extends JFrame {
          toolbar.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
          toolbar.setLayout(new BoxLayout(toolbar, BoxLayout.X_AXIS));
 
-//         toolbar.add(Box.createHorizontalGlue());
          toolbar.add(getStartDateButton()); 
          toolbar.add(new JLabel(" to ")); 
          toolbar.add(getEndDateButton());
-//       toolbar.add(Box.createHorizontalGlue());
-//       toolbar.add(getFormatBox());
-//       toolbar.add(Box.createHorizontalGlue());
-//       toolbar.add(getTargetsOnlyBox());
-//       toolbar.add(Box.createHorizontalGlue());
-//       toolbar.add(getSaveButton()); 
+         toolbar.add(Box.createHorizontalGlue());         
+         toolbar.add(getMovingAverageCheckBox());
+         toolbar.add(getMovingAverageDaysTxt());
+         toolbar.add(new JLabel(" Day Moving Average"));         
       }
       return toolbar;
    }  
@@ -237,5 +231,39 @@ public class TimeSeriesTest extends JFrame {
 
    public Date pickEndDate(Date startDate) {
       return DateChooser.pickDate(mainPanel, startDate, "Pick an end date");
-   }      
+   }  
+   
+   private JCheckBox getMovingAverageCheckBox() {
+      if (movingAverageChk == null) {
+         movingAverageChk = new JCheckBox("Show");
+         movingAverageChk.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+               toggleMovingAverage();
+            }
+         });
+      }
+      return movingAverageChk;
+   }  
+   
+   private void toggleMovingAverage() {
+      if (movingAverageChk.isSelected()) {
+         movingAverageDays = movingAverageDaysTxt.getValue();
+         calculateMovingAverage();          
+         dataset.addSeries(movingAverageData);
+         movingAverageDaysTxt.setEnabled(false);
+      }
+      else {
+         dataset.removeSeries(movingAverageData);
+         movingAverageDaysTxt.setEnabled(true);         
+      }
+   }
+   
+   private IntegerField getMovingAverageDaysTxt() {
+      if (movingAverageDaysTxt == null) {
+         movingAverageDaysTxt = new IntegerField(movingAverageDays, 3);
+         movingAverageDaysTxt.setRange(2, 1000);
+         movingAverageDaysTxt.setMaximumSize(new Dimension(40, 30));         
+      }
+      return movingAverageDaysTxt;
+   }    
 }
