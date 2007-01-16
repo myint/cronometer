@@ -99,7 +99,7 @@ public class ServingTable extends JPanel {
           ImageIcon icon = new ImageIcon(ImageFactory.getInstance().loadImage("/img/trash.gif"));
           delBtn = new JButton("Delete Serving", icon);
           delBtn.setEnabled(false);
-          delBtn.setToolTipText("Delete the selected serving.");
+          delBtn.setToolTipText("Delete the selected serving");
           delBtn.addActionListener(new ActionListener() {
               public void actionPerformed(ActionEvent e) {
                  deleteSelectedServings();
@@ -114,7 +114,7 @@ public class ServingTable extends JPanel {
       if (null == addBtn) {
           ImageIcon icon = new ImageIcon(ImageFactory.getInstance().loadImage("/img/add.gif"));
           addBtn = new JButton("Add Serving", icon);
-          addBtn.setToolTipText("Add a new serving.");
+          addBtn.setToolTipText("Add a new serving");
           addBtn.addActionListener(new ActionListener() {
               public void actionPerformed(ActionEvent e) {
                  doAddServing();
@@ -161,8 +161,12 @@ public class ServingTable extends JPanel {
          table.setAutoResizeMode(JTable.AUTO_RESIZE_SUBSEQUENT_COLUMNS);
          table.getTableHeader().setReorderingAllowed(false);
 
+         table.getColumnModel().getColumn(ServingTableModel.FOOD_COL).setMinWidth(100);
+         table.getColumnModel().getColumn(ServingTableModel.AMOUNT_COL).setMinWidth(60);
          table.getColumnModel().getColumn(ServingTableModel.AMOUNT_COL).setMaxWidth(60);
-         table.getColumnModel().getColumn(ServingTableModel.MEASURE_COL).setMaxWidth(100);
+         table.getColumnModel().getColumn(ServingTableModel.MEASURE_COL).setMinWidth(100);
+         table.getColumnModel().getColumn(ServingTableModel.MEASURE_COL).setMaxWidth(200);
+         table.getColumnModel().getColumn(ServingTableModel.CALORIES_COL).setMinWidth(60);
          table.getColumnModel().getColumn(ServingTableModel.CALORIES_COL).setMaxWidth(60);
 
          table.getColumnModel().getColumn(ServingTableModel.MEASURE_COL).setCellEditor(
@@ -424,7 +428,7 @@ public class ServingTable extends JPanel {
          ImageIcon icon = new ImageIcon(ImageFactory.getInstance().loadImage(
                "/img/print.gif"));
          printBtn = new JButton(icon);
-         printBtn.setToolTipText("Print the food listing.");
+         printBtn.setToolTipText("Print the food listing");
          printBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                doPrint();

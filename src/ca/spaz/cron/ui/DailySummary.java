@@ -56,7 +56,7 @@ public class DailySummary extends JPanel {
    boolean asked = false; 
    
    public DailySummary() { 
-      setPreferredSize(new Dimension(550,600));
+      setPreferredSize(new Dimension(580,640));
       initialize();
       setDate(curDate);
       notifyObservers();      
