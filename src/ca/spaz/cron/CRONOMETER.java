@@ -36,38 +36,19 @@ import com.apple.mrj.MRJQuitHandler;
 
 /**
  * The main app.  
- * 
- *   0.7.0 changelist
- *      - added edit menu and copy/paste shortcuts to food list
- *      - does not show pie-chart if no calories == 0
- *      - added copy last day button
- *      - fixes to new update dialog
- *      - Spiffed up nutrition report (lined up columns).
- *      - Made a couple dialogs resizeable.
- *      - fixed beep
- *      - nutritional summary resizable
- *      - simplified HTML in reports
- *      - fixed several bugs with save/cancel of foods and recipes
- *      - crazy new front layout
- *      - bugs stomped?
- *      - searches score by more criteria
- *      - DRI female bug fixed
  *
- *   0.7.0 TODOs  
- *      - explicit database editor...
- *      - bug stomp !
- *      
  *   0.8.0 TODOs
  *      - cut & copy should be added to pop-up menu on servings
  *      - move biomarkers (and exercise?) to unified entry model
  *      - add tab for free-form notes (diary/log)
  *      - remember window sizes & positions
  *      - export daily food to CSV, text, etc...     
- *      - more interesting reports *      
+ *      - more interesting reports
  *      - more interesting ratios on front nutrition summary (sinc:copper, w3:w6)
  *      - auto-set measure to most frequent entry
  *      - more robust / scalable data backend
  *      - spaz.ca account synch
+ *      - add support libs & links toabout panel
  *      
  * @author davidson
  */

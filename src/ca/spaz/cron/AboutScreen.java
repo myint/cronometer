@@ -21,7 +21,8 @@ public class AboutScreen extends WrappedPanel {
          + "<tr><td>Gerald Turnquist</td><td>geraldt@sasktel.net</td><td>Programming</td></tr>"         
          + "<tr><td>Michael Rae</td><td>mikalra@cadvision.com</td><td>Consulting</td></tr>"
          + "<tr><td>Antonio Zamora</td><td>zamora@scientificpsychic.com</td><td>Technical Writing</td></tr>"
-         + "</div>" + "</html>",
+         + "</table></div>" 
+         + "</html>",
          JLabel.CENTER);
       setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
       setLayout(new BorderLayout(5,5));
