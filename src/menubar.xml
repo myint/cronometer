@@ -1,14 +1,14 @@
 <menubar>
-	
-	<menu title="File" key="f">	
+
+	<menu title="File" key="f">
 		<item title="Edit Nutritional Targets..." key="t" index="17" acc="VK_T" action="doEditUserSettings" />
-		<item separator="true"></item>	
+		<item separator="true"></item>
 		<item title="Print" key="p" acc="VK_P" action="doPrint"/>
 		<item separator="true"></item>
 		<item title="Quit" key="q" acc="VK_Q" action="doQuit"/>
-	</menu>	 	 
-	
-	<menu title="Reports" key="r">	
+	</menu>
+
+	<menu title="Reports" key="r">
 		<item title="Nutrition Report" key="n" acc="VK_N" action="doNutritionReport"/>
 	</menu>
 
@@ -21,12 +21,14 @@
 		<item title="Create New Food" key="n" acc="VK_F" action="doCreateNewFood"/>
 		<item title="Create New Recipe" key="r" index="11" acc="VK_R" action="doCreateNewRecipe"/>
 	</menu>
-	
+
 	<menu title="Help" key="h">
 		<item title="Help..." key="h" acc="VK_H" action="doHelp"/>
 		<item separator="true"/>
 		<item title="Report a Bug..." key="b"   action="doReportBug"/>
 		<item title="Request Features..." key="f"   action="doRequestFeature"/>
+		<item separator="true"/>
+		<item title="Release Notes..." action="doShowReleaseNotes"/>
 		<item separator="true"/>
 		<item title="About CRON-O-Meter" action="doAbout"/>
 	</menu>

@@ -1,14 +1,14 @@
 <project name="CRONOMETER" default="jarfile" basedir=".">
-	
+
 	<description>
 		Builds the CRONOMETER App
 	</description>
-	
+
 	<!-- set global properties for this build -->
 	<property name="name"  value="CRON-O-METER"/>
 	<property name="source" location="src/"/>
 	<property name="build" location="bin"/>
-	
+
 	<!-- Compile the java code from ${src} into ${build} -->
 	<target name="compile" description="compile the source">
 		<javac source="1.4" srcdir="${source}" destdir="${build}">
@@ -19,15 +19,16 @@
 			</classpath>
 		</javac>
 	</target>
-	
+
 	<target name="jarfile" depends="compile" description="generate the distribution jar" >
-		<jar jarfile="lib/cronometer.jar" compress="true">		
+		<jar jarfile="lib/cronometer.jar" compress="true">
 			<fileset dir="${build}">
 				<include name="*.*"/>
 				<include name="ca/**"/>
 				<include name="com/**"/>
 				<include name="se/**"/>
 				<include name="img/**"/>
+				<include name="docs/**"/>
 			</fileset>
 			<manifest>
 			    <attribute name="Built-By" value="${user.name}"/>

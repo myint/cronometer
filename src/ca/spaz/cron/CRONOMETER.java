@@ -58,6 +58,7 @@ import com.apple.mrj.MRJQuitHandler;
  *      - bug stomp !
  *      
  *   0.8.0 TODOs
+ *      - cut & copy should be added to pop-up menu on servings
  *      - move biomarkers (and exercise?) to unified entry model
  *      - add tab for free-form notes (diary/log)
  *      - remember window sizes & positions
@@ -132,6 +133,9 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
             TargetEditor.setDefaultTargets(new DRITargetModel(), User.getUser());
             doEditUserSettings(); 
          } else {
+            if (User.getUser().getLastBuild() < BUILD) {
+               doShowReleaseNotes();
+            }
             if (User.getUser().getLastBuild() < 7) {
                upgradeToB7();
             }
@@ -172,36 +176,20 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
       t.start();
    }
 
-   private void doShowReadMe() {
-      WrappedPanel wp = new WrappedPanel() {         
-         public String getTitle() {
-            return "Licence Agreement";
-         }
-         public String getSubtitle() {
-            return "Licence Agreement";
-         }
-         public String getInfoString() {
-            return null;
-         }
-         public ImageIcon getIcon() {
-            return null;
-         }
-         public boolean showSidebar() { 
-            return false;
-         }
+   public void doShowReleaseNotes() {
+      new ReadMe(this, "Release Notes", getClass().getResource("/docs/release.html"));
+      doShowReadMe();
+   }
+   
+   public void doShowReadMe() {
+      new ReadMe(this, "Licence Agreement", getClass().getResource("/docs/readme.html")) {
          public boolean isCancellable() {
             return true;
          }
          public void doCancel() {
             System.exit(1);
          }
-         public void doAccept() { }        
-      };
-      wp.setLayout(new BorderLayout());
-      WebViewer wv = new WebViewer(ToolBox.loadFile(new File("docs/readme.html")));
-      wv.setPreferredSize(new Dimension(600,400));
-      wp.add(wv, BorderLayout.CENTER);
-      WrapperDialog.showDialog(this, wp);      
+      };      
    }
 
    public void doHelp() {
@@ -231,13 +219,13 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
          JMenu mainMenu = new JMenu("Edit");
          mainMenu.setMnemonic(KeyEvent.VK_E);
          TransferActionListener actionListener = new TransferActionListener();
-
+         int mask = ToolBox.isMacOSX() ? ActionEvent.META_MASK : ActionEvent.CTRL_MASK;
          JMenuItem menuItem = new JMenuItem("Cut");
          menuItem.setActionCommand((String)TransferHandler.getCutAction().
                   getValue(Action.NAME));
          menuItem.addActionListener(actionListener);
          menuItem.setAccelerator(
-           KeyStroke.getKeyStroke(KeyEvent.VK_X, ActionEvent.META_MASK));
+           KeyStroke.getKeyStroke(KeyEvent.VK_X, mask));
          menuItem.setMnemonic(KeyEvent.VK_T);
          mainMenu.add(menuItem);
          menuItem = new JMenuItem("Copy");
@@ -245,7 +233,7 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
                   getValue(Action.NAME));
          menuItem.addActionListener(actionListener);
          menuItem.setAccelerator(
-           KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.META_MASK));
+           KeyStroke.getKeyStroke(KeyEvent.VK_C, mask));
          menuItem.setMnemonic(KeyEvent.VK_C);
          mainMenu.add(menuItem);
          menuItem = new JMenuItem("Paste");
@@ -253,7 +241,7 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
                   getValue(Action.NAME));
          menuItem.addActionListener(actionListener);
          menuItem.setAccelerator(
-           KeyStroke.getKeyStroke(KeyEvent.VK_V, ActionEvent.META_MASK));
+           KeyStroke.getKeyStroke(KeyEvent.VK_V, mask));
          menuItem.setMnemonic(KeyEvent.VK_P);
          mainMenu.add(menuItem);
          

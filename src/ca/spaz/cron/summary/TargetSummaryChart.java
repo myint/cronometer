@@ -27,7 +27,7 @@ public class TargetSummaryChart extends JComponent implements UserChangeListener
    public static final Color VITAMIN_COLOR = new Color(120,180,20);
    public static final Color MINERAL_COLOR = new Color(80,180,180);
    
-   private static final double DISPLAY_THRESH = 3;
+   private static final double DISPLAY_THRESH = 2;
    
    DecimalFormat valFormat = new DecimalFormat("00");
    
