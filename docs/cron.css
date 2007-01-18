@@ -5,9 +5,9 @@ body
   background:  #ffffff;
   font-size: 10pt;
   margin-top: 10;
-  margin-bottom: 10;
-  margin-left: 10;
-  margin-right: 10;
+  margin-bottom: 10px;
+  margin-left: 20px;
+  margin-right: 20px;
   padding-left: 0;
   padding-right: 0;
 }
@@ -15,7 +15,7 @@ body
 td {font-family: verdana, arial, serif; 
 font-size: 10pt;
 font-weight: lighter;
- } 
+} 
  
 li {text-align: justify} 
 h1 {font-family: verdana, arial, serif; 
