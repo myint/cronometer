@@ -24,7 +24,7 @@ public class BiomarkerDefinitions {
 
    private static final String BIOMARKER_DEFINITIONS_FILE = "biomarkers.xml";
 
-   private List biomarkers;
+   private static List biomarkers;
    private boolean dirty = false;
 
    public BiomarkerDefinitions() {
@@ -45,7 +45,7 @@ public class BiomarkerDefinitions {
       return biomarkers;
    }
    
-   public List getEnabledBiomarkers() {
+   public static List getEnabledBiomarkers() {
       List enabledBiomarkers = new ArrayList();
       for (Iterator iter = biomarkers.iterator(); iter.hasNext();) {
          Biomarker biomarker = (Biomarker) iter.next();
@@ -54,7 +54,17 @@ public class BiomarkerDefinitions {
          }
       }
       return enabledBiomarkers;
-   }   
+   } 
+   
+   public static Biomarker getBiomarker(String name) {
+      for (Iterator iter = biomarkers.iterator(); iter.hasNext();) {
+         Biomarker biomarker = (Biomarker) iter.next();
+         if (biomarker.getName().equals(name)) {
+            return biomarker;
+         }
+      }
+      return null;
+   }     
 
    public void delete(Biomarker biomarker) {
       biomarkers.remove(biomarker);

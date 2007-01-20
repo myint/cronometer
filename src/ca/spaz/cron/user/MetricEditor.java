@@ -140,27 +140,27 @@ public class MetricEditor extends JPanel {
    }
 
    public void setMetrics(java.util.List metrics) {
-      saveBtn.setEnabled(false);
-      deleteBtn.setEnabled(false); 
-      entryField.setValue("");       
-      // loop through array and find an appropriate metric to install
-      Iterator iter = metrics.iterator();
-      while (iter.hasNext()) {
-         Metric m = (Metric)iter.next();
-         if (m.getName().equals(metricType) && m.getValue() != null) {
-            curMetric = m;
-            if (m.getValue().doubleValue() == 0.0) {
-               entryField.setValue("");
-            }
-            else {
-               entryField.setValue(Double.parseDouble(m.getValue().toString()));
-               saveBtn.setEnabled(false);
-               deleteBtn.setEnabled(true); 
-            }          
-            return;
-         }
-      }
-      curMetric = null;     
+//      saveBtn.setEnabled(false);
+//      deleteBtn.setEnabled(false); 
+//      entryField.setValue("");       
+//      // loop through array and find an appropriate metric to install
+//      Iterator iter = metrics.iterator();
+//      while (iter.hasNext()) {
+//         Metric m = (Metric)iter.next();
+//         if (m.getName().equals(metricType) && m.getValue() != null) {
+//            curMetric = m;
+//            if (m.getValue().doubleValue() == 0.0) {
+//               entryField.setValue("");
+//            }
+//            else {
+//               entryField.setValue(Double.parseDouble(m.getValue().toString()));
+//               saveBtn.setEnabled(false);
+//               deleteBtn.setEnabled(true); 
+//            }          
+//            return;
+//         }
+//      }
+//      curMetric = null;     
    }
 
    private void saveValue() {

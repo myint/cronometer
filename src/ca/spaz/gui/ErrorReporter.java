@@ -48,7 +48,13 @@ public class ErrorReporter extends WrappedPanel {
       ErrorReporter er = new ErrorReporter(null);
       er.message = message;
       WrapperDialog.showDialog(parent, er);
-   }   
+   }  
+   
+   public static void showNotYetImplemented(Component parent) {
+      ErrorReporter er = new ErrorReporter(null);
+      er.message = "Not Yet Implemented";
+      WrapperDialog.showDialog(parent, er);
+   }    
     
    public String getTitle() {
       return "Error";
