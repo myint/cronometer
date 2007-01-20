@@ -37,7 +37,7 @@ public class USDAImporter implements Task {
    private URL getFoodSourceURL() {
       URL url = null;
       try {
-         url = new URL("http://www.nal.usda.gov/fnic/foodcomp/Data/SR18/dnload/sr18.zip");
+         url = new URL("http://www.nal.usda.gov/fnic/foodcomp/Data/SR19/dnload/sr19.zip");
       } catch (MalformedURLException e) {
          Logger.error("getFoodSourceURL()", e);
       }
@@ -73,7 +73,7 @@ public class USDAImporter implements Task {
     */
    public void run() {
       abort = false;
-      curTask = "Importing USDA sr18";
+      curTask = "Importing USDA sr19";
       if (null == sourceURL && null == sourceStream) {         
          return;
       }
@@ -91,11 +91,12 @@ public class USDAImporter implements Task {
             }
             out.println("Creating temp directory.");
             out.flush();
-            if (!tempDir.mkdir()) {
+            tempDir.mkdir();
+            if (!tempDir.exists()) {
                // Indicate that it aborted, somehow.
                return;
             }
-            File tempFile = new File(tempDir, "usda_sr18_temp.zip");
+            File tempFile = new File(tempDir, "usda_sr19_temp.zip");
             if (!downloadFile(sourceURL, tempFile, DOWNLOAD_PROGRESS_PORTION)) {
                return; // Indicate failure.
             }
@@ -217,7 +218,7 @@ public class USDAImporter implements Task {
       while (iter.hasNext()) {
          try {
             Food f = (Food)iter.next();
-            File file = new File("usda_sr18/"+f.getSourceUID()+".xml");
+            File file = new File("usda_sr19/"+f.getSourceUID()+".xml");
             PrintStream ps = new PrintStream(
                   new BufferedOutputStream(new FileOutputStream(file)));
             f.writeXML(ps, false);
@@ -232,7 +233,7 @@ public class USDAImporter implements Task {
    
    private void writeFoodsIndex() {
       try {
-         File file = new File("usda_sr18/foods.index");
+         File file = new File("usda_sr19/foods.index");
          PrintStream ps = new PrintStream(
                new BufferedOutputStream(new FileOutputStream(file)));
          Iterator iter = foods.values().iterator();

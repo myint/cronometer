@@ -37,8 +37,21 @@ import com.apple.mrj.MRJQuitHandler;
 /**
  * The main app.  
  *
+ *  
+ *
  *   0.8.0 TODOs
+ *      - Fix commit changes bug in editors
+ *         - measures must be non-zero grams
+ *         - scan for bad values and correct them
+ *         
+ *      - Antonio Zomora's notes
+ *      - USDA sr19
+ *           -- handle the deleted foods gracefully
+ *      - flavinoids + CRDB, etc...?
+ *      - table sort order in search panel + tweaks
+ *      - show macro as gradients in calorie bar!
  *      - cut & copy should be added to pop-up menu on servings
+ *      - add support libs & links to about panel
  *      - move biomarkers (and exercise?) to unified entry model
  *      - add tab for free-form notes (diary/log)
  *      - remember window sizes & positions
@@ -46,16 +59,21 @@ import com.apple.mrj.MRJQuitHandler;
  *      - more interesting reports
  *      - more interesting ratios on front nutrition summary (sinc:copper, w3:w6)
  *      - auto-set measure to most frequent entry
+ *      - MigLayout, DesignGridLayout
+ *      - Refactor PrettyTable / sorting
+ *      - WrappedPanel work
+ *      
+ *    0.9.0 TODOS:
  *      - more robust / scalable data backend
  *      - spaz.ca account synch
- *      - add support libs & links toabout panel
+ *      - exercise log
  *      
  * @author davidson
  */
 public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, MRJAboutHandler, ClipboardOwner {
    public static final String TITLE = "CRON-o-Meter";
-   public static final String VERSION = "0.7";
-   public static final int BUILD = 7;
+   public static final String VERSION = "0.8";
+   public static final int BUILD = 8;
    public static JFrame mainFrame = null; 
 
    private static Clipboard clipboard = new Clipboard ("CRON-o-Meter");

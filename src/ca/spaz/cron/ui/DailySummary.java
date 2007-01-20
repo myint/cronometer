@@ -4,7 +4,8 @@
 package ca.spaz.cron.ui;
 
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.List;
@@ -37,7 +38,7 @@ public class DailySummary extends JPanel {
    private Date curDate = new Date(System.currentTimeMillis());
  
    private ServingTable servingTable;
-   private JComponent dailyTracker;
+   private JTabbedPane dailyTracker;
 
    private DateFormat df = DateFormat.getDateInstance(DateFormat.LONG);
 
@@ -101,11 +102,13 @@ public class DailySummary extends JPanel {
       return bioMarkerPanel;
    }
 
-   private JComponent getDailyTrackerPanel() {
+   private JTabbedPane getDailyTrackerPanel() {
       if (null == dailyTracker) {
          dailyTracker = new JTabbedPane();
-         dailyTracker.add("Diet", getDietPanel()); 
-         dailyTracker.add("Biomarkers", getBioMarkersPanel());
+         dailyTracker.addTab("Diet", new ImageIcon(ImageFactory.getInstance().loadImage("/img/apple-16x16.png")), getDietPanel()); 
+         dailyTracker.addTab("Biomarkers", new ImageIcon(ImageFactory.getInstance().loadImage("/img/graph.gif")), getBioMarkersPanel());
+         dailyTracker.addTab("Exercise", new ImageIcon(ImageFactory.getInstance().loadImage("/img/lockedstate.gif")), new JPanel());
+         dailyTracker.addTab("Notes", new ImageIcon(ImageFactory.getInstance().loadImage("/img/toc_open.gif")), new JPanel());
          
       }
       return dailyTracker;
@@ -144,7 +147,7 @@ public class DailySummary extends JPanel {
          ImageIcon icon = new ImageIcon(ImageFactory.getInstance().loadImage("/img/task.gif"));
          prefsButton = new JButton(icon);         
          CRONOMETER.fixButton(prefsButton);    
-         prefsButton.setToolTipText("Edit Preferences");
+         prefsButton.setToolTipText("Edit Nutritional Targets");
          prefsButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                CRONOMETER.getInstance().doEditUserSettings();
@@ -201,20 +204,20 @@ public class DailySummary extends JPanel {
       return copyPrevDayButton;
    }   
    
-   private JButton getDatabaseButton() {
-      if (null == dbButton) {
-         dbButton = new JButton(new ImageIcon(ImageFactory.getInstance().loadImage("/img/apple-16x16.png")));
-         dbButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-               CRONOMETER.getInstance().doBrowseFoodDatabase();
-            }
-         });
-         CRONOMETER.fixButton(dbButton);
-         dbButton.setToolTipText("Browse Food Database");
-         dbButton.setFocusable(false);
-      }
-      return dbButton;
-   }   
+//   private JButton getDatabaseButton() {
+//      if (null == dbButton) {
+//         dbButton = new JButton(new ImageIcon(ImageFactory.getInstance().loadImage("/img/apple-16x16.png")));
+//         dbButton.addActionListener(new ActionListener() {
+//            public void actionPerformed(ActionEvent e) {
+//               CRONOMETER.getInstance().doBrowseFoodDatabase();
+//            }
+//         });
+//         CRONOMETER.fixButton(dbButton);
+//         dbButton.setToolTipText("Browse Food Database");
+//         dbButton.setFocusable(false);
+//      }
+//      return dbButton;
+//   }   
    
    private JButton getTodayButton() {
       if (null == todayButton) {
@@ -273,8 +276,8 @@ public class DailySummary extends JPanel {
          toolBar.setBackground(Color.BLACK); 
          toolBar.setLayout(new BoxLayout(toolBar, BoxLayout.X_AXIS));
          toolBar.setBorder(BorderFactory.createEmptyBorder(4, 5, 4, 5));
-         toolBar.add(getDatabaseButton());         
-         toolBar.add(Box.createHorizontalStrut(5));
+         //toolBar.add(getDatabaseButton());         
+         //toolBar.add(Box.createHorizontalStrut(5));
          toolBar.add(getTodayButton());         
          toolBar.add(Box.createHorizontalGlue());
          toolBar.add(getPreviousButton());

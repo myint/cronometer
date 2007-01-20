@@ -55,5 +55,10 @@ public class SearchHit implements Comparable {
       // break tie with alphabetical order
       return getFoodProxy().getDescription().compareToIgnoreCase(hit.getFoodProxy().getDescription());      
    }
+   
+   public int compareByName(Object obj) {
+      SearchHit hit = (SearchHit) obj;
+      return getFoodProxy().getDescription().compareToIgnoreCase(hit.getFoodProxy().getDescription());      
+   }
     
 }

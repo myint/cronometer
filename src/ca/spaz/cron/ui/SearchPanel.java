@@ -120,6 +120,7 @@ public class SearchPanel extends JPanel implements ItemListener {
             ListSelectionModel.SINGLE_SELECTION);
       resultTable.setAutoResizeMode(JTable.AUTO_RESIZE_SUBSEQUENT_COLUMNS);
       resultTable.getTableHeader().setReorderingAllowed(false);
+      resultTable.setAscending(true);
       
       PercentageRenderer pr = new PercentageRenderer();
       pr.setBackground(resultTable.getBackground());
@@ -313,7 +314,7 @@ public class SearchPanel extends JPanel implements ItemListener {
                case 0:
                   return hit.getFoodProxy().getDescription();
                case 1:
-                  return hit;//Integer.toString(f.getReferences());
+                  return hit;
             }
          }
          return "";
@@ -351,8 +352,23 @@ public class SearchPanel extends JPanel implements ItemListener {
          return "";
       }
 
-      public void sort(PrettyTable table) {         
-         Collections.sort(result);
+      public void sort(PrettyTable table) {
+         final int dir = table.isAscending() ? 1 : -1;
+         if (table.getSortOnColumn() == 0) {
+            Collections.sort(result, new Comparator() {
+               public int compare(Object a, Object b) {
+                  return dir*((SearchHit)a).compareByName((SearchHit)b);
+               }
+            });
+         } else {
+            // default column sort by rank
+            if (table.isAscending()) {
+               Collections.sort(result);
+            } else {
+               Collections.sort(result, Collections.reverseOrder());
+            }
+         }
+         model.fireTableDataChanged();      
       }
       
       /**
