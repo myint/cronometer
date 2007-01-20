@@ -31,9 +31,10 @@ import ca.spaz.cron.datasource.Datasources;
 import ca.spaz.cron.ui.DateChooser;
 import ca.spaz.cron.user.Metric;
 import ca.spaz.gui.IntegerField;
-
+import ca.spaz.cron.user.Biomarker;
 
 public class TimeSeriesTest extends JFrame {
+   private Biomarker biomarker;
    private JPanel mainPanel;
    private String metricName;
    private JPanel toolbar;
@@ -72,6 +73,11 @@ public class TimeSeriesTest extends JFrame {
       mainPanel.add(chartPanel, BorderLayout.CENTER);        
       setContentPane(mainPanel);
       setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+   }
+   
+   public void setBiomarker(Biomarker biomarker) {
+      this.biomarker = biomarker;
+      movingAverageDays = biomarker.getMovingAverageDays();
    }
 
    /**

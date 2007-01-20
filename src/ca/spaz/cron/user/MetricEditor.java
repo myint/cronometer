@@ -21,6 +21,7 @@ import ca.spaz.util.ImageFactory;
  * A panel for editing a biomarker metric.  
  */
 public class MetricEditor extends JPanel {
+   private Biomarker biomarker;
    private JCheckBox toggle;
    private JLabel label;
    private DoubleField entryField;
@@ -37,6 +38,12 @@ public class MetricEditor extends JPanel {
       this.bmp = bmp;
    }   
 
+   public MetricEditor(BiomarkerPanel bmp, Biomarker biomarker) {
+      this.metricType = biomarker.getName();
+      this.biomarker = biomarker;
+      this.bmp = bmp;
+   } 
+   
    public JButton getSaveButton() {
       if (saveBtn == null) {
          saveBtn = new JButton("Save");
@@ -92,11 +99,12 @@ public class MetricEditor extends JPanel {
 
    public void plotMetric() {
       try {
-         TimeSeriesTest demo = new TimeSeriesTest(metricType);
-         demo.pack();
-         demo.setIconImage(CRONOMETER.getWindowIcon());
-         RefineryUtilities.centerFrameOnScreen(demo);
-         demo.setVisible(true);
+         TimeSeriesTest chart = new TimeSeriesTest(metricType);
+         chart.setBiomarker(biomarker);
+         chart.pack();
+         chart.setIconImage(CRONOMETER.getWindowIcon());
+         RefineryUtilities.centerFrameOnScreen(chart);
+         chart.setVisible(true);
       } catch (Exception e) {
          ErrorReporter.showError(e, this);
       }

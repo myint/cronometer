@@ -102,7 +102,7 @@ public class Biomarker {
       this.units = units;
    }
    
-   public List createPredefinedBiomarkers() {
+   public static List createPredefinedBiomarkers() {
       List biomarkers = new ArrayList();
       Biomarker biomarker = new Biomarker();
       biomarker.setName("Weight");

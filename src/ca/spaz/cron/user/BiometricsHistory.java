@@ -112,6 +112,7 @@ public class BiometricsHistory {
             node.addChild(m.toXML());
          }
       }
+      node.setPrintNewLines(true);      
       node.write(out);
    }
    

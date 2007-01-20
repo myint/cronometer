@@ -22,9 +22,9 @@ import ca.spaz.util.*;
  */
 public class BiomarkerDefinitions { 
 
-   private static final String BIOMARKER_DEFINITIONS_FILE = "biomarkerDefinitions.xml";
+   private static final String BIOMARKER_DEFINITIONS_FILE = "biomarkers.xml";
 
-   private ArrayList biomarkers;
+   private List biomarkers;
    private boolean dirty = false;
 
    public BiomarkerDefinitions() {
@@ -44,6 +44,17 @@ public class BiomarkerDefinitions {
    public List getBiomarkers() {
       return biomarkers;
    }
+   
+   public List getEnabledBiomarkers() {
+      List enabledBiomarkers = new ArrayList();
+      for (Iterator iter = biomarkers.iterator(); iter.hasNext();) {
+         Biomarker biomarker = (Biomarker) iter.next();
+         if (biomarker.isEnabled()) {
+            enabledBiomarkers.add(biomarker);
+         }
+      }
+      return enabledBiomarkers;
+   }   
 
    public void delete(Biomarker biomarker) {
       biomarkers.remove(biomarker);
@@ -80,13 +91,12 @@ public class BiomarkerDefinitions {
 
 
    public synchronized void writeXML(PrintStream out) {
-      XMLNode node = new XMLNode("metrics");
+      XMLNode node = new XMLNode("biomarkers");
       for (int i=0; i<biomarkers.size(); i++) {
-         Metric m = (Metric)biomarkers.get(i);
-         if (m.getValue() != null) {
-            node.addChild(m.toXML());
-         }
+         Biomarker biomarker = (Biomarker)biomarkers.get(i);
+         node.addChild(biomarker.toXML());
       }
+      node.setPrintNewLines(true);
       node.write(out);
    }
 
@@ -98,13 +108,25 @@ public class BiomarkerDefinitions {
          load(in);
          in.close();
       } catch (FileNotFoundException e) {
-         e.printStackTrace();
+         // If the file does not exist, create it with the pre-defined biomarkers
+         createFile();
       } catch (Exception e) {
          e.printStackTrace();
          ErrorReporter.showError(e, CRONOMETER.getInstance()); 
       }   
    }
 
+   /**
+    * Creates the pre-defined biomarkers and flushes to disk
+    */
+   private void createFile() {
+      for (Iterator iter = Biomarker.createPredefinedBiomarkers().iterator(); iter.hasNext();) {
+         Biomarker biomarker = (Biomarker) iter.next();
+         addBiomarker(biomarker);
+      }
+      save();
+   }
+   
    /**
     * Load Settings fresh from disk 
     */

@@ -8,13 +8,7 @@ import org.w3c.dom.Element;
 import ca.spaz.util.XMLNode;
 
 public class Metric implements Comparable {
-   public static final String WEIGHT = "Weight";
-   public static final String BODY_TEMPERATURE = "Body Temperature";
-   public static final String SYSTOLIC_BP = "Systolic BP";
-   public static final String DIASTOLIC_BP = "Diastolic BP";
-   public static final String RESTING_HEART_RATE = "Resting Heart Rate";
-   public static final String BLOOD_GLUCOSE = "Blood Glucose";
-   
+  
    private String name;
    private Number value;
    private Date date;
@@ -78,9 +72,9 @@ public class Metric implements Comparable {
       return node;
    }
 
-   public boolean isWeight() {
-      return getName().equals(WEIGHT);
-   }
+//   public boolean isWeight() {
+//      return getName().equals(WEIGHT);
+//   }
    
    public String toString() {
       return getName()+"-"+getDate()+"-"+getValue();

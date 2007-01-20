@@ -12,27 +12,25 @@ import javax.swing.*;
 import ca.spaz.cron.user.*;
 
 /**
- * A panel containing a MetricEditor for each biomarker.
+ * A panel containing a MetricEditor for each enabled Biomarker.
  */
 public class BiomarkerPanel extends JPanel {
    private Date curDate = new Date();
    private List curMetrics;
    private MetricEditor[] editors;
+   private List biomarkers = new ArrayList();
 
    public BiomarkerPanel() {
-
-      editors = new MetricEditor[6];
-      editors[0] = new MetricEditor(this, Metric.WEIGHT);
-      editors[1] = new MetricEditor(this, Metric.BODY_TEMPERATURE);
-      editors[2] = new MetricEditor(this, Metric.SYSTOLIC_BP);
-      editors[3] = new MetricEditor(this, Metric.DIASTOLIC_BP);
-      editors[4] = new MetricEditor(this, Metric.RESTING_HEART_RATE);
-      editors[5] = new MetricEditor(this, Metric.BLOOD_GLUCOSE);
+      biomarkers = new BiomarkerDefinitions().getEnabledBiomarkers();
+      // Create an editor for each enabled biomarker
+      editors = new MetricEditor[biomarkers.size()];
+      for (int i = 0; i < editors.length; i++) {
+         Biomarker biomarker = (Biomarker)biomarkers.get(i);
+         editors[i] = new MetricEditor(this, biomarker);
+      }
 
       JPanel fp = new JPanel(new GridLayout(4, 4));      
       fp.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));  
-      // Note: the grid bag layout is all done here rather than in Metric Editor so that the
-      // column alignment works properly across the entire grid.
       JPanel ed = new JPanel(new GridBagLayout());
       GridBagConstraints c = new GridBagConstraints();
       c.fill = GridBagConstraints.NONE;
@@ -61,23 +59,6 @@ public class BiomarkerPanel extends JPanel {
       setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
       setLayout(new BorderLayout(4, 4));
       add(x, BorderLayout.WEST);
-   }
-
-
-   private Metric getWeightMetric() {
-      Iterator iter = getMetrics().iterator();
-      while (iter.hasNext()) {
-         Metric m = (Metric)iter.next();
-         if (m.isWeight()) {
-            return m;
-         }
-      }
-      Metric wm = new Metric(Metric.WEIGHT, curDate);
-      User.getUser().addMetric(wm);
-      if (!getMetrics().contains(wm)) {
-         getMetrics().add(wm);
-      }
-      return wm;
    }
 
    public void setDate(Date d) {
