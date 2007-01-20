@@ -107,7 +107,7 @@ public class DailySummary extends JPanel {
          dailyTracker = new JTabbedPane();
          dailyTracker.addTab("Diet", new ImageIcon(ImageFactory.getInstance().loadImage("/img/apple-16x16.png")), getDietPanel()); 
          dailyTracker.addTab("Biomarkers", new ImageIcon(ImageFactory.getInstance().loadImage("/img/graph.gif")), getBioMarkersPanel());
-         dailyTracker.addTab("Exercise", new ImageIcon(ImageFactory.getInstance().loadImage("/img/lockedstate.gif")), new JPanel());
+         dailyTracker.addTab("Exercise", new ImageIcon(ImageFactory.getInstance().loadImage("/img/runner.gif")), new JPanel());
          dailyTracker.addTab("Notes", new ImageIcon(ImageFactory.getInstance().loadImage("/img/toc_open.gif")), new JPanel());
          
       }
