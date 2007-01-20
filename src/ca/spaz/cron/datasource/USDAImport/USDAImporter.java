@@ -361,40 +361,12 @@ public class USDAImporter implements Task {
    public String getTaskDescription() {
       return curTask;
    }
-
-/*
-   private static HashMap nutrientMap;
-   private static void addNutrient(String table, String tag, String nid) {
-      USDANutrientInfo ni = new USDANutrientInfo();
-      ni.table = table;
-      ni.tag = tag;
-      getNutrientMap().put(nid, ni);
-   }
-   
-   public static HashMap getNutrientMap() {
-      if (nutrientMap == null) {
-         nutrientMap = new HashMap();
-         makeNutrientMap();
-      }
-      return nutrientMap;
-   }*/
-   
+ 
    
    public static void main(String args[]) {
       USDAImporter ui = new USDAImporter(System.out);
       ui.setSourceURL(ui.getFoodSourceURL());
-      ui.run();
-     /* USDAFoods usdaDS = new USDAFoods();
-      usdaDS.initialize();
-      logger.debug("Searching...");
-      String[] keys = {"APPLE", "RAW", "SKIN"};
-      List list = usdaDS.findFoods(keys);
-      logger.debug("Found: " + list.size());
-      for (int i=0; i<list.size(); i++) {
-         FoodProxy f = (FoodProxy)list.get(i);
-         logger.debug(f.getDescription() + ", " + f.getSourceID());
-         logger.debug("\t " + f.getFood().getCalories());
-      }*/
+      ui.run();      
    }
    
    

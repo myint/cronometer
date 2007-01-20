@@ -157,7 +157,9 @@ public class ServingTableModel extends PrettyTableModel {
    public Component customRender(Component c, PrettyTable table, int row, int col) {
       Serving s = getServing(row);
       if (s != null) {
-         if (col == 0) {
+         if (s.getFoodProxy().isDeprecated()) {
+            c.setForeground(Color.LIGHT_GRAY);               
+         } else if (col == 0) {
             c.setForeground(s.getFoodProxy().getSource().getDisplayColor());               
          } else {
             c.setForeground(Color.BLACK);

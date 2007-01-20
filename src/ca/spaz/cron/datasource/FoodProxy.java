@@ -87,5 +87,9 @@ public class FoodProxy {
    public void setSourceID(String sourceID) {
       this.sourceID = sourceID;
    }
+
+   public boolean isDeprecated() {
+      return false;
+   }
    
 }

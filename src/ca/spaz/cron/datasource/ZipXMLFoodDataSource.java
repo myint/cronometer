@@ -23,6 +23,8 @@ public abstract class ZipXMLFoodDataSource implements FoodDataSource {
       try {
          zip = new ZipFile(getZipFileName());
          loadIndex();
+         loadDeprecatedIndex();
+         Logger.debug("Loaded " + map.size() +" foods.");
       } catch (IOException e) {
          Logger.error("Error Initliazing DataSource", e);
          ErrorReporter.showError("Error Initliazing DataSource", e, CRONOMETER.getInstance()); 
@@ -44,7 +46,24 @@ public abstract class ZipXMLFoodDataSource implements FoodDataSource {
          line = in.readLine();
       }
       in.close();
-      Logger.debug("Loaded " + map.size() +" foods.");
+   }
+   
+
+   private void loadDeprecatedIndex() throws IOException {
+      Logger.debug("Loading Deprecated index...");
+      ZipEntry entry = zip.getEntry("deprecated.index");
+      if (entry != null) {
+         BufferedReader in = new BufferedReader(
+               new InputStreamReader(zip.getInputStream(entry)));
+         String line = in.readLine();
+         while (line != null) {
+            String[] parts = line.split("\\|");
+            DeprecatedFoodProxy food = new DeprecatedFoodProxy(parts[1],this,parts[0]);
+            map.put(parts[0], food);
+            line = in.readLine();
+         }
+         in.close();
+      }
    }
 
 

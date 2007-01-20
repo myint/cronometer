@@ -383,7 +383,10 @@ public class SearchPanel extends JPanel implements ItemListener {
          FoodProxy f = getSearchHit(row).getFoodProxy();
          if (f != null) {
             if (col == 0) {
-               c.setForeground(f.getSource().getDisplayColor());               
+               c.setForeground(f.getSource().getDisplayColor());
+               if (f.isDeprecated()) {
+                  c.setForeground(Color.LIGHT_GRAY);
+               }
             }
          }
          return c;

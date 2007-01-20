@@ -12,7 +12,7 @@ public class USDAFoods extends ZipXMLFoodDataSource {
    
 
    public String getZipFileName() {
-      return "usda_sr18.zip";
+      return "usda_sr19.zip";
    }
 
    public String getName() {
