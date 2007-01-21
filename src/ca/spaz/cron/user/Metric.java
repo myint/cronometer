@@ -22,6 +22,10 @@ public class Metric implements Comparable {
       setDate(d);
    }   
    
+   public Metric(Biomarker biomarker) {
+      setName(biomarker.getName());
+   }
+   
    public Metric(Element e) {
       setName(e.getAttribute("name"));
       setValue(e.getAttribute("value"));

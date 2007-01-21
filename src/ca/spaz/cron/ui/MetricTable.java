@@ -17,12 +17,10 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumnModel;
 
 import ca.spaz.cron.CRONOMETER;
-import ca.spaz.cron.actions.*;
+import ca.spaz.cron.user.Metric;
 import ca.spaz.gui.ErrorReporter;
 import ca.spaz.gui.PrettyTable;
 import ca.spaz.util.ImageFactory;
-import ca.spaz.cron.user.Metric;
-import ca.spaz.cron.user.User;
 
 public class MetricTable extends JPanel {
 
@@ -37,7 +35,7 @@ public class MetricTable extends JPanel {
    
    public MetricTable() {
       setMinimumSize(new Dimension(400,250));
-      setPreferredSize(new Dimension(500,300));
+      setPreferredSize(new Dimension(560,300));
       model = new MetricTableModel(this);
       setLayout(new BorderLayout(4,4));
       add(getToolBar(), BorderLayout.NORTH);
@@ -59,11 +57,11 @@ public class MetricTable extends JPanel {
       listeners.remove(listener);
    }
    
-   public void addServingSelectionListener(ServingSelectionListener listener) {
+   public void addMetricSelectionListener(MetricSelectionListener listener) {
       metricListeners.add(listener);
    }
 
-   public void removeServingSelectionListener(ServingSelectionListener listener) {
+   public void removeMetricSelectionListener(MetricSelectionListener listener) {
       metricListeners.remove(listener);
    }
    
@@ -118,8 +116,7 @@ public class MetricTable extends JPanel {
           addBtn.setToolTipText("Add a new biomarker measurement");
           addBtn.addActionListener(new ActionListener() {
               public void actionPerformed(ActionEvent e) {
-                 ErrorReporter.showNotYetImplemented(table);
-//                 doAddServing();
+                 doAddMetric();
               }
           });
           CRONOMETER.fixButton(addBtn);
@@ -129,14 +126,15 @@ public class MetricTable extends JPanel {
 
   
    
-   public void doAddServing() {
-//     SearchDialog sd = new SearchDialog(JOptionPane.getFrameForComponent(this));
-//     sd.display(true);
-//      
-//      Serving s = sd.getSelectedServing();
-//      if (s != null) { 
-//         fireServingChosen(s);
-//      }      
+   public void doAddMetric() {
+     AddMetricDialog md = new AddMetricDialog(JOptionPane.getFrameForComponent(this));
+     md.display(true);
+     md.getListPanel().requestFocus();
+      
+      Metric metric = md.getSelectedMetric();
+      if (metric != null) { 
+         fireMetricChosen(metric);
+      }      
    }
    
    private JComponent makeJScrollPane() {

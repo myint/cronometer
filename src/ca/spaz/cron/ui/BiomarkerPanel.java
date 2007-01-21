@@ -19,24 +19,24 @@ import ca.spaz.cron.user.*;
 public class BiomarkerPanel extends JPanel {
    private Date curDate = new Date();
    private List curMetrics;
-   private MetricEditor[] editors;
+   private ca.spaz.cron.user.MetricEditor[] editors;
    private List biomarkers = new ArrayList();
    private MetricTable metricTable;
 
    public BiomarkerPanel() {
       biomarkers = new BiomarkerDefinitions().getEnabledBiomarkers();
       // Create an editor for each enabled biomarker
-      editors = new MetricEditor[biomarkers.size()];
+      editors = new ca.spaz.cron.user.MetricEditor[biomarkers.size()];
       for (int i = 0; i < editors.length; i++) {
          Biomarker biomarker = (Biomarker)biomarkers.get(i);
-         editors[i] = new MetricEditor(this, biomarker);
+         editors[i] = new ca.spaz.cron.user.MetricEditor(this, biomarker);
       }
 
-      setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
+      setBorder(BorderFactory.createEmptyBorder(3,3,3,3));
       setLayout(new BorderLayout());
       JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, getMetricTable(), new JPanel());
       splitPane.setDividerLocation(300);
-      splitPane.setBorder(BorderFactory.createEmptyBorder(3,3,3,3));      
+      splitPane.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));      
       add(splitPane, BorderLayout.CENTER);
    }
    

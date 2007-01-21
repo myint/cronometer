@@ -102,6 +102,10 @@ public class Biomarker {
       this.units = units;
    }
    
+   public String toString() {
+      return name;
+   }
+   
    public static List createPredefinedBiomarkers() {
       List biomarkers = new ArrayList();
       Biomarker biomarker = new Biomarker();
