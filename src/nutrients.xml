@@ -829,8 +829,8 @@
 	</nutrient>	
 		
 	<nutrient name="Trans-Fats" unit="g" dv="0" usda="605" category="Lipids"/>			
-	<nutrient name="Cholesterol" unit="g" dv="300" usda="601" category="Lipids"/>			
-	<nutrient name="Phytosterol" unit="g" usda="636" category="Lipids"/>					
+	<nutrient name="Cholesterol" unit="mg" dv="300" usda="601" category="Lipids"/>			
+	<nutrient name="Phytosterol" unit="mg" usda="636" category="Lipids"/>					
 
 	<nutrient name="ALA" unit="g" usda="513" category="Amino Acids"/>
 	<nutrient name="ASP" unit="g" usda="514" category="Amino Acids"/>
