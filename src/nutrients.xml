@@ -28,11 +28,6 @@
 		<rda min_age="31"  max_age="50"  gender="female" amount="71" status="lactating"/>
 	</nutrient>
 	
-	
-	<nutrient name="Fat" unit="g" dv="65" usda="204" category="General">	
-	</nutrient>
-	
-	
 	<nutrient name="Carbs" unit="g" dv="300" usda="205" category="General">
 		<rda min_age="0"   max_age="0.5" gender="all"    amount="60"/>
 		<rda min_age="0.5" max_age="1"   gender="all"    amount="95"/>
@@ -83,6 +78,10 @@
 	
 	<nutrient name="Starch" unit="g" parent="Carbs" usda="209" category="General"/>
 	<nutrient name="Sugars" unit="g" parent="Carbs" usda="269" category="General"/>	
+	
+	<nutrient name="Fat" unit="g" dv="65" usda="204" category="General">	
+	</nutrient>
+
 	<nutrient name="Alcohol" unit="g" usda="221" category="General"/>	
 	<nutrient name="Caffeine" unit="mg" usda="262" category="General"/>    
 	
@@ -189,7 +188,30 @@
 		<rda min_age="31"  max_age="50"  gender="female" amount="1.300" 	tul="10.000" status="lactating"/>	
 	</nutrient>
 	
-  <nutrient name="Flouride" unit="mcg" usda="313" category="Minerals"/>    	
+  <nutrient name="Fluoride" unit="mcg" usda="313" category="Minerals">    	
+		<rda min_age="0"   max_age="0.5" gender="all"    amount="10"	tul="700"/>
+		<rda min_age="0.5" max_age="1"   gender="all"    amount="500"	tul="900"/>
+		<rda min_age="1"   max_age="3"   gender="all"    amount="700"		tul="1300"/>
+		<rda min_age="4"   max_age="8"   gender="all"    amount="1000"	tul="2200"/>
+		<rda min_age="9"   max_age="13"  gender="male"   amount="2000"		tul="10000"/>
+		<rda min_age="14"  max_age="18"  gender="male"   amount="3000"	tul="10000"/>
+		<rda min_age="19"  max_age="30"  gender="male"   amount="4000"		tul="10000"/>
+		<rda min_age="31"  max_age="50"  gender="male"   amount="4000"		tul="10000"/>
+		<rda min_age="51"  max_age="70"  gender="male"   amount="4000"		tul="10000"/>
+		<rda min_age="71"                              gender="male"   amount="4000"		tul="10000"/>
+		<rda min_age="9"   max_age="13"  gender="female" amount="2000"		tul="10000"/>
+		<rda min_age="14"  max_age="18"  gender="female" amount="3000"	tul="10000"/>
+		<rda min_age="19"  max_age="30"  gender="female" amount="3000"	tul="10000"/>
+		<rda min_age="31"  max_age="50"  gender="female" amount="3000"	tul="10000"/>
+		<rda min_age="51"  max_age="70"  gender="female" amount="3000"		tul="10000"/>
+		<rda min_age="71"                              gender="female" amount="3000"		tul="10000"/>
+		<rda min_age="14"  max_age="18"  gender="female" amount="3000" 	tul="10000" status="pregnant"/>		
+		<rda min_age="19"  max_age="30"  gender="female" amount="3000" 	tul="10000" status="pregnant"/>	
+		<rda min_age="31"  max_age="50"  gender="female" amount="3000" 	tul="10000" status="pregnant"/>
+		<rda min_age="14"  max_age="18"  gender="female" amount="3000" 	tul="10000" status="lactating"/>
+		<rda min_age="19"  max_age="30"  gender="female" amount="3000"  	tul="10000" status="lactating"/>
+		<rda min_age="31"  max_age="50"  gender="female" amount="3000"  	tul="10000" status="lactating"/>	
+	</nutrient>
 	
 	<nutrient name="Iron" unit="mg" dv="18" usda="303" category="Minerals">
 		<rda min_age="0"   max_age="0.5" gender="all"    amount="0.27"	tul="40"/>

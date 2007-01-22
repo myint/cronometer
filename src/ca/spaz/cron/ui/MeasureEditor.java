@@ -284,11 +284,25 @@ public class MeasureEditor extends JPanel {
             Measure w = getWeight(row);
             if (w != null) {
                 if (col == 0) {
-                    w.setAmount(((Double) value).doubleValue());
+                   double val = ((Double) value).doubleValue();
+                   if (val > 0) {
+                      w.setAmount(val);
+                   } else {
+                      JOptionPane.showMessageDialog(getWeightTable(), 
+                            "An amount cannot be zero!", 
+                            "Error!", JOptionPane.ERROR_MESSAGE);
+                   }
                 } else if (col == 1) {
                     w.setDescription((String) value);
                 } else if (col == 2) {
-                    w.setGrams(((Double) value).doubleValue());
+                   double val = ((Double) value).doubleValue();
+                   if (val > 0) {
+                      w.setGrams(val);
+                   } else {
+                      JOptionPane.showMessageDialog(getWeightTable(), 
+                            "A measure cannot be zero grams!", 
+                            "Error!", JOptionPane.ERROR_MESSAGE);
+                   }
                 }
             }
             setDirty(true);

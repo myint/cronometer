@@ -189,6 +189,9 @@ public class ServingEditor extends JPanel {
       if (addAction == null) {
          addAction = new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+               if (cur.getFoodProxy().isDeprecated()) {
+                  if (!deprecatedFoodWarning()) return;
+               }
                fireServingChosenEvent();
             }
          };
@@ -196,6 +199,14 @@ public class ServingEditor extends JPanel {
       return addAction;
    }
 
+   private boolean deprecatedFoodWarning() {
+      int choice = JOptionPane.showConfirmDialog(this, 
+            "Warning!\nThis food item is considered obsolete.\n" +
+            "Are you sure you want to add it?",
+            "Food Obsolete", JOptionPane.YES_NO_OPTION);
+      return (choice == JOptionPane.YES_OPTION);
+   }
+   
    /**
     * @return
     */

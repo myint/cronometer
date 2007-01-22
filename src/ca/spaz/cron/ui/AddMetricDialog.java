@@ -8,16 +8,11 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import ca.spaz.cron.CRONOMETER;
-import ca.spaz.cron.actions.DeleteFoodAction;
-import ca.spaz.cron.actions.ExportFoodAction;
-import ca.spaz.cron.datasource.FoodProxy;
-import ca.spaz.cron.foods.Food;
-import ca.spaz.cron.foods.Serving;
-import ca.spaz.util.ImageFactory;
-import ca.spaz.util.ToolBox;
-import ca.spaz.cron.user.BiomarkerDefinitions;
+import ca.spaz.cron.datasource.Datasources;
 import ca.spaz.cron.user.Biomarker;
 import ca.spaz.cron.user.Metric;
+import ca.spaz.util.ImageFactory;
+import ca.spaz.util.ToolBox;
 
 public class AddMetricDialog extends JDialog implements BiomarkerSelectionListener { //implements ServingEditorListener,  {
 
@@ -72,7 +67,7 @@ public class AddMetricDialog extends JDialog implements BiomarkerSelectionListen
    public JPanel getListPanel() {
       if (null == listPanel) {
          listPanel = new JPanel(); 
-         Object[] data = BiomarkerDefinitions.getEnabledBiomarkers().toArray();
+         Object[] data = Datasources.getBiomarkerDefinitions().getEnabledBiomarkers().toArray();
          final JList list = new JList(data); //data has type Object[]
          list.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 //         if (data.length > 0) {

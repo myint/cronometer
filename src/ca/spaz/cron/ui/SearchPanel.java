@@ -343,6 +343,7 @@ public class SearchPanel extends JPanel implements ItemListener {
             return "<html><table width=\"220\"><tr><td align=\"center\">" +
                f.getDescription() +
                "<br>["+f.getSource()+"]" +
+               (f.isDeprecated() ? "<br><font color=\"red\">This Food is Obsolete</font>" : "") +
                "</td></tr></table></html>";
             }
             if (c == 1) {

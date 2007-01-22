@@ -97,9 +97,9 @@ public class USDAImporter implements Task {
                return;
             }
             File tempFile = new File(tempDir, "usda_sr19_temp.zip");
-            if (!downloadFile(sourceURL, tempFile, DOWNLOAD_PROGRESS_PORTION)) {
-               return; // Indicate failure.
-            }
+         //   if (!downloadFile(sourceURL, tempFile, DOWNLOAD_PROGRESS_PORTION)) {
+         //      return; // Indicate failure.
+         //   }
             if (abort) return;
             ZipFile zif = new ZipFile(tempFile);
             ZipEntry[] relevantEntries = getZipEntries(zif);

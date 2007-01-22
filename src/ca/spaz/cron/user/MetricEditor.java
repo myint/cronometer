@@ -4,7 +4,6 @@
 package ca.spaz.cron.user;
 
 import java.awt.event.*;
-import java.util.Iterator;
 
 import javax.swing.*;
 

@@ -108,7 +108,9 @@ public class NutrientTableModel extends AbstractTableModel {
          NutrientInfo ni = getNutrientInfo(row);
          if (ni != null) {
             double val = ((Double) value).doubleValue();
-            food.setNutrientAmount(ni, val / multiplier);
+            if (multiplier != 0) {
+               food.setNutrientAmount(ni, val / multiplier);
+            }
             fireTableRowsUpdated(row, row);
          }
       }
@@ -119,7 +121,9 @@ public class NutrientTableModel extends AbstractTableModel {
             double val = ((Integer) value).intValue();
             double RDI = ni.getReferenceDailyIntake();
             val = (val/100.0) * RDI;
-            food.setNutrientAmount(ni, val / multiplier);
+            if (multiplier != 0) {
+               food.setNutrientAmount(ni, val / multiplier);
+            }
             fireTableRowsUpdated(row, row);
          }
       }

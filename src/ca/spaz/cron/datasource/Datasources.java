@@ -18,7 +18,7 @@ public class Datasources {
    private static CRDBFoods crdbDataSource;
    private static FoodHistory foodHist;
    private static BiometricsHistory bioHist;
-   
+   private static BiomarkerDefinitions bioDefs;
    
    public static void initialize(ProgressListener pl) {
       sources = new ArrayList();
@@ -65,6 +65,17 @@ public class Datasources {
          bioHist = new BiometricsHistory();         
       }
       return bioHist;
+   }
+
+   /**
+    * Temporarily accessible here for now,
+    * but will later become attached to User
+    */
+   public static BiomarkerDefinitions getBiomarkerDefinitions() {
+      if (bioDefs == null) {
+         bioDefs = new BiomarkerDefinitions();         
+      }
+      return bioDefs;
    }
    
    /**

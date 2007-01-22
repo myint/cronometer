@@ -3,13 +3,15 @@ package ca.spaz.cron.user;
 import java.io.*;
 import java.util.*;
 
-import javax.xml.parsers.*;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.w3c.dom.*;
 
 import ca.spaz.cron.CRONOMETER;
 import ca.spaz.gui.ErrorReporter;
-import ca.spaz.util.*;
+import ca.spaz.util.Logger;
+import ca.spaz.util.XMLNode;
 
 /**
  * The Biomarkers definitions for a user.
@@ -24,7 +26,7 @@ public class BiomarkerDefinitions {
 
    private static final String BIOMARKER_DEFINITIONS_FILE = "biomarkers.xml";
 
-   private static List biomarkers;
+   private List biomarkers;
    private boolean dirty = false;
 
    public BiomarkerDefinitions() {
@@ -45,7 +47,7 @@ public class BiomarkerDefinitions {
       return biomarkers;
    }
    
-   public static List getEnabledBiomarkers() {
+   public List getEnabledBiomarkers() {
       List enabledBiomarkers = new ArrayList();
       for (Iterator iter = biomarkers.iterator(); iter.hasNext();) {
          Biomarker biomarker = (Biomarker) iter.next();
@@ -56,7 +58,7 @@ public class BiomarkerDefinitions {
       return enabledBiomarkers;
    } 
    
-   public static Biomarker getBiomarker(String name) {
+   public Biomarker getBiomarker(String name) {
       for (Iterator iter = biomarkers.iterator(); iter.hasNext();) {
          Biomarker biomarker = (Biomarker) iter.next();
          if (biomarker.getName().equals(name)) {

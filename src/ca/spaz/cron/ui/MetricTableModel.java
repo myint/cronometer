@@ -1,14 +1,12 @@
 package ca.spaz.cron.ui;
 
-import java.awt.Color;
 import java.awt.Component;
-import java.text.DecimalFormat;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+import java.text.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import ca.spaz.cron.datasource.Datasources;
 import ca.spaz.cron.user.Metric;
-import ca.spaz.cron.user.BiomarkerDefinitions;
 import ca.spaz.gui.PrettyTable;
 import ca.spaz.gui.PrettyTableModel;
 
@@ -81,7 +79,7 @@ public class MetricTableModel extends PrettyTableModel {
             case TIME_COL:
                return timeFormat.format(metric.getDate());
             case UNITS_COL:
-               return (BiomarkerDefinitions.getBiomarker(metric.getName()).getUnits());
+               return (Datasources.getBiomarkerDefinitions().getBiomarker(metric.getName()).getUnits());
             case BIOMARKER_COL:
                return metric.getName();
             case VALUE_COL:

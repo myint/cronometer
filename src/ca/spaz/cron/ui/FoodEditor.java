@@ -138,7 +138,8 @@ public class FoodEditor extends JPanel {
    /**
     * Commit any changes made to the food
     */
-   public void doSave() {      
+   public void doSave() {
+      
       String name = getNameField().getText().trim();
       if (name.length() == 0) {
          JOptionPane.showMessageDialog(this, 
@@ -211,7 +212,9 @@ public class FoodEditor extends JPanel {
          saveButton.setToolTipText("Save the changes made to this food");
          saveButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-               doSave();
+               if (!getMacroNutrientsTable().isEditing()) {
+                  doSave();
+               }
             }          
          });
       }

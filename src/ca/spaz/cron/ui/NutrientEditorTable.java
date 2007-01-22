@@ -3,11 +3,13 @@
  */
 package ca.spaz.cron.ui;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.util.List;
 
 import javax.swing.*;
-import javax.swing.table.*;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 
 import ca.spaz.cron.foods.Food;
 import ca.spaz.gui.PrettyTable;
@@ -21,7 +23,7 @@ public class NutrientEditorTable extends JScrollPane {
       model = new NutrientTableModel(nutrients);
       setViewportView(getNutrientTable());
       getViewport().setBackground(Color.WHITE);
-      setPreferredSize(new Dimension(350, 185));     
+      setPreferredSize(new Dimension(350, 185));
    }
    
    public void setMultiplier(double val) {
@@ -62,6 +64,10 @@ public class NutrientEditorTable extends JScrollPane {
 
    public void setEditable(boolean val) {
       nutrientTable.setEnabled(val);      
+   }
+
+   public boolean isEditing() {
+      return nutrientTable.isEditing();
    }
 
 

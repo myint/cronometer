@@ -3,14 +3,14 @@
  */
 package ca.spaz.cron.ui;
 
-import java.awt.*;
+import java.awt.BorderLayout;
 import java.util.*;
-import java.util.List;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import ca.spaz.cron.datasource.Datasources;
 import ca.spaz.cron.user.*;
 
 /**
@@ -24,7 +24,7 @@ public class BiomarkerPanel extends JPanel {
    private MetricTable metricTable;
 
    public BiomarkerPanel() {
-      biomarkers = new BiomarkerDefinitions().getEnabledBiomarkers();
+      biomarkers = Datasources.getBiomarkerDefinitions().getEnabledBiomarkers();
       // Create an editor for each enabled biomarker
       editors = new ca.spaz.cron.user.MetricEditor[biomarkers.size()];
       for (int i = 0; i < editors.length; i++) {

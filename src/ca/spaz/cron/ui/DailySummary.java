@@ -71,12 +71,13 @@ public class DailySummary extends JPanel {
          notifyObservers(); 
       }
    }
-   
+
    public boolean isOkToAddServings() {
       Date now = new Date(System.currentTimeMillis());
       if (!ToolBox.isSameDay(curDate, now) && !asked) {        
          int choice = JOptionPane.showConfirmDialog(this, 
-               "You are adding a food to a date in the past or future.\nAre you sure you want to do this?",
+               "You are adding a food to a date in the past or future.\n" +
+               "Are you sure you want to do this?",
                "Add food?", JOptionPane.YES_NO_OPTION);
          if (choice != JOptionPane.YES_OPTION) {
             return false;
