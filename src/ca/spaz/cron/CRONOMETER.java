@@ -37,36 +37,6 @@ import com.apple.mrj.MRJQuitHandler;
 /**
  * The main app.  
  *
- *  
- *
- *   0.8.0 TODOs
- *     
- *      - Fix commit changes bug in editors
- *         - measures must be non-zero grams
- *         - scan for bad values and correct them
- *         
- *      - Antonio Zomora's notes 
- *      - TULs for water + flouride
- *      - flavinoids + CRDB, etc...?
- *      - show macro as gradients in calorie bar!
- *      - cut & copy should be added to pop-up menu on servings
- *      - add support libs & links to about panel
- *      - move biomarkers (and exercise?) to unified entry model
- *      - add tab for free-form notes (diary/log)
- *      - remember window sizes & positions
- *      - export daily food to CSV, text, etc...     
- *      - more interesting reports
- *      - more interesting ratios on front nutrition summary (zinc:copper, w3:w6)
- *      - auto-set measure to most frequent entry
- *      - MigLayout, DesignGridLayout
- *      - Refactor PrettyTable / sorting
- *      - WrappedPanel work
- *      
- *    0.9.0 TODOS:
- *      - more robust / scalable data backend
- *      - spaz.ca account synch
- *      - exercise log
- *      
  * @author davidson
  */
 public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, MRJAboutHandler, ClipboardOwner {
@@ -522,7 +492,7 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
 
    public static void fixButton(final JButton btn) {
       btn.setOpaque(false);
-      btn.setFocusable(false);
+      //btn.setFocusable(false);
       btn.setRolloverEnabled(true); 
       if (ToolBox.isMacOSX()) {
          btn.setBorderPainted(false);

@@ -39,7 +39,7 @@ public class NutrientInfo {
    private List DRIs;
    private NutrientInfo parent;
    private String usda;
-
+   private boolean sparse = false;
 
    private static List globalList = new ArrayList();
    private static HashMap nutrients = new HashMap();   
@@ -80,6 +80,13 @@ public class NutrientInfo {
       }
       return list;
    }
+   
+   /**
+    * Check if the data available for this nutrient is generally incomplete.
+    */
+   public boolean isSparseData() {
+      return sparse;
+   }
 
    public NutrientInfo(Element e) {
       this.category = e.getAttribute("category");
@@ -90,7 +97,10 @@ public class NutrientInfo {
       }
       if (e.hasAttribute("parent")) {
          this.parent = NutrientInfo.getByName(e.getAttribute("parent"));
-      } 
+      }
+      if (e.hasAttribute("sparse")) {
+         this.sparse = e.getAttribute("sparse").equalsIgnoreCase("true");
+      }
       
       // map all USDA nutrient IDs to NutrientInfo objects
       if (e.hasAttribute("usda")) {

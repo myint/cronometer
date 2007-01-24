@@ -69,7 +69,5 @@ public class NutrientEditorTable extends JScrollPane {
    public boolean isEditing() {
       return nutrientTable.isEditing();
    }
-
-
-
+ 
 }

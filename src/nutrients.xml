@@ -138,7 +138,7 @@
 		<rda min_age="31"  max_age="50"  gender="female" amount="1000" 	tul="2500" status="lactating"/>
 	</nutrient>
 	
-	<nutrient name="Chromium" unit="mcg" category="Minerals">
+	<nutrient name="Chromium" unit="mcg" category="Minerals" sparse="true">
 		<rda min_age="0"   max_age="0.5" gender="all"    amount="0.2"/>
 		<rda min_age="0.5" max_age="1"   gender="all"    amount="5.5"/>
 		<rda min_age="1"   max_age="3"   gender="all"    amount="11"/>
@@ -188,7 +188,7 @@
 		<rda min_age="31"  max_age="50"  gender="female" amount="1.300" 	tul="10.000" status="lactating"/>	
 	</nutrient>
 	
-  <nutrient name="Fluoride" unit="mcg" usda="313" category="Minerals">    	
+  <nutrient name="Fluoride" unit="mcg" usda="313" category="Minerals" sparse="true">    	
 		<rda min_age="0"   max_age="0.5" gender="all"    amount="10"	tul="700"/>
 		<rda min_age="0.5" max_age="1"   gender="all"    amount="500"	tul="900"/>
 		<rda min_age="1"   max_age="3"   gender="all"    amount="700"		tul="1300"/>
@@ -724,7 +724,7 @@
 		<rda min_age="31"  max_age="50"  gender="female" amount="90"  status="lactating"/>
 	</nutrient>
 	
-	<nutrient name="Biotin" unit="mcg" dv="300" category="Vitamins">	
+	<nutrient name="Biotin" unit="mcg" dv="300" category="Vitamins" sparse="true"> 
 		<rda min_age="0"   max_age="0.5" gender="all"    amount="5"/>
 		<rda min_age="0.5" max_age="1"   gender="all"    amount="6"/>
 		<rda min_age="1"   max_age="3"   gender="all"    amount="8"/>
@@ -749,7 +749,7 @@
 		<rda min_age="31"  max_age="50"  gender="female" amount="35"  status="lactating"/>		
 	</nutrient>	
 	
-	<nutrient name="Choline" unit="mg" usda="421" category="Vitamins">	
+	<nutrient name="Choline" unit="mg" usda="421" category="Vitamins" sparse="true">	
 		<rda min_age="0"   max_age="0.5" gender="all"    amount="125"/>
 		<rda min_age="0.5" max_age="1"   gender="all"    amount="150"/>
 		<rda min_age="1"   max_age="3"   gender="all"    amount="200"		tul="1000"/>

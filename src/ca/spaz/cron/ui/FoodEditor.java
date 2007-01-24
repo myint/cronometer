@@ -210,13 +210,12 @@ public class FoodEditor extends JPanel {
       if (null == saveButton) {
          saveButton = new JButton("Save");
          saveButton.setToolTipText("Save the changes made to this food");
+         saveButton.setRequestFocusEnabled(true);
          saveButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-               if (!getMacroNutrientsTable().isEditing()) {
-                  doSave();
-               }
-            }          
-         });
+                doSave();
+            }
+         });        
       }
       return saveButton;
    }

@@ -117,23 +117,24 @@ public class TargetEditorTableModel extends PrettyTableModel {
          user.setCustomTargets(true);
       } else if (col == TRACK_COLUMN && value != null) {
          boolean val = ((Boolean)value).booleanValue();
-         if (val && ni.getUSDA() == null) {
-            val = promptForNonUSDA(ni);
+         if (val && (ni.getUSDA() == null || ni.isSparseData())) {
+            val = promptForSparseData(ni);
          }
          user.setTracking(ni, val);
          fireTableRowsUpdated(row,row);    
       }       
    }
-
+ 
    /**
     * @return true if edit should be aborted because of warning
     */
-   private boolean promptForNonUSDA(NutrientInfo ni) {
-     int rc = JOptionPane.showConfirmDialog(CRONOMETER.mainFrame, 
-           ni.getName() + " does not have any data in the USDA food database.\n" +
+   private boolean promptForSparseData(NutrientInfo ni) {
+      String data = (ni.getUSDA() == null) ? " does not have any data" : " has limited data available" ;  
+      int rc = JOptionPane.showConfirmDialog(CRONOMETER.mainFrame, 
+           ni.getName() + data + " in the USDA food database.\n" +           
            "Are you sure you want to track it?",
            "Track " + ni.getName()+"?",
-           JOptionPane.YES_NO_OPTION);      
+           JOptionPane.YES_NO_OPTION);  
       return rc == JOptionPane.YES_OPTION;
    }
 

@@ -115,12 +115,21 @@ public class ServingTable extends JPanel {
           ImageIcon icon = new ImageIcon(ImageFactory.getInstance().loadImage("/img/add.gif"));
           addBtn = new JButton("Add Serving", icon);
           addBtn.setToolTipText("Add a new serving");
+         
           addBtn.addActionListener(new ActionListener() {
               public void actionPerformed(ActionEvent e) {
                  doAddServing();
               }
           });
           CRONOMETER.fixButton(addBtn);
+          
+          addBtn.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+               if (e.getKeyChar() == KeyEvent.VK_ENTER) {
+                  doAddServing();
+               }
+            }
+         }); 
       }
       return addBtn;
   }

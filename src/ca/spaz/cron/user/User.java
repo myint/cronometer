@@ -233,7 +233,7 @@ public class User {
    }
 
    public boolean isTracking(NutrientInfo ni) {
-      return settings.getBoolean(CU_TRACK+ni.getName(), ni.getUSDA() != null);
+      return settings.getBoolean(CU_TRACK+ni.getName(), ni.getUSDA() != null && !ni.isSparseData());
    }
    
    public void setTracking(NutrientInfo ni, boolean b) {
