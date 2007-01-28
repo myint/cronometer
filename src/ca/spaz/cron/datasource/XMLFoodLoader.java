@@ -80,7 +80,7 @@ public class XMLFoodLoader {
              f.setNutrientAmount(ni, 
                    Double.parseDouble(n.getAttribute("amount")));          
           }
-       }      
+       }
        
        nl = e.getElementsByTagName("comments");
        for (int i=0; i<nl.getLength(); i++) {
