@@ -29,8 +29,7 @@ public class TargetEditorTable extends JScrollPane {
 
    private JTable getTable() {
       if (null == nutrientTable) {
-         nutrientTable = new PrettyTable();
-         nutrientTable.setModel(model);
+         nutrientTable = new PrettyTable(model); 
          nutrientTable.getSelectionModel().setSelectionMode(
                ListSelectionModel.SINGLE_SELECTION); 
          nutrientTable.getTableHeader().setReorderingAllowed(false);

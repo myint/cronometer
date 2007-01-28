@@ -36,24 +36,11 @@ public class NutrientEditorTable extends JScrollPane {
    
    private JTable getNutrientTable() {
       if (null == nutrientTable) {
-         nutrientTable = new PrettyTable();
-         nutrientTable.setModel(model);
+         nutrientTable = new PrettyTable(model); 
          nutrientTable.getSelectionModel().setSelectionMode(
                ListSelectionModel.SINGLE_SELECTION);
          nutrientTable.setAutoResizeMode(JTable.AUTO_RESIZE_SUBSEQUENT_COLUMNS);
-         nutrientTable.getTableHeader().setReorderingAllowed(false);
-        /* nutrientTable.getSelectionModel().addListSelectionListener(
-               new ListSelectionListener() {
-                  public void valueChanged(ListSelectionEvent e) {
-                     if (e.getValueIsAdjusting())
-                        return;
-                     ListSelectionModel lsm = (ListSelectionModel) e
-                           .getSource();
-                     if (!lsm.isSelectionEmpty()) {
-                        int selectedRow = lsm.getMinSelectionIndex();
-                     }
-                  }
-               });*/
+         nutrientTable.getTableHeader().setReorderingAllowed(false);        
          // right align last column
          TableColumnModel tcm = nutrientTable.getColumnModel();
          TableColumn column = tcm.getColumn(0);

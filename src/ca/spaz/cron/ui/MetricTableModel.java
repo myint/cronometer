@@ -124,7 +124,7 @@ public class MetricTableModel extends PrettyTableModel {
       fireTableDataChanged();      
    }
 
-   public void sort(PrettyTable table) {
+   public void sort() {
       // no sorting in this table for now.
    }
    

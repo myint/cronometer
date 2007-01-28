@@ -228,12 +228,11 @@ public class SearchDialog extends JDialog implements ServingEditorListener, Food
       ExportFoodAction.doExportFood(serving.getFoodProxy(), this);
    }
    
-  
-
    private JButton getAddButton() {
       if (null == addButton) {
          addButton = new JButton(new ImageIcon(ImageFactory.getInstance().loadImage("/img/add.gif")));
          addButton.setToolTipText("Create New Food");
+         addButton.requestFocusInWindow();
          CRONOMETER.fixButton(addButton);    
          addButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) { 

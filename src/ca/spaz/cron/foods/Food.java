@@ -107,7 +107,16 @@ public class Food {
       setDirty(true);
    }
 
-   
+   /**
+    * See if the food has a value set for the given nutrient
+    * 
+    * @param ni the <code>NutrientInfo</code> to look up.
+    * @return true if a value exists in this food
+    */
+   public boolean hasDataFor(NutrientInfo ni) {
+        if (ni == null) return false;
+        return getNutrients().dataExists(ni.getIndex());         
+    }
 
    /**
     * Get the amount of a nutrient provided by this Food.

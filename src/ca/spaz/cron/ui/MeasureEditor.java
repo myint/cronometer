@@ -17,6 +17,7 @@ import ca.spaz.cron.CRONOMETER;
 import ca.spaz.cron.foods.Food;
 import ca.spaz.cron.foods.Measure;
 import ca.spaz.gui.PrettyTable;
+import ca.spaz.gui.PrettyTableModel;
 import ca.spaz.util.ImageFactory;
 
 /**
@@ -192,8 +193,7 @@ public class MeasureEditor extends JPanel {
         //      model = new WeightTableModel(curWeights);
         if (null == weightTable) {
 
-            weightTable = new PrettyTable();
-            weightTable.setModel(getWeightTableModel());
+            weightTable = new PrettyTable(getWeightTableModel()); 
             weightTable.getSelectionModel().setSelectionMode(
                     ListSelectionModel.SINGLE_SELECTION);
             weightTable
@@ -226,7 +226,7 @@ public class MeasureEditor extends JPanel {
         return model;
     }
 
-    public class WeightTableModel extends AbstractTableModel {
+    public class WeightTableModel extends PrettyTableModel {
         List weights = new ArrayList();
         
         private String[] columnNames = { "Amount", "Measure", "Grams" };
@@ -308,6 +308,12 @@ public class MeasureEditor extends JPanel {
             setDirty(true);
             fireTableCellUpdated(row, col);
         }
+
+      public String getToolTipText(int r, int c) {          
+         return null;
+      }
+
+      public void sort() { }
 
     }
 }

@@ -156,14 +156,13 @@ public class ServingTable extends JPanel {
 
    protected JTable getTable() {
       if (null == table) {
-         table = new PrettyTable()  {
+         table = new PrettyTable(model)  {
             public String getToolTipText(MouseEvent e) {
                return model.getToolTipText(
                      rowAtPoint(e.getPoint()),
                      columnAtPoint(e.getPoint()));
             }
-         };
-         table.setModel(model);
+         };         
          table.setColumnSelectionAllowed(false);
          table.getSelectionModel().setSelectionMode(
                ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);

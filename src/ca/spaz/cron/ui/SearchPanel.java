@@ -113,15 +113,11 @@ public class SearchPanel extends JPanel implements ItemListener {
    }
 
    private JComponent makeResultPanel() {
-      resultTable = new PrettyTable();
-      
-      resultTable.setModel(model);
+      resultTable = new PrettyTable(model);       
       resultTable.getSelectionModel().setSelectionMode(
             ListSelectionModel.SINGLE_SELECTION);
       resultTable.setAutoResizeMode(JTable.AUTO_RESIZE_SUBSEQUENT_COLUMNS);
-      resultTable.getTableHeader().setReorderingAllowed(false);
-      resultTable.setAllowSorting(true);
-      resultTable.setAscending(true);
+      resultTable.getTableHeader().setReorderingAllowed(false);    
       
       PercentageRenderer pr = new PercentageRenderer();
       pr.setBackground(resultTable.getBackground());
@@ -266,22 +262,18 @@ public class SearchPanel extends JPanel implements ItemListener {
             minScore = Math.min(minScore, hit.getScore()); 
             result.add(hit);
          }
-         sortResults();
+         model.sort();
       }
       model.fireTableDataChanged();      
    }   
  
-   /**
-    * Sorts the query results by relevance. Currently sorted by number of times
-    * the food has been consumed by the user so that foods they commonly eat
-    * appear first.
-    */
-   private void sortResults() {
-      model.sort(resultTable);
-   }
-
    public class ResultsTableModel extends PrettyTableModel {
  
+      public ResultsTableModel() {
+         setAllowSorting(true);
+         setAscending(true);
+      }
+      
       private String[] columnNames = { "Description", "%" };
 
       public String getColumnName(int col) {
@@ -350,10 +342,10 @@ public class SearchPanel extends JPanel implements ItemListener {
          }
          return "";
       }
-
-      public void sort(PrettyTable table) {
-         final int dir = table.isAscending() ? 1 : -1;
-         if (table.getSortOnColumn() == 0) {
+           
+      public void sort() {
+         final int dir = isAscending() ? 1 : -1;
+         if (getSortOnColumn() == 0) {
             Collections.sort(result, new Comparator() {
                public int compare(Object a, Object b) {
                   return dir*((SearchHit)a).compareByName((SearchHit)b);
@@ -361,7 +353,7 @@ public class SearchPanel extends JPanel implements ItemListener {
             });
          } else {
             // default column sort by rank
-            if (table.isAscending()) {
+            if (isAscending()) {
                Collections.sort(result);
             } else {
                Collections.sort(result, Collections.reverseOrder());

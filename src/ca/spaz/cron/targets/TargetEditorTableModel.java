@@ -153,7 +153,7 @@ public class TargetEditorTableModel extends PrettyTableModel {
       return null;
    }
 
-   public void sort(PrettyTable table) {
+   public void sort() {
    }
 
 }

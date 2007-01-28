@@ -52,8 +52,7 @@ public class NutrientInfo {
       } catch (Exception e) {            
          ErrorReporter.showError("Error Loading nutrients.xml", e, CRONOMETER.getInstance());
       }
-   }
-   
+   }   
 
    private static void load(InputStream in) throws ParserConfigurationException, SAXException, IOException {
       DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();

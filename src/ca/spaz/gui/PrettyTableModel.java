@@ -8,8 +8,11 @@ import java.awt.Component;
 import javax.swing.table.AbstractTableModel;
 
 public abstract class PrettyTableModel extends AbstractTableModel {
-
-   public abstract void sort(PrettyTable table);
+   private int sortOnColumn = -1;
+   private boolean ascending = false;
+   private boolean allowSorting = false;
+   
+   public abstract void sort();
 
    public abstract String getToolTipText(int r, int c);
  
@@ -23,6 +26,40 @@ public abstract class PrettyTableModel extends AbstractTableModel {
     */
    public Component customRender(Component c, PrettyTable table, int row, int col) {
       return c;
+   }
+   
+   public void setAllowSorting(boolean val) {
+      allowSorting = val;
+   }
+   
+   public boolean getAllowSorting() {
+      return allowSorting;
+   }
+   
+   public void sort(int col) {
+      if (getSortOnColumn() == col) {
+         setAscending(!isAscending());
+      } else {
+         setAscending(isAscending());
+      }
+      setSortOnColumn(col);
+      sort();      
+   }  
+   
+   public boolean isAscending() {
+      return ascending;
+   }
+
+   public void setAscending(boolean ascending) {
+      this.ascending = ascending;
+   }
+
+   public int getSortOnColumn() {
+      return sortOnColumn;
+   }
+
+   public void setSortOnColumn(int sortOnColumn) {
+      this.sortOnColumn = sortOnColumn;
    }
    
 }

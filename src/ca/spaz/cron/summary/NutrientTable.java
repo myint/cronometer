@@ -95,7 +95,7 @@ public class NutrientTable extends PrettyTable implements UserChangeListener {
       return model;
    }
    
-   public class NutrientTableModel extends AbstractTableModel {
+   public class NutrientTableModel extends PrettyTableModel {
       private DecimalFormat df = new DecimalFormat("######0.0");
       private DecimalFormat nf = new DecimalFormat("######0%");
       private String[] columnNames = { "Nutrient", "Amount", "Unit" , "% Target"};
@@ -152,6 +152,12 @@ public class NutrientTable extends PrettyTable implements UserChangeListener {
       public boolean isCellEditable(int row, int col) {
          return false;
       }
+
+      public String getToolTipText(int r, int c) {          
+         return null;
+      }
+
+      public void sort() {}
 
    }
 

@@ -3,14 +3,17 @@
  */
 package ca.spaz.cron.ui;
 
+import java.awt.Color;
+import java.awt.Component;
 import java.util.List;
 
-import javax.swing.table.AbstractTableModel;
-
-import ca.spaz.cron.foods.*;
+import ca.spaz.cron.foods.Food;
+import ca.spaz.cron.foods.NutrientInfo;
 import ca.spaz.cron.user.User;
+import ca.spaz.gui.PrettyTable;
+import ca.spaz.gui.PrettyTableModel;
 
-public class NutrientTableModel extends AbstractTableModel {
+public class NutrientTableModel extends PrettyTableModel {
    
    private static final int NAME_COLUMN = 0;
    private static final int AMOUNT_COLUMN = 1;
@@ -129,4 +132,23 @@ public class NutrientTableModel extends AbstractTableModel {
       }
    }
 
+   public String getToolTipText(int r, int c) { 
+      return null;
+   }
+
+   public void sort() { 
+      // no sorting for this table
+   }
+
+   public Component customRender(Component c, PrettyTable table, int row, int col) {
+      NutrientInfo ni = getNutrientInfo(row);
+      if (ni != null) {
+         c.setForeground(Color.BLACK);
+         if (!food.hasDataFor(ni)) {
+            c.setForeground(Color.GRAY);
+         }
+      }
+      return c;
+   }
+   
 }
