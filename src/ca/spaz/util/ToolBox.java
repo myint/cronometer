@@ -207,13 +207,16 @@ public class ToolBox {
    
    /**
     * Centers a given frame on the screen.
+    * @return the location of the top-left of window
     */
-   public static void centerFrame(Window frame) {
+   public static Point centerFrame(Window frame) {
       Toolkit defaultToolkit = Toolkit.getDefaultToolkit();
       Dimension scrSize = defaultToolkit.getScreenSize();
       int width = frame.getWidth();
       int height = frame.getHeight();
-      frame.setLocation(scrSize.width / 2 - width / 2, scrSize.height / 2 - height / 2);
+      Point p = new Point(scrSize.width / 2 - width / 2, scrSize.height / 2 - height / 2);
+      frame.setLocation(p);
+      return p;
    }
    
    /**

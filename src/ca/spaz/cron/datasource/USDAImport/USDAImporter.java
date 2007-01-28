@@ -96,7 +96,8 @@ public class USDAImporter implements Task {
                // Indicate that it aborted, somehow.
                return;
             }
-            File tempFile = new File(tempDir, "usda_sr19_temp.zip");
+            //File tempFile = new File(tempDir, "sr19.zip");
+            File tempFile = new File("sr19.zip");
          //   if (!downloadFile(sourceURL, tempFile, DOWNLOAD_PROGRESS_PORTION)) {
          //      return; // Indicate failure.
          //   }

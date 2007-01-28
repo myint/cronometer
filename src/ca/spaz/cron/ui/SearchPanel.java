@@ -51,6 +51,7 @@ public class SearchPanel extends JPanel implements ItemListener {
       add(makeQueryPanel(), BorderLayout.NORTH);
       add(makeResultPanel(), BorderLayout.CENTER);      
       queryField.requestFocusInWindow();
+      doDBSearch();
    }
    
    private JPanel makeQueryPanel() {

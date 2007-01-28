@@ -92,8 +92,8 @@ public class FoodEditor extends JPanel {
       this.setLayout(new BorderLayout(4, 4));
       this.setBorder(BorderFactory.createEmptyBorder(9, 9, 9, 9));
       this.add(getGeneralPanel(), BorderLayout.NORTH);
-      this.add(getCenterPanel(), BorderLayout.CENTER);
-      this.add(getNutrientPanel(), BorderLayout.EAST);
+      this.add(getCenterPanel(), BorderLayout.WEST);
+      this.add(getNutrientPanel(), BorderLayout.CENTER);
    }
 
    

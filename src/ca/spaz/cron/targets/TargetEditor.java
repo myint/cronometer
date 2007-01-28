@@ -173,7 +173,7 @@ public class TargetEditor extends WrappedPanel {
             + "These values are based on the DRIs published by USDA.*<br><br>"
             + "You may also edit the targets directly in the table to the right "
             + "choosing customized values for your tracking. <br><br>"
-            + "<small>* Not all nutrients are specified by the DRIs.<br></small>"
+            + "<small>* DRIs are not specified for all nutrients.<br></small>"
             + "</div>";
    }
 

@@ -52,6 +52,8 @@ public class TEXTSummaryFormat extends SummaryFormat {
          sb.append(" (");
          sb.append(nf.format(tcp));
          sb.append(")");
+      } else {
+         return "";
       }
       sb.append('\n');
       sb.append(StringUtil.charRun('=', 42));

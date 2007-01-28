@@ -11,8 +11,13 @@
  *******************************************************************************/
 package ca.spaz.cron.user;
 
-import java.io.*;
+import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.*;
+import java.util.List;
+
+import javax.swing.JFrame;
 
 import ca.spaz.cron.CRONOMETER;
 import ca.spaz.cron.datasource.Datasources;
@@ -60,6 +65,9 @@ public class User {
    public static final String PREGNANT_FEMALE = "Pregnant";
    public static final String LACTATING_FEMALE = "Lactating";
    
+   private static final String MAIN_WINDOW = CU_BASE + "MAIN_WINDOW";
+   private static final String DIET_DIVIDER =  CU_BASE + "DIET_DIVIDER";
+   
    public static String subdirectory = "cronometer";
    
    private static User instance = null;
@@ -92,6 +100,13 @@ public class User {
       subdirectory = aSubdirectory;
    }
  
+   /**
+    * Gets the subdirectory being used for user data.
+    */
+   public static String getSubdirectory() {
+      return subdirectory;
+   } 
+   
    public static File getUserDirectory() {
       File appDir = ToolBox.getUserAppDirectory(subdirectory);
       if (!appDir.exists()) {
@@ -386,5 +401,38 @@ public class User {
    
    public void setFatPercentage(int val) { 
        settings.set(CU_FAT_PERC, val); 
+   } 
+   
+   public void setDietDivider(int val) { 
+      settings.set(DIET_DIVIDER, val); 
+   }
+   public int getDietDivider(int val) { 
+      return settings.getInt(DIET_DIVIDER, val); 
+   }
+   
+   public void saveWindow(JFrame frame) {
+      settings.set(MAIN_WINDOW +".width", frame.getWidth());
+      settings.set(MAIN_WINDOW +".height", frame.getHeight());
+      settings.set(MAIN_WINDOW +".x", frame.getLocationOnScreen().x);
+      settings.set(MAIN_WINDOW +".y", frame.getLocationOnScreen().y);       
+   }
+   
+   public void restoreWindow(JFrame frame, Point p) {      
+      Toolkit defaultToolkit = Toolkit.getDefaultToolkit();
+      Dimension screen = defaultToolkit.getScreenSize();
+      int x = settings.getInt(MAIN_WINDOW +".x", p.x);
+      int y = settings.getInt(MAIN_WINDOW +".y", p.y);
+      int w = settings.getInt(MAIN_WINDOW +".width", frame.getWidth());
+      int h = settings.getInt(MAIN_WINDOW +".height", frame.getHeight());
+      if (x < 0 || x+w*0.10 > screen.width) {
+         x = p.x;
+         //w = frame.getWidth();
+      }
+      if (y < 0 || y+h*0.10 > screen.height) {
+         y = p.y;
+         //h = frame.getHeight();
+      }
+      frame.setLocation(x, y);
+      frame.setSize(w, h);       
    }
 }

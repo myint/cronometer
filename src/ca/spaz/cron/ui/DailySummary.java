@@ -50,7 +50,6 @@ public class DailySummary extends JPanel {
    private JButton copyPrevDayButton;
    private JButton todayButton;
    private JButton prefsButton;
-   private JButton dbButton;
    
    private TranslucentToolBar toolBar;
    private NutritionSummaryPanel totals;
@@ -115,7 +114,7 @@ public class DailySummary extends JPanel {
       return dailyTracker;
    }
 
-   private JSplitPane getDietPanel() {
+   public JSplitPane getDietPanel() {
       if (null == dietPanel) {
          dietPanel = new JSplitPane(JSplitPane.VERTICAL_SPLIT, 
                getServingTable(), getNutritionSummaryPanel());
@@ -128,6 +127,19 @@ public class DailySummary extends JPanel {
    public ServingTable getServingTable() {
       if (null == servingTable) {
          servingTable = new ServingTable();
+         
+         servingTable.addServingSelectionListener(new ServingSelectionListener() {
+            public void servingSelected(Serving s) { }
+            public void servingDoubleClicked(Serving s) {
+               FoodEditor.editFood(s);
+            }
+            public void servingChosen(Serving s) {
+               if (isOkToAddServings()) {
+                  addServing(s);           
+               }
+            }
+         });
+         
          servingTable.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent e) {
                List servings = servingTable.getSelectedServings();
@@ -142,12 +154,12 @@ public class DailySummary extends JPanel {
    }
 
 
-   
    private JButton getPrefsButton() {
       if (null == prefsButton) {
          ImageIcon icon = new ImageIcon(ImageFactory.getInstance().loadImage("/img/task.gif"));
          prefsButton = new JButton(icon);         
          CRONOMETER.fixButton(prefsButton);    
+         prefsButton.setFocusable(false); 
          prefsButton.setToolTipText("Edit Nutritional Targets");
          prefsButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -158,7 +170,6 @@ public class DailySummary extends JPanel {
       return prefsButton;
    }
      
-
    private JButton getNextButton() {
       if (null == nextButton) {
          nextButton = new JButton(new ImageIcon(ImageFactory.getInstance().loadImage("/img/forth.gif")));
@@ -167,13 +178,12 @@ public class DailySummary extends JPanel {
                setDate(new Date(curDate.getTime() + ONE_DAY));
             }  
          }); 
-         nextButton.setFocusable(false); 
          CRONOMETER.fixButton(nextButton); 
+         nextButton.setFocusable(false); 
          nextButton.setToolTipText("Next Day");          
       }
       return nextButton;
    }
- 
 
    private JButton getPreviousButton() {
       if (null == prevButton) {
@@ -204,21 +214,6 @@ public class DailySummary extends JPanel {
       }
       return copyPrevDayButton;
    }   
-   
-//   private JButton getDatabaseButton() {
-//      if (null == dbButton) {
-//         dbButton = new JButton(new ImageIcon(ImageFactory.getInstance().loadImage("/img/apple-16x16.png")));
-//         dbButton.addActionListener(new ActionListener() {
-//            public void actionPerformed(ActionEvent e) {
-//               CRONOMETER.getInstance().doBrowseFoodDatabase();
-//            }
-//         });
-//         CRONOMETER.fixButton(dbButton);
-//         dbButton.setToolTipText("Browse Food Database");
-//         dbButton.setFocusable(false);
-//      }
-//      return dbButton;
-//   }   
    
    private JButton getTodayButton() {
       if (null == todayButton) {
@@ -266,6 +261,7 @@ public class DailySummary extends JPanel {
             }
          });
          CRONOMETER.fixButton(titleLabel); 
+         titleLabel.setFocusable(false); 
       }
       return titleLabel;
    }

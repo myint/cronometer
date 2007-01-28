@@ -173,13 +173,13 @@ public class Food {
       List nutrients = NutrientInfo.getGlobalList();
       iter = nutrients.iterator();
       while (iter.hasNext()) {
-         NutrientInfo ni = (NutrientInfo)iter.next();
-         double val = getNutrientAmount(ni);
-         if (val > 0) {
+         NutrientInfo ni = (NutrientInfo)iter.next();         
+         if (hasDataFor(ni)) {
+            double val = getNutrientAmount(ni);
             XMLNode niNode = new XMLNode("nutrient");
             niNode.addAttribute("name", ni.getName());
             niNode.addAttribute("amount", val);
-            node.addChild(niNode);
+            node.addChild(niNode);         
          }
       }
       return node;

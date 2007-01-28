@@ -20,10 +20,10 @@ import ca.spaz.cron.actions.CreateRecipeAction;
 import ca.spaz.cron.datasource.Datasources;
 import ca.spaz.cron.datasource.XMLFoodLoader;
 import ca.spaz.cron.foods.Food;
-import ca.spaz.cron.foods.Serving;
 import ca.spaz.cron.targets.DRITargetModel;
 import ca.spaz.cron.targets.TargetEditor;
-import ca.spaz.cron.ui.*;
+import ca.spaz.cron.ui.DailySummary;
+import ca.spaz.cron.ui.FoodEditor;
 import ca.spaz.cron.user.User;
 import ca.spaz.cron.user.UserSettingsDialog;
 import ca.spaz.gui.*;
@@ -83,6 +83,9 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
          
          setIconImage(getWindowIcon());
          setTitle(getFullTitle());
+         if (!User.getSubdirectory().equalsIgnoreCase("cronometer")) {
+            setTitle(getFullTitle() + " ["+User.getSubdirectory()+"]");
+         }
          getContentPane().add(getMainPanel());
          setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
          addWindowListener(new WindowAdapter() {
@@ -91,8 +94,12 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
             }
          });
          pack();
-         ToolBox.centerFrame(this);
-         setVisible(true);        
+         Point p = ToolBox.centerFrame(this);
+         if (!User.getUser().firstRun()) {
+            User.getUser().restoreWindow(CRONOMETER.getInstance(), p);
+            getDailySummary().getDietPanel().setDividerLocation(User.getUser().getDietDivider(300));
+         }
+         setVisible(true);
          mainFrame = this;
          if (User.getUser().firstRun()) {            
             doShowReadMe();
@@ -121,7 +128,7 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
          JOptionPane.showMessageDialog(getMainPanel(), 
                "Previous versions of CRON-o-Meter were incorrectly \n" +
                "suggesting male nutritional targets for women.\n" +
-               "It is highly recommened that you reset your nutritional\n" +
+               "It is highly recommended that you reset your nutritional\n" +
                "targets to values appropriate for women.");
          UserSettingsDialog.showDialog(User.getUser(), getMainPanel());
          TargetEditor.setDefaultTargets(new DRITargetModel(), User.getUser());
@@ -186,13 +193,13 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
          JMenu mainMenu = new JMenu("Edit");
          mainMenu.setMnemonic(KeyEvent.VK_E);
          TransferActionListener actionListener = new TransferActionListener();
-         int mask = ToolBox.isMacOSX() ? ActionEvent.META_MASK : ActionEvent.CTRL_MASK;
+         int mask = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
          JMenuItem menuItem = new JMenuItem("Cut");
          menuItem.setActionCommand((String)TransferHandler.getCutAction().
                   getValue(Action.NAME));
          menuItem.addActionListener(actionListener);
          menuItem.setAccelerator(
-           KeyStroke.getKeyStroke(KeyEvent.VK_X, mask));
+           KeyStroke.getKeyStroke(KeyEvent.VK_X, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
          menuItem.setMnemonic(KeyEvent.VK_T);
          mainMenu.add(menuItem);
          menuItem = new JMenuItem("Copy");
@@ -223,39 +230,16 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
       if (null == mainPanel) {
          mainPanel = new JPanel(new BorderLayout(4, 4));
          mainPanel.setBorder(BorderFactory.createEmptyBorder(4, 4, 4, 4));
-      /*   JSplitPane jsplit = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,
-               getDBPanel(), getDailySummary());
-         jsplit.setBorder(BorderFactory.createEmptyBorder(4, 4, 4, 4));*/
+
          mainPanel.add(getDailySummary(), BorderLayout.CENTER);       
       }
       return mainPanel;
    }
-
-//   public DBPanel getDBPanel() {
-//      if (null == dbp) {
-//         dbp = new DBPanel();
-//      }
-//      return dbp;
-//   }
+ 
 
    public DailySummary getDailySummary() {
       if (null == ds) {
-         ds = new DailySummary();
-         ds.getServingTable().addServingSelectionListener(new ServingSelectionListener() {
-            public void servingSelected(Serving s) {
-//               getDBPanel().getSearchPanel().deselect();
-//               getDBPanel().getServingEditor().setServing(new Serving(s));
-//               getDBPanel().getToolBar().setSelectedFood(s.getFoodProxy());
-            }
-            public void servingDoubleClicked(Serving s) {
-               FoodEditor.editFood(s);
-            }
-            public void servingChosen(Serving s) {
-               if (getDailySummary().isOkToAddServings()) {
-                  getDailySummary().addServing(s);           
-               }
-            }
-         });
+         ds = new DailySummary();         
       }
       return ds;
    }
@@ -302,6 +286,9 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
    
    public void doQuit() {
       try {
+         // remeber window size & positon
+         User.getUser().saveWindow(this);
+         User.getUser().setDietDivider(getDailySummary().getDietPanel().getDividerLocation());
          Datasources.closeAll();
          User.getUser().saveUserProperties();
       } catch (IOException e1) {
@@ -485,12 +472,16 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
     */
    public void refreshDisplays() {
       repaint(); 
+      // TODO: replace this with a direct user servings listener model
       CRONOMETER.getInstance().getDailySummary().notifyObservers();
    }
 
+   /**
+    * Get the toolbar buttons to look and act consistent on both Windows and Mac
+    * @param btn the button to modify
+    */
    public static void fixButton(final JButton btn) {
-      btn.setOpaque(false);
-      //btn.setFocusable(false);
+      btn.setOpaque(false); 
       btn.setRolloverEnabled(true); 
       if (ToolBox.isMacOSX()) {
          btn.setBorderPainted(false);
