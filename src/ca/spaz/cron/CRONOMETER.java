@@ -484,11 +484,9 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
     * reflect the changes made.
     */
    public void refreshDisplays() {
-      repaint();
-      //getDBPanel().getSearchPanel().doDBSearch();  
+      repaint(); 
       CRONOMETER.getInstance().getDailySummary().notifyObservers();
    }
-
 
    public static void fixButton(final JButton btn) {
       btn.setOpaque(false);

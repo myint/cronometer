@@ -120,18 +120,15 @@ public class SearchPanel extends JPanel implements ItemListener {
             ListSelectionModel.SINGLE_SELECTION);
       resultTable.setAutoResizeMode(JTable.AUTO_RESIZE_SUBSEQUENT_COLUMNS);
       resultTable.getTableHeader().setReorderingAllowed(false);
+      resultTable.setAllowSorting(true);
       resultTable.setAscending(true);
       
       PercentageRenderer pr = new PercentageRenderer();
       pr.setBackground(resultTable.getBackground());
       TableColumn tc = resultTable.getColumnModel().getColumn(1);
       tc.setCellRenderer(pr);
-      tc.setMaxWidth(30);
-      tc.setMinWidth(20);
-      
-     
- 
-      //return "<html><div align=\"center\">" + str + "</div></html>";
+      tc.setMaxWidth(50);
+      tc.setMinWidth(50);
       
       resultTable.getSelectionModel().addListSelectionListener(
             new ListSelectionListener() {
@@ -194,8 +191,9 @@ public class SearchPanel extends JPanel implements ItemListener {
    public void addFoodSelectionListener(FoodSelectionListener listener) {
       listeners.add(listener);
    }
+   
    public void removeFoodSelectionListener(FoodSelectionListener listener) {
-      listeners.remove(listener);
+      listeners.remove(listener);      
    }
    
 

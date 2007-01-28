@@ -13,6 +13,7 @@ public class PrettyTable extends JTable implements TableCellRenderer {
    public static final Color SHADED = new Color(240, 245, 255);
    private int sortOnColumn = -1;
    private boolean ascending = false;
+   private boolean allowSorting = false;
    private TableCellRenderer oldRender;
    private boolean allowHorizScroll = false;
 
@@ -42,7 +43,7 @@ public class PrettyTable extends JTable implements TableCellRenderer {
             TableColumnModel columnModel = h.getColumnModel();
             int viewColumn = columnModel.getColumnIndexAtX(e.getX());
             int column = columnModel.getColumn(viewColumn).getModelIndex();
-            if (column != -1) {
+            if (column != -1 && allowSorting) {
                sort(column);
                getTableHeader().repaint();
             }            
@@ -52,6 +53,14 @@ public class PrettyTable extends JTable implements TableCellRenderer {
       oldRender = getTableHeader().getDefaultRenderer();
       getTableHeader().setDefaultRenderer(this);      
       setShowGrid(false);
+   }
+   
+   public void setAllowSorting(boolean val) {
+      allowSorting = val;
+   }
+   
+   public boolean getAllowSorting() {
+      return allowSorting;
    }
    
    public void sort(int col) {

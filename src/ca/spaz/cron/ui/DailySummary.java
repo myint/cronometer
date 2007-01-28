@@ -277,8 +277,6 @@ public class DailySummary extends JPanel {
          toolBar.setBackground(Color.BLACK); 
          toolBar.setLayout(new BoxLayout(toolBar, BoxLayout.X_AXIS));
          toolBar.setBorder(BorderFactory.createEmptyBorder(4, 5, 4, 5));
-         //toolBar.add(getDatabaseButton());         
-         //toolBar.add(Box.createHorizontalStrut(5));
          toolBar.add(getTodayButton());         
          toolBar.add(Box.createHorizontalGlue());
          toolBar.add(getPreviousButton());
@@ -308,8 +306,7 @@ public class DailySummary extends JPanel {
       add(getDailyTrackerPanel(), BorderLayout.CENTER);
    }
 
-   public void notifyObservers() {
-     
+   public void notifyObservers() {     
       List consumed = Datasources.getFoodHistory().getConsumedOn(curDate);
       getServingTable().setServings(consumed);
    }
@@ -330,7 +327,5 @@ public class DailySummary extends JPanel {
          setDate(d);
       }
    }
-
- 
      
 }

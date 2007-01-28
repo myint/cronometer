@@ -16,7 +16,9 @@ public class UserFoods implements FoodDataSource {
    private static final String FOODS_INDEX = "foods.index";
 
    private static final Color USER_COL = new Color(0x00, 0x70, 0x00);
- 
+
+   private Vector listeners = new Vector();
+
    private int maxUID = 0;
    private HashMap map; // maps sourceID to FoodProxy
    private File userDir;
@@ -156,6 +158,7 @@ public class UserFoods implements FoodDataSource {
          fp.setDescription(f.getDescription());
          writeIndex();
       }
+      fireFoodModifiedEvent(f.getProxy());
    }
       
    public void addFood(Food f) {
@@ -166,6 +169,7 @@ public class UserFoods implements FoodDataSource {
       map.put(f.getSourceUID(), proxy);
       updateFood(f);
       writeIndex();
+      fireFoodAddedEvent(f.getProxy());
    }
    
    public void removeFood(Food f) {
@@ -173,6 +177,7 @@ public class UserFoods implements FoodDataSource {
       file.delete();
       map.remove(f.getSourceUID());
       writeIndex();
+      fireFoodDeletedEvent(f.getProxy());
    }
    
    public String toString() {
@@ -201,6 +206,36 @@ public class UserFoods implements FoodDataSource {
       return USER_COL;
    }
 
+   protected void fireFoodModifiedEvent(FoodProxy fp) {      
+      Iterator iter = listeners.iterator();
+      while (iter.hasNext()) {
+         ((UserFoodsListener)iter.next()).userFoodModified(fp);
+      }
+   }
+   
+   protected void fireFoodAddedEvent(FoodProxy fp) {
+      Iterator iter = listeners.iterator();
+      while (iter.hasNext()) {
+         ((UserFoodsListener)iter.next()).userFoodAdded(fp);
+      }
+   }
+   
+   protected void fireFoodDeletedEvent(FoodProxy fp) {      
+      Iterator iter = listeners.iterator();
+      while (iter.hasNext()) {
+         ((UserFoodsListener)iter.next()).userFoodDeleted(fp);
+      }
+   }
+   
+   
+   public void addUserFoodsListener(UserFoodsListener listener) {
+      listeners.add(listener);
+   }
+   
+   public void removeUserFoodsListener(UserFoodsListener listener) {
+      listeners.remove(listener);
+   }
+   
    
    
 }

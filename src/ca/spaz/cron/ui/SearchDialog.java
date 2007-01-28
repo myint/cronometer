@@ -11,13 +11,13 @@ import javax.swing.*;
 import ca.spaz.cron.CRONOMETER;
 import ca.spaz.cron.actions.DeleteFoodAction;
 import ca.spaz.cron.actions.ExportFoodAction;
-import ca.spaz.cron.datasource.FoodProxy;
+import ca.spaz.cron.datasource.*;
 import ca.spaz.cron.foods.Food;
 import ca.spaz.cron.foods.Serving;
 import ca.spaz.util.ImageFactory;
 import ca.spaz.util.ToolBox;
 
-public class SearchDialog extends JDialog implements ServingEditorListener, FoodSelectionListener {
+public class SearchDialog extends JDialog implements ServingEditorListener, FoodSelectionListener, UserFoodsListener {
 
    private SearchPanel searchPanel;
    private ServingEditor servingEditor;
@@ -50,10 +50,12 @@ public class SearchDialog extends JDialog implements ServingEditorListener, Food
       // add escape listener to dismiss window
       getRootPane().registerKeyboardAction( new ActionListener() {
          public void actionPerformed(ActionEvent e) {
-            setVisible(false);
+            dispose();
          }
       }, KeyStroke.getKeyStroke( KeyEvent.VK_ESCAPE, 0 ), 
       JComponent.WHEN_IN_FOCUSED_WINDOW );  
+      
+      Datasources.getUserFoods().addUserFoodsListener(this);
    }
 
    public void display(boolean addable) {
@@ -91,7 +93,7 @@ public class SearchDialog extends JDialog implements ServingEditorListener, Food
    
    public void foodDoubleClicked(FoodProxy food) {
       if (food != null) {
-         FoodEditor.editFood(food.getFood()); 
+         FoodEditor.editFood(food.getFood());
       }
    } 
      
@@ -144,11 +146,16 @@ public class SearchDialog extends JDialog implements ServingEditorListener, Food
       }
       return servingEditor;
    }
-    
+
    public void servingChosen(Serving s) {
       serving = s;
       abort = false;
-      setVisible(false);
+      dispose();
+   }
+   
+   public void dispose() {
+      super.dispose();
+      Datasources.getUserFoods().removeUserFoodsListener(this);
    }
  
    private JButton getEditButton() {
@@ -168,11 +175,9 @@ public class SearchDialog extends JDialog implements ServingEditorListener, Food
    
    private void doEditFood() {
      if (serving != null) {
-         FoodEditor.editFood(serving.getFood());
-         getSearchPanel().doDBSearch();
+         FoodEditor.editFood(serving.getFood()); 
       }
-   }
-   
+   }   
     
    private JButton getDeleteButton() {
       if (null == deleteButton) {
@@ -183,8 +188,7 @@ public class SearchDialog extends JDialog implements ServingEditorListener, Food
             public void actionPerformed(ActionEvent e) {
                assert(serving != null);
                DeleteFoodAction.doDeleteFood(serving.getFoodProxy(), deleteButton);
-               getSearchPanel().doDBSearch();
-               foodSelected(null);
+               getSearchPanel().doDBSearch();               
             }
          });
       }
@@ -198,8 +202,7 @@ public class SearchDialog extends JDialog implements ServingEditorListener, Food
          CRONOMETER.fixButton(importButton);
          importButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-               CRONOMETER.getInstance().doImportFood();
-               getSearchPanel().doDBSearch();
+               CRONOMETER.getInstance().doImportFood();               
             }
          });
       }
@@ -242,8 +245,20 @@ public class SearchDialog extends JDialog implements ServingEditorListener, Food
    }
 
    public void doAddNewFood() {
-      FoodEditor.editFood(new Food());
+      FoodEditor.editFood(new Food()); 
+   }
+
+   public void userFoodAdded(FoodProxy fp) {
+      getSearchPanel().doDBSearch();      
+   }
+
+   public void userFoodDeleted(FoodProxy fp) {
       getSearchPanel().doDBSearch();
+      foodSelected(null);
+   }
+
+   public void userFoodModified(FoodProxy fp) {
+      getSearchPanel().doDBSearch();      
    }
 
  

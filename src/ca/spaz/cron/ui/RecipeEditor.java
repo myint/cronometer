@@ -45,8 +45,8 @@ public class RecipeEditor extends FoodEditor {
       this.setLayout(new BorderLayout(4, 4));
       this.setBorder(BorderFactory.createEmptyBorder(9, 9, 9, 9));
       this.add(getGeneralPanel(), BorderLayout.NORTH);
-      this.add(getCenterPanel(), BorderLayout.CENTER);
-      this.add(getEastPanel(), BorderLayout.EAST);
+      this.add(getCenterPanel(), BorderLayout.WEST);
+      this.add(getEastPanel(), BorderLayout.CENTER);
       
       getMacroNutrientsTable().setEditable(false);
       getMineralsTable().setEditable(false);
