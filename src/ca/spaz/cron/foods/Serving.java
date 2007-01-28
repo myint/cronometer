@@ -123,7 +123,7 @@ public class Serving {
       if (meal != -1) {
          node.addAttribute("meal", meal);
       }
-      if (export) {
+      if (export && (food.getSource() == Datasources.getUserFoods())) {
          if (food.getFood() instanceof Recipe) {
             node.addChild(((Recipe)food.getFood()).toXML(export));
          } else {
