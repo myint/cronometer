@@ -833,8 +833,8 @@
 	<nutrient name="Phytosterol" unit="mg" usda="636" category="Lipids"/>					
 
 	<nutrient name="ALA" unit="g" usda="513" category="Amino Acids"/>
-	<nutrient name="ASP" unit="g" usda="514" category="Amino Acids"/>
 	<nutrient name="ARG" unit="g" usda="511" category="Amino Acids"/>
+	<nutrient name="ASP" unit="g" usda="514" category="Amino Acids"/>
 	<nutrient name="CYS" unit="g" usda="507" category="Amino Acids"/>			
 	<nutrient name="GLU" unit="g" usda="515" category="Amino Acids"/>			
 	<nutrient name="GLY" unit="g" usda="516" category="Amino Acids"/>			
