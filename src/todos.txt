@@ -2,8 +2,6 @@
  --------------------------------------------------------------------
  
    0.8.0 TODOs
-      - add support libs & links to about panel
-      - add SPARSE attribute on nutrients
       - Favorites list!
       - Fix commit changes bug in editors
          - scan for bad values and correct them?
@@ -11,17 +9,13 @@
          - fix focus traversal issues
       - export daily food to CSV, text, blog, etc...     
       - more interesting ratios on front nutrition summary (zinc:copper, w3:w6)
-      - show current user in titlebar, if not default
       - MigLayout, DesignGridLayout
-      - Antonio Zomora's notes 
       - TULs for water + flouride
       - flavinoids + CRDB, etc...?
       - cut & copy should be added to pop-up menu on servings
       - add tab for free-form notes (diary/log)
-      - remember window sizes & positions
       - more interesting reports & printing
       - auto-set measure to most frequent entry?
-      - Refactor PrettyTable / sorting
       - WrappedPanel work
       
     Future / Deferred TODOS:
