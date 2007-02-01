@@ -23,4 +23,4 @@
       - more robust / scalable data backend
       - spaz.ca account synch
       - exercise log
-      
+				http://prevention.sph.sc.edu/tools/compendium.htm      
