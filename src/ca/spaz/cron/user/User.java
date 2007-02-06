@@ -58,15 +58,16 @@ public class User {
    private static final String LAST_BUILD = "last.build";
    
    public static final String CHECK_FOR_UDAPTES = "check.for.updates";
-   
+   private static final String HIDE_WHEN_MINIMIZED = CU_BASE+"hide.when.minimized";
    private static final String USER_PROPERTIES_FILE = "user.settings";
    
    public static final String NORMAL_FEMALE = "Normal";
    public static final String PREGNANT_FEMALE = "Pregnant";
    public static final String LACTATING_FEMALE = "Lactating";
    
-   private static final String MAIN_WINDOW = CU_BASE + "MAIN_WINDOW";
-   private static final String DIET_DIVIDER =  CU_BASE + "DIET_DIVIDER";
+   private static final String MAIN_WINDOW = CU_BASE + "main.window";
+   private static final String DIET_DIVIDER =  CU_BASE + "diet.divider";
+   
    
    public static String subdirectory = "cronometer";
    
@@ -402,6 +403,16 @@ public class User {
    public void setFatPercentage(int val) { 
        settings.set(CU_FAT_PERC, val); 
    } 
+   
+
+   public void setHideWhenMinimized(boolean state) { 
+      settings.set(HIDE_WHEN_MINIMIZED, state);
+   }
+   
+   public boolean getHideWhenMinimized() {
+      return settings.getBoolean(HIDE_WHEN_MINIMIZED, false);
+   }
+   
    
    public void setDietDivider(int val) { 
       settings.set(DIET_DIVIDER, val); 

@@ -305,4 +305,32 @@ public class ToolBox {
       return (b!=0) ? a/b : divByZeroResult;
    }
    
+   /**
+    * Return an object of the given type, or null if not able.
+    * Usefull if we don't want the detailed error handling.
+    * @param classname a classname
+    * @return  an object of the given type, or null if not able.
+    */   
+   public static Object instantiate(String classname) {
+      Object o = null;       
+      try {
+         Class c = Class.forName(classname);   
+         if (c != null) {
+            o = c.newInstance();
+         }
+      } catch (Exception e) { /* deliberately eat errors and return null */ }
+      return o;
+   }
+   
+   /**
+    * See if a class exists or not   
+    * @param classname a classname
+    * @return true if it is available
+    */   
+   public static boolean classExists(String classname) {
+       try {  
+         return Class.forName(classname) != null;
+      } catch (ClassNotFoundException e) { /* deliberately eat errors and return false */ }
+      return false;
+   }
 }

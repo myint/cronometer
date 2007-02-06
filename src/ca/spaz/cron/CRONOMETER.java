@@ -40,6 +40,7 @@ import com.apple.mrj.MRJQuitHandler;
  * @author davidson
  */
 public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, MRJAboutHandler, ClipboardOwner {
+
    public static final String TITLE = "CRON-o-Meter";
    public static final String VERSION = "0.8";
    public static final int BUILD = 8;
@@ -79,8 +80,7 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
    
    private void initGUI() {
       try {
-         setJMenuBar(getMenu());
-         
+         setJMenuBar(getMenu());         
          setIconImage(getWindowIcon());
          setTitle(getFullTitle());
          if (!User.getSubdirectory().equalsIgnoreCase("cronometer")) {
@@ -88,11 +88,7 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
          }
          getContentPane().add(getMainPanel());
          setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-         addWindowListener(new WindowAdapter() {
-            public void windowClosing(WindowEvent e) {
-               doQuit();
-            }
-         });
+         
          pack();
          Point p = ToolBox.centerFrame(this);
          if (!User.getUser().firstRun()) {
@@ -116,13 +112,34 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
             }
          }          
          User.getUser().setLastBuild(CRONOMETER.BUILD);
-         makeAutoSaveTimer();                  
+         makeAutoSaveTimer();
+         installSystemTray();
+         addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+               doQuit();
+            }           
+            public void windowIconified(WindowEvent e) {
+               if (User.getUser().getHideWhenMinimized()) {
+                  setVisible(false);
+               }
+            }
+         });
       } catch (Exception e) {
          Logger.debug(e);
          ErrorReporter.showError(e, this); 
       }
    }
    
+   /**
+    * Adds a system tray, if the JVM and OS support it.
+    */
+   private void installSystemTray() {     
+      if (ToolBox.classExists("java.awt.SystemTray")) {
+         // this is a Java-6 feature only, so we use reflection to survive on older JVMs
+         ToolBox.instantiate("ca.spaz.cron.SysTray");
+      }       
+   }
+
    private void upgradeToB7() {
       if (User.getUser().isFemale()) {
          JOptionPane.showMessageDialog(getMainPanel(), 
@@ -502,6 +519,15 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
       }
    }
 
+   /**
+    * Show window normally
+    */
+   public void restoreWindow() {
+      setVisible(true);
+      setExtendedState(Frame.NORMAL);
+      toFront();
+   }
+ 
    public static void main(String[] args) {
       try {
          if (!ToolBox.isMacOSX()) {
@@ -527,6 +553,6 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
       scr.addTaskListener(cron);
       scr.start();      
    }
-
+   
 }
 
