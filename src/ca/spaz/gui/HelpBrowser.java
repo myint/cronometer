@@ -17,6 +17,7 @@ public class HelpBrowser extends JFrame {
       setLayout(new BorderLayout());      
       add(getViewer(), BorderLayout.CENTER); 
       setPage("index.html");
+      pack();
       setVisible(true);
    }
    
