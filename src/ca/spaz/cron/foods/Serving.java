@@ -3,6 +3,8 @@
  */
 package ca.spaz.cron.foods;
 
+import java.sql.Timestamp;
+import java.sql.Types;
 import java.util.Date;
 import java.util.List;
 
@@ -11,7 +13,9 @@ import org.w3c.dom.NodeList;
 
 import ca.spaz.cron.CRONOMETER;
 import ca.spaz.cron.datasource.*;
+import ca.spaz.cron.user.UserEntry;
 import ca.spaz.gui.ErrorReporter;
+import ca.spaz.sql.SQLRow;
 import ca.spaz.util.XMLNode;
 
 /**
@@ -19,7 +23,7 @@ import ca.spaz.util.XMLNode;
  * 
  * @author davidson
  */
-public class Serving {
+public class Serving implements UserEntry {
      
     private FoodProxy food;
 
@@ -52,7 +56,11 @@ public class Serving {
         this.meal = -1;
     }
 
-    public Serving(Element e) {      
+    public Serving(Element e) { 
+       load(e);
+    }
+    
+    public void load(Element e) {          
        FoodDataSource source = Datasources.getUserFoods();
        if (e.hasAttribute("source")) {
           source = Datasources.getSource(e.getAttribute("source"));
@@ -110,19 +118,7 @@ public class Serving {
    }
 
    public synchronized XMLNode toXML(boolean export) {
-      XMLNode node = new XMLNode("serving");
-      node.addAttribute("source", food.getSource().getName());
-      node.addAttribute("food", food.getSourceID());
-      if (date != null) {
-         node.addAttribute("date", date.getTime());
-      }
-      node.addAttribute("grams", grams); 
-      if (measure != Measure.GRAM) {
-         node.addAttribute("measure", measure.getDescription());
-      }       
-      if (meal != -1) {
-         node.addAttribute("meal", meal);
-      }
+      XMLNode node = toXML();
       if (export && (food.getSource() == Datasources.getUserFoods())) {
          if (food.getFood() instanceof Recipe) {
             node.addChild(((Recipe)food.getFood()).toXML(export));
@@ -132,7 +128,25 @@ public class Serving {
       }
       return node;
     }
+   
+   public synchronized XMLNode toXML() {
+      XMLNode node = new XMLNode("serving");
+      node.addAttribute("source", food.getSource().getName());
+      node.addAttribute("food", food.getSourceID());
+      if (date != null) {
+         node.addAttribute("date", date.getTime());
+      }
+      node.addAttribute("grams", grams); 
+      if (measure != Measure.GRAM) {
+         node.addAttribute("measure", measure.getDescription());
+      }
+      if (meal != -1) {
+         node.addAttribute("meal", meal);
+      }       
+      return node;
+    }
     
+   
     public double getGrams() {
         return grams;
     }
@@ -248,6 +262,30 @@ public class Serving {
 
    public boolean isLoaded() {
       return food != null;
+   }
+   
+   // generate the table mapping, could use xml def
+   public synchronized SQLRow toSQLRow() {
+      SQLRow row = new SQLRow("serving");
+      row.addColumn("source", Types.VARCHAR);
+      row.addColumn("food", Types.VARCHAR);
+      row.addColumn("time", Types.TIMESTAMP);     
+      row.addColumn("grams", Types.DOUBLE);
+      row.addColumn("measure", Types.VARCHAR);    
+      return row;
+   }
+   
+   // populate (could optionally have reflective populate)
+   public synchronized void populate(SQLRow row) {
+      row.setValue("source", food.getSource().getName());
+      row.setValue("food", food.getSourceID());
+      if (date != null) {
+         row.setValue("time", new Timestamp(date.getTime()));
+      }
+      row.setValue("grams", new Double(grams));
+      if (measure != Measure.GRAM) {
+         row.setValue("measure", measure.getDescription());
+      }
    }
 
 }

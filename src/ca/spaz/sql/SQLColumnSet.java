@@ -54,6 +54,11 @@ public class SQLColumnSet {
       names.add(name);
       terms.add(new Double(d));
    }
+   
+   public void add(String name, long d) {
+      names.add(name);
+      terms.add(new Long(d));
+   }
 
    public void add(String name, float f) {
       names.add(name);

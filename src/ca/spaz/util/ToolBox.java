@@ -312,7 +312,7 @@ public class ToolBox {
     * @return  an object of the given type, or null if not able.
     */   
    public static Object instantiate(String classname) {
-      Object o = null;       
+      Object o = null;
       try {
          Class c = Class.forName(classname);   
          if (c != null) {
@@ -333,4 +333,6 @@ public class ToolBox {
       } catch (ClassNotFoundException e) { /* deliberately eat errors and return false */ }
       return false;
    }
+   
+   
 }

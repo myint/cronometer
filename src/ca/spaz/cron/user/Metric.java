@@ -7,7 +7,7 @@ import org.w3c.dom.Element;
 
 import ca.spaz.util.XMLNode;
 
-public class Metric implements Comparable {
+public class Metric implements Comparable, UserEntry {
   
    private String name;
    private Number value;
@@ -27,6 +27,10 @@ public class Metric implements Comparable {
    }
    
    public Metric(Element e) {
+      load(e);
+   }
+   
+   public void load(Element e) {
       setName(e.getAttribute("name"));
       setValue(e.getAttribute("value"));
       setDate(new Date(Long.parseLong(e.getAttribute("date"))));     

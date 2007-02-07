@@ -18,6 +18,7 @@ import ca.spaz.cron.CRONOMETER;
 import ca.spaz.cron.datasource.Datasources;
 import ca.spaz.cron.foods.Serving;
 import ca.spaz.cron.summary.NutritionSummaryPanel;
+import ca.spaz.cron.user.NoteEditor;
 import ca.spaz.gui.TranslucentToolBar;
 import ca.spaz.util.ImageFactory;
 import ca.spaz.util.ToolBox;
@@ -34,6 +35,7 @@ public class DailySummary extends JPanel {
    private static final long ONE_DAY = 1000 * 60 * 60 * 24;
 
    private BiomarkerPanel bioMarkerPanel;
+   private NoteEditor noteEditor;
 
    private Date curDate = new Date(System.currentTimeMillis());
  
@@ -108,10 +110,17 @@ public class DailySummary extends JPanel {
          dailyTracker.addTab("Diet", new ImageIcon(ImageFactory.getInstance().loadImage("/img/apple-16x16.png")), getDietPanel()); 
          dailyTracker.addTab("Biomarkers", new ImageIcon(ImageFactory.getInstance().loadImage("/img/graph.gif")), getBioMarkersPanel());
          dailyTracker.addTab("Exercise", new ImageIcon(ImageFactory.getInstance().loadImage("/img/runner.gif")), new JPanel());
-         dailyTracker.addTab("Notes", new ImageIcon(ImageFactory.getInstance().loadImage("/img/toc_open.gif")), new JPanel());
+         dailyTracker.addTab("Notes", new ImageIcon(ImageFactory.getInstance().loadImage("/img/toc_open.gif")), getNotesEditor());
          
       }
       return dailyTracker;
+   }
+
+   public NoteEditor getNotesEditor() {
+      if (noteEditor == null) {
+         noteEditor = new NoteEditor();
+      }
+      return noteEditor;
    }
 
    public JSplitPane getDietPanel() {

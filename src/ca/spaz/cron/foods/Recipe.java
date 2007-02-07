@@ -31,7 +31,7 @@ public class Recipe extends Food {
    }
    
    public XMLNode toXML() { 
-      return toXML(false);
+      return toXML();
    }
    
    public XMLNode toXML(boolean export) { 

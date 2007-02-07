@@ -117,7 +117,7 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
          addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
                doQuit();
-            }           
+            }
             public void windowIconified(WindowEvent e) {
                if (User.getUser().getHideWhenMinimized()) {
                   setVisible(false);
@@ -418,10 +418,7 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
          prog = percent;
       }
    }
-   
-   
-
-   
+      
    public static void launchURL(Component parent, String url) {
       try {
          BrowserLauncher.openURL(url);
