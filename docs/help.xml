@@ -1,0 +1,10 @@
+<page title="CRON-o-Meter Help" url="">
+	<page title="Introduction" url="index.html">
+   	<page title="Creating a Food" url="food.html" />
+   	<page title="Creating a Recipe" url="recipe.html" />
+   	<page title="Tips &amp; Tricks" url="tips.html" />
+	</page>
+	<page title="Release Notes" url="blank.html">
+   	<page title="Version 0.8" url="release8.html" />
+	</page>
+</page>
