@@ -1,13 +1,13 @@
  In lieu of excessive bug-tracker usage, the old-fashioned todo list:
  --------------------------------------------------------------------
- 
+
    0.8.0 TODOs
       - Favorites list!
       - Fix commit changes bug in editors
          - scan for bad values and correct them?
       - continue to optimize data entry
          - fix focus traversal issues
-      - export daily food to CSV, text, blog, etc...     
+      - export daily food to CSV, text, blog, etc...
       - more interesting ratios on front nutrition summary (zinc:copper, w3:w6)
       - MigLayout, DesignGridLayout
       - TULs for water + flouride
@@ -17,10 +17,11 @@
       - more interesting reports & printing
       - auto-set measure to most frequent entry?
       - WrappedPanel work
-      
+      - default serving option per food
+
     Future / Deferred TODOS:
       - auto-updater
       - more robust / scalable data backend
       - spaz.ca account synch
       - exercise log
-				http://prevention.sph.sc.edu/tools/compendium.htm      
+				http://prevention.sph.sc.edu/tools/compendium.htm
