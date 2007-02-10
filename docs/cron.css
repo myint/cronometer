@@ -1,9 +1,10 @@
 .va-middle {vertical-align:middle;}
 body 
-{ font-family: verdana, arial, serif;
+{ 
+  font-family: verdana, arial, serif;
   color: #000000;
   background:  #ffffff;
-  font-size: 10pt;
+  font-size: 11pt;
   margin-top: 10;
   margin-bottom: 10px;
   margin-left: 20px;
@@ -12,18 +13,50 @@ body
   padding-right: 0;
 }
 
-td {font-family: verdana, arial, serif; 
-font-size: 10pt;
-font-weight: lighter;
+td {
+   font-family: verdana, arial, serif; 
+	font-size: 11pt;
+} 
+
+th {
+   text-align: left;
 } 
  
-li {text-align: justify} 
-h1 {font-family: verdana, arial, serif; 
-font-size: 18pt;
-font-weight: lighter;
- } 
-h2 {font-family: verdana, arial, serif; 
-font-size: 16pt;
-font-weight: lighter;
+li {
+  text-align: justify
+} 
+
+h1 {
+	font-size: 18pt;
+	font-family: verdana, arial, serif; 
+   color: #ffffff;
+   background:  #555555;
+   padding: 5px;
+   border: #000 1px solid;
+} 
+ 
+h2 { 
+	font-size: 16pt;
+	font-family: verdana, arial, serif; 
+   color: #ffffff;
+   background:  #666666;
+   padding: 4px;   
+   border: #000 1px solid;
+} 
+
+h3 {
+  font-family: verdana, arial, serif; 
+  color: #ffffff;
+  background:  #777777;
+  padding: 4px;
+  border: #000 1px solid;
+} 
+  
+h4 {
+  font-family: verdana, arial, serif; 
+  color: #ffffff;
+  background:  #888888;
+  padding: 2px;
+  border: #000 1px solid;
 } 
  
