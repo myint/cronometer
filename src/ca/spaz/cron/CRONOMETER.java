@@ -51,7 +51,7 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
    private DailySummary ds;
 
    private SpazMenuBar menu;
-
+   private HelpBrowser help;
    private JPanel mainPanel;    
 
    private static CRONOMETER instance;
@@ -169,7 +169,9 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
    }
 
    public void doShowReleaseNotes() {
-      new ReadMe(this, "Release Notes", getClass().getResource("/docs/release.html"));
+      getHelpBrowser().showPage("release8.html");
+      getHelpBrowser().showWindow();
+      //new ReadMe(this, "Release Notes", getClass().getResource("/docs/release.html"));
    }
    
    public void doShowReadMe() {
@@ -184,8 +186,17 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
    }
 
    public void doHelp() {
-      new HelpBrowser("CRON-o-Meter Help", new File("docs"));
-      //launchURL(CRONOMETER.getInstance(), "http://spaz.ca/cronometer/docs/");
+      getHelpBrowser().showPage("index.html");
+      getHelpBrowser().showWindow();
+   }
+   
+   
+   public HelpBrowser getHelpBrowser() {
+      if (help == null) {
+         help = new HelpBrowser("CRON-o-Meter Help", new File("docs"));
+         help.setIconImage(CRONOMETER.getWindowIcon());         
+      }
+      return help;
    }
 
    public void doReportBug() {
@@ -299,7 +310,9 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
     
 
    public void doAbout() {
-      AboutScreen.showAbout(this);
+      getHelpBrowser().showPage("about.html");
+      getHelpBrowser().showWindow();
+      //AboutScreen.showAbout(this);
    }
    
    public void doQuit() {

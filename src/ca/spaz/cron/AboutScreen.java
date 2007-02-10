@@ -13,6 +13,10 @@ import javax.swing.*;
 import ca.spaz.gui.*;
 import ca.spaz.util.ImageFactory;
 
+
+/**
+ * @deprecated
+ */
 public class AboutScreen  extends WrappedPanel {
 
    public AboutScreen() {
