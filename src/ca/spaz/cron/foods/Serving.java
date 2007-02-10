@@ -31,7 +31,7 @@ public class Serving implements UserEntry {
     
     private Measure measure = Measure.GRAM;
     
-    private Date date;
+    private long date = 0;
 
     private int meal;
 
@@ -52,7 +52,7 @@ public class Serving implements UserEntry {
     public Serving(FoodProxy f, double grams) {
         this.food = f;
         this.grams = grams;
-        this.date = new Date(System.currentTimeMillis());
+        this.date = System.currentTimeMillis();
         this.meal = -1;
     }
 
@@ -133,8 +133,8 @@ public class Serving implements UserEntry {
       XMLNode node = new XMLNode("serving");
       node.addAttribute("source", food.getSource().getName());
       node.addAttribute("food", food.getSourceID());
-      if (date != null) {
-         node.addAttribute("date", date.getTime());
+      if (date != 0) {
+         node.addAttribute("date", date);
       }
       node.addAttribute("grams", grams); 
       if (measure != Measure.GRAM) {
@@ -179,11 +179,11 @@ public class Serving implements UserEntry {
     }
     
     public Date getDate() {
-        return date;
+        return new Date(date);
     }
 
     public void setDate(Date d) {
-        this.date = d;
+        this.date = d == null ? 0: d.getTime();
     }
 
     /**
@@ -279,8 +279,8 @@ public class Serving implements UserEntry {
    public synchronized void populate(SQLRow row) {
       row.setValue("source", food.getSource().getName());
       row.setValue("food", food.getSourceID());
-      if (date != null) {
-         row.setValue("time", new Timestamp(date.getTime()));
+      if (date != 0) {
+         row.setValue("time", new Timestamp(date));
       }
       row.setValue("grams", new Double(grams));
       if (measure != Measure.GRAM) {

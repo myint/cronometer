@@ -340,7 +340,9 @@ public class XMLNode {
       return sb.toString();
    }
    
-
+   /**
+    * Set if this will format output with newlines or not
+    */
    public void setPrintNewLines(boolean b) {
       printNewLines  = b;
       Iterator iter = children.iterator();

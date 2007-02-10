@@ -11,6 +11,8 @@ import java.util.zip.*;
 
 import javax.swing.*;
 
+import ca.spaz.gui.ErrorReporter;
+
 /**
  * A class with misc. static utility methods.
  * 
@@ -332,6 +334,28 @@ public class ToolBox {
          return Class.forName(classname) != null;
       } catch (ClassNotFoundException e) { /* deliberately eat errors and return false */ }
       return false;
+   }
+   
+
+   
+   public static void launchURL(Component parent, String url) {
+      try {
+         BrowserLauncher.openURL(url);
+         return;
+      } catch (IOException e) {
+         e.printStackTrace();
+      } 
+      try {
+         if (ToolBox.isOlderWindows()) {
+            Runtime.getRuntime().exec("command.com /e:4096 /c start \""+url+"\"");
+         } else {
+            Runtime.getRuntime().exec("start \""+url+"\"");
+         }
+         return;
+      } catch (IOException e) {
+         Logger.error(e);      
+      }
+      ErrorReporter.showError("Could not load URL:\n"+url, parent);
    }
    
    

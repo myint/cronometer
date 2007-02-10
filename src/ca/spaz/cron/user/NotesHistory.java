@@ -13,12 +13,10 @@ import org.w3c.dom.Element;
 public class NotesHistory extends History { 
  
    private static final String NOTES_HISTORY_FILE = "notes.xml";
+    
    
-   private ArrayList notes;
-   
-   public NotesHistory() {
-      notes = new ArrayList();
-      load();
+   public NotesHistory() { 
+      super();
    }
    
    public String getBaseName() { 
@@ -56,10 +54,10 @@ public class NotesHistory extends History {
       if (list.size() > 0){
          Note n = (Note)list.get(0);
          if (note == null) {
-            delete(n);
+            deleteEntry(n);
          } else if (!n.getNote().equals(note)) {
             n.setNote(note);
-            update(n);
+            updateEntry(n);
          }
       } else if (note != null) {
          Note n = new Note();

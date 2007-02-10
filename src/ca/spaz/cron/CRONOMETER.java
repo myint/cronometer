@@ -195,17 +195,18 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
    public HelpBrowser getHelpBrowser() {
       if (help == null) {
          help = new HelpBrowser("CRON-o-Meter Help", new File("docs"));
-         help.setIconImage(CRONOMETER.getWindowIcon());         
+         help.setIconImage(CRONOMETER.getWindowIcon()); 
+         ToolBox.centerFrame(help);
       }
       return help;
    }
 
    public void doReportBug() {
-      launchURL(CRONOMETER.getInstance(), "http://sourceforge.net/tracker/?atid=735995&group_id=136481&func=browse");
+      ToolBox.launchURL(CRONOMETER.getInstance(), "http://sourceforge.net/tracker/?atid=735995&group_id=136481&func=browse");
    }
 
    public void doRequestFeature() {
-      launchURL(CRONOMETER.getInstance(), "http://sourceforge.net/tracker/?group_id=136481&atid=735998");
+      ToolBox.launchURL(CRONOMETER.getInstance(), "http://sourceforge.net/tracker/?group_id=136481&atid=735998");
    }
     
    public static String getFullTitle() {
@@ -432,28 +433,7 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
       public void progress(int percent) {
          prog = percent;
       }
-   }
-      
-   public static void launchURL(Component parent, String url) {
-      try {
-         BrowserLauncher.openURL(url);
-         return;
-      } catch (IOException e) {
-         e.printStackTrace();
-      } 
-      try {
-         if (ToolBox.isOlderWindows()) {
-            Runtime.getRuntime().exec("command.com /e:4096 /c start \""+url+"\"");
-         } else {
-            Runtime.getRuntime().exec("start \""+url+"\"");
-         }
-         return;
-      } catch (IOException e) {
-         Logger.error(e);      
-      }
-      ErrorReporter.showError("Could not load URL:\n"+url, parent);
-   }
-   
+   } 
 
    public void doCheckForUpdates() {      
       try {
@@ -476,7 +456,7 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
                            null,
                            null);
                   if (result == JOptionPane.OK_OPTION  && www != null) {
-                     launchURL(CRONOMETER.mainFrame, www);
+                     ToolBox.launchURL(CRONOMETER.mainFrame, www);
                   }                  
                }
             });

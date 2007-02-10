@@ -17,6 +17,7 @@ import ca.spaz.util.*;
  * For storage and retreival of timestamp based entries.
  * 
  * @todo: break into multiple files for better scaling
+ * @todo: or wrap a database interface instead
  * 
  * @author adavidson
  */
@@ -24,7 +25,7 @@ public abstract class History {
  
    private boolean dirty = false;
 
-   private ArrayList entries = new ArrayList();
+   protected ArrayList entries = new ArrayList();
    
    public abstract String getBaseName();
    
@@ -34,6 +35,10 @@ public abstract class History {
       return new File(User.getUserDirectory(), getBaseName() + ".xml");
    }
 
+   public History() {
+      load();
+   }
+   
    /**
     * Add a new record to the history
     */
@@ -58,14 +63,19 @@ public abstract class History {
       return entries;
    }    
 
-   public void delete(UserEntry entry) {
+   public void deleteEntry(UserEntry entry) {
       entries.remove(entry);
       dirty = true;
       Logger.debug("Remove Entry: " + entry);      
    }
 
-   public void update(UserEntry entry) {
-      Logger.debug("Update UserEntry: " + entry);      
+   public void deleteEntries(List list) {       
+      entries.removeAll(list);
+      dirty = true;
+   }
+
+   public void updateEntry(UserEntry entry) {
+      Logger.debug("Update Entry: " + entry);      
       dirty = true;
    }
    
@@ -89,7 +99,7 @@ public abstract class History {
    
    
    public synchronized void writeXML(PrintStream out) {
-      XMLNode node = new XMLNode("entries");
+      XMLNode node = new XMLNode(getBaseName());
       for (int i=0; i<entries.size(); i++) {
          UserEntry entry = (UserEntry)entries.get(i);
          node.addChild(entry.toXML());
@@ -99,7 +109,7 @@ public abstract class History {
    }
    
    public synchronized void load() {
-      Logger.debug("Loading from disk");
+      Logger.debug("Loading: " + getHistoryFile());
       try {
          InputStream in = new BufferedInputStream(
                new FileInputStream(getHistoryFile()));
@@ -126,8 +136,14 @@ public abstract class History {
          
          NodeList nl = e.getElementsByTagName(getEntryTagName());
          for (int i=0; i<nl.getLength(); i++) {
-            UserEntry entry = loadUserEntry((Element)nl.item(i));
-            addEntry(entry);
+            try {
+               UserEntry entry = loadUserEntry((Element)nl.item(i));
+               if (entry != null) {
+                  addEntry(entry);
+               }
+            } catch (Exception ex) {
+               ErrorReporter.showError(ex, CRONOMETER.getInstance()); 
+            }
          }
       } catch (FileNotFoundException e) {
          e.printStackTrace();

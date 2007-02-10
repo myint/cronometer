@@ -178,6 +178,23 @@ public class DailySummary extends JPanel {
       }
       return prefsButton;
    }
+   
+   private JButton helpButton;
+   
+   private JButton getHelpButton() {
+      if (null == helpButton) {
+         helpButton = new JButton(new ImageIcon(ImageFactory.getInstance().loadImage("/img/help.gif")));
+         helpButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+               CRONOMETER.getInstance().doHelp();
+            }  
+         }); 
+         CRONOMETER.fixButton(helpButton); 
+         helpButton.setFocusable(false); 
+         helpButton.setToolTipText("Help Browser");          
+      }
+      return helpButton;
+   }
      
    private JButton getNextButton() {
       if (null == nextButton) {
@@ -282,6 +299,8 @@ public class DailySummary extends JPanel {
          toolBar.setBackground(Color.BLACK); 
          toolBar.setLayout(new BoxLayout(toolBar, BoxLayout.X_AXIS));
          toolBar.setBorder(BorderFactory.createEmptyBorder(4, 5, 4, 5));
+         toolBar.add(getHelpButton());
+         toolBar.add(Box.createHorizontalStrut(5));
          toolBar.add(getTodayButton());         
          toolBar.add(Box.createHorizontalGlue());
          toolBar.add(getPreviousButton());

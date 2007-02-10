@@ -1,6 +1,7 @@
 package ca.spaz.gui;
 
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.io.*;
 
 import javax.swing.*;
@@ -14,6 +15,8 @@ import javax.xml.parsers.*;
 
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
+
+import ca.spaz.util.ToolBox;
 
 public class HelpBrowser extends JFrame {
 
@@ -68,8 +71,10 @@ public class HelpBrowser extends JFrame {
                      try {
                         if (e.getURL().getProtocol().equals("file")) {
                            htmlPane.setPage(e.getURL());
-                        } else {
-                           Desktop.getDesktop().browse(e.getURL().toURI());
+                        } else {                           
+                           ToolBox.launchURL(htmlPane, e.getURL().toString()); 
+                           // Java 6+ only:
+                           // Desktop.getDesktop().browse(e.getURL().toURI());
                         }
                      } catch (Exception ex) {
                         ex.printStackTrace();
@@ -135,7 +140,8 @@ public class HelpBrowser extends JFrame {
    
    protected void setPage(Page page) {
       if (page != null) {
-         setTitle(baseTitle + " - " + page.getTitle() + " - " + page.getUrl());
+         //setTitle(baseTitle + " - " + page.getTitle() + " - " + page.getUrl());
+         setTitle(baseTitle + " - " + page.getTitle());
          setPage(page.getUrl());      
       }
    }

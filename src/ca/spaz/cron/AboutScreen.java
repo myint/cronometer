@@ -12,6 +12,7 @@ import javax.swing.*;
 
 import ca.spaz.gui.*;
 import ca.spaz.util.ImageFactory;
+import ca.spaz.util.ToolBox;
 
 
 /**
@@ -62,7 +63,7 @@ public class AboutScreen  extends WrappedPanel {
       hl.setToolTipText(url);
       hl.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
-            CRONOMETER.launchURL(hl, url);
+            ToolBox.launchURL(hl, url);
          }
       });
       return hl;
