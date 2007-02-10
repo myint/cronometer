@@ -108,20 +108,11 @@ public class XMLNode {
          sb.append('/');
       }
       sb.append('>');      
-      if (printNewLines) {
+      if (printNewLines && text == null) {
          sb.append('\n');
       }
-      if (text != null) {
-         /*if (printNewLines) {
-            sb.append('\n');
-         }*/
-         sb.append(escapeXML(text));
-         if (printNewLines) {
-            sb.append('\n');
-         }
-         /*if (printNewLines && text.length() > 0) {
-            sb.append('\n');
-         }*/
+      if (text != null) {          
+         sb.append(escapeXML(text));          
       }
       iter = children.iterator();
       while (iter.hasNext()) {
