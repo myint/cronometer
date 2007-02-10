@@ -8,20 +8,18 @@
       - continue to optimize data entry
          - fix focus traversal issues
       - export daily food to CSV, text, blog, etc...
-      - more interesting ratios on front nutrition summary (zinc:copper, w3:w6)
-      - MigLayout, DesignGridLayout
       - TULs for water + flouride
-      - flavinoids + CRDB, etc...?
       - cut & copy should be added to pop-up menu on servings
-      - add tab for free-form notes (diary/log)
-      - more interesting reports & printing
       - auto-set measure to most frequent entry?
-      - WrappedPanel work
       - default serving option per food
 
-    Future / Deferred TODOS:
+    Future / Deferred TODOS: 
+      - general heavy refactoring and code cleanup + documentation
+      - more interesting reports & printing
+      - more interesting ratios on front nutrition summary (zinc:copper, w3:w6)
       - auto-updater
       - more robust / scalable data backend
       - spaz.ca account synch
+      - flavinoids + CRDB, etc...?     
       - exercise log
 				http://prevention.sph.sc.edu/tools/compendium.htm
