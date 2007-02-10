@@ -161,6 +161,7 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
       Timer t = new Timer(6000*5, new ActionListener(){
          public void actionPerformed(ActionEvent e) {
             Datasources.saveAll();
+            getDailySummary().refreshTime();
          }
       });
       t.setCoalesce(true);
@@ -169,8 +170,8 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
    }
 
    public void doShowReleaseNotes() {
-      getHelpBrowser().showPage("release8.html");
       getHelpBrowser().showWindow();
+      getHelpBrowser().showPage("release8.html");
       //new ReadMe(this, "Release Notes", getClass().getResource("/docs/release.html"));
    }
    
@@ -186,8 +187,8 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
    }
 
    public void doHelp() {
-      getHelpBrowser().showPage("index.html");
       getHelpBrowser().showWindow();
+      getHelpBrowser().showPage("index.html");
    }
    
    
@@ -310,14 +311,15 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
     
 
    public void doAbout() {
-      getHelpBrowser().showPage("about.html");
       getHelpBrowser().showWindow();
+      getHelpBrowser().showPage("about.html");
       //AboutScreen.showAbout(this);
    }
    
    public void doQuit() {
       try {
          // remeber window size & positon
+         getDailySummary().getNotesEditor().saveCurrentNote();
          User.getUser().saveWindow(this);
          User.getUser().setDietDivider(getDailySummary().getDietPanel().getDividerLocation());
          Datasources.closeAll();

@@ -17,6 +17,7 @@ public class Datasources {
    private static USDAFoods usdaDataSource;
    private static CRDBFoods crdbDataSource;
    private static FoodHistory foodHist;
+   private static NotesHistory noteHist;
    private static BiometricsHistory bioHist;
    private static BiomarkerDefinitions bioDefs;
    
@@ -49,6 +50,7 @@ public class Datasources {
       
       // jump start lazy inits
       getFoodHistory();
+      getNotes();
       getBiometricsHistory();
       if (pl != null) {
          pl.progress(100);
@@ -89,6 +91,13 @@ public class Datasources {
       return foodHist;
    }
 
+   public static NotesHistory getNotes() {
+      if (noteHist == null) {
+         noteHist = new NotesHistory();         
+      }
+      return noteHist;
+   } 
+   
    public static UserFoods getUserFoods() {
       return userDataSource;
    }
@@ -129,6 +138,7 @@ public class Datasources {
    public synchronized static void saveAll() {
       getFoodHistory().save();
       getBiometricsHistory().save();
+      getNotes().save();
    }
    
    /**
@@ -146,5 +156,4 @@ public class Datasources {
       return null;
    }
 
-   
 }

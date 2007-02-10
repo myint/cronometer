@@ -2,6 +2,7 @@ package ca.spaz.cron.user;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.util.Date;
 
 import javax.swing.*;
 import javax.swing.text.BadLocationException;
@@ -10,9 +11,9 @@ public class NoteEditor extends JPanel {
 
    private JScrollPane jsp;
    private JTextArea edit;
+   private Date curDate = null;
    
-   public NoteEditor() {
-      
+   public NoteEditor() {      
       setLayout(new BorderLayout(4,4));
       setBorder(BorderFactory.createEmptyBorder(8,8,8,8));
       jsp = new JScrollPane(getEditor());
@@ -37,7 +38,7 @@ public class NoteEditor extends JPanel {
                getEditor().getDocument().remove(0, getEditor().getDocument().getLength());
             } catch (BadLocationException e) { 
                e.printStackTrace();
-            }            
+            }
          }
       });
    }
@@ -46,9 +47,31 @@ public class NoteEditor extends JPanel {
       return getEditor().getText();
    }
    
-   public void setContents(String txt) {
-      getEditor().setText(txt);
-      getEditor().setCaretPosition(0);
+   public void setContents(final String txt) {
+      SwingUtilities.invokeLater(new Runnable() {
+         public void run() {
+            getEditor().setText(txt);
+            getEditor().setCaretPosition(0);
+         }
+      });
+   }
+
+   public void saveCurrentNote() {
+      User.getUser().setNotes(getContents(), curDate);
+   }
+   
+   private String curNote = null;
+   
+   public void setDate(Date d) { 
+      if (curDate != null) {
+         saveCurrentNote(); 
+      }
+      curDate = d;
+      clear();
+      curNote = User.getUser().getNotes(curDate);
+      if (curNote != null) {
+         setContents(curNote);         
+      }
    }
    
 }

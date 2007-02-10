@@ -39,6 +39,10 @@ public class Note implements UserEntry {
       }
       return node;
    }
+
+   public void setNote(String n) {
+      this.note = n;
+   }
  
    
 }

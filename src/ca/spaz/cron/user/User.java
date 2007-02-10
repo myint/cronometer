@@ -209,6 +209,19 @@ public class User {
       notifyListeners();      
    }
 
+
+   public NotesHistory getNotesHistory() {
+      return Datasources.getNotes();
+   }   
+   
+   public String getNotes(Date date) {
+      return Datasources.getNotes().getNote(date);
+   }
+   
+   public void setNotes(String note, Date d) {
+      Datasources.getNotes().setNote(note, d);
+   }
+   
    
    public List getBiometrics(Date date) {
       return Datasources.getBiometricsHistory().getMetricsOn(date);

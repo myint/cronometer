@@ -97,7 +97,7 @@ public class DailySummary extends JPanel {
    }
 
 
-   private JPanel getBioMarkersPanel() {
+   private BiomarkerPanel getBioMarkersPanel() {
       if (null == bioMarkerPanel) {
          bioMarkerPanel = new BiomarkerPanel();
       }
@@ -316,13 +316,17 @@ public class DailySummary extends JPanel {
       getServingTable().setServings(consumed);
    }
 
+   /**
+    * Set the current date being displayed by this daily summary
+    */
    public void setDate(Date d) {
-      curDate = d;
-      bioMarkerPanel.setDate(d);
+      curDate = d;      
       getTitle().setText(df.format(curDate));
+      getBioMarkersPanel().setDate(d);
       getServingTable().setTitle(df.format(curDate));
+      getNotesEditor().setDate(d);
       asked = false;
-      getTodayButton().setEnabled(!ToolBox.isSameDay(d, new Date(System.currentTimeMillis())));
+      refreshTime();
       notifyObservers();
    }
 
@@ -331,6 +335,15 @@ public class DailySummary extends JPanel {
       if (d != null) {
          setDate(d);
       }
+   }
+
+   /**
+    * Called periodically. 
+    * 
+    * Currently just cheks if the date has changed, and updates the state of the today-button
+    */
+   public void refreshTime() {
+      getTodayButton().setEnabled(!ToolBox.isSameDay(curDate, new Date(System.currentTimeMillis())));
    }
      
 }

@@ -16,6 +16,8 @@ import ca.spaz.util.*;
  * A simple XML backing store taking the place of a lightweight database.
  * For storage and retreival of timestamp based entries.
  * 
+ * @todo: break into multiple files for better scaling
+ * 
  * @author adavidson
  */
 public abstract class History {
@@ -25,6 +27,8 @@ public abstract class History {
    private ArrayList entries = new ArrayList();
    
    public abstract String getBaseName();
+   
+   public abstract String getEntryTagName();
     
    public File getHistoryFile() {
       return new File(User.getUserDirectory(), getBaseName() + ".xml");
@@ -120,7 +124,7 @@ public abstract class History {
          Document d = db.parse(in);
          Element e = d.getDocumentElement();
          
-         NodeList nl = e.getElementsByTagName("metric");
+         NodeList nl = e.getElementsByTagName(getEntryTagName());
          for (int i=0; i<nl.getLength(); i++) {
             UserEntry entry = loadUserEntry((Element)nl.item(i));
             addEntry(entry);
