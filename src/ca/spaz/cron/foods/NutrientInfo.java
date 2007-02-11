@@ -39,7 +39,8 @@ public class NutrientInfo {
    private List DRIs;
    private NutrientInfo parent;
    private String usda;
-   private boolean sparse = false;
+   private boolean sparse = false; // data is considered sparse (under-represented)
+   private boolean track = true; // default tracking value
 
    private static List globalList = new ArrayList();
    private static HashMap nutrients = new HashMap();   
@@ -99,6 +100,9 @@ public class NutrientInfo {
       }
       if (e.hasAttribute("sparse")) {
          this.sparse = e.getAttribute("sparse").equalsIgnoreCase("true");
+      }
+      if (e.hasAttribute("track")) {
+         this.track = e.getAttribute("track").equalsIgnoreCase("true");
       }
       
       // map all USDA nutrient IDs to NutrientInfo objects
@@ -275,6 +279,10 @@ public class NutrientInfo {
    
    public static NutrientInfo getFiber() {
       return NutrientInfo.getByName("Fiber");
+   }
+
+   public boolean getDefaultTracking() {
+      return usda != null && track;
    }
  
 }

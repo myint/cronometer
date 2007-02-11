@@ -110,7 +110,7 @@
 		<rda min_age="31"  max_age="50"  gender="female" amount="3800" status="lactating"/>
 	</nutrient>
   	
-  	<nutrient name="Ash" unit="g" usda="207" category="General"/>    
+  	<nutrient name="Ash" unit="g" usda="207" category="General" track="false"/>    
  
 
 	<nutrient name="Calcium" unit="mg" dv="1000" usda="301" category="Minerals">
@@ -138,7 +138,7 @@
 		<rda min_age="31"  max_age="50"  gender="female" amount="1000" 	tul="2500" status="lactating"/>
 	</nutrient>
 	
-	<nutrient name="Chromium" unit="&#181;g" category="Minerals" sparse="true">
+	<nutrient name="Chromium" unit="&#181;g" category="Minerals" sparse="true" track="false">
 		<rda min_age="0"   max_age="0.5" gender="all"    amount="0.2"/>
 		<rda min_age="0.5" max_age="1"   gender="all"    amount="5.5"/>
 		<rda min_age="1"   max_age="3"   gender="all"    amount="11"/>
@@ -188,7 +188,7 @@
 		<rda min_age="31"  max_age="50"  gender="female" amount="1.300" 	tul="10.000" status="lactating"/>	
 	</nutrient>
 	
-  <nutrient name="Fluoride" unit="&#181;g" usda="313" category="Minerals" sparse="true">    	
+  <nutrient name="Fluoride" unit="&#181;g" usda="313" category="Minerals" sparse="true" track="false">    	
 		<rda min_age="0"   max_age="0.5" gender="all"    amount="10"	tul="700"/>
 		<rda min_age="0.5" max_age="1"   gender="all"    amount="500"	tul="900"/>
 		<rda min_age="1"   max_age="3"   gender="all"    amount="700"		tul="1300"/>
@@ -438,12 +438,12 @@
 		<rda min_age="31"  max_age="50"  gender="female" amount="4333" 	tul="10000" status="lactating"/>
 	</nutrient>
 	
-	<nutrient name="Retinol" unit="&#181;g" parent="Vitamin A" usda="319" category="Vitamins"/>
-	<nutrient name="Alpha-carotene" unit="&#181;g" parent="Vitamin A" usda="322" category="Vitamins"/>
-	<nutrient name="Beta-carotene" unit="&#181;g" parent="Vitamin A" usda="321" category="Vitamins"/>
-	<nutrient name="Beta-cryptoxanthin" unit="&#181;g" parent="Vitamin A" usda="334" category="Vitamins"/>
-	<nutrient name="Lycopene" unit="&#181;g" parent="Vitamin A" usda="337" category="Vitamins"/>
-	<nutrient name="Lutein+Zeaxanthin" unit="&#181;g" parent="Vitamin A" usda="338" category="Vitamins"/>
+	<nutrient name="Retinol" unit="&#181;g" parent="Vitamin A" usda="319" category="Vitamins" track="false"/>
+	<nutrient name="Alpha-carotene" unit="&#181;g" parent="Vitamin A" usda="322" category="Vitamins" track="false"/>
+	<nutrient name="Beta-carotene" unit="&#181;g" parent="Vitamin A" usda="321" category="Vitamins" track="false"/>
+	<nutrient name="Beta-cryptoxanthin" unit="&#181;g" parent="Vitamin A" usda="334" category="Vitamins" track="false"/>
+	<nutrient name="Lycopene" unit="&#181;g" parent="Vitamin A" usda="337" category="Vitamins" track="false"/>
+	<nutrient name="Lutein+Zeaxanthin" unit="&#181;g" parent="Vitamin A" usda="338" category="Vitamins" track="false"/>
 	
 	<nutrient name="Folate" unit="&#181;g" dv="400" usda="417" category="Vitamins">
 		<rda min_age="0"   max_age="0.5" gender="all"    amount="65"/>
@@ -695,9 +695,9 @@
 		<rda min_age="31"  max_age="50"  gender="female" amount="19" 	tul="1000" status="lactating"/>
 	</nutrient>
 	
-	<nutrient name="Beta Tocopherol" unit="mg" parent="Vitamin E" usda="341" category="Vitamins"/>		
-	<nutrient name="Delta Tocopherol" unit="mg" parent="Vitamin E" usda="343" category="Vitamins"/>			
-	<nutrient name="Gamma Tocopherol" unit="mg" parent="Vitamin E" usda="342" category="Vitamins"/>				
+	<nutrient name="Beta Tocopherol" unit="mg" parent="Vitamin E" usda="341" category="Vitamins" track="false"/>		
+	<nutrient name="Delta Tocopherol" unit="mg" parent="Vitamin E" usda="343" category="Vitamins" track="false"/>			
+	<nutrient name="Gamma Tocopherol" unit="mg" parent="Vitamin E" usda="342" category="Vitamins" track="false"/>				
 	
 	<nutrient name="Vitamin K" unit="&#181;g" dv="80" usda="430" category="Vitamins">	
 		<rda min_age="0"   max_age="0.5" gender="all"    amount="2"/>
@@ -724,7 +724,7 @@
 		<rda min_age="31"  max_age="50"  gender="female" amount="90"  status="lactating"/>
 	</nutrient>
 	
-	<nutrient name="Biotin" unit="&#181;g" dv="300" category="Vitamins" sparse="true"> 
+	<nutrient name="Biotin" unit="&#181;g" dv="300" category="Vitamins" sparse="true"  track="false"> 
 		<rda min_age="0"   max_age="0.5" gender="all"    amount="5"/>
 		<rda min_age="0.5" max_age="1"   gender="all"    amount="6"/>
 		<rda min_age="1"   max_age="3"   gender="all"    amount="8"/>
@@ -749,7 +749,7 @@
 		<rda min_age="31"  max_age="50"  gender="female" amount="35"  status="lactating"/>		
 	</nutrient>	
 	
-	<nutrient name="Choline" unit="mg" usda="421" category="Vitamins" sparse="true">	
+	<nutrient name="Choline" unit="mg" usda="421" category="Vitamins" sparse="true"  track="false">	
 		<rda min_age="0"   max_age="0.5" gender="all"    amount="125"/>
 		<rda min_age="0.5" max_age="1"   gender="all"    amount="150"/>
 		<rda min_age="1"   max_age="3"   gender="all"    amount="200"		tul="1000"/>
@@ -851,8 +851,6 @@
 	<nutrient name="TRP" unit="g" usda="501" category="Amino Acids"/>			
 	<nutrient name="TYR" unit="g" usda="509" category="Amino Acids"/>				 				
 	<nutrient name="VAL" unit="g" usda="510" category="Amino Acids"/>				 				
-	
-	
 	
 </nutrients>
     
