@@ -3,17 +3,16 @@
  */
 package ca.spaz.cron.ui;
 
-import java.awt.*; 
-import java.awt.event.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
 import java.util.Vector;
 
 import javax.swing.*;
-import javax.swing.event.*;
 
-import ca.spaz.cron.foods.*;
+import ca.spaz.cron.user.Metric;
 import ca.spaz.gui.*;
-import ca.spaz.cron.user.*; 
 
 /**
  * This is panel that displays some breif summary information about a Food item

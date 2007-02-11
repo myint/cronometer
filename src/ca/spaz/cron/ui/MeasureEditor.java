@@ -11,7 +11,6 @@ import java.util.List;
 
 import javax.swing.*;
 import javax.swing.event.*;
-import javax.swing.table.AbstractTableModel;
 
 import ca.spaz.cron.CRONOMETER;
 import ca.spaz.cron.foods.Food;

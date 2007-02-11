@@ -18,7 +18,6 @@ import javax.swing.table.TableColumnModel;
 
 import ca.spaz.cron.CRONOMETER;
 import ca.spaz.cron.user.Metric;
-import ca.spaz.gui.ErrorReporter;
 import ca.spaz.gui.PrettyTable;
 import ca.spaz.util.ImageFactory;
 
