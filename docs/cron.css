@@ -1,4 +1,4 @@
-.va-middle {vertical-align:middle;}
+
 body 
 { 
   font-family: verdana, arial, serif;
@@ -22,9 +22,9 @@ th {
    text-align: left;
 } 
  
-li {
-  text-align: justify
-} 
+#li {
+# text-align: justify
+#} 
 
 h1 {
 	font-size: 18pt;
@@ -59,4 +59,8 @@ h4 {
   padding: 2px;
   border: #000 1px solid;
 } 
+
+ .va-middle {
+    vertical-align:middle;
+ }
  

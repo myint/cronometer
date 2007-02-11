@@ -45,7 +45,7 @@ public abstract class History {
    public synchronized void addEntry(UserEntry entry) {
       entries.add(entry);
       dirty = true;
-      Logger.debug("Add Entry: " + entry);
+      //Logger.debug("Add Entry: " + entry);
    }
 
    public synchronized List getEntriesOn(Date curDate) {     
@@ -109,12 +109,15 @@ public abstract class History {
    }
    
    public synchronized void load() {
+      long start = System.currentTimeMillis();
       Logger.debug("Loading: " + getHistoryFile());
       try {
          InputStream in = new BufferedInputStream(
                new FileInputStream(getHistoryFile()));
          load(in);
          in.close();
+         long end = System.currentTimeMillis();
+         Logger.debug("  --> Loaded in: " + (end-start) + " msec");
       } catch (FileNotFoundException e) {
          e.printStackTrace();
       } catch (Exception e) {
