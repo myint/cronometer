@@ -116,7 +116,7 @@ public class BiomarkerPanel extends JPanel {
          Collections.sort(metrics);
          for (int i=0; i<metrics.size(); i++) {
             Metric m = (Metric)metrics.get(i);
-            actualData.add(new Day(m.getDate()), m.getValue());
+            actualData.addOrUpdate(new Day(m.getDate()), m.getValue());
          }
          dataset.addSeries(actualData);
          
