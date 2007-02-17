@@ -29,8 +29,8 @@ public class Biomarker {
       setUnits(e.getAttribute("units"));
       setMin(Double.parseDouble(e.getAttribute("min")));
       setMax(Double.parseDouble(e.getAttribute("max")));     
-      setEnabled(Boolean.parseBoolean(e.getAttribute("enabled")));
-      setShowMovingAverage(Boolean.parseBoolean(e.getAttribute("showMovingAverage")));
+      setEnabled(Boolean.getBoolean(e.getAttribute("enabled")));
+      setShowMovingAverage(Boolean.getBoolean(e.getAttribute("showMovingAverage")));
       setMovingAverageDays(Integer.parseInt(e.getAttribute("movingAverageDays")));
    }   
   

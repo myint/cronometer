@@ -32,10 +32,10 @@ public class HelpBrowser extends JFrame {
       this.baseTitle = title;
       this.setTitle(baseTitle);
       this.base = base;
-      setLayout(new BorderLayout());
-      getContentPane().add(getSplitPane(), BorderLayout.CENTER);
-      setPage("index.html");
-      pack();
+      this.getContentPane().setLayout(new BorderLayout());
+      this.getContentPane().add(getSplitPane(), BorderLayout.CENTER);
+      this.setPage("index.html");
+      this.pack();
    }   
 
    /**
