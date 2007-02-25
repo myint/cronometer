@@ -1,5 +1,6 @@
 <page title="CRON-o-Meter Help" url="blank.html">
-	<page title="Introduction" url="blank.html">
+
+	<page title="Manual" url="blank.html">
    		<page title="Introduction" url="introduction.html" />
    		<page title="Setting Targets" url="targets.html" />
    		<page title="Tracking your day" url="track.html" />
@@ -9,25 +10,27 @@
    		<page title="Limitations" url="limitations.html" />
 	</page>
 	
-	<page title="Calorie Restriction" url="cron.html">
-	
 	<!--
-	<page title="Nutrition Guide" url="blank.html">
+	<page title="Reference" url="blank.html">
    		<page title="Nutrition Guide" url="guide.html" />
    		<page title="Calories" url="calories.html" />
    		<page title="Macro Nutrients" url="macro.html" />
    		<page title="Vitamins" url="vitamins.html" />
    		<page title="Minerals" url="minerals.html" />
+      	<page title="Calorie Restriction" url="cron.html"/>
 	</page>
 	-->
 	 
 	<page title="FAQ" url="blank.html">
    		<page title="FAQs" url="FAQ.html" />
 	</page>
+	
 	<page title="Release Notes" url="blank.html">
    		<page title="Version 0.8" url="release8.html" />
 	</page>
+	
 	<page title="About" url="blank.html">
    		<page title="About CRON-o-Meter" url="about.html" />
 	</page>
+	
 </page>
