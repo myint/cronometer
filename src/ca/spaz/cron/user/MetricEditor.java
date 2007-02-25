@@ -4,6 +4,7 @@
 package ca.spaz.cron.user;
 
 import java.awt.event.*;
+import java.util.Iterator;
 
 import javax.swing.*;
 
@@ -11,7 +12,7 @@ import org.jfree.ui.RefineryUtilities;
 
 import ca.spaz.cron.CRONOMETER;
 import ca.spaz.cron.chart.TimeSeriesTest;
-import ca.spaz.cron.ui.BiomarkerPanel;
+import ca.spaz.cron.ui.BiomarkerPanelOld;
 import ca.spaz.gui.DoubleField;
 import ca.spaz.gui.ErrorReporter;
 import ca.spaz.util.ImageFactory;
@@ -30,14 +31,14 @@ public class MetricEditor extends JPanel {
    private JButton deleteBtn;   
    private JButton plotBtn;
 
-   private BiomarkerPanel bmp;
+   private BiomarkerPanelOld bmp;
+//
+//   public MetricEditor(BiomarkerPanelOld bmp, String type) {
+//      this.metricType = type;
+//      this.bmp = bmp;
+//   }   
 
-   public MetricEditor(BiomarkerPanel bmp, String type) {
-      this.metricType = type;
-      this.bmp = bmp;
-   }   
-
-   public MetricEditor(BiomarkerPanel bmp, Biomarker biomarker) {
+   public MetricEditor(BiomarkerPanelOld bmp, Biomarker biomarker) {
       this.metricType = biomarker.getName();
       this.biomarker = biomarker;
       this.bmp = bmp;
@@ -139,27 +140,27 @@ public class MetricEditor extends JPanel {
    }
 
    public void setMetrics(java.util.List metrics) {
-//      saveBtn.setEnabled(false);
-//      deleteBtn.setEnabled(false); 
-//      entryField.setValue("");       
-//      // loop through array and find an appropriate metric to install
-//      Iterator iter = metrics.iterator();
-//      while (iter.hasNext()) {
-//         Metric m = (Metric)iter.next();
-//         if (m.getName().equals(metricType) && m.getValue() != null) {
-//            curMetric = m;
-//            if (m.getValue().doubleValue() == 0.0) {
-//               entryField.setValue("");
-//            }
-//            else {
-//               entryField.setValue(Double.parseDouble(m.getValue().toString()));
-//               saveBtn.setEnabled(false);
-//               deleteBtn.setEnabled(true); 
-//            }          
-//            return;
-//         }
-//      }
-//      curMetric = null;     
+      saveBtn.setEnabled(false);
+      deleteBtn.setEnabled(false); 
+      entryField.setValue("");       
+      // loop through array and find an appropriate metric to install
+      Iterator iter = metrics.iterator();
+      while (iter.hasNext()) {
+         Metric m = (Metric)iter.next();
+         if (m.getName().equals(metricType) && m.getValue() != null) {
+            curMetric = m;
+            if (m.getValue().doubleValue() == 0.0) {
+               entryField.setValue("");
+            }
+            else {
+               entryField.setValue(Double.parseDouble(m.getValue().toString()));
+               saveBtn.setEnabled(false);
+               deleteBtn.setEnabled(true); 
+            }          
+            return;
+         }
+      }
+      curMetric = null;     
    }
 
    private void saveValue() {

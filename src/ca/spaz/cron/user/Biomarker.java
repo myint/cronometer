@@ -29,8 +29,8 @@ public class Biomarker {
       setUnits(e.getAttribute("units"));
       setMin(Double.parseDouble(e.getAttribute("min")));
       setMax(Double.parseDouble(e.getAttribute("max")));     
-      setEnabled(Boolean.getBoolean(e.getAttribute("enabled")));
-      setShowMovingAverage(Boolean.getBoolean(e.getAttribute("showMovingAverage")));
+      setEnabled(e.getAttribute("enabled").equalsIgnoreCase("true"));
+      setShowMovingAverage(e.getAttribute("showMovingAverage").equalsIgnoreCase("true"));
       setMovingAverageDays(Integer.parseInt(e.getAttribute("movingAverageDays")));
    }   
   
@@ -110,12 +110,14 @@ public class Biomarker {
       List biomarkers = new ArrayList();
       Biomarker biomarker = new Biomarker();
       biomarker.setName("Weight");
+      biomarker.setEnabled(true);
       biomarker.setUnits("lbs");
       biomarker.setMax(1000);
       biomarker.setMin(1);
       biomarkers.add(biomarker);
       
       biomarker = new Biomarker();
+      biomarker.setEnabled(true);
       biomarker.setName("Body Temperature");
       biomarker.setUnits("degrees");
       biomarker.setMax(120);
@@ -123,6 +125,7 @@ public class Biomarker {
       biomarkers.add(biomarker);  
       
       biomarker = new Biomarker();
+      biomarker.setEnabled(true);
       biomarker.setName("Systolic BP");
       biomarker.setUnits("mm Hg");
       biomarker.setMax(1000);
@@ -130,6 +133,7 @@ public class Biomarker {
       biomarkers.add(biomarker); 
       
       biomarker = new Biomarker();
+      biomarker.setEnabled(true);
       biomarker.setName("Diastolic BP");
       biomarker.setUnits("mm Hg");
       biomarker.setMax(1000);
@@ -137,6 +141,7 @@ public class Biomarker {
       biomarkers.add(biomarker); 
       
       biomarker = new Biomarker();
+      biomarker.setEnabled(true);
       biomarker.setName("Resting Heart Rate");
       biomarker.setUnits("bpm");
       biomarker.setMax(120);
@@ -144,6 +149,7 @@ public class Biomarker {
       biomarkers.add(biomarker); 
       
       biomarker = new Biomarker();
+      biomarker.setEnabled(true);
       biomarker.setName("Blood Glucose");
       biomarker.setUnits("mg/dl");
       biomarker.setMax(1000);

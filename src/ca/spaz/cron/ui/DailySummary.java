@@ -34,7 +34,8 @@ public class DailySummary extends JPanel {
 
    private static final long ONE_DAY = 1000 * 60 * 60 * 24;
 
-   private BiomarkerPanel bioMarkerPanel;
+   private BiomarkerPanelOld bioMarkerPanel;
+   private ExercisePanel exercisePanel;
    private NoteEditor noteEditor;
 
    private Date curDate = new Date(System.currentTimeMillis());
@@ -97,11 +98,18 @@ public class DailySummary extends JPanel {
    }
 
 
-   private BiomarkerPanel getBioMarkersPanel() {
+   private BiomarkerPanelOld getBioMarkersPanel() {
       if (null == bioMarkerPanel) {
-         bioMarkerPanel = new BiomarkerPanel();
+         bioMarkerPanel = new BiomarkerPanelOld();
       }
       return bioMarkerPanel;
+   }
+
+   private ExercisePanel getExercisePanel() {
+      if (null == exercisePanel) {
+         exercisePanel = new ExercisePanel();
+      }
+      return exercisePanel;
    }
 
    private JTabbedPane getDailyTrackerPanel() {
@@ -109,7 +117,7 @@ public class DailySummary extends JPanel {
          dailyTracker = new JTabbedPane();
          dailyTracker.addTab("Diet", new ImageIcon(ImageFactory.getInstance().loadImage("/img/apple-16x16.png")), getDietPanel()); 
          dailyTracker.addTab("Biomarkers", new ImageIcon(ImageFactory.getInstance().loadImage("/img/graph.gif")), getBioMarkersPanel());
-         dailyTracker.addTab("Exercise", new ImageIcon(ImageFactory.getInstance().loadImage("/img/runner.gif")), new JPanel());
+         dailyTracker.addTab("Exercise", new ImageIcon(ImageFactory.getInstance().loadImage("/img/runner.gif")), getExercisePanel());
          dailyTracker.addTab("Notes", new ImageIcon(ImageFactory.getInstance().loadImage("/img/toc_open.gif")), getNotesEditor());
       }
       return dailyTracker;

@@ -3,10 +3,10 @@
  */
 package ca.spaz.cron.ui;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
+import java.awt.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.List;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
@@ -19,13 +19,9 @@ import org.jfree.chart.renderer.xy.XYItemRenderer;
 import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
 import org.jfree.data.time.*;
 import org.jfree.ui.RectangleInsets;
-import org.jfree.ui.RefineryUtilities;
 
-import ca.spaz.cron.CRONOMETER;
-import ca.spaz.cron.chart.TimeSeriesTest;
 import ca.spaz.cron.datasource.Datasources;
 import ca.spaz.cron.user.*;
-import ca.spaz.gui.ErrorReporter;
 
 /**
  * A panel containing a MetricEditor for each enabled Biomarker.
@@ -36,33 +32,32 @@ public class BiomarkerPanel extends JPanel {
    private ca.spaz.cron.user.MetricEditor[] editors;
    private List biomarkers = new ArrayList();
    private MetricTable metricTable;
-
+   private JSplitPane splitPane;
+   private ChartPanel chartPanel;
+   
    public BiomarkerPanel() {
       biomarkers = Datasources.getBiomarkerDefinitions().getEnabledBiomarkers();
       // Create an editor for each enabled biomarker
-      editors = new ca.spaz.cron.user.MetricEditor[biomarkers.size()];
-      for (int i = 0; i < editors.length; i++) {
-         Biomarker biomarker = (Biomarker)biomarkers.get(i);
-         editors[i] = new ca.spaz.cron.user.MetricEditor(this, biomarker);
-      }
+//      editors = new ca.spaz.cron.user.MetricEditor[biomarkers.size()];
+//      for (int i = 0; i < editors.length; i++) {
+//         Biomarker biomarker = (Biomarker)biomarkers.get(i);
+//         editors[i] = new ca.spaz.cron.user.MetricEditor(this, biomarker);
+//      }
 
       setBorder(BorderFactory.createEmptyBorder(3,3,3,3));
       setLayout(new BorderLayout());
-      JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, getMetricTable(), getChartPanel());
-      splitPane.setDividerLocation(300);
-      splitPane.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));      
-      add(splitPane, BorderLayout.CENTER);
+      add(getSplitPane(), BorderLayout.CENTER);
    }
    
-//   private JSplitPane getDietPanel() {
-//      if (null == dietPanel) {
-//         dietPanel = new JSplitPane(JSplitPane.VERTICAL_SPLIT, 
-//               getMetricTable(), new JPanel());
-//         dietPanel.setDividerLocation(300);
-//         dietPanel.setBorder(BorderFactory.createEmptyBorder(3,3,3,3)); 
-//      }
-//      return dietPanel;
-//   }
+   private JSplitPane getSplitPane() {
+      if (splitPane == null) {
+         splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, 
+               getMetricTable(), getChartPanel());
+         splitPane.setDividerLocation(300);
+         splitPane.setBorder(BorderFactory.createEmptyBorder(3,3,3,3)); 
+      }
+      return splitPane;
+   }
    
    public MetricTable getMetricTable() {
       if (null == metricTable) {
@@ -101,11 +96,10 @@ public class BiomarkerPanel extends JPanel {
       }
       return curMetrics;
    }
+    
    
-   ///////////////////////////////////////////////////////////////////////
    // Just a teaser idea?
    
-   private ChartPanel chartPanel;
    private JPanel getChartPanel() {
       if (chartPanel == null) {
          
@@ -150,9 +144,10 @@ public class BiomarkerPanel extends JPanel {
          DateAxis axis = (DateAxis) plot.getDomainAxis();
          axis.setDateFormatOverride(new SimpleDateFormat("dd-MMM-yyyy"));
          chartPanel = new ChartPanel(chart); 
-         chartPanel.setPreferredSize(new java.awt.Dimension(300, 200));
+         chartPanel.setPreferredSize(new Dimension(300, 200));
          chartPanel.setMouseZoomable(true, false);
          chartPanel.setDisplayToolTips(true);
+         chartPanel.setMinimumSize(new Dimension(300, 200));
       }
       return chartPanel;
    }

@@ -106,7 +106,7 @@ public class TimeSeriesTest extends JFrame {
          }
          if ((startDate.equals(m.getDate()) || startDate.before(m.getDate())) &&
                (endDate.equals(m.getDate()) || endDate.after(m.getDate()))) {
-            actualData.add(new Day(m.getDate()), m.getValue());
+            actualData.addOrUpdate(new Day(m.getDate()), m.getValue());
          }
       }
    }

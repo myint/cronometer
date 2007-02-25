@@ -27,6 +27,7 @@ public class NoteEditor extends JPanel {
          edit = new JTextArea();
          edit.setWrapStyleWord(true);
          edit.setLineWrap(true);
+         edit.setBorder(BorderFactory.createEmptyBorder(8,8,8,8));
       }
       return edit;
    }
