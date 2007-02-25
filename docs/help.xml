@@ -1,13 +1,33 @@
 <page title="CRON-o-Meter Help" url="blank.html">
 	<page title="Introduction" url="blank.html">
-   	<page title="Creating a Food" url="food.html" />
-   	<page title="Creating a Recipe" url="recipe.html" />
-   	<page title="Tips &amp; Tricks" url="tips.html" />
+   		<page title="Introduction" url="introduction.html" />
+   		<page title="Setting Targets" url="targets.html" />
+   		<page title="Tracking your day" url="track.html" />
+	   	<page title="Creating a Food" url="food.html" />
+   		<page title="Creating a Recipe" url="recipe.html" />
+   		<page title="Tips &amp; Tricks" url="tips.html" />
+   		<page title="Limitations" url="limitations.html" />
+	</page>
+	
+	<page title="Calorie Restriction" url="cron.html">
+	
+	<!--
+	<page title="Nutrition Guide" url="blank.html">
+   		<page title="Nutrition Guide" url="guide.html" />
+   		<page title="Calories" url="calories.html" />
+   		<page title="Macro Nutrients" url="macro.html" />
+   		<page title="Vitamins" url="vitamins.html" />
+   		<page title="Minerals" url="minerals.html" />
+	</page>
+	-->
+	 
+	<page title="FAQ" url="blank.html">
+   		<page title="FAQs" url="FAQ.html" />
 	</page>
 	<page title="Release Notes" url="blank.html">
-   	<page title="Version 0.8" url="release8.html" />
+   		<page title="Version 0.8" url="release8.html" />
 	</page>
 	<page title="About" url="blank.html">
-   	<page title="About CRON-o-Meter" url="about.html" />
+   		<page title="About CRON-o-Meter" url="about.html" />
 	</page>
 </page>
