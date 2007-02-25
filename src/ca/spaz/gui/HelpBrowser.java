@@ -18,6 +18,13 @@ import org.xml.sax.SAXException;
 
 import ca.spaz.util.ToolBox;
 
+/**
+ * A Super Simple Help Browser
+ * 
+ * It uses a folder with HTML files and a simple XML Index.
+ * 
+ * @author davidson
+ */
 public class HelpBrowser extends JFrame {
 
    private File base;
