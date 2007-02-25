@@ -218,40 +218,26 @@ public class ServingTable extends JPanel {
          
          table.registerKeyboardAction(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-               doCopy();
+               copySelectedServings();
             }
-         }, "Copy", KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.CTRL_MASK, false), JComponent.WHEN_FOCUSED);
+         }, "Copy", KeyStroke.getKeyStroke(KeyEvent.VK_C, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false), JComponent.WHEN_FOCUSED);
          
          table.registerKeyboardAction(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                doPaste();
             }
-         }, "Paste", KeyStroke.getKeyStroke(KeyEvent.VK_V, ActionEvent.CTRL_MASK, false), JComponent.WHEN_FOCUSED);
+         }, "Paste", KeyStroke.getKeyStroke(KeyEvent.VK_V, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false), JComponent.WHEN_FOCUSED);
          
          table.registerKeyboardAction(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-               doCut();
+               cutSelectedServings();
             }
-         }, "Cut", KeyStroke.getKeyStroke(KeyEvent.VK_X, ActionEvent.CTRL_MASK, false), JComponent.WHEN_FOCUSED);
+         }, "Cut", KeyStroke.getKeyStroke(KeyEvent.VK_X, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false), JComponent.WHEN_FOCUSED);
        
       }
       return table;
    } 
-    
-
-   public void doClear() {
-      deleteSelectedServings();
-   }
-
-   public void doCut() {
-      doCopy();
-      doClear();
-   }
-   
-   public void doCopy() {
-      copySelectedServings();
-   }   
-
+ 
    /**
     * Add a list of servings to the daily listing
     * Ugly because this table and model listens to the parent, which is 
@@ -298,11 +284,17 @@ public class ServingTable extends JPanel {
          fireStateChangedEvent();
       }
    }
-   
+
    
    public void copySelectedServings() {    
       CRONOMETER.getClipboard().setContents (new ServingSelection(this), CRONOMETER.getInstance());
-      // enable paste menu...
+      TransferHandler.getCopyAction().actionPerformed(new ActionEvent(getTable(), 0, "Copy"));
+   }
+
+   
+   public void cutSelectedServings() {    
+      copySelectedServings();
+      deleteSelectedServings();
    }
    
    /**
@@ -423,6 +415,8 @@ public class ServingTable extends JPanel {
       }
       // actions that apply to both single and multiple selections:
       menu.addSeparator();
+      menu.add(new CutServingsAction(this));
+      menu.add(new CopyServingsAction(this));
       menu.add(new DeleteServingsAction(this));
       
       if (menu.getComponents().length > 0) {

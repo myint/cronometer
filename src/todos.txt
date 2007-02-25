@@ -1,11 +1,8 @@
  In lieu of excessive bug-tracker usage, the old-fashioned todo list:
- --------------------------------------------------------------------
+ -----------------------------------------------------------
 
    0.8.0 TODOs
- 		- exercise panel (hide / teaser)
- 		- releasable biomarkers panel
- 		- finish help port
- 		- morecrdb foods to add?
+ 		- finish help port 
  		- bug stomp
 	 
   0.9.0 TODOS:
