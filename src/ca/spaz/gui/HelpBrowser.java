@@ -3,6 +3,8 @@ package ca.spaz.gui;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.io.*;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
@@ -77,7 +79,8 @@ public class HelpBrowser extends JFrame {
                   } else {
                      try {
                         if (e.getURL().getProtocol().equals("file")) {
-                           htmlPane.setPage(e.getURL());
+                           showPage(e.getURL());
+                           //htmlPane.setPage(e.getURL());
                         } else {                           
                            ToolBox.launchURL(htmlPane, e.getURL().toString()); 
                            // Java 6+ only:
@@ -176,6 +179,13 @@ public class HelpBrowser extends JFrame {
   }
    
 
+   public void showPage(URL url) {
+      Page page = findPage(url, getHelpContentsModel());
+      if (page != null) {
+         selectPageInTree(page);         
+      }
+   }
+   
    public void showPage(String url) {
       Page page = findPage(url, getHelpContentsModel());
       if (page != null) {
@@ -189,6 +199,24 @@ public class HelpBrowser extends JFrame {
    
    private Page findPage(String url, Page parent) {
       if (parent.getUrl().equals(url)) {
+         return parent;
+      }    
+      for (int i=0; i<parent.getChildCount(); i++) {
+         Page child = findPage(url, (Page)parent.getChildAt(i));
+         if (child != null) {
+            return child;
+         }         
+      }
+      return null;
+   }
+
+   
+   private Page findPage(URL url) {
+      return findPage(url, getHelpContentsModel());
+   }
+   
+   private Page findPage(URL url, Page parent) {
+      if (url != null && parent.getURL().equals(url)) {
          return parent;
       }    
       for (int i=0; i<parent.getChildCount(); i++) {
@@ -229,6 +257,15 @@ public class HelpBrowser extends JFrame {
       }
       public String getUrl() {
          return url;
+      }
+      public URL getURL() {
+         File f = new File(base, url);
+         try {
+            return f.toURI().toURL();
+         } catch (MalformedURLException e) {
+            e.printStackTrace();
+         }
+         return null;
       }
       public void setUrl(String url) {
          this.url = url;
