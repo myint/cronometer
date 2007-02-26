@@ -2,7 +2,7 @@
 
 ; HM NIS Edit Wizard helper defines
 !define PRODUCT_NAME "CRON-O-METER"
-!define PRODUCT_VERSION "0.7.0"
+!define PRODUCT_VERSION "0.8.0"
 !define PRODUCT_PUBLISHER "spaz.ca"
 !define PRODUCT_WEB_SITE "http://spaz.ca/cronometer/"
 !define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\CRON-O-METER.exe"
@@ -61,7 +61,7 @@ Section "MainSection" SEC01
   File "..\..\docs\*"
   SetOutPath "$INSTDIR\lib"
   File "..\..\lib\LGPL.txt"
-  File "..\..\lib\jfreechart-1.0.3.jar"
+  File "..\..\lib\jfreechart-1.0.4.jar"
   File "..\..\lib\jcommon-1.0.8.jar"
   File "..\..\lib\jcalendar-1.3.2.jar"
   File "..\..\lib\cronometer.jar"
@@ -113,8 +113,8 @@ Section Uninstall
   Delete "$INSTDIR\lib\*"
   Delete "$INSTDIR\output.log"
   Delete "$INSTDIR\error.log"
-  Delete "$INSTDIR\usda_sr18.zip"
-  Delete "$INSTDIR\crdb_r002.zip"
+  Delete "$INSTDIR\usda_sr19.zip"
+  Delete "$INSTDIR\crdb_r003.zip"
   Delete "$INSTDIR\CRON-O-METER.exe"
 
   Delete "$SMPROGRAMS\$ICONS_GROUP\Uninstall.lnk"
