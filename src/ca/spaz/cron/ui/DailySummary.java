@@ -97,6 +97,9 @@ public class DailySummary extends JPanel {
       pickDate();
    }
 
+   public Date getDate() {
+      return curDate;
+   }
 
    private BiomarkerPanelOld getBioMarkersPanel() {
       if (null == bioMarkerPanel) {

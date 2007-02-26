@@ -3,6 +3,7 @@
  */
 package ca.spaz.cron.summary;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.swing.JTabbedPane;
@@ -96,8 +97,8 @@ public class NutritionSummaryPanel extends JTabbedPane {
       return lipidsPanel;
     }
 
-   public void generateReport() { 
-      ReportWindow wp = new ReportWindow(this);
+   public void generateReport(Date date) { 
+      ReportWindow wp = new ReportWindow(this, date);
       WrapperDialog.showDialog(this, wp, true);
    }
 

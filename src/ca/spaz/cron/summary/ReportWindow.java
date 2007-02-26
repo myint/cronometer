@@ -22,6 +22,8 @@ import ca.spaz.util.ToolBox;
 import com.toedter.calendar.JDateChooser;
 
 public class ReportWindow extends WrappedPanel { 
+   private DateFormat df = DateFormat.getDateInstance(DateFormat.LONG);
+   
    private WebViewer htmlViewer;
    private JPanel toolbar;
    private JComboBox formatBox;
@@ -30,8 +32,15 @@ public class ReportWindow extends WrappedPanel {
    private NutritionSummaryPanel summary;
    private Vector formats;
    private String report;
+
+   private JButton startDateBtn;
+   private JButton endDateBtn;
+   private Date startDate;
+   private Date endDate;
    
-   public ReportWindow(NutritionSummaryPanel summary) {
+   
+   public ReportWindow(NutritionSummaryPanel summary, Date date) {
+      this.startDate = this.endDate = date;
       this.summary = summary;
       setLayout(new BorderLayout());
       add(getToolbar(), BorderLayout.NORTH);
@@ -118,12 +127,6 @@ public class ReportWindow extends WrappedPanel {
       return dateChooser;
    }
     
-   private JButton startDateBtn;
-   private Date startDate = new Date();
-   private JButton endDateBtn;
-   private Date endDate = new Date();
-   private DateFormat df = DateFormat.getDateInstance(DateFormat.LONG);
-   
    private JButton getStartDateButton() {
       if (startDateBtn == null) {
          startDateBtn = new JButton(df.format(startDate));

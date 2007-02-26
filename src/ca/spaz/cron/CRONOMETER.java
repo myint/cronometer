@@ -10,6 +10,7 @@ import java.net.URL;
 import java.util.List;
 
 import javax.swing.*;
+import javax.swing.border.*;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
@@ -88,6 +89,8 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
          }
          getContentPane().add(getMainPanel());
          setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+         
+         // Testing: changeFontSizes(getMainPanel(), 4);
          
          pack();
          Point p = ToolBox.centerFrame(this);
@@ -358,7 +361,7 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
    }
    
    public void doNutritionReport() {
-      getDailySummary().getNutritionSummaryPanel().generateReport();
+      getDailySummary().getNutritionSummaryPanel().generateReport(getDailySummary().getDate());
    }
    
    /**
@@ -520,7 +523,7 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
       setExtendedState(Frame.NORMAL);
       toFront();
    }
- 
+   
    public static void main(String[] args) {
       try {
          if (!ToolBox.isMacOSX()) {

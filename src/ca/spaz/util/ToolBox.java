@@ -10,6 +10,7 @@ import java.util.*;
 import java.util.zip.*;
 
 import javax.swing.*;
+import javax.swing.border.*;
 
 import ca.spaz.gui.ErrorReporter;
 
@@ -274,6 +275,28 @@ public class ToolBox {
       return sb.toString();
    }
 
+   /**
+    * Copy the source file to the destination file.
+    * @param source File of the source file
+    * @param destination File of the destination file
+    * @throws IOException
+    * @throws FileNotFoundException
+    */
+   public static void copyFile(File source, File destination)
+      throws IOException, FileNotFoundException
+   {
+      FileInputStream inStream = new FileInputStream(source);
+      FileOutputStream outStream = new FileOutputStream(destination);
+      byte[] buffer = new byte[1024];
+      int bytesRead = inStream.read(buffer);
+      while (bytesRead != -1) {
+         outStream.write(buffer, 0, bytesRead);
+         bytesRead = inStream.read(buffer);
+      }
+      inStream.close();
+      outStream.close();
+   }
+   
    public static final int makeIntFromByte4(byte[] b) {
       return b[0]<<24 | (b[1]&0xff)<<16 | (b[2]&0xff)<<8 | (b[3]&0xff);
    }
@@ -358,5 +381,30 @@ public class ToolBox {
       ErrorReporter.showError("Could not load URL:\n"+url, parent);
    }
    
+   public static void changeFontSizes(Border b, float delta) {
+      if (b != null) {
+         if (b instanceof CompoundBorder) {
+            CompoundBorder cb = (CompoundBorder)b;
+            changeFontSizes(cb.getInsideBorder(), delta);
+            changeFontSizes(cb.getOutsideBorder(), delta);
+         } else if (b instanceof TitledBorder) {
+            TitledBorder tb = (TitledBorder)b;
+            tb.setTitleFont(tb.getTitleFont().deriveFont(tb.getTitleFont().getSize2D()+delta));
+         }
+      }
+   }
    
+   public static void changeFontSizes(JComponent c, float delta) {
+      c.setFont(c.getFont().deriveFont(c.getFont().getSize2D()+delta)); 
+      for (int i=0; i<c.getComponentCount(); i++) {
+         Component jc = c.getComponent(i);
+         if (jc instanceof JComponent) {
+            changeFontSizes((JComponent) jc, delta);
+            Border b = ((JComponent) jc).getBorder();
+            changeFontSizes(b, delta);           
+         }
+      }
+   }
+   
+ 
 }

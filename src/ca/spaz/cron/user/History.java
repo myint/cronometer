@@ -3,10 +3,10 @@ package ca.spaz.cron.user;
 import java.io.*;
 import java.util.*;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.*;
 
 import org.w3c.dom.*;
+import org.xml.sax.SAXException;
 
 import ca.spaz.cron.CRONOMETER;
 import ca.spaz.gui.ErrorReporter;
@@ -121,40 +121,45 @@ public abstract class History {
       } catch (FileNotFoundException e) {
          e.printStackTrace();
       } catch (Exception e) {
-         e.printStackTrace();
-         ErrorReporter.showError(e, CRONOMETER.getInstance()); 
-      }   
-   }
-
-   /**
-    * Load Settings fresh from disk 
-    */
-   public synchronized void load(InputStream in) {
-      try {
-         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-         dbf.setNamespaceAware(true);
-         DocumentBuilder db = dbf.newDocumentBuilder();
-         Document d = db.parse(in);
-         Element e = d.getDocumentElement();
-         
-         NodeList nl = e.getElementsByTagName(getEntryTagName());
-         for (int i=0; i<nl.getLength(); i++) {
-            try {
-               UserEntry entry = loadUserEntry((Element)nl.item(i));
-               if (entry != null) {
-                  addEntry(entry);
-               }
-            } catch (Exception ex) {
-               ErrorReporter.showError(ex, CRONOMETER.getInstance()); 
-            }
-         }
-      } catch (FileNotFoundException e) {
-         e.printStackTrace();
-      } catch (Exception e) {
+         backupFile(getHistoryFile());
          e.printStackTrace();
          ErrorReporter.showError(e, CRONOMETER.getInstance()); 
       }
       dirty = false;
+   }
+
+   /**
+    * Load Settings fresh from disk 
+    * @throws ParserConfigurationException 
+    * @throws IOException 
+    * @throws SAXException 
+    */
+   public synchronized void load(InputStream in) throws ParserConfigurationException, SAXException, IOException {   
+      DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+      dbf.setNamespaceAware(true);
+      DocumentBuilder db = dbf.newDocumentBuilder();
+      Document d = db.parse(in);
+      Element e = d.getDocumentElement();
+      
+      NodeList nl = e.getElementsByTagName(getEntryTagName());
+      for (int i=0; i<nl.getLength(); i++) {
+         try {
+            UserEntry entry = loadUserEntry((Element)nl.item(i));
+            if (entry != null) {
+               addEntry(entry);
+            }
+         } catch (Exception ex) {
+            ErrorReporter.showError(ex, CRONOMETER.getInstance()); 
+         }
+      }     
+   }
+
+   private void backupFile(File f) {
+      try {
+         ToolBox.copyFile(f, new File(f.getParent(), System.currentTimeMillis() + "-"+f.getName()));      
+      } catch (IOException e) { 
+         e.printStackTrace();
+      }      
    }
 
    public abstract UserEntry loadUserEntry(Element item);
