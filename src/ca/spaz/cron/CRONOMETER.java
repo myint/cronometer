@@ -10,7 +10,6 @@ import java.net.URL;
 import java.util.List;
 
 import javax.swing.*;
-import javax.swing.border.*;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
@@ -191,7 +190,7 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
 
    public void doHelp() {
       getHelpBrowser().showWindow();
-      getHelpBrowser().showPage("index.html");
+      getHelpBrowser().showPage("introduction.html");
    }
    
    
