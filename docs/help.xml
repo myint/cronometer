@@ -9,7 +9,7 @@
    		<page title="Biomarkers" url="biomarkers.html" />
    		<page title="Notes" url="notes.html" />
    		<page title="Menu Bar" url="menubar.html" />
-   		<page title="Tips &amp; Tricks" url="tips.html" />
+   		<!--page title="Tips &amp; Tricks" url="tips.html" /-->
    		<page title="FAQs" url="FAQ.html" />
    		<page title="Limitations" url="limitations.html" />
 	</page>
@@ -20,7 +20,7 @@
    		<page title="Macro Nutrients" url="blank.html" />
    		<page title="Vitamins" url="vitamins.html" />
    		<page title="Minerals" url="minerals.html" />
-      	<page title="Calorie Restriction" url="blank.html"/>
+      <page title="Calorie Restriction" url="blank.html"/>
 	</page>
 	 	 
 	<page title="Release Notes" url="blank.html">
