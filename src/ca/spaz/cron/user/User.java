@@ -435,10 +435,15 @@ public class User {
    }
    
    public void saveWindow(JFrame frame) {
-      settings.set(MAIN_WINDOW +".width", frame.getWidth());
-      settings.set(MAIN_WINDOW +".height", frame.getHeight());
-      settings.set(MAIN_WINDOW +".x", frame.getLocationOnScreen().x);
-      settings.set(MAIN_WINDOW +".y", frame.getLocationOnScreen().y);       
+      try {
+         frame.setVisible(true);
+         settings.set(MAIN_WINDOW +".width", frame.getWidth());
+         settings.set(MAIN_WINDOW +".height", frame.getHeight());
+         settings.set(MAIN_WINDOW +".x", frame.getLocationOnScreen().x);
+         settings.set(MAIN_WINDOW +".y", frame.getLocationOnScreen().y);
+      } catch (Exception e) {
+         e.printStackTrace();
+      }
    }
    
    public void restoreWindow(JFrame frame, Point p) {      
