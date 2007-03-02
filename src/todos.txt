@@ -2,7 +2,7 @@
  -----------------------------------------------------------
 
    0.8.0 TODOs
- 		- finish help port 
+ 		- finish help port (cross-references)
  		- bug stomp
 	 
   0.9.0 TODOS:

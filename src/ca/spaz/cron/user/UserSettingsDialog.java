@@ -100,8 +100,13 @@ public class UserSettingsDialog extends WrappedPanel {
    }
    
    public static boolean showDialog(User user, JComponent parent) {
-      UserSettingsDialog usd = new UserSettingsDialog(user);
-      return WrapperDialog.showDialog(parent, usd, true);
+      try {
+         UserSettingsDialog usd = new UserSettingsDialog(user);
+         return WrapperDialog.showDialog(parent, usd, true);
+      } catch (Exception e) {
+         ErrorReporter.showError(e, parent);
+      }
+      return false;
    }
 
    private static Border makeTitle(String str) {
