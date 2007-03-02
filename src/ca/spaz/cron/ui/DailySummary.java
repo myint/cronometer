@@ -372,7 +372,14 @@ public class DailySummary extends JPanel {
     * Currently just cheks if the date has changed, and updates the state of the today-button
     */
    public void refreshTime() {
-      getTodayButton().setEnabled(!ToolBox.isSameDay(curDate, new Date(System.currentTimeMillis())));
+      if (!ToolBox.isSameDay(curDate, new Date(System.currentTimeMillis()))) {
+         if (asked && getTodayButton().isEnabled()) {
+            asked = false;
+         }
+         getTodayButton().setEnabled(true);
+      } else {
+         getTodayButton().setEnabled(false);
+      }
    }
      
 }
