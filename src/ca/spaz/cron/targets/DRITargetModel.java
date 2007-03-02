@@ -51,8 +51,7 @@ public class DRITargetModel implements TargetModel {
    
    public String toString() {
       return "Dietary Reference Intakes";
-   }
-   
+   }   
    
    static final int CALORIES[][][][] = {
          { // short ( ~150cm)
@@ -100,10 +99,11 @@ public class DRITargetModel implements TargetModel {
       int calories_BMI_L = CALORIES[height][sex][0][PAL];
       int calories_BMI_H = CALORIES[height][sex][1][PAL];
       double calories = calories_BMI_L; 
-      if (BMI > 18.5){ 
-         calories = calories_BMI_L*(Math.abs(BMI-18.5)/6.5) + calories_BMI_H*(Math.abs(BMI-25)/6.5);
+      if (BMI > 18.5 && BMI < 25){ 
+         double blend = Math.abs(BMI-18.5)/6.5;
+         calories = calories_BMI_L*(1.0-blend) + calories_BMI_H*(blend);
       }
-      if (BMI > 25) {
+      if (BMI >= 25) {
          calories = calories_BMI_H;
       }  
       calories += (user.isMale()?10:7)*(30 - user.getAge());
