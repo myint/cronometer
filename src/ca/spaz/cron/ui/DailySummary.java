@@ -14,6 +14,8 @@ import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import org.jdesktop.swingx.JXDatePicker;
+
 import ca.spaz.cron.CRONOMETER;
 import ca.spaz.cron.datasource.Datasources;
 import ca.spaz.cron.foods.Serving;
@@ -49,7 +51,7 @@ public class DailySummary extends JPanel {
  
    private JButton nextButton; 
    private JButton prevButton;
-   private JButton titleLabel;
+   private JXDatePicker titleLabel;
    private JButton copyPrevDayButton;
    private JButton todayButton;
    private JButton prefsButton;
@@ -287,16 +289,31 @@ public class DailySummary extends JPanel {
    /**
     * @return the title label for this component
     */
-   private JButton getTitle() {
+   private JXDatePicker getDateTitle() {
       if (null == titleLabel) {
-         titleLabel = new JButton(df.format(curDate));
+         DateFormat[] formats = {df};
+         titleLabel = new JXDatePicker();
+         titleLabel.setFormats(formats);
+         //titleLabel = new JButton(df.format(curDate));
          titleLabel.setFont(new Font("Application", Font.BOLD, 16)); 
          titleLabel.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-               chooseDate();
+               setDate(titleLabel.getDate());
             }
          });
-         CRONOMETER.fixButton(titleLabel); 
+         titleLabel.getEditor().setEnabled(false);
+         titleLabel.getEditor().setFocusable(false);
+         titleLabel.getEditor().setOpaque(false);
+         titleLabel.getEditor().setBorder(null);
+         //CRONOMETER.fixButton(titleLabel); 
+//                  
+//         long[] flaggedDates = new long[] {
+//               System.currentTimeMillis() - 1000*60*60*24*5,
+//               System.currentTimeMillis()
+//         };
+
+//         titleLabel.getMonthView().setFlaggedDates(flaggedDates);
+         
          titleLabel.setFocusable(false); 
       }
       return titleLabel;
@@ -315,7 +332,7 @@ public class DailySummary extends JPanel {
          toolBar.add(Box.createHorizontalGlue());
          toolBar.add(getPreviousButton());
          toolBar.add(Box.createHorizontalStrut(5));
-         toolBar.add(getTitle());
+         toolBar.add(getDateTitle());
          toolBar.add(Box.createHorizontalStrut(5));
          toolBar.add(getNextButton());
          toolBar.add(Box.createHorizontalGlue());
@@ -350,7 +367,8 @@ public class DailySummary extends JPanel {
     */
    public void setDate(Date d) {
       curDate = d;      
-      getTitle().setText(df.format(curDate));
+      getDateTitle().setDate(curDate);
+      validate();
       getBioMarkersPanel().setDate(d);
       getServingTable().setTitle(df.format(curDate));
       getNotesEditor().setDate(d);
@@ -359,7 +377,7 @@ public class DailySummary extends JPanel {
       notifyObservers();
    }
 
-   public void pickDate() {
+   public void pickDate() {      
       Date d = DateChooser.pickDate(this, curDate);
       if (d != null) {
          setDate(d);

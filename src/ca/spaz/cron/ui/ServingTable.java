@@ -134,16 +134,15 @@ public class ServingTable extends JPanel {
       return addBtn;
   }
 
-  
    
    public void doAddServing() {
-     SearchDialog sd = new SearchDialog(JOptionPane.getFrameForComponent(this));
-     sd.display(true);
-      
+      SearchDialog sd = new SearchDialog(JOptionPane.getFrameForComponent(this));
+      sd.display(true);
+
       Serving s = sd.getSelectedServing();
-      if (s != null) { 
+      if (s != null) {
          fireServingChosen(s);
-      }      
+      }
    }
    
    private JComponent makeJScrollPane() {

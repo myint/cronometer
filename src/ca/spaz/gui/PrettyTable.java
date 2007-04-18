@@ -4,12 +4,15 @@
 package ca.spaz.gui;
 
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.*;
 import javax.swing.table.*;
 
-public class PrettyTable extends JTable implements TableCellRenderer {
+import org.jdesktop.swingx.JXTable;
+
+public class PrettyTable extends JXTable implements TableCellRenderer {
    public static final Color SHADED = new Color(240, 245, 255);
    private TableCellRenderer oldRender;
    private boolean allowHorizScroll = false;
@@ -33,6 +36,8 @@ public class PrettyTable extends JTable implements TableCellRenderer {
    }
    
    private void init() { 
+      super.setSortable(false); // disable JXTabl sorter for now
+      setTerminateEditOnFocusLost(true);
       getTableHeader().setReorderingAllowed(false);
       getTableHeader().addMouseListener(new MouseAdapter() {
          public void mouseClicked(MouseEvent e) {

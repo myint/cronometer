@@ -182,7 +182,7 @@ public class UserSettingsDialog extends WrappedPanel {
    
    private JSpinner getHeightField() {
       if (heightField == null) {
-         heightField = new JSpinner(new SpinnerNumberModel(0, 0, 300, 1));
+         heightField = new JSpinner(new SpinnerNumberModel(0.0, 0.0, 300.0, 1.0));
          Double height = new Double(user.getHeightInCM());
          if (height != null) {
             heightField.setValue(height);
@@ -215,7 +215,7 @@ public class UserSettingsDialog extends WrappedPanel {
    
    private JSpinner getWeightField() {
       if (weightField == null) {
-         weightField = new JSpinner(new SpinnerNumberModel(150, 1, 1000, 1));
+         weightField = new JSpinner(new SpinnerNumberModel(150.0, 1.0, 1000.0, 1.0));
          Double weight = new Double(user.getWeightInKilograms());
          if (weight != null) {
             weightField.setValue(weight);

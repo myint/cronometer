@@ -1,13 +1,20 @@
  In lieu of excessive bug-tracker usage, the old-fashioned todo list:
  -----------------------------------------------------------
 
-   0.8.0 TODOs
- 		- finish help port (cross-references)
- 		- bug stomp
+ - migrate to swingx components (calendar, panels, gradients, glass panes, animations)
+ - jxsearchbar?
+ - tony's help tweaks
+ - DRI stuff to investigate....
+ 
+ 
+ FIXED
+   - missing 'import' message
+   - bug 1698061 (stack trace)
+ 
 	 
   0.9.0 TODOS:
       - Favorites list!
-      - Fix commit changes bug in editors
+      - Fix commit changes bug in editors (fixed by using JXTable allegedly...)
          - scan for bad values and correct them?
       - continue to optimize data entry
          - fix focus traversal issues

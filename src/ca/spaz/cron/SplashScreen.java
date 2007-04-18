@@ -2,16 +2,23 @@ package ca.spaz.cron;
 
 
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 import javax.swing.*;
 import javax.swing.border.CompoundBorder;
+
+import org.jdesktop.swingx.JXBusyLabel;
+import org.jdesktop.swingx.graphics.GraphicsUtilities;
+import org.jdesktop.swingx.graphics.ReflectionRenderer;
 
 import se.datadosen.component.RiverLayout;
 import ca.spaz.cron.user.User;
 import ca.spaz.gui.TranslucentPanel;
 import ca.spaz.task.*;
-import ca.spaz.util.*;
+import ca.spaz.util.ToolBox;
 
 public class SplashScreen extends JFrame implements TaskListener {
 
@@ -44,7 +51,14 @@ public class SplashScreen extends JFrame implements TaskListener {
    }
    
    public ImageIcon getIcon() {
-      return  new ImageIcon(ImageFactory.getInstance().loadImage("/img/apple-100x100.png"));
+      try {
+         BufferedImage img = GraphicsUtilities.loadCompatibleImage(this.getClass().getResource("/img/apple-100x100.png"));
+         ReflectionRenderer r = new ReflectionRenderer(0.5f, 0.25f, true);
+         return  new ImageIcon(r.appendReflection(img));
+      } catch (IOException e) {
+         e.printStackTrace();
+      }
+      return new ImageIcon(); // empty on failure
    }
    
    public void start() {
@@ -59,10 +73,15 @@ public class SplashScreen extends JFrame implements TaskListener {
          mainPanel.setLayout(new RiverLayout());
          mainPanel.setBorder(BorderFactory.createEmptyBorder(15,40,15,40));      
          mainPanel.add("p center", getSplash());
-         mainPanel.add("p center", getCheckForUpdatesBox());
-         mainPanel.add("p hfill", getTaskBar());
-         mainPanel.add("br center", getVersionLabel());
+         
+         JXBusyLabel busy = new JXBusyLabel();
+         mainPanel.add("br center", busy);
+         busy.setBusy(true);
 
+         //mainPanel.add("p hfill", getTaskBar());
+         
+         mainPanel.add("p center", getVersionLabel());
+         mainPanel.add("p center", getCheckForUpdatesBox());
       }
       return mainPanel;
    }

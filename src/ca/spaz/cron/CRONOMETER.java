@@ -306,6 +306,9 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
             Food food = XMLFoodLoader.loadFood(f);
             if (food != null) {
                Datasources.getUserFoods().addFood(food);
+               JOptionPane.showMessageDialog(this, 
+                     "'"+food.getDescription()+"' has been added to your foods.", 
+                     "Food Added", JOptionPane.INFORMATION_MESSAGE);
             }      
             refreshDisplays();  
          }            

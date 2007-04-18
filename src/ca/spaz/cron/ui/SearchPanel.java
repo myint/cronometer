@@ -14,6 +14,9 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 
+import org.jdesktop.swingx.JXFindBar;
+import org.jdesktop.swingx.JXSearchPanel;
+
 import se.datadosen.component.RiverLayout;
 import ca.spaz.cron.actions.*;
 import ca.spaz.cron.datasource.*;
@@ -58,7 +61,7 @@ public class SearchPanel extends JPanel implements ItemListener {
       JPanel jp = new JPanel(new RiverLayout(3,3));
       jp.add(RiverLayout.CENTER, new JLabel("Search: "));
       jp.add(RiverLayout.CENTER, getSourceBox());
-      jp.add(RiverLayout.HFILL, getQueryField());
+      jp.add(RiverLayout.HFILL, getQueryField()); 
       return jp;
    }
    
