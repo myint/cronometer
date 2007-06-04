@@ -154,9 +154,9 @@ public class Recipe extends Food {
                   * f.getCarbConversionFactor();
          }
       }
-      setProteinConversionFactor(pcals / pgrams);
-      setLipidConversionFactor(fcals / fgrams);
-      setCarbConversionFactor(ccals / cgrams);
+      setProteinConversionFactor(pgrams == 0 ? 0 : pcals / pgrams);
+      setLipidConversionFactor(fgrams == 0 ? 0 : fcals / fgrams);
+      setCarbConversionFactor(cgrams == 0 ? 0 : ccals / cgrams);
 
    }
    

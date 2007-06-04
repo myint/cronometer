@@ -6,9 +6,11 @@ package ca.spaz.cron.datasource.USDAImport;
 import java.io.*;
 import java.net.*;
 import java.util.*;
-import java.util.zip.*;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
 
-import ca.spaz.cron.foods.*;
+import ca.spaz.cron.foods.Food;
+import ca.spaz.cron.foods.NutrientInfo;
 import ca.spaz.task.Task;
 import ca.spaz.util.*;
 
@@ -25,7 +27,13 @@ public class USDAImporter implements Task {
 
    private HashMap groups = new HashMap();
    private HashMap foods = new HashMap();
-
+   
+   private HashMap omega_619 = new HashMap();
+   private HashMap omega_685 = new HashMap();
+   private HashMap omega_618 = new HashMap();
+   private HashMap omega_851 = new HashMap(); 
+   private HashMap omega_675 = new HashMap(); 
+   
    private static final int HASH_MAX = 50;
 
    private URL sourceURL;
@@ -195,13 +203,24 @@ public class USDAImporter implements Task {
                parts[i] = parts[i].replaceAll("~$", "");
             }
             double amount = Double.parseDouble(parts[2]);
-            String usdaID = parts[1];           
+            String usdaID = parts[1];
             Food fd = (Food)foods.get(parts[0]); 
-            NutrientInfo ni = NutrientInfo.getByUSDA(usdaID);     
+            NutrientInfo ni = NutrientInfo.getByUSDA(usdaID);
             if (ni != null) {
                double val = fd.getNutrientAmount(ni);
                fd.setNutrientAmount(ni, val + amount);
             }
+            if (usdaID.equals("619")) {
+               omega_619.put(fd, new Double(amount));
+            } else if (usdaID.equals("685")) {
+               omega_685.put(fd, new Double(amount));
+            } else if (usdaID.equals("851")) {
+               omega_851.put(fd, new Double(amount));
+            } else if (usdaID.equals("618")) {
+               omega_618.put(fd, new Double(amount));
+            } else if (usdaID.equals("675")) {
+               omega_675.put(fd, new Double(amount));
+            }       
             break;
          default:
             throw new IllegalArgumentException("Invalid parse type: " + parseType);
@@ -214,11 +233,45 @@ public class USDAImporter implements Task {
       out.println("Done.");
    }
    
+   private void fixOmegaFats(Food fd) {
+      NutrientInfo w3 = NutrientInfo.getByName("Omega-3");
+      NutrientInfo w6 = NutrientInfo.getByName("Omega-6");
+      double w3a = fd.getNutrientAmount(w3);
+      double w6a = fd.getNutrientAmount(w6); 
+       
+      // linolenic acid 
+      if (omega_619.containsKey(fd)) {
+         // if no data for the n-3 linolenic acid, use the parent value
+         if (!omega_851.containsKey(fd)) {
+            w3a += ((Double)omega_619.get(fd)).doubleValue();
+            if (omega_685.containsKey(fd)) {
+               // subtract the n-6 sub-value, if we have a value
+               w3a -= ((Double)omega_685.get(fd)).doubleValue();
+            }
+            fd.setNutrientAmount(w3, w3a);
+         }
+      }
+      
+      // linoleic acid 
+      if (omega_618.containsKey(fd)) {
+         // if no data for the n-6 linoleic acid, use the parent value
+         if (!omega_675.containsKey(fd)) {
+            w6a += ((Double)omega_618.get(fd)).doubleValue();
+            //could subtract other non-n6 children here...
+            fd.setNutrientAmount(w6, w6a);
+         }
+      }
+     
+   }
+   
+   
+   
    private void writeFoods() {
       Iterator iter = foods.values().iterator();
       while (iter.hasNext()) {
          try {
             Food f = (Food)iter.next();
+            fixOmegaFats(f);
             File file = new File("usda_sr19/"+f.getSourceUID()+".xml");
             PrintStream ps = new PrintStream(
                   new BufferedOutputStream(new FileOutputStream(file)));

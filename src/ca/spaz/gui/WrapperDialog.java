@@ -91,14 +91,16 @@ public class WrapperDialog extends JDialog {
       if (centerPanel == null) {
          centerPanel = new JPanel(new BorderLayout(4,4));
          centerPanel.setBorder(BorderFactory.createEtchedBorder());
-         centerPanel.add(getTitlePanel(), BorderLayout.NORTH);
+         if (getWrappedPanel().getSubtitle() != null) {
+            centerPanel.add(getTitlePanel(), BorderLayout.NORTH);
+         }
          centerPanel.add(getWrappedPanel(), BorderLayout.CENTER);
       }
       return centerPanel;
    }
     
    private JPanel getTitlePanel() {
-      if (titlePanel == null) {         
+      if (titlePanel == null) {                     
          JLabel titleLabel = new JLabel(getWrappedPanel().getSubtitle(), JLabel.CENTER);
          titleLabel.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
          titleLabel.setFont(titleLabel.getFont().deriveFont(Font.BOLD));
@@ -107,7 +109,7 @@ public class WrapperDialog extends JDialog {
          titlePanel = new JPanel(new BorderLayout(4,4));
          titlePanel.setBackground(Color.GRAY);
          titlePanel.setBorder(BorderFactory.createEtchedBorder());
-         titlePanel.add(titleLabel, BorderLayout.CENTER);
+         titlePanel.add(titleLabel, BorderLayout.CENTER);        
       }
       return titlePanel;
    }

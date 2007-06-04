@@ -14,8 +14,6 @@ import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import org.jdesktop.swingx.JXDatePicker;
-
 import ca.spaz.cron.CRONOMETER;
 import ca.spaz.cron.datasource.Datasources;
 import ca.spaz.cron.foods.Serving;
@@ -51,7 +49,7 @@ public class DailySummary extends JPanel {
  
    private JButton nextButton; 
    private JButton prevButton;
-   private JXDatePicker titleLabel;
+   private JButton dateTitle;
    private JButton copyPrevDayButton;
    private JButton todayButton;
    private JButton prefsButton;
@@ -167,7 +165,7 @@ public class DailySummary extends JPanel {
                if (servings.size() == 0) {
                   servings = servingTable.getServings();
                }
-               totals.setServings(servings);               
+               getNutritionSummaryPanel().setServings(servings);               
             }           
          });               
       }
@@ -289,34 +287,20 @@ public class DailySummary extends JPanel {
    /**
     * @return the title label for this component
     */
-   private JXDatePicker getDateTitle() {
-      if (null == titleLabel) {
-         DateFormat[] formats = {df};
-         titleLabel = new JXDatePicker();
-         titleLabel.setFormats(formats);
-         //titleLabel = new JButton(df.format(curDate));
-         titleLabel.setFont(new Font("Application", Font.BOLD, 16)); 
-         titleLabel.addActionListener(new ActionListener() {
+   private JButton getDateTitle() {
+      if (null == dateTitle) {
+         
+         dateTitle = new JButton(df.format(curDate));
+         dateTitle.setFont(new Font("Application", Font.BOLD, 16)); 
+         dateTitle.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-               setDate(titleLabel.getDate());
+               chooseDate();
             }
          });
-         titleLabel.getEditor().setEnabled(false);
-         titleLabel.getEditor().setFocusable(false);
-         titleLabel.getEditor().setOpaque(false);
-         titleLabel.getEditor().setBorder(null);
-         //CRONOMETER.fixButton(titleLabel); 
-//                  
-//         long[] flaggedDates = new long[] {
-//               System.currentTimeMillis() - 1000*60*60*24*5,
-//               System.currentTimeMillis()
-//         };
-
-//         titleLabel.getMonthView().setFlaggedDates(flaggedDates);
-         
-         titleLabel.setFocusable(false); 
+         CRONOMETER.fixButton(dateTitle); 
+         dateTitle.setFocusable(false); 
       }
-      return titleLabel;
+      return dateTitle;
    }
    
 
@@ -367,7 +351,8 @@ public class DailySummary extends JPanel {
     */
    public void setDate(Date d) {
       curDate = d;      
-      getDateTitle().setDate(curDate);
+      // getDateTitle().setDate(curDate);
+      getDateTitle().setText(df.format(curDate));
       validate();
       getBioMarkersPanel().setDate(d);
       getServingTable().setTitle(df.format(curDate));
@@ -387,7 +372,7 @@ public class DailySummary extends JPanel {
    /**
     * Called periodically. 
     * 
-    * Currently just cheks if the date has changed, and updates the state of the today-button
+    * Currently just checks if the date has changed, and updates the state of the today-button
     */
    public void refreshTime() {
       if (!ToolBox.isSameDay(curDate, new Date(System.currentTimeMillis()))) {

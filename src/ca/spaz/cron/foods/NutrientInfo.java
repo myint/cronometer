@@ -143,6 +143,14 @@ public class NutrientInfo {
        return getCategory().equals(AMINO_ACIDS);
     }
 
+    public boolean isOmega3() {       
+       return getName().equals("Omega-3");
+    }
+
+    public boolean isOmega6() {       
+       return getName().equals("Omega-6");
+    }
+      
     public String getName() {
         return name;
     }
@@ -284,6 +292,6 @@ public class NutrientInfo {
    public boolean getDefaultTracking() {
       return usda != null && track;
    }
- 
+
 }
  

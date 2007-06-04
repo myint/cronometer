@@ -5,58 +5,56 @@ package ca.spaz.cron.ui;
 
 import java.util.Date;
 
-import javax.swing.*;
+import javax.swing.ImageIcon;
+import javax.swing.JComponent;
 
-import ca.spaz.gui.*;
+import org.jdesktop.swingx.calendar.JXMonthView;
 
-import com.toedter.calendar.JCalendar;
+import ca.spaz.gui.WrappedPanel;
+import ca.spaz.gui.WrapperDialog;
 
 public class DateChooser extends WrappedPanel {
-   private String subtitle = "Pick a Date to view";
+   private String title = "Choose Date";
 
-   private JCalendar cal;
+   //private JCalendar cal;
+   private JXMonthView cal;
    
    public DateChooser(Date curDate) {
-      cal = new JCalendar(curDate);
-       
-      /*cal.addPropertyChangeListener(new PropertyChangeListener() {
+      //cal = new JCalendar(curDate);
+      cal = new JXMonthView(curDate.getTime());
+      cal.setTraversable(true);
+      cal.setSelectionInterval(curDate, curDate);
 
-         public void propertyChange(PropertyChangeEvent evt) {
-            System.out.println(evt.getPropertyName() + "|" + evt.getNewValue());
-         }
-         
-      });*/
-      
-      add(cal);
+      add(cal); 
    }
       
    public static Date pickDate(JComponent parent, Date d) {
       DateChooser dc = new DateChooser(d);      
       WrapperDialog.showDialog(parent, dc);
-      return dc.cal.getDate(); 
+      return dc.cal.getSelection().first(); 
    }
    
-   public static Date pickDate(JComponent parent, Date d, String subtitle) {
+   public static Date pickDate(JComponent parent, Date d, String title) {
       DateChooser dc = new DateChooser(d); 
-      dc.setSubtitle(subtitle);
+      dc.setTitle(title);
       WrapperDialog.showDialog(parent, dc);
-      return dc.cal.getDate(); 
+      return dc.cal.getSelection().first(); 
    }   
+ 
+   private void setTitle(String title) {
+      this.title = title;
+   }
 
    public String getTitle() {
-      return "Choose Date";
+      return title;
    }
 
    public String getSubtitle() {
-      return subtitle;
-   }
-   
-   public void setSubtitle(String subtitle) {
-      this.subtitle = subtitle;
-   }
+      return null;
+   } 
 
    public String getInfoString() {
-      return "Choose Date";
+      return title;
    }
 
    public ImageIcon getIcon() {
