@@ -341,6 +341,10 @@ public class ServingEditor extends JPanel {
          sel.servingChosen(cur);
       }
    }
+ 
+   public void linkToSearchResults(SearchPanel sp) {
+      getMeasure().linkToSearchResults(sp);
+  }
   
 
 }

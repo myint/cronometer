@@ -173,8 +173,7 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
 
    public void doShowReleaseNotes() {
       getHelpBrowser().showWindow();
-      getHelpBrowser().showPage("release8.html");
-      //new ReadMe(this, "Release Notes", getClass().getResource("/docs/release.html"));
+      getHelpBrowser().showPage("release9.html"); 
    }
    
    public void doShowReadMe() {

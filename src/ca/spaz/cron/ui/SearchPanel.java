@@ -14,9 +14,6 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 
-import org.jdesktop.swingx.JXFindBar;
-import org.jdesktop.swingx.JXSearchPanel;
-
 import se.datadosen.component.RiverLayout;
 import ca.spaz.cron.actions.*;
 import ca.spaz.cron.datasource.*;
@@ -72,14 +69,31 @@ public class SearchPanel extends JPanel implements ItemListener {
                    
          // for live searches as we type:
          queryField.addKeyListener(new KeyAdapter() {
-            public void keyTyped(KeyEvent e) {
+            public void keyTyped(final KeyEvent e) {
                SwingUtilities.invokeLater(new Runnable() {
-                  public void run() {
-                     if (updateAsTyping()) {
-                        doDBSearch();                        
+                  public void run() { 
+                     if (e.getKeyChar() != '\n') {
+                        if (updateAsTyping()) {
+                           doDBSearch();                           
+                        }
                      }
                   }
                });
+            }
+
+            public void keyPressed(KeyEvent e) { 
+               if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                  if (resultTable.getRowCount() > 0) {
+                     resultTable.changeSelection(0, 0, false, false);                  
+                     foodSelected(model.getSearchHit(0).getFoodProxy());
+                  }
+               }
+               if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_KP_UP) {
+                  arrowUp();
+               }
+               if (e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_KP_DOWN) {
+                 arrowDown();
+               }         
             }
          });
       }
@@ -172,12 +186,27 @@ public class SearchPanel extends JPanel implements ItemListener {
       return jsp;
    }
 
+
+   public void arrowUp() {
+      if (resultTable.getSelectedRow() > 0) {
+         resultTable.changeSelection(resultTable.getSelectedRow()-1, 0, false, false);
+      }
+   }
+
+   public void arrowDown() {
+      if (resultTable.getSelectedRow() < resultTable.getRowCount()-1) {
+         resultTable.changeSelection(resultTable.getSelectedRow()+1, 0, false, false);
+      }
+   }
+ 
    
-   protected void foodSelected(FoodProxy f) {      
+   protected void foodSelected(FoodProxy f) { 
       selectedFood = f;
-      Iterator iter = listeners.iterator();
-      while (iter.hasNext()) {
-         ((FoodSelectionListener)iter.next()).foodSelected(f);
+      if (f != null) {
+         Iterator iter = listeners.iterator();
+         while (iter.hasNext()) {
+            ((FoodSelectionListener)iter.next()).foodSelected(f);
+         }
       }
    }
 
@@ -268,7 +297,12 @@ public class SearchPanel extends JPanel implements ItemListener {
          }
          model.sort();
       }
-      model.fireTableDataChanged();      
+      model.fireTableDataChanged();
+      if (resultTable.getRowCount() > 0) {
+         resultTable.changeSelection(0, 0, false, false);
+         getQueryField().requestFocus();
+         System.out.println("Searched!");
+      }
    }   
  
    public class ResultsTableModel extends PrettyTableModel {
@@ -405,11 +439,14 @@ public class SearchPanel extends JPanel implements ItemListener {
          super("Search");
       }
       public void actionPerformed(ActionEvent e) {
-         doDBSearch();
+         if (!updateAsTyping()) {
+            doDBSearch();
+         }
       }
    }
 
    public void focusQuery() {
+      System.out.println("focusQuery!");
       getQueryField().requestFocus();    
       getQueryField().selectAll();
    }

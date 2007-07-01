@@ -3,14 +3,17 @@
  */
 package ca.spaz.cron.ui;
 
-import java.awt.*;
+import java.awt.BorderLayout;
 import java.awt.event.*;
-import java.util.*;
+import java.util.Iterator;
+import java.util.Vector;
 
 import javax.swing.*;
-import javax.swing.event.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
-import ca.spaz.cron.foods.*;
+import ca.spaz.cron.foods.Food;
+import ca.spaz.cron.foods.Measure;
 import ca.spaz.gui.DoubleField;
 
 /**
@@ -33,7 +36,7 @@ public class MeasureWidget extends JPanel implements ItemListener, ActionListene
    private Vector listeners = new Vector();
    private Vector actionListeners = new Vector();
    
-   // determiens if multiplier value is linked to the weight
+   // determines if multiplier value is linked to the weight
    private boolean linked = false;
    
    /**
@@ -174,19 +177,38 @@ public class MeasureWidget extends JPanel implements ItemListener, ActionListene
       //Toolkit.getDefaultToolkit().beep();
    }
 
-   public void keyTyped(KeyEvent e) {       
+   public void keyTyped(KeyEvent e) {
+      //System.out.println("keyTyped: " + e);
    }
 
-   public void keyPressed(KeyEvent e) {
+   public void keyPressed(KeyEvent e) { 
+      if (searchPanel != null) {
+         if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_KP_UP) {
+            searchPanel.arrowUp();
+         }
+         if (e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_KP_DOWN) {
+            searchPanel.arrowDown();
+         }
+      }
    }
 
    /**
     * Called when the text field is edited
     */
    public void keyReleased(KeyEvent e) {
+      //System.out.println("keyReleased: " + e);
       fireChangeEvent();
    }
 
+
+
+   private SearchPanel searchPanel = null;
+   
+   public void linkToSearchResults(SearchPanel sp) { 
+      this.searchPanel = sp;      
+   }
+  
+   
    /**
     * If linked, changing a weight will update the multiplier
     * to keep the grams constant. Otherwise, the multiplier is left unchanged.

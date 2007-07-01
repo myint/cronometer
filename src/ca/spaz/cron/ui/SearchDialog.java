@@ -96,8 +96,7 @@ public class SearchDialog extends JDialog implements ServingEditorListener, Food
          FoodEditor.editFood(food.getFood());
       }
    } 
-     
-   
+
    public JPanel getMainPanel() {
       if (null == mainPanel) {
          mainPanel = new JPanel(new BorderLayout(4,4));
@@ -143,6 +142,7 @@ public class SearchDialog extends JDialog implements ServingEditorListener, Food
          servingEditor = new ServingEditor();
          servingEditor.setBorder(BorderFactory.createEmptyBorder(12,12,12,12));
          servingEditor.addServingEditorListener(this);
+         servingEditor.linkToSearchResults(getSearchPanel());
       }
       return servingEditor;
    }
@@ -260,6 +260,5 @@ public class SearchDialog extends JDialog implements ServingEditorListener, Food
       getSearchPanel().doDBSearch();      
    }
 
- 
    
 }

@@ -670,7 +670,7 @@
 		<rda min_age="31"  max_age="50"  gender="female" amount="200" 	tul="2000" status="lactating"/>
 	</nutrient>
 		
-	<nutrient name="Vitamin E" unit="mg" dv="30" usda="323" category="Vitamins">	
+	<nutrient name="Vitamin E" unit="mg" dv="20.134" usda="323" category="Vitamins">	
 		<rda min_age="0"   max_age="0.5" gender="all"    amount="4"/>
 		<rda min_age="0.5" max_age="1"   gender="all"    amount="5"/>
 		<rda min_age="1"   max_age="3"   gender="all"    amount="6"		tul="200"/>
