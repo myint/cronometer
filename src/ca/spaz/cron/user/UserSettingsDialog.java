@@ -17,9 +17,6 @@ import se.datadosen.component.RiverLayout;
 import ca.spaz.gui.*;
 import ca.spaz.util.ImageFactory;
 
-import com.toedter.calendar.JMonthChooser;
-import com.toedter.calendar.JYearChooser;
-
 public class UserSettingsDialog extends WrappedPanel {
    private static final String CM_UNITS = "Centimeters";
    private static final String INCHES_UNITS = "Inches";
@@ -47,7 +44,7 @@ public class UserSettingsDialog extends WrappedPanel {
    private JPanel weightPanel;
    private JPanel activityPanel;
    private JRadioButton male, female; 
-   private JYearChooser yearSpinner;
+   private JYearChooser yearSpinner; 
    private JMonthChooser monthChooser;
    private JSpinner heightField;
    private JComboBox heightUnits;
@@ -162,7 +159,7 @@ public class UserSettingsDialog extends WrappedPanel {
    
    public JMonthChooser getMonthChooser() {
       if (monthChooser == null) {     
-         monthChooser = new JMonthChooser(false);   
+         monthChooser = new JMonthChooser();   
          Calendar calendar = Calendar.getInstance();
          calendar.setTime(user.getBirthDate());
          monthChooser.setMonth(calendar.get(Calendar.MONTH));

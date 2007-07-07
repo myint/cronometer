@@ -19,8 +19,6 @@ import ca.spaz.gui.*;
 import ca.spaz.util.ImageFactory;
 import ca.spaz.util.ToolBox;
 
-import com.toedter.calendar.JDateChooser;
-
 public class ReportWindow extends WrappedPanel { 
    private DateFormat df = DateFormat.getDateInstance(DateFormat.LONG);
    
@@ -118,14 +116,14 @@ public class ReportWindow extends WrappedPanel {
       }
       return toolbar;
    }
-
+/*
    private JDateChooser dateChooser;
    private JDateChooser getDatePicker() {
       if (dateChooser == null) {
          dateChooser = new JDateChooser();
       }
       return dateChooser;
-   }
+   }*/
     
    private JButton getStartDateButton() {
       if (startDateBtn == null) {
