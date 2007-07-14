@@ -2,7 +2,7 @@
 
 ; HM NIS Edit Wizard helper defines
 !define PRODUCT_NAME "CRON-O-METER"
-!define PRODUCT_VERSION "0.8.0"
+!define PRODUCT_VERSION "0.9.0"
 !define PRODUCT_PUBLISHER "spaz.ca"
 !define PRODUCT_WEB_SITE "http://spaz.ca/cronometer/"
 !define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\CRON-O-METER.exe"
@@ -61,9 +61,9 @@ Section "MainSection" SEC01
   File "..\..\docs\*"
   SetOutPath "$INSTDIR\lib"
   File "..\..\lib\LGPL.txt"
-  File "..\..\lib\jfreechart-1.0.4.jar"
-  File "..\..\lib\jcommon-1.0.8.jar"
-  File "..\..\lib\jcalendar-1.3.2.jar"
+  File "..\..\lib\jfreechart-1.0.6.jar"
+  File "..\..\lib\jcommon-1.0.10.jar"
+  File "..\..\lib\swingx-2007_07_01.jar"
   File "..\..\lib\cronometer.jar"
 
 ; Shortcuts
