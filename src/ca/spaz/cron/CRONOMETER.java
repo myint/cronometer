@@ -20,10 +20,11 @@ import ca.spaz.cron.actions.CreateRecipeAction;
 import ca.spaz.cron.datasource.Datasources;
 import ca.spaz.cron.datasource.XMLFoodLoader;
 import ca.spaz.cron.foods.Food;
+import ca.spaz.cron.foods.FoodEditor;
 import ca.spaz.cron.targets.DRITargetModel;
 import ca.spaz.cron.targets.TargetEditor;
-import ca.spaz.cron.ui.DailySummary;
-import ca.spaz.cron.ui.FoodEditor;
+import ca.spaz.cron.ui.*;
+import ca.spaz.cron.ui.SplashScreen;
 import ca.spaz.cron.user.User;
 import ca.spaz.cron.user.UserSettingsDialog;
 import ca.spaz.gui.*;
@@ -42,8 +43,8 @@ import com.apple.mrj.MRJQuitHandler;
 public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, MRJAboutHandler, ClipboardOwner {
 
    public static final String TITLE = "CRON-o-Meter";
-   public static final String VERSION = "0.9";
-   public static final int BUILD = 9;
+   public static final String VERSION = "1.0.0";
+   public static final int BUILD = 10;
    public static JFrame mainFrame = null; 
 
    private static Clipboard clipboard = new Clipboard ("CRON-o-Meter");
@@ -88,9 +89,7 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
          }
          getContentPane().add(getMainPanel());
          setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-         
-         // Testing: changeFontSizes(getMainPanel(), 4);
-         
+
          pack();
          Point p = ToolBox.centerFrame(this);
          if (!User.getUser().firstRun()) {
@@ -323,7 +322,7 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
    
    public void doQuit() {
       try {
-         // remeber window size & positon
+         // remember window size & position
          getDailySummary().getNotesEditor().saveCurrentNote();
          User.getUser().saveWindow(this);
          User.getUser().setDietDivider(getDailySummary().getDietPanel().getDividerLocation());
@@ -533,7 +532,7 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
             System.setProperty("apple.laf.useScreenMenuBar", "true");
          }
       } catch (Exception e) {
-         Logger.error("main() - Error configuring UI delegate", e);
+         Logger.error("Error: setLookAndFeel() failed", e);
       }
       // The optional program argument sets the name of the subdirectory for user data.
       // This permits using a different subdirectory for development and testing 

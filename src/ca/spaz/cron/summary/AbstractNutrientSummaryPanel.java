@@ -3,8 +3,9 @@
  */
 package ca.spaz.cron.summary;
 
-import java.awt.*;
-import java.util.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.swing.*;

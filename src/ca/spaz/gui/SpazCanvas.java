@@ -1,13 +1,16 @@
 package ca.spaz.gui;
 
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.lang.reflect.Method;
-import java.util.*;
+import java.util.Enumeration;
+import java.util.Hashtable;
 
 import javax.swing.*;
 import javax.swing.border.*;
-import javax.xml.parsers.*;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.w3c.dom.*;
 

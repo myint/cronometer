@@ -4,7 +4,8 @@
 package ca.spaz.sql;
 
 import java.lang.reflect.Field;
-import java.sql.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  * Simple Java Object / Relational Database linker

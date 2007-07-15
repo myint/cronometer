@@ -15,7 +15,8 @@ import javax.swing.event.ChangeListener;
 
 import ca.spaz.cron.CRONOMETER;
 import ca.spaz.cron.foods.NutrientInfo;
-import ca.spaz.cron.user.*;
+import ca.spaz.cron.user.User;
+import ca.spaz.cron.user.UserSettingsDialog;
 import ca.spaz.gui.WrappedPanel;
 import ca.spaz.gui.WrapperDialog;
 import ca.spaz.util.ImageFactory;

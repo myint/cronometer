@@ -3,7 +3,8 @@
  */
 package ca.spaz.cron.targets;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Component;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -11,7 +12,8 @@ import javax.swing.JOptionPane;
 import ca.spaz.cron.CRONOMETER;
 import ca.spaz.cron.foods.NutrientInfo;
 import ca.spaz.cron.user.User;
-import ca.spaz.gui.*;
+import ca.spaz.gui.PrettyTable;
+import ca.spaz.gui.PrettyTableModel;
 
 /** 
  */

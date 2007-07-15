@@ -10,7 +10,8 @@ import java.util.List;
 import javax.swing.*;
 
 import ca.spaz.cron.CRONOMETER;
-import ca.spaz.cron.datasource.*;
+import ca.spaz.cron.datasource.Datasources;
+import ca.spaz.cron.datasource.FoodProxy;
 import ca.spaz.util.ImageFactory;
 
 

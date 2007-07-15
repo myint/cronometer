@@ -3,7 +3,8 @@
  */
 package ca.spaz.gui;
 
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Component;
 
 import javax.swing.*;
 

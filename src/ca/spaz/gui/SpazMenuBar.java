@@ -4,10 +4,12 @@ import java.awt.Toolkit;
 import java.awt.event.*;
 import java.io.*;
 import java.lang.reflect.Method;
-import java.util.*;
+import java.util.Enumeration;
+import java.util.Hashtable;
 
 import javax.swing.*;
-import javax.xml.parsers.*;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.w3c.dom.*;
 

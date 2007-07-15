@@ -7,7 +7,8 @@ import java.awt.*;
 import java.io.*;
 import java.net.URL;
 import java.util.*;
-import java.util.zip.*;
+import java.util.zip.DataFormatException;
+import java.util.zip.Inflater;
 
 import javax.swing.*;
 import javax.swing.border.*;

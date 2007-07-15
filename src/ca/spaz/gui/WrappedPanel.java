@@ -3,7 +3,8 @@
  */
 package ca.spaz.gui;
 
-import javax.swing.*;
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
 
 public abstract class WrappedPanel extends JPanel {
    public abstract String getTitle();

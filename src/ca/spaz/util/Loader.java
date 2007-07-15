@@ -1,7 +1,8 @@
 package ca.spaz.util;
 
 import java.io.*;
-import java.util.zip.*;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
 
 import javax.swing.ImageIcon;
  

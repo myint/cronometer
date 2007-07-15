@@ -7,11 +7,11 @@ import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.util.List;
 
-import javax.swing.*;
+import javax.swing.AbstractAction;
+import javax.swing.ImageIcon;
 
-
+import ca.spaz.cron.foods.FoodEditor;
 import ca.spaz.cron.foods.Recipe;
-import ca.spaz.cron.ui.FoodEditor;
 import ca.spaz.util.ImageFactory;
 
 

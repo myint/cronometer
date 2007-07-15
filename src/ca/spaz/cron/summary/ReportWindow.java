@@ -14,7 +14,6 @@ import javax.swing.*;
 
 import ca.spaz.cron.CRONOMETER;
 import ca.spaz.cron.datasource.Datasources;
-import ca.spaz.cron.ui.DateChooser;
 import ca.spaz.gui.*;
 import ca.spaz.util.ImageFactory;
 import ca.spaz.util.ToolBox;

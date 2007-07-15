@@ -1,6 +1,7 @@
 package ca.spaz.gui;
 
-import javax.swing.*;
+import javax.swing.JComponent;
+import javax.swing.JPanel;
 
 
 /**

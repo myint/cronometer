@@ -4,17 +4,22 @@
 package ca.spaz.cron.summary;
 
 import java.awt.Component;
-import java.awt.event.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.text.DecimalFormat;
-import java.util.*;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.swing.*;
 import javax.swing.table.*;
 
 import ca.spaz.cron.CRONOMETER;
-import ca.spaz.cron.foods.*;
-import ca.spaz.cron.targets.*;
-import ca.spaz.cron.user.*;
+import ca.spaz.cron.foods.NutrientInfo;
+import ca.spaz.cron.foods.Serving;
+import ca.spaz.cron.targets.NutrientInfoPanel;
+import ca.spaz.cron.targets.Target;
+import ca.spaz.cron.user.User;
+import ca.spaz.cron.user.UserChangeListener;
 import ca.spaz.gui.*;
 
 public class NutrientTable extends PrettyTable implements UserChangeListener {

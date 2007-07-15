@@ -4,11 +4,12 @@
 package ca.spaz.task;
 
 import java.awt.BorderLayout;
-import java.awt.event.*;
-import java.util.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.swing.*;
-import javax.swing.Timer;
 
 /**
  * A TaskBar is a Swing component that can safely run a Task in a background

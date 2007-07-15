@@ -13,7 +13,7 @@ import org.w3c.dom.NodeList;
 
 import ca.spaz.cron.CRONOMETER;
 import ca.spaz.cron.datasource.*;
-import ca.spaz.cron.user.UserEntry;
+import ca.spaz.cron.records.Record;
 import ca.spaz.gui.ErrorReporter;
 import ca.spaz.sql.SQLRow;
 import ca.spaz.util.XMLNode;
@@ -23,7 +23,7 @@ import ca.spaz.util.XMLNode;
  * 
  * @author davidson
  */
-public class Serving implements UserEntry {
+public class Serving implements Record {
      
     private FoodProxy food;
 
@@ -262,6 +262,10 @@ public class Serving implements UserEntry {
 
    public boolean isLoaded() {
       return food != null;
+   }
+   
+   public Record copy() {
+      return new Serving(this);
    }
    
    // generate the table mapping, could use xml def

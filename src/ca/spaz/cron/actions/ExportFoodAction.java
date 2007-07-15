@@ -13,7 +13,8 @@ import ca.spaz.cron.CRONOMETER;
 import ca.spaz.cron.datasource.FoodProxy;
 import ca.spaz.cron.foods.Food;
 import ca.spaz.gui.ErrorReporter;
-import ca.spaz.util.*;
+import ca.spaz.util.ImageFactory;
+import ca.spaz.util.Logger;
 
 
 public class ExportFoodAction extends AbstractAction {

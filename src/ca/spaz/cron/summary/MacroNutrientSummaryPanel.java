@@ -3,13 +3,14 @@
  */
 package ca.spaz.cron.summary;
 
-import java.awt.*;
-import java.util.*;
+import java.awt.BorderLayout;
+import java.util.Iterator;
 import java.util.List;
 
-import javax.swing.*;
+import javax.swing.BorderFactory;
 
-import ca.spaz.cron.foods.*;
+import ca.spaz.cron.foods.NutrientInfo;
+import ca.spaz.cron.foods.Serving;
 
 public class MacroNutrientSummaryPanel extends AbstractNutrientSummaryPanel {
    public MacroNutrientSummaryPanel() {      

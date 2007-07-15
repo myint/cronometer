@@ -22,6 +22,8 @@ import javax.swing.JFrame;
 import ca.spaz.cron.CRONOMETER;
 import ca.spaz.cron.datasource.Datasources;
 import ca.spaz.cron.foods.NutrientInfo;
+import ca.spaz.cron.metrics.Metric;
+import ca.spaz.cron.notes.NotesHistory;
 import ca.spaz.cron.targets.Target;
 import ca.spaz.gui.ErrorReporter;
 import ca.spaz.util.*;

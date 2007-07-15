@@ -8,6 +8,11 @@ import java.awt.*;
 import javax.swing.JComponent;
 import javax.swing.border.Border;
 
+/**
+ * Displays a visual representation of the nutritional target.
+ * 
+ * @author adavidson
+ */
 public class TargetBar extends JComponent {
    private double value;
    private double max;
@@ -63,7 +68,6 @@ public class TargetBar extends JComponent {
          yo = insets.top;
       }
       
-     
       Graphics2D g2d = (Graphics2D)g;      
       g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.80f));
       g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);

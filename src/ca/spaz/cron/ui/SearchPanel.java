@@ -17,8 +17,8 @@ import javax.swing.table.TableColumn;
 import se.datadosen.component.RiverLayout;
 import ca.spaz.cron.actions.*;
 import ca.spaz.cron.datasource.*;
-import ca.spaz.gui.PrettyTable;
-import ca.spaz.gui.PrettyTableModel;
+import ca.spaz.cron.foods.FoodSelectionListener;
+import ca.spaz.gui.*;
 
 /**
  * The search panel allows fast and easy searching of the food database, and

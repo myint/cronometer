@@ -14,6 +14,10 @@
 		    classpath="C:/Program Files/Launch4j/launch4j.jar
 		        :C:/Program Files/Launch4j/lib/xstream.jar" />
 	
+	 <taskdef name="exe4j"
+	               classname="com.exe4j.Exe4JTask"
+	               classpath="C:\Program Files\exe4j\bin\ant.jar"/>
+	                
 	<!-- Compile the java code from ${src} into ${build} -->
 	<target name="compile" description="compile the source">
 		<javac source="1.4" srcdir="${source}" destdir="${build}">
@@ -42,8 +46,9 @@
 		</jar>
 	</target>
 	
-	<target name="launch4j" depends="jarfile" description="generate the executable" >
+	<target name="launcher" depends="jarfile" description="generate the executable" >
 		<launch4j configFile="release/windows/launch4j.xml" />
+		<exe4j projectfile="release/windows/cronometer.exe4j"/>
 	</target>	
 	
 </project>

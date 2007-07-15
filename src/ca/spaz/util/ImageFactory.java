@@ -11,7 +11,8 @@
  *******************************************************************************/
 package ca.spaz.util;
 
-import java.awt.*;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.net.URL;
 import java.util.Map;
 

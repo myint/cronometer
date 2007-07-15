@@ -6,7 +6,8 @@ package ca.spaz.cron.foods;
 import java.io.PrintStream;
 import java.util.*;
 
-import ca.spaz.cron.datasource.*;
+import ca.spaz.cron.datasource.FoodDataSource;
+import ca.spaz.cron.datasource.FoodProxy;
 import ca.spaz.util.XMLNode;
 
 public class Food {

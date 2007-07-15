@@ -5,9 +5,10 @@ package ca.spaz.cron.actions;
 
 import java.awt.event.ActionEvent;
 
-import javax.swing.*;
+import javax.swing.AbstractAction;
+import javax.swing.ImageIcon;
 
-import ca.spaz.cron.ui.ServingTable;
+import ca.spaz.cron.foods.ServingTable;
 import ca.spaz.util.ImageFactory;
 
 

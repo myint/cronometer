@@ -4,7 +4,8 @@
 package ca.spaz.sql;
 
 import java.sql.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import ca.spaz.util.Logger;
 

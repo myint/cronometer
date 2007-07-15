@@ -4,7 +4,8 @@
 package ca.spaz.cron.datasource;
 
 import java.io.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.xml.parsers.*;
 
@@ -14,7 +15,8 @@ import org.xml.sax.SAXException;
 import ca.spaz.cron.CRONOMETER;
 import ca.spaz.cron.foods.*;
 import ca.spaz.gui.ErrorReporter;
-import ca.spaz.util.*;
+import ca.spaz.util.Logger;
+import ca.spaz.util.XMLNode;
 
 public class XMLFoodLoader {
  

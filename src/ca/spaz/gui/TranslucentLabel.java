@@ -5,7 +5,8 @@ package ca.spaz.gui;
 
 import java.awt.*;
 
-import javax.swing.*;
+import javax.swing.Icon;
+import javax.swing.JLabel;
 
 public class TranslucentLabel extends JLabel {
    double transparency = 1;

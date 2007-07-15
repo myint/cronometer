@@ -3,7 +3,8 @@
  */
 package ca.spaz.cron.targets;
 
-import java.util.*;
+import java.util.Iterator;
+import java.util.List;
 
 import ca.spaz.cron.foods.NutrientInfo;
 import ca.spaz.cron.user.User;

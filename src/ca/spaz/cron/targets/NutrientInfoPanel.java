@@ -3,17 +3,20 @@
  */
 package ca.spaz.cron.targets;
 
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
 
 import javax.swing.*;
-import javax.swing.event.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import se.datadosen.component.RiverLayout;
 import ca.spaz.cron.foods.NutrientInfo;
 import ca.spaz.cron.user.User;
-import ca.spaz.gui.*;
+import ca.spaz.gui.WrappedPanel;
 import ca.spaz.util.ImageFactory;
 
 public class NutrientInfoPanel extends WrappedPanel {

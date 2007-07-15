@@ -3,7 +3,8 @@
  */
 package ca.spaz.cron.targets;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.util.List;
 
 import javax.swing.*;

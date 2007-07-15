@@ -6,10 +6,11 @@ package ca.spaz.cron.actions;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 
-import javax.swing.*;
+import javax.swing.AbstractAction;
+import javax.swing.ImageIcon;
 
 import ca.spaz.cron.datasource.FoodProxy;
-import ca.spaz.cron.ui.FoodEditor;
+import ca.spaz.cron.foods.FoodEditor;
 import ca.spaz.util.ImageFactory;
 
 

@@ -3,7 +3,8 @@
  */
 package ca.spaz.cron.foods;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.*;
 
 import javax.xml.parsers.*;
@@ -12,7 +13,7 @@ import org.w3c.dom.*;
 import org.xml.sax.SAXException;
 
 import ca.spaz.cron.CRONOMETER;
-import ca.spaz.cron.targets.*;
+import ca.spaz.cron.targets.DRI;
 import ca.spaz.cron.user.User;
 import ca.spaz.gui.ErrorReporter;
 
