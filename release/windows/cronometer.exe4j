@@ -6,9 +6,9 @@
       <principalLanguage id="en" customLocalizationFile="" />
     </languages>
   </application>
-  <executable name="CRON-O-METER" type="1" iconSet="true" iconFile="C:/Documents and Settings/adavidson/workspace/CRONOMETER/release/windows/icon.ico" executableDir="." redirectStderr="true" stderrFile="error.log" redirectStdout="true" stdoutFile="output.log" failOnStderrOutput="true" executableMode="1" changeWorkingDirectory="true" workingDirectory="." singleInstance="true" serviceStartType="2" serviceDependencies="" serviceDescription="" jreLocation="" executionLevel="asInvoker" amd64="false">
+  <executable name="CRON-O-METER" type="1" iconSet="true" iconFile="C:/Documents and Settings/adavidson/workspace/CRONOMETER/release/windows/icon.ico" executableDir="." redirectStderr="false" stderrFile="error.log" redirectStdout="false" stdoutFile="output.log" failOnStderrOutput="true" executableMode="1" changeWorkingDirectory="true" workingDirectory="." singleInstance="true" serviceStartType="2" serviceDependencies="" serviceDescription="" jreLocation="" executionLevel="asInvoker" amd64="false">
     <messageSet />
-    <versionInfo include="true" fileVersion="0.9.0.0" fileDescription="CRON-O-METER Application" legalCopyright="Copyright 2005 - 2007" internalName="CRON-O-METER" companyName="spaz.ca" productVersion="0.9.0.0" />
+    <versionInfo include="true" fileVersion="0.9.1.0" fileDescription="CRON-O-METER Application" legalCopyright="Copyright 2005 - 2007" internalName="CRON-O-METER" companyName="spaz.ca" productVersion="0.9.1.0" />
   </executable>
   <splashScreen show="false" autoOff="true" alwaysOnTop="true" width="0" height="0" bitmapFile="">
     <text>
