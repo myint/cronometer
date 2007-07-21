@@ -51,7 +51,11 @@ public class SearchPanel extends JPanel implements ItemListener {
       add(makeQueryPanel(), BorderLayout.NORTH);
       add(makeResultPanel(), BorderLayout.CENTER);      
       queryField.requestFocusInWindow();
-      doDBSearch();
+      SwingUtilities.invokeLater(new Runnable() {
+         public void run() {
+            doDBSearch();            
+         }
+      });
    }
    
    private JPanel makeQueryPanel() {
@@ -119,10 +123,13 @@ public class SearchPanel extends JPanel implements ItemListener {
          sourceBox = new JComboBox(sources);
          sourceBox.addItemListener(new ItemListener() {
             public void itemStateChanged(ItemEvent e) {
-               clearResults();
-               model.fireTableDataChanged();
-               queryField.requestFocus();
-               queryField.selectAll();
+               if (e.getStateChange() == ItemEvent.SELECTED) {
+                  clearResults();
+                  doDBSearch();
+                  model.fireTableDataChanged();               
+                  queryField.requestFocus();
+                  queryField.selectAll();
+               }
             }
          });
          sourceBox.setAction(getSearchAction());
