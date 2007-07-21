@@ -27,14 +27,14 @@ public class DateChooser extends WrappedPanel {
    public static Date pickDate(JComponent parent, Date d) {
       DateChooser dc = new DateChooser(d);      
       WrapperDialog.showDialog(parent, dc);
-      return dc.cal.getSelection().first(); 
+      return (Date)dc.cal.getSelection().first(); 
    }
    
    public static Date pickDate(JComponent parent, Date d, String title) {
       DateChooser dc = new DateChooser(d); 
       dc.setTitle(title);
       WrapperDialog.showDialog(parent, dc);
-      return dc.cal.getSelection().first(); 
+      return (Date)dc.cal.getSelection().first(); 
    }   
  
    private void setTitle(String title) {
