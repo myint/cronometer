@@ -5,5 +5,8 @@
 	<classpathentry kind="lib" path="lib/swingx-2007_07_01.jar"/>
 	<classpathentry kind="lib" path="lib/jcommon-1.0.10.jar"/>
 	<classpathentry kind="lib" path="lib/jfreechart-1.0.6.jar"/>
+	<classpathentry kind="lib" path="lib/crdb_003.jar"/>
+	<classpathentry kind="lib" path="lib/usda_sr19.jar"/>
+	<classpathentry kind="lib" path="lib/docs.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
