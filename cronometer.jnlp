@@ -1,0 +1,32 @@
+<jnlp spec="1.5+" codebase="http://spaz.ca/cronometer/" href="cronometer.jnlp"> 
+    <information> 
+		<title>CRON-o-Meter</title> 
+		<homepage href="http://spaz.ca/cronometer/"/>
+		<vendor>Spaz.ca</vendor> 
+		<description>CRON-o-Meter</description> 
+		<description kind="short">CRON-o-Meter</description>
+		<icon href="apple32x32.gif" width="32" height="32" />
+		<icon href="apple64x64.gif" width="64" height="64" />
+		<icon href="cron-apple.png" kind="splash" />
+		<offline-allowed/>
+		<shortcut> 
+			<desktop/>
+			<menu submenu="CRON-O-METER"/>
+		</shortcut>
+    </information>
+    <resources> 
+		<j2se version="1.5+"/> 
+		<jar href="cronometer.jar" main="true" download="eager" />
+		<jar href="docs.jar" download="eager" /> 
+		<jar href="swingx-2007_07_01.jar" download="eager" />
+		<jar href="jcommon-1.0.10.jar" download="eager" />
+		<jar href="jfreechart-1.0.6.jar" download="eager" />
+		<jar href="crdb_003.jar" download="eager" /> 
+		<jar href="usda_sr19.jar" download="eager" /> 
+	    <property name="ca.spaz.mode" value="webstart" />
+    </resources> 
+    <application-desc name="CRON-o-Meter" main-class="ca.spaz.cron.CRONOMETER"/> 
+	<security>
+		<all-permissions/>
+	</security> 	
+</jnlp>
