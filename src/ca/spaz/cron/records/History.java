@@ -15,7 +15,7 @@ import ca.spaz.util.*;
 
 /**
  * A simple XML backing store taking the place of a lightweight database.
- * For storage and retreival of timestamp based entries.
+ * For storage and retrieval of timestamp based entries.
  * 
  * @todo: break into multiple files for better scaling
  * @todo: or wrap a database interface instead

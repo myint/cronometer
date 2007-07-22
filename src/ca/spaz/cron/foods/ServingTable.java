@@ -16,6 +16,8 @@ import javax.swing.event.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumnModel;
 
+import org.jdesktop.swingx.JXTable;
+
 import ca.spaz.cron.CRONOMETER;
 import ca.spaz.cron.actions.*;
 import ca.spaz.cron.datasource.FoodProxy;
@@ -25,7 +27,7 @@ import ca.spaz.util.ImageFactory;
 
 public class ServingTable extends JPanel {
 
-   private JTable table;
+   private JXTable table;
    private JComboBox measureBox = new JComboBox();
    private ServingTableModel model;
    private Vector listeners = new Vector();
@@ -153,7 +155,7 @@ public class ServingTable extends JPanel {
       return jsp;
    }
 
-   protected JTable getTable() {
+   protected JXTable getTable() {
       if (null == table) {
          table = new PrettyTable(model)  {
             public String getToolTipText(MouseEvent e) {

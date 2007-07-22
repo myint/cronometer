@@ -6,6 +6,7 @@ import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 
@@ -43,7 +44,7 @@ import com.apple.mrj.MRJQuitHandler;
 public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, MRJAboutHandler, ClipboardOwner {
 
    public static final String TITLE = "CRON-o-Meter";
-   public static final String VERSION = "1.0.0";
+   public static final String VERSION = "0.9.1";
    public static final int BUILD = 10;
    public static JFrame mainFrame = null; 
 
@@ -194,9 +195,17 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
    
    public HelpBrowser getHelpBrowser() {
       if (help == null) {
-         help = new HelpBrowser("CRON-o-Meter Help", new File("docs"));
-         help.setIconImage(CRONOMETER.getWindowIcon()); 
-         ToolBox.centerFrame(help);
+         try {
+            URL.setURLStreamHandlerFactory(new JarLoader());
+            //help = new HelpBrowser("CRON-o-Meter Help", new File("docs").toURI().toURL(), false); 
+            //help = new HelpBrowser("CRON-o-Meter Help", new URL("http://spaz.ca/cronometer/docs/"));
+            help = new HelpBrowser("CRON-o-Meter Help", new URL("class://DocAnchor/docs/"));
+            help.setIconImage(CRONOMETER.getWindowIcon()); 
+            ToolBox.centerFrame(help);
+         } catch (Exception e) {
+            e.printStackTrace();
+            ErrorReporter.showError(e, this);
+         }
       }
       return help;
    }

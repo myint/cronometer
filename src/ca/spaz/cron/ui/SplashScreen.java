@@ -82,7 +82,9 @@ public class SplashScreen extends JFrame implements TaskListener {
          //mainPanel.add("p hfill", getTaskBar());
          
          mainPanel.add("p center", getVersionLabel());
-         mainPanel.add("p center", getCheckForUpdatesBox());
+         if (System.getProperty("ca.spaz.mode", "application").equalsIgnoreCase("application")) {
+            mainPanel.add("p center", getCheckForUpdatesBox());
+         }
       }
       return mainPanel;
    }

@@ -330,8 +330,16 @@ public class User {
       notifyListeners();
    }
  
+   /**
+    * If it's running as an application and user wants to check for updates, then return true
+    * Otherwise, we're a web-start application and should not check for updates
+    */
    public boolean getCheckForUpdates() {
-      return settings.getBoolean(CHECK_FOR_UDAPTES, true);
+      if (System.getProperty("ca.spaz.mode", "application").equalsIgnoreCase("application")) {
+         return settings.getBoolean(CHECK_FOR_UDAPTES, true);
+      } else {
+         return false;
+      }
    }
    
    public void setCheckForUpdates(boolean val) {

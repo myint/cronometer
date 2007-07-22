@@ -8,13 +8,17 @@ import java.awt.Color;
 import ca.spaz.cron.foods.Food;
 
 
-public class USDAFoods extends ZipXMLFoodDataSource {
+public class USDAFoods extends JarXMLFoodDataSource {
    
 
    public String getZipFileName() {
-      return "usda_sr19.zip";
+      return "usda_sr19.jar";
    }
 
+   public String getBaseName() {
+      return "usda_sr19";
+   }
+   
    public String getName() {
       return "USDA";
    }   

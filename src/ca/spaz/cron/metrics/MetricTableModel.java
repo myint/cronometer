@@ -91,7 +91,6 @@ public class MetricTableModel extends RecordTableModel {
       fireTableRowsUpdated(row, row);
    }
 
-   @Override
    public String getToolTipText(int r, int c) {
       return null;
    }

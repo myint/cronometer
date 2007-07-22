@@ -22,7 +22,6 @@ public class MetricTable extends RecordTable {
       setTitle("BioMarkers");
    }
 
-   @Override
    public void doAddNewEntry() {
       AddMetricDialog md = new AddMetricDialog(JOptionPane.getFrameForComponent(this));
       md.display(true);

@@ -19,6 +19,7 @@ import ca.spaz.cron.datasource.Datasources;
 import ca.spaz.cron.exercise.ExercisePanel;
 import ca.spaz.cron.foods.*;
 import ca.spaz.cron.metrics.BiomarkerPanel;
+import ca.spaz.cron.metrics.BiomarkerPanelOld;
 import ca.spaz.cron.notes.NoteEditor;
 import ca.spaz.cron.summary.NutritionSummaryPanel;
 import ca.spaz.gui.DateChooser;
@@ -38,6 +39,7 @@ public class DailySummary extends JPanel {
    private static final long ONE_DAY = 1000 * 60 * 60 * 24;
 
    private BiomarkerPanel bioMarkerPanel;
+   private BiomarkerPanelOld bioMarkerPanelOld;
    private ExercisePanel exercisePanel;
    private NoteEditor noteEditor;
 
@@ -104,7 +106,14 @@ public class DailySummary extends JPanel {
       return curDate;
    }
 
-   private BiomarkerPanel  getBioMarkersPanel() {
+   private BiomarkerPanelOld  getBioMarkersPanel() {
+      if (null == bioMarkerPanelOld) {
+         bioMarkerPanelOld = new BiomarkerPanelOld();
+      }
+      return bioMarkerPanelOld;
+   }
+
+   private BiomarkerPanel  getBioMarkersPanel2() {
       if (null == bioMarkerPanel) {
          bioMarkerPanel = new BiomarkerPanel();
       }

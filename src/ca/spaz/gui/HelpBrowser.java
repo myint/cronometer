@@ -2,7 +2,8 @@ package ca.spaz.gui;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.io.*;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -25,27 +26,27 @@ import ca.spaz.util.ToolBox;
  * 
  * It uses a folder with HTML files and a simple XML Index.
  * 
- * @author davidson
+ * @author Aaron Davidson
  */
 public class HelpBrowser extends JFrame {
 
-   private File base;
+   private URL base;
    private String baseTitle;
    private JEditorPane htmlPane;
    private JTree contents;
    private JSplitPane splitPane;
    private JScrollPane contentsScrollPane;
-   private Page contentsModel;
+   private Page contentsModel; 
    
-   public HelpBrowser(String title, File base) {
-      this.baseTitle = title;
+   public HelpBrowser(String title, URL base) {
+      this.baseTitle = title; 
       this.setTitle(baseTitle);
       this.base = base;
       this.getContentPane().setLayout(new BorderLayout());
       this.getContentPane().add(getSplitPane(), BorderLayout.CENTER);
       this.setPage("index.html");
       this.pack();
-   }   
+   }
 
    /**
     * Show window normally
@@ -131,35 +132,40 @@ public class HelpBrowser extends JFrame {
       }
       return contents;
    }
-   
-
-   public void setPage(String name) {
-      File f = new File(base, name);
-      if (f.exists()) {
-         try {
-            getViewer().setContentType("text/html");
-            getViewer().setPage(f.toURI().toURL());
-         } catch (IOException e) { 
-            e.printStackTrace();
-         }
-      } else {
+    
+   public void setPage(String name) { 
+      try {
+         URL f = new URL(base, name);
+         getViewer().setContentType("text/html");
+         getViewer().setPage(f); 
+      } catch (IOException e) { 
          getViewer().setContentType("text/html");   
          getViewer().setText("<html><h3 align=\"center\">File Not Found: "+name+"</h3></html>");
-      }
+         e.printStackTrace();
+      } 
    }
    
    protected void setPage(Page page) {
-      if (page != null) {
-         //setTitle(baseTitle + " - " + page.getTitle() + " - " + page.getUrl());
+      if (page != null) { 
          setTitle(baseTitle + " - " + page.getTitle());
          setPage(page.getUrl());      
       }
    }
 
+   private InputStream getStream(String name) {
+      InputStream in = null;
+      try {
+         in = (new URL(base, name)).openStream();         
+      } catch (Exception e) {
+         e.printStackTrace();
+      }
+      return in;
+   }
+   
    private Page getHelpContentsModel() {
       if (contentsModel == null) {
          try {
-            FileInputStream in = new FileInputStream(new File(base, "help.xml"));
+            InputStream in = getStream("help.xml");
             contentsModel = loadContents(in);
             in.close();
          } catch (Exception e) {
@@ -258,10 +264,9 @@ public class HelpBrowser extends JFrame {
       public String getUrl() {
          return url;
       }
-      public URL getURL() {
-         File f = new File(base, url);
+      public URL getURL() {          
          try {
-            return f.toURI().toURL();
+            return new URL(base, url); 
          } catch (MalformedURLException e) {
             e.printStackTrace();
          }
