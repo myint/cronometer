@@ -8,7 +8,8 @@
 	<property name="name"  value="CRON-O-METER"/>
 	<property name="source" location="src/"/>
 	<property name="build" location="bin"/>
-
+	<property name="lib" location="lib"/> 
+	
 	<taskdef name="launch4j"
 		    classname="net.sf.launch4j.ant.Launch4jTask"
 		    classpath="C:/Program Files/Launch4j/launch4j.jar
@@ -51,5 +52,23 @@
 		<exe4j projectfile="release/windows/cronometer.exe4j"/>
 	</target>	
 	
+	<target name="signalljars" depends="jarfile" description="generate the signed jar package" >
+		<input message="Enter certificate password for signing:" addproperty="cert_pwd" />
+		
+		<signjar jar="${lib}/cronometer.jar" keystore="release/jws" alias="spaz.ca" storepass="${cert_pwd}"/>
+		<signjar jar="${lib}/swingx-2007_07_01.jar" keystore="release/jws" alias="spaz.ca" storepass="${cert_pwd}"/>
+		<signjar jar="${lib}/jcommon-1.0.10.jar" keystore="release/jws" alias="spaz.ca" storepass="${cert_pwd}"/>		
+		<signjar jar="${lib}/jfreechart-1.0.6.jar" keystore="release/jws" alias="spaz.ca" storepass="${cert_pwd}"/>
+		<signjar jar="${lib}/docs.jar" keystore="release/jws" alias="spaz.ca" storepass="${cert_pwd}"/>
+		<signjar jar="${lib}/crdb_003.jar" keystore="release/jws" alias="spaz.ca" storepass="${cert_pwd}"/>		
+		<signjar jar="${lib}/usda_sr19.jar" keystore="release/jws" alias="spaz.ca" storepass="${cert_pwd}"/>		
+	</target>
+
+	<target name="signsomejars" depends="jarfile" description="generate the signed jar package" >
+		<input message="Enter certificate password for signing:" addproperty="cert_pwd" />
+				
+		<signjar jar="${lib}/cronometer.jar" keystore="release/jws" alias="spaz.ca" storepass="${cert_pwd}"/>
+	</target>
+
 </project>
 
