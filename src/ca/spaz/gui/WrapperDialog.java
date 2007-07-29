@@ -169,9 +169,10 @@ public class WrapperDialog extends JDialog {
          okButton.setEnabled(true);
          okButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-               getWrappedPanel().doAccept();
-               accepted = true;
-               dispose();
+               accepted = getWrappedPanel().doAccept();
+               if (accepted) {
+                  dispose();
+               }
             }
          });
       }

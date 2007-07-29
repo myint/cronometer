@@ -10,8 +10,6 @@ import javax.swing.event.*;
 
 import se.datadosen.component.RiverLayout;
 import ca.spaz.cron.CRONOMETER;
-//import ca.spaz.cron.ui.WaitScreen;
-//import ca.spaz.task.Task;
 import ca.spaz.gui.*;
 import ca.spaz.util.*;
 
@@ -136,9 +134,8 @@ public class UserManagerDialog extends WrappedPanel implements ListSelectionList
 
    /**
     * If we are adding a new user, set this to true, else false.
-    * @param val
     */
-   public static void setAddingNewUser(Boolean val) {
+   public static void setAddNewUser(boolean val) {
       addingNewUser = val;
    }
    
@@ -151,7 +148,7 @@ public class UserManagerDialog extends WrappedPanel implements ListSelectionList
    }
    
    private void addUser() {
-      setAddingNewUser(true);
+      setAddNewUser(true);
       userMan.addUser(this);
       userListModel.addElement(UserManager.getCurrentUser().getUsername());
       selectCurrentUser();

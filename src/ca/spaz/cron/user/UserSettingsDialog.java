@@ -312,16 +312,20 @@ public class UserSettingsDialog extends WrappedPanel {
    public boolean isValid() { 
       if (UserManagerDialog.isAddingNewUser()) {
          
-         if (userMan.userExists(username.getText().trim())) {
-            JOptionPane.showMessageDialog(this, "Please select a unique user name.", 
-                  "Error", JOptionPane.ERROR_MESSAGE);
-            return false;
-         }
+         if ( ! currentUser.getUsername().equals(username.getText().trim())) {
+            // User name has changed, need to validate that it is correct.
+            
+            if (userMan.userExists(username.getText().trim())) {
+               JOptionPane.showMessageDialog(this, "Please select a unique user name.", 
+                     "Error", JOptionPane.ERROR_MESSAGE);
+               return false;
+            }
 
-         if (username.getText().trim().length() == 0) {
-            JOptionPane.showMessageDialog(this, "Please choose a name with at least one character.", 
-                  "Error", JOptionPane.ERROR_MESSAGE);
-            return false;
+            if (username.getText().trim().length() == 0) {
+               JOptionPane.showMessageDialog(this, "Please choose a name with at least one character.", 
+                     "Error", JOptionPane.ERROR_MESSAGE);
+               return false;
+            }
          }
       }
 
@@ -354,7 +358,7 @@ public class UserSettingsDialog extends WrappedPanel {
    }
 
    public void doCancel() {
-      UserManagerDialog.setAddingNewUser(false);
+      UserManagerDialog.setAddNewUser(false);
    }
 
    private void setUser() {
@@ -377,7 +381,7 @@ public class UserSettingsDialog extends WrappedPanel {
       if (!isValid()) {
          return false; 
       }
-      UserManagerDialog.setAddingNewUser(false);
+      UserManagerDialog.setAddNewUser(false);
       setUser();
       try {
          userMan.saveUserProperties();

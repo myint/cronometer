@@ -281,7 +281,7 @@ public class User {
          return true;
       } else if ('a' <= c && c <= 'z') {
          return true;
-      } else if ('ְ' <= c && c <= 'ÿ') {
+      } else if (192 <= c && c <= 255) {
          return true;
       } else if (c == '.' || c == '-' || c == '_' || c == ' ') {
          return true;
@@ -291,7 +291,7 @@ public class User {
    
    /**
     * Clean the username.  The resulting username will only have the following 
-    * characters: [A-Za-z0-9.-_הüצאטי]. 
+    * characters: [A-Za-z0-9.-_]. 
     * @param username the string to clean
     * @return the input string minus any invalid characters 
     */
@@ -344,7 +344,13 @@ public class User {
    
    public String getUsername(){
       if (username == null) {
-         return DEFAULT_USERNAME;
+         // Loop until we find a username that is valid.
+         username = DEFAULT_USERNAME;
+         int i = 2;
+         while (UserManager.getUserManager().getUser(username) != null) {
+            username = DEFAULT_USERNAME + " " + (new Integer(i++)).toString();
+         }
+         return username;
       } else {
          return username;
       }

@@ -69,6 +69,7 @@ public class UserManager {
       if (settings == null) {
          settings = new Settings(Settings.TAG_GENERAL);
          userList = settings.loadSettings(getSettingsFile());
+         settings.save();
          setCurrentUser(getLastUser());
       }
    }
@@ -208,6 +209,9 @@ public class UserManager {
    }
    
    public void setCurrentUser(User user) {
+      if (user == null) {
+         return;
+      }
       if (currentUser != null) {
          currentUser.saveUserData();
       }

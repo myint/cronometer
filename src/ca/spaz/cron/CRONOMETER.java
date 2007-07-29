@@ -6,7 +6,6 @@ import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 
@@ -104,7 +103,6 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
             UserManager.getUserManager().setFirstCronRun(false);
             UserManager.getCurrentUser().doFirstRun(getMainPanel());
             TargetEditor.setDefaultTargets(new DRITargetModel(), UserManager.getCurrentUser());
-            doEditUserSettings(); 
          } else {
             if (UserManager.getUserManager().getLastBuild() < BUILD) {
                doShowReleaseNotes();
