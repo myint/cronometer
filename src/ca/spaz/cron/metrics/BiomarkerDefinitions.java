@@ -10,6 +10,7 @@ import org.w3c.dom.*;
 
 import ca.spaz.cron.CRONOMETER;
 import ca.spaz.cron.user.User;
+import ca.spaz.cron.user.UserManager;
 import ca.spaz.gui.ErrorReporter;
 import ca.spaz.util.Logger;
 import ca.spaz.util.XMLNode;
@@ -81,7 +82,7 @@ public class BiomarkerDefinitions {
    }
 
    public File getBiomarkersDefinitionsFile() {
-      return new File(User.getUserDirectory(), BIOMARKER_DEFINITIONS_FILE);
+      return new File(UserManager.getUserDirectory(UserManager.getCurrentUser()), BIOMARKER_DEFINITIONS_FILE);
    }
 
    /**

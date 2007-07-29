@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 import ca.spaz.cron.CRONOMETER;
-import ca.spaz.cron.user.User;
+import ca.spaz.cron.user.UserManager;
 
 public class SysTray { 
    private TrayIcon trayIcon;
@@ -68,10 +68,10 @@ public class SysTray {
 
    private MenuItem makeHideItem() {
       final CheckboxMenuItem item = new CheckboxMenuItem("Hide when minimized");
-      item.setState(User.getUser().getHideWhenMinimized());
+      item.setState(UserManager.getUserManager().getHideWhenMinimized());
       item.addItemListener(new ItemListener() {      
          public void itemStateChanged(ItemEvent e) {
-            User.getUser().setHideWhenMinimized(item.getState());
+            UserManager.getUserManager().setHideWhenMinimized(item.getState());
          }
       });
       return item;

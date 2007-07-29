@@ -15,7 +15,7 @@ import javax.swing.event.ChangeListener;
 
 import se.datadosen.component.RiverLayout;
 import ca.spaz.cron.foods.NutrientInfo;
-import ca.spaz.cron.user.User;
+import ca.spaz.cron.user.UserManager;
 import ca.spaz.gui.WrappedPanel;
 import ca.spaz.util.ImageFactory;
 
@@ -33,7 +33,7 @@ public class NutrientInfoPanel extends WrappedPanel {
    
    public NutrientInfoPanel(NutrientInfo ni) {
       this.ni = ni;
-      target = User.getUser().getTarget(ni);     
+      target = UserManager.getCurrentUser().getTarget(ni);     
       setLayout(new BorderLayout(8,8));      
       add(getTargetPanel(), BorderLayout.CENTER);
       setBorder(BorderFactory.createEmptyBorder(12,12,12,12));
@@ -63,7 +63,7 @@ public class NutrientInfoPanel extends WrappedPanel {
       }
 
       DRITargetModel model = new DRITargetModel();
-      DRI dri = model.findMatch(User.getUser(), ni.getDRIs());
+      DRI dri = model.findMatch(UserManager.getCurrentUser(), ni.getDRIs());
       if (dri != null) {
          sb.append("RDA: " +  df.format(dri.getRDA()) + " " + ni.getUnits());
          sb.append("<br>");
@@ -89,8 +89,9 @@ public class NutrientInfoPanel extends WrappedPanel {
 
    public void doCancel() { }
 
-   public void doAccept() {
+   public boolean doAccept() {
       setTargets();
+      return true;
    }
  
    private JPanel getTargetPanel() {
@@ -118,8 +119,8 @@ public class NutrientInfoPanel extends WrappedPanel {
          rdaBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                DRITargetModel model = new DRITargetModel();
-               getMinModel().setValue(new Double(model.getTargetMinimum(User.getUser(), ni)));
-               getMaxModel().setValue(new Double(model.getTargetMaximum(User.getUser(), ni)));
+               getMinModel().setValue(new Double(model.getTargetMinimum(UserManager.getCurrentUser(), ni)));
+               getMaxModel().setValue(new Double(model.getTargetMaximum(UserManager.getCurrentUser(), ni)));
             } 
          });
       }
@@ -186,7 +187,7 @@ public class NutrientInfoPanel extends WrappedPanel {
       target.setMin(val);
       val = ((Number)getMaxTarget().getValue()).doubleValue();
       target.setMax(val);
-      User.getUser().setTarget(ni, target);
+      UserManager.getCurrentUser().setTarget(ni, target);
    }
    
 }

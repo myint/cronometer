@@ -15,6 +15,7 @@ import javax.swing.border.Border;
 import ca.spaz.cron.foods.*;
 import ca.spaz.cron.targets.Target;
 import ca.spaz.cron.user.User;
+import ca.spaz.cron.user.UserManager;
 import ca.spaz.cron.user.UserChangeListener;
 import ca.spaz.util.ToolBox;
 
@@ -54,7 +55,7 @@ public class TargetSummaryChart extends JComponent implements UserChangeListener
    
    public TargetSummaryChart(NutritionSummaryPanel summary) {
       this.summary = summary;
-      User.getUser().addUserChangeListener(this);
+      UserManager.getUserManager().addUserChangeListener(this);
       setFont(new Font("Application", Font.BOLD, 12));
       setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
    }
@@ -177,7 +178,7 @@ public class TargetSummaryChart extends JComponent implements UserChangeListener
    
    // @TODO: refactor this code more, as it's highly redundant
    public void paintComponent(Graphics g) {
-      User user = User.getUser();
+      User user = UserManager.getCurrentUser();
       
       int w = getWidth();
       int h = getHeight();
@@ -310,7 +311,7 @@ public class TargetSummaryChart extends JComponent implements UserChangeListener
       }   
    }
 
-   public void userChanged(User user) {
+   public void userChanged(UserManager userMan) {
       update();
    }
 }

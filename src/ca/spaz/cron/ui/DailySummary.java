@@ -15,13 +15,13 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import ca.spaz.cron.CRONOMETER;
-import ca.spaz.cron.datasource.Datasources;
 import ca.spaz.cron.exercise.ExercisePanel;
 import ca.spaz.cron.foods.*;
 import ca.spaz.cron.metrics.BiomarkerPanel;
 import ca.spaz.cron.metrics.BiomarkerPanelOld;
 import ca.spaz.cron.notes.NoteEditor;
 import ca.spaz.cron.summary.NutritionSummaryPanel;
+import ca.spaz.cron.user.*;
 import ca.spaz.gui.DateChooser;
 import ca.spaz.gui.TranslucentToolBar;
 import ca.spaz.util.ImageFactory;
@@ -34,7 +34,7 @@ import ca.spaz.util.ToolBox;
  * 
  * @author davidson
  */
-public class DailySummary extends JPanel { 
+public class DailySummary extends JPanel implements UserChangeListener { 
 
    private static final long ONE_DAY = 1000 * 60 * 60 * 24;
 
@@ -67,21 +67,32 @@ public class DailySummary extends JPanel {
       setPreferredSize(new Dimension(580,640));
       initialize();
       setDate(curDate);
-      notifyObservers();      
+      UserManager.getUserManager().addUserChangeListener(this);
+      notifyObservers();
+   }
+
+   public void addServingToUser(Serving c, User user, Date date) {
+      if (isOkToAddServings(date) && user != null) {
+         Serving copy = new Serving(c);
+         copy.setDate(date);
+         user.getFoodHistory().addServing(copy);
+         notifyObservers(); 
+      } else {
+         ToolBox.okDialog("No servings copied", "Warning");
+      }
+   }
+   
+   public void addServingToUser(Serving c, User user) {
+      addServingToUser(c, user, curDate);
    }
 
    public void addServing(Serving c) {
-      if (isOkToAddServings()) {
-         Serving copy = new Serving(c);
-         copy.setDate(curDate);
-         Datasources.getFoodHistory().addServing(copy);
-         notifyObservers(); 
-      }
+      addServingToUser(c, UserManager.getCurrentUser());
    }
 
-   public boolean isOkToAddServings() {
+   public boolean isOkToAddServings(Date date) {
       Date now = new Date(System.currentTimeMillis());
-      if (!ToolBox.isSameDay(curDate, now) && !asked) {        
+      if (!ToolBox.isSameDay(date, now) && !asked) {        
          int choice = JOptionPane.showConfirmDialog(this, 
                "You are adding a food to a date in the past or future.\n" +
                "Are you sure you want to do this?",
@@ -157,7 +168,7 @@ public class DailySummary extends JPanel {
    
    public ServingTable getServingTable() {
       if (null == servingTable) {
-         servingTable = new ServingTable();
+         servingTable = ServingTable.getServingTable();
          
          servingTable.addServingSelectionListener(new ServingSelectionListener() {
             public void servingSelected(Serving s) { }
@@ -165,7 +176,7 @@ public class DailySummary extends JPanel {
                FoodEditor.editFood(s);
             }
             public void servingChosen(Serving s) {
-               if (isOkToAddServings()) {
+               if (isOkToAddServings(curDate)) {
                   addServing(s);           
                }
             }
@@ -289,11 +300,11 @@ public class DailySummary extends JPanel {
     * Copies the foods from the previous day into this day.
     */
    private void copyPreviousDay() {
-      if (isOkToAddServings()) {
-   	   Date previousDay = new Date(curDate.getTime() - ONE_DAY);
-   	   Datasources.getFoodHistory().copyConsumedOn(previousDay, curDate);
-   	   notifyObservers();
-      }
+//      if (isOkToAddServings(curDate)) {
+	   Date previousDay = new Date(curDate.getTime() - ONE_DAY);
+      UserManager.getCurrentUser().getFoodHistory().copyConsumedOn(previousDay, curDate);
+	   notifyObservers();
+//      }
    }
 
    /**
@@ -354,8 +365,12 @@ public class DailySummary extends JPanel {
    }
 
    public void notifyObservers() {     
-      List consumed = Datasources.getFoodHistory().getConsumedOn(curDate);
+      List consumed = UserManager.getCurrentUser().getFoodHistory().getConsumedOn(curDate);
       getServingTable().setServings(consumed);
+   }
+   
+   public void userChanged(UserManager userMan) {
+      setDate(curDate);
    }
 
    /**

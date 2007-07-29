@@ -14,6 +14,7 @@ import javax.swing.table.TableColumnModel;
 import ca.spaz.cron.CRONOMETER;
 import ca.spaz.cron.datasource.Datasources;
 import ca.spaz.cron.records.RecordTable;
+import ca.spaz.cron.user.UserManager;
 
 public class MetricTable extends RecordTable {
    
@@ -77,7 +78,7 @@ public class MetricTable extends RecordTable {
 
    public void addMetric(Metric metric) {
       model.addUserEntry(metric);
-      Datasources.getBiometricsHistory().addMetric(metric);
+      UserManager.getCurrentUser().getBiometricsHistory().addMetric(metric);
       fireStateChangedEvent();
    }
    

@@ -7,7 +7,7 @@ import java.util.*;
 
 import ca.spaz.cron.foods.NutrientInfo;
 import ca.spaz.cron.targets.Target;
-import ca.spaz.cron.user.User;
+import ca.spaz.cron.user.UserManager;
 import ca.spaz.util.StringUtil;
 
 public class HTMLSummaryFormat extends SummaryFormat { 
@@ -63,9 +63,9 @@ public class HTMLSummaryFormat extends SummaryFormat {
       Iterator iter = nutrients.iterator();
       while (iter.hasNext()) {
          NutrientInfo ni = (NutrientInfo)iter.next();
-         Target target = User.getUser().getTarget(ni);
+         Target target = UserManager.getCurrentUser().getTarget(ni);
          if (targetsOnly) {
-            if (target.isUndefined() || !User.getUser().isTracking(ni)) continue;
+            if (target.isUndefined() || !UserManager.getCurrentUser().isTracking(ni)) continue;
          }
          i++;
          if (i%2==0) {
@@ -87,7 +87,7 @@ public class HTMLSummaryFormat extends SummaryFormat {
        
       double amount = getAmount(servings, ni) / (double)days;
        
-      Target target = User.getUser().getTarget(ni);
+      Target target = UserManager.getCurrentUser().getTarget(ni);
       
       sb.append("<td>"); 
       if (ni.getParent() != null) {

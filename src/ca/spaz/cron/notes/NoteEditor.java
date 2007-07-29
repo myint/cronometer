@@ -2,14 +2,17 @@ package ca.spaz.cron.notes;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.util.Date;
 
 import javax.swing.*;
 import javax.swing.text.BadLocationException;
 
 import ca.spaz.cron.user.User;
+import ca.spaz.cron.user.UserManager;
 
-public class NoteEditor extends JPanel {
+public class NoteEditor extends JPanel implements FocusListener {
 
    private JScrollPane jsp;
    private JTextArea edit;
@@ -30,6 +33,7 @@ public class NoteEditor extends JPanel {
          edit.setWrapStyleWord(true);
          edit.setLineWrap(true);
          edit.setBorder(BorderFactory.createEmptyBorder(8,8,8,8));
+         edit.addFocusListener(this);
       }
       return edit;
    }
@@ -60,7 +64,7 @@ public class NoteEditor extends JPanel {
    }
 
    public void saveCurrentNote() {
-      User.getUser().setNotes(getContents(), curDate);
+      UserManager.getCurrentUser().setNotes(getContents(), curDate);
    }
    
    private String curNote = null;
@@ -71,10 +75,24 @@ public class NoteEditor extends JPanel {
       }
       curDate = d;
       clear();
-      curNote = User.getUser().getNotes(curDate);
-      if (curNote != null) {
-         setContents(curNote);         
+      curNote = UserManager.getCurrentUser().getNotes(curDate);
+      if (curNote == null) {
+         curNote = "";
+      }
+      setContents(curNote);         
+   }
+
+   public void focusGained(FocusEvent arg0) {
+      // Do nothing
+   }
+
+   /** 
+    * Invoked when the text area loses the keyboard focus.
+    * This will not be invoked when the user clicks on the next/previous day button.
+    */
+   public void focusLost(FocusEvent e) {
+      if (curDate != null) {
+         saveCurrentNote(); 
       }
    }
-   
 }

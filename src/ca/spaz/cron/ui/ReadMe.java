@@ -48,7 +48,8 @@ public class ReadMe extends WrappedPanel {
    public void doCancel() { 
    }
 
-   public void doAccept() {
+   public boolean doAccept() {
+      return true;
    }
 
 }

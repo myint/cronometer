@@ -10,7 +10,7 @@ import java.util.*;
 import ca.spaz.cron.foods.NutrientInfo;
 import ca.spaz.cron.foods.Serving;
 import ca.spaz.cron.targets.Target;
-import ca.spaz.cron.user.User;
+import ca.spaz.cron.user.UserManager;
 
 public abstract class SummaryFormat {
    protected DecimalFormat df = new DecimalFormat("######0.0");
@@ -50,8 +50,8 @@ public abstract class SummaryFormat {
       Iterator iter = nutrients.iterator();
       while (iter.hasNext()) {
          NutrientInfo ni = (NutrientInfo)iter.next();
-         Target target = User.getUser().getTarget(ni);
-         if (target.getMin() > 0 && User.getUser().isTracking(ni)) {
+         Target target = UserManager.getCurrentUser().getTarget(ni);
+         if (target.getMin() > 0 && UserManager.getCurrentUser().isTracking(ni)) {
             double amount = getAmount(servings, ni) / (double) days;
             valueFull += amount/target.getMin();
             if (amount < target.getMin()) {

@@ -14,7 +14,7 @@ public abstract class WrappedPanel extends JPanel {
       
    public abstract boolean isCancellable();
    public abstract void doCancel();
-   public abstract void doAccept();     
+   public abstract boolean doAccept();     
    
    public boolean showSidebar() { 
       return true;

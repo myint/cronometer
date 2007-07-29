@@ -12,7 +12,7 @@ import javax.swing.*;
 
 import ca.spaz.cron.foods.NutrientInfo;
 import ca.spaz.cron.targets.Target;
-import ca.spaz.cron.user.User;
+import ca.spaz.cron.user.UserManager;
 
 public abstract class AbstractNutrientSummaryPanel extends JPanel {
    
@@ -56,8 +56,8 @@ public abstract class AbstractNutrientSummaryPanel extends JPanel {
       Iterator iter = getNutrientList().iterator();
       while (iter.hasNext()) {
          NutrientInfo ni = (NutrientInfo)iter.next();
-         Target target = User.getUser().getTarget(ni);
-         if (target.getMin() > 0 && User.getUser().isTracking(ni)) {
+         Target target = UserManager.getCurrentUser().getTarget(ni);
+         if (target.getMin() > 0 && UserManager.getCurrentUser().isTracking(ni)) {
             double amount = getNutrientTable().getAmount(ni);
             valueFull += amount/target.getMin();
             if (amount < target.getMin()) {

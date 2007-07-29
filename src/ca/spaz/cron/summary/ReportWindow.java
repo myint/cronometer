@@ -14,6 +14,7 @@ import javax.swing.*;
 
 import ca.spaz.cron.CRONOMETER;
 import ca.spaz.cron.datasource.Datasources;
+import ca.spaz.cron.user.UserManager;
 import ca.spaz.gui.*;
 import ca.spaz.util.ImageFactory;
 import ca.spaz.util.ToolBox;
@@ -50,7 +51,7 @@ public class ReportWindow extends WrappedPanel {
  
       int numDays = 1;
       List servings = new ArrayList(); 
-      servings.addAll(Datasources.getFoodHistory().getConsumedOn(getStartDate()));
+      servings.addAll(UserManager.getCurrentUser().getFoodHistory().getConsumedOn(getStartDate()));
       
       if (!ToolBox.isSameDay(getStartDate(), getEndDate())) {
          Date last = new Date(getStartDate().getTime());
@@ -59,7 +60,7 @@ public class ReportWindow extends WrappedPanel {
          while (!cal.getTime().after(getEndDate())) {
             if (!ToolBox.isSameDay(cal.getTime(), last)) {
                last = cal.getTime();
-               servings.addAll(Datasources.getFoodHistory().getConsumedOn(last));
+               servings.addAll(UserManager.getCurrentUser().getFoodHistory().getConsumedOn(last));
                
                numDays++;
             }         
@@ -256,7 +257,7 @@ public class ReportWindow extends WrappedPanel {
 
    public void doCancel() {  }
 
-   public void doAccept() {  }
+   public boolean doAccept() { return true; }
  
    public void doSaveReport() {
       String xtn = ".txt";

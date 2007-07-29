@@ -3,7 +3,7 @@ package ca.spaz.cron.metrics;
 import java.text.*;
 import java.util.List;
 
-import ca.spaz.cron.datasource.Datasources;
+import ca.spaz.cron.user.UserManager;
 import ca.spaz.cron.records.RecordTableModel;
 
 /**
@@ -64,7 +64,7 @@ public class MetricTableModel extends RecordTableModel {
             case TIME_COL:
                return timeFormat.format(metric.getDate());
             case UNITS_COL:
-               return (Datasources.getBiomarkerDefinitions().getBiomarker(metric.getName()).getUnits());
+               return (UserManager.getCurrentUser().getBiomarkerDefinitions().getBiomarker(metric.getName()).getUnits());
             case BIOMARKER_COL:
                return metric.getName();
             case VALUE_COL:

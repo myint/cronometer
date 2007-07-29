@@ -5,11 +5,7 @@ package ca.spaz.cron.datasource;
 
 import java.util.*;
 
-import ca.spaz.cron.foods.FoodHistory;
-import ca.spaz.cron.metrics.BiomarkerDefinitions;
-import ca.spaz.cron.metrics.BiometricsHistory;
-import ca.spaz.cron.notes.NotesHistory;
-import ca.spaz.cron.user.User;
+import ca.spaz.cron.user.*;
 import ca.spaz.util.ProgressListener;
 
 
@@ -20,17 +16,13 @@ public class Datasources {
    private static UserFoods userDataSource;
    private static USDAFoods usdaDataSource;
    private static CRDBFoods crdbDataSource;
-   private static FoodHistory foodHist;
-   private static NotesHistory noteHist;
-   private static BiometricsHistory bioHist;
-   private static BiomarkerDefinitions bioDefs;
    
    public static void initialize(ProgressListener pl) {
       sources = new ArrayList();
       if (pl != null) {
          pl.progressStart();
       }
-      userDataSource = new UserFoods(User.getUserDirectory());
+      userDataSource = new UserFoods(UserManager.getCronometerDirectory());
       userDataSource.initialize();
       sources.add(userDataSource);
       if (pl != null) {
@@ -53,54 +45,13 @@ public class Datasources {
       }
       
       // jump start lazy inits
-      getFoodHistory();
-      getNotes();
-      getBiometricsHistory();
+      User user = UserManager.getCurrentUser();
+      user.initUserData();
       if (pl != null) {
          pl.progress(100);
          pl.progressFinish();
       }
-   }   
-   
-   /**
-    * Temporarily accessible here for now,
-    * but will later become attached to User
-    */
-   public static BiometricsHistory getBiometricsHistory() {
-      if (bioHist == null) {
-         bioHist = new BiometricsHistory();         
-      }
-      return bioHist;
    }
-
-   /**
-    * Temporarily accessible here for now,
-    * but will later become attached to User
-    */
-   public static BiomarkerDefinitions getBiomarkerDefinitions() {
-      if (bioDefs == null) {
-         bioDefs = new BiomarkerDefinitions();         
-      }
-      return bioDefs;
-   }
-   
-   /**
-    * Temporarily accessible here for now,
-    * but will later become attached to User
-    */
-   public static FoodHistory getFoodHistory() {
-      if (foodHist == null) {
-         foodHist = new FoodHistory();         
-      }
-      return foodHist;
-   }
-
-   public static NotesHistory getNotes() {
-      if (noteHist == null) {
-         noteHist = new NotesHistory();         
-      }
-      return noteHist;
-   } 
    
    public static UserFoods getUserFoods() {
       return userDataSource;
@@ -133,16 +84,9 @@ public class Datasources {
          FoodDataSource element = (FoodDataSource) iter.next();
          element.close();
       }
-      saveAll();
-   }
-
-   /**
-    * Ensure all data is saved to backing stores.
-    */
-   public synchronized static void saveAll() {
-      getFoodHistory().save();
-      getBiometricsHistory().save();
-      getNotes().save();
+      // jump start lazy inits
+      User user = UserManager.getCurrentUser();
+      user.saveUserData();
    }
    
    /**

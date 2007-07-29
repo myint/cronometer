@@ -69,8 +69,7 @@ public class DateChooser extends WrappedPanel {
    public void doCancel() {
    }
 
-   public void doAccept() {
-   }
+   public boolean doAccept() { return true; }
    
    
 }

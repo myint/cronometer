@@ -22,6 +22,7 @@ import org.jfree.data.time.*;
 import org.jfree.ui.RectangleInsets;
 
 import ca.spaz.cron.datasource.Datasources;
+import ca.spaz.cron.user.UserManager;
 import ca.spaz.gui.DateChooser;
 import ca.spaz.gui.IntegerField;
 
@@ -87,7 +88,7 @@ public class MetricChart extends JFrame {
 
    private void getData() {
       actualData.clear();
-      List metrics = Datasources.getBiometricsHistory().getMetricsOfType(metricName);
+      List metrics = UserManager.getCurrentUser().getBiometricsHistory().getMetricsOfType(metricName);
       // Sort by date
       Collections.sort(metrics);
       for (int i=0; i<metrics.size(); i++) {

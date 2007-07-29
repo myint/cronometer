@@ -7,7 +7,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.util.List;
 
-import ca.spaz.cron.user.User;
+import ca.spaz.cron.user.UserManager;
 import ca.spaz.gui.PrettyTable;
 import ca.spaz.gui.PrettyTableModel;
 
@@ -26,7 +26,7 @@ public class NutrientTableModel extends PrettyTableModel {
    private double multiplier = 1;
    
    public NutrientTableModel(List nutrientInfo) {
-      this.nutrients = User.getUser().getTracked(nutrientInfo);
+      this.nutrients = UserManager.getCurrentUser().getTracked(nutrientInfo);
    }
    
    public void setMultiplier(double val) {

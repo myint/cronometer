@@ -31,6 +31,10 @@ public class ServingTableModel extends PrettyTableModel {
       this.table = table;
    }
    
+   public void UpdateTableModel(ServingTable table) {
+      this.table = table;
+   }
+
    public void setServings(List list) {
       servings = list;
       fireTableDataChanged();

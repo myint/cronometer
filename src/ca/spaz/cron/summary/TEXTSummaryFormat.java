@@ -7,7 +7,7 @@ import java.util.*;
 
 import ca.spaz.cron.foods.NutrientInfo;
 import ca.spaz.cron.targets.Target;
-import ca.spaz.cron.user.User;
+import ca.spaz.cron.user.UserManager;
 import ca.spaz.util.StringUtil;
 
 public class TEXTSummaryFormat extends SummaryFormat { 
@@ -76,9 +76,9 @@ public class TEXTSummaryFormat extends SummaryFormat {
        
       double amount = getAmount(servings, ni) / (double)days;
        
-      Target target = User.getUser().getTarget(ni);
+      Target target = UserManager.getCurrentUser().getTarget(ni);
       if (targetsOnly) {
-         if (target.isUndefined() || !User.getUser().isTracking(ni)) {
+         if (target.isUndefined() || !UserManager.getCurrentUser().isTracking(ni)) {
             return sb.toString();
          }
       }

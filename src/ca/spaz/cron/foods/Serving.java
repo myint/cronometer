@@ -14,6 +14,7 @@ import org.w3c.dom.NodeList;
 import ca.spaz.cron.CRONOMETER;
 import ca.spaz.cron.datasource.*;
 import ca.spaz.cron.records.Record;
+import ca.spaz.cron.user.UserManager;
 import ca.spaz.gui.ErrorReporter;
 import ca.spaz.sql.SQLRow;
 import ca.spaz.util.XMLNode;
@@ -190,15 +191,12 @@ public class Serving implements Record {
      * Update the existing food information
      */
     public void update() {
-        Datasources.getFoodHistory().update(this);
+       UserManager.getCurrentUser().getFoodHistory().update(this);
         //lds.changeServingAmount(this);
     }
     
-    /**
-     * 
-     */
     public void delete() {       
-       Datasources.getFoodHistory().delete(this);
+       UserManager.getCurrentUser().getFoodHistory().delete(this);
        //lds.removeServing(this);
     }
 

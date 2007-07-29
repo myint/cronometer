@@ -90,7 +90,7 @@ public class MeasureEditor extends JPanel {
     }
 
     
-    protected List getMeasures() {
+    public List getMeasures() {
        List measures = new ArrayList();
        measures.add(Measure.GRAM);
        measures.addAll(getWeightTableModel().getWeights());

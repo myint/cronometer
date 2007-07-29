@@ -10,6 +10,7 @@ import org.xml.sax.SAXException;
 
 import ca.spaz.cron.CRONOMETER;
 import ca.spaz.cron.user.User;
+import ca.spaz.cron.user.UserManager;
 import ca.spaz.gui.ErrorReporter;
 import ca.spaz.util.*;
 
@@ -33,13 +34,20 @@ public abstract class History {
    public abstract String getEntryTagName();
     
    public File getHistoryFile() {
-      return new File(User.getUserDirectory(), getBaseName() + ".xml");
+      return new File(UserManager.getUserDirectory(UserManager.getCurrentUser()), getBaseName() + ".xml");
    }
 
    public History() {
       load();
    }
    
+   /** 
+    * Reload the history file.
+    *
+    */
+   public void reload() {
+      load();
+   }
    /**
     * Add a new record to the history
     */
@@ -112,6 +120,10 @@ public abstract class History {
    public synchronized void load() {
       long start = System.currentTimeMillis();
       Logger.debug("Loading: " + getHistoryFile());
+      if (!getHistoryFile().exists()) {
+         Logger.debug("  --> file does not exist");
+         return;
+      }
       try {
          InputStream in = new BufferedInputStream(
                new FileInputStream(getHistoryFile()));

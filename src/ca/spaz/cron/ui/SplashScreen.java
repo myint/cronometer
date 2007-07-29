@@ -16,7 +16,7 @@ import org.jdesktop.swingx.graphics.ReflectionRenderer;
 
 import se.datadosen.component.RiverLayout;
 import ca.spaz.cron.CRONOMETER;
-import ca.spaz.cron.user.User;
+import ca.spaz.cron.user.UserManager;
 import ca.spaz.gui.TranslucentPanel;
 import ca.spaz.task.*;
 import ca.spaz.util.ToolBox;
@@ -157,12 +157,12 @@ public class SplashScreen extends JFrame implements TaskListener {
       if (checkForUpdates == null) {
          checkForUpdates = new JCheckBox(
                "check website for updates", 
-               User.getUser().getCheckForUpdates());              
+               UserManager.getUserManager().getCheckForUpdates());              
          checkForUpdates.setFocusable(false);
          checkForUpdates.setOpaque(false);
          checkForUpdates.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-               User.getUser().setCheckForUpdates(checkForUpdates.isSelected());
+               UserManager.getUserManager().setCheckForUpdates(checkForUpdates.isSelected());
             }            
          });
       }

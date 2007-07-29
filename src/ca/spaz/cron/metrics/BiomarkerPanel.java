@@ -21,7 +21,7 @@ import org.jfree.data.time.*;
 import org.jfree.ui.RectangleInsets;
 
 import ca.spaz.cron.datasource.Datasources;
-import ca.spaz.cron.user.User;
+import ca.spaz.cron.user.*;
 
 /**
  * A panel containing a MetricEditor for each enabled Biomarker.
@@ -36,7 +36,7 @@ public class BiomarkerPanel extends JPanel {
    private ChartPanel chartPanel;
    
    public BiomarkerPanel() {
-      biomarkers = Datasources.getBiomarkerDefinitions().getEnabledBiomarkers();
+      biomarkers = UserManager.getCurrentUser().getBiomarkerDefinitions().getEnabledBiomarkers();
       setBorder(BorderFactory.createEmptyBorder(3,3,3,3));
       setLayout(new BorderLayout());
       add(getSplitPane(), BorderLayout.CENTER);
@@ -79,7 +79,7 @@ public class BiomarkerPanel extends JPanel {
 
    private List getMetrics() {
       if (curMetrics == null) {
-         curMetrics = User.getUser().getBiometrics(curDate);
+         curMetrics = UserManager.getCurrentUser().getBiometrics(curDate);
       }
       return curMetrics;
    }
@@ -90,7 +90,7 @@ public class BiomarkerPanel extends JPanel {
    private TimeSeries actualData = new TimeSeries("Weight", Minute.class);
    
    private void regenerateGraphData() {
-      List metrics = Datasources.getBiometricsHistory().getMetricsOfType("Weight");
+      List metrics = UserManager.getCurrentUser().getBiometricsHistory().getMetricsOfType("Weight");
       // Sort by date
       Collections.sort(metrics);
       actualData.clear();

@@ -18,8 +18,7 @@ import ca.spaz.cron.foods.NutrientInfo;
 import ca.spaz.cron.foods.Serving;
 import ca.spaz.cron.targets.NutrientInfoPanel;
 import ca.spaz.cron.targets.Target;
-import ca.spaz.cron.user.User;
-import ca.spaz.cron.user.UserChangeListener;
+import ca.spaz.cron.user.*;
 import ca.spaz.gui.*;
 
 public class NutrientTable extends PrettyTable implements UserChangeListener {
@@ -31,7 +30,7 @@ public class NutrientTable extends PrettyTable implements UserChangeListener {
    public NutrientTable(List nutrients) {
       super();
       setNutrients(nutrients);
-      User.getUser().addUserChangeListener(this);
+      UserManager.getUserManager().addUserChangeListener(this);
       this.setEnabled(true);
       this.setFocusable(false);
       this.setCellSelectionEnabled(false);
@@ -70,7 +69,7 @@ public class NutrientTable extends PrettyTable implements UserChangeListener {
    
    private void setNutrients(List list) {
       this.master = list;     
-      this.nutrients = User.getUser().getTracked(list);
+      this.nutrients = UserManager.getCurrentUser().getTracked(list);
       getNutrientTableModel().fireTableDataChanged();
    }
 
@@ -145,7 +144,7 @@ public class NutrientTable extends PrettyTable implements UserChangeListener {
             case 2:
                return " " + ni.getUnits();
             case 3: 
-               Target target = User.getUser().getTarget(ni);
+               Target target = UserManager.getCurrentUser().getTarget(ni);
                if (target.getMin() > 0) {
                   return nf.format(getAmount(ni)/target.getMin());
                }
@@ -184,7 +183,7 @@ public class NutrientTable extends PrettyTable implements UserChangeListener {
          
          NutrientInfo ni = model.getNutrientInfo(row);
          if (ni != null) {
-            Target target = User.getUser().getTarget(ni);
+            Target target = UserManager.getCurrentUser().getTarget(ni);
             if (target.getMin() > 0) {
                setValue(getAmount(ni));
                setMin(target.getMin());
@@ -196,7 +195,7 @@ public class NutrientTable extends PrettyTable implements UserChangeListener {
 
    }
 
-   public void userChanged(User user) {
+   public void userChanged(UserManager userMan) {
       setNutrients(master);
       getNutrientTableModel().fireTableDataChanged();
    }

@@ -15,8 +15,7 @@ import javax.swing.event.ChangeListener;
 
 import ca.spaz.cron.CRONOMETER;
 import ca.spaz.cron.foods.NutrientInfo;
-import ca.spaz.cron.user.User;
-import ca.spaz.cron.user.UserSettingsDialog;
+import ca.spaz.cron.user.*;
 import ca.spaz.gui.WrappedPanel;
 import ca.spaz.gui.WrapperDialog;
 import ca.spaz.util.ImageFactory;
@@ -59,8 +58,8 @@ public class TargetEditor extends WrappedPanel {
             tabPanel.setFont(getFont().deriveFont(10.0f));
          }
          tabPanel.addTab("General", getMacroNutrientsTable());
-         tabPanel.addTab("Minerals", getMineralsTable());
          tabPanel.addTab("Vitamins", getVitaminsTable());
+         tabPanel.addTab("Minerals", getMineralsTable());
          tabPanel.addTab("Amino Acids", getAminoAcidsTable());
          tabPanel.addTab("Lipids", getLipidsTable());
       }
@@ -127,12 +126,12 @@ public class TargetEditor extends WrappedPanel {
     
  
    public static void editTargets() {
-      WrapperDialog.showDialog(CRONOMETER.getInstance(), new TargetEditor(User.getUser()), true);      
+      WrapperDialog.showDialog(CRONOMETER.getInstance(), new TargetEditor(UserManager.getCurrentUser()), true);      
    }
    
    
    private void setDefaultTargets(TargetModel model) {
-      if (UserSettingsDialog.showDialog(User.getUser(), setDefaultsBtn)) { 
+      if (UserSettingsDialog.showDialog(UserManager.getUserManager(), setDefaultsBtn)) { 
          int rc = JOptionPane.showConfirmDialog(this,
                "Are you sure you want to replace the current targets with" +
                " '"+ model.toString()+"'?", 
@@ -160,8 +159,7 @@ public class TargetEditor extends WrappedPanel {
       user.setCustomTargets(false);
    }
 
-   public void doAccept() { 
-   }
+   public boolean doAccept() { return true; }
 
    public void doCancel() { 
    }

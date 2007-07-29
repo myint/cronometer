@@ -1,6 +1,7 @@
 <menubar>
 
 	<menu title="File" key="f">
+		<item title="Manage Users..." key="u" index="7" acc="VK_U" action="doManageUsers" />
 		<item title="Edit Nutritional Targets..." key="t" index="17" acc="VK_T" action="doEditUserSettings" />
 		<item separator="true"></item>
 		<item title="Print" key="p" acc="VK_P" action="doPrint"/>
