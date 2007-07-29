@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 
 import ca.spaz.cron.datasource.Datasources;
 import ca.spaz.cron.user.User;
+import ca.spaz.cron.user.UserManager;
 
 public class BiomarkerPanelOld extends JPanel {
    private Date curDate = new Date();
@@ -21,7 +22,7 @@ public class BiomarkerPanelOld extends JPanel {
    
    public BiomarkerPanelOld() {
       
-      biomarkers = Datasources.getBiomarkerDefinitions().getEnabledBiomarkers();
+      biomarkers = UserManager.getCurrentUser().getBiomarkerDefinitions().getEnabledBiomarkers();
       // Create an editor for each enabled biomarker
       editors = new MetricEditorOld[biomarkers.size()];
       for (int i = 0; i < editors.length; i++) {
@@ -76,7 +77,7 @@ public class BiomarkerPanelOld extends JPanel {
 
    private List getMetrics() {
       if (curMetrics == null) {
-         curMetrics = User.getUser().getBiometrics(curDate);
+         curMetrics = UserManager.getCurrentUser().getBiometrics(curDate);
       }
       return curMetrics;
    }

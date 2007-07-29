@@ -12,6 +12,7 @@ import javax.swing.*;
 import ca.spaz.cron.CRONOMETER;
 import ca.spaz.cron.datasource.Datasources;
 import ca.spaz.cron.datasource.FoodProxy;
+import ca.spaz.cron.user.UserManager;
 import ca.spaz.util.ImageFactory;
 
 
@@ -37,7 +38,7 @@ public class DeleteFoodAction extends AbstractAction {
    public static void doDeleteFood(FoodProxy fp, Component parent) {
       assert (fp != null);
 
-      List servings = Datasources.getFoodHistory().getServings(fp);
+      List servings = UserManager.getCurrentUser().getFoodHistory().getServings(fp);
       int rc = 0;
       if (servings.size() == 0) {
          rc = JOptionPane.showConfirmDialog(parent,
@@ -53,7 +54,7 @@ public class DeleteFoodAction extends AbstractAction {
       if (rc == JOptionPane.YES_OPTION) {
          if (fp.getSource().isMutable()) {
             fp.getFood().delete();
-            Datasources.getFoodHistory().deleteServings(servings);
+            UserManager.getCurrentUser().getFoodHistory().deleteServings(servings);
             // TODO: must also delete from recipes that refer to it
             CRONOMETER.getInstance().refreshDisplays();            
          }

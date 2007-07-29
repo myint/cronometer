@@ -37,14 +37,15 @@ public class UserSettingsDialog extends WrappedPanel {
    };
 
    
-   private JPanel namePanel;
+   private JPanel usernamePanel;
+   private JTextField username;
    private JPanel genderPanel;
    private JPanel birthPanel;
    private JPanel heightPanel;
    private JPanel weightPanel;
    private JPanel activityPanel;
    private JRadioButton male, female; 
-   private JYearChooser yearSpinner; 
+   private JYearChooser yearSpinner;
    private JMonthChooser monthChooser;
    private JSpinner heightField;
    private JComboBox heightUnits;
@@ -53,13 +54,17 @@ public class UserSettingsDialog extends WrappedPanel {
    private JComboBox activityUnits;
    private JComboBox status;
    private JLabel bmiLabel;
-   private User user;
+   private UserManager userMan;
+   private User currentUser; 
+
    
-   public UserSettingsDialog(User user) {
-      this.user = user;
+   public UserSettingsDialog(UserManager userMan) {
+      this.userMan = userMan;
+      currentUser = UserManager.getCurrentUser();
 
       JPanel cp = new JPanel(new RiverLayout(1,1)); 
       cp.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+      cp.add("p center hfill", getUsernamePanel());
       cp.add("p center hfill", getGenderPanel());
       cp.add("p center hfill", getBirthPanel());
       cp.add("p center hfill", getHeightPanel());
@@ -96,9 +101,9 @@ public class UserSettingsDialog extends WrappedPanel {
       return new ImageIcon(ImageFactory.getInstance().loadImage("/img/apple-100x100.png"));
    }
    
-   public static boolean showDialog(User user, JComponent parent) {
+   public static boolean showDialog(UserManager userMan, JComponent parent) {
       try {
-         UserSettingsDialog usd = new UserSettingsDialog(user);
+         UserSettingsDialog usd = new UserSettingsDialog(userMan);
          return WrapperDialog.showDialog(parent, usd, true);
       } catch (Exception e) {
          ErrorReporter.showError(e, parent);
@@ -113,11 +118,23 @@ public class UserSettingsDialog extends WrappedPanel {
             BorderFactory.createEmptyBorder(2,26,2,26));
    }
  
+   private JPanel getUsernamePanel() {      
+      if (usernamePanel == null) {
+         username = new JTextField(20);
+         username.setText(currentUser.getUsername());
+         
+         usernamePanel = new JPanel(new GridLayout(1, 1, 4, 4));
+         usernamePanel.setBorder(makeTitle("Name :"));
+         usernamePanel.add(username);
+      }
+      return usernamePanel;
+   }   
+   
    private JPanel getGenderPanel() {
       if (genderPanel == null) {
          ButtonGroup bg = new ButtonGroup();
-         male = new JRadioButton("Male", user.isMale());
-         female = new JRadioButton("Female", user.isFemale());
+         male = new JRadioButton("Male", currentUser.isMale());
+         female = new JRadioButton("Female", currentUser.isFemale());
          female.addItemListener(new ItemListener() {
             public void itemStateChanged(ItemEvent e) {
                getFemaleStatus().setEnabled(female.isSelected());
@@ -151,7 +168,7 @@ public class UserSettingsDialog extends WrappedPanel {
          yearSpinner = new JYearChooser();
          yearSpinner.setStartYear(calendar.get(Calendar.YEAR)-120);
          yearSpinner.setEndYear(calendar.get(Calendar.YEAR));
-         calendar.setTime(user.getBirthDate());
+         calendar.setTime(currentUser.getBirthDate());
          yearSpinner.setYear(calendar.get(Calendar.YEAR));
       }
       return yearSpinner;
@@ -161,7 +178,7 @@ public class UserSettingsDialog extends WrappedPanel {
       if (monthChooser == null) {     
          monthChooser = new JMonthChooser();   
          Calendar calendar = Calendar.getInstance();
-         calendar.setTime(user.getBirthDate());
+         calendar.setTime(currentUser.getBirthDate());
          monthChooser.setMonth(calendar.get(Calendar.MONTH));
       }
       return monthChooser;
@@ -180,7 +197,7 @@ public class UserSettingsDialog extends WrappedPanel {
    private JSpinner getHeightField() {
       if (heightField == null) {
          heightField = new JSpinner(new SpinnerNumberModel(0.0, 0.0, 300.0, 1.0));
-         Double height = new Double(user.getHeightInCM());
+         Double height = new Double(currentUser.getHeightInCM());
          if (height != null) {
             heightField.setValue(height);
          }
@@ -191,9 +208,9 @@ public class UserSettingsDialog extends WrappedPanel {
    private JComboBox getHeightUnits() {
       if (heightUnits == null) {
          heightUnits = new JComboBox(LENGTH_MEASURES);  
-         if (!user.getHeightUnitMetric()) {
+         if (!userMan.getHeightUnitMetric()) {
             heightUnits.setSelectedItem(INCHES_UNITS);
-            heightField.setValue(new Double(user.getHeightInCM() / CM_PER_INCH));
+            heightField.setValue(new Double(currentUser.getHeightInCM() / CM_PER_INCH));
          }
       }
       return heightUnits;
@@ -213,7 +230,7 @@ public class UserSettingsDialog extends WrappedPanel {
    private JSpinner getWeightField() {
       if (weightField == null) {
          weightField = new JSpinner(new SpinnerNumberModel(150.0, 1.0, 1000.0, 1.0));
-         Double weight = new Double(user.getWeightInKilograms());
+         Double weight = new Double(currentUser.getWeightInKilograms());
          if (weight != null) {
             weightField.setValue(weight);
          }
@@ -224,9 +241,9 @@ public class UserSettingsDialog extends WrappedPanel {
    private JComboBox getWeightUnits() {
       if (weightUnits == null) {
          weightUnits = new JComboBox(WEIGHT_MEASURES);  
-         if (!user.getWeightUnitMetric()) {
+         if (!userMan.getWeightUnitMetric()) {
             weightUnits.setSelectedItem(POUND_UNITS);
-            weightField.setValue(new Double(user.getWeightInKilograms() * POUNDS_PER_KILO));
+            weightField.setValue(new Double(currentUser.getWeightInKilograms() * POUNDS_PER_KILO));
          }
       }
       return weightUnits;
@@ -234,7 +251,7 @@ public class UserSettingsDialog extends WrappedPanel {
    
    private JLabel getBMILabel() {
       if (bmiLabel == null) {
-         bmiLabel = new JLabel("BMI: " + Math.round(user.getBMI()*10.0)/10.0, JLabel.CENTER);         
+         bmiLabel = new JLabel("BMI: " + Math.round(currentUser.getBMI()*10.0)/10.0, JLabel.CENTER);         
       }
       return bmiLabel;
    }   
@@ -254,7 +271,7 @@ public class UserSettingsDialog extends WrappedPanel {
    private JComboBox getActivityUnits() {
       if (activityUnits == null) {
          activityUnits = new JComboBox(ACTIVITY_MEASURES);   
-         activityUnits.setSelectedIndex(user.getActivityLevel());
+         activityUnits.setSelectedIndex(currentUser.getActivityLevel());
       }
       return activityUnits;
    }   
@@ -262,8 +279,8 @@ public class UserSettingsDialog extends WrappedPanel {
    private JComboBox getFemaleStatus() {
       if (status == null) {
          status = new JComboBox(STATUS);  
-         status.setEnabled(user.isFemale());
-         status.setSelectedItem(user.getFemaleStatus());
+         status.setEnabled(currentUser.isFemale());
+         status.setSelectedItem(currentUser.getFemaleStatus());
       }
       return status;
    }   
@@ -293,6 +310,21 @@ public class UserSettingsDialog extends WrappedPanel {
    }
    
    public boolean isValid() { 
+      if (UserManagerDialog.isAddingNewUser()) {
+         
+         if (userMan.userExists(username.getText().trim())) {
+            JOptionPane.showMessageDialog(this, "Please select a unique user name.", 
+                  "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+         }
+
+         if (username.getText().trim().length() == 0) {
+            JOptionPane.showMessageDialog(this, "Please choose a name with at least one character.", 
+                  "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+         }
+      }
+
       if (getUserHeight() <= 10) {
          JOptionPane.showMessageDialog(this, "Please enter a valid height.", 
                "Error", JOptionPane.ERROR_MESSAGE);
@@ -315,35 +347,44 @@ public class UserSettingsDialog extends WrappedPanel {
    }
 
    public boolean isCancellable() {
+      if (UserManagerDialog.isAddingNewUser()) {
+         return false;
+      }
       return true;
    }
 
    public void doCancel() {
-       // nothing needed
+      UserManagerDialog.setAddingNewUser(false);
    }
 
    private void setUser() {
-      user.setGender(male.isSelected()); 
-      user.setHeightInCM(getUserHeight());
-      user.setWeightInKilograms(getUserWeight());
-      user.setBirthDate(getBirthDate());      
+      currentUser.setUsername(username.getText().trim());
+      currentUser.setGender(male.isSelected()); 
+      currentUser.setHeightInCM(getUserHeight());
+      currentUser.setWeightInKilograms(getUserWeight());
+      currentUser.setBirthDate(getBirthDate());      
       if (female.isSelected()) {
-         user.setFemaleStatus((String)(getFemaleStatus().getSelectedItem()));
+         currentUser.setFemaleStatus((String)(getFemaleStatus().getSelectedItem()));
       }
-      user.setHeightUnitMetric(getHeightUnits().getSelectedItem().equals(CM_UNITS));
-      user.setWeightUnitMetric(getWeightUnits().getSelectedItem().equals(KILOGRAM_UNITS));
-      user.setActivityLevel(getActivityUnits().getSelectedIndex());      
-      System.out.println("AGE/DATE:" + getBirthDate() + " | " + user.getAge());
-      System.out.println("BMI:" + user.getBMI());
+      userMan.setHeightUnitMetric(getHeightUnits().getSelectedItem().equals(CM_UNITS));
+      userMan.setWeightUnitMetric(getWeightUnits().getSelectedItem().equals(KILOGRAM_UNITS));
+      currentUser.setActivityLevel(getActivityUnits().getSelectedIndex());      
+      System.out.println("AGE/DATE:" + getBirthDate() + " | " + currentUser.getAge());
+      System.out.println("BMI:" + currentUser.getBMI());
    }
    
-   public void doAccept() {
+   public boolean doAccept() {
+      if (!isValid()) {
+         return false; 
+      }
+      UserManagerDialog.setAddingNewUser(false);
       setUser();
       try {
-         user.saveUserProperties();
+         userMan.saveUserProperties();
       } catch (Exception e) { 
          e.printStackTrace();
          ErrorReporter.showError(e, this); 
       }
+      return true;
    }
 }

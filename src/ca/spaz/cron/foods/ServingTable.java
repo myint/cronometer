@@ -21,9 +21,14 @@ import org.jdesktop.swingx.JXTable;
 import ca.spaz.cron.CRONOMETER;
 import ca.spaz.cron.actions.*;
 import ca.spaz.cron.datasource.FoodProxy;
+import ca.spaz.cron.foods.Serving;
+import ca.spaz.cron.ui.DailySummary;
 import ca.spaz.cron.ui.SearchDialog;
+import ca.spaz.cron.user.User;
+import ca.spaz.cron.user.UserManager;
 import ca.spaz.gui.PrettyTable;
 import ca.spaz.util.ImageFactory;
+import ca.spaz.util.ToolBox;
 
 public class ServingTable extends JPanel {
 
@@ -35,6 +40,7 @@ public class ServingTable extends JPanel {
    private JToolBar toolBar;
    private JButton addBtn, delBtn, printBtn;
    private String title = "Untitled";
+   private static ServingTable instance;
    
    public ServingTable() {
       setMinimumSize(new Dimension(400,250));
@@ -45,9 +51,17 @@ public class ServingTable extends JPanel {
       add(makeJScrollPane(), BorderLayout.CENTER);
    }
 
+   public static ServingTable getServingTable() {
+      if (instance == null) {
+         instance = new ServingTable();
+      } 
+      return instance;
+   }
+   
    public void setTitle(String str) {
       this.title = str;
    }
+
    public String getTitle() {
       return title;
    }
@@ -246,10 +260,13 @@ public class ServingTable extends JPanel {
     * @param list
     */
    public void addServings(Serving[] list) {
-      if (CRONOMETER.getInstance().getDailySummary().isOkToAddServings()) {
-         for (int i=0; i<list.length; i++) {
-            CRONOMETER.getInstance().getDailySummary().addServing(new Serving(list[i]));
-         }
+      addServingsToUser(list, UserManager.getCurrentUser(), CRONOMETER.getDailySummary().getDate());
+   }
+
+   public void addServingsToUser(Serving[] list, User user, Date date) {
+      DailySummary ds = CRONOMETER.getDailySummary(); 
+      for (int i=0; i<list.length; i++) {
+         ds.addServingToUser(new Serving(list[i]), user, date);
       }
    }
    
@@ -273,8 +290,7 @@ public class ServingTable extends JPanel {
    
    public void deleteSelectedServings() {
       List sel = getSelectedServings();
-      // TODO: "Are you sure"?
-      if (sel.size() > 0) {
+      if (sel.size() > 0 && isOkToDeleteServing(sel.size())) {
          Iterator iter = sel.iterator();
          while (iter.hasNext()) {
             Serving s = (Serving)iter.next();
@@ -286,12 +302,36 @@ public class ServingTable extends JPanel {
       }
    }
 
+
+   private boolean isOkToDeleteServing(int numServings) {
+      String msg;
+      if (numServings > 1) {
+         msg = "Are you sure you want to do delete the selected servings?";
+      } else {
+         msg = "Are you sure you want to do delete the selected serving?";
+      }
+      int choice = JOptionPane.showConfirmDialog(this, msg, "Delete Serving?", JOptionPane.YES_NO_OPTION);
+      if (choice == JOptionPane.YES_OPTION) {
+         return true;
+      }
+      return false;
+   }
    
    public void copySelectedServings() {    
       CRONOMETER.getClipboard().setContents (new ServingSelection(this), CRONOMETER.getInstance());
       TransferHandler.getCopyAction().actionPerformed(new ActionEvent(getTable(), 0, "Copy"));
    }
 
+   public void copySelectedServingsToUser(User user, Date date) {
+      List<Serving> sel = getSelectedServings();
+      if (sel.size() > 0) {
+         Serving[] servings = new Serving[sel.size()];
+         sel.toArray(servings);
+         addServingsToUser(servings, user, date);
+      } else {
+         ToolBox.okDialog("Please select at least one serving", "No servings selected");
+      }
+   }
    
    public void cutSelectedServings() {    
       copySelectedServings();
@@ -418,6 +458,7 @@ public class ServingTable extends JPanel {
       menu.addSeparator();
       menu.add(new CutServingsAction(this));
       menu.add(new CopyServingsAction(this));
+      menu.add(new CopyServingsToUserAction(this));
       menu.add(new DeleteServingsAction(this));
       
       if (menu.getComponents().length > 0) {

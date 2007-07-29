@@ -19,8 +19,8 @@ public interface UserChangeListener {
    
    /**
     * This event is fired whenever the user model changes in some way.
-    * @param user the <code>User</code> that has changed.
+    * @param userMan the <code>User</code> that has changed.
     */
-   void userChanged(User user);
+   void userChanged(UserManager userMan);
 
 }

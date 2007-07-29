@@ -12,6 +12,7 @@ import org.jfree.ui.RefineryUtilities;
 
 import ca.spaz.cron.CRONOMETER;
 import ca.spaz.cron.user.User;
+import ca.spaz.cron.user.UserManager;
 import ca.spaz.gui.DoubleField;
 import ca.spaz.gui.ErrorReporter;
 import ca.spaz.util.ImageFactory;
@@ -66,7 +67,7 @@ public class MetricEditorOld extends JPanel {
                // Set the value to null so if we re-save it later it will be considered 
                // new and will be added
                metric.setValue((Number)null);
-               User.getUser().removeMetric(metric);
+               UserManager.getCurrentUser().removeMetric(metric);
                saveBtn.setEnabled(false);
                deleteBtn.setEnabled(false);
                entryField.setValue("");
@@ -171,10 +172,10 @@ public class MetricEditorOld extends JPanel {
          boolean isNewEntry = metric.getValue() == null;
          metric.setValue(Double.toString(entryField.getValue()));          
          if (isNewEntry) {
-            User.getUser().addMetric(metric);
+            UserManager.getCurrentUser().addMetric(metric);
          }
          else {
-            User.getUser().updateMetric(metric);
+            UserManager.getCurrentUser().updateMetric(metric);
          }
          saveBtn.setEnabled(false);
          deleteBtn.setEnabled(true);

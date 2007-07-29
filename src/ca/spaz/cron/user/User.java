@@ -8,143 +8,77 @@
  * 
  * Contributors:
  *     Chris Rose
+ *     Simon Werner
  *******************************************************************************/
 package ca.spaz.cron.user;
 
-import java.awt.*;
-import java.io.File;
-import java.io.IOException;
 import java.util.*;
+
+import ca.spaz.cron.foods.FoodHistory;
+import ca.spaz.cron.foods.NutrientInfo;
+import ca.spaz.cron.metrics.*;
+import ca.spaz.cron.notes.NotesHistory;
+import ca.spaz.cron.targets.*;
+import ca.spaz.util.Settings;
+import ca.spaz.util.ToolBox;
+
 import java.util.List;
 
-import javax.swing.JFrame;
-
-import ca.spaz.cron.CRONOMETER;
-import ca.spaz.cron.datasource.Datasources;
-import ca.spaz.cron.foods.NutrientInfo;
-import ca.spaz.cron.metrics.Metric;
-import ca.spaz.cron.notes.NotesHistory;
-import ca.spaz.cron.targets.Target;
-import ca.spaz.gui.ErrorReporter;
-import ca.spaz.util.*;
+import javax.swing.JComponent;
 
 /**
  * A CRONOMETER-specific, property-based <code>User</code> implementation. 
+ * This contains all the necessary code for data relating to a 
+ * single user in CRONOMETER.
  * 
  * @author Chris Rose
+ * @author Simon Werner
  */
 public class User {
    
-   private static final String CU_BASE = "cron.user.";
-   private static final String CU_FIRST_RUN = CU_BASE + "first.run";
-   private static final String CU_PREF_BASE = CU_BASE + "pref.";
-   private static final String CU_HEIGHT = CU_BASE + "height";
-   private static final String CU_WEIGHT = CU_BASE + "weight"; 
-   private static final String CU_CUSTOM_TARGETS = CU_BASE + "custom.targets";
-   private static final String CU_MALE = CU_BASE + "male";
-   private static final String CU_BD_DAY = CU_BASE + "birthdate.day";   
-   private static final String CU_BD_MONTH = CU_BASE + "birthdate.month";
-   private static final String CU_BD_YEAR = CU_BASE + "birthdate.year";
-   private static final String CU_TARGET = CU_BASE + "target.";
-   private static final String CU_TRACK = CU_BASE + "track.";
-   private static final String CU_STATUS = CU_BASE + "female.status";
-   private static final String CU_ACTIVITY = CU_BASE + "activity.level";
-   
-   private static final String CU_PROTEIN_PERC = CU_BASE + "proten.perc";
-   private static final String CU_CARBS_PERC = CU_BASE + "carb.perc";
-   private static final String CU_FAT_PERC = CU_BASE + "fat.perc";
-   
-   private static final String CU_HEIGHT_UNIT_METRIC = "height.unit.cm";
-   private static final String CU_WEIGHT_UNIT_METRIC = "weight.unit.kg";
-   
-   private static final String LAST_BUILD = "last.build";
-   
-   public static final String CHECK_FOR_UDAPTES = "check.for.updates";
-   private static final String HIDE_WHEN_MINIMIZED = CU_BASE+"hide.when.minimized";
-   private static final String USER_PROPERTIES_FILE = "user.settings";
-   
+   public static final String CU_FIRST_RUN = "first.run";
    public static final String NORMAL_FEMALE = "Normal";
    public static final String PREGNANT_FEMALE = "Pregnant";
    public static final String LACTATING_FEMALE = "Lactating";
+   public static final String DEFAULT_USERNAME = "Default User";
    
-   private static final String MAIN_WINDOW = CU_BASE + "main.window";
-   private static final String DIET_DIVIDER =  CU_BASE + "diet.divider";
+   private static final String CU_PREF_BASE = "pref.";
+   private static final String CU_HEIGHT = "height";
+   private static final String CU_WEIGHT = "weight"; 
+   private static final String CU_CUSTOM_TARGETS = "custom.targets";
+   private static final String CU_MALE = "male";
+   private static final String CU_BD_DAY = "birthdate.day";   
+   private static final String CU_BD_MONTH = "birthdate.month";
+   private static final String CU_BD_YEAR = "birthdate.year";
+   private static final String CU_TARGET = "target.";
+   private static final String CU_TRACK = "track.";
+   private static final String CU_STATUS = "female.status";
+   private static final String CU_ACTIVITY = "activity.level";
    
-   
-   public static String subdirectory = "cronometer";
-   
-   private static User instance = null;
-   
-   private Settings settings;
-   private List listeners; 
+   private static final String CU_PROTEIN_PERC = "protein.perc";
+   private static final String CU_CARBS_PERC = "carb.perc";
+   private static final String CU_FAT_PERC = "fat.perc";
+
+   private FoodHistory foodHist;
+   private NotesHistory noteHist;
+   private BiometricsHistory bioHist;
+   private BiomarkerDefinitions bioDefs;
+
+   private String username;
    private Date birthDate;
-   
-   public static final User getUser() {
-      if (null == instance) {
-         instance = new User();         
-      }
-      return instance;
-   }
-   
-   private User() {
-      settings = new Settings(getUserPropertiesFile());
-   }
-   
-   
-   public void saveUserProperties() throws IOException {
-      settings.save();
-   }
-   
+   private Settings settings;
+
    /**
-    * Sets the subdirectory to use for user data. 
-    * @param aSubdirectory
+    * Constructor.
+    * @param settings the settings that will be used for this user
     */
-   public static void setSubdirectory(String aSubdirectory) {
-      subdirectory = aSubdirectory;
-   }
- 
-   /**
-    * Gets the subdirectory being used for user data.
-    */
-   public static String getSubdirectory() {
-      return subdirectory;
-   } 
-   
-   public static File getUserDirectory() {
-      File appDir = ToolBox.getUserAppDirectory(subdirectory);
-      if (!appDir.exists()) {
-         appDir.mkdirs();
-         if (!appDir.exists()) {
-            Logger.error("Unable to create user app prefs directory " + appDir);
-         }
-      }
-      return appDir;
-   }
-   
-   public File getUserPropertiesFile() {
-      File userPropertyFile = new File(getUserDirectory(), USER_PROPERTIES_FILE);
-      Logger.debug("Initializing user property file " + userPropertyFile.getAbsolutePath());
-      if (!userPropertyFile.exists()) {
-         Logger.debug("Creating user property file " + userPropertyFile.getAbsolutePath());
-         try {
-            if (userPropertyFile.createNewFile()) {
-               // Nothing.  All is well.
-            } else {
-               Logger.error("Unable to create user property file");
-            }
-         } catch (IOException e) {
-            Logger.error("getUserPropertiesFile()", e);
-            ErrorReporter.showError(e, CRONOMETER.getInstance()); 
-         }
-      } else {
-         // Nothing.  All is well.
-      }
-      return userPropertyFile;
+   public User(Settings settings) {
+      this.settings = settings;
    }
    
    public void setFemaleStatus(String status) {
       settings.set(CU_STATUS, status);
-      notifyListeners();
+      UserManager.getUserManager().notifyUserChangeListeners();
    }
 
    public Date getBirthDate() {
@@ -167,7 +101,7 @@ public class User {
          settings.set(CU_BD_DAY, "" + cal.get(Calendar.DAY_OF_MONTH));
       }
       birthDate = date;
-      notifyListeners();
+      UserManager.getUserManager().notifyUserChangeListeners();
    }
    
    /**
@@ -192,14 +126,14 @@ public class User {
       age = age / ONE_YEAR;
       return (int)age;
    }
-   
+
    public double getHeightInCM() {     
       return settings.getDouble(CU_HEIGHT, 170);
    }
 
    public void setHeightInCM(double height) { 
       settings.set(CU_HEIGHT, height);
-      notifyListeners();
+      UserManager.getUserManager().notifyUserChangeListeners();
    }
 
    public String getUserPreference(String prefName, String def) {
@@ -208,43 +142,13 @@ public class User {
 
    public void setUserPreference(String prefName, String value) {
       settings.set(CU_PREF_BASE + prefName, value);
-      notifyListeners();      
-   }
-
-
-   public NotesHistory getNotesHistory() {
-      return Datasources.getNotes();
-   }   
-   
-   public String getNotes(Date date) {
-      return Datasources.getNotes().getNote(date);
+      UserManager.getUserManager().notifyUserChangeListeners();      
    }
    
-   public void setNotes(String note, Date d) {
-      Datasources.getNotes().setNote(note, d);
-   }
-   
-   
-   public List getBiometrics(Date date) {
-      return Datasources.getBiometricsHistory().getMetricsOn(date);
-   }
-
-   public void addMetric(Metric metric) {
-      Datasources.getBiometricsHistory().addMetric(metric);
-   }
-   
-   public void updateMetric(Metric metric) {
-      Datasources.getBiometricsHistory().update(metric);
-   }   
-
-   public void removeMetric(Metric metric) {
-      Datasources.getBiometricsHistory().delete(metric);
-   }
-
    public void setTarget(NutrientInfo nutrient, Target target) {
-      settings.set(CU_TARGET+nutrient.getName()+".min", target.getMin());
-      settings.set(CU_TARGET+nutrient.getName()+".max", target.getMax());
-      notifyListeners();
+      settings.set(CU_TARGET + nutrient.getName()+".min", target.getMin());
+      settings.set(CU_TARGET + nutrient.getName()+".max", target.getMax());
+      UserManager.getUserManager().notifyUserChangeListeners();
    }
 
    public Target getTarget(NutrientInfo nutrient) {
@@ -255,12 +159,12 @@ public class User {
    }
 
    public boolean isCustomTargets(NutrientInfo ni) {
-      return settings.getBoolean(CU_PREF_BASE+CU_CUSTOM_TARGETS, false);
+      return settings.getBoolean(CU_PREF_BASE + CU_CUSTOM_TARGETS, false);
    }
 
    public void setCustomTargets(boolean value) {
       settings.set(CU_PREF_BASE + CU_CUSTOM_TARGETS, value);
-      notifyListeners();
+      UserManager.getUserManager().notifyUserChangeListeners();
    }
 
    public boolean isTracking(NutrientInfo ni) {
@@ -269,31 +173,7 @@ public class User {
    
    public void setTracking(NutrientInfo ni, boolean b) {
       settings.set(CU_TRACK+ni.getName(), b);
-      notifyListeners();
-   }
-
-   
-   public final void addUserChangeListener(UserChangeListener l) {
-      getListeners().add(l);
-   }
-
-   private List getListeners() {
-      if (null == listeners) {
-         listeners = new ArrayList();
-      }
-      return listeners;
-   }
-   
-   protected final void notifyListeners() {
-      List l = getListeners();
-      for (Iterator iter = l.iterator(); iter.hasNext();) {
-         UserChangeListener listener = (UserChangeListener) iter.next();
-         listener.userChanged(this);
-      }
-   }
-
-   public final void removeUserChangeListener(UserChangeListener l) {
-      getListeners().remove(l);
+      UserManager.getUserManager().notifyUserChangeListeners();
    }
 
    public boolean isMale() {
@@ -318,7 +198,7 @@ public class User {
    
    public void setGender(boolean male) {
       settings.set(CU_MALE, male);
-      notifyListeners();
+      UserManager.getUserManager().notifyUserChangeListeners();
    }
 
    public boolean firstRun() {
@@ -327,43 +207,7 @@ public class User {
    
    public void setFirstRun(boolean val) {
       settings.set(CU_FIRST_RUN, val);
-      notifyListeners();
-   }
- 
-   /**
-    * If it's running as an application and user wants to check for updates, then return true
-    * Otherwise, we're a web-start application and should not check for updates
-    */
-   public boolean getCheckForUpdates() {
-      if (System.getProperty("ca.spaz.mode", "application").equalsIgnoreCase("application")) {
-         return settings.getBoolean(CHECK_FOR_UDAPTES, true);
-      } else {
-         return false;
-      }
-   }
-   
-   public void setCheckForUpdates(boolean val) {
-      settings.set(CHECK_FOR_UDAPTES, val);
-      notifyListeners();
-   }
-
-   public List getTracked(List list) {
-      List tracked = new ArrayList();
-      for (int i=0; i<list.size(); i++) {
-         NutrientInfo ni = (NutrientInfo)list.get(i);
-         if (isTracking(ni)) {
-            tracked.add(ni);
-         }
-      }
-      return tracked;
-   }
-
-   public void setLastBuild(int build) {
-      settings.set(LAST_BUILD, build);         
-   }
-
-   public int getLastBuild() {
-      return settings.getInt(LAST_BUILD, 0);
+      UserManager.getUserManager().notifyUserChangeListeners();
    }
 
    public double getWeightInKilograms() {
@@ -385,22 +229,6 @@ public class User {
    
    public void setWeightInKilograms(double userWeight) {
       settings.set(CU_WEIGHT, userWeight);       
-   }
-
-   public void setWeightUnitMetric(boolean val) {
-      settings.set(CU_WEIGHT_UNIT_METRIC, val);       
-   }
-   
-   public boolean getWeightUnitMetric() {
-      return settings.getBoolean(CU_WEIGHT_UNIT_METRIC, true);
-   }
-   
-   public void setHeightUnitMetric(boolean val) {
-      settings.set(CU_HEIGHT_UNIT_METRIC, val);       
-   }
-   
-   public boolean getHeightUnitMetric() {
-      return settings.getBoolean(CU_HEIGHT_UNIT_METRIC, true);
    }
 
    public int getProteinPercentage() { 
@@ -425,53 +253,191 @@ public class User {
    
    public void setFatPercentage(int val) { 
        settings.set(CU_FAT_PERC, val); 
+   }   
+   
+   public static String removeCharAt(String s, int pos) {
+      return s.substring(0,pos)+s.substring(pos+1);
+   }
+   
+   public List<NutrientInfo> getTracked(List<NutrientInfo> list) {
+      List<NutrientInfo> tracked = new ArrayList<NutrientInfo>();
+      for (int i=0; i<list.size(); i++) {
+         NutrientInfo ni = (NutrientInfo)list.get(i);
+         if (isTracking(ni)) {
+            tracked.add(ni);
+         }
+      }
+      return tracked;
+   }
+
+   
+   /**
+    * Returns <code>true</code> when a character is a valid character for a username. 
+    */
+   public static boolean isValidChar(char c) {
+      if ('0' <= c && c <= '9') {
+         return true;
+      } else if ('A' <= c && c <= 'Z') {
+         return true;
+      } else if ('a' <= c && c <= 'z') {
+         return true;
+      } else if ('ְ' <= c && c <= 'ÿ') {
+         return true;
+      } else if (c == '.' || c == '-' || c == '_' || c == ' ') {
+         return true;
+      }
+      return false;
+   }
+   
+   /**
+    * Clean the username.  The resulting username will only have the following 
+    * characters: [A-Za-z0-9.-_הüצאטי]. 
+    * @param username the string to clean
+    * @return the input string minus any invalid characters 
+    */
+   public static String cleanUsername(String s) {
+      int i = 0;
+      s = s.trim();
+      while (i < s.length()) {
+         if (!isValidChar(s.charAt(i))) {
+            s = removeCharAt(s, i);
+         } else {
+            i++;
+         }
+      }
+      return s;
+   }
+   
+   /**
+    * Rename the current user to the given name.  Need to rename the directory as well.
+    * @param username the new name of the user
+    */
+   public void setUsername(String newUsername) {
+      
+      String newCleanUsername = cleanUsername(newUsername); 
+      
+      if ( ! newUsername.equals(newCleanUsername)) {
+         ToolBox.okDialog("Your username contains invalid characters, " +
+               "these have been removed.", "User name updated");
+      }
+      
+      if (newCleanUsername.equals(username)) {
+         // given username is the same as current, therefore username has not changed
+         return;
+      }
+      
+      if (username == null) {
+         username = newCleanUsername;
+      } else {
+         // Update the directory name where the usernames are stored
+         if (UserManager.renameUserDirectory(this, newCleanUsername)) {
+            // The rename of the directory PASSED, we can change the name
+            username = newCleanUsername;
+         } else {
+            // An error occurred while renaming the directory, inform the user
+            ToolBox.okDialog("An error occurred while changing your username. " + 
+                  "Your orignal username will be used.", "User name updated");
+         }
+      }
+      UserManager.getUserManager().notifyUserChangeListeners();
+   }
+   
+   public String getUsername(){
+      if (username == null) {
+         return DEFAULT_USERNAME;
+      } else {
+         return username;
+      }
+   }
+
+   /**
+    * The first time a user is initialised we need to do some things, such as setting
+    * the user targets.
+    * @param parentWindow
+    */
+   public void doFirstRun(JComponent parentWindow) {
+      this.setFirstRun(false);
+      UserSettingsDialog.showDialog(UserManager.getUserManager(), parentWindow);
+      TargetEditor.setDefaultTargets(new DRITargetModel(), this);
+      TargetEditor.editTargets();
+   }
+
+   public void clearSettings() {
+      settings.clearAll();
+   }
+
+   public Settings getSettings() {
+      return settings;
+   }
+   
+   /**
+    * Initialise the User specific data sources.
+    */
+   public void initUserData() {
+      getFoodHistory();
+      getNotesHistory();
+      getBiometricsHistory();
+   }
+
+   public BiometricsHistory getBiometricsHistory() {
+      if (bioHist == null) {
+         bioHist = new BiometricsHistory();
+      }
+      return bioHist;
+   }
+
+   public BiomarkerDefinitions getBiomarkerDefinitions() {
+      if (bioDefs == null) {
+         bioDefs = new BiomarkerDefinitions();         
+      }
+      return bioDefs;
+   }
+   
+   public FoodHistory getFoodHistory() {
+      if (foodHist == null) {
+         foodHist = new FoodHistory();
+      }
+      return foodHist;
+   }
+
+   public NotesHistory getNotesHistory() {
+      if (noteHist == null) {
+         noteHist = new NotesHistory();
+      }
+      return noteHist;
    } 
    
+   /**
+    * Ensure all data is saved to backing stores.
+    */
+   public void saveUserData() {
+      getFoodHistory().save();
+      getBiometricsHistory().save();
+      getNotesHistory().save();
+   }
+   
+   public String getNotes(Date date) {
+      return getNotesHistory().getNote(date);
+   }
+   
+   public void setNotes(String note, Date date) {
+      getNotesHistory().setNote(note, date);
+   }
+   
+   public List getBiometrics(Date date) {
+      return getBiometricsHistory().getMetricsOn(date);
+   }
 
-   public void setHideWhenMinimized(boolean state) { 
-      settings.set(HIDE_WHEN_MINIMIZED, state);
+   public void addMetric(Metric metric) {
+      getBiometricsHistory().addMetric(metric);
    }
    
-   public boolean getHideWhenMinimized() {
-      return settings.getBoolean(HIDE_WHEN_MINIMIZED, false);
+   public void updateMetric(Metric metric) {
+      getBiometricsHistory().update(metric);
+   }   
+
+   public void removeMetric(Metric metric) {
+      getBiometricsHistory().delete(metric);
    }
    
-   
-   public void setDietDivider(int val) { 
-      settings.set(DIET_DIVIDER, val); 
-   }
-   public int getDietDivider(int val) { 
-      return settings.getInt(DIET_DIVIDER, val); 
-   }
-   
-   public void saveWindow(JFrame frame) {
-      try {
-         frame.setVisible(true);
-         settings.set(MAIN_WINDOW +".width", frame.getWidth());
-         settings.set(MAIN_WINDOW +".height", frame.getHeight());
-         settings.set(MAIN_WINDOW +".x", frame.getLocationOnScreen().x);
-         settings.set(MAIN_WINDOW +".y", frame.getLocationOnScreen().y);
-      } catch (Exception e) {
-         e.printStackTrace();
-      }
-   }
-   
-   public void restoreWindow(JFrame frame, Point p) {      
-      Toolkit defaultToolkit = Toolkit.getDefaultToolkit();
-      Dimension screen = defaultToolkit.getScreenSize();
-      int x = settings.getInt(MAIN_WINDOW +".x", p.x);
-      int y = settings.getInt(MAIN_WINDOW +".y", p.y);
-      int w = settings.getInt(MAIN_WINDOW +".width", frame.getWidth());
-      int h = settings.getInt(MAIN_WINDOW +".height", frame.getHeight());
-      if (x < 0 || x+w*0.10 > screen.width) {
-         x = p.x;
-         //w = frame.getWidth();
-      }
-      if (y < 0 || y+h*0.10 > screen.height) {
-         y = p.y;
-         //h = frame.getHeight();
-      }
-      frame.setLocation(x, y);
-      frame.setSize(w, h);       
-   }
 }

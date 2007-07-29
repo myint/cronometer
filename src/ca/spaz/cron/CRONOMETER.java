@@ -17,6 +17,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+import ca.spaz.cron.actions.CopyServingsToUserAction;
 import ca.spaz.cron.actions.CreateRecipeAction;
 import ca.spaz.cron.datasource.Datasources;
 import ca.spaz.cron.datasource.XMLFoodLoader;
@@ -26,8 +27,7 @@ import ca.spaz.cron.targets.DRITargetModel;
 import ca.spaz.cron.targets.TargetEditor;
 import ca.spaz.cron.ui.*;
 import ca.spaz.cron.ui.SplashScreen;
-import ca.spaz.cron.user.User;
-import ca.spaz.cron.user.UserSettingsDialog;
+import ca.spaz.cron.user.*;
 import ca.spaz.gui.*;
 import ca.spaz.task.Task;
 import ca.spaz.task.TaskListener;
@@ -46,11 +46,11 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
    public static final String TITLE = "CRON-o-Meter";
    public static final String VERSION = "0.9.1";
    public static final int BUILD = 10;
-   public static JFrame mainFrame = null; 
+   public static JFrame mainFrame = null;
 
    private static Clipboard clipboard = new Clipboard ("CRON-o-Meter");
 
-   private DailySummary ds;
+   private static DailySummary ds;
 
    private SpazMenuBar menu;
    private HelpBrowser help;
@@ -85,35 +85,35 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
          setJMenuBar(getMenu());         
          setIconImage(getWindowIcon());
          setTitle(getFullTitle());
-         if (!User.getSubdirectory().equalsIgnoreCase("cronometer")) {
-            setTitle(getFullTitle() + " ["+User.getSubdirectory()+"]");
+         if (!UserManager.getSubdirectory().equalsIgnoreCase("cronometer")) {
+            setTitle(getFullTitle() + " ["+UserManager.getSubdirectory()+"]");
          }
          getContentPane().add(getMainPanel());
          setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
          pack();
          Point p = ToolBox.centerFrame(this);
-         if (!User.getUser().firstRun()) {
-            User.getUser().restoreWindow(CRONOMETER.getInstance(), p);
-            getDailySummary().getDietPanel().setDividerLocation(User.getUser().getDietDivider(300));
+         if (!UserManager.getUserManager().firstCronRun()) {
+            UserManager.getUserManager().restoreWindow(CRONOMETER.getInstance(), p);
+            getDailySummary().getDietPanel().setDividerLocation(UserManager.getUserManager().getDietDivider(300));
          }
          setVisible(true);
          mainFrame = this;
-         if (User.getUser().firstRun()) {            
+         if (UserManager.getUserManager().firstCronRun()) {
             doShowReadMe();
-            User.getUser().setFirstRun(false);
-            UserSettingsDialog.showDialog(User.getUser(), getMainPanel());
-            TargetEditor.setDefaultTargets(new DRITargetModel(), User.getUser());
+            UserManager.getUserManager().setFirstCronRun(false);
+            UserManager.getCurrentUser().doFirstRun(getMainPanel());
+            TargetEditor.setDefaultTargets(new DRITargetModel(), UserManager.getCurrentUser());
             doEditUserSettings(); 
          } else {
-            if (User.getUser().getLastBuild() < BUILD) {
+            if (UserManager.getUserManager().getLastBuild() < BUILD) {
                doShowReleaseNotes();
             }
-            if (User.getUser().getLastBuild() < 7) {
+            if (UserManager.getUserManager().getLastBuild() < 7) {
                upgradeToB7();
             }
          }          
-         User.getUser().setLastBuild(CRONOMETER.BUILD);
+         UserManager.getUserManager().setLastBuild(CRONOMETER.BUILD);
          makeAutoSaveTimer();
          installSystemTray();
          addWindowListener(new WindowAdapter() {
@@ -121,7 +121,7 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
                doQuit();
             }
             public void windowIconified(WindowEvent e) {
-               if (User.getUser().getHideWhenMinimized()) {
+               if (UserManager.getUserManager().getHideWhenMinimized()) {
                   setVisible(false);
                }
             }
@@ -143,14 +143,14 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
    }
 
    private void upgradeToB7() {
-      if (User.getUser().isFemale()) {
+      if (UserManager.getCurrentUser().isFemale()) {
          JOptionPane.showMessageDialog(getMainPanel(), 
                "Previous versions of CRON-o-Meter were incorrectly \n" +
                "suggesting male nutritional targets for women.\n" +
                "It is highly recommended that you reset your nutritional\n" +
                "targets to values appropriate for women.");
-         UserSettingsDialog.showDialog(User.getUser(), getMainPanel());
-         TargetEditor.setDefaultTargets(new DRITargetModel(), User.getUser());
+         UserSettingsDialog.showDialog(UserManager.getUserManager(), getMainPanel());
+         TargetEditor.setDefaultTargets(new DRITargetModel(), UserManager.getCurrentUser());
          doEditUserSettings(); 
       }
    }
@@ -162,7 +162,7 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
    private void makeAutoSaveTimer() {
       Timer t = new Timer(6000*5, new ActionListener(){
          public void actionPerformed(ActionEvent e) {
-            Datasources.saveAll();
+            UserManager.getCurrentUser().saveUserData();
             getDailySummary().refreshTime();
          }
       });
@@ -219,7 +219,13 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
    }
     
    public static String getFullTitle() {
-      return TITLE + " v" + VERSION;
+      User currentUser = UserManager.getCurrentUser();
+      String heading = TITLE + " v" + VERSION;
+      if (currentUser == null) {
+         return heading;
+      } else {
+         return heading + " - " + currentUser.getUsername();
+      }
    }
 
    private JMenuBar getMenu() {
@@ -250,12 +256,19 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
            KeyStroke.getKeyStroke(KeyEvent.VK_C, mask));
          menuItem.setMnemonic(KeyEvent.VK_C);
          mainMenu.add(menuItem);
+         menuItem = new JMenuItem("Copy To...");
+         menuItem.setMnemonic('o');
+         menuItem.setToolTipText("Copy selected servings to another user");
+         menuItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+               CopyServingsToUserAction.copyToUserDialog();
+            }
+         });
+         mainMenu.add(menuItem);
          menuItem = new JMenuItem("Paste");
-         menuItem.setActionCommand((String)TransferHandler.getPasteAction().
-                  getValue(Action.NAME));
+         menuItem.setActionCommand((String)TransferHandler.getPasteAction().getValue(Action.NAME));
          menuItem.addActionListener(actionListener);
-         menuItem.setAccelerator(
-           KeyStroke.getKeyStroke(KeyEvent.VK_V, mask));
+         menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V, mask));
          menuItem.setMnemonic(KeyEvent.VK_P);
          mainMenu.add(menuItem);
          
@@ -277,7 +290,7 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
    }
  
 
-   public DailySummary getDailySummary() {
+   public static DailySummary getDailySummary() {
       if (null == ds) {
          ds = new DailySummary();         
       }
@@ -304,7 +317,9 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
       TargetEditor.editTargets(); 
    }
    
-
+   public void doManageUsers() {
+      UserManager.startUserManagerDialog();
+   }
    public void doImportFood() {
       JFileChooser fd = new JFileChooser();
       if (fd.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
@@ -333,10 +348,10 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
       try {
          // remember window size & position
          getDailySummary().getNotesEditor().saveCurrentNote();
-         User.getUser().saveWindow(this);
-         User.getUser().setDietDivider(getDailySummary().getDietPanel().getDividerLocation());
+         UserManager.getUserManager().saveWindow(this);
+         UserManager.getUserManager().setDietDivider(getDailySummary().getDietPanel().getDividerLocation());
          Datasources.closeAll();
-         User.getUser().saveUserProperties();
+         UserManager.getUserManager().saveUserProperties();
       } catch (IOException e1) {
          e1.printStackTrace(); 
          ErrorReporter.showError(e1, this);
@@ -423,7 +438,7 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
       public void run() {
          ToolBox.sleep(1000);
          Datasources.initialize(this);  
-         if (User.getUser().getCheckForUpdates()) {
+         if (UserManager.getUserManager().getCheckForUpdates()) {
             Thread t = new Thread( new Runnable() {
                public void run() {
                   CRONOMETER.getInstance().doCheckForUpdates();
@@ -548,7 +563,7 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
       // (by setting the argument in your IDE's run configuration) than for
       // daily use of the application.
       if (args.length > 0) {
-         User.setSubdirectory(args[0]);
+         UserManager.setSubdirectory(args[0]);
       }
       
       final CRONOMETER cron = CRONOMETER.getInstance();
