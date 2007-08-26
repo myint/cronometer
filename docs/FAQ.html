@@ -11,50 +11,7 @@
 <h2>Frequently Asked Questions</h2>
  
 This section answers some frequently-asked questions.
-  
-<h4>Does CRON-o-Meter support multiple users?</h4>
-All modern operating systems, and CRON-o-Meter only runs on "modern" operating systems, have multiple user 
-support which allows users to have separate accounts and log-ins. CRON-o-Meter stores the user settings in the 
-appropriate location for the currently logged on user.  If you share a computer, you should use the 
-built-in accounts and fast user switching features of your operating system.
-<p>
-However, if you pass a single command line parameter to CRON-o-Meter, it will create or load 
-a profile by that name.  In this way, it is possible to manage multiple users under a single 
-account of an operating system, but 
-more than one profile cannot be opened simultaneously, and 
-CRON-o-Meter does not display the profile name anywhere.
-<p>
-The following example would load or create the profile named "John" instead of the default.
-<blockquote>
-<tt>
-./CRON-O-METER.exe John
-</tt>
-</blockquote>
-For the Windows Operating System this would be: 
-<blockquote>
-<tt>
-cd C:\Program Files\CRON-O-METER\<br>
-CRON-O-METER.exe John
-</tt>
-</blockquote>
-Each profile is kept as a folder that contains a separate set of user information, targets, personal 
-recipes, and records of consumption.  The profiles are saved and maintained under the account owners 
-Application Data folder, e.g.:
-Default profile: 
-<blockquote>
-<tt>
-C:\Documents and Settings\Owner\Application Data\cronometer
-</tt>
-</blockquote>
-Named Profile:
-<blockquote>
-
-<tt>
-C:\Documents and Settings\Owner\Application Data\John
-</tt>
-</blockquote>
-
-<!-- ===== -->
+   
  
 <h4>One of the foods has an error in the nutrients, what should I do?</h4> 
 CRON-o-Meter has 3 databases: 
