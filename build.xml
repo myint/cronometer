@@ -1,4 +1,4 @@
-<project name="CRONOMETER" default="jarfile" basedir=".">
+<project name="CRONOMETER" default="cronometer.jar" basedir=".">
 
 	<description>
 		Builds the CRONOMETER App
@@ -30,7 +30,18 @@
 		</javac>
 	</target>
 
-	<target name="jarfile" depends="compile" description="generate the distribution jar" >
+	<target name="docs.jar" description="create the documentation jar file" >
+		<jar jarfile="lib/docs.jar" compress="true">
+			<fileset dir="docs">
+				<include name="**"/>				 
+			</fileset>
+			<manifest>
+				<attribute name="Built-By" value="${user.name}"/> 
+			</manifest>
+		</jar>
+	</target>
+	
+	<target name="cronometer.jar" depends="compile" description="generate the distribution jar" >
 		<jar jarfile="lib/cronometer.jar" compress="true">
 			<fileset dir="${build}">
 				<include name="*.*"/>
@@ -47,16 +58,16 @@
 		</jar>
 	</target>
 	
-	<target name="launcher" depends="jarfile" description="generate the executable" >
+	<target name="launcher" depends="cronometer.jar,docs.jar" description="generate the executable" >
 		<launch4j configFile="release/windows/launch4j.xml" />
 		<exe4j projectfile="release/windows/cronometer.exe4j"/>
 	</target>	
 	
-	<target name="signalljars" depends="jarfile" description="generate the signed jar package" >
+	<target name="signalljars" depends="cronometer.jar,docs.jar" description="generate the signed jar package" >
 		<input message="Enter certificate password for signing:" addproperty="cert_pwd" />
 		
 		<signjar jar="${lib}/cronometer.jar" keystore="release/jws" alias="spaz.ca" storepass="${cert_pwd}"/>
-		<signjar jar="${lib}/swingx-2007_07_01.jar" keystore="release/jws" alias="spaz.ca" storepass="${cert_pwd}"/>
+		<signjar jar="${lib}/swingx-2007_08_26.jar" keystore="release/jws" alias="spaz.ca" storepass="${cert_pwd}"/>
 		<signjar jar="${lib}/jcommon-1.0.10.jar" keystore="release/jws" alias="spaz.ca" storepass="${cert_pwd}"/>		
 		<signjar jar="${lib}/jfreechart-1.0.6.jar" keystore="release/jws" alias="spaz.ca" storepass="${cert_pwd}"/>
 		<signjar jar="${lib}/docs.jar" keystore="release/jws" alias="spaz.ca" storepass="${cert_pwd}"/>
@@ -64,7 +75,7 @@
 		<signjar jar="${lib}/usda_sr19.jar" keystore="release/jws" alias="spaz.ca" storepass="${cert_pwd}"/>		
 	</target>
 
-	<target name="signsomejars" depends="jarfile" description="generate the signed jar package" >
+	<target name="signsomejars" depends="cronometer.jar,docs.jar" description="generate the signed jar package" >
 		<input message="Enter certificate password for signing:" addproperty="cert_pwd" />
 				
 		<signjar jar="${lib}/cronometer.jar" keystore="release/jws" alias="spaz.ca" storepass="${cert_pwd}"/>

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <exe4j version="4.0.3" transformSequenceNumber="1">
-  <directoryPresets config="C:/Documents and Settings/adavidson/workspace/CRONOMETER/release" />
+  <directoryPresets config="C:/Documents and Settings/adavidson/workspace/CRONOMETER/lib" />
   <application name="CRON-O-METER" distributionSourceDir="C:/Documents and Settings/adavidson/workspace/CRONOMETER/release/windows">
     <languages>
       <principalLanguage id="en" customLocalizationFile="" />
     </languages>
   </application>
-  <executable name="CRON-O-METER" type="1" iconSet="true" iconFile="C:/Documents and Settings/adavidson/workspace/CRONOMETER/release/windows/icon.ico" executableDir="." redirectStderr="false" stderrFile="error.log" redirectStdout="false" stdoutFile="output.log" failOnStderrOutput="true" executableMode="1" changeWorkingDirectory="true" workingDirectory="." singleInstance="true" serviceStartType="2" serviceDependencies="" serviceDescription="" jreLocation="" executionLevel="asInvoker" amd64="false">
+  <executable name="CRON-O-METER" type="2" iconSet="true" iconFile="C:/Documents and Settings/adavidson/workspace/CRONOMETER/release/windows/icon.ico" executableDir="." redirectStderr="false" stderrFile="error.log" redirectStdout="false" stdoutFile="output.log" failOnStderrOutput="true" executableMode="1" changeWorkingDirectory="true" workingDirectory="." singleInstance="true" serviceStartType="2" serviceDependencies="" serviceDescription="" jreLocation="" executionLevel="asInvoker" amd64="false">
     <messageSet />
-    <versionInfo include="true" fileVersion="0.9.1.0" fileDescription="CRON-O-METER Application" legalCopyright="Copyright 2005 - 2007" internalName="CRON-O-METER" companyName="spaz.ca" productVersion="0.9.1.0" />
+    <versionInfo include="true" fileVersion="0.9.2.0" fileDescription="CRON-O-METER Application" legalCopyright="Copyright 2005 - 2007" internalName="CRON-O-METER" companyName="spaz.ca" productVersion="0.9.2.0" />
   </executable>
   <splashScreen show="false" autoOff="true" alwaysOnTop="true" width="0" height="0" bitmapFile="">
     <text>
@@ -23,7 +23,13 @@
       <envVar name="JDK_HOME" />
     </searchSequence>
     <classPath>
-      <scanDirectory location="./lib" failOnError="true" />
+      <archive location="../../lib/cronometer.jar" failOnError="false" />
+      <archive location="../../lib/crdb_003.jar" failOnError="false" />
+      <archive location="../../lib/docs.jar" failOnError="false" />
+      <archive location="../../lib/jcommon-1.0.10.jar" failOnError="false" />
+      <archive location="../../lib/jfreechart-1.0.6.jar" failOnError="false" />
+      <archive location="../../lib/swingx-2007_08_26.jar" failOnError="false" />
+      <archive location="../../lib/usda_sr19.jar" failOnError="false" />
     </classPath>
     <nativeLibraryDirectories />
   </java>
