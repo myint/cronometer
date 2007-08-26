@@ -43,8 +43,8 @@ import com.apple.mrj.MRJQuitHandler;
 public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, MRJAboutHandler, ClipboardOwner {
 
    public static final String TITLE = "CRON-o-Meter";
-   public static final String VERSION = "0.9.1";
-   public static final int BUILD = 10;
+   public static final String VERSION = "0.9.2";
+   public static final int BUILD = 11;
    public static JFrame mainFrame = null;
 
    private static Clipboard clipboard = new Clipboard ("CRON-o-Meter");
@@ -83,9 +83,9 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
       try {
          setJMenuBar(getMenu());         
          setIconImage(getWindowIcon());
-         setTitle(getFullTitle());
+         setTitle(getFullTitleWithUser());
          if (!UserManager.getSubdirectory().equalsIgnoreCase("cronometer")) {
-            setTitle(getFullTitle() + " ["+UserManager.getSubdirectory()+"]");
+            setTitle(getFullTitleWithUser() + " ["+UserManager.getSubdirectory()+"]");
          }
          getContentPane().add(getMainPanel());
          setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -136,8 +136,8 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
    private void installSystemTray() {     
       if (ToolBox.classExists("java.awt.SystemTray")) {
          // this is a Java-6 feature only, so we use reflection to survive on older JVMs
-         ToolBox.instantiate("ca.spaz.cron.SysTray");
-      }       
+         ToolBox.instantiate("ca.spaz.cron.ui.SysTray");
+      }
    }
 
    private void upgradeToB7() {
@@ -197,7 +197,7 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
             URL.setURLStreamHandlerFactory(new JarLoader());
             //help = new HelpBrowser("CRON-o-Meter Help", new File("docs").toURI().toURL(), false); 
             //help = new HelpBrowser("CRON-o-Meter Help", new URL("http://spaz.ca/cronometer/docs/"));
-            help = new HelpBrowser("CRON-o-Meter Help", new URL("class://DocAnchor/docs/"));
+            help = new HelpBrowser("CRON-o-Meter Help", new URL("class://DocAnchor/"));
             help.setIconImage(CRONOMETER.getWindowIcon()); 
             ToolBox.centerFrame(help);
          } catch (Exception e) {
@@ -215,10 +215,14 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
    public void doRequestFeature() {
       ToolBox.launchURL(CRONOMETER.getInstance(), "http://sourceforge.net/tracker/?group_id=136481&atid=735998");
    }
-    
-   public static String getFullTitle() {
+
+   public static String getFullTitle() { 
+      return TITLE + " v" + VERSION;       
+   }
+   
+   public static String getFullTitleWithUser() {
+      String heading = getFullTitle();
       User currentUser = UserManager.getCurrentUser();
-      String heading = TITLE + " v" + VERSION;
       if (currentUser == null) {
          return heading;
       } else {
@@ -546,6 +550,15 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
       toFront();
    }
    
+   /**
+    * Show the user a dialog with an Ok button.
+    * @param message the message to display
+    * @param title the title of the window
+    */
+   public static void okDialog(String message, String title) {
+      JOptionPane.showMessageDialog(getInstance(), message, title, JOptionPane.OK_OPTION);
+   }
+
    public static void main(String[] args) {
       try {
          if (!ToolBox.isMacOSX()) {

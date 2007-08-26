@@ -209,7 +209,7 @@ public class UserManager {
    }
    
    public void setCurrentUser(User user) {
-      if (user == null) {
+      if (user == null || currentUser == user) {
          return;
       }
       if (currentUser != null) {
@@ -491,7 +491,7 @@ public class UserManager {
          UserChangeListener listener = (UserChangeListener) iter.next();
          listener.userChanged(this);
       }
-      CRONOMETER.getInstance().setTitle(CRONOMETER.getFullTitle());
+      CRONOMETER.getInstance().setTitle(CRONOMETER.getFullTitleWithUser());
    }
    
    public final void removeUserChangeListener(UserChangeListener l) {

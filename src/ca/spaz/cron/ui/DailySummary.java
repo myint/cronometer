@@ -66,7 +66,7 @@ public class DailySummary extends JPanel implements UserChangeListener {
    public DailySummary() { 
       setPreferredSize(new Dimension(580,640));
       initialize();
-      setDate(curDate);
+      setDate(curDate, false);
       UserManager.getUserManager().addUserChangeListener(this);
       notifyObservers();
    }
@@ -78,7 +78,7 @@ public class DailySummary extends JPanel implements UserChangeListener {
          user.getFoodHistory().addServing(copy);
          notifyObservers(); 
       } else {
-         ToolBox.okDialog("No servings copied", "Warning");
+         CRONOMETER.okDialog("No servings copied", "Warning");
       }
    }
    
@@ -234,7 +234,7 @@ public class DailySummary extends JPanel implements UserChangeListener {
          nextButton = new JButton(new ImageIcon(ImageFactory.getInstance().loadImage("/img/forth.gif")));
          nextButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-               setDate(new Date(curDate.getTime() + ONE_DAY));
+               setDate(new Date(curDate.getTime() + ONE_DAY), false);
             }  
          }); 
          CRONOMETER.fixButton(nextButton); 
@@ -249,7 +249,7 @@ public class DailySummary extends JPanel implements UserChangeListener {
          prevButton = new JButton(new ImageIcon(ImageFactory.getInstance().loadImage("/img/back.gif")));
          prevButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-               setDate(new Date(curDate.getTime() - ONE_DAY));
+               setDate(new Date(curDate.getTime() - ONE_DAY), false);
             }  
          }); 
          CRONOMETER.fixButton(prevButton);
@@ -293,7 +293,7 @@ public class DailySummary extends JPanel implements UserChangeListener {
     * Set the current date to today
     */
    public void goToToday() {
-      setDate(new Date(System.currentTimeMillis()));
+      setDate(new Date(System.currentTimeMillis()), false);
    }
    
    /**
@@ -369,20 +369,24 @@ public class DailySummary extends JPanel implements UserChangeListener {
       getServingTable().setServings(consumed);
    }
    
-   public void userChanged(UserManager userMan) {
-      setDate(curDate);
+   public void userChanged(UserManager userMan) { 
+      //getNotesEditor().clear();
+      setDate(curDate, true);
    }
 
    /**
     * Set the current date being displayed by this daily summary
     */
-   public void setDate(Date d) {
+   public void setDate(Date d, boolean userChanged) {
       curDate = d;      
       // getDateTitle().setDate(curDate);
       getDateTitle().setText(df.format(curDate));
       validate();
       getBioMarkersPanel().setDate(d);
       getServingTable().setTitle(df.format(curDate));
+      if (!userChanged) {
+         getNotesEditor().saveCurrentNote(); 
+      }
       getNotesEditor().setDate(d);
       asked = false;
       refreshTime();
@@ -392,7 +396,7 @@ public class DailySummary extends JPanel implements UserChangeListener {
    public void pickDate() {      
       Date d = DateChooser.pickDate(this, curDate);
       if (d != null) {
-         setDate(d);
+         setDate(d, false);
       }
    }
 

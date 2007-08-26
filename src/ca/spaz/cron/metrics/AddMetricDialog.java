@@ -8,7 +8,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import ca.spaz.cron.CRONOMETER;
-import ca.spaz.cron.user.*;
+import ca.spaz.cron.user.UserManager;
 import ca.spaz.util.ImageFactory;
 import ca.spaz.util.ToolBox;
 

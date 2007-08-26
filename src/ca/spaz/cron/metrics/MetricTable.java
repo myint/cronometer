@@ -12,7 +12,6 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumnModel;
 
 import ca.spaz.cron.CRONOMETER;
-import ca.spaz.cron.datasource.Datasources;
 import ca.spaz.cron.records.RecordTable;
 import ca.spaz.cron.user.UserManager;
 

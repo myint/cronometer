@@ -13,7 +13,6 @@ import java.util.zip.Inflater;
 import javax.swing.*;
 import javax.swing.border.*;
 
-import ca.spaz.cron.CRONOMETER;
 import ca.spaz.gui.ErrorReporter;
 
 /**
@@ -406,15 +405,6 @@ public class ToolBox {
             changeFontSizes(b, delta);           
          }
       }
-   }
-   
-   /**
-    * Show the user a dialog with an Ok button.
-    * @param message the message to display
-    * @param title the title of the window
-    */
-   public static void okDialog(String message, String title) {
-      JOptionPane.showMessageDialog(CRONOMETER.getInstance(), message, title, JOptionPane.OK_OPTION);
    }
  
 }

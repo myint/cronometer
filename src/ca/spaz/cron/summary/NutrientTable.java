@@ -18,7 +18,8 @@ import ca.spaz.cron.foods.NutrientInfo;
 import ca.spaz.cron.foods.Serving;
 import ca.spaz.cron.targets.NutrientInfoPanel;
 import ca.spaz.cron.targets.Target;
-import ca.spaz.cron.user.*;
+import ca.spaz.cron.user.UserChangeListener;
+import ca.spaz.cron.user.UserManager;
 import ca.spaz.gui.*;
 
 public class NutrientTable extends PrettyTable implements UserChangeListener {

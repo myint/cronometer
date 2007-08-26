@@ -11,7 +11,6 @@ import javax.swing.*;
 import org.jfree.ui.RefineryUtilities;
 
 import ca.spaz.cron.CRONOMETER;
-import ca.spaz.cron.user.User;
 import ca.spaz.cron.user.UserManager;
 import ca.spaz.gui.DoubleField;
 import ca.spaz.gui.ErrorReporter;

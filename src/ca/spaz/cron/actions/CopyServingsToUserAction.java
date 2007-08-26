@@ -12,7 +12,8 @@ import javax.swing.ImageIcon;
 
 import ca.spaz.cron.CRONOMETER;
 import ca.spaz.cron.foods.ServingTable;
-import ca.spaz.cron.user.*;
+import ca.spaz.cron.user.UserDatePickerDialog;
+import ca.spaz.cron.user.UserManager;
 import ca.spaz.gui.WrapperDialog;
 import ca.spaz.util.ImageFactory;
 import ca.spaz.util.Logger;

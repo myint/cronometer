@@ -22,10 +22,9 @@ import javax.swing.event.*;
 import org.jdesktop.swingx.JXDatePicker;
 
 import se.datadosen.component.RiverLayout;
-
 import ca.spaz.cron.CRONOMETER;
 import ca.spaz.gui.*;
-import ca.spaz.util.*;
+import ca.spaz.util.Logger;
 
 public class UserDatePickerDialog extends WrappedPanel implements ListSelectionListener {
 

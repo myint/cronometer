@@ -9,7 +9,6 @@ import java.util.Date;
 import javax.swing.*;
 import javax.swing.text.BadLocationException;
 
-import ca.spaz.cron.user.User;
 import ca.spaz.cron.user.UserManager;
 
 public class NoteEditor extends JPanel implements FocusListener {
@@ -38,7 +37,7 @@ public class NoteEditor extends JPanel implements FocusListener {
       return edit;
    }
    
-   private void clear() {
+   public void clear() {
       SwingUtilities.invokeLater(new Runnable() {
          public void run() {
             try {
@@ -64,15 +63,14 @@ public class NoteEditor extends JPanel implements FocusListener {
    }
 
    public void saveCurrentNote() {
-      UserManager.getCurrentUser().setNotes(getContents(), curDate);
+      if (curDate != null) {
+         UserManager.getCurrentUser().setNotes(getContents(), curDate);
+      }
    }
    
    private String curNote = null;
    
-   public void setDate(Date d) { 
-      if (curDate != null) {
-         saveCurrentNote(); 
-      }
+   public void setDate(Date d) {      
       curDate = d;
       clear();
       curNote = UserManager.getCurrentUser().getNotes(curDate);
@@ -81,7 +79,7 @@ public class NoteEditor extends JPanel implements FocusListener {
       }
       setContents(curNote);         
    }
-
+    
    public void focusGained(FocusEvent arg0) {
       // Do nothing
    }

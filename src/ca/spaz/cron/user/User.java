@@ -14,17 +14,15 @@ package ca.spaz.cron.user;
 
 import java.util.*;
 
+import javax.swing.JComponent;
+
+import ca.spaz.cron.CRONOMETER;
 import ca.spaz.cron.foods.FoodHistory;
 import ca.spaz.cron.foods.NutrientInfo;
 import ca.spaz.cron.metrics.*;
 import ca.spaz.cron.notes.NotesHistory;
 import ca.spaz.cron.targets.*;
 import ca.spaz.util.Settings;
-import ca.spaz.util.ToolBox;
-
-import java.util.List;
-
-import javax.swing.JComponent;
 
 /**
  * A CRONOMETER-specific, property-based <code>User</code> implementation. 
@@ -317,7 +315,7 @@ public class User {
       String newCleanUsername = cleanUsername(newUsername); 
       
       if ( ! newUsername.equals(newCleanUsername)) {
-         ToolBox.okDialog("Your username contains invalid characters, " +
+         CRONOMETER.okDialog("Your username contains invalid characters, " +
                "these have been removed.", "User name updated");
       }
       
@@ -335,7 +333,7 @@ public class User {
             username = newCleanUsername;
          } else {
             // An error occurred while renaming the directory, inform the user
-            ToolBox.okDialog("An error occurred while changing your username. " + 
+            CRONOMETER.okDialog("An error occurred while changing your username. " + 
                   "Your orignal username will be used.", "User name updated");
          }
       }

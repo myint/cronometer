@@ -1,8 +1,10 @@
 package ca.spaz.cron.user;
 
 import java.awt.*;
-import java.awt.event.*;
-import java.util.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Iterator;
+import java.util.Vector;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -11,7 +13,8 @@ import javax.swing.event.*;
 import se.datadosen.component.RiverLayout;
 import ca.spaz.cron.CRONOMETER;
 import ca.spaz.gui.*;
-import ca.spaz.util.*;
+import ca.spaz.util.ImageFactory;
+import ca.spaz.util.Logger;
 
 public class UserManagerDialog extends WrappedPanel implements ListSelectionListener {
 

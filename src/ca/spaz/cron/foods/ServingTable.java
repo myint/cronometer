@@ -21,14 +21,12 @@ import org.jdesktop.swingx.JXTable;
 import ca.spaz.cron.CRONOMETER;
 import ca.spaz.cron.actions.*;
 import ca.spaz.cron.datasource.FoodProxy;
-import ca.spaz.cron.foods.Serving;
 import ca.spaz.cron.ui.DailySummary;
 import ca.spaz.cron.ui.SearchDialog;
 import ca.spaz.cron.user.User;
 import ca.spaz.cron.user.UserManager;
 import ca.spaz.gui.PrettyTable;
 import ca.spaz.util.ImageFactory;
-import ca.spaz.util.ToolBox;
 
 public class ServingTable extends JPanel {
 
@@ -329,7 +327,7 @@ public class ServingTable extends JPanel {
          sel.toArray(servings);
          addServingsToUser(servings, user, date);
       } else {
-         ToolBox.okDialog("Please select at least one serving", "No servings selected");
+         CRONOMETER.okDialog("Please select at least one serving", "No servings selected");
       }
    }
    

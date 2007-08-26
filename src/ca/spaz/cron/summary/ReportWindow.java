@@ -13,7 +13,6 @@ import java.util.List;
 import javax.swing.*;
 
 import ca.spaz.cron.CRONOMETER;
-import ca.spaz.cron.datasource.Datasources;
 import ca.spaz.cron.user.UserManager;
 import ca.spaz.gui.*;
 import ca.spaz.util.ImageFactory;
@@ -225,6 +224,7 @@ public class ReportWindow extends WrappedPanel {
    public WebViewer getHTMLViewer() {
       if (htmlViewer == null) {
          htmlViewer = new WebViewer();
+         htmlViewer.setExternal(true);
          htmlViewer.setPreferredSize(new Dimension(450,450));
          htmlViewer.getHTMLPane().setFont(new Font("Courier",  Font.PLAIN, 12));
       }

@@ -9,7 +9,6 @@ import org.w3c.dom.*;
 import org.xml.sax.SAXException;
 
 import ca.spaz.cron.CRONOMETER;
-import ca.spaz.cron.user.User;
 import ca.spaz.cron.user.UserManager;
 import ca.spaz.gui.ErrorReporter;
 import ca.spaz.util.*;

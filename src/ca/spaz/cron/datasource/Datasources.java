@@ -5,7 +5,8 @@ package ca.spaz.cron.datasource;
 
 import java.util.*;
 
-import ca.spaz.cron.user.*;
+import ca.spaz.cron.user.User;
+import ca.spaz.cron.user.UserManager;
 import ca.spaz.util.ProgressListener;
 
 

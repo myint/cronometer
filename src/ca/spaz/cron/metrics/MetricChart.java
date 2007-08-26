@@ -21,7 +21,6 @@ import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
 import org.jfree.data.time.*;
 import org.jfree.ui.RectangleInsets;
 
-import ca.spaz.cron.datasource.Datasources;
 import ca.spaz.cron.user.UserManager;
 import ca.spaz.gui.DateChooser;
 import ca.spaz.gui.IntegerField;

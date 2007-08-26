@@ -4,8 +4,9 @@
 package ca.spaz.cron.datasource.USDAImport;
 
 import java.util.HashMap;
- 
-import ca.spaz.cron.foods.*;
+
+import ca.spaz.cron.foods.Food;
+import ca.spaz.cron.foods.Measure;
 
 public class USDAWeight {
    

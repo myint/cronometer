@@ -14,9 +14,7 @@ import javax.swing.border.Border;
 
 import ca.spaz.cron.foods.*;
 import ca.spaz.cron.targets.Target;
-import ca.spaz.cron.user.User;
-import ca.spaz.cron.user.UserManager;
-import ca.spaz.cron.user.UserChangeListener;
+import ca.spaz.cron.user.*;
 import ca.spaz.util.ToolBox;
 
 /**

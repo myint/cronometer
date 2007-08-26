@@ -10,8 +10,6 @@ import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
-import ca.spaz.cron.datasource.Datasources;
-import ca.spaz.cron.user.User;
 import ca.spaz.cron.user.UserManager;
 
 public class BiomarkerPanelOld extends JPanel {

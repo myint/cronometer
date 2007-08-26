@@ -20,8 +20,7 @@ import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
 import org.jfree.data.time.*;
 import org.jfree.ui.RectangleInsets;
 
-import ca.spaz.cron.datasource.Datasources;
-import ca.spaz.cron.user.*;
+import ca.spaz.cron.user.UserManager;
 
 /**
  * A panel containing a MetricEditor for each enabled Biomarker.
