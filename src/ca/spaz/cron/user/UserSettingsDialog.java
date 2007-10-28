@@ -208,7 +208,7 @@ public class UserSettingsDialog extends WrappedPanel {
    private JComboBox getHeightUnits() {
       if (heightUnits == null) {
          heightUnits = new JComboBox(LENGTH_MEASURES);  
-         if (!userMan.getHeightUnitMetric()) {
+         if (!currentUser.getHeightUnitMetric()) {
             heightUnits.setSelectedItem(INCHES_UNITS);
             heightField.setValue(new Double(currentUser.getHeightInCM() / CM_PER_INCH));
          }
@@ -241,7 +241,7 @@ public class UserSettingsDialog extends WrappedPanel {
    private JComboBox getWeightUnits() {
       if (weightUnits == null) {
          weightUnits = new JComboBox(WEIGHT_MEASURES);  
-         if (!userMan.getWeightUnitMetric()) {
+         if (!currentUser.getWeightUnitMetric()) {
             weightUnits.setSelectedItem(POUND_UNITS);
             weightField.setValue(new Double(currentUser.getWeightInKilograms() * POUNDS_PER_KILO));
          }
@@ -370,8 +370,8 @@ public class UserSettingsDialog extends WrappedPanel {
       if (female.isSelected()) {
          currentUser.setFemaleStatus((String)(getFemaleStatus().getSelectedItem()));
       }
-      userMan.setHeightUnitMetric(getHeightUnits().getSelectedItem().equals(CM_UNITS));
-      userMan.setWeightUnitMetric(getWeightUnits().getSelectedItem().equals(KILOGRAM_UNITS));
+      currentUser.setHeightUnitMetric(getHeightUnits().getSelectedItem().equals(CM_UNITS));
+      currentUser.setWeightUnitMetric(getWeightUnits().getSelectedItem().equals(KILOGRAM_UNITS));
       currentUser.setActivityLevel(getActivityUnits().getSelectedIndex());      
       System.out.println("AGE/DATE:" + getBirthDate() + " | " + currentUser.getAge());
       System.out.println("BMI:" + currentUser.getBMI());

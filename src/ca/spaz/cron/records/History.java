@@ -18,7 +18,7 @@ import ca.spaz.util.*;
  * For storage and retrieval of timestamp based entries.
  * 
  * @todo: break into multiple files for better scaling
- * @todo: or wrap a database interface instead
+ * @todo: or wrap a www/database interface instead
  * 
  * @author adavidson
  */
@@ -35,7 +35,17 @@ public abstract class History {
    public File getHistoryFile() {
       return new File(UserManager.getUserDirectory(UserManager.getCurrentUser()), getBaseName() + ".xml");
    }
+   
 
+   public File getOldHistoryFile() {
+      return new File(UserManager.getUserDirectory(UserManager.getCurrentUser()), getBaseName() + ".bkp");
+   }
+
+
+   public File getTempHistoryFile() {
+      return new File(UserManager.getUserDirectory(UserManager.getCurrentUser()), getBaseName() + ".tmp");
+   }
+   
    public History() {
       load();
    }
@@ -93,13 +103,17 @@ public abstract class History {
    public synchronized void save() {
       if (dirty) {
          try {
+            File file = getHistoryFile();
+            File tempFile = getTempHistoryFile(); 
             PrintStream ps = new PrintStream(new BufferedOutputStream(
-                  new FileOutputStream(getHistoryFile())));
+                  new FileOutputStream(tempFile)));
             writeXML(ps);
             ps.close();
+            file.renameTo(getOldHistoryFile());
+            tempFile.renameTo(file);
          } catch (IOException e) {
             e.printStackTrace();
-            ErrorReporter.showError(e, CRONOMETER.getInstance());
+            ErrorReporter.showError("An error occurred while trying to save.", e, CRONOMETER.getInstance());
          }
          dirty = false;
       }

@@ -52,7 +52,8 @@ public class User {
    private static final String CU_TRACK = "track.";
    private static final String CU_STATUS = "female.status";
    private static final String CU_ACTIVITY = "activity.level";
-   
+   private static final String CU_HEIGHT_UNIT_METRIC = "height.unit.cm";
+   private static final String CU_WEIGHT_UNIT_METRIC = "weight.unit.kg";
    private static final String CU_PROTEIN_PERC = "protein.perc";
    private static final String CU_CARBS_PERC = "carb.perc";
    private static final String CU_FAT_PERC = "fat.perc";
@@ -123,6 +124,22 @@ public class User {
       long ONE_YEAR = (long)((long)365*(long)24*(long)60*(long)60*(long)1000);
       age = age / ONE_YEAR;
       return (int)age;
+   }
+
+   public void setWeightUnitMetric(boolean val) {
+      settings.set(CU_WEIGHT_UNIT_METRIC, val);       
+   }
+   
+   public boolean getWeightUnitMetric() {
+      return settings.getBoolean(CU_WEIGHT_UNIT_METRIC, true);
+   }
+   
+   public void setHeightUnitMetric(boolean val) {
+      settings.set(CU_HEIGHT_UNIT_METRIC, val);       
+   }
+   
+   public boolean getHeightUnitMetric() {
+      return settings.getBoolean(CU_HEIGHT_UNIT_METRIC, true);
    }
 
    public double getHeightInCM() {     

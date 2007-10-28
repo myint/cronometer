@@ -34,8 +34,7 @@ import ca.spaz.util.*;
  */
 public class UserManager {
    
-   private static final String CU_HEIGHT_UNIT_METRIC = "height.unit.cm";
-   private static final String CU_WEIGHT_UNIT_METRIC = "weight.unit.kg";
+
    private static final String LAST_BUILD = "last.build";
    private static final String CHECK_FOR_UDAPTES = "check.for.updates";
    private static final String HIDE_WHEN_MINIMIZED = "hide.when.minimized";
@@ -418,22 +417,6 @@ public class UserManager {
       }
       frame.setLocation(x, y);
       frame.setSize(w, h);       
-   }
-
-   public void setWeightUnitMetric(boolean val) {
-      settings.set(CU_WEIGHT_UNIT_METRIC, val);       
-   }
-   
-   public boolean getWeightUnitMetric() {
-      return settings.getBoolean(CU_WEIGHT_UNIT_METRIC, true);
-   }
-   
-   public void setHeightUnitMetric(boolean val) {
-      settings.set(CU_HEIGHT_UNIT_METRIC, val);       
-   }
-   
-   public boolean getHeightUnitMetric() {
-      return settings.getBoolean(CU_HEIGHT_UNIT_METRIC, true);
    }
 
    public boolean firstCronRun() {
