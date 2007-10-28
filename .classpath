@@ -7,6 +7,6 @@
 	<classpathentry kind="lib" path="lib/crdb_003.jar"/>
 	<classpathentry kind="lib" path="lib/usda_sr19.jar"/>
 	<classpathentry kind="lib" path="lib/docs.jar"/>
-	<classpathentry kind="lib" path="lib/swingx-2007_08_26.jar"/>
+	<classpathentry kind="lib" path="lib/swingx-0.9.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
