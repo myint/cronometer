@@ -109,9 +109,12 @@ public abstract class History {
                   new FileOutputStream(tempFile)));
             writeXML(ps);
             ps.close();
-            file.renameTo(getOldHistoryFile());
-            tempFile.renameTo(file);
+            getOldHistoryFile().delete(); // delete old backup file
+            file.renameTo(getOldHistoryFile()); // more current to backup
+            file.delete(); // delete old current
+            tempFile.renameTo(file); // move temp to become new current
          } catch (IOException e) {
+            backupFile(getTempHistoryFile());
             e.printStackTrace();
             ErrorReporter.showError("An error occurred while trying to save.", e, CRONOMETER.getInstance());
          }

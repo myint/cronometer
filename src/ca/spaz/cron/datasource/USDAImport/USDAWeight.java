@@ -23,7 +23,11 @@ public class USDAWeight {
          parts[i] = parts[i].replaceAll("~$", "");
       }
       ndb_id = parts[0];
-      amount = Double.parseDouble(parts[2]); 
+      if (parts[2].length() == 0) {
+         amount = 1.0; // hack for bad data
+      } else {
+         amount = Double.parseDouble(parts[2]);
+      }
       description = parts[3]; 
       grams = Double.parseDouble(parts[4]); 
    }

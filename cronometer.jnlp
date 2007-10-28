@@ -19,11 +19,11 @@
 		<j2se version="1.5+"/> 
 		<jar href="cronometer.jar" main="true" download="eager" />
 		<jar href="docs.jar" download="eager" /> 
-		<jar href="swingx-2007_07_01.jar" download="eager" />
+		<jar href="swingx-0.9.jar" download="eager" />
 		<jar href="jcommon-1.0.10.jar" download="eager" />
 		<jar href="jfreechart-1.0.6.jar" download="eager" />
 		<jar href="crdb_003.jar" download="eager" /> 
-		<jar href="usda_sr19.jar" download="eager" /> 
+		<jar href="usda_sr20.jar" download="eager" /> 
 	    <property name="ca.spaz.mode" value="webstart" />
     </resources> 
     <application-desc name="CRON-o-Meter" main-class="ca.spaz.cron.CRONOMETER"/> 

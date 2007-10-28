@@ -372,17 +372,20 @@ public class SearchPanel extends JPanel implements ItemListener {
       }
 
       public String getToolTipText(int r, int c) {
-         FoodProxy f = getSearchHit(r).getFoodProxy();
-         if (f != null) {
-            if (c == 0) {
-            return "<html><table width=\"220\"><tr><td align=\"center\">" +
-               f.getDescription() +
-               "<br>["+f.getSource()+"]" +
-               (f.isDeprecated() ? "<br><font color=\"red\">This Food is Obsolete</font>" : "") +
-               "</td></tr></table></html>";
-            }
-            if (c == 1) {
-               return "Score: " + (getSearchHit(r).getScore() - minScore);
+         SearchHit hit = getSearchHit(r);
+         if (hit != null) {
+            FoodProxy f = hit.getFoodProxy();
+            if (f != null) {
+               if (c == 0) {
+               return "<html><table width=\"220\"><tr><td align=\"center\">" +
+                  f.getDescription() +
+                  "<br>["+f.getSource()+"]" +
+                  (f.isDeprecated() ? "<br><font color=\"red\">This Food is Obsolete</font>" : "") +
+                  "</td></tr></table></html>";
+               }
+               if (c == 1) {
+                  return "Score: " + (getSearchHit(r).getScore() - minScore);
+               }
             }
          }
          return "";

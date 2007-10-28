@@ -45,7 +45,7 @@ public class USDAImporter implements Task {
    private URL getFoodSourceURL() {
       URL url = null;
       try {
-         url = new URL("http://www.nal.usda.gov/fnic/foodcomp/Data/SR19/dnload/sr19.zip");
+         url = new URL("http://www.nal.usda.gov/fnic/foodcomp/Data/SR20/dnload/sr20.zip");
       } catch (MalformedURLException e) {
          Logger.error("getFoodSourceURL()", e);
       }
@@ -105,7 +105,7 @@ public class USDAImporter implements Task {
                return;
             }
             //File tempFile = new File(tempDir, "sr19.zip");
-            File tempFile = new File("sr19.zip");
+            File tempFile = new File("sr20.zip");
          //   if (!downloadFile(sourceURL, tempFile, DOWNLOAD_PROGRESS_PORTION)) {
          //      return; // Indicate failure.
          //   }
