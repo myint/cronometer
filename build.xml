@@ -77,7 +77,7 @@
 
 	<target name="signsomejars" depends="cronometer.jar,docs.jar" description="generate the signed jar package" >
 		<input message="Enter certificate password for signing:" addproperty="cert_pwd" />
-				
+		<signjar jar="${lib}/docs.jar" keystore="release/jws" alias="spaz.ca" storepass="${cert_pwd}"/>				
 		<signjar jar="${lib}/cronometer.jar" keystore="release/jws" alias="spaz.ca" storepass="${cert_pwd}"/>
 	</target>
 

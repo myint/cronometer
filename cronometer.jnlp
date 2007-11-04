@@ -19,7 +19,7 @@
 		<j2se version="1.5+"/> 
 		<jar href="cronometer.jar" main="true" download="eager" />
 		<jar href="docs.jar" download="eager" /> 
-		<jar href="swingx-0.9.jar" download="eager" />
+		<jar href="swingx-0.9.0.jar" download="eager" />
 		<jar href="jcommon-1.0.10.jar" download="eager" />
 		<jar href="jfreechart-1.0.6.jar" download="eager" />
 		<jar href="crdb_003.jar" download="eager" /> 
