@@ -13,6 +13,8 @@ import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.w3c.dom.*;
 
+import ca.spaz.util.ToolBox;
+
 
 /**
  * A JMenuBar that can be created from an XML description.
@@ -118,6 +120,13 @@ public class SpazMenuBar extends JMenuBar implements ActionListener {
    }
    
    public void loadXMLMenuItem(Element elm, JMenu jm) {
+      if (ToolBox.isMacOSX()) {
+         String macosx = elm.getAttribute("macosx");
+         if (macosx != null && macosx.equalsIgnoreCase("false")) {
+            return; // bail out on mac os x
+         }
+      }
+
       String separator = elm.getAttribute("separator");
       if (separator != null) {
          if (separator.equals("true")) {

@@ -5,8 +5,8 @@
 		<item title="Edit Nutritional Targets..." key="t" index="17" acc="VK_T" action="doEditUserSettings" />
 		<item separator="true"></item>
 		<item title="Print" key="p" acc="VK_P" action="doPrint"/>
-		<item separator="true"></item>
-		<item title="Quit" key="q" acc="VK_Q" action="doQuit"/>
+		<item separator="true" macosx="false"></item>
+		<item title="Quit" key="q" acc="VK_Q"  macosx="false" action="doQuit"/>
 	</menu>
 
 	<menu title="Reports" key="r">

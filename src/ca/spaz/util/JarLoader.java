@@ -22,7 +22,7 @@ public class JarLoader extends URLStreamHandler implements URLStreamHandlerFacto
                try {
                   base = Class.forName(url.getHost()); 
                } catch (ClassNotFoundException e) {
-                  throw new IOException(e);
+                  throw new IOException(e.getLocalizedMessage());
                }
             }
          }

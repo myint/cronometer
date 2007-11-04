@@ -127,8 +127,9 @@ public class SearchPanel extends JPanel implements ItemListener {
                   clearResults();
                   doDBSearch();
                   model.fireTableDataChanged();               
-                  queryField.requestFocus();
+                  queryField.requestFocusInWindow();
                   queryField.selectAll();
+                  System.out.println("Select All");
                }
             }
          });
@@ -305,11 +306,7 @@ public class SearchPanel extends JPanel implements ItemListener {
          model.sort();
       }
       model.fireTableDataChanged();
-      if (resultTable.getRowCount() > 0) {
-         resultTable.changeSelection(0, 0, false, false);
-         getQueryField().requestFocus();
-         System.out.println("Searched!");
-      }
+      
    }   
  
    public class ResultsTableModel extends PrettyTableModel {
@@ -457,8 +454,9 @@ public class SearchPanel extends JPanel implements ItemListener {
 
    public void focusQuery() {
       System.out.println("focusQuery!");
-      getQueryField().requestFocus();    
+      getQueryField().requestFocusInWindow();    
       getQueryField().selectAll();
+      System.out.println("Select All");
    }
  
    private void handleMouseClick(MouseEvent e) {

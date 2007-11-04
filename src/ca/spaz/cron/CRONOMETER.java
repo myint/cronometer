@@ -43,8 +43,8 @@ import com.apple.mrj.MRJQuitHandler;
 public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, MRJAboutHandler, ClipboardOwner {
 
    public static final String TITLE = "CRON-o-Meter";
-   public static final String VERSION = "0.9.2";
-   public static final int BUILD = 11;
+   public static final String VERSION = "0.9.3";
+   public static final int BUILD = 12;
    public static JFrame mainFrame = null;
 
    private static Clipboard clipboard = new Clipboard ("CRON-o-Meter");
@@ -229,13 +229,11 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
          return heading + " - " + currentUser.getUsername();
       }
    }
-
+ 
+   
    private JMenuBar getMenu() {
       if (null == menu) {
          menu = new SpazMenuBar(getClass().getResourceAsStream("/menubar.xml"), this);
-         if (ToolBox.isMacOSX()) {
-            menu.remove(menu.getMenu(0)); // remove file menu on Mac OS X....
-         }
          
          // insert SWING edit menu:
          JMenu mainMenu = new JMenu("Edit");
