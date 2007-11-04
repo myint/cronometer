@@ -47,7 +47,9 @@ public class Datasources {
       
       // jump start lazy inits
       User user = UserManager.getCurrentUser();
-      user.initUserData();
+      if (user != null) {
+         user.initUserData();
+      }
       if (pl != null) {
          pl.progress(100);
          pl.progressFinish();

@@ -105,6 +105,9 @@ public abstract class History {
          try {
             File file = getHistoryFile();
             File tempFile = getTempHistoryFile(); 
+            if (tempFile.exists()) {
+               tempFile.delete();
+            }
             PrintStream ps = new PrintStream(new BufferedOutputStream(
                   new FileOutputStream(tempFile)));
             writeXML(ps);
