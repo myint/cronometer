@@ -288,24 +288,24 @@ public class UserManager {
       // Update the settings file
       if (inFile.exists() && outFile.exists()) {
          // This condition should never occur
-          System.err.println("Fatal Error: Upgrade of old settings file failed.  Please contact the CRON-o-meter developers.");
-          System.exit(-1);
+          //System.err.println("Error: Upgrade of old settings file failed.  Please contact the CRON-o-meter developers.");
+      //    System.exit(-1);
       }
       
       if (!inFile.exists()) return;
-      try {
-           InputStream in = new BufferedInputStream(new FileInputStream(inFile));
-           PrintStream out = new PrintStream(
-                   new BufferedOutputStream(new FileOutputStream(outFile)));
-           Settings.convertSettingsFile(in, out);
-           out.close();
-           in.close();
-
-           if (!inFile.delete()) {
-             System.err.println("Error deleting old settings file.");
-           }
-      } catch (Exception e) {
-           e.printStackTrace();
+      
+      if (!outFile.exists()) {
+         try {
+              InputStream in = new BufferedInputStream(new FileInputStream(inFile));
+              PrintStream out = new PrintStream(
+                      new BufferedOutputStream(new FileOutputStream(outFile)));
+              Settings.convertSettingsFile(in, out);
+              out.close();
+              in.close();
+              //inFile.renameTo(new File(inFile.getParent(), "backup"));             
+         } catch (Exception e) {
+              e.printStackTrace();
+         }
       }
    }
    
