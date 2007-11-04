@@ -28,8 +28,8 @@
       <archive location="../../lib/docs.jar" failOnError="false" />
       <archive location="../../lib/jcommon-1.0.10.jar" failOnError="false" />
       <archive location="../../lib/jfreechart-1.0.6.jar" failOnError="false" />
-      <archive location="../../lib/swingx-2007_08_26.jar" failOnError="false" />
-      <archive location="../../lib/usda_sr19.jar" failOnError="false" />
+      <archive location="../../lib/swingx-0.9.0.jar" failOnError="false" />
+      <archive location="../../lib/usda_sr20.jar" failOnError="false" />
     </classPath>
     <nativeLibraryDirectories />
   </java>
