@@ -130,7 +130,11 @@ public abstract class History {
       XMLNode node = new XMLNode(getBaseName());
       for (int i=0; i<entries.size(); i++) {
          Record entry = (Record)entries.get(i);
-         node.addChild(entry.toXML());
+         if (entry.isLoaded()) {
+            try {
+               node.addChild(entry.toXML());
+            } catch (Exception e) { e.printStackTrace(); }
+         }
       }
       node.setPrintNewLines(true);      
       node.write(out);
@@ -178,7 +182,9 @@ public abstract class History {
          try {
             Record entry = loadUserEntry((Element)nl.item(i));
             if (entry != null) {
-               addEntry(entry);
+               if (entry.isLoaded()) {
+                  addEntry(entry);
+               }
             }
          } catch (Exception ex) {
             ErrorReporter.showError(ex, CRONOMETER.getInstance()); 

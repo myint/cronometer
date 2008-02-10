@@ -11,11 +11,9 @@ import java.util.List;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
-import ca.spaz.cron.CRONOMETER;
 import ca.spaz.cron.datasource.*;
 import ca.spaz.cron.records.Record;
 import ca.spaz.cron.user.UserManager;
-import ca.spaz.gui.ErrorReporter;
 import ca.spaz.sql.SQLRow;
 import ca.spaz.util.XMLNode;
 
@@ -87,9 +85,10 @@ public class Serving implements Record {
        
        setFood(proxy);
        if (proxy == null) {
-          ErrorReporter.showError(
+          System.err.println("Failed to load food ["+source+":"+e.getAttribute("food")+"]");
+          /*ErrorReporter.showError(
                 "Failed to load food ["+source+":"+e.getAttribute("food")+"]", 
-                CRONOMETER.getInstance());
+                CRONOMETER.getInstance());*/
           return;
        }
        

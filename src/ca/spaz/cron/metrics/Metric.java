@@ -90,4 +90,8 @@ public class Metric implements Comparable, Record {
       m.setValue(value);
       return m;
    }
+ 
+   public boolean isLoaded() { 
+      return true;
+   }
 }

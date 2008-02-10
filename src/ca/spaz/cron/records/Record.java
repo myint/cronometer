@@ -16,4 +16,6 @@ public interface Record {
 
    public Record copy();
    
+   public boolean isLoaded();
+   
 }

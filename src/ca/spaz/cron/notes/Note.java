@@ -52,5 +52,7 @@ public class Note implements Record {
       this.note = n;
    }
  
-   
+   public boolean isLoaded() { 
+      return true;
+   }
 }

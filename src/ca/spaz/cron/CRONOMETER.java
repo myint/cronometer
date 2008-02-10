@@ -44,7 +44,7 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
 
    public static final String TITLE = "CRON-o-Meter";
    public static final String VERSION = "0.9.3";
-   public static final int BUILD = 12;
+   public static final int BUILD = 13;
    public static JFrame mainFrame = null;
 
    private static Clipboard clipboard = new Clipboard ("CRON-o-Meter");

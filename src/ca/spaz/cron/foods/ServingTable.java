@@ -175,7 +175,7 @@ public class ServingTable extends JPanel {
                      rowAtPoint(e.getPoint()),
                      columnAtPoint(e.getPoint()));
             }
-         };         
+         };
          table.setColumnSelectionAllowed(false);
          table.getSelectionModel().setSelectionMode(
                ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
