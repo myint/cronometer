@@ -239,9 +239,9 @@ public class ToolBox {
     * @return true if the two dates fall on the same calendar day.
     */
    public static boolean isSameDay(Date a, Date b) {
-      Calendar aC = new GregorianCalendar();
+      Calendar aC = new GregorianCalendar(TimeZone.getDefault());
       aC.setTime(a);
-      Calendar bC = new GregorianCalendar();
+      Calendar bC = new GregorianCalendar(TimeZone.getDefault());
       bC.setTime(b);
       return 
          (aC.get(Calendar.DATE) == bC.get(Calendar.DATE)) &&
