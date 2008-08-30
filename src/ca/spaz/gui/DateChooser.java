@@ -8,7 +8,7 @@ import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 
-import org.jdesktop.swingx.calendar.JXMonthView;
+import org.jdesktop.swingx.JXMonthView;
 
 
 public class DateChooser extends WrappedPanel {
@@ -17,7 +17,7 @@ public class DateChooser extends WrappedPanel {
    private JXMonthView cal;
    
    public DateChooser(Date curDate) { 
-      cal = new JXMonthView(curDate.getTime());
+      cal = new JXMonthView();
       cal.setTraversable(true);
       cal.setSelectionInterval(curDate, curDate);
 
