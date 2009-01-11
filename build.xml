@@ -9,7 +9,7 @@
 	<property name="source" location="src/"/>
 	<property name="build" location="bin"/>
 	<property name="lib" location="lib"/> 
-	
+	 
 	<taskdef name="launch4j"
 		    classname="net.sf.launch4j.ant.Launch4jTask"
 		    classpath="C:/Program Files/Launch4j/launch4j.jar
@@ -17,7 +17,7 @@
 	
 	 <taskdef name="exe4j"
 	               classname="com.exe4j.Exe4JTask"
-	               classpath="C:\Program Files\exe4j\bin\ant.jar"/>
+	               classpath="C:\Program Files\exe4j\bin\ant.jar"/> 
 	                
 	<!-- Compile the java code from ${src} into ${build} -->
 	<target name="compile" description="compile the source">
@@ -57,22 +57,22 @@
 			</manifest>
 		</jar>
 	</target>
-	
+
 	<target name="launcher" depends="cronometer.jar,docs.jar" description="generate the executable" >
 		<launch4j configFile="release/windows/launch4j.xml" />
 		<exe4j projectfile="release/windows/cronometer.exe4j"/>
 	</target>	
-	
+
 	<target name="signalljars" depends="cronometer.jar,docs.jar" description="generate the signed jar package" >
 		<input message="Enter certificate password for signing:" addproperty="cert_pwd" />
 		
 		<signjar jar="${lib}/cronometer.jar" keystore="release/jws" alias="spaz.ca" storepass="${cert_pwd}"/>
-		<signjar jar="${lib}/swingx-0.9.0.jar" keystore="release/jws" alias="spaz.ca" storepass="${cert_pwd}"/>
+		<signjar jar="${lib}/swingx-0.9.3.jar" keystore="release/jws" alias="spaz.ca" storepass="${cert_pwd}"/>
 		<signjar jar="${lib}/jcommon-1.0.10.jar" keystore="release/jws" alias="spaz.ca" storepass="${cert_pwd}"/>		
 		<signjar jar="${lib}/jfreechart-1.0.6.jar" keystore="release/jws" alias="spaz.ca" storepass="${cert_pwd}"/>
 		<signjar jar="${lib}/docs.jar" keystore="release/jws" alias="spaz.ca" storepass="${cert_pwd}"/>
 		<signjar jar="${lib}/crdb_003.jar" keystore="release/jws" alias="spaz.ca" storepass="${cert_pwd}"/>		
-		<signjar jar="${lib}/usda_sr20.jar" keystore="release/jws" alias="spaz.ca" storepass="${cert_pwd}"/>		
+		<signjar jar="${lib}/usda_sr21.jar" keystore="release/jws" alias="spaz.ca" storepass="${cert_pwd}"/>		
 	</target>
 
 	<target name="signsomejars" depends="cronometer.jar,docs.jar" description="generate the signed jar package" >
