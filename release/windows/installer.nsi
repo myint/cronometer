@@ -2,7 +2,7 @@
 
 ; HM NIS Edit Wizard helper defines
 !define PRODUCT_NAME "CRON-O-METER"
-!define PRODUCT_VERSION "0.9.2"
+!define PRODUCT_VERSION "0.9.5"
 !define PRODUCT_PUBLISHER "spaz.ca"
 !define PRODUCT_WEB_SITE "http://spaz.ca/cronometer/"
 !define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\CRON-O-METER.exe"
@@ -107,8 +107,6 @@ Section Uninstall
   Delete "$SMPROGRAMS\$ICONS_GROUP\CRON-O-METER.lnk"
 
   RMDir "$SMPROGRAMS\$ICONS_GROUP"
-  RMDir "$INSTDIR\lib"
-  RMDir "$INSTDIR\docs"
   RMDir "$INSTDIR"
 
   DeleteRegKey ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}"
