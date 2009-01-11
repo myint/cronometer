@@ -45,7 +45,7 @@ public class USDAImporter implements Task {
    private URL getFoodSourceURL() {
       URL url = null;
       try {
-         url = new URL("http://www.nal.usda.gov/fnic/foodcomp/Data/SR20/dnload/sr20.zip");
+         url = new URL("http://www.nal.usda.gov/fnic/foodcomp/Data/SR20/dnload/sr21.zip");
       } catch (MalformedURLException e) {
          Logger.error("getFoodSourceURL()", e);
       }
@@ -81,7 +81,7 @@ public class USDAImporter implements Task {
     */
    public void run() {
       abort = false;
-      curTask = "Importing USDA sr19";
+      curTask = "Importing USDA sr21";
       if (null == sourceURL && null == sourceStream) {         
          return;
       }
@@ -104,8 +104,8 @@ public class USDAImporter implements Task {
                // Indicate that it aborted, somehow.
                return;
             }
-            //File tempFile = new File(tempDir, "sr19.zip");
-            File tempFile = new File("sr20.zip");
+            //File tempFile = new File(tempDir, "sr21.zip");
+            File tempFile = new File("sr21.zip");
          //   if (!downloadFile(sourceURL, tempFile, DOWNLOAD_PROGRESS_PORTION)) {
          //      return; // Indicate failure.
          //   }
@@ -272,7 +272,7 @@ public class USDAImporter implements Task {
          try {
             Food f = (Food)iter.next();
             fixOmegaFats(f);
-            File file = new File("usda_sr19/"+f.getSourceUID()+".xml");
+            File file = new File("usda_sr21/"+f.getSourceUID()+".xml");
             PrintStream ps = new PrintStream(
                   new BufferedOutputStream(new FileOutputStream(file)));
             f.writeXML(ps, false);
@@ -287,7 +287,7 @@ public class USDAImporter implements Task {
    
    private void writeFoodsIndex() {
       try {
-         File file = new File("usda_sr19/foods.index");
+         File file = new File("usda_sr21/foods.index");
          PrintStream ps = new PrintStream(
                new BufferedOutputStream(new FileOutputStream(file)));
          Iterator iter = foods.values().iterator();
