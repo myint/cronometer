@@ -309,7 +309,7 @@ public class UserSettingsDialog extends WrappedPanel {
       return weight;
    }
    
-   public boolean isValid() { 
+   private boolean isValidSettings() { 
       if (UserManagerDialog.isAddingNewUser()) {
          
          if ( ! currentUser.getUsername().equals(username.getText().trim())) {
@@ -378,7 +378,7 @@ public class UserSettingsDialog extends WrappedPanel {
    }
    
    public boolean doAccept() {
-      if (!isValid()) {
+      if (!isValidSettings()) {
          return false; 
       }
       UserManagerDialog.setAddNewUser(false);

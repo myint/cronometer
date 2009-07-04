@@ -1,7 +1,7 @@
 <launch4jConfig>
   <dontWrapJar>true</dontWrapJar>
   <headerType>gui</headerType>
-  <jar>../../lib/cronometer.jar</jar>
+  <jar>..\..\lib\cronometer.jar</jar>
   <outfile>CRON-O-METER.exe</outfile>
   <errTitle></errTitle>
   <cmdLine></cmdLine>
@@ -11,11 +11,12 @@
   <supportUrl></supportUrl>
   <customProcName>true</customProcName>
   <stayAlive>true</stayAlive>
+  <manifest></manifest>
   <icon>icon.ico</icon>
   <classPath>
     <mainClass>ca.spaz.cron.CRONOMETER</mainClass>
     <cp>lib/cronometer.jar</cp>
-    <cp>lib/swingx-2007_07_01.jar</cp>
+    <cp>lib/swingx-0.9.3.jar</cp>
     <cp>lib/jcommon-1.0.10.jar</cp>
     <cp>lib/jfreechart-1.0.6.jar</cp>
   </classPath>
@@ -23,7 +24,7 @@
     <path></path>
     <minVersion>1.5.0</minVersion>
     <maxVersion></maxVersion>
-    <dontUsePrivateJres>true</dontUsePrivateJres>
+    <jdkPreference>jreOnly</jdkPreference>
     <initialHeapSize>128</initialHeapSize>
     <maxHeapSize>128</maxHeapSize>
   </jre>

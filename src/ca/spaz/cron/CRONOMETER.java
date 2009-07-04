@@ -43,8 +43,8 @@ import com.apple.mrj.MRJQuitHandler;
 public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, MRJAboutHandler, ClipboardOwner {
 
    public static final String TITLE = "CRON-o-Meter";
-   public static final String VERSION = "0.9.5";
-   public static final int BUILD = 14;
+   public static final String VERSION = "0.9.6";
+   public static final int BUILD = 15;
    public static JFrame mainFrame = null;
 
    private static Clipboard clipboard = new Clipboard ("CRON-o-Meter");
