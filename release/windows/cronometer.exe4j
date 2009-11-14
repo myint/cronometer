@@ -8,7 +8,7 @@
   </application>
   <executable name="CRON-O-METER" type="2" iconSet="true" iconFile="C:/Documents and Settings/adavidson/workspace/CRONOMETER/release/windows/icon.ico" executableDir="." redirectStderr="false" stderrFile="error.log" redirectStdout="false" stdoutFile="output.log" failOnStderrOutput="true" executableMode="1" changeWorkingDirectory="true" workingDirectory="." singleInstance="true" serviceStartType="2" serviceDependencies="" serviceDescription="" jreLocation="" executionLevel="asInvoker" amd64="false">
     <messageSet />
-    <versionInfo include="true" fileVersion="0.9.6.0" fileDescription="CRON-O-METER Application" legalCopyright="Copyright 2005 - 2009" internalName="CRON-O-METER" companyName="spaz.ca" productVersion="0.9.6.0" />
+    <versionInfo include="true" fileVersion="0.9.7.0" fileDescription="CRON-O-METER Application" legalCopyright="Copyright 2005 - 2009" internalName="CRON-O-METER" companyName="spaz.ca" productVersion="0.9.7.0" />
   </executable>
   <splashScreen show="false" autoOff="true" alwaysOnTop="true" width="0" height="0" bitmapFile="">
     <text>
@@ -29,7 +29,7 @@
       <archive location="../../lib/jcommon-1.0.10.jar" failOnError="false" />
       <archive location="../../lib/jfreechart-1.0.6.jar" failOnError="false" />
       <archive location="../../lib/swingx-0.9.3.jar" failOnError="false" />
-      <archive location="../../lib/usda_sr21.jar" failOnError="false" />
+      <archive location="../../lib/usda_sr22.jar" failOnError="false" />
     </classPath>
     <nativeLibraryDirectories />
   </java>

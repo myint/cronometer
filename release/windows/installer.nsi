@@ -2,7 +2,7 @@
 
 ; HM NIS Edit Wizard helper defines
 !define PRODUCT_NAME "CRON-O-METER"
-!define PRODUCT_VERSION "0.9.6"
+!define PRODUCT_VERSION "0.9.7"
 !define PRODUCT_PUBLISHER "spaz.ca"
 !define PRODUCT_WEB_SITE "http://spaz.ca/cronometer/"
 !define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\CRON-O-METER.exe"
