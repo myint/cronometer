@@ -12,11 +12,11 @@ public class USDAFoods extends JarXMLFoodDataSource {
    
 
    public String getZipFileName() {
-      return "usda_sr21.jar";
+      return "usda_sr22.jar";
    }
 
    public String getBaseName() {
-      return "usda_sr21";
+      return "usda_sr22";
    }
    
    public String getName() {
