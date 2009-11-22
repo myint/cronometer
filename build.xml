@@ -71,7 +71,7 @@
 		<signjar jar="${lib}/jcommon-1.0.10.jar" keystore="release/jws" alias="spaz.ca" storepass="${cert_pwd}"/>		
 		<signjar jar="${lib}/jfreechart-1.0.6.jar" keystore="release/jws" alias="spaz.ca" storepass="${cert_pwd}"/>
 		<signjar jar="${lib}/docs.jar" keystore="release/jws" alias="spaz.ca" storepass="${cert_pwd}"/>
-		<signjar jar="${lib}/crdb_003.jar" keystore="release/jws" alias="spaz.ca" storepass="${cert_pwd}"/>		
+		<signjar jar="${lib}/crdb_004.jar" keystore="release/jws" alias="spaz.ca" storepass="${cert_pwd}"/>		
 		<signjar jar="${lib}/usda_sr21.jar" keystore="release/jws" alias="spaz.ca" storepass="${cert_pwd}"/>		
 	</target>
 

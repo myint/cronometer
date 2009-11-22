@@ -24,7 +24,7 @@
     </searchSequence>
     <classPath>
       <archive location="../../lib/cronometer.jar" failOnError="false" />
-      <archive location="../../lib/crdb_003.jar" failOnError="false" />
+      <archive location="../../lib/crdb_004.jar" failOnError="false" />
       <archive location="../../lib/docs.jar" failOnError="false" />
       <archive location="../../lib/jcommon-1.0.10.jar" failOnError="false" />
       <archive location="../../lib/jfreechart-1.0.6.jar" failOnError="false" />

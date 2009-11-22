@@ -4,9 +4,9 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="lib/jcommon-1.0.10.jar"/>
 	<classpathentry kind="lib" path="lib/jfreechart-1.0.6.jar"/>
-	<classpathentry kind="lib" path="lib/crdb_003.jar"/>
 	<classpathentry kind="lib" path="lib/docs.jar"/>
 	<classpathentry kind="lib" path="lib/swingx-0.9.3.jar"/>
 	<classpathentry kind="lib" path="lib/usda_sr22.jar"/>
+	<classpathentry kind="lib" path="lib/crdb_004.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
