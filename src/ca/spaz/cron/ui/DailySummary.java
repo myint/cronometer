@@ -15,7 +15,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import ca.spaz.cron.CRONOMETER;
-import ca.spaz.cron.exercise.ExercisePanel;
+import ca.spaz.cron.exercise.*;
 import ca.spaz.cron.foods.*;
 import ca.spaz.cron.metrics.BiomarkerPanel;
 import ca.spaz.cron.metrics.BiomarkerPanelOld;
@@ -46,6 +46,7 @@ public class DailySummary extends JPanel implements UserChangeListener {
    private Date curDate = new Date(System.currentTimeMillis());
  
    private ServingTable servingTable;
+   private ExerciseTable exerciseTable;
    private JTabbedPane dailyTracker;
 
    private DateFormat df = DateFormat.getDateInstance(DateFormat.LONG);
@@ -72,7 +73,7 @@ public class DailySummary extends JPanel implements UserChangeListener {
    }
 
    public void addServingToUser(Serving c, User user, Date date) {
-      if (isOkToAddServings(date) && user != null) {
+      if (isOkToAddServings(date, true) && user != null) {
          Serving copy = new Serving(c);
          copy.setDate(date);
          user.getFoodHistory().addServing(copy);
@@ -89,14 +90,40 @@ public class DailySummary extends JPanel implements UserChangeListener {
    public void addServing(Serving c) {
       addServingToUser(c, UserManager.getCurrentUser());
    }
+   
+   public void addExerciseToUser(Exercise e, User user, Date date) {
+      if (isOkToAddServings(date, false) && user != null) {
+         Exercise copy = new Exercise(e);
+         copy.setDate(date);
+         user.getExerciseHistory().addExercise(copy);
+         notifyObservers(); 
+      } else {
+         CRONOMETER.okDialog("No servings copied", "Warning");
+      }
+   }
+   
+   public void addExerciseToUser(Exercise e, User user) {
+      addExerciseToUser(e, user, curDate);
+   }
+   
+   public void addExercise(Exercise e) {
+      addExerciseToUser(e, UserManager.getCurrentUser());
+   }
 
-   public boolean isOkToAddServings(Date date) {
+   public boolean isOkToAddServings(Date date, boolean food) {
+      String typeString = "food";
+      
+      if(!food)
+      {
+         typeString = "exercise";
+      }
+      
       Date now = new Date(System.currentTimeMillis());
       if (!ToolBox.isSameDay(date, now) && !asked) {        
          int choice = JOptionPane.showConfirmDialog(this, 
-               "You are adding a food to a date in the past or future.\n" +
+               "You are adding a " + typeString + " to a date in the past or future.\n" +
                "Are you sure you want to do this?",
-               "Add food?", JOptionPane.YES_NO_OPTION);
+               "Add " + typeString + "?", JOptionPane.YES_NO_OPTION);
          if (choice != JOptionPane.YES_OPTION) {
             return false;
          }
@@ -176,7 +203,7 @@ public class DailySummary extends JPanel implements UserChangeListener {
                FoodEditor.editFood(s);
             }
             public void servingChosen(Serving s) {
-               if (isOkToAddServings(curDate)) {
+               if (isOkToAddServings(curDate, true)) {
                   addServing(s);           
                }
             }
@@ -185,16 +212,32 @@ public class DailySummary extends JPanel implements UserChangeListener {
          servingTable.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent e) {
                List servings = servingTable.getSelectedServings();
+               boolean allSelected = false;
                if (servings.size() == 0) {
                   servings = servingTable.getServings();
+                  allSelected = true;
                }
-               getNutritionSummaryPanel().setServings(servings);               
+               getNutritionSummaryPanel().setServings(servings, allSelected);               
             }           
          });               
       }
       return servingTable;
    }
 
+   public ExerciseTable getExerciseTable() {
+      if (null == exerciseTable) {
+         exerciseTable = ExerciseTable.getExerciseTable();
+         
+         exerciseTable.addChangeListener(new ChangeListener() {
+            public void stateChanged(ChangeEvent e) {
+               List exercises = exerciseTable.getExercises();
+               getNutritionSummaryPanel().setExercises(exercises);               
+            }           
+         });
+      }
+      
+      return exerciseTable;
+   }
 
    private JButton getPrefsButton() {
       if (null == prefsButton) {
@@ -367,6 +410,8 @@ public class DailySummary extends JPanel implements UserChangeListener {
    public void notifyObservers() {     
       List consumed = UserManager.getCurrentUser().getFoodHistory().getConsumedOn(curDate);
       getServingTable().setServings(consumed);
+      List exercises = UserManager.getCurrentUser().getExerciseHistory().getConsumedOn(curDate);
+      getExerciseTable().setExercises(exercises);
    }
    
    public void userChanged(UserManager userMan) { 

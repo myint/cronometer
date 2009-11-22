@@ -12,6 +12,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JComponent;
 import javax.swing.border.Border;
 
+import ca.spaz.cron.exercise.Exercise;
 import ca.spaz.cron.foods.*;
 import ca.spaz.cron.targets.Target;
 import ca.spaz.cron.user.*;
@@ -24,6 +25,7 @@ import ca.spaz.util.ToolBox;
  */
 public class TargetSummaryChart extends JComponent implements UserChangeListener {
    public static final Color CALORIE_COLOR = Color.ORANGE;
+   public static final Color EXERCISE_COLOR = new Color(200,160,30);
    public static final Color PROTEIN_COLOR = new Color(80,220,80);
    public static final Color CARB_COLOR = new Color(80,80,220);
    public static final Color LIPID_COLOR = new Color(220,80,80);
@@ -37,8 +39,12 @@ public class TargetSummaryChart extends JComponent implements UserChangeListener
    
    NutritionSummaryPanel summary;
    List consumed;
+   List exercises;
+   
+   boolean allSelected;
    
    double energy = 0;
+   double energyBurned = 0;
    double protein = 0;
    double carbs = 0;
    double lipid = 0;
@@ -58,13 +64,29 @@ public class TargetSummaryChart extends JComponent implements UserChangeListener
       setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
    }
    
-   public void update(List consumed) {    
+   public void update(List consumed, boolean allSelected) {    
       this.consumed = consumed;
+      this.allSelected = allSelected;
+      update();
+   }
+   
+   public void updateExercises(List exercises) {
+      this.exercises = exercises;
       update();
    }
    
    public void update() {    
      energy = getAmount(consumed, NutrientInfo.getByName("Energy"));
+     
+     if(allSelected)
+     {
+        energyBurned = getEnergyBurned(exercises);
+     }
+     else
+     {
+        energyBurned = 0;
+     }
+     
      protein = getAmount(consumed, NutrientInfo.getProtein());
      carbs = getAmount(consumed, NutrientInfo.getCarbs());
      fiber = getAmount(consumed, NutrientInfo.getByName("Fiber"));
@@ -114,6 +136,18 @@ public class TargetSummaryChart extends JComponent implements UserChangeListener
      }
      return total;
    }
+   
+   private double getEnergyBurned(List exercises) {
+      double total = 0;
+      
+      if(exercises != null) {
+         for (Iterator iter = exercises.iterator(); iter.hasNext();) {
+            Exercise exercise = (Exercise) iter.next();
+            total += exercise.getCalories();
+         }
+      }
+      return total;
+   }
 
    private void paintBar(Graphics2D g, int x, int y, int w, int h, int w2, Color col) {
       GradientPaint gradient = new GradientPaint(0, 0, Color.GRAY, w, 0, Color.LIGHT_GRAY, false);
@@ -128,6 +162,37 @@ public class TargetSummaryChart extends JComponent implements UserChangeListener
          g.setPaint(gradient); 
          g.fillRoundRect(x, y, w2, h, h/2, h/2);
       }
+      g.setColor(Color.GRAY);
+      g.drawRoundRect(x, y, w, h, h/2, h/2); 
+   }
+   
+   private void paintBar(Graphics2D g, int x, int y, int w, int h, int w2, int secondaryW, Color col, Color secondCol) {
+      GradientPaint gradient = new GradientPaint(0, 0, Color.GRAY, w, 0, Color.LIGHT_GRAY, false);
+      
+      g.setPaint(gradient); 
+      g.fillRoundRect(x, y, w, h, h/2, h/2); 
+      if (w2 > w) {
+         secondaryW = Math.max(secondaryW - (w2 - w), 0);
+         w2 = w;
+      }
+      
+      if (secondaryW > w2)
+      {
+         secondaryW = w2;
+      }
+      
+      if (w2 > DISPLAY_THRESH) {
+         gradient = new GradientPaint(0, 0, col.brighter(), w, 0, col.darker(), false);            
+         g.setPaint(gradient); 
+         g.fillRoundRect(x, y, w2, h, h/2, h/2);
+      }
+      
+      if (secondaryW > DISPLAY_THRESH)
+      {
+         g.setColor(secondCol); 
+         g.fillRoundRect(x + w2 - secondaryW, y, secondaryW, h, h/2, h/2);
+      }
+      
       g.setColor(Color.GRAY);
       g.drawRoundRect(x, y, w, h, h/2, h/2); 
    }
@@ -203,12 +268,20 @@ public class TargetSummaryChart extends JComponent implements UserChangeListener
       
       Target energyTarget = user.getTarget(NutrientInfo.getByName("Energy"));  
       barFill = ToolBox.safeDivide(energy, energyTarget.getMin());
-      paintBar(g2d, xo, yo+(barHeight+5)*0, w, barHeight, (int)(w*barFill), CALORIE_COLOR);
+      double secondaryBarFill = ToolBox.safeDivide(energyBurned, energyTarget.getMin());
+      paintBar(g2d, xo, yo+(barHeight+5)*0, w, barHeight, (int)(w*barFill), (int)(w*secondaryBarFill), CALORIE_COLOR, EXERCISE_COLOR);
       g.setColor(Color.BLACK);
-      g.drawString("Calories: " + (int)energy +" / " + (int)energyTarget.getMin() 
-            + " (" + Math.round(100*barFill) + "%)", 
-            xo+10, yo+barHeight/2+fm.getAscent()/2);
-
+      String calorieString = "Calories: " + (int)energy;
+      
+      if(energyBurned > 0)
+      {
+         calorieString += " (" + (int) (energy - energyBurned) + ")";
+      }
+      
+      calorieString += " / " + (int)energyTarget.getMin() 
+         + " (" + Math.round(100*barFill) + "%)";
+      g.drawString(calorieString, xo+10, yo+barHeight/2+fm.getAscent()/2);
+      
       
       Target proteinTarget = user.getTarget(NutrientInfo.getByName("Protein"));
       barFill = ToolBox.safeDivide(protein,proteinTarget.getMin());

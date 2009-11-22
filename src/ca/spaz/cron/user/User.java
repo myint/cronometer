@@ -17,6 +17,7 @@ import java.util.*;
 import javax.swing.JComponent;
 
 import ca.spaz.cron.CRONOMETER;
+import ca.spaz.cron.exercise.ExerciseHistory;
 import ca.spaz.cron.foods.FoodHistory;
 import ca.spaz.cron.foods.NutrientInfo;
 import ca.spaz.cron.metrics.*;
@@ -62,7 +63,8 @@ public class User {
    private NotesHistory noteHist;
    private BiometricsHistory bioHist;
    private BiomarkerDefinitions bioDefs;
-
+   private ExerciseHistory exerciseHist;
+   
    private String username;
    private Date birthDate;
    private Settings settings;
@@ -420,6 +422,13 @@ public class User {
       }
       return foodHist;
    }
+   
+   public ExerciseHistory getExerciseHistory() {
+      if (exerciseHist == null) {
+         exerciseHist = new ExerciseHistory();
+      }
+      return exerciseHist;
+   }
 
    public NotesHistory getNotesHistory() {
       if (noteHist == null) {
@@ -435,6 +444,7 @@ public class User {
       getFoodHistory().save();
       getBiometricsHistory().save();
       getNotesHistory().save();
+      getExerciseHistory().save();
    }
    
    public String getNotes(Date date) {

@@ -320,24 +320,29 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
    public void doManageUsers() {
       UserManager.startUserManagerDialog();
    }
+   
    public void doImportFood() {
       JFileChooser fd = new JFileChooser();
+      fd.setMultiSelectionEnabled(true);
       if (fd.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
-         File f = fd.getSelectedFile();
-         if (f != null) {               
-            Food food = XMLFoodLoader.loadFood(f);
-            if (food != null) {
-               Datasources.getUserFoods().addFood(food);
-               JOptionPane.showMessageDialog(this, 
-                     "'"+food.getDescription()+"' has been added to your foods.", 
-                     "Food Added", JOptionPane.INFORMATION_MESSAGE);
-            }      
+         File [] foods = fd.getSelectedFiles();
+         if (foods != null) {
+            for(int i = 0; i < foods.length; ++i) {
+               File f = foods[i];
+               Food food = XMLFoodLoader.loadFood(f);
+               if (food != null) {
+                  Datasources.getUserFoods().addFood(food);
+               }
+            }
+            
+            JOptionPane.showMessageDialog(this, 
+                  foods.length +" food(s) have been added to your foods.", 
+                  "Food(s) Added", JOptionPane.INFORMATION_MESSAGE);
             refreshDisplays();  
          }            
       }
    }
-    
-
+   
    public void doAbout() {
       getHelpBrowser().showWindow();
       getHelpBrowser().showPage("about.html");

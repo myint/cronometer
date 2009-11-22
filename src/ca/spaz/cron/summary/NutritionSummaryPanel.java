@@ -45,15 +45,19 @@ public class NutritionSummaryPanel extends JTabbedPane {
       add("Lipids", getLipidsPanel());
    }
 
-    public void setServings(List consumed) {
+    public void setServings(List consumed, boolean allSelected) {
         getGeneralPanel().update(consumed);        
         getMineralsPanel().update(consumed);  
         getVitaminsPanel().update(consumed);  
         getAminoAcidsPanel().update(consumed);       
         getLipidsPanel().update(consumed);
-        getTargetSummaryPanel().update(consumed);        
+        getTargetSummaryPanel().update(consumed, allSelected);        
     }
-
+    
+    public void setExercises(List exercises) {
+       getTargetSummaryPanel().updateExercises(exercises);
+    }
+    
     protected TargetSummaryChart getTargetSummaryPanel() {
        if (null == targetPanel) {
           targetPanel = new TargetSummaryChart(this);          

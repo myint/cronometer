@@ -5,20 +5,35 @@ package ca.spaz.cron.exercise;
 
 import java.awt.BorderLayout;
 
-import javax.swing.*;
-import javax.swing.border.BevelBorder;
+import javax.swing.BorderFactory;
+import javax.swing.JPanel;
+
+import ca.spaz.cron.CRONOMETER;
+import ca.spaz.cron.ui.DailySummary;
 
 public class ExercisePanel extends JPanel {
 
+   private ExerciseTable exerciseTable;
+   
    public ExercisePanel() {
       setLayout(new BorderLayout(4,4));
       setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
-      JLabel label = new JLabel(
-            "<html><div align=\"center\">Just a teaser!<br>" +
-            "This feature is planned for a future version....</div></html>",
-            JLabel.CENTER);
-      label.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));      
-      add(label,  BorderLayout.CENTER);
+      add(getExerciseTable(),  BorderLayout.CENTER);
    }
    
+   public ExerciseTable getExerciseTable() {
+      if (null == exerciseTable) {
+         exerciseTable = ExerciseTable.getExerciseTable();
+         
+         exerciseTable.addExerciseEditorListener(new ExerciseEditorListener() {
+            public void exerciseChosen(Exercise e) {
+               DailySummary ds = CRONOMETER.getDailySummary();
+               if (ds.isOkToAddServings(ds.getDate(), false)) {
+                  ds.addExercise(e);           
+               }
+            }
+         });
+      }
+      return exerciseTable;
+   }
 } 
