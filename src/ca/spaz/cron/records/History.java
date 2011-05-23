@@ -124,9 +124,8 @@ public abstract class History {
          dirty = false;
       }
    }
-   
-   
-   public synchronized void writeXML(PrintStream out) {
+    
+   public synchronized XMLNode toXML() {
       XMLNode node = new XMLNode(getBaseName());
       for (int i=0; i<entries.size(); i++) {
          Record entry = (Record)entries.get(i);
@@ -136,8 +135,12 @@ public abstract class History {
             } catch (Exception e) { e.printStackTrace(); }
          }
       }
-      node.setPrintNewLines(true);      
-      node.write(out);
+      node.setPrintNewLines(true);    
+      return node;
+   }
+   
+   public synchronized void writeXML(PrintStream out) {     
+      toXML().write(out);
    }
    
    public synchronized void load() {

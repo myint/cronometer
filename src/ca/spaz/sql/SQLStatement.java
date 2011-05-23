@@ -56,7 +56,7 @@ public abstract class SQLStatement {
         return table;
     }
 
-    static String escape(String s) {
+    public static String escape(String s) {
         return s.replaceAll("\\'", "\\'\\'");
     }
 

@@ -28,7 +28,9 @@
 		<item title="Request Features..." key="f"   action="doRequestFeature"/>
 		<item separator="true"/>
 		<item title="Release Notes..." key="r" action="doShowReleaseNotes"/>
-		<item separator="true"/>
+      <item separator="true"/>
+      <item title="Export to cronometer.com..." action="doExportToWebVersion"/>
+      <item separator="true"/>
 		<item title="About CRON-O-Meter" key="a" action="doAbout"/>
 	</menu>
 

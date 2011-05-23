@@ -20,7 +20,7 @@ public class UserFoods implements FoodDataSource {
    private Vector listeners = new Vector();
 
    private int maxUID = 0;
-   private HashMap map; // maps sourceID to FoodProxy
+   private HashMap<String, FoodProxy> map; // maps sourceID to FoodProxy
    private File userDir;
    
    public UserFoods(File dir) {
@@ -47,7 +47,7 @@ public class UserFoods implements FoodDataSource {
 
    private void loadIndex() throws IOException {
       Logger.debug("Loading index...");
-      map = new HashMap();
+      map = new HashMap<String,FoodProxy>();
       File file = new File(userDir, FOODS_INDEX);
       BufferedReader in = new BufferedReader(new FileReader(file));
       String line = in.readLine();
@@ -98,8 +98,8 @@ public class UserFoods implements FoodDataSource {
       return food;
    }
    
-   public List findFoods(String[] keys) {
-      ArrayList results = new ArrayList();
+   public List<FoodProxy> findFoods(String[] keys) {
+      ArrayList<FoodProxy> results = new ArrayList<FoodProxy>();
       Iterator iter = map.values().iterator();
       while (iter.hasNext()) {
          FoodProxy food = (FoodProxy)iter.next();
@@ -117,8 +117,8 @@ public class UserFoods implements FoodDataSource {
       return results;
    }
 
-   public List getAllFoods() {
-      return new ArrayList(map.values());
+   public List<FoodProxy> getAllFoods() {
+      return new ArrayList<FoodProxy>(map.values());
    }
 
    public List getFoodGroups() {

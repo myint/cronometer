@@ -43,8 +43,8 @@ import com.apple.mrj.MRJQuitHandler;
 public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, MRJAboutHandler, ClipboardOwner {
 
    public static final String TITLE = "CRON-o-Meter";
-   public static final String VERSION = "0.9.7";
-   public static final int BUILD = 16;
+   public static final String VERSION = "0.9.8";
+   public static final int BUILD = 17;
    public static JFrame mainFrame = null;
 
    private static Clipboard clipboard = new Clipboard ("CRON-o-Meter");
@@ -104,6 +104,9 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
             UserManager.getCurrentUser().doFirstRun(getMainPanel());
             TargetEditor.setDefaultTargets(new DRITargetModel(), UserManager.getCurrentUser());
          } else {
+            if (UserManager.getUserManager().getLastBuild() < 17) {
+               doShowCronometerDotCom();
+            }
             if (UserManager.getUserManager().getLastBuild() < BUILD) {
                doShowReleaseNotes();
             }
@@ -172,6 +175,15 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
    public void doShowReleaseNotes() {
       getHelpBrowser().showWindow();
       getHelpBrowser().showPage("release9.html"); 
+   }
+
+   public void doShowCronometerDotCom() {
+      getHelpBrowser().showWindow();
+      getHelpBrowser().showPage("webversion.html"); 
+   }
+   
+   public void doExportToWebVersion() {
+      ExportWizard.doExport();
    }
    
    public void doShowReadMe() {

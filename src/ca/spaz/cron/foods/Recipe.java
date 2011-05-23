@@ -30,10 +30,6 @@ public class Recipe extends Food {
       return "recipe";
    }
    
-   public XMLNode toXML() { 
-      return toXML();
-   }
-   
    public XMLNode toXML(boolean export) { 
       XMLNode node = super.toXML();
       for (Iterator iter = getServings().iterator(); iter.hasNext();) {
