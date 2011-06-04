@@ -28,6 +28,10 @@ public class Recipe extends Food {
    
    protected String getTagName() {
       return "recipe";
+   } 
+
+   public XMLNode toXML() { 
+      return toXML(false);
    }
    
    public XMLNode toXML(boolean export) { 

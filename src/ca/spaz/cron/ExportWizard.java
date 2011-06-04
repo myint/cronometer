@@ -14,15 +14,14 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.text.BadLocationException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.transform.*;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.*;
 
 import sun.misc.BASE64Encoder;
 import ca.spaz.cron.datasource.Datasources;
 import ca.spaz.cron.datasource.FoodProxy;
+import ca.spaz.cron.foods.Recipe;
+import ca.spaz.cron.metrics.Metric;
 import ca.spaz.cron.user.User;
 import ca.spaz.cron.user.UserManager;
 import ca.spaz.gui.ErrorReporter;
@@ -33,15 +32,15 @@ public class ExportWizard extends JFrame {
    private static int     port     = 80;
    private static boolean testing  = false;           // if true, data is not committed
 
-   private JTextField username = new JTextField(24);
-   private JPasswordField password = new JPasswordField(); 
-   private JPanel loginPanel;
+   private JTextField      username = new JTextField(24);
+   private JPasswordField  password = new JPasswordField(); 
+   private JPanel          loginPanel;
 
-   private String         token;
-   private JPanel         panel;
-   private JTextPane      text;
-   private JButton        importBtn;
- 
+   private String          token;
+   private JPanel          panel;
+   private JTextPane       text;
+   private JButton         importBtn; 
+   private JCheckBox       importDiary = new JCheckBox("Import Diary", true);
    
    public ExportWizard() {
       super("Export to cronometer.com");
@@ -57,7 +56,13 @@ public class ExportWizard extends JFrame {
       importBtn = new JButton("Upload Data");
       importBtn.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
-            doLogin();
+            importBtn.setEnabled(false);
+            Thread t = new Thread(new Runnable() {
+               public void run() {
+                  doLogin();                  
+               }
+            });
+            t.start();
          }
       });
          
@@ -84,8 +89,12 @@ public class ExportWizard extends JFrame {
       if (loginPanel == null) {
          loginPanel = new JPanel();
          loginPanel.setBorder(new EmptyBorder(8, 8, 18, 8));
-         loginPanel.setLayout(new GridLayout(3,3,4,4));
-         
+         loginPanel.setLayout(new GridLayout(4,3,4,4));
+
+         loginPanel.add(importDiary); 
+         loginPanel.add(Box.createGlue()); 
+         loginPanel.add(Box.createGlue());
+
          loginPanel.add(new JLabel("Username:", JLabel.RIGHT));
          loginPanel.add(username);
          loginPanel.add(Box.createGlue());
@@ -150,8 +159,9 @@ public class ExportWizard extends JFrame {
                println("Loading data files...");
                String xmldata = getImportXML();
                println("Validating data..."); 
+               System.out.println(xmldata);
                if (token != null) {
-                  xmldata = valdiateAndFixXML(xmldata);
+                  valdiate(xmldata);
                   if (xmldata != null) {
                      importData(xmldata, token);
                   } else {
@@ -160,7 +170,9 @@ public class ExportWizard extends JFrame {
                   }
                }
             } catch (Exception e) {
+               e.printStackTrace();
                print(e.getMessage());
+               ErrorReporter.showError(e, ExportWizard.this);
             }
          }   
       });     
@@ -277,50 +289,14 @@ public class ExportWizard extends JFrame {
    }
    
 
-   public String valdiateAndFixXML(String xmldata) throws IOException {
+   public void valdiate(String xmldata) throws IOException {
       try {         
          DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
          DocumentBuilder db = dbf.newDocumentBuilder();
-         Document doc = db.parse(new ByteArrayInputStream(xmldata.getBytes("UTF-8")));
-         Element root = doc.getDocumentElement();        
-
-         String weightUnit = null;
-         NodeList nl = root.getElementsByTagName("metric");
-         for (int i=0; i<nl.getLength(); i++) {
-            Element e = (Element)nl.item(i);
-            if (e.getAttribute("name").equals("Weight")) {
-               if (weightUnit == null) {
-                  String[] values = { "lbs", "kg", "Don't Import" };
-                  weightUnit = (String)JOptionPane.showInputDialog(this, "In order to import your Weight measurements,\n we need to know what unit the data is in", "Weight Import", JOptionPane.QUESTION_MESSAGE, null, values, values[0]);
-                  if (weightUnit.equals(values[2])) {
-                     weightUnit = ""; // skip
-                  }
-               }
-               if (weightUnit.length() > 0) {
-                  e.setAttribute("unit", weightUnit);
-               } else {
-                  e.getParentNode().removeChild(e);
-               }
-            }
-         } 
- 
-         ByteArrayOutputStream out = new ByteArrayOutputStream();
-         Transformer serializer = TransformerFactory.newInstance().newTransformer(); 
-         serializer.setOutputProperty(OutputKeys.INDENT, "yes");
-         serializer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
-         serializer.transform(new DOMSource(doc), new StreamResult(out));
-         xmldata = out.toString();
-         
-         System.out.println(xmldata);
-         
-         doc = db.parse(new ByteArrayInputStream(xmldata.getBytes("UTF-8")));
- 
-         return xmldata;
+         db.parse(new ByteArrayInputStream(xmldata.getBytes("UTF-8")));
       } catch (Exception e) {
-         e.printStackTrace();
-         ErrorReporter.showError(e, this);
-      }
-      return null;
+         throw new IOException(e);
+      } 
    }
 
    public String getImportXML() throws IOException {
@@ -330,7 +306,7 @@ public class ExportWizard extends JFrame {
       println("Importing " + UserManager.getUserDirectory(user));
 
       // wrap it all in a root tag for importing
-      sb.append(String.format("<import testing=\"%b\" timezone=\"%s\">", testing, TimeZone.getDefault().getID()));
+      sb.append(String.format("<import testing=\"%b\" timezone=\"%s\" version=\"%s\">", testing, TimeZone.getDefault().getID(), CRONOMETER.BUILD));
       
       List<FoodProxy> foods = Datasources.getUserFoods().getAllFoods();
       Collections.sort(foods, new Comparator<FoodProxy>() {
@@ -340,14 +316,24 @@ public class ExportWizard extends JFrame {
       });
       
       sb.append("<foods>");
-      for (FoodProxy fp : foods) {
+      for (FoodProxy fp : foods) { 
          sb.append(fp.getFood().toXML().toString());
       }
       sb.append("</foods>");
- 
-      sb.append(user.getFoodHistory().toXML());
-      sb.append(user.getBiometricsHistory().toXML());
-      sb.append(user.getNotesHistory().toXML());
+
+      if (importDiary.isSelected()) { 
+         if (user.getBiometricsHistory().getMetricsOfType("Weight").size() > 0) {
+            String[] values = { "lbs", "kg", "Don't Import" };
+            String weightUnit = (String)JOptionPane.showInputDialog(this, "In order to import your Weight measurements,\n we need to know what unit the data is in", "Weight Import", JOptionPane.QUESTION_MESSAGE, null, values, values[0]);
+            if (!weightUnit.equals(values[2])) {
+               Metric.WEIGHT_UNIT = weightUnit;
+            }
+         }
+          
+         sb.append(user.getFoodHistory().toXML());         
+         sb.append(user.getBiometricsHistory().toXML());
+         sb.append(user.getNotesHistory().toXML()); 
+      }
       
       sb.append("</import>");
     

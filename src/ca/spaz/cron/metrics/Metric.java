@@ -8,7 +8,8 @@ import ca.spaz.cron.records.Record;
 import ca.spaz.util.XMLNode;
 
 public class Metric implements Comparable, Record {
-  
+   public static String WEIGHT_UNIT = null;
+   
    private String name;
    private Number value;
    private Date date;
@@ -76,6 +77,9 @@ public class Metric implements Comparable, Record {
       node.addAttribute("name",getName());
       node.addAttribute("date",getDate().getTime());
       node.addAttribute("value",getValue().doubleValue());
+      if (name.equals("Weight") && WEIGHT_UNIT != null) {
+         node.addAttribute("unit",WEIGHT_UNIT);
+      }
       return node;
    }
    
