@@ -85,11 +85,13 @@ public class NutrientTable extends PrettyTable implements UserChangeListener {
    public double getAmount(NutrientInfo ni) {
       // TODO: cache this value!
       double total = 0;
-      for (Iterator iter = servings.iterator(); iter.hasNext();) {
-         Serving serving = (Serving) iter.next();
-         double weight = serving.getGrams()/100.0;
-         total += weight * serving.getFood().getNutrientAmount(ni);
-     }
+      if (servings != null) {
+         for (Iterator iter = servings.iterator(); iter.hasNext();) {
+            Serving serving = (Serving) iter.next();
+            double weight = serving.getGrams()/100.0;
+            total += weight * serving.getFood().getNutrientAmount(ni);
+        }
+      }
      return total;
    }
 

@@ -64,7 +64,7 @@ public class NutrientTableModel extends PrettyTableModel {
    }
    public Object getValueAt(int row, int col) {
       NutrientInfo ni = getNutrientInfo(row);
-      if (ni != null) {
+      if (ni != null && food != null) {
          double val = multiplier * food.getNutrientAmount(ni);
          switch (col) {
             case NAME_COLUMN:
