@@ -245,7 +245,10 @@ public class MeasureEditor extends JPanel {
         }
         
         public Measure getWeight(int i) {
-            return (Measure) weights.get(i);
+           if (weights.size() > i) {
+              return (Measure) weights.get(i);
+           }
+           return null;
         }
 
         public Object getValueAt(int row, int col) {

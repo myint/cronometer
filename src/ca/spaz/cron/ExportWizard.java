@@ -20,7 +20,6 @@ import org.w3c.dom.*;
 import sun.misc.BASE64Encoder;
 import ca.spaz.cron.datasource.Datasources;
 import ca.spaz.cron.datasource.FoodProxy;
-import ca.spaz.cron.foods.Recipe;
 import ca.spaz.cron.metrics.Metric;
 import ca.spaz.cron.user.User;
 import ca.spaz.cron.user.UserManager;
