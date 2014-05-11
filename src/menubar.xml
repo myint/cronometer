@@ -3,6 +3,7 @@
 	<menu title="File" key="f">
 		<item title="Manage Users..." key="u" index="7" acc="VK_U" action="doManageUsers" />
 		<item title="Edit Nutritional Targets..." key="," index="17" acc="VK_COMMA" action="doEditUserSettings" />
+		<item title="Today" key="t" acc="VK_T" action="doToday"/>
 		<item separator="true"></item>
 		<item title="Print" key="p" acc="VK_P" action="doPrint"/>
 		<item separator="true" macosx="false"></item>

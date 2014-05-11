@@ -375,6 +375,10 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
       System.exit(0);
    }
 
+   public void doToday() {
+      getDailySummary().goToToday();
+   }
+
    public void doPrint() {
       getDailySummary().getServingTable().doPrint();
    }
