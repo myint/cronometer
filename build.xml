@@ -8,17 +8,8 @@
 	<property name="name"  value="CRON-O-METER"/>
 	<property name="source" location="src/"/>
 	<property name="build" location="bin"/>
-	<property name="lib" location="lib"/> 
-	 
-	<taskdef name="launch4j"
-		    classname="net.sf.launch4j.ant.Launch4jTask"
-		    classpath="C:/Program Files/Launch4j/launch4j.jar
-		        :C:/Program Files/Launch4j/lib/xstream.jar" />
-	
-	 <taskdef name="exe4j"
-	               classname="com.exe4j.Exe4JTask"
-	               classpath="C:\Program Files\exe4j\bin\ant.jar"/> 
-	                
+	<property name="lib" location="lib"/>
+
 	<!-- Compile the java code from ${src} into ${build} -->
 	<target name="compile" description="compile the source">
 		<javac source="1.4" srcdir="${source}" destdir="${build}">
@@ -59,8 +50,6 @@
 	</target>
 
 	<target name="launcher" depends="cronometer.jar,docs.jar" description="generate the executable" >
-		<launch4j configFile="release/windows/launch4j.xml" />
-		<exe4j projectfile="release/windows/cronometer.exe4j"/>
 	</target>	
 
 	<target name="signalljars" depends="cronometer.jar,docs.jar" description="generate the signed jar package" >
