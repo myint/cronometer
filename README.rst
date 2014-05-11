@@ -13,3 +13,9 @@ Build on OS X
 ::
 
     $ ./build_osx.bash
+
+
+Download
+========
+
+https://github.com/myint/cronometer/releases
