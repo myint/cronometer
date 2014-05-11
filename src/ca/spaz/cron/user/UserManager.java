@@ -388,7 +388,8 @@ public class UserManager {
    public boolean getHideWhenMinimized() {
       return settings.getBoolean(HIDE_WHEN_MINIMIZED, false);
    }
-   public void saveWindow(JFrame frame) {
+
+   public void saveWindow(JFrame frame) {
       try {
          frame.setVisible(true);
          settings.set(MAIN_WINDOW +".width", frame.getWidth());
