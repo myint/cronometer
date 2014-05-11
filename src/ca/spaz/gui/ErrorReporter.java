@@ -12,7 +12,7 @@ import ca.spaz.util.ImageFactory;
 
 public class ErrorReporter extends WrappedPanel {
    private String message;
-   
+
    public ErrorReporter(Exception e) {
       StringBuffer sb = new StringBuffer();
       if (e != null) {
@@ -25,49 +25,49 @@ public class ErrorReporter extends WrappedPanel {
          sb.append("</code></div>");
          sb.append("</div></html>");
       }
-      
+
       JLabel lbl = new JLabel(sb.toString(),JLabel.CENTER);
       setBorder(BorderFactory.createEmptyBorder(6,6,6,6));
       setLayout(new BorderLayout(4,4));
       add(lbl, BorderLayout.CENTER);
    }
-   
+
    public static void showError(Exception e, Component parent) {
       e.printStackTrace();
       ErrorReporter er = new ErrorReporter(e);
       WrapperDialog.showDialog(parent, er);
-   }   
-   
+   }
+
    public static void showError(String message, Exception e, Component parent) {
       e.printStackTrace();
       ErrorReporter er = new ErrorReporter(e);
       er.message = message;
       WrapperDialog.showDialog(parent, er);
-   }   
-   
+   }
+
    public static void showError(String message, Component parent) {
       ErrorReporter er = new ErrorReporter(null);
       er.message = message;
       WrapperDialog.showDialog(parent, er);
-   }  
-   
+   }
+
    public static void showNotYetImplemented(Component parent) {
       ErrorReporter er = new ErrorReporter(null);
       er.message = "Not Yet Implemented";
       WrapperDialog.showDialog(parent, er);
-   }    
-    
+   }
+
    public String getTitle() {
       return "Error";
    }
-   
+
    public String getSubtitle() {
       if (message != null) {
          return message;
       }
       return "An Unexpected Error Occurred";
    }
-   
+
    public String getInfoString() {
       return "Unexpected Error";
    }

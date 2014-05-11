@@ -39,7 +39,7 @@ public class ServingTable extends JPanel {
    private JButton addBtn, delBtn, printBtn;
    private String title = "Untitled";
    private static ServingTable instance;
-   
+
    public ServingTable() {
       setMinimumSize(new Dimension(400,250));
       setPreferredSize(new Dimension(400,300));
@@ -52,10 +52,10 @@ public class ServingTable extends JPanel {
    public static ServingTable getServingTable() {
       if (instance == null) {
          instance = new ServingTable();
-      } 
+      }
       return instance;
    }
-   
+
    public void setTitle(String str) {
       this.title = str;
    }
@@ -63,7 +63,7 @@ public class ServingTable extends JPanel {
    public String getTitle() {
       return title;
    }
-   
+
    public void addChangeListener(ChangeListener listener) {
       listeners.add(listener);
    }
@@ -71,7 +71,7 @@ public class ServingTable extends JPanel {
    public void removeChangeListener(ChangeListener listener) {
       listeners.remove(listener);
    }
-   
+
    public void addServingSelectionListener(ServingSelectionListener listener) {
       servingListeners.add(listener);
    }
@@ -79,7 +79,7 @@ public class ServingTable extends JPanel {
    public void removeServingSelectionListener(ServingSelectionListener listener) {
       servingListeners.remove(listener);
    }
-   
+
    protected void fireStateChangedEvent() {
       ChangeEvent e = new ChangeEvent(this);
       Iterator iter = listeners.iterator();
@@ -88,7 +88,7 @@ public class ServingTable extends JPanel {
       }
       getDeleteButton().setEnabled(table.getSelectedRow() != -1);
    }
- 
+
    public JToolBar getToolBar() {
       if (null == toolBar) {
           toolBar = new JToolBar();
@@ -101,13 +101,13 @@ public class ServingTable extends JPanel {
           toolBar.add(getDeleteButton());
           toolBar.add(Box.createHorizontalStrut(10));
           toolBar.add(Box.createGlue());
-          toolBar.add(getPrintButton()); 
+          toolBar.add(getPrintButton());
           //toolBar.add(Box.createGlue());
       }
       return toolBar;
   }
-   
-   
+
+
    private JButton getDeleteButton() {
       if (null == delBtn) {
           ImageIcon icon = new ImageIcon(ImageFactory.getInstance().loadImage("/img/trash.gif"));
@@ -123,32 +123,32 @@ public class ServingTable extends JPanel {
       }
       return delBtn;
   }
-   
+
    private JButton getAddButton() {
       if (null == addBtn) {
           ImageIcon icon = new ImageIcon(ImageFactory.getInstance().loadImage("/img/add.gif"));
           addBtn = new JButton("Add Serving", icon);
           addBtn.setToolTipText("Add a new serving");
-         
+
           addBtn.addActionListener(new ActionListener() {
               public void actionPerformed(ActionEvent e) {
                  doAddServing();
               }
           });
           CRONOMETER.fixButton(addBtn);
-          
+
           addBtn.addKeyListener(new KeyAdapter() {
             public void keyTyped(KeyEvent e) {
                if (e.getKeyChar() == KeyEvent.VK_ENTER) {
                   doAddServing();
                }
             }
-         }); 
+         });
       }
       return addBtn;
   }
 
-   
+
    public void doAddServing() {
       SearchDialog sd = new SearchDialog(JOptionPane.getFrameForComponent(this));
       sd.display(true);
@@ -158,7 +158,7 @@ public class ServingTable extends JPanel {
          fireServingChosen(s);
       }
    }
-   
+
    private JComponent makeJScrollPane() {
       JScrollPane jsp = new JScrollPane(getTable());
       jsp.setPreferredSize(new Dimension(400, 250));
@@ -192,7 +192,7 @@ public class ServingTable extends JPanel {
 
          table.getColumnModel().getColumn(ServingTableModel.MEASURE_COL).setCellEditor(
                      new DefaultCellEditor(measureBox));
-                   
+
          // right align last column
          TableColumnModel tcm = table.getColumnModel();
          DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
@@ -215,45 +215,45 @@ public class ServingTable extends JPanel {
                }
             });
          addTableClickListener();
-  
-         
+
+
          table.registerKeyboardAction(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                deleteSelectedServings();
             }
          }, "Clear", KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, 0, false), JComponent.WHEN_FOCUSED);
-         
+
          table.registerKeyboardAction(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                deleteSelectedServings();
             }
          }, "Clear", KeyStroke.getKeyStroke(KeyEvent.VK_BACK_SPACE, 0, false), JComponent.WHEN_FOCUSED);
-         
+
          table.registerKeyboardAction(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                copySelectedServings();
             }
          }, "Copy", KeyStroke.getKeyStroke(KeyEvent.VK_C, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false), JComponent.WHEN_FOCUSED);
-         
+
          table.registerKeyboardAction(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                doPaste();
             }
          }, "Paste", KeyStroke.getKeyStroke(KeyEvent.VK_V, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false), JComponent.WHEN_FOCUSED);
-         
+
          table.registerKeyboardAction(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                cutSelectedServings();
             }
          }, "Cut", KeyStroke.getKeyStroke(KeyEvent.VK_X, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false), JComponent.WHEN_FOCUSED);
-       
+
       }
       return table;
-   } 
- 
+   }
+
    /**
     * Add a list of servings to the daily listing
-    * Ugly because this table and model listens to the parent, which is 
+    * Ugly because this table and model listens to the parent, which is
     * backwards from normal patterns...
     * @param list
     */
@@ -262,22 +262,22 @@ public class ServingTable extends JPanel {
    }
 
    public void addServingsToUser(Serving[] list, User user, Date date) {
-      DailySummary ds = CRONOMETER.getDailySummary(); 
+      DailySummary ds = CRONOMETER.getDailySummary();
       for (int i=0; i<list.length; i++) {
          ds.addServingToUser(new Serving(list[i]), user, date);
       }
    }
-   
+
    public void doPaste() {
       Transferable clipboardContent = CRONOMETER.getClipboard().getContents(this);
       if (clipboardContent != null) {
-         if (clipboardContent.isDataFlavorSupported(ServingSelection.servingFlavor)) {         
-            try {               
+         if (clipboardContent.isDataFlavorSupported(ServingSelection.servingFlavor)) {
+            try {
                Serving[] list = (Serving[])clipboardContent.getTransferData(ServingSelection.servingFlavor);
                if (list.length > 0) {
                   //int sel = table.getSelectedRow();
                   //doClear();
-                  addServings(list); 
+                  addServings(list);
                }
             } catch (Exception e) {
                e.printStackTrace();
@@ -285,7 +285,7 @@ public class ServingTable extends JPanel {
          }
       }
    }
-   
+
    public void deleteSelectedServings() {
       List sel = getSelectedServings();
       if (sel.size() > 0 && isOkToDeleteServing(sel.size())) {
@@ -314,8 +314,8 @@ public class ServingTable extends JPanel {
       }
       return false;
    }
-   
-   public void copySelectedServings() {    
+
+   public void copySelectedServings() {
       CRONOMETER.getClipboard().setContents (new ServingSelection(this), CRONOMETER.getInstance());
       TransferHandler.getCopyAction().actionPerformed(new ActionEvent(getTable(), 0, "Copy"));
    }
@@ -330,28 +330,28 @@ public class ServingTable extends JPanel {
          CRONOMETER.okDialog("Please select at least one serving", "No servings selected");
       }
    }
-   
-   public void cutSelectedServings() {    
+
+   public void cutSelectedServings() {
       copySelectedServings();
       deleteSelectedServings();
    }
-   
+
    /**
-    * Installs a click listener to handle contextual 
+    * Installs a click listener to handle contextual
     * pop-up menus on row selections
     */
-   private void addTableClickListener() {     
+   private void addTableClickListener() {
       table.addMouseListener(new MouseAdapter() {
          int last = -1;
          public void mouseClicked(MouseEvent e) {
             int index = table.rowAtPoint(e.getPoint());
-            
+
             if (e.getButton() == MouseEvent.BUTTON3 || e.isControlDown()) {
-               if (index >= 0) {                
+               if (index >= 0) {
                   if (!table.isRowSelected(index)) {
                      table.getSelectionModel().setSelectionInterval(index,index);
                   }
-                  handleMouseClick(e);               
+                  handleMouseClick(e);
                }
             } else {
                if (e.getClickCount() == 2) {
@@ -366,8 +366,8 @@ public class ServingTable extends JPanel {
                   }
                }
             }
-         }        
-      });          
+         }
+      });
    }
 
 
@@ -386,7 +386,7 @@ public class ServingTable extends JPanel {
          measureBox.setSelectedItem(s.getMeasure());
       }
    }
-  
+
    private void fireServingSelected(Serving s) {
       if (s == null) return;
       setMeasureBox(s);
@@ -395,9 +395,9 @@ public class ServingTable extends JPanel {
       while (iter.hasNext()) {
          ((ServingSelectionListener)iter.next()).servingSelected(s);
       }
-      getTable().requestFocus();      
+      getTable().requestFocus();
    }
-   
+
    private void fireServingDoubleClicked(Serving s) {
       if (s == null) return;
       Iterator iter = servingListeners.iterator();
@@ -405,7 +405,7 @@ public class ServingTable extends JPanel {
          ((ServingSelectionListener)iter.next()).servingDoubleClicked(s);
       }
    }
-   
+
    private void fireServingChosen(Serving s) {
       if (s == null) return;
       Iterator iter = servingListeners.iterator();
@@ -413,11 +413,11 @@ public class ServingTable extends JPanel {
          ((ServingSelectionListener)iter.next()).servingChosen(s);
       }
    }
-   
+
    public void deselect() {
       getTable().getSelectionModel().clearSelection();
    }
-   
+
    public List getSelectedServings() {
       List servings = new ArrayList();
       if (table.getSelectedRow() != -1) {
@@ -430,19 +430,19 @@ public class ServingTable extends JPanel {
    }
 
    public void setServings(List consumed) {
-      model.setServings(consumed); 
+      model.setServings(consumed);
       fireStateChangedEvent();
    }
 
    public List getServings() {
       return model.getServings();
    }
-   
+
    public void addServing(Serving s) {
       model.addServing(s);
       fireStateChangedEvent();
    }
-   
+
    private void handleMouseClick(MouseEvent e) {
       JPopupMenu menu = new JPopupMenu();
       if (getSelectedServings().size() == 1) { // single item selected
@@ -450,7 +450,7 @@ public class ServingTable extends JPanel {
          menu.add(new EditFoodAction(f, this));
          menu.add(new ExportFoodAction(f, this));
       } else { // multiple items selected
-         menu.add(new CreateRecipeAction(getSelectedServings(), this));         
+         menu.add(new CreateRecipeAction(getSelectedServings(), this));
       }
       // actions that apply to both single and multiple selections:
       menu.addSeparator();
@@ -458,12 +458,12 @@ public class ServingTable extends JPanel {
       menu.add(new CopyServingsAction(this));
       menu.add(new CopyServingsToUserAction(this));
       menu.add(new DeleteServingsAction(this));
-      
+
       if (menu.getComponents().length > 0) {
          menu.show(table, e.getX(), e.getY());
-      }      
+      }
    }
-  
+
 
    private JButton getPrintButton() {
       if (null == printBtn) {
@@ -480,20 +480,20 @@ public class ServingTable extends JPanel {
       }
       return printBtn;
    }
-   
+
    /**
     * Does a very simple print-out of the recipe.
     */
    public void doPrint() {
-      try {         
+      try {
          MessageFormat headerFormat = new MessageFormat(getTitle());
          MessageFormat footerFormat = new MessageFormat("- {0} -");
-         getTable().print(JTable.PrintMode.FIT_WIDTH, headerFormat, footerFormat);          
+         getTable().print(JTable.PrintMode.FIT_WIDTH, headerFormat, footerFormat);
       } catch (PrinterException e) {
          e.printStackTrace();
          JOptionPane.showMessageDialog(this, e.getMessage());
       }
-   }     
-   
-  
+   }
+
+
 }

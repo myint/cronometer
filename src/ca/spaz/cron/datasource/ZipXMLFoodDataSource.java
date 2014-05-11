@@ -14,12 +14,12 @@ import ca.spaz.gui.ErrorReporter;
 import ca.spaz.util.Logger;
 
 public abstract class ZipXMLFoodDataSource implements FoodDataSource {
-     
+
    private ZipFile zip; // the zip file backing store
    private HashMap map; // maps sourceID to FoodProxy
-  
+
    public abstract String getZipFileName();
-   
+
    public void initialize() {
       try {
          zip = new ZipFile(getZipFileName());
@@ -28,7 +28,7 @@ public abstract class ZipXMLFoodDataSource implements FoodDataSource {
          Logger.debug("Loaded " + map.size() +" foods.");
       } catch (IOException e) {
          Logger.error("Error Initliazing DataSource", e);
-         ErrorReporter.showError("Error Initliazing DataSource", e, CRONOMETER.getInstance()); 
+         ErrorReporter.showError("Error Initliazing DataSource", e, CRONOMETER.getInstance());
          zip = null;
       }
    }
@@ -48,7 +48,7 @@ public abstract class ZipXMLFoodDataSource implements FoodDataSource {
       }
       in.close();
    }
-   
+
 
    private void loadDeprecatedIndex() throws IOException {
       Logger.debug("Loading Deprecated index...");
@@ -74,12 +74,12 @@ public abstract class ZipXMLFoodDataSource implements FoodDataSource {
       food.setSourceUID(id);
       return food;
    }
-   
+
    public FoodProxy getFoodProxy(String id) {
       return (FoodProxy)map.get(id);
    }
-   
-   
+
+
    private Food loadFood(ZipEntry entry) {
       Food f = null;
       try {
@@ -87,14 +87,14 @@ public abstract class ZipXMLFoodDataSource implements FoodDataSource {
          f = XMLFoodLoader.loadFood(zIn);
          zIn.close();
       } catch (Exception e) {
-         Logger.error("Error loading: "+entry, e); 
-         ErrorReporter.showError("Error loading: "+entry, e, CRONOMETER.getInstance()); 
+         Logger.error("Error loading: "+entry, e);
+         ErrorReporter.showError("Error loading: "+entry, e, CRONOMETER.getInstance());
          f = null;
       }
       return f;
-   }  
-   
-   
+   }
+
+
    public List findFoods(String[] keys) {
       ArrayList results = new ArrayList();
       Iterator iter = map.values().iterator();
@@ -122,7 +122,7 @@ public abstract class ZipXMLFoodDataSource implements FoodDataSource {
    public List getFoodGroups() {
       return  new ArrayList();
    }
-   
+
    public void close() {
       zip = null;
    }
@@ -131,18 +131,18 @@ public abstract class ZipXMLFoodDataSource implements FoodDataSource {
       return zip != null;
    }
 
-   
+
    ////////////////////////////////////////////////////////////////////////////////
-   
+
    private void generateIndex() {
       try {
          PrintStream ps = new PrintStream(
-               new BufferedOutputStream(new FileOutputStream("foods.index")));      
+               new BufferedOutputStream(new FileOutputStream("foods.index")));
          Enumeration e = zip.entries();
          while (e.hasMoreElements()) {
             Food f = loadFood((ZipEntry)e.nextElement());
             if (f != null) {
-               Logger.error(f.getSourceUID()+"|"+f.getDescription());               
+               Logger.error(f.getSourceUID()+"|"+f.getDescription());
                ps.println(f.getSourceUID()+"|"+f.getDescription());
             }
          }
@@ -150,6 +150,6 @@ public abstract class ZipXMLFoodDataSource implements FoodDataSource {
       } catch (Exception ex) {
          Logger.debug(ex);
       }
-   }   
-    
+   }
+
 }

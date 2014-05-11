@@ -9,13 +9,13 @@ import ca.spaz.cron.foods.Food;
 import ca.spaz.cron.foods.Measure;
 
 public class USDAWeight {
-   
+
    String ndb_id;
    double amount;
    double grams;
    String description;
-   
-   
+
+
    public USDAWeight(String str) {
       String[] parts = str.split("\\^");
       for (int i = 0; i < parts.length; i++) {
@@ -28,10 +28,10 @@ public class USDAWeight {
       } else {
          amount = Double.parseDouble(parts[2]);
       }
-      description = parts[3]; 
-      grams = Double.parseDouble(parts[4]); 
+      description = parts[3];
+      grams = Double.parseDouble(parts[4]);
    }
-   
+
    public void addToDB(HashMap foods) {
       Food food = (Food)foods.get(ndb_id);
       assert(food != null);

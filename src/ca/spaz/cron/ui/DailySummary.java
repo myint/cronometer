@@ -29,12 +29,12 @@ import ca.spaz.util.ToolBox;
 
 /**
  * Shows all data for a particular date
- * 
+ *
  * @todo: Calendar widget to skip to ANY date
- * 
+ *
  * @author davidson
  */
-public class DailySummary extends JPanel implements UserChangeListener { 
+public class DailySummary extends JPanel implements UserChangeListener {
 
    private static final long ONE_DAY = 1000 * 60 * 60 * 24;
 
@@ -44,7 +44,7 @@ public class DailySummary extends JPanel implements UserChangeListener {
    private NoteEditor noteEditor;
 
    private Date curDate = new Date(System.currentTimeMillis());
- 
+
    private ServingTable servingTable;
    private ExerciseTable exerciseTable;
    private JTabbedPane dailyTracker;
@@ -52,19 +52,19 @@ public class DailySummary extends JPanel implements UserChangeListener {
    private DateFormat df = DateFormat.getDateInstance(DateFormat.LONG);
 
    private JSplitPane dietPanel;
- 
-   private JButton nextButton; 
+
+   private JButton nextButton;
    private JButton prevButton;
    private JButton dateTitle;
    private JButton copyPrevDayButton;
    private JButton todayButton;
    private JButton prefsButton;
-   
+
    private TranslucentToolBar toolBar;
    private NutritionSummaryPanel totals;
-   boolean asked = false; 
-   
-   public DailySummary() { 
+   boolean asked = false;
+
+   public DailySummary() {
       setPreferredSize(new Dimension(580,640));
       initialize();
       setDate(curDate, false);
@@ -77,12 +77,12 @@ public class DailySummary extends JPanel implements UserChangeListener {
          Serving copy = new Serving(c);
          copy.setDate(date);
          user.getFoodHistory().addServing(copy);
-         notifyObservers(); 
+         notifyObservers();
       } else {
          CRONOMETER.okDialog("No servings copied", "Warning");
       }
    }
-   
+
    public void addServingToUser(Serving c, User user) {
       addServingToUser(c, user, curDate);
    }
@@ -90,37 +90,37 @@ public class DailySummary extends JPanel implements UserChangeListener {
    public void addServing(Serving c) {
       addServingToUser(c, UserManager.getCurrentUser());
    }
-   
+
    public void addExerciseToUser(Exercise e, User user, Date date) {
       if (isOkToAddServings(date, false) && user != null) {
          Exercise copy = new Exercise(e);
          copy.setDate(date);
          user.getExerciseHistory().addExercise(copy);
-         notifyObservers(); 
+         notifyObservers();
       } else {
          CRONOMETER.okDialog("No servings copied", "Warning");
       }
    }
-   
+
    public void addExerciseToUser(Exercise e, User user) {
       addExerciseToUser(e, user, curDate);
    }
-   
+
    public void addExercise(Exercise e) {
       addExerciseToUser(e, UserManager.getCurrentUser());
    }
 
    public boolean isOkToAddServings(Date date, boolean food) {
       String typeString = "food";
-      
+
       if(!food)
       {
          typeString = "exercise";
       }
-      
+
       Date now = new Date(System.currentTimeMillis());
-      if (!ToolBox.isSameDay(date, now) && !asked) {        
-         int choice = JOptionPane.showConfirmDialog(this, 
+      if (!ToolBox.isSameDay(date, now) && !asked) {
+         int choice = JOptionPane.showConfirmDialog(this,
                "You are adding a " + typeString + " to a date in the past or future.\n" +
                "Are you sure you want to do this?",
                "Add " + typeString + "?", JOptionPane.YES_NO_OPTION);
@@ -130,8 +130,8 @@ public class DailySummary extends JPanel implements UserChangeListener {
       }
       asked = true;
       return true;
-   } 
-   
+   }
+
    /**
     * Prompt the user for a specific calendar date and set the panel to that
     * current date.
@@ -168,7 +168,7 @@ public class DailySummary extends JPanel implements UserChangeListener {
    private JTabbedPane getDailyTrackerPanel() {
       if (null == dailyTracker) {
          dailyTracker = new JTabbedPane();
-         dailyTracker.addTab("Diet", new ImageIcon(ImageFactory.getInstance().loadImage("/img/apple-16x16.png")), getDietPanel()); 
+         dailyTracker.addTab("Diet", new ImageIcon(ImageFactory.getInstance().loadImage("/img/apple-16x16.png")), getDietPanel());
          dailyTracker.addTab("Biomarkers", new ImageIcon(ImageFactory.getInstance().loadImage("/img/graph.gif")), getBioMarkersPanel());
          dailyTracker.addTab("Exercise", new ImageIcon(ImageFactory.getInstance().loadImage("/img/runner.gif")), getExercisePanel());
          dailyTracker.addTab("Notes", new ImageIcon(ImageFactory.getInstance().loadImage("/img/toc_open.gif")), getNotesEditor());
@@ -185,18 +185,18 @@ public class DailySummary extends JPanel implements UserChangeListener {
 
    public JSplitPane getDietPanel() {
       if (null == dietPanel) {
-         dietPanel = new JSplitPane(JSplitPane.VERTICAL_SPLIT, 
+         dietPanel = new JSplitPane(JSplitPane.VERTICAL_SPLIT,
                getServingTable(), getNutritionSummaryPanel());
          dietPanel.setDividerLocation(300);
-         dietPanel.setBorder(BorderFactory.createEmptyBorder(3,3,3,3)); 
+         dietPanel.setBorder(BorderFactory.createEmptyBorder(3,3,3,3));
       }
       return dietPanel;
    }
-   
+
    public ServingTable getServingTable() {
       if (null == servingTable) {
          servingTable = ServingTable.getServingTable();
-         
+
          servingTable.addServingSelectionListener(new ServingSelectionListener() {
             public void servingSelected(Serving s) { }
             public void servingDoubleClicked(Serving s) {
@@ -204,11 +204,11 @@ public class DailySummary extends JPanel implements UserChangeListener {
             }
             public void servingChosen(Serving s) {
                if (isOkToAddServings(curDate, true)) {
-                  addServing(s);           
+                  addServing(s);
                }
             }
          });
-         
+
          servingTable.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent e) {
                List servings = servingTable.getSelectedServings();
@@ -217,9 +217,9 @@ public class DailySummary extends JPanel implements UserChangeListener {
                   servings = servingTable.getServings();
                   allSelected = true;
                }
-               getNutritionSummaryPanel().setServings(servings, allSelected);               
-            }           
-         });               
+               getNutritionSummaryPanel().setServings(servings, allSelected);
+            }
+         });
       }
       return servingTable;
    }
@@ -227,24 +227,24 @@ public class DailySummary extends JPanel implements UserChangeListener {
    public ExerciseTable getExerciseTable() {
       if (null == exerciseTable) {
          exerciseTable = ExerciseTable.getExerciseTable();
-         
+
          exerciseTable.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent e) {
                List exercises = exerciseTable.getExercises();
-               getNutritionSummaryPanel().setExercises(exercises);               
-            }           
+               getNutritionSummaryPanel().setExercises(exercises);
+            }
          });
       }
-      
+
       return exerciseTable;
    }
 
    private JButton getPrefsButton() {
       if (null == prefsButton) {
          ImageIcon icon = new ImageIcon(ImageFactory.getInstance().loadImage("/img/task.gif"));
-         prefsButton = new JButton(icon);         
-         CRONOMETER.fixButton(prefsButton);    
-         prefsButton.setFocusable(false); 
+         prefsButton = new JButton(icon);
+         CRONOMETER.fixButton(prefsButton);
+         prefsButton.setFocusable(false);
          prefsButton.setToolTipText("Edit Nutritional Targets");
          prefsButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -254,35 +254,35 @@ public class DailySummary extends JPanel implements UserChangeListener {
       }
       return prefsButton;
    }
-   
+
    private JButton helpButton;
-   
+
    private JButton getHelpButton() {
       if (null == helpButton) {
          helpButton = new JButton(new ImageIcon(ImageFactory.getInstance().loadImage("/img/help.gif")));
          helpButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                CRONOMETER.getInstance().doHelp();
-            }  
-         }); 
-         CRONOMETER.fixButton(helpButton); 
-         helpButton.setFocusable(false); 
-         helpButton.setToolTipText("Help Browser");          
+            }
+         });
+         CRONOMETER.fixButton(helpButton);
+         helpButton.setFocusable(false);
+         helpButton.setToolTipText("Help Browser");
       }
       return helpButton;
    }
-     
+
    private JButton getNextButton() {
       if (null == nextButton) {
          nextButton = new JButton(new ImageIcon(ImageFactory.getInstance().loadImage("/img/forth.gif")));
          nextButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                setDate(new Date(curDate.getTime() + ONE_DAY), false);
-            }  
-         }); 
-         CRONOMETER.fixButton(nextButton); 
-         nextButton.setFocusable(false); 
-         nextButton.setToolTipText("Next Day");          
+            }
+         });
+         CRONOMETER.fixButton(nextButton);
+         nextButton.setFocusable(false);
+         nextButton.setToolTipText("Next Day");
       }
       return nextButton;
    }
@@ -293,11 +293,11 @@ public class DailySummary extends JPanel implements UserChangeListener {
          prevButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                setDate(new Date(curDate.getTime() - ONE_DAY), false);
-            }  
-         }); 
+            }
+         });
          CRONOMETER.fixButton(prevButton);
-         prevButton.setToolTipText("Previous Day");         
-         prevButton.setFocusable(false); 
+         prevButton.setToolTipText("Previous Day");
+         prevButton.setFocusable(false);
       }
       return prevButton;
    }
@@ -315,8 +315,8 @@ public class DailySummary extends JPanel implements UserChangeListener {
          copyPrevDayButton.setFocusable(false);
       }
       return copyPrevDayButton;
-   }   
-   
+   }
+
    private JButton getTodayButton() {
       if (null == todayButton) {
          todayButton = new JButton(new ImageIcon(ImageFactory.getInstance().loadImage("/img/trace.gif")));
@@ -330,7 +330,7 @@ public class DailySummary extends JPanel implements UserChangeListener {
          todayButton.setFocusable(false);
       }
       return todayButton;
-   }   
+   }
 
    /**
     * Set the current date to today
@@ -338,7 +338,7 @@ public class DailySummary extends JPanel implements UserChangeListener {
    public void goToToday() {
       setDate(new Date(System.currentTimeMillis()), false);
    }
-   
+
    /**
     * Copies the foods from the previous day into this day.
     */
@@ -355,30 +355,30 @@ public class DailySummary extends JPanel implements UserChangeListener {
     */
    private JButton getDateTitle() {
       if (null == dateTitle) {
-         
+
          dateTitle = new JButton(df.format(curDate));
-         dateTitle.setFont(new Font("Application", Font.BOLD, 16)); 
+         dateTitle.setFont(new Font("Application", Font.BOLD, 16));
          dateTitle.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                chooseDate();
             }
          });
-         CRONOMETER.fixButton(dateTitle); 
-         dateTitle.setFocusable(false); 
+         CRONOMETER.fixButton(dateTitle);
+         dateTitle.setFocusable(false);
       }
       return dateTitle;
    }
-   
+
 
    private JComponent getToolbar() {
       if (null == toolBar) {
          toolBar = new TranslucentToolBar(0.25);
-         toolBar.setBackground(Color.BLACK); 
+         toolBar.setBackground(Color.BLACK);
          toolBar.setLayout(new BoxLayout(toolBar, BoxLayout.X_AXIS));
          toolBar.setBorder(BorderFactory.createEmptyBorder(4, 5, 4, 5));
          toolBar.add(getHelpButton());
          toolBar.add(Box.createHorizontalStrut(5));
-         toolBar.add(getTodayButton());         
+         toolBar.add(getTodayButton());
          toolBar.add(Box.createHorizontalGlue());
          toolBar.add(getPreviousButton());
          toolBar.add(Box.createHorizontalStrut(5));
@@ -386,13 +386,13 @@ public class DailySummary extends JPanel implements UserChangeListener {
          toolBar.add(Box.createHorizontalStrut(5));
          toolBar.add(getNextButton());
          toolBar.add(Box.createHorizontalGlue());
-         toolBar.add(getCopyPreviousDayButton());  
+         toolBar.add(getCopyPreviousDayButton());
          toolBar.add(Box.createHorizontalStrut(5));
-         toolBar.add(getPrefsButton()); 
+         toolBar.add(getPrefsButton());
       }
       return toolBar;
    }
- 
+
    public NutritionSummaryPanel getNutritionSummaryPanel() {
       if (null == totals) {
          totals = new NutritionSummaryPanel();
@@ -407,14 +407,14 @@ public class DailySummary extends JPanel implements UserChangeListener {
       add(getDailyTrackerPanel(), BorderLayout.CENTER);
    }
 
-   public void notifyObservers() {     
+   public void notifyObservers() {
       List consumed = UserManager.getCurrentUser().getFoodHistory().getConsumedOn(curDate);
       getServingTable().setServings(consumed);
       List exercises = UserManager.getCurrentUser().getExerciseHistory().getConsumedOn(curDate);
       getExerciseTable().setExercises(exercises);
    }
-   
-   public void userChanged(UserManager userMan) { 
+
+   public void userChanged(UserManager userMan) {
       //getNotesEditor().clear();
       setDate(curDate, true);
    }
@@ -423,14 +423,14 @@ public class DailySummary extends JPanel implements UserChangeListener {
     * Set the current date being displayed by this daily summary
     */
    public void setDate(Date d, boolean userChanged) {
-      curDate = d;      
+      curDate = d;
       // getDateTitle().setDate(curDate);
       getDateTitle().setText(df.format(curDate));
       validate();
       getBioMarkersPanel().setDate(d);
       getServingTable().setTitle(df.format(curDate));
       if (!userChanged) {
-         getNotesEditor().saveCurrentNote(); 
+         getNotesEditor().saveCurrentNote();
       }
       getNotesEditor().setDate(d);
       asked = false;
@@ -438,7 +438,7 @@ public class DailySummary extends JPanel implements UserChangeListener {
       notifyObservers();
    }
 
-   public void pickDate() {      
+   public void pickDate() {
       Date d = DateChooser.pickDate(this, curDate);
       if (d != null) {
          setDate(d, false);
@@ -446,8 +446,8 @@ public class DailySummary extends JPanel implements UserChangeListener {
    }
 
    /**
-    * Called periodically. 
-    * 
+    * Called periodically.
+    *
     * Currently just checks if the date has changed, and updates the state of the today-button
     */
    public void refreshTime() {
@@ -460,5 +460,5 @@ public class DailySummary extends JPanel implements UserChangeListener {
          getTodayButton().setEnabled(false);
       }
    }
-     
+
 }

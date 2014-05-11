@@ -16,17 +16,17 @@ import javax.swing.event.ChangeListener;
 import ca.spaz.cron.ui.SearchPanel;
 import ca.spaz.gui.TranslucentLabel;
 import ca.spaz.gui.TranslucentPanel;
- 
+
 
 /**
  * This is panel that displays some brief summary information about a Food item
  * and allows choosing of a measure to be used for either adding or updating a
  * Consumed food entry in the user data.
- * 
+ *
  * @author davidson
  */
-public class ServingEditor extends JPanel {  
-    
+public class ServingEditor extends JPanel {
+
 
    private Serving cur;
 
@@ -42,14 +42,14 @@ public class ServingEditor extends JPanel {
    private JPanel addEatenPanel;
 
    private JPanel nutrientsPanel;
-   
+
    private JPanel emptyPanel;
    private JPanel mainPanel;
    private CardLayout cards;
    private DecimalFormat labelFormatter;
 
    private Vector listeners = new Vector();
-   
+
    public ServingEditor() {
       initialize();
       labelFormatter = new DecimalFormat("#####0.0");
@@ -63,7 +63,7 @@ public class ServingEditor extends JPanel {
       this.add(getEmptyPanel(), "EMPTY");
       cards.show(this, "EMPTY");
    }
-   
+
    private JPanel getMainPanel() {
       if (mainPanel == null) {
          mainPanel = new JPanel(new BorderLayout(3, 3));
@@ -71,7 +71,7 @@ public class ServingEditor extends JPanel {
          mainPanel.add(getAddEatenPanel(), BorderLayout.SOUTH);
          mainPanel.add(getNutrientsPanel(), BorderLayout.CENTER);
          mainPanel.add(getTitleLabel(), BorderLayout.NORTH);
-      } 
+      }
       return mainPanel;
    }
 
@@ -82,13 +82,13 @@ public class ServingEditor extends JPanel {
             "no food selected</h3></html>",
             JLabel.CENTER);
          emptyPanel = new TranslucentPanel(0.50);
-         emptyPanel.setLayout(new BorderLayout(4, 4));   
+         emptyPanel.setLayout(new BorderLayout(4, 4));
          emptyPanel.add(empty);
-      } 
+      }
       return emptyPanel;
    }
 
-   
+
    /**
     * @return
     */
@@ -120,7 +120,7 @@ public class ServingEditor extends JPanel {
       return titleLabel;
    }
 
-   
+
    private JPanel getNutrientsPanel() {
       if (null == nutrientsPanel) {
          nutrientsPanel = new TranslucentPanel(0.20f);
@@ -168,7 +168,7 @@ public class ServingEditor extends JPanel {
    public MeasureWidget getMeasure() {
       if (null == measure) {
          measure = new MeasureWidget();
-         measure.setOpaque(false); 
+         measure.setOpaque(false);
          measure.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent e) {
                update();
@@ -187,7 +187,7 @@ public class ServingEditor extends JPanel {
       }
       return addButton;
    }
-  
+
    private ActionListener getAddAction() {
       if (addAction == null) {
          addAction = new ActionListener() {
@@ -203,13 +203,13 @@ public class ServingEditor extends JPanel {
    }
 
    private boolean deprecatedFoodWarning() {
-      int choice = JOptionPane.showConfirmDialog(this, 
+      int choice = JOptionPane.showConfirmDialog(this,
             "Warning!\nThis food item is considered obsolete.\n" +
             "Are you sure you want to add it?",
             "Food Obsolete", JOptionPane.YES_NO_OPTION);
       return (choice == JOptionPane.YES_OPTION);
    }
-   
+
    /**
     * @return
     */
@@ -292,12 +292,12 @@ public class ServingEditor extends JPanel {
          return str;
       }
    }
-   
+
    private void setFood(Food f) {
       getMeasure().setFood(f);
       getTitleLabel().setText(fixString(f.getDescription()));
       getAddButton().setText("Add");
-      cards.show(this, "MAIN");      
+      cards.show(this, "MAIN");
    }
 
    public void setWeight(Measure w, double mult) {
@@ -307,7 +307,7 @@ public class ServingEditor extends JPanel {
    public void update() {
       Food curFood = cur.getFood();
       double mult = getMeasure().getMultiplier();
-      
+
       double cals = mult * curFood.getNutrientAmount(NutrientInfo.getByName("Energy"));
       energyLabel.setText(labelFormatter.format(cals) + " kcal");
 
@@ -327,7 +327,7 @@ public class ServingEditor extends JPanel {
       fiberLabel.setText(labelFormatter.format(fiber) + " g");
    }
 
-   
+
    public synchronized void addServingEditorListener(ServingEditorListener sel) {
       listeners.add(sel);
    }
@@ -344,10 +344,10 @@ public class ServingEditor extends JPanel {
          sel.servingChosen(cur);
       }
    }
- 
+
    public void linkToSearchResults(SearchPanel sp) {
       getMeasure().linkToSearchResults(sp);
   }
-  
+
 
 }

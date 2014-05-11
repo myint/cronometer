@@ -13,7 +13,7 @@ import ca.spaz.util.Logger;
  * @author Aaron Davidson
  */
 public class SQLDelete extends SQLSelectableStatement {
-   
+
    /**
     * Create a new SQLUpdate command for the given table
     * @param tableName the name of the table to update on
@@ -21,17 +21,17 @@ public class SQLDelete extends SQLSelectableStatement {
    public SQLDelete(String tableName) {
       super(tableName, true, false, true);
    }
-   
-   /** 
+
+   /**
     * Overrides execute() and calls executeUpdate()
     */
    protected void doExecute(Connection con) throws SQLException {
-      Statement stmt = con.createStatement();      
+      Statement stmt = con.createStatement();
       String query = this.getQueryString();
       if (Logger.isDebugEnabled()) {
          Logger.debug("executeQuery() - Statement to be executed: " + query);
       }
-     
+
      stmt.execute(query);
    }
 

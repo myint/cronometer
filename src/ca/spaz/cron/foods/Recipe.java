@@ -8,14 +8,14 @@ import java.util.*;
 import ca.spaz.util.XMLNode;
 
 public class Recipe extends Food {
-   private List servings;   
+   private List servings;
 
    public Recipe() {}
-   
+
    public Recipe(Recipe r) {
       copy(r);
    }
-   
+
    public void copy(Recipe r) {
       super.copy(r);
       if (r.servings != null) {
@@ -25,16 +25,16 @@ public class Recipe extends Food {
          }
       }
    }
-   
+
    protected String getTagName() {
       return "recipe";
-   } 
+   }
 
-   public XMLNode toXML() { 
+   public XMLNode toXML() {
       return toXML(false);
    }
-   
-   public XMLNode toXML(boolean export) { 
+
+   public XMLNode toXML(boolean export) {
       XMLNode node = super.toXML();
       for (Iterator iter = getServings().iterator(); iter.hasNext();) {
          Serving serving = (Serving) iter.next();
@@ -42,23 +42,23 @@ public class Recipe extends Food {
       }
       return node;
    }
-   
+
    public List getServings() {
       if (servings == null) {
          servings = new ArrayList();
       }
-      return servings; 
-   }      
+      return servings;
+   }
 
    public void addServings(Collection s) {
       //getServings().addAll(s);
       Iterator iter = s.iterator();
-      while (iter.hasNext()) { 
+      while (iter.hasNext()) {
          addServing(new Serving((Serving)iter.next()));
       }
       recomputeNutrients();
    }
-   
+
    public void addServing(Serving s) {
       getServings().add(s);
       s.setDate(null);
@@ -71,22 +71,22 @@ public class Recipe extends Food {
    }
 
    /**
-    * Walk through all of the servings and tally up the 
+    * Walk through all of the servings and tally up the
     * nutrient values for the entire meal.
     */
    private void recomputeNutrients() {
       double total = getTotalGrams();
-      
+
       Iterator iter = NutrientInfo.getGlobalList().iterator();
       while (iter.hasNext()) {
          NutrientInfo ni = (NutrientInfo)iter.next();
          setNutrientAmount(ni, getAmount(ni, total));
       }
-      
+
       recomputeFactors();
-      
+
       boolean found = false;
-      List list = getMeasures();      
+      List list = getMeasures();
       for (int i=0; i<list.size(); i++) {
          Measure m = (Measure)list.get(i);
          if (m.getDescription().equals("full recipe")) {
@@ -99,7 +99,7 @@ public class Recipe extends Food {
       }
       //update();
    }
-   
+
    public double getTotalGrams() {
       double total = 0;
       for (Iterator iter = getServings().iterator(); iter.hasNext();) {
@@ -108,7 +108,7 @@ public class Recipe extends Food {
       }
       return total;
    }
-   
+
    /**
     * Get the nutrient amount by walking through all of the servings
     * and calculating the total amount.
@@ -159,12 +159,12 @@ public class Recipe extends Food {
       setCarbConversionFactor(cgrams == 0 ? 0 : ccals / cgrams);
 
    }
-   
+
 
    public void setServings(List list) {
-      servings = list;      
+      servings = list;
       recomputeNutrients();
    }
-   
-   
+
+
 }

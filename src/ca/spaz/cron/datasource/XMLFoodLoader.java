@@ -19,13 +19,13 @@ import ca.spaz.util.Logger;
 import ca.spaz.util.XMLNode;
 
 public class XMLFoodLoader {
- 
+
    /**
     * Create from XML InputStream
     * @param in
-    * @throws ParserConfigurationException 
-    * @throws IOException 
-    * @throws SAXException 
+    * @throws ParserConfigurationException
+    * @throws IOException
+    * @throws SAXException
     */
    public static Food loadFood(InputStream in) throws ParserConfigurationException, SAXException, IOException {
        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
@@ -35,7 +35,7 @@ public class XMLFoodLoader {
        Element e = d.getDocumentElement();
        return loadFood(e);
    }
-   
+
    /**
     * Import a food or recipe from XML format
     * @param e an XML element to import from
@@ -49,7 +49,7 @@ public class XMLFoodLoader {
           f = new Recipe();
        }
        if (f == null) return null;
-       
+
        f.setDescription(e.getAttribute("name"));
        f.setSourceUID(e.getAttribute("uid"));
        if (e.hasAttribute("pcf")) {
@@ -58,7 +58,7 @@ public class XMLFoodLoader {
        if (e.hasAttribute("lcf")) {
           f.setLipidConversionFactor(Double.parseDouble(e.getAttribute("lcf")));
        }
-       if (e.hasAttribute("ccf")) { 
+       if (e.hasAttribute("ccf")) {
           f.setCarbConversionFactor(Double.parseDouble(e.getAttribute("ccf")));
        }
        List measures = new ArrayList();
@@ -73,17 +73,17 @@ public class XMLFoodLoader {
           measures.add(measure);
        }
        f.setMeasures(measures);
-       
+
        nl = e.getElementsByTagName("nutrient");
        for (int i=0; i<nl.getLength(); i++) {
           Element n = (Element)nl.item(i);
           NutrientInfo ni = NutrientInfo.getByName(n.getAttribute("name"));
           if (ni != null) {
-             f.setNutrientAmount(ni, 
-                   Double.parseDouble(n.getAttribute("amount")));          
+             f.setNutrientAmount(ni,
+                   Double.parseDouble(n.getAttribute("amount")));
           }
        }
-       
+
        nl = e.getElementsByTagName("comments");
        for (int i=0; i<nl.getLength(); i++) {
           Element m = (Element)nl.item(i);
@@ -92,19 +92,19 @@ public class XMLFoodLoader {
              f.appendComment(str.trim());
           }
        }
-       
+
        if (f instanceof Recipe) {
           loadRecipe((Recipe)f, e);
        }
-       
+
        return f;
    }
-   
-   
+
+
    /**
     * load special tags for this recipe
     */
-   protected static void loadRecipe(Recipe r, Element e) { 
+   protected static void loadRecipe(Recipe r, Element e) {
       List list = new ArrayList();
       NodeList nl = e.getElementsByTagName("serving");
       for (int i=0; i<nl.getLength(); i++) {
@@ -112,11 +112,11 @@ public class XMLFoodLoader {
          if (s.isLoaded()) {
             list.add(s);
          }
-      }      
+      }
       r.addServings(list);
    }
-   
-   
+
+
    public static Food loadFood(File file) {
       Food f = null;
       try {
@@ -124,11 +124,11 @@ public class XMLFoodLoader {
          f = loadFood(in);
          in.close();
       } catch (Exception e) {
-         Logger.error("Error loading: " + file, e); 
-         ErrorReporter.showError("Error loading: " + file, e, CRONOMETER.getInstance()); 
+         Logger.error("Error loading: " + file, e);
+         ErrorReporter.showError("Error loading: " + file, e, CRONOMETER.getInstance());
          f = null;
       }
       return f;
-   }  
+   }
 
 }

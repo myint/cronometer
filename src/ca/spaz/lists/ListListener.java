@@ -4,20 +4,20 @@
 package ca.spaz.lists;
 
 public interface ListListener {
-    
+
    /**
     * An unspecified change has occurred to the list.
     * Listeners should recompute from scratch
     * Only sent if a more specific event is not available.
     */
-   public void listChanged(); 
-   
+   public void listChanged();
+
    /**
     * A new item has been added to the list.
     * @param o the added items
     */
    public void itemAdded(Object o);
-      
+
 
    /**
     * A item has been removed from the list.

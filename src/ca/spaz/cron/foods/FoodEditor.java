@@ -22,7 +22,7 @@ import ca.spaz.util.ToolBox;
 /**
  * An editor panel for a food item in the database. The editor must be able to
  * add / update / delete a food which includes all nutrient entries, and weights
- * 
+ *
  * @author davidson
  */
 public class FoodEditor extends JPanel {
@@ -43,7 +43,7 @@ public class FoodEditor extends JPanel {
    private JButton saveButton;
    private JButton cancelButton;
    private JPanel buttonPanel;
-   
+
    private JPanel centerPanel;
    private JPanel nutrientPanel;
    private JPanel generalPanel;
@@ -55,14 +55,14 @@ public class FoodEditor extends JPanel {
       this.cwapp = app;
       setFood(f);
       initialize();
-      getMeasureSelector().setFocus(); 
+      getMeasureSelector().setFocus();
    }
 
    public void setFood(Food f) {
       this.original = f;
       this.food = new Food(f); // edit on a copy
    }
-   
+
    /**
     * Copy changes to original and save.
     */
@@ -70,11 +70,11 @@ public class FoodEditor extends JPanel {
       original.copy(food);
       original.update();
    }
-   
+
    public void display() {
       getDialog().setVisible(true);
    }
-   
+
    protected String getTitle() {
       return "Food Editor";
    }
@@ -99,61 +99,61 @@ public class FoodEditor extends JPanel {
       this.add(getNutrientPanel(), BorderLayout.CENTER);
    }
 
-   
-   
+
+
    protected JPanel getCenterPanel() {
       if (centerPanel == null) {
          centerPanel = new JPanel();
          centerPanel.setLayout(new BorderLayout(4, 4));
-         //centerPanel.setBorder(BorderFactory.createEmptyBorder(8, 8, 8, 8));         
-         centerPanel.add(getMeasureEditor(), BorderLayout.CENTER);         
+         //centerPanel.setBorder(BorderFactory.createEmptyBorder(8, 8, 8, 8));
+         centerPanel.add(getMeasureEditor(), BorderLayout.CENTER);
          centerPanel.add(getCommentsPanel(), BorderLayout.SOUTH);
       }
       return centerPanel;
    }
-   
-   
+
+
    protected Border makeTitleBorder(String str) {
       return new CompoundBorder(
             BorderFactory.createTitledBorder(
                   BorderFactory.createEtchedBorder(),
                   //BorderFactory.createBevelBorder(BevelBorder.RAISED),
                   str),
-            BorderFactory.createEmptyBorder(8,8,8,8));      
+            BorderFactory.createEmptyBorder(8,8,8,8));
    }
-   
+
    protected JPanel getNutrientPanel() {
       if (nutrientPanel == null) {
          nutrientPanel = new JPanel();
          nutrientPanel.setLayout(new BorderLayout(7, 7));
          nutrientPanel.setBorder(makeTitleBorder("Nutrition Info"));
          nutrientPanel.add(getMeasureSelector(), BorderLayout.NORTH);
-         nutrientPanel.add(getTabPanel(), BorderLayout.CENTER);         
+         nutrientPanel.add(getTabPanel(), BorderLayout.CENTER);
       }
       return nutrientPanel;
    }
-   
+
    public void doCancel() {
       getDialog().dispose();
    }
- 
-   
+
+
    /**
     * Commit any changes made to the food
     */
    public void doSave() {
-      
+
       String name = getNameField().getText().trim();
       if (name.length() == 0) {
-         JOptionPane.showMessageDialog(this, 
-               "You must enter a name for this food.", 
+         JOptionPane.showMessageDialog(this,
+               "You must enter a name for this food.",
                "Error", JOptionPane.ERROR_MESSAGE);
          return;
       }
-      
-      int rc = JOptionPane.YES_OPTION;             
+
+      int rc = JOptionPane.YES_OPTION;
       if (food.getSource() != null && food.getSource() != Datasources.getUserFoods()) {
-         rc = JOptionPane.showConfirmDialog(this, 
+         rc = JOptionPane.showConfirmDialog(this,
                "The "+food.getSource().getName()+" Database cannot be modified.\n" +
                "Would you like to save a copy of this modified\n" +
                "food in your custom foods?");
@@ -161,19 +161,19 @@ public class FoodEditor extends JPanel {
             return;
          }
       }
-      
-      food.setDescription(name);     
+
+      food.setDescription(name);
       food.setMeasures(getMeasureEditor().getMeasures());
       food.setComment(getCommentEditor().getText());
       if (food.getSource() != Datasources.getUserFoods()) {
          if (rc == JOptionPane.YES_OPTION) {
             Datasources.getUserFoods().addFood(food);
-            JOptionPane.showMessageDialog(this, 
-                  "'"+food.getDescription()+"' has been added to your foods.", 
+            JOptionPane.showMessageDialog(this,
+                  "'"+food.getDescription()+"' has been added to your foods.",
                   "Food Added", JOptionPane.INFORMATION_MESSAGE);
-         }  
+         }
       } else {
-         updateOriginal(); // commit changes         
+         updateOriginal(); // commit changes
       }
       getDialog().dispose();
       CRONOMETER.getInstance().refreshDisplays();
@@ -203,7 +203,7 @@ public class FoodEditor extends JPanel {
          cancelButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                doCancel();
-            }          
+            }
          });
       }
       return cancelButton;
@@ -218,12 +218,12 @@ public class FoodEditor extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 doSave();
             }
-         });        
+         });
       }
       return saveButton;
    }
 
- 
+
    protected JPanel getGeneralPanel() {
       if (null == generalPanel) {
          final String TAB_HFILL = RiverLayout.TAB_STOP + " "
@@ -231,8 +231,8 @@ public class FoodEditor extends JPanel {
          generalPanel = new JPanel(new RiverLayout());
          generalPanel.add(RiverLayout.LINE_BREAK, new JLabel("Name:"));
          generalPanel.add(TAB_HFILL, getNameField());
-         generalPanel.add(TAB_HFILL, getSourceLabel());         
-         generalPanel.add(TAB_HFILL, getButtonPanel()); 
+         generalPanel.add(TAB_HFILL, getSourceLabel());
+         generalPanel.add(TAB_HFILL, getButtonPanel());
         // generalPanel.add(TAB_HFILL, getMeasureSelector());
       }
       return generalPanel;
@@ -245,7 +245,7 @@ public class FoodEditor extends JPanel {
          return new JLabel("unsaved");
       }
    }
-   
+
    protected JTextField getNameField() {
       if (null == name) {
          name = new JTextField(40);
@@ -271,7 +271,7 @@ public class FoodEditor extends JPanel {
       }
       return minerals;
    }
-   
+
    protected NutrientEditorTable getVitaminsTable() {
       if (vitamins == null) {
          vitamins = new NutrientEditorTable(NutrientInfo.getVitamins());
@@ -280,7 +280,7 @@ public class FoodEditor extends JPanel {
       }
       return vitamins;
    }
-   
+
    protected NutrientEditorTable getAminoAcidsTable() {
       if (aminoacids == null) {
          aminoacids = new NutrientEditorTable(NutrientInfo.getAminoAcids());
@@ -289,7 +289,7 @@ public class FoodEditor extends JPanel {
       }
       return aminoacids;
    }
-   
+
    protected NutrientEditorTable getLipidsTable() {
       if (lipids == null) {
          lipids = new NutrientEditorTable(NutrientInfo.getLipids());
@@ -312,17 +312,17 @@ public class FoodEditor extends JPanel {
       commentsPanel.add(jsp, BorderLayout.CENTER);
       return commentsPanel;
    }
-   
+
    protected JTextArea getCommentEditor() {
       if (commentEditor != null)
          return commentEditor;
-      
+
       commentEditor = new JTextArea(food == null ? "" : food.getComment());
       commentEditor.setWrapStyleWord(true);
       commentEditor.setLineWrap(true);
       return commentEditor;
    }
-   
+
    private JTabbedPane getTabPanel() {
       if (tabPanel == null) {
          tabPanel = new JTabbedPane();
@@ -354,7 +354,7 @@ public class FoodEditor extends JPanel {
       return measureEditor;
    }
 
-   
+
    MeasureWidget getMeasureSelector() {
       if (null == measure) {
          measure = new MeasureWidget();
@@ -371,7 +371,7 @@ public class FoodEditor extends JPanel {
       }
       return measure;
    }
- 
+
 
    public void setMeasure(Measure m, double amount) {
       getMeasureSelector().setMeasure(m, amount);
@@ -401,5 +401,5 @@ public class FoodEditor extends JPanel {
       }
    }
 
-  
+
 }

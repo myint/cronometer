@@ -11,10 +11,10 @@ import javax.swing.BorderFactory;
 import ca.spaz.cron.foods.NutrientInfo;
 
 public class AminoAcidSummaryPanel extends AbstractNutrientSummaryPanel {
-   
+
    public AminoAcidSummaryPanel() {
       setLayout(new BorderLayout());
-      setBorder(BorderFactory.createEmptyBorder(4,4,4,4));      
+      setBorder(BorderFactory.createEmptyBorder(4,4,4,4));
       add(getNutrientTablePane(), BorderLayout.CENTER);
    }
 
@@ -25,6 +25,6 @@ public class AminoAcidSummaryPanel extends AbstractNutrientSummaryPanel {
    protected String getCategoryName() {
        return "Amino Acids";
    }
-   
+
 
 }

@@ -15,9 +15,9 @@ import ca.spaz.util.ToolBox;
 /**
  * A text field for entering floating point data. The only characters it accepts
  * are the digits 0-9 and one (optional) decimal point.
- * 
+ *
  * @author Aaron
- * 
+ *
  */
 public class DoubleField extends JTextField {
    private Toolkit toolkit;
@@ -41,16 +41,16 @@ public class DoubleField extends JTextField {
    public double getValue() {
       double retVal = 0.0;
       String[] q;
-      double[] r = {0.0, 0.0};    
-      q = getText().split("/", 2);    
+      double[] r = {0.0, 0.0};
+      q = getText().split("/", 2);
       try {
          for (int i = 0; i < q.length; i++) {
             r[i] = Double.parseDouble(q[i]);
          }
       } catch (NumberFormatException e) {
-         // toolkit.beep();        
-      }   
-      retVal = ToolBox.safeDivide(r[0], r[1], r[0]);  
+         // toolkit.beep();
+      }
+      retVal = ToolBox.safeDivide(r[0], r[1], r[0]);
       if (retVal < min) retVal = min;
       if (retVal > max) retVal = max;
       return retVal;

@@ -2,7 +2,7 @@ package ca.spaz.gui;
 
 import java.awt.Rectangle;
 
-/** 
+/**
  */
 
 public class SpazPosition {
@@ -10,7 +10,7 @@ public class SpazPosition {
 	public double leftR, rightR, topR, bottomR;
 
 	public SpazPosition(){}
-	
+
 	public SpazPosition(SpazPosition copy) {
 		this.leftA = copy.leftA;
 		this.leftR = copy.leftR;
@@ -19,16 +19,16 @@ public class SpazPosition {
 		this.topA = copy.topA;
 		this.topR = copy.topR;
 		this.bottomA = copy.bottomA;
-		this.bottomR = copy.bottomR;				
+		this.bottomR = copy.bottomR;
 	}
-	
+
 	public void setHPos(double lR, int lA, double rR, int rA) {
 		this.leftR = lR;
 		this.leftA = lA;
 		this.rightR = rR;
 		this.rightA = rA;
 	}
-	
+
 	public void setVPos(double tR, int tA, double bR, int bA) {
 		this.topR = tR;
 		this.topA = tA;
@@ -42,16 +42,16 @@ public class SpazPosition {
 		int left = (int)(leftR*width) + leftA;
 		int right = (int)(rightR*width) + rightA;
 		return ( new Rectangle(left, top, (right - left), (bottom - top)) );
-	}	
-	
+	}
+
 	public Rectangle getMinRectangle() {
 		return ( new Rectangle(leftA, topA, (rightA - leftA), (bottomA - topA)) );
-	}	
-	
+	}
+
 	public String toString() {
 		return (leftA + ", " + rightA + ", " + topA + ", " + bottomA);
 	}
-	
+
 	public void adjustLeft(int val, int width) {
 		int cur = (int)(width * leftR);
 		this.leftA = (val - cur);
@@ -95,8 +95,8 @@ public class SpazPosition {
 		sb.append(" bottom_rel=\""+ bottomR + '"');
 		sb.append(" bottom_abs=\""+ bottomA + '"');
 		sb.append("/>\n");
-		return sb.toString();		
+		return sb.toString();
 	}
 
-	
+
 }

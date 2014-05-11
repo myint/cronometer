@@ -11,12 +11,12 @@ public abstract class WrappedPanel extends JPanel {
    public abstract String getSubtitle();
    public abstract String getInfoString();
    public abstract ImageIcon getIcon();
-      
+
    public abstract boolean isCancellable();
    public abstract void doCancel();
-   public abstract boolean doAccept();     
-   
-   public boolean showSidebar() { 
+   public abstract boolean doAccept();
+
+   public boolean showSidebar() {
       return true;
    }
 }

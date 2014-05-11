@@ -10,25 +10,25 @@ import java.util.Vector;
 import javax.swing.*;
 
 import ca.spaz.gui.DoubleField;
- 
-public class ExerciseEditor extends JPanel {  
-    
+
+public class ExerciseEditor extends JPanel {
+
    private Exercise cur = new Exercise();
 
    private JButton addButton;
    private ActionListener addAction;
-   
+
    private JTextField nameField;
    private DoubleField minutesField;
    private DoubleField caloriesField;
-   
+
    private JPanel exerciseTakenPanel;
 
    private JPanel mainPanel;
    private DecimalFormat labelFormatter;
 
    private Vector listeners = new Vector();
-   
+
    public ExerciseEditor() {
       initialize();
       labelFormatter = new DecimalFormat("#####0.0");
@@ -38,13 +38,13 @@ public class ExerciseEditor extends JPanel {
       this.setOpaque(false);
       this.add(getMainPanel());
    }
-   
+
    private JPanel getMainPanel() {
       if (mainPanel == null) {
          mainPanel = new JPanel(new BorderLayout(3, 3));
          mainPanel.setOpaque(false);
          mainPanel.add(getExerciseTakenPanel(), BorderLayout.CENTER);
-      } 
+      }
       return mainPanel;
    }
 
@@ -97,7 +97,7 @@ public class ExerciseEditor extends JPanel {
       }
       return addButton;
    }
-  
+
    private ActionListener getAddAction() {
       if (addAction == null) {
          addAction = new ActionListener() {
@@ -108,12 +108,12 @@ public class ExerciseEditor extends JPanel {
       }
       return addAction;
    }
-   
+
    public JTextField getNameInput() {
       if(null == nameField) {
          nameField = new JTextField(20);
       }
-      
+
       return nameField;
    }
 
@@ -121,7 +121,7 @@ public class ExerciseEditor extends JPanel {
       if(null == minutesField) {
          minutesField = new DoubleField(0, 8);
       }
-      
+
       return minutesField;
    }
 
@@ -129,7 +129,7 @@ public class ExerciseEditor extends JPanel {
       if(null == caloriesField) {
          caloriesField = new DoubleField(0, 8);
       }
-      
+
       return caloriesField;
    }
 
@@ -145,11 +145,11 @@ public class ExerciseEditor extends JPanel {
          return str;
       }
    }
-   
+
    public void update() {
-      
+
    }
-   
+
    public synchronized void addExerciseEditorListener(ExerciseEditorListener sel) {
       listeners.add(sel);
    }
@@ -157,7 +157,7 @@ public class ExerciseEditor extends JPanel {
    public synchronized void removeExerciseEditorListener(ExerciseEditorListener sel) {
       listeners.remove(sel);
    }
-   
+
    private synchronized void fireServingChosenEvent() {
       cur.setName(getNameInput().getText());
       cur.setMinutes(getMinutesInput().getValue());

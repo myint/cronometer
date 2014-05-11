@@ -23,17 +23,17 @@ public class USDAImporter implements Task {
    private static final int FD_GROUP_INDEX = 3;
    private static final int WEIGHT_INDEX = 2;
    private static final int NUT_DATA_INDEX = 1;
-   private static final int FOOD_DES_INDEX = 0; 
+   private static final int FOOD_DES_INDEX = 0;
 
    private HashMap groups = new HashMap();
    private HashMap foods = new HashMap();
-   
+
    private HashMap omega_619 = new HashMap();
    private HashMap omega_685 = new HashMap();
    private HashMap omega_618 = new HashMap();
-   private HashMap omega_851 = new HashMap(); 
-   private HashMap omega_675 = new HashMap(); 
-   
+   private HashMap omega_851 = new HashMap();
+   private HashMap omega_675 = new HashMap();
+
    private static final int HASH_MAX = 50;
 
    private URL sourceURL;
@@ -51,7 +51,7 @@ public class USDAImporter implements Task {
       }
       return url;
    }
-   
+
    public USDAImporter(OutputStream out) {
       if (null == out) {
          this.out = System.out;
@@ -82,7 +82,7 @@ public class USDAImporter implements Task {
    public void run() {
       abort = false;
       curTask = "Importing USDA sr24";
-      if (null == sourceURL && null == sourceStream) {         
+      if (null == sourceURL && null == sourceStream) {
          return;
       }
       if (null == sourceStream) {
@@ -103,7 +103,7 @@ public class USDAImporter implements Task {
             if (!tempDir.exists()) {
                // Indicate that it aborted, somehow.
                return;
-            } 
+            }
             File tempFile = new File("sr24.zip");
          //   if (!downloadFile(sourceURL, tempFile, DOWNLOAD_PROGRESS_PORTION)) {
          //      return; // Indicate failure.
@@ -120,7 +120,7 @@ public class USDAImporter implements Task {
             int idx = FD_GROUP_INDEX;
             int baseProgress = progress;
             ins = zif.getInputStream(relevantEntries[idx]);
-            parseInputStream(ins, "food groups", relevantEntries[idx].getSize(), nbytes, baseProgress, idx);           
+            parseInputStream(ins, "food groups", relevantEntries[idx].getSize(), nbytes, baseProgress, idx);
             if (!abort) {
                idx = FOOD_DES_INDEX;
                baseProgress = progress;
@@ -165,7 +165,7 @@ public class USDAImporter implements Task {
       progress = 100;
       return;
    }
-   
+
    private void parseInputStream(InputStream ins, String streamName, long streamSize, long totalSize, int baseProgress, int parseType) throws IOException {
       int progressSize = (int) (CONVERSION_PROGRESS_PORTION * (double) streamSize / totalSize);
       out.print("Reading in " + streamName + "...");
@@ -192,7 +192,7 @@ public class USDAImporter implements Task {
             foods.put(food.ndb_id, f);
             break;
          case WEIGHT_INDEX:
-            USDAWeight w = new USDAWeight(line);            
+            USDAWeight w = new USDAWeight(line);
             w.addToDB(foods);
             break;
          case NUT_DATA_INDEX:
@@ -203,7 +203,7 @@ public class USDAImporter implements Task {
             }
             double amount = Double.parseDouble(parts[2]);
             String usdaID = parts[1];
-            Food fd = (Food)foods.get(parts[0]); 
+            Food fd = (Food)foods.get(parts[0]);
             NutrientInfo ni = NutrientInfo.getByUSDA(usdaID);
             if (ni != null) {
                double val = fd.getNutrientAmount(ni);
@@ -219,7 +219,7 @@ public class USDAImporter implements Task {
                omega_618.put(fd, new Double(amount));
             } else if (usdaID.equals("675")) {
                omega_675.put(fd, new Double(amount));
-            }       
+            }
             break;
          default:
             throw new IllegalArgumentException("Invalid parse type: " + parseType);
@@ -231,14 +231,14 @@ public class USDAImporter implements Task {
 
       out.println("Done.");
    }
-   
+
    private void fixOmegaFats(Food fd) {
       NutrientInfo w3 = NutrientInfo.getByName("Omega-3");
       NutrientInfo w6 = NutrientInfo.getByName("Omega-6");
       double w3a = fd.getNutrientAmount(w3);
-      double w6a = fd.getNutrientAmount(w6); 
-       
-      // linolenic acid 
+      double w6a = fd.getNutrientAmount(w6);
+
+      // linolenic acid
       if (omega_619.containsKey(fd)) {
          // if no data for the n-3 linolenic acid, use the parent value
          if (!omega_851.containsKey(fd)) {
@@ -250,8 +250,8 @@ public class USDAImporter implements Task {
             fd.setNutrientAmount(w3, w3a);
          }
       }
-      
-      // linoleic acid 
+
+      // linoleic acid
       if (omega_618.containsKey(fd)) {
          // if no data for the n-6 linoleic acid, use the parent value
          if (!omega_675.containsKey(fd)) {
@@ -260,11 +260,11 @@ public class USDAImporter implements Task {
             fd.setNutrientAmount(w6, w6a);
          }
       }
-     
+
    }
-   
-   
-   
+
+
+
    private void writeFoods() {
       Iterator iter = foods.values().iterator();
       while (iter.hasNext()) {
@@ -283,7 +283,7 @@ public class USDAImporter implements Task {
       }
       writeFoodsIndex();
    }
-   
+
    private void writeFoodsIndex() {
       try {
          File file = new File("usda_sr24/foods.index");
@@ -293,14 +293,14 @@ public class USDAImporter implements Task {
          while (iter.hasNext()) {
             Food f = (Food)iter.next();
             ps.println(f.getSourceUID()+"|"+f.getDescription());
-         }     
+         }
          ps.close();
       } catch (IOException ie) {
          Logger.error(ie);
       }
    }
-   
-   
+
+
    /**
     * @param line
     */
@@ -398,7 +398,7 @@ public class USDAImporter implements Task {
    private volatile int progress = 0;
    private volatile boolean abort = false;
    private volatile String curTask;
-   
+
    public int getTaskProgress() {
       return progress;
    }
@@ -414,13 +414,13 @@ public class USDAImporter implements Task {
    public String getTaskDescription() {
       return curTask;
    }
- 
-   
+
+
    public static void main(String args[]) {
       USDAImporter ui = new USDAImporter(System.out);
       ui.setSourceURL(ui.getFoodSourceURL());
-      ui.run();      
+      ui.run();
    }
-   
-   
+
+
 }

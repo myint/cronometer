@@ -1,5 +1,5 @@
 package ca.spaz.cron;
- 
+
 import java.awt.*;
 import java.awt.datatransfer.*;
 import java.awt.event.*;
@@ -36,7 +36,7 @@ import com.apple.mrj.MRJAboutHandler;
 import com.apple.mrj.MRJQuitHandler;
 
 /**
- * The main app.  
+ * The main app.
  *
  * @author davidson
  */
@@ -53,13 +53,13 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
 
    private SpazMenuBar menu;
    private HelpBrowser help;
-   private JPanel mainPanel;    
+   private JPanel mainPanel;
 
    private static CRONOMETER instance;
 
    public static CRONOMETER getInstance() {
       if (null == instance) {
-         instance = new CRONOMETER();         
+         instance = new CRONOMETER();
       }
       return instance;
    }
@@ -70,7 +70,7 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
    public CRONOMETER() {
       setupForMacOSX();
    }
-   
+
    public static Clipboard getClipboard() {
       return clipboard;
    }
@@ -78,10 +78,10 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
    public static Image getWindowIcon() {
       return ImageFactory.getInstance().loadImage("/img/icon.png");
    }
-   
+
    private void initGUI() {
       try {
-         setJMenuBar(getMenu());         
+         setJMenuBar(getMenu());
          setIconImage(getWindowIcon());
          setTitle(getFullTitleWithUser());
          if (!UserManager.getSubdirectory().equalsIgnoreCase("cronometer")) {
@@ -112,7 +112,7 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
             if (UserManager.getUserManager().getLastBuild() < 7) {
                upgradeToB7();
             }
-         }          
+         }
          UserManager.getUserManager().setLastBuild(CRONOMETER.BUILD);
          makeAutoSaveTimer();
          installSystemTray();
@@ -128,14 +128,14 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
          });
       } catch (Exception e) {
          Logger.debug(e);
-         ErrorReporter.showError(e, this); 
+         ErrorReporter.showError(e, this);
       }
    }
-   
+
    /**
     * Adds a system tray, if the JVM and OS support it.
     */
-   private void installSystemTray() {     
+   private void installSystemTray() {
       if (ToolBox.classExists("java.awt.SystemTray")) {
          // this is a Java-6 feature only, so we use reflection to survive on older JVMs
          ToolBox.instantiate("ca.spaz.cron.ui.SysTray");
@@ -144,17 +144,17 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
 
    private void upgradeToB7() {
       if (UserManager.getCurrentUser().isFemale()) {
-         JOptionPane.showMessageDialog(getMainPanel(), 
+         JOptionPane.showMessageDialog(getMainPanel(),
                "Previous versions of CRON-o-Meter were incorrectly \n" +
                "suggesting male nutritional targets for women.\n" +
                "It is highly recommended that you reset your nutritional\n" +
                "targets to values appropriate for women.");
          UserSettingsDialog.showDialog(UserManager.getUserManager(), getMainPanel());
          TargetEditor.setDefaultTargets(new DRITargetModel(), UserManager.getCurrentUser());
-         doEditUserSettings(); 
+         doEditUserSettings();
       }
    }
-   
+
    public void doAddServing() {
       getDailySummary().getServingTable().doAddServing();
    }
@@ -173,18 +173,18 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
 
    public void doShowReleaseNotes() {
       getHelpBrowser().showWindow();
-      getHelpBrowser().showPage("release9.html"); 
+      getHelpBrowser().showPage("release9.html");
    }
 
    public void doShowCronometerDotCom() {
       getHelpBrowser().showWindow();
-      getHelpBrowser().showPage("webversion.html"); 
+      getHelpBrowser().showPage("webversion.html");
    }
-   
+
    public void doExportToWebVersion() {
       ExportWizard.doExport();
    }
-   
+
    public void doShowReadMe() {
       new ReadMe(this, "Licence Agreement", getClass().getResource("/docs/readme.html")) {
          public boolean isCancellable() {
@@ -193,23 +193,23 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
          public void doCancel() {
             System.exit(1);
          }
-      };      
+      };
    }
 
    public void doHelp() {
       getHelpBrowser().showWindow();
       getHelpBrowser().showPage("introduction.html");
    }
-   
-   
+
+
    public HelpBrowser getHelpBrowser() {
       if (help == null) {
          try {
             URL.setURLStreamHandlerFactory(new JarLoader());
-            //help = new HelpBrowser("CRON-o-Meter Help", new File("docs").toURI().toURL(), false); 
+            //help = new HelpBrowser("CRON-o-Meter Help", new File("docs").toURI().toURL(), false);
             //help = new HelpBrowser("CRON-o-Meter Help", new URL("http://spaz.ca/cronometer/docs/"));
             help = new HelpBrowser("CRON-o-Meter Help", new URL("class://DocAnchor/"));
-            help.setIconImage(CRONOMETER.getWindowIcon()); 
+            help.setIconImage(CRONOMETER.getWindowIcon());
             ToolBox.centerFrame(help);
          } catch (Exception e) {
             e.printStackTrace();
@@ -227,10 +227,10 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
       ToolBox.launchURL(CRONOMETER.getInstance(), "http://sourceforge.net/tracker/?group_id=136481&atid=735998");
    }
 
-   public static String getFullTitle() { 
-      return TITLE + " v" + VERSION;       
+   public static String getFullTitle() {
+      return TITLE + " v" + VERSION;
    }
-   
+
    public static String getFullTitleWithUser() {
       String heading = getFullTitle();
       User currentUser = UserManager.getCurrentUser();
@@ -240,12 +240,12 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
          return heading + " - " + currentUser.getUsername();
       }
    }
- 
-   
+
+
    private JMenuBar getMenu() {
       if (null == menu) {
          menu = new SpazMenuBar(getClass().getResourceAsStream("/menubar.xml"), this);
-         
+
          // insert SWING edit menu:
          JMenu mainMenu = new JMenu("Edit");
          mainMenu.setMnemonic(KeyEvent.VK_E);
@@ -282,9 +282,9 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
          menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V, mask));
          menuItem.setMnemonic(KeyEvent.VK_P);
          mainMenu.add(menuItem);
-         
+
          menu.add(mainMenu, 1);
-         
+
       }
       return menu;
    }
@@ -295,15 +295,15 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
          mainPanel = new JPanel(new BorderLayout(4, 4));
          mainPanel.setBorder(BorderFactory.createEmptyBorder(4, 4, 4, 4));
 
-         mainPanel.add(getDailySummary(), BorderLayout.CENTER);       
+         mainPanel.add(getDailySummary(), BorderLayout.CENTER);
       }
       return mainPanel;
    }
- 
+
 
    public static DailySummary getDailySummary() {
       if (null == ds) {
-         ds = new DailySummary();         
+         ds = new DailySummary();
       }
       return ds;
    }
@@ -323,15 +323,15 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
       CreateRecipeAction.execute(servings);
       refreshDisplays();
    }
-     
+
    public void doEditUserSettings() {
-      TargetEditor.editTargets(); 
+      TargetEditor.editTargets();
    }
-   
+
    public void doManageUsers() {
       UserManager.startUserManagerDialog();
    }
-   
+
    public void doImportFood() {
       JFileChooser fd = new JFileChooser();
       fd.setMultiSelectionEnabled(true);
@@ -345,21 +345,21 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
                   Datasources.getUserFoods().addFood(food);
                }
             }
-            
-            JOptionPane.showMessageDialog(this, 
-                  foods.length +" food(s) have been added to your foods.", 
+
+            JOptionPane.showMessageDialog(this,
+                  foods.length +" food(s) have been added to your foods.",
                   "Food(s) Added", JOptionPane.INFORMATION_MESSAGE);
-            refreshDisplays();  
-         }            
+            refreshDisplays();
+         }
       }
    }
-   
+
    public void doAbout() {
       getHelpBrowser().showWindow();
       getHelpBrowser().showPage("about.html");
       //AboutScreen.showAbout(this);
    }
-   
+
    public void doQuit() {
       try {
          // remember window size & position
@@ -369,16 +369,16 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
          Datasources.closeAll();
          UserManager.getUserManager().saveUserProperties();
       } catch (IOException e1) {
-         e1.printStackTrace(); 
+         e1.printStackTrace();
          ErrorReporter.showError(e1, this);
       }
       System.exit(0);
    }
-    
+
    public void doPrint() {
       getDailySummary().getServingTable().doPrint();
    }
-    
+
    public void taskStarted(Task t) {
       // Nothing
    }
@@ -399,28 +399,28 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
    public void handleQuit() {
       doQuit();
    }
-   
+
    public void doNutritionReport() {
       getDailySummary().getNutritionSummaryPanel().generateReport(getDailySummary().getDate());
    }
-   
+
    /**
-    * Installs special apple event listeners for Mac OS X specific functions 
+    * Installs special apple event listeners for Mac OS X specific functions
     */
    private void setupForMacOSX() {
-      if (ToolBox.isMacOSX()) { 
+      if (ToolBox.isMacOSX()) {
          try {
             Class appleAppClass = Class.forName("com.apple.mrj.MRJApplicationUtils");
-            
-            Class quitClass = Class.forName("com.apple.mrj.MRJQuitHandler");           
+
+            Class quitClass = Class.forName("com.apple.mrj.MRJQuitHandler");
             Class[] quitArgs = {quitClass};
             Method registerQuitMethod = appleAppClass.getDeclaredMethod("registerQuitHandler", quitArgs);
             if (registerQuitMethod != null) {
                Object[] args = {this};
                registerQuitMethod.invoke(appleAppClass, args);
             }
-            
-            Class aboutClass = Class.forName("com.apple.mrj.MRJAboutHandler");           
+
+            Class aboutClass = Class.forName("com.apple.mrj.MRJAboutHandler");
             Class[] aboutArgs = {aboutClass};
             Method registerAboutMethod = appleAppClass.getDeclaredMethod("registerAboutHandler", aboutArgs);
             if (registerAboutMethod != null) {
@@ -429,11 +429,11 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
             }
          } catch (Exception e) {
             Logger.debug(e);
-            ErrorReporter.showError(e, this); 
-         }         
+            ErrorReporter.showError(e, this);
+         }
       }
    }
-   
+
    private static final class SplashScreenTask implements Task, ProgressListener {
       int prog = 0;
 
@@ -453,7 +453,7 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
 
       public void run() {
          ToolBox.sleep(1000);
-         Datasources.initialize(this);  
+         Datasources.initialize(this);
          if (UserManager.getUserManager().getCheckForUpdates()) {
             Thread t = new Thread( new Runnable() {
                public void run() {
@@ -463,7 +463,7 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
             t.start();
          }
       }
-      
+
 
       public void progressStart() {
          prog = 0;
@@ -476,12 +476,12 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
       public void progress(int percent) {
          prog = percent;
       }
-   } 
+   }
 
-   public void doCheckForUpdates() {      
+   public void doCheckForUpdates() {
       try {
-         URL url = new URL("http://spaz.ca/cronometer/updates.xml");     
-         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();         
+         URL url = new URL("http://spaz.ca/cronometer/updates.xml");
+         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
          DocumentBuilder db = dbf.newDocumentBuilder();
          Document d = db.parse(url.openStream());
          Element e = d.getDocumentElement();
@@ -500,18 +500,18 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
                            null);
                   if (result == JOptionPane.OK_OPTION  && www != null) {
                      ToolBox.launchURL(CRONOMETER.mainFrame, www);
-                  }                  
+                  }
                }
             });
          }
       } catch (Exception ex) {
-         Logger.error(ex);         
+         Logger.error(ex);
       }
    }
 
    public void handleAbout() {
       doAbout();
-   }   
+   }
 
    public void lostOwnership(Clipboard clipboard, Transferable contents) {
       // unused interface
@@ -524,7 +524,7 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
     * reflect the changes made.
     */
    public void refreshDisplays() {
-      repaint(); 
+      repaint();
       // TODO: replace this with a direct user servings listener model
       CRONOMETER.getInstance().getDailySummary().notifyObservers();
    }
@@ -534,8 +534,8 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
     * @param btn the button to modify
     */
    public static void fixButton(final JButton btn) {
-      btn.setOpaque(false); 
-      btn.setRolloverEnabled(true); 
+      btn.setOpaque(false);
+      btn.setRolloverEnabled(true);
       if (ToolBox.isMacOSX()) {
          btn.setBorderPainted(false);
          btn.setContentAreaFilled(false);
@@ -546,7 +546,7 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
                   btn.setOpaque(false);
                   btn.setBorderPainted(true);
                }
-            } 
+            }
             public void mouseExited(MouseEvent e) {
                btn.setContentAreaFilled(false);
                btn.setBorderPainted(false);
@@ -563,7 +563,7 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
       setExtendedState(Frame.NORMAL);
       toFront();
    }
-   
+
    /**
     * Show the user a dialog with an Ok button.
     * @param message the message to display
@@ -584,20 +584,19 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
          Logger.error("Error: setLookAndFeel() failed", e);
       }
       // The optional program argument sets the name of the subdirectory for user data.
-      // This permits using a different subdirectory for development and testing 
+      // This permits using a different subdirectory for development and testing
       // (by setting the argument in your IDE's run configuration) than for
       // daily use of the application.
       if (args.length > 0) {
          UserManager.setSubdirectory(args[0]);
       }
-      
+
       final CRONOMETER cron = CRONOMETER.getInstance();
       SplashScreen scr = new SplashScreen(new SplashScreenTask());
       mainFrame = scr;
       scr.setIconImage(CRONOMETER.getWindowIcon());
       scr.addTaskListener(cron);
-      scr.start();      
+      scr.start();
    }
-   
-}
 
+}

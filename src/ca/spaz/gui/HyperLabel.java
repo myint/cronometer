@@ -13,18 +13,18 @@ public class HyperLabel extends JLabel implements MouseListener {
    private static final String BLUE = "#0000FF";
    private static final String RED = "#FF0000";
    private static final String GRAY = "#AAAAAA";
-   
+
    private String color = BLUE;
    private String text = "";
-   
-   private Vector listeners = new Vector(); 
-   
+
+   private Vector listeners = new Vector();
+
    public HyperLabel() {
       init();
    }
-   
+
    public HyperLabel(String text) {
-      super();      
+      super();
       setText(text, true);
       init();
    }
@@ -33,14 +33,14 @@ public class HyperLabel extends JLabel implements MouseListener {
       addMouseListener(this);
       setEnabled(true);
       setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-   } 
-   
+   }
+
    public void setEnabled(boolean val) {
       super.setEnabled(val);
       color = val ? BLUE : GRAY;
       setText(text);
    }
-   
+
    public void setText(String text) {
       setText(text, true);
    }
@@ -64,7 +64,7 @@ public class HyperLabel extends JLabel implements MouseListener {
    public String getPlainText() {
       return text;
    }
-   
+
    public void mouseEntered(MouseEvent e) {}
 
    public void mouseExited(MouseEvent e) {}
@@ -72,11 +72,11 @@ public class HyperLabel extends JLabel implements MouseListener {
    public void mousePressed(MouseEvent e) {}
 
    public void mouseReleased(MouseEvent e) {}
-   
+
    public void addActionListener(ActionListener al) {
       listeners.add(al);
    }
-   
+
    public void removeActionListener(ActionListener al) {
       listeners.remove(al);
    }

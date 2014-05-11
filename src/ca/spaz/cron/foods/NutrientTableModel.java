@@ -12,7 +12,7 @@ import ca.spaz.gui.PrettyTable;
 import ca.spaz.gui.PrettyTableModel;
 
 public class NutrientTableModel extends PrettyTableModel {
-   
+
    private static final int NAME_COLUMN = 0;
    private static final int AMOUNT_COLUMN = 1;
    private static final int UNIT_COLUMN = 2;
@@ -22,18 +22,18 @@ public class NutrientTableModel extends PrettyTableModel {
 
    private List nutrients;
 
-   private Food food;   
+   private Food food;
    private double multiplier = 1;
-   
+
    public NutrientTableModel(List nutrientInfo) {
       this.nutrients = UserManager.getCurrentUser().getTracked(nutrientInfo);
    }
-   
+
    public void setMultiplier(double val) {
       this.multiplier = val;
       fireTableDataChanged();
    }
-   
+
    public void setFood(Food f) {
       this.food = f;
       fireTableDataChanged();
@@ -115,7 +115,7 @@ public class NutrientTableModel extends PrettyTableModel {
             fireTableRowsUpdated(row, row);
          }
       }
-      
+
       if (col == RDI_COLUMN && value != null) {
          NutrientInfo ni = getNutrientInfo(row);
          if (ni != null) {
@@ -130,11 +130,11 @@ public class NutrientTableModel extends PrettyTableModel {
       }
    }
 
-   public String getToolTipText(int r, int c) { 
+   public String getToolTipText(int r, int c) {
       return null;
    }
 
-   public void sort() { 
+   public void sort() {
       // no sorting for this table
    }
 
@@ -148,5 +148,5 @@ public class NutrientTableModel extends PrettyTableModel {
       }
       return c;
    }
-   
+
 }

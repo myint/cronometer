@@ -13,16 +13,16 @@ import ca.spaz.util.ToolBox;
 
 /**
  * A comprehensive summary of a set of consumed foods
- * 
- * @todo: multi day mode  
- * 
+ *
+ * @todo: multi day mode
+ *
  * @author davidson
  * @author Chris Rose
  */
 public class NutritionSummaryPanel extends JTabbedPane {
 
     private TargetSummaryChart targetPanel;
-    
+
     private MacroNutrientSummaryPanel generalPanel;
 
     private MineralSummaryPanel mineralPanel;
@@ -30,7 +30,7 @@ public class NutritionSummaryPanel extends JTabbedPane {
     private VitaminSummaryPanel vitaminPanel;
 
     private AminoAcidSummaryPanel aminoAcidPanel;
-    
+
     private LipidSummaryPanel lipidsPanel;
 
     public NutritionSummaryPanel() {
@@ -46,25 +46,25 @@ public class NutritionSummaryPanel extends JTabbedPane {
    }
 
     public void setServings(List consumed, boolean allSelected) {
-        getGeneralPanel().update(consumed);        
-        getMineralsPanel().update(consumed);  
-        getVitaminsPanel().update(consumed);  
-        getAminoAcidsPanel().update(consumed);       
+        getGeneralPanel().update(consumed);
+        getMineralsPanel().update(consumed);
+        getVitaminsPanel().update(consumed);
+        getAminoAcidsPanel().update(consumed);
         getLipidsPanel().update(consumed);
-        getTargetSummaryPanel().update(consumed, allSelected);        
+        getTargetSummaryPanel().update(consumed, allSelected);
     }
-    
+
     public void setExercises(List exercises) {
        getTargetSummaryPanel().updateExercises(exercises);
     }
-    
+
     protected TargetSummaryChart getTargetSummaryPanel() {
        if (null == targetPanel) {
-          targetPanel = new TargetSummaryChart(this);          
+          targetPanel = new TargetSummaryChart(this);
        }
        return targetPanel;
    }
-    
+
     protected MacroNutrientSummaryPanel getGeneralPanel() {
         if (null == generalPanel) {
            generalPanel = new MacroNutrientSummaryPanel();
@@ -75,7 +75,7 @@ public class NutritionSummaryPanel extends JTabbedPane {
 
     protected VitaminSummaryPanel getVitaminsPanel() {
         if (null == vitaminPanel) {
-            vitaminPanel = new VitaminSummaryPanel();            
+            vitaminPanel = new VitaminSummaryPanel();
         }
         return vitaminPanel;
     }
@@ -101,7 +101,7 @@ public class NutritionSummaryPanel extends JTabbedPane {
       return lipidsPanel;
     }
 
-   public void generateReport(Date date) { 
+   public void generateReport(Date date) {
       ReportWindow wp = new ReportWindow(this, date);
       WrapperDialog.showDialog(this, wp, true);
    }

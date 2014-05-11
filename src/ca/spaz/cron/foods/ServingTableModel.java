@@ -17,20 +17,20 @@ public class ServingTableModel extends PrettyTableModel {
    public static final int AMOUNT_COL = 1;
    public static final int MEASURE_COL = 2;
    public static final int CALORIES_COL = 3;
-      
+
    public static String[] columnNames = { "Food", "Amount", "Measure", "Calories" };
 
 
    private static final DecimalFormat kcalf = new DecimalFormat("######0.0");
    private static final DecimalFormat amountf = new DecimalFormat("######0.##");
-   
+
    private List servings = new ArrayList();
    private ServingTable table;
-   
+
    public ServingTableModel(ServingTable table) {
       this.table = table;
    }
-   
+
    public void UpdateTableModel(ServingTable table) {
       this.table = table;
    }
@@ -39,11 +39,11 @@ public class ServingTableModel extends PrettyTableModel {
       servings = list;
       fireTableDataChanged();
    }
-   
+
    public List getServings() {
       return servings;
    }
-   
+
    public Class getColumnClass(int col) {
       Object o = getValueAt(0, col);
       if (o != null) {
@@ -68,7 +68,7 @@ public class ServingTableModel extends PrettyTableModel {
    public int getNumServings() {
       return servings.size();
    }
-   
+
    public int getRowCount() {
       return servings.size();
    }
@@ -101,7 +101,7 @@ public class ServingTableModel extends PrettyTableModel {
       }
       return "";
    }
-   
+
    public boolean isCellEditable(int row, int col) {
       if (col == AMOUNT_COL) return true;
       if (col == MEASURE_COL) return true;
@@ -128,26 +128,26 @@ public class ServingTableModel extends PrettyTableModel {
             double grams = val / (kcals/100.0);
             s.setGrams(grams);
          } catch (NumberFormatException e) {}
-      }        
+      }
       s.update();
-      fireTableRowsUpdated(row, row);         
+      fireTableRowsUpdated(row, row);
       table.fireStateChangedEvent();
    }
 
    public void delete(Serving s) {
       servings.remove(s);
-      fireTableDataChanged();      
+      fireTableDataChanged();
    }
 
    public void addServing(Serving s) {
       servings.add(s);
-      fireTableDataChanged();      
+      fireTableDataChanged();
    }
 
    public void sort() {
       // no sorting in this table for now.
    }
-   
+
    /**
     * Allows custom rendering for a row and column. Can just return c, if no
     * changes to default are desired.
@@ -160,9 +160,9 @@ public class ServingTableModel extends PrettyTableModel {
       Serving s = getServing(row);
       if (s != null) {
          if (s.getFoodProxy().isDeprecated()) {
-            c.setForeground(Color.LIGHT_GRAY);               
+            c.setForeground(Color.LIGHT_GRAY);
          } else if (col == 0) {
-            c.setForeground(s.getFoodProxy().getSource().getDisplayColor());               
+            c.setForeground(s.getFoodProxy().getSource().getDisplayColor());
          } else {
             c.setForeground(Color.BLACK);
          }

@@ -15,12 +15,12 @@ import ca.spaz.cron.records.Record;
  *
  * @author Aaron Davidson
  */
-public class BiometricsHistory extends History { 
-     
+public class BiometricsHistory extends History {
+
    public BiometricsHistory() {
       super();
    }
-    
+
    public String getBaseName() {
       return "metrics";
    }
@@ -32,7 +32,7 @@ public class BiometricsHistory extends History {
    public Record loadUserEntry(Element item) {
       return new Metric(item);
    }
-   
+
    /**
     * Add a new record of a Metric to the history
     */
@@ -40,10 +40,10 @@ public class BiometricsHistory extends History {
       addEntry(m);
    }
 
-   public synchronized List getMetricsOn(Date curDate) {     
+   public synchronized List getMetricsOn(Date curDate) {
       return getEntriesOn(curDate);
    }
-   
+
    public List getMetricsOfType(String type) {
       ArrayList res = new ArrayList();
       for (int i=0; i<entries.size(); i++) {
@@ -56,11 +56,11 @@ public class BiometricsHistory extends History {
    }
 
    public void delete(Metric m) {
-      deleteEntry(m);       
+      deleteEntry(m);
    }
 
    public void update(Metric m) {
       updateEntry(m);
    }
-    
+
 }

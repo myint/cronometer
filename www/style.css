@@ -20,8 +20,8 @@ h5 {
    margin-bottom: 4px;
 }
 
-a:link {color: #308A7F;text-decoration: none;} 
-a:visited {color: #308A7F;text-decoration: none;} 
+a:link {color: #308A7F;text-decoration: none;}
+a:visited {color: #308A7F;text-decoration: none;}
 a:hover {color: #3387D9;text-decoration: underline;}
 
 #padded {
@@ -30,7 +30,7 @@ a:hover {color: #3387D9;text-decoration: underline;}
 }
 
 #titlebar h1 {
-   text-align: center; 
+   text-align: center;
    color: #20AA6C;
    text-shadow: 1px 2px 1px #111;
    margin-left: 0px;
@@ -38,7 +38,7 @@ a:hover {color: #3387D9;text-decoration: underline;}
    margin-bottom: 10px;
    padding: 10px;
 }
- 
+
 
 #sidebar {
 	float: left;
@@ -47,7 +47,7 @@ a:hover {color: #3387D9;text-decoration: underline;}
 	background: #cdc;
 	border: 2px ridge #3A3;
 	padding: 10px;
-	margin-bottom: 20px;	
+	margin-bottom: 20px;
 }
 
 #footer {
@@ -60,7 +60,7 @@ a:hover {color: #3387D9;text-decoration: underline;}
 	border-top: 1px solid #333;
 }
 
-li { 
+li {
 	margin-left: 10px;
    padding: 6px;
 }
@@ -77,5 +77,3 @@ li {
   display:inline;
   float:right;
 }
-
- 

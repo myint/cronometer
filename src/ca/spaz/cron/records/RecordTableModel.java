@@ -14,25 +14,25 @@ import ca.spaz.gui.PrettyTableModel;
 
 public abstract class RecordTableModel extends PrettyTableModel {
    private static final DateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
-   
+
    private List entries = new ArrayList();
-    
+
    public void setUserEntrys(List list) {
       entries = list;
       fireTableDataChanged();
    }
-   
+
    public List getUserEntrys() {
       return entries;
    }
-   
+
    public Class getColumnClass(int col) {
       Object o = getValueAt(0, col);
       if (o != null) {
          return o.getClass();
       }
       return String.class;
-   } 
+   }
 
    public Record getUserEntry(int i) {
       if (i<0 || i >= entries.size()) return null;
@@ -42,25 +42,25 @@ public abstract class RecordTableModel extends PrettyTableModel {
    public int getNumUserEntrys() {
       return entries.size();
    }
-   
+
    public int getRowCount() {
       return entries.size();
    }
 
    public void delete(Record UserEntry) {
       entries.remove(UserEntry);
-      fireTableDataChanged();      
+      fireTableDataChanged();
    }
 
    public void addUserEntry(Record userEntry) {
       entries.add(userEntry);
-      fireTableDataChanged();      
+      fireTableDataChanged();
    }
 
    public void sort() {
       // no sorting in this table for now.
    }
-   
+
    /**
     * Allows custom rendering for a row and column. Can just return c, if no
     * changes to default are desired.
@@ -72,6 +72,6 @@ public abstract class RecordTableModel extends PrettyTableModel {
    public Component customRender(Component c, PrettyTable table, int row, int col) {
       //Record entry = getUserEntry(row);
       return c;
-   } 
+   }
 
 }

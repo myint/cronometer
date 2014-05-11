@@ -16,7 +16,7 @@ import ca.spaz.cron.records.RecordTable;
 import ca.spaz.cron.user.UserManager;
 
 public class MetricTable extends RecordTable {
-   
+
    public MetricTable() {
       super(new MetricTableModel());
       setTitle("BioMarkers");
@@ -32,9 +32,9 @@ public class MetricTable extends RecordTable {
          metric.setDate(CRONOMETER.getInstance().getDailySummary().getDate());
          addMetric(metric);
          fireUserEntryChosen(metric);
-      }      
+      }
    }
-   
+
    private JComponent makeJScrollPane() {
       JScrollPane jsp = new JScrollPane(getTable());
       jsp.setPreferredSize(new Dimension(400, 250));
@@ -60,14 +60,14 @@ public class MetricTable extends RecordTable {
       DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
       renderer.setHorizontalAlignment(SwingConstants.CENTER);
       tcm.getColumn(MetricTableModel.TIME_COL).setCellRenderer(renderer);
-      // Right align value column         
+      // Right align value column
       renderer = new DefaultTableCellRenderer();
       renderer.setHorizontalAlignment(SwingConstants.RIGHT);
       tcm.getColumn(MetricTableModel.VALUE_COL).setCellRenderer(renderer);
-   } 
+   }
 
    public void setMetrics(List metrics) {
-      getMetricTableModel().setMetrics(metrics); 
+      getMetricTableModel().setMetrics(metrics);
       fireStateChangedEvent();
    }
 
@@ -80,7 +80,7 @@ public class MetricTable extends RecordTable {
       UserManager.getCurrentUser().getBiometricsHistory().addMetric(metric);
       fireStateChangedEvent();
    }
-   
+
    public MetricTableModel getMetricTableModel() {
       return (MetricTableModel)model;
    }

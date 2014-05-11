@@ -13,30 +13,30 @@ import org.jdesktop.swingx.JXMonthView;
 
 public class DateChooser extends WrappedPanel {
    private String title = "Choose Date";
- 
+
    private JXMonthView cal;
-   
-   public DateChooser(Date curDate) { 
+
+   public DateChooser(Date curDate) {
       cal = new JXMonthView();
       cal.setTraversable(true);
       cal.setSelectionInterval(curDate, curDate);
 
-      add(cal); 
+      add(cal);
    }
-      
+
    public static Date pickDate(JComponent parent, Date d) {
-      DateChooser dc = new DateChooser(d);      
+      DateChooser dc = new DateChooser(d);
       WrapperDialog.showDialog(parent, dc);
-      return (Date)dc.cal.getSelection().first(); 
+      return (Date)dc.cal.getSelection().first();
    }
-   
+
    public static Date pickDate(JComponent parent, Date d, String title) {
-      DateChooser dc = new DateChooser(d); 
+      DateChooser dc = new DateChooser(d);
       dc.setTitle(title);
       WrapperDialog.showDialog(parent, dc);
-      return (Date)dc.cal.getSelection().first(); 
-   }   
- 
+      return (Date)dc.cal.getSelection().first();
+   }
+
    private void setTitle(String title) {
       this.title = title;
    }
@@ -47,7 +47,7 @@ public class DateChooser extends WrappedPanel {
 
    public String getSubtitle() {
       return null;
-   } 
+   }
 
    public String getInfoString() {
       return title;
@@ -58,10 +58,10 @@ public class DateChooser extends WrappedPanel {
    }
 
 
-   public boolean showSidebar() { 
+   public boolean showSidebar() {
       return false;
    }
-   
+
    public boolean isCancellable() {
       return false;
    }
@@ -70,6 +70,6 @@ public class DateChooser extends WrappedPanel {
    }
 
    public boolean doAccept() { return true; }
-   
-   
+
+
 }

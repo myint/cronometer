@@ -28,20 +28,20 @@ public class SplashScreen extends JFrame implements TaskListener {
    private JPanel mainPanel;
    private JCheckBox checkForUpdates;
    private Task task;
-   
+
    public static void showSplashScreen(Task startupTasks) {
       SplashScreen scr = new SplashScreen(startupTasks);
       scr.start();
    }
-   
+
    public SplashScreen(Task startupTasks) {
-      
+
       JPanel mp = new JPanel(new BorderLayout());
       mp.setBorder(new CompoundBorder(
             BorderFactory.createRaisedBevelBorder(),
             BorderFactory.createEmptyBorder(15,15,15,15) ));
       mp.add(getMainPanel(), BorderLayout.CENTER);
-      
+
       setUndecorated(true);
       setTitle(CRONOMETER.getFullTitle());
       getContentPane().setLayout(new BorderLayout(4,4));
@@ -50,7 +50,7 @@ public class SplashScreen extends JFrame implements TaskListener {
       ToolBox.centerFrame(this);
       this.task = startupTasks;
    }
-   
+
    public ImageIcon getIcon() {
       try {
          BufferedImage img = GraphicsUtilities.loadCompatibleImage(this.getClass().getResource("/img/apple-100x100.png"));
@@ -61,26 +61,26 @@ public class SplashScreen extends JFrame implements TaskListener {
       }
       return new ImageIcon(); // empty on failure
    }
-   
+
    public void start() {
       setVisible(true);
       getTaskBar().executeTask(task);
    }
-   
+
    private JPanel getMainPanel() {
       if (mainPanel == null) {
          mainPanel = new TranslucentPanel(0.3);
          mainPanel.setBackground(Color.BLACK);
          mainPanel.setLayout(new RiverLayout());
-         mainPanel.setBorder(BorderFactory.createEmptyBorder(15,40,15,40));      
+         mainPanel.setBorder(BorderFactory.createEmptyBorder(15,40,15,40));
          mainPanel.add("p center", getSplash());
-         
+
          JXBusyLabel busy = new JXBusyLabel();
          mainPanel.add("br center", busy);
          busy.setBusy(true);
 
          //mainPanel.add("p hfill", getTaskBar());
-         
+
          mainPanel.add("p center", getVersionLabel());
          if (System.getProperty("ca.spaz.mode", "application").equalsIgnoreCase("application")) {
             mainPanel.add("p center", getCheckForUpdatesBox());
@@ -88,7 +88,7 @@ public class SplashScreen extends JFrame implements TaskListener {
       }
       return mainPanel;
    }
-   
+
    private TaskBar getTaskBar() {
       if (taskBar == null) {
          taskBar = new TaskBar();
@@ -99,7 +99,7 @@ public class SplashScreen extends JFrame implements TaskListener {
       }
       return taskBar;
    }
-   
+
    private JLabel getSplash() {
       if (splash == null) {
          splash = new JLabel(CRONOMETER.TITLE, getIcon(), JLabel.CENTER);
@@ -110,11 +110,11 @@ public class SplashScreen extends JFrame implements TaskListener {
       }
       return splash;
    }
-   
+
 
    private JLabel getVersionLabel() {
       if (version == null) {
-         version = new JLabel(CRONOMETER.getFullTitle(), JLabel.CENTER);         
+         version = new JLabel(CRONOMETER.getFullTitle(), JLabel.CENTER);
          version.setFont(version.getFont().deriveFont(Font.PLAIN, 10));
          version.setForeground(Color.DARK_GRAY);
       }
@@ -136,8 +136,8 @@ public class SplashScreen extends JFrame implements TaskListener {
    /**
     * Adds a task listener to this object to receive events on
     * a task's progress.
-    * 
-    * @param tl a task listener 
+    *
+    * @param tl a task listener
     */
    public synchronized void addTaskListener(TaskListener tl) {
       getTaskBar().addTaskListener(tl);
@@ -145,28 +145,28 @@ public class SplashScreen extends JFrame implements TaskListener {
 
    /**
     * Remove a task listener from the TaskBar
-    * 
-    * @param tl a task listener 
+    *
+    * @param tl a task listener
     */
    public synchronized void removeTaskListener(TaskListener tl) {
       getTaskBar().removeTaskListener(tl);
    }
-  
-   
+
+
    private JCheckBox getCheckForUpdatesBox() {
       if (checkForUpdates == null) {
          checkForUpdates = new JCheckBox(
-               "check website for updates", 
-               UserManager.getUserManager().getCheckForUpdates());              
+               "check website for updates",
+               UserManager.getUserManager().getCheckForUpdates());
          checkForUpdates.setFocusable(false);
          checkForUpdates.setOpaque(false);
          checkForUpdates.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                UserManager.getUserManager().setCheckForUpdates(checkForUpdates.isSelected());
-            }            
+            }
          });
       }
       return checkForUpdates;
    }
-   
+
 }

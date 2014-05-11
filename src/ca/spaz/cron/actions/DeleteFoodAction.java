@@ -2,7 +2,7 @@
  * Created on 31-Dec-2005
  */
 package ca.spaz.cron.actions;
- 
+
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.util.List;
@@ -18,7 +18,7 @@ import ca.spaz.util.ImageFactory;
 public class DeleteFoodAction extends AbstractAction {
    private FoodProxy food;
    private Component parent;
-   
+
    public DeleteFoodAction(FoodProxy food, Component parent) {
       super("Delete Food");
       this.food = food;
@@ -28,12 +28,12 @@ public class DeleteFoodAction extends AbstractAction {
       if (!food.getSource().isMutable()) {
          setEnabled(false);
       }
-   }      
-   
-   public void actionPerformed(ActionEvent e) {
-      doDeleteFood(food, parent);     
    }
-   
+
+   public void actionPerformed(ActionEvent e) {
+      doDeleteFood(food, parent);
+   }
+
    public static void doDeleteFood(FoodProxy fp, Component parent) {
       assert (fp != null);
 
@@ -42,12 +42,12 @@ public class DeleteFoodAction extends AbstractAction {
       if (servings.size() == 0) {
          rc = JOptionPane.showConfirmDialog(parent,
             "Are you sure you want to delete '"+
-            fp.getDescription() + "'?", 
+            fp.getDescription() + "'?",
             "Delete Food?", JOptionPane.YES_NO_OPTION);
       } else {
          rc = JOptionPane.showConfirmDialog(parent,
                "Are you sure you want to delete '"+
-               fp.getDescription() + "' and the "+servings.size()+" references to it?", 
+               fp.getDescription() + "' and the "+servings.size()+" references to it?",
                "Delete Food?", JOptionPane.YES_NO_OPTION);
       }
       if (rc == JOptionPane.YES_OPTION) {
@@ -55,9 +55,9 @@ public class DeleteFoodAction extends AbstractAction {
             fp.getFood().delete();
             UserManager.getCurrentUser().getFoodHistory().deleteServings(servings);
             // TODO: must also delete from recipes that refer to it
-            CRONOMETER.getInstance().refreshDisplays();            
+            CRONOMETER.getInstance().refreshDisplays();
          }
       }
    }
-     
+
 }

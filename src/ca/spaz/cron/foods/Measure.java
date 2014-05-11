@@ -10,7 +10,7 @@ import ca.spaz.util.XMLNode;
  * A measure maps a common measure for a food item (ie: a Cup, Teaspoon,
  * Serving, etc...) The Measure contains the description of the measure and the
  * number of grams of the food there are in the given measure.
- * 
+ *
  * @author davidson
  */
 public class Measure {
@@ -22,12 +22,12 @@ public class Measure {
     private double amount; // multiplier for the measure
 
     private String description; // description of the measure (must be unique for all measures for a food)
-    
+
     public Measure() { }
 
     /**
      * Contruct a measure manually
-     * 
+     *
      * @param amount
      *            the multiplier of the measure (ex: 0.5)
      * @param description
@@ -45,7 +45,7 @@ public class Measure {
     /**
      * Get the standard amount of this measure. Example: 1.0 Servings, 0.5 Cups,
      * 2.0 Tablespoons
-     * 
+     *
      * @return the multiplier for this measure
      */
     public double getAmount() {
@@ -54,7 +54,7 @@ public class Measure {
 
     /**
      * Set the standard amount of this measure
-     * 
+     *
      * @param amount
      *            a multiplier
      */
@@ -64,7 +64,7 @@ public class Measure {
 
     /**
      * Get the english name of the measure type
-     * 
+     *
      * @return the english name of the measure type
      */
     public String getDescription() {
@@ -80,7 +80,7 @@ public class Measure {
 
     /**
      * Get the number of grams in this measure
-     * 
+     *
      * @return the number of grams in the measure
      */
     public double getGrams() {
@@ -101,7 +101,7 @@ public class Measure {
           }
           if (amount == (int)amount) {
              return (int)amount + " " + description;
-          }          
+          }
           return amount + " " + description;
        }
        return description;
@@ -112,7 +112,7 @@ public class Measure {
        if (grams != m.grams) return false;
        return description.equals(m.getDescription());
     }
-    
+
    public XMLNode toXMLNode() {
       XMLNode node = new XMLNode("measure");
       node.addAttribute("name", getDescription());

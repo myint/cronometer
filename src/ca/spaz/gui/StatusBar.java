@@ -11,7 +11,7 @@ import javax.swing.*;
 
 public class StatusBar extends JPanel  {
    private JLabel statusLabel, hoverLabel;
-   
+
    public StatusBar() {
       setBorder(BorderFactory.createEmptyBorder(1,1,1,1));
       setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
@@ -19,13 +19,13 @@ public class StatusBar extends JPanel  {
       add(Box.createHorizontalStrut(10));
       add(getStatusLabel());
       add(Box.createHorizontalStrut(10));
-      add(makeSeparator()); 
+      add(makeSeparator());
       add(Box.createHorizontalStrut(10));
       add(getHoverLabel());
       add(Box.createHorizontalStrut(10));
-      add(makeSeparator()); 
+      add(makeSeparator());
       add(Box.createHorizontalStrut(10));
-      add(Box.createHorizontalGlue()); 
+      add(Box.createHorizontalGlue());
    }
 
    private JSeparator makeSeparator() {
@@ -42,7 +42,7 @@ public class StatusBar extends JPanel  {
       }
       return statusLabel;
    }
-    
+
    private JLabel getHoverLabel() {
       if (hoverLabel == null) {
          hoverLabel = new JLabel("<hover>");
@@ -51,6 +51,6 @@ public class StatusBar extends JPanel  {
       }
       return hoverLabel;
    }
-    
-   
+
+
 }

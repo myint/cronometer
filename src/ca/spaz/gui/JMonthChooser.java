@@ -19,7 +19,7 @@ public class JMonthChooser extends JComboBox {
       "November",
       "December"
    };
-   
+
    public JMonthChooser() {
       setModel(new DefaultComboBoxModel(MONTHS));
    }
@@ -27,7 +27,7 @@ public class JMonthChooser extends JComboBox {
    public void setMonth(int i) {
       setSelectedIndex(i);
    }
-   
+
    public int getMonth() {
       return getSelectedIndex();
    }

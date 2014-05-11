@@ -10,8 +10,8 @@ import javax.swing.JTextField;
 import javax.swing.text.*;
 
 /**
- * A text field for entering integer numeric data. The only characters it accepts are the 
- * digits 0-9. 
+ * A text field for entering integer numeric data. The only characters it accepts are the
+ * digits 0-9.
  * @author Gerald
  *
  */
@@ -25,7 +25,7 @@ public class IntegerField extends JTextField {
       toolkit = Toolkit.getDefaultToolkit();
       setValue(value);
    }
-   
+
    public void setRange(int min, int max) {
       this.min = min;
       this.max = max;
@@ -54,7 +54,7 @@ public class IntegerField extends JTextField {
       }
       selectAll();
    }
-   
+
    public void setValue(String value) {
       setText(value);
    }
@@ -62,7 +62,7 @@ public class IntegerField extends JTextField {
    protected Document createDefaultModel() {
       return new IntegerDocument();
    }
-   
+
    protected String getCurrentText() {
       return getText();
    }

@@ -29,32 +29,32 @@ public class UserManagerDialog extends WrappedPanel implements ListSelectionList
    private static boolean addingNewUser = false; //set to true when we are adding a new user
 
    private UserManager userMan;
-   
+
    public UserManagerDialog() {
       this.userMan = UserManager.getUserManager();
-      
-      JPanel cp = new JPanel(new RiverLayout(2,1)); 
+
+      JPanel cp = new JPanel(new RiverLayout(2,1));
       cp.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
       cp.add("tab center vfill", getToolBar());
       cp.add("tab center vfill", getUserListPanel());
       cp.add("tab center hfill", Box.createVerticalBox());
-      
+
       // Grey out the delete button if there is nothing to delete.
       if (userListModel.size() == 1) {
          delBtn.setEnabled(false);
       }
-      
+
       setBorder(BorderFactory.createEmptyBorder(6, 6, 6, 6));
       setLayout(new BorderLayout(12,12));
-        
-      add(cp, BorderLayout.CENTER); 
+
+      add(cp, BorderLayout.CENTER);
       selectCurrentUser();
 
    }
-   
+
    public String getTitle() { return "User Manager"; }
    public String getSubtitle() { return "Manager Users"; }
-   public String getInfoString() { 
+   public String getInfoString() {
       return  "<div align=\"justify\" width=\"180\"><br>" +
               "CRON-o-meter allows you to have multiple users, "
             + "each user has their own profile."
@@ -63,14 +63,14 @@ public class UserManagerDialog extends WrappedPanel implements ListSelectionList
             + "</div>";
    }
 
-   public boolean showSidebar() { 
+   public boolean showSidebar() {
       return true;
    }
-   
+
    public ImageIcon getIcon() {
       return new ImageIcon(ImageFactory.getInstance().loadImage("/img/apple-100x100.png"));
    }
-   
+
    public static boolean showDialog(JComponent parent) {
       try {
          UserManagerDialog usd = new UserManagerDialog();
@@ -84,18 +84,18 @@ public class UserManagerDialog extends WrappedPanel implements ListSelectionList
    private static Border makeTitle(String str) {
       return BorderFactory.createCompoundBorder(
          BorderFactory.createTitledBorder(
-            BorderFactory.createEmptyBorder(), str), 
+            BorderFactory.createEmptyBorder(), str),
             BorderFactory.createEmptyBorder(2,26,2,26));
    }
- 
+
    public void addChangeListener(ChangeListener cl) {
       getListeners().add(cl);
    }
-   
+
    public void removeChangeListener(ChangeListener cl) {
       getListeners().remove(cl);
    }
-   
+
    private Vector<ChangeListener> getListeners() {
       if (listeners == null) {
          listeners = new Vector<ChangeListener>();
@@ -126,7 +126,7 @@ public class UserManagerDialog extends WrappedPanel implements ListSelectionList
       }
       return userListPanel;
   }
-   
+
    public boolean isCancellable() {
       return false;
    }
@@ -141,7 +141,7 @@ public class UserManagerDialog extends WrappedPanel implements ListSelectionList
    public static void setAddNewUser(boolean val) {
       addingNewUser = val;
    }
-   
+
    /**
     * Check to see if we are adding a new user.
     * @return
@@ -149,7 +149,7 @@ public class UserManagerDialog extends WrappedPanel implements ListSelectionList
    public static boolean isAddingNewUser() {
       return addingNewUser;
    }
-   
+
    private void addUser() {
       setAddNewUser(true);
       userMan.addUser(this);
@@ -232,31 +232,31 @@ public class UserManagerDialog extends WrappedPanel implements ListSelectionList
           }
       }
   }
-   
+
    private boolean isOkToDeleteUser() {
-      int choice = JOptionPane.showConfirmDialog(this, 
+      int choice = JOptionPane.showConfirmDialog(this,
             "This will delete all this user's settings and history information.\n" +
-            "Are you sure you want to do delete '" + 
+            "Are you sure you want to do delete '" +
             UserManager.getCurrentUser().getUsername() + "'?",
-            "Delete User?", 
+            "Delete User?",
             JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
       if (choice == JOptionPane.YES_OPTION) {
          return true;
       }
       return false;
-   } 
-   
-   /** 
+   }
+
+   /**
     * Delete the user selected in the userListModel
     * @param row the row item to delete
     */
    private void deleteSelectedUser(int row) {
       String username = (String)userListModel.get(row);
-      
+
       if ( ! isOkToDeleteUser()) {
          return;
       }
-      
+
       if (userListModel.size() == 1) {
          Logger.error("Not allowed to delete last user.");
          return;
@@ -269,20 +269,20 @@ public class UserManagerDialog extends WrappedPanel implements ListSelectionList
       selectCurrentUser();
       setDirty(true);
    }
-   
+
    public boolean doAccept() {
       try {
          userMan.saveUserProperties();
-      } catch (Exception e) { 
+      } catch (Exception e) {
          e.printStackTrace();
-         ErrorReporter.showError(e, this); 
+         ErrorReporter.showError(e, this);
       }
       return true;
    }
 
    //Listener method for list selection changes.
    public void valueChanged(ListSelectionEvent e) {
-      
+
        if (e.getValueIsAdjusting() == false) {
 
            if (userList.getSelectedIndex() == -1) {
@@ -308,7 +308,7 @@ public class UserManagerDialog extends WrappedPanel implements ListSelectionList
     *
     */
    public void selectCurrentUser() {
-      userList.setSelectedValue(UserManager.getCurrentUser().getUsername(), true);   
+      userList.setSelectedValue(UserManager.getCurrentUser().getUsername(), true);
       if (userListModel.getSize() == 1) {
          delBtn.setEnabled(false);
       }

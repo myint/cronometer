@@ -11,14 +11,14 @@ import ca.spaz.util.Logger;
 
 /**
  * Conveniently produces simple SQL SELECT statements
- * 
+ *
  * Currently only handles basic column selection and where based on column
  * equality.
- * 
+ *
  * @author Aaron Davidson
  */
 public class SQLSelect extends SQLSelectableStatement {
-  
+
    protected List items = new ArrayList();
 
    protected ResultSet results = null;
@@ -31,7 +31,7 @@ public class SQLSelect extends SQLSelectableStatement {
 
     /**
      * Create a new SQLUpdate command for the given table
-     * 
+     *
      * @param tableName
      *            the name of the table to update on
      */
@@ -48,21 +48,21 @@ public class SQLSelect extends SQLSelectableStatement {
         super("", true, true, false);
         this.joinedTables = joinedTables;
     }
-    
+
     public void addOrderBy(String orderClause) {
        orders.add(orderClause);
     }
 
     /**
      * Add an item to select
-     * 
+     *
      * @param field
      *            a valid SQL selection item
      */
     public void addSelection(String field) {
         items.add(field);
     }
-    
+
     public void addSelection(String field, String as) {
         items.add(field + " as " + as);
     }
@@ -80,7 +80,7 @@ public class SQLSelect extends SQLSelectableStatement {
         results = stmt.executeQuery(query);
         return results;
     }
-    
+
     private String getOrder() {
        StringBuffer sb = new StringBuffer();
        if (orders.size() > 0) {

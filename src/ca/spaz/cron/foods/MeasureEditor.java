@@ -19,7 +19,7 @@ import ca.spaz.util.ImageFactory;
 
 /**
  * A class for editing the set of weights for a food item
- * 
+ *
  * @author davidson
  */
 public class MeasureEditor extends JPanel {
@@ -37,9 +37,9 @@ public class MeasureEditor extends JPanel {
     private JScrollPane measureScrollPane;
 
     private JToolBar toolBar;
-    
+
     private boolean dirty = false;
-    
+
     private Vector listeners;
 
     public MeasureEditor(Food f) {
@@ -51,25 +51,25 @@ public class MeasureEditor extends JPanel {
     protected void resetMeasures() {
        getWeightTableModel().getWeights().clear();
        getWeightTableModel().getWeights().addAll(food.getMeasures());
-       getWeightTableModel().getWeights().remove(Measure.GRAM);       
+       getWeightTableModel().getWeights().remove(Measure.GRAM);
        getWeightTableModel().fireTableDataChanged();
     }
-    
+
     public void addChangeListener(ChangeListener cl) {
        getListeners().add(cl);
     }
-    
+
     public void removeChangeListener(ChangeListener cl) {
        getListeners().remove(cl);
     }
-    
+
     private Vector getListeners() {
        if (listeners == null) {
           listeners = new Vector();
        }
        return listeners;
     }
-    
+
 
     public void fireChangeEvent() {
        ChangeEvent ce = new ChangeEvent(this);
@@ -86,17 +86,17 @@ public class MeasureEditor extends JPanel {
         this.setLayout(new BorderLayout(4, 4));
         this.setBorder(BorderFactory.createEmptyBorder(8, 8, 8, 8));
         this.add(getToolBar(), BorderLayout.WEST);
-        this.add(getWeightScrollTable(), BorderLayout.CENTER); 
+        this.add(getWeightScrollTable(), BorderLayout.CENTER);
     }
 
-    
+
     public List getMeasures() {
        List measures = new ArrayList();
        measures.add(Measure.GRAM);
        measures.addAll(getWeightTableModel().getWeights());
        return measures;
     }
-    
+
     /**
      * @return
      */
@@ -190,7 +190,7 @@ public class MeasureEditor extends JPanel {
         //      model = new WeightTableModel(curWeights);
         if (null == weightTable) {
 
-            weightTable = new PrettyTable(getWeightTableModel()); 
+            weightTable = new PrettyTable(getWeightTableModel());
             weightTable.getSelectionModel().setSelectionMode(
                     ListSelectionModel.SINGLE_SELECTION);
             weightTable
@@ -225,7 +225,7 @@ public class MeasureEditor extends JPanel {
 
     public class WeightTableModel extends PrettyTableModel {
         List weights = new ArrayList();
-        
+
         private String[] columnNames = { "Amount", "Measure", "Grams" };
 
         public String getColumnName(int col) {
@@ -243,7 +243,7 @@ public class MeasureEditor extends JPanel {
         public List getWeights() {
            return weights;
         }
-        
+
         public Measure getWeight(int i) {
            if (weights.size() > i) {
               return (Measure) weights.get(i);
@@ -288,8 +288,8 @@ public class MeasureEditor extends JPanel {
                    if (val > 0) {
                       w.setAmount(val);
                    } else {
-                      JOptionPane.showMessageDialog(getWeightTable(), 
-                            "An amount cannot be zero!", 
+                      JOptionPane.showMessageDialog(getWeightTable(),
+                            "An amount cannot be zero!",
                             "Error!", JOptionPane.ERROR_MESSAGE);
                    }
                 } else if (col == 1) {
@@ -299,8 +299,8 @@ public class MeasureEditor extends JPanel {
                    if (val > 0) {
                       w.setGrams(val);
                    } else {
-                      JOptionPane.showMessageDialog(getWeightTable(), 
-                            "A measure cannot be zero grams!", 
+                      JOptionPane.showMessageDialog(getWeightTable(),
+                            "A measure cannot be zero grams!",
                             "Error!", JOptionPane.ERROR_MESSAGE);
                    }
                 }
@@ -309,7 +309,7 @@ public class MeasureEditor extends JPanel {
             fireTableCellUpdated(row, col);
         }
 
-      public String getToolTipText(int r, int c) {          
+      public String getToolTipText(int r, int c) {
          return null;
       }
 

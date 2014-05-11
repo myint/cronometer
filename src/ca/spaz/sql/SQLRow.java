@@ -6,23 +6,23 @@ import java.util.Iterator;
 
 /**
  * @TODO: rename, enhance.
- * 
- * A super-simple relational-object mapping system. 
- * 
+ *
+ * A super-simple relational-object mapping system.
+ *
  * @author adavidson
  */
 public class SQLRow {
    private String name;
    private HashMap rows = new HashMap();
-   
+
    public class SQLCol {
       int type;
       String name;
       Object value;
    }
-   
+
    public SQLRow(String name) {
-      this.name = name; 
+      this.name = name;
    }
 
    public void addColumn(String name, int type) {
@@ -37,7 +37,7 @@ public class SQLRow {
       assert (col != null);
       if (col != null) {
          col.value = val;
-      }      
+      }
    }
 
    private String getDatabaseTypeName(int colType) {
@@ -92,5 +92,5 @@ public class SQLRow {
       conn.createStatement().execute(sql.toString());
 
    }
-   
+
 }

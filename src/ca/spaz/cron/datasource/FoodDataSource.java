@@ -12,28 +12,28 @@ import ca.spaz.cron.foods.Food;
  * This interface defines the interaction the application will have with a static,
  * readonly data source.  The methods on it are all the ways that the app might
  * ask for information on elements of the food system.
- * 
+ *
  * Note regaring <code>Food</code> instances and this interface -- this interface and
  * all subclasses expect and should enforce (unless noted) that the <code>Food</code>
  * object passes as a parameter to a given instance have that same instance as its
- * <code>dataSource</code> property. 
- * 
+ * <code>dataSource</code> property.
+ *
  * @author Chris Rose
  * @author Aaron Davidson
  */
 public interface FoodDataSource {
-   
+
    /**
     * Initialize the datasource to a working state.  At the time that this method completes
-    * normally (without throwing an exception), <code>isAvailable</code> must return 
+    * normally (without throwing an exception), <code>isAvailable</code> must return
     * <code>true</code> for this data source.  If this source is already available, this
     * method will do nothing.
     */
    void initialize();
-   
+
    /**
     * Retrieve a <code>List</code> of all foods in this particular Datasource.
-    * 
+    *
     * @todo finalize the needed parameters here.
     * @param keys the keys to search on.  This searches with an AND relation.
     * @return a List of <code>Food</code> objects matching the criteria.
@@ -75,14 +75,14 @@ public interface FoodDataSource {
     * @return the Food matching the given sourceID, or null if not found
     */
    public Food loadFood(String sourceID);
-   
+
    /**
     * Get the food proxy unique food sourceID.
     * @param sourceID a unique food identifier for this datasource
     * @return the Food matching the given sourceID, or null if not found
     */
    public FoodProxy getFoodProxy(String sourceID);
-   
+
 
    public boolean isMutable();
    public void updateFood(Food f);

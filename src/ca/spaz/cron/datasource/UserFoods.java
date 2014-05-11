@@ -22,7 +22,7 @@ public class UserFoods implements FoodDataSource {
    private int maxUID = 0;
    private HashMap<String, FoodProxy> map; // maps sourceID to FoodProxy
    private File userDir;
-   
+
    public UserFoods(File dir) {
       this.userDir = new File(dir, "foods");
       if (!userDir.exists()) {
@@ -31,16 +31,16 @@ public class UserFoods implements FoodDataSource {
    }
 
    public void initialize() {
-      try { 
+      try {
          loadIndex();
       } catch (FileNotFoundException e) {
          // normal on first run
       } catch (IOException e) {
-         ErrorReporter.showError(e, CRONOMETER.getInstance()); 
+         ErrorReporter.showError(e, CRONOMETER.getInstance());
          e.printStackTrace();
       }
    }
-   
+
    private String getNewUID() {
       return Integer.toString(++maxUID);
    }
@@ -66,14 +66,14 @@ public class UserFoods implements FoodDataSource {
       }
       in.close();
       Logger.debug("Loaded " + map.size() +" foods.");
-   }   
-   
+   }
+
    private void writeIndex() {
       try {
          Logger.debug("Writing out index...");
          PrintStream ps = new PrintStream(
                new BufferedOutputStream(new FileOutputStream(
-                     new File(userDir,FOODS_INDEX))));      
+                     new File(userDir,FOODS_INDEX))));
          Iterator iter = map.values().iterator();
          while (iter.hasNext()) {
             FoodProxy fp = (FoodProxy)iter.next();
@@ -82,14 +82,14 @@ public class UserFoods implements FoodDataSource {
          ps.close();
       } catch (Exception ex) {
          Logger.debug(ex);
-         ErrorReporter.showError(ex, CRONOMETER.getInstance()); 
+         ErrorReporter.showError(ex, CRONOMETER.getInstance());
       }
-   }   
+   }
 
    public FoodProxy getFoodProxy(String id) {
       return (FoodProxy)map.get(id);
    }
-   
+
    public Food loadFood(String id) {
       Logger.debug("loadFood("+id+")");
       Food food = XMLFoodLoader.loadFood(new File(userDir, id+".xml"));
@@ -97,7 +97,7 @@ public class UserFoods implements FoodDataSource {
       food.setSourceUID(id);
       return food;
    }
-   
+
    public List<FoodProxy> findFoods(String[] keys) {
       ArrayList<FoodProxy> results = new ArrayList<FoodProxy>();
       Iterator iter = map.values().iterator();
@@ -130,7 +130,7 @@ public class UserFoods implements FoodDataSource {
    }
 
    public void close() {
-      Logger.debug("Closing UserDataSource:" + userDir); 
+      Logger.debug("Closing UserDataSource:" + userDir);
    }
 
    public boolean isAvailable() {
@@ -140,7 +140,7 @@ public class UserFoods implements FoodDataSource {
    public boolean isMutable() {
       return true;
    }
-   
+
    public void updateFood(Food f) {
       File file = new File(userDir, f.getSourceUID()+".xml");
       try {
@@ -149,8 +149,8 @@ public class UserFoods implements FoodDataSource {
          f.writeXML(ps, false);
          ps.close();
       } catch (IOException e) {
-         Logger.error("Error writing food " + file, e); 
-         ErrorReporter.showError("Error writing food " + file, e, CRONOMETER.getInstance()); 
+         Logger.error("Error writing food " + file, e);
+         ErrorReporter.showError("Error writing food " + file, e, CRONOMETER.getInstance());
       }
       FoodProxy fp = getFoodProxy(f.getSourceUID());
       assert (fp != null);
@@ -160,7 +160,7 @@ public class UserFoods implements FoodDataSource {
       }
       fireFoodModifiedEvent(f.getProxy());
    }
-      
+
    public void addFood(Food f) {
       f.setDataSource(this);
       f.setSourceUID(getNewUID());
@@ -171,7 +171,7 @@ public class UserFoods implements FoodDataSource {
       writeIndex();
       fireFoodAddedEvent(f.getProxy());
    }
-   
+
    public void removeFood(Food f) {
       File file = new File(userDir, f.getSourceUID()+".xml");
       file.delete();
@@ -179,13 +179,13 @@ public class UserFoods implements FoodDataSource {
       writeIndex();
       fireFoodDeletedEvent(f.getProxy());
    }
-   
+
    public String toString() {
       return getName();
    }
 
    /**
-    * Searches dataset for an identical food. 
+    * Searches dataset for an identical food.
     * @param f a food to search for
     * @return the identical food if found
     */
@@ -202,40 +202,40 @@ public class UserFoods implements FoodDataSource {
       return null;
    }
 
-   public Color getDisplayColor() { 
+   public Color getDisplayColor() {
       return USER_COL;
    }
 
-   protected void fireFoodModifiedEvent(FoodProxy fp) {      
+   protected void fireFoodModifiedEvent(FoodProxy fp) {
       Iterator iter = listeners.iterator();
       while (iter.hasNext()) {
          ((UserFoodsListener)iter.next()).userFoodModified(fp);
       }
    }
-   
+
    protected void fireFoodAddedEvent(FoodProxy fp) {
       Iterator iter = listeners.iterator();
       while (iter.hasNext()) {
          ((UserFoodsListener)iter.next()).userFoodAdded(fp);
       }
    }
-   
-   protected void fireFoodDeletedEvent(FoodProxy fp) {      
+
+   protected void fireFoodDeletedEvent(FoodProxy fp) {
       Iterator iter = listeners.iterator();
       while (iter.hasNext()) {
          ((UserFoodsListener)iter.next()).userFoodDeleted(fp);
       }
    }
-   
-   
+
+
    public void addUserFoodsListener(UserFoodsListener listener) {
       listeners.add(listener);
    }
-   
+
    public void removeUserFoodsListener(UserFoodsListener listener) {
       listeners.remove(listener);
    }
-   
-   
-   
+
+
+
 }

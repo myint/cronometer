@@ -28,11 +28,11 @@ public class NutrientInfo {
    public static final String[] CATEGORIES = {
       MACRO_NUTRIENTS, VITAMINS, MINERALS, AMINO_ACIDS, LIPIDS
    };
-   
+
    private static byte index_count = 0;
-    
+
    private byte index = index_count++;
-   
+
    private String name;
    private String units;
    private String category;
@@ -44,17 +44,17 @@ public class NutrientInfo {
    private boolean track = true; // default tracking value
 
    private static List globalList = new ArrayList();
-   private static HashMap nutrients = new HashMap();   
+   private static HashMap nutrients = new HashMap();
    private static HashMap categories = new HashMap();
-    
+
 
    static {
       try {
          load(NutrientInfo.class.getResourceAsStream("/nutrients.xml"));
-      } catch (Exception e) {            
+      } catch (Exception e) {
          ErrorReporter.showError("Error Loading nutrients.xml", e, CRONOMETER.getInstance());
       }
-   }   
+   }
 
    private static void load(InputStream in) throws ParserConfigurationException, SAXException, IOException {
       DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
@@ -72,7 +72,7 @@ public class NutrientInfo {
          }
       }
    }
-   
+
    public static List getCategory(String name) {
       List list = (List)categories.get(name);
       if (list == null) {
@@ -81,7 +81,7 @@ public class NutrientInfo {
       }
       return list;
    }
-   
+
    /**
     * Check if the data available for this nutrient is generally incomplete.
     */
@@ -105,7 +105,7 @@ public class NutrientInfo {
       if (e.hasAttribute("track")) {
          this.track = e.getAttribute("track").equalsIgnoreCase("true");
       }
-      
+
       // map all USDA nutrient IDs to NutrientInfo objects
       if (e.hasAttribute("usda")) {
          this.usda = e.getAttribute("usda");
@@ -114,28 +114,28 @@ public class NutrientInfo {
             getUSDANutrientMap().put(parts[i], this);
          }
       }
-      
+
       // load any RDA values
       NodeList nl = e.getElementsByTagName("rda");
       for (int j=0; j<nl.getLength(); j++) {
          DRI dri = new DRI((Element)nl.item(j));
          getDRIs().add(dri);
-      }      
+      }
    }
 
 
    public boolean isVitamin() {
        return getCategory().equals(VITAMINS);
     }
-    
+
     public boolean isMineral() {
        return getCategory().equals(MINERALS);
     }
-    
+
     public boolean isMacroNutrient() {
        return getCategory().equals(MACRO_NUTRIENTS);
     }
-    
+
     public boolean isLipid() {
        return getCategory().equals(LIPIDS);
     }
@@ -144,14 +144,14 @@ public class NutrientInfo {
        return getCategory().equals(AMINO_ACIDS);
     }
 
-    public boolean isOmega3() {       
+    public boolean isOmega3() {
        return getName().equals("Omega-3");
     }
 
-    public boolean isOmega6() {       
+    public boolean isOmega6() {
        return getName().equals("Omega-6");
     }
-      
+
     public String getName() {
         return name;
     }
@@ -159,15 +159,15 @@ public class NutrientInfo {
     public String getUnits() {
         return units;
     }
- 
+
 
     public String getCategory() {
         return category;
     }
 
-    
+
     public static List getMacroNutrients() {
-       return (List)categories.get(MACRO_NUTRIENTS);        
+       return (List)categories.get(MACRO_NUTRIENTS);
     }
 
     public static List getMinerals() {
@@ -175,21 +175,21 @@ public class NutrientInfo {
     }
 
     public static List getAminoAcids() {
-       return (List)categories.get(AMINO_ACIDS);       
+       return (List)categories.get(AMINO_ACIDS);
     }
-    
+
     public static List getVitamins() {
-       return (List)categories.get(VITAMINS);      
+       return (List)categories.get(VITAMINS);
     }
-    
+
     public static List getLipids() {
        return (List)categories.get(LIPIDS);
    }
-    
+
     public static NutrientInfo getByName(String name) {
        return (NutrientInfo)nutrients.get(name);
-    } 
-    
+    }
+
     public static List getGlobalList() {
        return globalList;
     }
@@ -197,11 +197,11 @@ public class NutrientInfo {
    public double getTarget() {
       return getReferenceDailyIntake();
    }
-   
+
    public double getReferenceDailyIntake() {
       return RDI;
    }
-   
+
    public String toString() {
       return name;
    }
@@ -212,21 +212,21 @@ public class NutrientInfo {
 
    public void setParent(NutrientInfo parent) {
       this.parent = parent;
-   }   
-   
+   }
+
    public List getDRIs() {
       if (DRIs == null) {
          DRIs = new ArrayList();
       }
       return DRIs;
    }
-   
+
    public int getIndex() {
       return index;
    }
-   
-   
-   public double getTargetMinimum(User user) {      
+
+
+   public double getTargetMinimum(User user) {
       DRI dri = findMatch(user, getDRIs());
       if (dri != null) {
          return dri.getRDA();
@@ -239,7 +239,7 @@ public class NutrientInfo {
       if (dri != null) {
          double TUL = dri.getTUL();
          return TUL > 0 ? TUL : dri.getRDA() * 5;
-      }      
+      }
       return getReferenceDailyIntake() * 3;
    }
 
@@ -257,7 +257,7 @@ public class NutrientInfo {
    public static NutrientInfo getByUSDA(String usdaID) {
       return (NutrientInfo)getUSDANutrientMap().get(usdaID);
    }
-    
+
    public String getUSDA() {
       return usda;
    }
@@ -285,7 +285,7 @@ public class NutrientInfo {
    public static NutrientInfo getFat() {
       return NutrientInfo.getByName("Fat");
    }
-   
+
    public static NutrientInfo getFiber() {
       return NutrientInfo.getByName("Fiber");
    }
@@ -295,4 +295,3 @@ public class NutrientInfo {
    }
 
 }
- 

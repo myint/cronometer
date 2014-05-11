@@ -11,16 +11,16 @@ import ca.spaz.gui.*;
 
 public class ReadMe extends WrappedPanel {
    private String title;
-   
+
    public ReadMe(JFrame parent, String title, URL url) {
       this.title = title;
       setLayout(new BorderLayout());
       WebViewer wv = new WebViewer(url);
       wv.setPreferredSize(new Dimension(600,400));
       add(wv, BorderLayout.CENTER);
-      WrapperDialog.showDialog(parent, this);      
+      WrapperDialog.showDialog(parent, this);
    }
-   
+
    public String getTitle() {
       return title;
    }
@@ -45,7 +45,7 @@ public class ReadMe extends WrappedPanel {
       return false;
    }
 
-   public void doCancel() { 
+   public void doCancel() {
    }
 
    public boolean doAccept() {

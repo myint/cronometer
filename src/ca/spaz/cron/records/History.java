@@ -16,26 +16,26 @@ import ca.spaz.util.*;
 /**
  * A simple XML backing store taking the place of a lightweight database.
  * For storage and retrieval of timestamp based entries.
- * 
+ *
  * @todo: break into multiple files for better scaling
  * @todo: or wrap a www/database interface instead
- * 
+ *
  * @author adavidson
  */
 public abstract class History {
- 
+
    private boolean dirty = false;
 
    protected ArrayList entries = new ArrayList();
-   
+
    public abstract String getBaseName();
-   
+
    public abstract String getEntryTagName();
-    
+
    public File getHistoryFile() {
       return new File(UserManager.getUserDirectory(UserManager.getCurrentUser()), getBaseName() + ".xml");
    }
-   
+
 
    public File getOldHistoryFile() {
       return new File(UserManager.getUserDirectory(UserManager.getCurrentUser()), getBaseName() + ".bkp");
@@ -45,12 +45,12 @@ public abstract class History {
    public File getTempHistoryFile() {
       return new File(UserManager.getUserDirectory(UserManager.getCurrentUser()), getBaseName() + ".tmp");
    }
-   
+
    public History() {
       load();
    }
-   
-   /** 
+
+   /**
     * Reload the history file.
     *
     */
@@ -66,7 +66,7 @@ public abstract class History {
       //Logger.debug("Add Entry: " + entry);
    }
 
-   public synchronized List getEntriesOn(Date curDate) {     
+   public synchronized List getEntriesOn(Date curDate) {
       ArrayList res = new ArrayList();
       for (int i=0; i<entries.size(); i++) {
          Record entry = (Record)entries.get(i);
@@ -76,27 +76,27 @@ public abstract class History {
       }
       return res;
    }
-   
+
    public List getEntries() {
       return entries;
-   }    
+   }
 
    public void deleteEntry(Record entry) {
       entries.remove(entry);
       dirty = true;
-      Logger.debug("Remove Entry: " + entry);      
+      Logger.debug("Remove Entry: " + entry);
    }
 
-   public void deleteEntries(List list) {       
+   public void deleteEntries(List list) {
       entries.removeAll(list);
       dirty = true;
    }
 
    public void updateEntry(Record entry) {
-      Logger.debug("Update Entry: " + entry);      
+      Logger.debug("Update Entry: " + entry);
       dirty = true;
    }
-   
+
    /**
     * Flush to disk.
     */
@@ -104,7 +104,7 @@ public abstract class History {
       if (dirty) {
          try {
             File file = getHistoryFile();
-            File tempFile = getTempHistoryFile(); 
+            File tempFile = getTempHistoryFile();
             if (tempFile.exists()) {
                tempFile.delete();
             }
@@ -124,7 +124,7 @@ public abstract class History {
          dirty = false;
       }
    }
-    
+
    public synchronized XMLNode toXML() {
       XMLNode node = new XMLNode(getBaseName());
       for (int i=0; i<entries.size(); i++) {
@@ -135,14 +135,14 @@ public abstract class History {
             } catch (Exception e) { e.printStackTrace(); }
          }
       }
-      node.setPrintNewLines(true);    
+      node.setPrintNewLines(true);
       return node;
    }
-   
-   public synchronized void writeXML(PrintStream out) {     
+
+   public synchronized void writeXML(PrintStream out) {
       toXML().write(out);
    }
-   
+
    public synchronized void load() {
       long start = System.currentTimeMillis();
       Logger.debug("Loading: " + getHistoryFile());
@@ -162,24 +162,24 @@ public abstract class History {
       } catch (Exception e) {
          backupFile(getHistoryFile());
          e.printStackTrace();
-         ErrorReporter.showError(e, CRONOMETER.getInstance()); 
+         ErrorReporter.showError(e, CRONOMETER.getInstance());
       }
       dirty = false;
    }
 
    /**
-    * Load Settings fresh from disk 
-    * @throws ParserConfigurationException 
-    * @throws IOException 
-    * @throws SAXException 
+    * Load Settings fresh from disk
+    * @throws ParserConfigurationException
+    * @throws IOException
+    * @throws SAXException
     */
-   public synchronized void load(InputStream in) throws ParserConfigurationException, SAXException, IOException {   
+   public synchronized void load(InputStream in) throws ParserConfigurationException, SAXException, IOException {
       DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
       dbf.setNamespaceAware(true);
       DocumentBuilder db = dbf.newDocumentBuilder();
       Document d = db.parse(in);
       Element e = d.getDocumentElement();
-      
+
       NodeList nl = e.getElementsByTagName(getEntryTagName());
       for (int i=0; i<nl.getLength(); i++) {
          try {
@@ -190,17 +190,17 @@ public abstract class History {
                }
             }
          } catch (Exception ex) {
-            ErrorReporter.showError(ex, CRONOMETER.getInstance()); 
+            ErrorReporter.showError(ex, CRONOMETER.getInstance());
          }
-      }     
+      }
    }
 
    private void backupFile(File f) {
       try {
-         ToolBox.copyFile(f, new File(f.getParent(), System.currentTimeMillis() + "-"+f.getName()));      
-      } catch (IOException e) { 
+         ToolBox.copyFile(f, new File(f.getParent(), System.currentTimeMillis() + "-"+f.getName()));
+      } catch (IOException e) {
          e.printStackTrace();
-      }      
+      }
    }
 
    public abstract Record loadUserEntry(Element item);

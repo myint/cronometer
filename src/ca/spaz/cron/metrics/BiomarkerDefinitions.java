@@ -16,14 +16,14 @@ import ca.spaz.util.XMLNode;
 
 /**
  * The Biomarkers definitions for a user.
- * 
+ *
  * Currently uses a simple XML backing store
- * 
+ *
  * TODO: Manage data better (for instance, broken up by month or use proper DB)
- * 
+ *
  * @author Gerald
  */
-public class BiomarkerDefinitions { 
+public class BiomarkerDefinitions {
 
    private static final String BIOMARKER_DEFINITIONS_FILE = "biomarkers.xml";
 
@@ -47,7 +47,7 @@ public class BiomarkerDefinitions {
    public List getBiomarkers() {
       return biomarkers;
    }
-   
+
    public List getEnabledBiomarkers() {
       List enabledBiomarkers = new ArrayList();
       for (Iterator iter = biomarkers.iterator(); iter.hasNext();) {
@@ -57,8 +57,8 @@ public class BiomarkerDefinitions {
          }
       }
       return enabledBiomarkers;
-   } 
-   
+   }
+
    public Biomarker getBiomarker(String name) {
       for (Iterator iter = biomarkers.iterator(); iter.hasNext();) {
          Biomarker biomarker = (Biomarker) iter.next();
@@ -67,16 +67,16 @@ public class BiomarkerDefinitions {
          }
       }
       return null;
-   }     
+   }
 
    public void delete(Biomarker biomarker) {
       biomarkers.remove(biomarker);
       dirty = true;
-      Logger.debug("Remove Biomarker: " + biomarker);      
+      Logger.debug("Remove Biomarker: " + biomarker);
    }
 
    public void update(Biomarker  biomarker) {
-      Logger.debug("Update Biomarker: " + biomarker);      
+      Logger.debug("Update Biomarker: " + biomarker);
       dirty = true;
    }
 
@@ -125,8 +125,8 @@ public class BiomarkerDefinitions {
          createFile();
       } catch (Exception e) {
          e.printStackTrace();
-         ErrorReporter.showError(e, CRONOMETER.getInstance()); 
-      }   
+         ErrorReporter.showError(e, CRONOMETER.getInstance());
+      }
    }
 
    /**
@@ -139,9 +139,9 @@ public class BiomarkerDefinitions {
       }
       save();
    }
-   
+
    /**
-    * Load Settings fresh from disk 
+    * Load Settings fresh from disk
     */
    public synchronized void load(InputStream in) {
       try {
@@ -160,9 +160,8 @@ public class BiomarkerDefinitions {
          e.printStackTrace();
       } catch (Exception e) {
          e.printStackTrace();
-         ErrorReporter.showError(e, CRONOMETER.getInstance()); 
+         ErrorReporter.showError(e, CRONOMETER.getInstance());
       }
       dirty = false;
    }
 }
-

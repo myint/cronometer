@@ -8,9 +8,9 @@ import java.lang.ref.SoftReference;
 import ca.spaz.cron.foods.Food;
 
 /**
- * A lightweight proxy for a Food. Just the food description and the ability 
- * to obtain the full food object if needed. Used primarily for search results. 
- * 
+ * A lightweight proxy for a Food. Just the food description and the ability
+ * to obtain the full food object if needed. Used primarily for search results.
+ *
  * @author Aaron Davidson
  */
 public class FoodProxy {
@@ -19,15 +19,15 @@ public class FoodProxy {
    private FoodDataSource source;
    private SoftReference food;
    private int references = 0;
-   
-   public FoodProxy() {}   
+
+   public FoodProxy() {}
 
    public FoodProxy(Food f) {
       description = f.getDescription();
       sourceID = f.getSourceUID();
       source = f.getSource();
    }
-   
+
    public FoodProxy(String description, FoodDataSource source, String sourceid) {
       this.description = description;
       this.source = source;
@@ -40,15 +40,15 @@ public class FoodProxy {
       if (!description.equals(fp.getDescription())) return false;
       return true;
    }
-   
+
    public void addReference() {
       references++;
    }
-   
+
    public int getReferences() {
       return references;
    }
-   
+
    public Food getFood() {
       Food f = null;
       if (food != null) {
@@ -67,23 +67,23 @@ public class FoodProxy {
       }
       return description;
    }
-   
+
    public void setDescription(String description) {
       this.description = description;
    }
-   
+
    public FoodDataSource getSource() {
       return source;
    }
-   
+
    public void setSource(FoodDataSource source) {
       this.source = source;
    }
-   
+
    public String getSourceID() {
       return sourceID;
    }
-   
+
    public void setSourceID(String sourceID) {
       this.sourceID = sourceID;
    }
@@ -91,5 +91,5 @@ public class FoodProxy {
    public boolean isDeprecated() {
       return false;
    }
-   
+
 }

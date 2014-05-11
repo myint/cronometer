@@ -18,9 +18,9 @@ import ca.spaz.gui.*;
 import ca.spaz.util.ImageFactory;
 import ca.spaz.util.ToolBox;
 
-public class ReportWindow extends WrappedPanel { 
+public class ReportWindow extends WrappedPanel {
    private DateFormat df = DateFormat.getDateInstance(DateFormat.LONG);
-   
+
    private WebViewer htmlViewer;
    private JPanel toolbar;
    private JComboBox formatBox;
@@ -34,8 +34,8 @@ public class ReportWindow extends WrappedPanel {
    private JButton endDateBtn;
    private Date startDate;
    private Date endDate;
-   
-   
+
+
    public ReportWindow(NutritionSummaryPanel summary, Date date) {
       this.startDate = this.endDate = date;
       this.summary = summary;
@@ -44,14 +44,14 @@ public class ReportWindow extends WrappedPanel {
       add(getHTMLViewer(), BorderLayout.CENTER);
       generateReport();
    }
-   
+
    private void generateReport() {
       boolean targetsOnly = getTargetsOnlyBox().isSelected();
- 
+
       int numDays = 1;
-      List servings = new ArrayList(); 
+      List servings = new ArrayList();
       servings.addAll(UserManager.getCurrentUser().getFoodHistory().getConsumedOn(getStartDate()));
-      
+
       if (!ToolBox.isSameDay(getStartDate(), getEndDate())) {
          Date last = new Date(getStartDate().getTime());
          Calendar cal = new GregorianCalendar();
@@ -60,21 +60,21 @@ public class ReportWindow extends WrappedPanel {
             if (!ToolBox.isSameDay(cal.getTime(), last)) {
                last = cal.getTime();
                servings.addAll(UserManager.getCurrentUser().getFoodHistory().getConsumedOn(last));
-               
+
                numDays++;
-            }         
-            cal.add(Calendar.HOUR, 12);         
+            }
+            cal.add(Calendar.HOUR, 12);
          }
       }
-            
+
       report = getFormat().export(servings, getStartDate(), getEndDate(), numDays, targetsOnly);
-      if (getFormat() instanceof HTMLSummaryFormat) {         
+      if (getFormat() instanceof HTMLSummaryFormat) {
          getHTMLViewer().setHTML(report);
       } else {
          getHTMLViewer().setText(report);
-      }      
+      }
    }
-   
+
    private Date getStartDate() {
       return startDate;
    }
@@ -92,7 +92,7 @@ public class ReportWindow extends WrappedPanel {
       }
       return formats;
    }
-   
+
    private JPanel getToolbar() {
       if (toolbar == null) {
          toolbar = new JPanel();
@@ -102,8 +102,8 @@ public class ReportWindow extends WrappedPanel {
          toolbar.setLayout(new BoxLayout(toolbar, BoxLayout.X_AXIS));
 
          toolbar.add(Box.createHorizontalStrut(5));
-         toolbar.add(getStartDateButton()); 
-         toolbar.add(new JLabel(" to ")); 
+         toolbar.add(getStartDateButton());
+         toolbar.add(new JLabel(" to "));
          toolbar.add(getEndDateButton());
          toolbar.add(Box.createHorizontalStrut(10));
          toolbar.add(getTargetsOnlyBox());
@@ -111,7 +111,7 @@ public class ReportWindow extends WrappedPanel {
          toolbar.add(getFormatBox());
          toolbar.add(Box.createHorizontalStrut(5));
          toolbar.add(Box.createHorizontalGlue());
-         toolbar.add(getSaveButton()); 
+         toolbar.add(getSaveButton());
       }
       return toolbar;
    }
@@ -123,7 +123,7 @@ public class ReportWindow extends WrappedPanel {
       }
       return dateChooser;
    }*/
-    
+
    private JButton getStartDateButton() {
       if (startDateBtn == null) {
          startDateBtn = new JButton(df.format(startDate));
@@ -139,11 +139,11 @@ public class ReportWindow extends WrappedPanel {
                startDateBtn.setText(df.format(startDate));
                generateReport();
             }
-         }); 
+         });
       }
       return startDateBtn;
    }
-   
+
    private JButton getEndDateButton() {
       if (endDateBtn == null) {
          endDateBtn = new JButton(df.format(endDate));
@@ -158,7 +158,7 @@ public class ReportWindow extends WrappedPanel {
                }
                endDateBtn.setText(df.format(endDate));
                generateReport();
-            }            
+            }
          });
       }
       return endDateBtn;
@@ -167,7 +167,7 @@ public class ReportWindow extends WrappedPanel {
    public Date pickDate(Date startDate) {
       return DateChooser.pickDate(this, startDate);
    }
-  
+
    private JComboBox getFormatBox() {
       if (formatBox == null) {
          formatBox = new JComboBox(getFormats());
@@ -181,12 +181,12 @@ public class ReportWindow extends WrappedPanel {
          });
       }
       return formatBox;
-   } 
-   
+   }
+
    private SummaryFormat getFormat() {
       return (SummaryFormat)getFormatBox().getSelectedItem();
    }
-   
+
    private JCheckBox getTargetsOnlyBox() {
       if (targetsOnlyBox == null) {
          targetsOnlyBox = new JCheckBox("Targets Only", true);
@@ -203,11 +203,11 @@ public class ReportWindow extends WrappedPanel {
       }
       return targetsOnlyBox;
    }
-   
+
    private JButton getSaveButton() {
       if (null == saveBtn) {
          saveBtn = new JButton(new ImageIcon(ImageFactory.getInstance().loadImage("/img/save_edit.gif")));
-         saveBtn.setToolTipText("Save to File");       
+         saveBtn.setToolTipText("Save to File");
          saveBtn.setBorderPainted(false);
          saveBtn.setFocusable(false);
          saveBtn.setRolloverEnabled(true);
@@ -220,7 +220,7 @@ public class ReportWindow extends WrappedPanel {
       }
       return saveBtn;
    }
-   
+
    public WebViewer getHTMLViewer() {
       if (htmlViewer == null) {
          htmlViewer = new WebViewer();
@@ -230,12 +230,12 @@ public class ReportWindow extends WrappedPanel {
       }
       return htmlViewer;
    }
-   
+
    public String getTitle() {
       return "Nutrition Report";
    }
 
-   public String getSubtitle() {      
+   public String getSubtitle() {
       return "Nutrition Report";
    }
 
@@ -247,39 +247,39 @@ public class ReportWindow extends WrappedPanel {
       return  new ImageIcon(ImageFactory.getInstance().loadImage("/img/apple-50x50.png"));
    }
 
-   public boolean showSidebar() { 
+   public boolean showSidebar() {
       return false;
    }
 
-   public boolean isCancellable() { 
+   public boolean isCancellable() {
       return false;
    }
 
    public void doCancel() {  }
 
    public boolean doAccept() { return true; }
- 
+
    public void doSaveReport() {
       String xtn = ".txt";
       if (getFormat() instanceof HTMLSummaryFormat) {
          xtn = ".html";
-      }   
+      }
       JFileChooser fd = new JFileChooser();
       fd.setSelectedFile(new File("report"+xtn));
       if (fd.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
          File f = fd.getSelectedFile();
          if (f != null) {
-            try {               
+            try {
                PrintStream ps = new PrintStream(
                      new BufferedOutputStream(new FileOutputStream(f)));
                ps.print(report);
                ps.close();
             } catch (IOException ie) {
-               ErrorReporter.showError(ie, CRONOMETER.getInstance()); 
+               ErrorReporter.showError(ie, CRONOMETER.getInstance());
             }
          }
       }
    }
-  
-   
+
+
 }

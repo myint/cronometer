@@ -19,23 +19,23 @@ import ca.spaz.util.XMLNode;
 
 /**
  * Stores an amount and time of a food serving
- * 
+ *
  * @author davidson
  */
 public class Serving implements Record {
-     
+
     private FoodProxy food;
 
     private double grams;
-    
+
     private Measure measure = Measure.GRAM;
-    
+
     private long date = 0;
 
     private int meal;
 
     public Serving() {}
-    
+
     public Serving(FoodProxy f) {
         this(f, 1.0);
     }
@@ -47,7 +47,7 @@ public class Serving implements Record {
        this.meal = s.meal;
        this.measure = s.measure;
     }
-    
+
     public Serving(FoodProxy f, double grams) {
         this.food = f;
         this.grams = grams;
@@ -55,43 +55,43 @@ public class Serving implements Record {
         this.meal = -1;
     }
 
-    public Serving(Element e) { 
+    public Serving(Element e) {
        load(e);
     }
-    
-    public void load(Element e) {          
+
+    public void load(Element e) {
        FoodDataSource source = Datasources.getUserFoods();
        if (e.hasAttribute("source")) {
           source = Datasources.getSource(e.getAttribute("source"));
        }
-       
+
        FoodProxy proxy = null;
-       
+
        // load the food if stored as a child
        NodeList nl = e.getChildNodes();
-       for (int i=0; i<nl.getLength(); i++) {         
+       for (int i=0; i<nl.getLength(); i++) {
           if (nl.item(i).getNodeName().equals("food") ||
               nl.item(i).getNodeName().equals("recipe")) {
-             Food f = XMLFoodLoader.loadFood((Element)nl.item(i));             
-             if (f != null) { 
+             Food f = XMLFoodLoader.loadFood((Element)nl.item(i));
+             if (f != null) {
                 proxy = addToUserFoodsIfMissing(e.getAttribute("source"), f);
              }
           }
        }
-       
+
        if (proxy == null) {
           proxy = source.getFoodProxy(e.getAttribute("food"));
        }
-       
+
        setFood(proxy);
        if (proxy == null) {
           System.err.println("Failed to load food ["+source+":"+e.getAttribute("food")+"]");
           /*ErrorReporter.showError(
-                "Failed to load food ["+source+":"+e.getAttribute("food")+"]", 
+                "Failed to load food ["+source+":"+e.getAttribute("food")+"]",
                 CRONOMETER.getInstance());*/
           return;
        }
-       
+
        if (e.hasAttribute("date")) {
           setDate(new Date(Long.parseLong(e.getAttribute("date"))));
        }
@@ -104,7 +104,7 @@ public class Serving implements Record {
        }
    }
 
-   private FoodProxy addToUserFoodsIfMissing(String source, Food f) {     
+   private FoodProxy addToUserFoodsIfMissing(String source, Food f) {
       FoodDataSource allegedSource = Datasources.getSource(source);
       if (allegedSource != null) {
          FoodProxy f2 = allegedSource.getFoodProxy(f.getSourceUID());
@@ -113,7 +113,7 @@ public class Serving implements Record {
          }
       }
       // TODO: scan all foods for identical matches first!
-      Datasources.getUserFoods().addFood(f);  
+      Datasources.getUserFoods().addFood(f);
       return f.getProxy();
    }
 
@@ -128,7 +128,7 @@ public class Serving implements Record {
       }
       return node;
     }
-   
+
    public synchronized XMLNode toXML() {
       XMLNode node = new XMLNode("serving");
       node.addAttribute("source", food.getSource().getName());
@@ -136,17 +136,17 @@ public class Serving implements Record {
       if (date != 0) {
          node.addAttribute("date", date);
       }
-      node.addAttribute("grams", grams); 
+      node.addAttribute("grams", grams);
       if (measure != Measure.GRAM) {
          node.addAttribute("measure", measure.getDescription());
       }
       if (meal != -1) {
          node.addAttribute("meal", meal);
-      }       
+      }
       return node;
     }
-    
-   
+
+
     public double getGrams() {
         return grams;
     }
@@ -165,7 +165,7 @@ public class Serving implements Record {
     public FoodProxy getFoodProxy() {
         return food;
     }
-    
+
     public Food getFood() {
        if (food == null) {
           return null;
@@ -177,7 +177,7 @@ public class Serving implements Record {
     public String toString() {
        return getAmount() + " " + getMeasure() + " of " + getFoodProxy().getDescription();
     }
-    
+
     public Date getDate() {
         return new Date(date);
     }
@@ -193,8 +193,8 @@ public class Serving implements Record {
        UserManager.getCurrentUser().getFoodHistory().update(this);
         //lds.changeServingAmount(this);
     }
-    
-    public void delete() {       
+
+    public void delete() {
        UserManager.getCurrentUser().getFoodHistory().delete(this);
        //lds.removeServing(this);
     }
@@ -240,7 +240,7 @@ public class Serving implements Record {
 
    /**
     * Find a matching measure by name in this food
-    * 
+    *
     * @param measureName
     */
    public void setMeasure(String measureName) {
@@ -260,22 +260,22 @@ public class Serving implements Record {
    public boolean isLoaded() {
       return food != null;
    }
-   
+
    public Record copy() {
       return new Serving(this);
    }
-   
+
    // generate the table mapping, could use xml def
    public synchronized SQLRow toSQLRow() {
       SQLRow row = new SQLRow("serving");
       row.addColumn("source", Types.VARCHAR);
       row.addColumn("food", Types.VARCHAR);
-      row.addColumn("time", Types.TIMESTAMP);     
+      row.addColumn("time", Types.TIMESTAMP);
       row.addColumn("grams", Types.DOUBLE);
-      row.addColumn("measure", Types.VARCHAR);    
+      row.addColumn("measure", Types.VARCHAR);
       return row;
    }
-   
+
    // populate (could optionally have reflective populate)
    public synchronized void populate(SQLRow row) {
       row.setValue("source", food.getSource().getName());

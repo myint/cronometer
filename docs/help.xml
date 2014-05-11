@@ -23,15 +23,15 @@
    		<page title="Minerals" url="minerals.html" />
         <page title="Calorie Restriction" url="blank.html"/>
 	</page>
--->	 	 
+-->
 	<page title="Release Notes" url="blank.html">
    		<page title="Version 0.9" url="release9.html" />
    		<page title="Version 0.8" url="release8.html" />
 	</page>
-	
+
 	<page title="About" url="blank.html">
    		<page title="About CRON-o-Meter" url="about.html" />
    		<page title="About cronometer.com" url="webversion.html" />
 	</page>
-	
+
 </page>

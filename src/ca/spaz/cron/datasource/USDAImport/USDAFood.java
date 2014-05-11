@@ -10,14 +10,14 @@ import ca.spaz.sql.SQLInsert;
 import ca.spaz.util.Logger;
 
 public class USDAFood {
-      
+
    int ID;
    String ndb_id;
    String description;
    String foodgroup;
    double pCF=4, fCF=9, cCF=4;
-   
-   
+
+
    /**
     * Construct from USDB Flat file string
     * @param str a string from the USDB sr17 flat file
@@ -28,7 +28,7 @@ public class USDAFood {
       str = str.replaceAll("\\^\\^\\^\\^", "^~~^~~^~~^~~");
       str = str.replaceAll("\\^\\^", "^~~^");
       str = str.replaceAll("\\^$", "^~~");
-      
+
       String[] parts = str.split("\\^");
       for (int i = 0; i < parts.length; i++) {
          parts[i] = parts[i].replaceAll("^~", "");
@@ -45,8 +45,8 @@ public class USDAFood {
       } else {
          System.out.println("bad parts size?\n\t"+parts.length+"|"+str);
       }
-   }   
-   
+   }
+
    public void addToDB(Connection c) {
       try {
          SQLInsert s = new SQLInsert("Food");
@@ -57,11 +57,11 @@ public class USDAFood {
          s.getColumns().add("source", "USDA sr17");
          s.getColumns().add("sourceUID", "sql.usda-sr17." + ndb_id);
          s.execute(c);
-         
+
          // get auto-incremented ID
          ResultSet rs = c.createStatement().executeQuery("CALL IDENTITY()");
          rs.next();
-         ID = rs.getInt(1);        
+         ID = rs.getInt(1);
       } catch (SQLException e) {
          Logger.error("parseFood(String)", e);
       }

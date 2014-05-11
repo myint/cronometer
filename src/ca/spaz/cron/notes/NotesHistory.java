@@ -1,4 +1,4 @@
- 
+
 package ca.spaz.cron.notes;
 
 import java.util.Date;
@@ -10,25 +10,25 @@ import ca.spaz.cron.records.History;
 import ca.spaz.cron.records.Record;
 
 /**
- * The notes (daily diary) history for a user. 
- * 
+ * The notes (daily diary) history for a user.
+ *
  * @author Aaron Davidson
  */
-public class NotesHistory extends History { 
- 
+public class NotesHistory extends History {
+
    private static final String NOTES_HISTORY_FILE = "notes.xml";
-    
-   
-   public NotesHistory() { 
+
+
+   public NotesHistory() {
       super();
    }
-   
-   public String getBaseName() { 
+
+   public String getBaseName() {
       return "notes";
    }
-   
 
-   public String getEntryTagName() { 
+
+   public String getEntryTagName() {
       return "note";
    }
 
@@ -38,7 +38,7 @@ public class NotesHistory extends History {
       return note;
    }
 
-   public synchronized String getNote(Date date) { 
+   public synchronized String getNote(Date date) {
       String str = null;
       List list = getEntriesOn(date);
       if (list != null) {
@@ -69,6 +69,6 @@ public class NotesHistory extends History {
          n.setNote(note);
          addEntry(n);
       }
-   } 
-   
+   }
+
 }

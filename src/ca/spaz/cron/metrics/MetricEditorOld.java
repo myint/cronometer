@@ -17,7 +17,7 @@ import ca.spaz.gui.ErrorReporter;
 import ca.spaz.util.ImageFactory;
 
 /**
- * A panel for editing a biomarker metric.  
+ * A panel for editing a biomarker metric.
  */
 public class MetricEditorOld extends JPanel {
    private Biomarker biomarker;
@@ -27,7 +27,7 @@ public class MetricEditorOld extends JPanel {
    private String metricType;
    private Metric curMetric;
    private JButton saveBtn;
-   private JButton deleteBtn;   
+   private JButton deleteBtn;
    private JButton plotBtn;
 
    private BiomarkerPanelOld bmp;
@@ -35,18 +35,18 @@ public class MetricEditorOld extends JPanel {
 //   public MetricEditor(BiomarkerPanelOld bmp, String type) {
 //      this.metricType = type;
 //      this.bmp = bmp;
-//   }   
+//   }
 
    public MetricEditorOld(BiomarkerPanelOld bmp, Biomarker biomarker) {
       this.metricType = biomarker.getName();
       this.biomarker = biomarker;
       this.bmp = bmp;
-   } 
-   
+   }
+
    public JButton getSaveButton() {
       if (saveBtn == null) {
          saveBtn = new JButton("Save");
-         saveBtn.setEnabled(false);         
+         saveBtn.setEnabled(false);
          saveBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                saveValue();
@@ -54,16 +54,16 @@ public class MetricEditorOld extends JPanel {
          });
       }
       return saveBtn;
-   }  
+   }
 
    public JButton getDeleteButton() {
       if (deleteBtn == null) {
          deleteBtn = new JButton("Delete");
-         deleteBtn.setEnabled(false);           
+         deleteBtn.setEnabled(false);
          deleteBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                Metric metric = getMetric();
-               // Set the value to null so if we re-save it later it will be considered 
+               // Set the value to null so if we re-save it later it will be considered
                // new and will be added
                metric.setValue((Number)null);
                UserManager.getCurrentUser().removeMetric(metric);
@@ -74,14 +74,14 @@ public class MetricEditorOld extends JPanel {
          });
       }
       return deleteBtn;
-   }   
+   }
 
    public JLabel getLabel() {
       if (label == null) {
          label = new JLabel(metricType);
       }
       return label;
-   }    
+   }
 
    public JButton getPlotButton() {
       if (plotBtn == null) {
@@ -94,7 +94,7 @@ public class MetricEditorOld extends JPanel {
          });
       }
       return plotBtn;
-   }   
+   }
 
    public void plotMetric() {
       try {
@@ -117,31 +117,31 @@ public class MetricEditorOld extends JPanel {
    }
 
    public DoubleField getEntryField() {
-      if (entryField == null) {         
-         entryField = new DoubleField(0,8); 
+      if (entryField == null) {
+         entryField = new DoubleField(0,8);
          entryField.setColumns(8);
          entryField.addFocusListener(new FocusListener() {
             public void focusGained(FocusEvent e) {
-               entryField.selectAll();   
-               saveBtn.setEnabled(true);  
+               entryField.selectAll();
+               saveBtn.setEnabled(true);
             }
             public void focusLost(FocusEvent e) {
                saveBtn.setEnabled(true);
             }
-         });             
+         });
          entryField.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                saveValue();
             }
-         });  
+         });
       }
       return entryField;
    }
 
    public void setMetrics(java.util.List metrics) {
       saveBtn.setEnabled(false);
-      deleteBtn.setEnabled(false); 
-      entryField.setValue("");       
+      deleteBtn.setEnabled(false);
+      entryField.setValue("");
       // loop through array and find an appropriate metric to install
       Iterator iter = metrics.iterator();
       while (iter.hasNext()) {
@@ -154,12 +154,12 @@ public class MetricEditorOld extends JPanel {
             else {
                entryField.setValue(Double.parseDouble(m.getValue().toString()));
                saveBtn.setEnabled(false);
-               deleteBtn.setEnabled(true); 
-            }          
+               deleteBtn.setEnabled(true);
+            }
             return;
          }
       }
-      curMetric = null;     
+      curMetric = null;
    }
 
    private void saveValue() {
@@ -169,7 +169,7 @@ public class MetricEditorOld extends JPanel {
       else {
          Metric metric = getMetric();
          boolean isNewEntry = metric.getValue() == null;
-         metric.setValue(Double.toString(entryField.getValue()));          
+         metric.setValue(Double.toString(entryField.getValue()));
          if (isNewEntry) {
             UserManager.getCurrentUser().addMetric(metric);
          }

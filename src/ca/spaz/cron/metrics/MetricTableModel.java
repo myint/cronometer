@@ -14,21 +14,21 @@ public class MetricTableModel extends RecordTableModel {
    public static final int BIOMARKER_COL = 1;
    public static final int VALUE_COL = 2;
    public static final int UNITS_COL = 3;
-      
+
    public static String[] columnNames = { "Time", "Biomarker", "Value", "Units" };
 
    private static final DecimalFormat kcalf = new DecimalFormat("######0.0");
    private static final DecimalFormat amountf = new DecimalFormat("######0.##");
    private static final DateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
-      
+
    public void setMetrics(List list) {
       setUserEntrys(list);
    }
-   
+
    public List getMetrics() {
       return getUserEntrys();
    }
-   
+
    public Class getColumnClass(int col) {
       Object o = getValueAt(0, col);
       if (o != null) {
@@ -52,7 +52,7 @@ public class MetricTableModel extends RecordTableModel {
    public int getNumMetrics() {
       return getUserEntrys().size();
    }
-   
+
    public int getRowCount() {
       return getUserEntrys().size();
    }
@@ -73,7 +73,7 @@ public class MetricTableModel extends RecordTableModel {
       }
       return "";
    }
-   
+
    public boolean isCellEditable(int row, int col) {
       if (col == VALUE_COL) return true;
       return false;

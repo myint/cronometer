@@ -1,4 +1,4 @@
-package ca.spaz.cron.records; 
+package ca.spaz.cron.records;
 
 import java.util.Date;
 
@@ -11,11 +11,11 @@ public interface Record {
    public Date getDate();
 
    public XMLNode toXML();
-   
+
    public void load(Element e);
 
    public Record copy();
-   
+
    public boolean isLoaded();
-   
+
 }

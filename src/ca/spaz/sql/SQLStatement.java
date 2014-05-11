@@ -4,7 +4,7 @@ import java.sql.*;
 
 /**
  * Base class for SQL command generators
- * 
+ *
  * @author davidson
  */
 public abstract class SQLStatement {
@@ -65,7 +65,7 @@ public abstract class SQLStatement {
     public String toString() {
         return getQueryString();
     }
-    
+
     /**
      * Ensure that correct classes (with respect to toString()) ge
      * passed on
@@ -78,6 +78,6 @@ public abstract class SQLStatement {
        }
        return o;
     }
-    
+
 
 }

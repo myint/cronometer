@@ -11,11 +11,11 @@ public abstract class PrettyTableModel extends AbstractTableModel {
    private int sortOnColumn = -1;
    private boolean ascending = false;
    private boolean allowSorting = false;
-   
+
    public abstract void sort();
 
    public abstract String getToolTipText(int r, int c);
- 
+
    /**
     * Allows custom rendering for a row and column. Can just return c, if no
     * changes to default are desired.
@@ -27,15 +27,15 @@ public abstract class PrettyTableModel extends AbstractTableModel {
    public Component customRender(Component c, PrettyTable table, int row, int col) {
       return c;
    }
-   
+
    public void setAllowSorting(boolean val) {
       allowSorting = val;
    }
-   
+
    public boolean getAllowSorting() {
       return allowSorting;
    }
-   
+
    public void sort(int col) {
       if (getSortOnColumn() == col) {
          setAscending(!isAscending());
@@ -43,9 +43,9 @@ public abstract class PrettyTableModel extends AbstractTableModel {
          setAscending(isAscending());
       }
       setSortOnColumn(col);
-      sort();      
-   }  
-   
+      sort();
+   }
+
    public boolean isAscending() {
       return ascending;
    }
@@ -61,5 +61,5 @@ public abstract class PrettyTableModel extends AbstractTableModel {
    public void setSortOnColumn(int sortOnColumn) {
       this.sortOnColumn = sortOnColumn;
    }
-   
+
 }

@@ -16,28 +16,28 @@ import ca.spaz.gui.*;
 /**
  * This is panel that displays some brief summary information about a metric item
  * and allows choosing of a measure to add to the daily summary
- * 
+ *
  * @author davidson
  */
-public class MetricEditor extends JPanel {  
-    
+public class MetricEditor extends JPanel {
+
    private Metric cur;
 
    private JLabel titleLabel;
 
    private JButton addButton;
    private ActionListener addAction;
-   private DoubleField multiplier;   
+   private DoubleField multiplier;
 
    private JPanel addMeasurementPanel;
- 
+
    private JPanel emptyPanel;
    private JPanel mainPanel;
    private CardLayout cards;
    private DecimalFormat labelFormatter;
 
    private Vector listeners = new Vector();
-   
+
    public MetricEditor() {
       initialize();
    }
@@ -50,14 +50,14 @@ public class MetricEditor extends JPanel {
       this.add(getEmptyPanel(), "EMPTY");
       cards.show(this, "EMPTY");
    }
-   
+
    private JPanel getMainPanel() {
       if (mainPanel == null) {
          mainPanel = new JPanel(new BorderLayout(3, 3));
          mainPanel.setOpaque(false);
          mainPanel.add(getTitleLabel(), BorderLayout.NORTH);
          mainPanel.add(getAddMeasurementPanel(), BorderLayout.SOUTH);
-      } 
+      }
       return mainPanel;
    }
 
@@ -68,12 +68,12 @@ public class MetricEditor extends JPanel {
             "no biomarker selected</h3></html>",
             JLabel.CENTER);
          emptyPanel = new TranslucentPanel(0.50);
-         emptyPanel.setLayout(new BorderLayout(4, 4));   
+         emptyPanel.setLayout(new BorderLayout(4, 4));
          emptyPanel.add(empty);
-      } 
+      }
       return emptyPanel;
    }
-   
+
    /**
     * @return
     */
@@ -91,7 +91,7 @@ public class MetricEditor extends JPanel {
          addMeasurementPanel.add(new JTextField(" 3:15 pm "));
          addMeasurementPanel.add(Box.createHorizontalStrut(50));
          addMeasurementPanel.add(getAddButton());
-         addMeasurementPanel.add(Box.createGlue());         
+         addMeasurementPanel.add(Box.createGlue());
       }
       return addMeasurementPanel;
    }
@@ -129,7 +129,7 @@ public class MetricEditor extends JPanel {
       }
       return multiplier;
    }
-   
+
    public JButton getAddButton() {
       if (null == addButton) {
          addButton = new JButton("Add");
@@ -138,12 +138,12 @@ public class MetricEditor extends JPanel {
       }
       return addButton;
    }
-  
+
    private ActionListener getAddAction() {
       if (addAction == null) {
          addAction = new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-               fireMetricChosenEvent();               
+               fireMetricChosenEvent();
             }
          };
       }
@@ -158,7 +158,7 @@ public class MetricEditor extends JPanel {
 //          getMeasure().setFood(f);
           getTitleLabel().setText(fixString(metric.getName()));
           getAddButton().setText("Add");
-          cards.show(this, "MAIN");      
+          cards.show(this, "MAIN");
 //         setFood(metric.getFood());
 //         setWeight(metric.getMeasure(), metric.getAmount());
       }
@@ -176,7 +176,7 @@ public class MetricEditor extends JPanel {
          return str;
       }
    }
- 
+
    public synchronized void addMetricEditorListener(MetricSelectionListener sel) {
       listeners.add(sel);
    }
@@ -192,6 +192,6 @@ public class MetricEditor extends JPanel {
          sel.metricChosen(cur);
       }
    }
-  
+
 
 }

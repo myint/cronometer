@@ -9,7 +9,7 @@ import javax.swing.JToolBar;
 
 public class TranslucentToolBar extends JToolBar {
    double transparency = 1;
-   
+
    public TranslucentToolBar(double transparency) {
       super();
       this.transparency = transparency;
@@ -17,12 +17,12 @@ public class TranslucentToolBar extends JToolBar {
       setRollover(true);
       setOpaque(false);
    }
-   
+
    public void paint(Graphics g) {
       Graphics2D g2d = (Graphics2D)g;
       g2d.setRenderingHint(
-            RenderingHints.KEY_ANTIALIASING, 
-            RenderingHints.VALUE_ANTIALIAS_ON);      
+            RenderingHints.KEY_ANTIALIASING,
+            RenderingHints.VALUE_ANTIALIAS_ON);
       Composite c = g2d.getComposite();
       g2d.setComposite(AlphaComposite.getInstance(
             AlphaComposite.SRC_OVER, (float)transparency));
@@ -31,5 +31,5 @@ public class TranslucentToolBar extends JToolBar {
       g2d.setComposite(c);
       super.paint(g);
    }
-   
+
 }

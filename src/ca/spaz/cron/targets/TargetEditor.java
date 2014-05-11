@@ -21,36 +21,36 @@ import ca.spaz.gui.WrapperDialog;
 import ca.spaz.util.ImageFactory;
 import ca.spaz.util.ToolBox;
 
-/** 
- * 
- * A UI panel that will let the user view and edit their 
+/**
+ *
+ * A UI panel that will let the user view and edit their
  * nutritional targets.
- * 
+ *
  * Ideally, there will be a mechanism to suggest good default
  * targets based on age, weight, gender, and other factors.
- * 
+ *
  * @author Aaron Davidson
  */
 public class TargetEditor extends WrappedPanel {
    private User user;
 
    private TargetEditorTable macro, minerals, vitamins, aminoacids, lipids;
-   private JTabbedPane tabPanel;  
+   private JTabbedPane tabPanel;
 
-   private JPanel mainPanel;  
-   private JPanel defaultsPanel;  
+   private JPanel mainPanel;
+   private JPanel defaultsPanel;
    private JButton setDefaultsBtn;
- 
-   
+
+
    public TargetEditor(User user) {
       this.user = user;
       this.setLayout(new BorderLayout(8,8));
-      this.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));     
+      this.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
       this.add(getDefaultsPanel(), BorderLayout.NORTH);
       this.add(getTabPanel(), BorderLayout.CENTER);
       this.add(getRatioPanel(), BorderLayout.SOUTH);
    }
-   
+
    private JTabbedPane getTabPanel() {
       if (tabPanel == null) {
          tabPanel = new JTabbedPane();
@@ -79,36 +79,36 @@ public class TargetEditor extends WrappedPanel {
       }
       return minerals;
    }
-   
+
    private TargetEditorTable getVitaminsTable() {
       if (vitamins == null) {
          vitamins = new TargetEditorTable(user, NutrientInfo.getVitamins());
       }
       return vitamins;
    }
-   
+
    private TargetEditorTable getAminoAcidsTable() {
       if (aminoacids == null) {
          aminoacids = new TargetEditorTable(user, NutrientInfo.getAminoAcids());
       }
       return aminoacids;
    }
-   
+
    private TargetEditorTable getLipidsTable() {
       if (lipids == null) {
          lipids = new TargetEditorTable(user, NutrientInfo.getLipids());
       }
       return lipids;
-   } 
-   
+   }
+
    private JPanel getDefaultsPanel() {
       if (defaultsPanel == null) {
          defaultsPanel = new JPanel();
-         defaultsPanel.add(getSetDefaultsButton(), BorderLayout.CENTER); 
+         defaultsPanel.add(getSetDefaultsButton(), BorderLayout.CENTER);
       }
       return defaultsPanel;
    }
-     
+
    private JButton getSetDefaultsButton() {
       if (setDefaultsBtn == null) {
          setDefaultsBtn = new JButton("Set to Dietary Reference Intakes");
@@ -123,18 +123,18 @@ public class TargetEditor extends WrappedPanel {
       }
       return setDefaultsBtn;
    }
-    
- 
+
+
    public static void editTargets() {
-      WrapperDialog.showDialog(CRONOMETER.getInstance(), new TargetEditor(UserManager.getCurrentUser()), true);      
+      WrapperDialog.showDialog(CRONOMETER.getInstance(), new TargetEditor(UserManager.getCurrentUser()), true);
    }
-   
-   
+
+
    private void setDefaultTargets(TargetModel model) {
-      if (UserSettingsDialog.showDialog(UserManager.getUserManager(), setDefaultsBtn)) { 
+      if (UserSettingsDialog.showDialog(UserManager.getUserManager(), setDefaultsBtn)) {
          int rc = JOptionPane.showConfirmDialog(this,
                "Are you sure you want to replace the current targets with" +
-               " '"+ model.toString()+"'?", 
+               " '"+ model.toString()+"'?",
                "Replace Targets?", JOptionPane.YES_NO_OPTION);
          if (rc != JOptionPane.YES_OPTION) return;
          setDefaultTargets(model, user);
@@ -146,7 +146,7 @@ public class TargetEditor extends WrappedPanel {
          getLipidsTable().fireTargetsChanged();
       }
    }
-   
+
    public static void setDefaultTargets(TargetModel model, User user) {
       Iterator iter = NutrientInfo.getGlobalList().iterator();
       while (iter.hasNext()) {
@@ -154,18 +154,18 @@ public class TargetEditor extends WrappedPanel {
          Target target = new Target();
          target.setMin(model.getTargetMinimum(user, ni));
          target.setMax(model.getTargetMaximum(user, ni));
-         user.setTarget(ni, target);         
-      }      
+         user.setTarget(ni, target);
+      }
       user.setCustomTargets(false);
    }
 
    public boolean doAccept() { return true; }
 
-   public void doCancel() { 
+   public void doCancel() {
    }
 
-   public String getInfoString() { 
-      return  "<div align=\"justify\" width=\"180\"><br>"         
+   public String getInfoString() {
+      return  "<div align=\"justify\" width=\"180\"><br>"
             + "Set your nutritional targets for tracking within the program.<br><br>"
             + "Clicking 'Set to Dietary Reference Intakes' will set all the targets "
             + "to values configured for your weight, height, gender, age, and activity level. "
@@ -176,14 +176,14 @@ public class TargetEditor extends WrappedPanel {
             + "</div>";
    }
 
-   public boolean showSidebar() { 
+   public boolean showSidebar() {
       return true;
    }
-   
+
    public ImageIcon getIcon() {
       return new ImageIcon(ImageFactory.getInstance().loadImage("/img/apple-100x100.png"));
    }
-    
+
    public String getSubtitle() {
       return "Set Nutritional Targets";
    }
@@ -192,18 +192,18 @@ public class TargetEditor extends WrappedPanel {
       return "Set Nutritional Targets";
    }
 
-   public boolean isCancellable() { 
+   public boolean isCancellable() {
       return false;
    }
-   
+
    private JPanel ratioPanel;
-   
+
    private JPanel getRatioPanel() {
       if (ratioPanel == null) {
          ratioPanel = new JPanel();
          ratioPanel.setBorder(BorderFactory.createTitledBorder("Set Target Macro-Nutrient Ratios:"));
          ratioPanel.setLayout(new BoxLayout(ratioPanel, BoxLayout.X_AXIS));
-         
+
          ratioPanel.add(new JLabel("Protein:"));
          ratioPanel.add(getProteinSpinner());
          ratioPanel.add(Box.createHorizontalStrut(7));
@@ -217,10 +217,10 @@ public class TargetEditor extends WrappedPanel {
       }
       return ratioPanel;
    }
-   
+
    private void setRatios() {
       int protein = ((Number)getProteinSpinner().getValue()).intValue();
-      int carbs = ((Number)getCarbSpinner().getValue()).intValue();               
+      int carbs = ((Number)getCarbSpinner().getValue()).intValue();
       int fat = ((Number)getFatSpinner().getValue()).intValue();
       int total = protein + carbs + fat;
       if (total != 100) {
@@ -236,37 +236,37 @@ public class TargetEditor extends WrappedPanel {
          getCarbSpinner().setValue(new Integer(carbs));
          getFatSpinner().setValue(new Integer(fat));
       }
-      
+
       Target t = user.getTarget(NutrientInfo.getCalories());
       double calories = t.getMin();
       double pGrams = Math.round((calories * (protein/100.0)) / 4);
       double cGrams = Math.round((calories * ((carbs)/100.0)) / 4);
       double fGrams = Math.round((calories * (fat/100.0)) / 9);
       cGrams += user.getTarget(NutrientInfo.getFiber()).getMin();
-      
+
       user.setTarget(NutrientInfo.getProtein(), new Target(pGrams, Math.round(pGrams*1.25)));
       user.setTarget(NutrientInfo.getCarbs(), new Target(cGrams, Math.round(cGrams*1.25)));
       user.setTarget(NutrientInfo.getFat(), new Target(fGrams, Math.round(fGrams*1.25)));
       user.setProteinPercentage(protein);
       user.setCarbPercentage(carbs);
       user.setFatPercentage(fat);
-      getMacroNutrientsTable().model.fireTableDataChanged(); 
+      getMacroNutrientsTable().model.fireTableDataChanged();
    }
-   
+
    private JButton setRatioButton;
-   
+
    private JButton getSetRatioButton() {
-      if (setRatioButton == null) { 
+      if (setRatioButton == null) {
          setRatioButton = new JButton("Set");
          setRatioButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
-               setRatios();       
-            }          
+               setRatios();
+            }
          });
       }
       return setRatioButton;
    }
-   
+
    private JSpinner proteinSpinner;
    private JSpinner getProteinSpinner() {
       if (proteinSpinner == null) {
@@ -274,13 +274,13 @@ public class TargetEditor extends WrappedPanel {
                user.getProteinPercentage(), 0, 100, 1));
          proteinSpinner.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent e) {
-                
+
             }
-         });          
+         });
       }
       return proteinSpinner;
-   }   
-   
+   }
+
    private JSpinner carbSpinner;
    private JSpinner getCarbSpinner() {
       if (carbSpinner == null) {
@@ -288,14 +288,14 @@ public class TargetEditor extends WrappedPanel {
                user.getCarbPercentage(), 0, 100, 1));
          carbSpinner.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent e) {
-                
+
             }
-         });          
+         });
       }
       return carbSpinner;
-   }   
-   
-   
+   }
+
+
    private JSpinner fatSpinner;
    private JSpinner getFatSpinner() {
       if (fatSpinner == null) {
@@ -303,11 +303,11 @@ public class TargetEditor extends WrappedPanel {
                user.getFatPercentage(), 0, 100, 1));
          fatSpinner.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent e) {
-                
+
             }
-         });          
+         });
       }
       return fatSpinner;
-   }   
-   
+   }
+
 }

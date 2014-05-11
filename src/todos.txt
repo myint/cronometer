@@ -5,13 +5,13 @@
  - jxsearchbar?
  - tony's help tweaks
  - DRI stuff to investigate....
- 
- 
+
+
  FIXED
    - missing 'import' message
    - bug 1698061 (stack trace)
- 
-	 
+
+
   0.9.0 TODOS:
       - Favorites list!
       - Fix commit changes bug in editors (fixed by using JXTable allegedly...)
@@ -24,15 +24,13 @@
       - auto-set measure to most frequent entry?
       - default serving option per food
 
-    Future / Deferred TODOS: 
+    Future / Deferred TODOS:
       - general heavy refactoring and code cleanup + documentation
       - more interesting reports & printing
       - more interesting ratios on front nutrition summary (zinc:copper, w3:w6)
       - auto-updater
       - more robust / scalable data backend
       - spaz.ca account synch
-      - flavinoids + CRDB, etc...?     
+      - flavinoids + CRDB, etc...?
       - exercise log
 				http://prevention.sph.sc.edu/tools/compendium.htm
-				
-				

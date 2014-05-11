@@ -9,13 +9,13 @@ public class SettingsChangeEvent extends EventObject {
 
    private String key;
    private String newValue;
-   
+
    public SettingsChangeEvent(Object source, String key, String val) {
       super(source);
       this.key = key;
       this.newValue = val;
    }
-   
+
    /**
     * Returns the key of the setting that was changed.
     *
@@ -24,7 +24,7 @@ public class SettingsChangeEvent extends EventObject {
    public String getKey() {
       return key;
    }
-   
+
    /**
     * Returns the new value for the setting.
     *

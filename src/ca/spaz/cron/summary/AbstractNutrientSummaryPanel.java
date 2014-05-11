@@ -15,19 +15,19 @@ import ca.spaz.cron.targets.Target;
 import ca.spaz.cron.user.UserManager;
 
 public abstract class AbstractNutrientSummaryPanel extends JPanel {
-   
+
    protected NutrientTable nutrientTable;
    protected JScrollPane scrollPane;
    protected abstract List getNutrientList();
    protected abstract String getCategoryName();
-   
+
    protected NutrientTable getNutrientTable() {
       if (nutrientTable == null) {
          nutrientTable = new NutrientTable(getNutrientList());
-      } 
+      }
       return nutrientTable;
    }
-   
+
    protected JScrollPane getNutrientTablePane() {
       if (scrollPane == null) {
          scrollPane = new JScrollPane(getNutrientTable());
@@ -39,11 +39,11 @@ public abstract class AbstractNutrientSummaryPanel extends JPanel {
       }
       return scrollPane;
    }
-   
+
    public void update(List consumed) {
       getNutrientTable().update(consumed);
    }
-   
+
    /**
     * Look through all nutrients and see what overall percentage of the targets
     * are completed.
@@ -51,8 +51,8 @@ public abstract class AbstractNutrientSummaryPanel extends JPanel {
    public double getTargetCompletion(boolean average) {
       double total = 0;
       double value = 0;
-      double valueFull = 0; 
-      
+      double valueFull = 0;
+
       Iterator iter = getNutrientList().iterator();
       while (iter.hasNext()) {
          NutrientInfo ni = (NutrientInfo)iter.next();

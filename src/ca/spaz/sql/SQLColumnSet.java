@@ -12,7 +12,7 @@ import java.util.*;
 
 /**
  * TODO describe
- * 
+ *
  * @author Chris Rose
  */
 public class SQLColumnSet {
@@ -22,7 +22,7 @@ public class SQLColumnSet {
    private List names;
 
    /**
-    * 
+    *
     */
    public SQLColumnSet() {
       super();
@@ -54,7 +54,7 @@ public class SQLColumnSet {
       names.add(name);
       terms.add(new Double(d));
    }
-   
+
    public void add(String name, long d) {
       names.add(name);
       terms.add(new Long(d));
@@ -69,7 +69,7 @@ public class SQLColumnSet {
       names.add(name);
       terms.add(new Character(c));
    }
-   
+
    public String getNameString() {
       StringBuffer sb = new StringBuffer();
       sb.append(" ( ");
@@ -83,7 +83,7 @@ public class SQLColumnSet {
       sb.append(" ) ");
       return sb.toString();
    }
-   
+
    public String getValueString() {
       StringBuffer sb = new StringBuffer();
       sb.append(" (");
@@ -103,13 +103,13 @@ public class SQLColumnSet {
       sb.append(") ");
       return sb.toString();
    }
-   
+
    public List getNames() {
       return Collections.unmodifiableList(names);
    }
-   
+
    public List getValues() {
       return Collections.unmodifiableList(terms);
    }
-   
+
 }

@@ -1,6 +1,6 @@
 /***
  * Created on 11-July-2007
- * 
+ *
  * @author Simon Werner
  */
 package ca.spaz.cron.actions;
@@ -19,7 +19,7 @@ import ca.spaz.util.ImageFactory;
 import ca.spaz.util.Logger;
 
 public class CopyServingsToUserAction extends AbstractAction {
-   
+
    public CopyServingsToUserAction(ServingTable servingTable) {
       super("Copy Servings To...");
       if (UserManager.getUserManager().numberOfUsers() == 1) {
@@ -29,7 +29,7 @@ public class CopyServingsToUserAction extends AbstractAction {
       putValue(SMALL_ICON, new ImageIcon(ImageFactory.getInstance().loadImage("/img/copy.gif")));
       putValue(SHORT_DESCRIPTION, "Copy the selected servings to another user");
    }
-   
+
    public void actionPerformed(ActionEvent e) {
       copyToUserDialog();
    }
@@ -38,8 +38,8 @@ public class CopyServingsToUserAction extends AbstractAction {
       Logger.debug("actionPerformed");
       assert (ServingTable.getServingTable() != null);
       UserDatePickerDialog userDP = new UserDatePickerDialog();
-      WrapperDialog.showDialog(CRONOMETER.getInstance(), userDP, true);      
-      
+      WrapperDialog.showDialog(CRONOMETER.getInstance(), userDP, true);
+
       if ( ! userDP.cancelPressed()) {
          Logger.debug("Date selected is: " + userDP.getDate().toString());
          ServingTable.getServingTable().copySelectedServingsToUser(userDP.getUser(), userDP.getDate());

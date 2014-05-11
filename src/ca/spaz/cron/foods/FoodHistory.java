@@ -13,11 +13,11 @@ import ca.spaz.cron.records.Record;
 
 /**
  * The Serving history for a user.
- * 
+ *
  * @author Aaron Davidson
  */
 public class FoodHistory extends History {
-  
+
    public String getBaseName() {
       return "servings";
    }
@@ -29,7 +29,7 @@ public class FoodHistory extends History {
    public Record loadUserEntry(Element item) {
       return new Serving(item);
    }
-   
+
    /**
     * Add a new record of a Serving to the history
     */
@@ -38,13 +38,13 @@ public class FoodHistory extends History {
       c.getFoodProxy().addReference();
    }
 
-   public synchronized List getConsumedOn(Date curDate) {     
+   public synchronized List getConsumedOn(Date curDate) {
       return getEntriesOn(curDate);
    }
-   
+
    /**
     * Copies the servings from one day to another.
-    * @param fromDate the day to copy from	
+    * @param fromDate the day to copy from
     * @param toDate the day to copy to
     * @return the copied servings
     */
@@ -59,8 +59,8 @@ public class FoodHistory extends History {
 	   }
 	   return consumed;
    }
-   
-   public synchronized List getServings(FoodProxy fp) {     
+
+   public synchronized List getServings(FoodProxy fp) {
       ArrayList res = new ArrayList();
       for (int i=0; i<entries.size(); i++) {
          Serving s = (Serving)entries.get(i);
@@ -70,7 +70,7 @@ public class FoodHistory extends History {
       }
       return res;
    }
-   
+
    public synchronized void deleteServings(List list) {
       super.deleteEntries(list);
    }
@@ -82,5 +82,5 @@ public class FoodHistory extends History {
    public void update(Serving serving) {
       super.updateEntry(serving);
    }
-          
+
 }

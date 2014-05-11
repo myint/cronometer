@@ -1,6 +1,6 @@
 
-body 
-{ 
+body
+{
   font-family: verdana, arial, serif;
   color: #000000;
   background:  #ffffff;
@@ -14,56 +14,56 @@ body
 }
 
 td {
-   font-family: verdana, arial, serif; 
+   font-family: verdana, arial, serif;
 	font-size: 11pt;
-} 
+}
 
 th {
    text-align: left;
-} 
- 
+}
+
 #li {
 # text-align: justify
-#} 
+#}
 
 h1 {
 	font-size: 18pt;
-	font-family: verdana, arial, serif; 
+	font-family: verdana, arial, serif;
    color: #ffffff;
    background:  #555555;
    padding: 5px;
    border: #000 1px solid;
-} 
- 
-h2 { 
+}
+
+h2 {
 	font-size: 16pt;
-	font-family: verdana, arial, serif; 
+	font-family: verdana, arial, serif;
    color: #ffffff;
    background:  #666666;
-   padding: 4px;   
+   padding: 4px;
    border: #000 1px solid;
-} 
+}
 
 h3 {
-  font-family: verdana, arial, serif; 
+  font-family: verdana, arial, serif;
   color: #ffffff;
   background:  #777777;
   padding: 4px;
   border: #000 1px solid;
-} 
-  
+}
+
 h4 {
-  font-family: verdana, arial, serif; 
+  font-family: verdana, arial, serif;
   color: #ffffff;
   background:  #888888;
   padding: 2px;
   border: #000 1px solid;
-} 
+}
 
  .va-middle {
     vertical-align:middle;
  }
- 
+
  #plea {
     background:  #ccccee;
     padding: 4px;
@@ -74,7 +74,7 @@ h4 {
     font-style: italics;
     text-align: center;
  }
- 
+
  #alert {
     background:  #ffcccc;
     padding: 4px;
@@ -86,4 +86,3 @@ h4 {
     font-style: bold;
     text-align: center;
  }
- 

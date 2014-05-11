@@ -9,7 +9,7 @@ import ca.spaz.cron.foods.Food;
 
 
 public class USDAFoods extends JarXMLFoodDataSource {
-   
+
 
    public String getZipFileName() {
       return "usda_sr24.jar";
@@ -18,15 +18,15 @@ public class USDAFoods extends JarXMLFoodDataSource {
    public String getBaseName() {
       return "usda_sr24";
    }
-   
+
    public String getName() {
       return "USDA";
-   }   
-   
+   }
+
    public String toString() {
       return getName();
-   }   
-   
+   }
+
    public boolean isMutable() {
       return false;
    }
@@ -35,15 +35,15 @@ public class USDAFoods extends JarXMLFoodDataSource {
    }
 
    public void addFood(Food f) {
-      
+
    }
 
    public void removeFood(Food f) {
-      
-   }
-   
 
-   public Color getDisplayColor() { 
+   }
+
+
+   public Color getDisplayColor() {
       return Color.BLACK;
    }
 

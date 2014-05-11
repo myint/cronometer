@@ -5,7 +5,7 @@
  * are made available under the terms of the Common Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/cpl-v10.html
- * 
+ *
  * Contributors:
  *     Chris Rose
  *******************************************************************************/
@@ -18,7 +18,7 @@ import java.util.*;
  * @author Chris Rose
  */
 public class CacheMap implements Map {
-   
+
    private Map backingMap;
    private LinkedList orderStack;
    private int maxCacheSize;
@@ -103,7 +103,7 @@ public class CacheMap implements Map {
       assert(orderStack.size() == backingMap.size());
       return ret;
    }
-   
+
    /* (non-Javadoc)
     * @see java.util.Map#putAll(java.util.Map)
     */

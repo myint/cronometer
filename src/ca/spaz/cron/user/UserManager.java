@@ -5,7 +5,7 @@
  * are made available under the terms of the Common Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/cpl-v10.html
- * 
+ *
  * Contributors:
  *     Chris Rose
  *     Simon Werner
@@ -26,14 +26,14 @@ import ca.spaz.gui.WrapperDialog;
 import ca.spaz.util.*;
 
 /**
- * A CRONOMETER-specific, property-based <code>User</code> implementation. This 
- * class stores all the global settings for all users and manages the list of 
+ * A CRONOMETER-specific, property-based <code>User</code> implementation. This
+ * class stores all the global settings for all users and manages the list of
  * individual <code>User</code>'s in CRONOMETER.
- * 
+ *
  * @author Simon Werner
  */
 public class UserManager {
-   
+
 
    private static final String LAST_BUILD = "last.build";
    private static final String CHECK_FOR_UDAPTES = "check.for.updates";
@@ -54,16 +54,16 @@ public class UserManager {
    private static User lastSelectedUser = null;
 
    // TODO: Should not hardcode these
-   public static final String userFileList[] = { 
+   public static final String userFileList[] = {
       "biomarkers.xml", "metrics.xml", "notes.xml", "servings.xml" };
-      
+
    public static final UserManager getUserManager() {
       if (null == instance) {
          instance = new UserManager();
       }
       return instance;
    }
-   
+
    public UserManager() {
       if (settings == null) {
          settings = new Settings(Settings.TAG_GENERAL);
@@ -83,7 +83,7 @@ public class UserManager {
       }
       return user;
    }
-   
+
    /**
     * Get the last username that used CRON-o-meter, the last time it was run.
     * @return
@@ -91,18 +91,18 @@ public class UserManager {
    public String getLastUsername() {
       return settings.get(LAST_USER, "Default User");
    }
-   
+
    /**
     * Open the dialog to manage the users.
     */
    public static void startUserManagerDialog() {
-      WrapperDialog.showDialog(CRONOMETER.getInstance(), new UserManagerDialog(), true);      
+      WrapperDialog.showDialog(CRONOMETER.getInstance(), new UserManagerDialog(), true);
    }
 
    public void saveUserProperties() throws IOException {
       settings.save();
    }
-   
+
    /**
     * Add a new user to Cronometer via the UI.
     * @param parentWindow allow a popup to set the user settings
@@ -115,7 +115,7 @@ public class UserManager {
       user.doFirstRun(parentWindow);
       settings.save();
    }
-   
+
    /**
     * Add a new user to Cronometer
     * @param user the user to add.
@@ -124,7 +124,7 @@ public class UserManager {
       userList.add(user);
       settings.save();
    }
-   
+
    /**
     * Find the User with the given username
     * @param username the name of the user
@@ -133,7 +133,7 @@ public class UserManager {
    public User getUser(String username) {
       return getUser(getUserList(), username);
    }
-   
+
    /**
     * Find the User with the given username
     * @param username the name of the user
@@ -142,7 +142,7 @@ public class UserManager {
    public static User getUser(List<User> uList, String username) {
       Iterator<User> it = uList.iterator();
       User user = null;
-      
+
       while (it.hasNext()) {
          user = it.next();
          if (username.equals(user.getUsername())) {
@@ -165,7 +165,7 @@ public class UserManager {
       }
       settings.save();
    }
-   
+
    /**
     * Delete all the settings file related to this user.
     * @param user
@@ -187,8 +187,8 @@ public class UserManager {
          }
       }
    }
-   
-   
+
+
    /**
     * Delete the user with the given <code>username</code>
     * @param username the name of the user
@@ -202,11 +202,11 @@ public class UserManager {
       }
       return false;
    }
-   
+
    public static User getCurrentUser() {
-      return currentUser; 
+      return currentUser;
    }
-   
+
    public void setCurrentUser(User user) {
       if (user == null || currentUser == user) {
          return;
@@ -218,9 +218,9 @@ public class UserManager {
       settings.set(LAST_USER, currentUser.getUsername());
       this.notifyUserChangeListeners();
    }
-   
+
    /**
-    * Search for a user and set that user as the current user.  
+    * Search for a user and set that user as the current user.
     * @param username the name of the user
     * @return true if the operation was successful
     */
@@ -233,26 +233,26 @@ public class UserManager {
          return false;
       }
    }
-   
+
    public static List<User> getUserList() {
       return userList;
    }
-   
+
    /**
-    * Sets the subdirectory to use for user data. 
+    * Sets the subdirectory to use for user data.
     * @param aSubdirectory
     */
    public static void setSubdirectory(String aSubdirectory) {
       subdirectory = aSubdirectory;
    }
- 
+
    /**
     * Gets the subdirectory being used for user data.
     */
    public static String getSubdirectory() {
       return subdirectory;
-   } 
-   
+   }
+
    public static File getCronometerDirectory() {
       File appDir = ToolBox.getUserAppDirectory(UserManager.getSubdirectory());
       if (!appDir.exists()) {
@@ -274,7 +274,7 @@ public class UserManager {
       }
       return userDir;
    }
-   
+
    /**
     * Upgrade the settings file to the multiuser style.
     * @param inFile the old "user.settings" file
@@ -284,16 +284,16 @@ public class UserManager {
       // Move the User files to the new location
       String cronPath = UserManager.getCronometerDirectory().getAbsolutePath();
       moveUserFiles(cronPath, cronPath, User.DEFAULT_USERNAME);
-      
+
       // Update the settings file
       if (inFile.exists() && outFile.exists()) {
          // This condition should never occur
           //System.err.println("Error: Upgrade of old settings file failed.  Please contact the CRON-o-meter developers.");
       //    System.exit(-1);
       }
-      
+
       if (!inFile.exists()) return;
-      
+
       if (!outFile.exists()) {
          try {
               InputStream in = new BufferedInputStream(new FileInputStream(inFile));
@@ -302,28 +302,28 @@ public class UserManager {
               Settings.convertSettingsFile(in, out);
               out.close();
               in.close();
-              //inFile.renameTo(new File(inFile.getParent(), "backup"));             
+              //inFile.renameTo(new File(inFile.getParent(), "backup"));
          } catch (Exception e) {
               e.printStackTrace();
          }
       }
    }
-   
+
    public void moveUserFiles(String oldUserDirStr, String newBaseDir, String newUsername) {
       try {
          File oldUserDir = new File(oldUserDirStr);
          File newUserDir = new File(newBaseDir, newUsername);
-   
+
          Logger.log(oldUserDir.getAbsolutePath());
          if (!oldUserDir.exists()) {
             Logger.error("Unable to find the old user directory.");
             return;
          }
-         
+
          if (!newUserDir.exists()) {
             newUserDir.mkdir();
          }
-         
+
          int i;
          for (i=0; i<userFileList.length; i++) {
             File oldUserFile = new File(oldUserDir.getAbsolutePath(), userFileList[i]);
@@ -337,7 +337,7 @@ public class UserManager {
       }
    }
 
-   
+
    public File getSettingsFile() {
       File settingFile = new File(getCronometerDirectory(), SETTINGS_FILE);
       File oldSettingFile = new File(getCronometerDirectory(), OLD_SETTINGS_FILE);
@@ -356,16 +356,16 @@ public class UserManager {
             }
          } catch (IOException e) {
             Logger.error("getSettingsFile()", e);
-            ErrorReporter.showError(e, CRONOMETER.getInstance()); 
+            ErrorReporter.showError(e, CRONOMETER.getInstance());
          }
       } else {
          // Nothing.  All is well.
       }
       return settingFile;
    }
-   
+
    public void setLastBuild(int build) {
-      settings.set(LAST_BUILD, build);         
+      settings.set(LAST_BUILD, build);
    }
 
    public int getLastBuild() {
@@ -380,11 +380,11 @@ public class UserManager {
    public boolean getCheckForUpdates() {
       return settings.getBoolean(CHECK_FOR_UDAPTES, true);
    }
-   
-   public void setHideWhenMinimized(boolean state) { 
+
+   public void setHideWhenMinimized(boolean state) {
       settings.set(HIDE_WHEN_MINIMIZED, state);
    }
-   
+
    public boolean getHideWhenMinimized() {
       return settings.getBoolean(HIDE_WHEN_MINIMIZED, false);
    }
@@ -399,8 +399,8 @@ public class UserManager {
          e.printStackTrace();
       }
    }
-   
-   public void restoreWindow(JFrame frame, Point p) {      
+
+   public void restoreWindow(JFrame frame, Point p) {
       Toolkit defaultToolkit = Toolkit.getDefaultToolkit();
       Dimension screen = defaultToolkit.getScreenSize();
       int x = settings.getInt(MAIN_WINDOW +".x", p.x);
@@ -416,7 +416,7 @@ public class UserManager {
          //h = frame.getHeight();
       }
       frame.setLocation(x, y);
-      frame.setSize(w, h);       
+      frame.setSize(w, h);
    }
 
    public boolean firstCronRun() {
@@ -427,13 +427,13 @@ public class UserManager {
       settings.set(FIRST_CRON_RUN, val);
       notifyUserChangeListeners();
    }
-   
-   public void setDietDivider(int val) { 
-      settings.set(DIET_DIVIDER, val); 
+
+   public void setDietDivider(int val) {
+      settings.set(DIET_DIVIDER, val);
    }
-   
-   public int getDietDivider(int val) { 
-      return settings.getInt(DIET_DIVIDER, val); 
+
+   public int getDietDivider(int val) {
+      return settings.getInt(DIET_DIVIDER, val);
    }
 
    /**
@@ -446,13 +446,13 @@ public class UserManager {
    }
 
    public static boolean renameUserDirectory(User oldUser, String newName) {
-      File userDir = getUserDirectory(oldUser); 
+      File userDir = getUserDirectory(oldUser);
       if (!userDir.renameTo(new File(getCronometerDirectory(), newName))) {
          System.err.println("Unable to rename the user folder");
          return false;
       }
       return true;
-         
+
    }
 
    private List<UserChangeListener> getListeners() {
@@ -461,7 +461,7 @@ public class UserManager {
       }
       return listeners;
    }
-   
+
    public final void addUserChangeListener(UserChangeListener l) {
       if ( ! getListeners().contains(l)) {
          getListeners().add(l);
@@ -476,7 +476,7 @@ public class UserManager {
       }
       CRONOMETER.getInstance().setTitle(CRONOMETER.getFullTitleWithUser());
    }
-   
+
    public final void removeUserChangeListener(UserChangeListener l) {
       getListeners().remove(l);
    }
@@ -490,7 +490,7 @@ public class UserManager {
    }
 
    /**
-    * Return any user, except the current user.  If the lastSelectedUser has been set, then 
+    * Return any user, except the current user.  If the lastSelectedUser has been set, then
     * return the lastSelectedUser.
     * @return any user
     */

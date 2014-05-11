@@ -5,7 +5,7 @@
  * are made available under the terms of the Common Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/cpl-v10.html
- * 
+ *
  * Contributors:
  *     Chris Rose
  *******************************************************************************/
@@ -16,7 +16,7 @@ import java.io.*;
 /**
  * This class implements an InputStream that counts the bytes that it has
  * read.
- * 
+ *
  * @author Chris Rose
  */
 public class CountableInputStream extends FilterInputStream {
@@ -28,7 +28,7 @@ public class CountableInputStream extends FilterInputStream {
    /**
     * Create a new <code>CountableInputStream</code> and wrap it around the
     * supplied <code>InputStream</code>.
-    * 
+    *
     * @param in an <code>InputStream</code> object to count.
     */
    public CountableInputStream(InputStream in) {
@@ -92,7 +92,7 @@ public class CountableInputStream extends FilterInputStream {
       }
       return next;
    }
-   
+
    /**
     * Get a count of the bytes read by this stream.
     * @return the number of bytes read by this stream.

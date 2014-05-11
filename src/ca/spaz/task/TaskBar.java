@@ -14,44 +14,44 @@ import javax.swing.*;
 /**
  * A TaskBar is a Swing component that can safely run a Task in a background
  * thread, display progress of the task, interact with the task control,
- * and fire events to report task progress. 
- * 
+ * and fire events to report task progress.
+ *
  * @see Task
  * @see TaskListener
- * 
+ *
  * @author Aaron Davidson
  */
 public class TaskBar extends JPanel {
-   
+
    private Task curTask;
    private JProgressBar progressBar;
    private JButton abortBtn;
    private Timer timer;
    private boolean aborting;
    private ArrayList listeners;
-   
-   public TaskBar() {      
+
+   public TaskBar() {
       setLayout(new BorderLayout(4,4));
       add(getProgressBar(), BorderLayout.CENTER);
       add(getAbortButton(), BorderLayout.EAST);
    }
-     
+
    public void setOpaque(boolean v) {
       super.setOpaque(v);
       getProgressBar().setOpaque(v);
       getAbortButton().setOpaque(v);
    }
-   
+
    private JProgressBar getProgressBar() {
       if (progressBar == null) {
-         progressBar = new JProgressBar(JProgressBar.HORIZONTAL);         
+         progressBar = new JProgressBar(JProgressBar.HORIZONTAL);
          progressBar.setValue(0);
          progressBar.setMinimum(0);
          progressBar.setMaximum(100);
       }
       return progressBar;
    }
-   
+
    public JButton getAbortButton() {
       if (abortBtn == null) {
          abortBtn = new JButton("Stop");
@@ -64,14 +64,14 @@ public class TaskBar extends JPanel {
       }
       return abortBtn;
    }
-   
+
    public void abortCurrentTask() {
       if (curTask != null) {
          aborting = true;
          curTask.abortTask();
-         progressBar.setString("Aborting...");                  
+         progressBar.setString("Aborting...");
       }
-   }    
+   }
    private Timer getTimer() {
       if (timer == null) {
          timer = new Timer(50, new ActionListener() {
@@ -84,10 +84,10 @@ public class TaskBar extends JPanel {
       }
       return timer;
    }
-   
+
    /**
-    * Start the given task. 
-    * 
+    * Start the given task.
+    *
     * @param t a Task to execute
     */
    public void executeTask(Task t) {
@@ -127,7 +127,7 @@ public class TaskBar extends JPanel {
       taskThread.start();
       getTimer().start();
    }
-   
+
    private void updateProgressBar() {
       if (curTask != null && !aborting) {
          getProgressBar().setValue(curTask.getTaskProgress());
@@ -138,8 +138,8 @@ public class TaskBar extends JPanel {
    /**
     * Adds a task listener to this object to receive events on
     * a task's progress.
-    * 
-    * @param tl a task listener 
+    *
+    * @param tl a task listener
     */
    public synchronized void addTaskListener(TaskListener tl) {
       if (null == listeners) {
@@ -150,15 +150,15 @@ public class TaskBar extends JPanel {
 
    /**
     * Remove a task listener from the TaskBar
-    * 
-    * @param tl a task listener 
+    *
+    * @param tl a task listener
     */
    public synchronized void removeTaskListener(TaskListener tl) {
       if (listeners != null) {
          listeners.remove(tl);
       }
    }
-   
+
    private synchronized void fireTaskStarted() {
       if (listeners != null) {
         Iterator iterator = listeners.iterator();

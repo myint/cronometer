@@ -15,19 +15,19 @@ public class WrapperDialog extends JDialog {
    private JPanel titlePanel;
    private JPanel centerPanel;
    private JPanel navPanel;
-   
+
    private boolean accepted = false;
    private JButton okButton, cancelButton;
-   
+
    private JLabel logo;
    private WrappedPanel wrappedPanel;
-   
+
    public WrapperDialog(Component parent, WrappedPanel wp) {
       super(JOptionPane.getFrameForComponent(parent));
       init(wp);
-      setResizable(false);      
-   } 
-   
+      setResizable(false);
+   }
+
    /**
     * Construct an instance specifying the parent, a panel, and whether the dialog is resizeable.
     * @param parent
@@ -37,19 +37,19 @@ public class WrapperDialog extends JDialog {
    public WrapperDialog(Component parent, WrappedPanel wp, boolean resizeable) {
 	   super(JOptionPane.getFrameForComponent(parent));
 	   init(wp);
-	   setResizable(resizeable);      
-   }    
-   
+	   setResizable(resizeable);
+   }
+
    private void init(WrappedPanel wp) {
       this.wrappedPanel = wp;
       setModal(true);
       setTitle(wp.getTitle());
       getContentPane().setLayout(new BorderLayout(4,4));
-      getContentPane().add(getMainPanel(), BorderLayout.CENTER);      
+      getContentPane().add(getMainPanel(), BorderLayout.CENTER);
       setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-      pack();   
+      pack();
    }
-  
+
    public static boolean showDialog(Component parent, WrappedPanel wp) {
       WrapperDialog wd = new WrapperDialog(parent, wp);
       wd.setLocationRelativeTo(parent);
@@ -83,11 +83,11 @@ public class WrapperDialog extends JDialog {
       }
       return mainPanel;
    }
-   
+
    private WrappedPanel getWrappedPanel() {
       return wrappedPanel;
    }
-   
+
    private JPanel getCenterPanel() {
       if (centerPanel == null) {
          centerPanel = new JPanel(new BorderLayout(4,4));
@@ -99,22 +99,22 @@ public class WrapperDialog extends JDialog {
       }
       return centerPanel;
    }
-    
+
    private JPanel getTitlePanel() {
-      if (titlePanel == null) {                     
+      if (titlePanel == null) {
          JLabel titleLabel = new JLabel(getWrappedPanel().getSubtitle(), JLabel.CENTER);
          titleLabel.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
          titleLabel.setFont(titleLabel.getFont().deriveFont(Font.BOLD));
          titleLabel.setForeground(Color.WHITE);
-         
+
          titlePanel = new JPanel(new BorderLayout(4,4));
          titlePanel.setBackground(Color.GRAY);
          titlePanel.setBorder(BorderFactory.createEtchedBorder());
-         titlePanel.add(titleLabel, BorderLayout.CENTER);        
+         titlePanel.add(titleLabel, BorderLayout.CENTER);
       }
       return titlePanel;
    }
-   
+
    private JPanel getOutlinePanel() {
       if (outlinePanel == null) {
          outlinePanel = new JPanel();
@@ -127,7 +127,7 @@ public class WrapperDialog extends JDialog {
       }
       return outlinePanel;
    }
-   
+
    private JLabel getLogo() {
       if (logo == null) {
          logo = new JLabel(
@@ -141,28 +141,28 @@ public class WrapperDialog extends JDialog {
       }
       return logo;
    }
-   
 
-    
-   public void dispose() { 
+
+
+   public void dispose() {
       wrappedPanel = null;
       super.dispose();
    }
-       
+
    private JButton getCancelButton() {
       if (cancelButton == null) {
          cancelButton = new JButton("Cancel");
          cancelButton.setEnabled(true);
          cancelButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-               getWrappedPanel().doCancel(); 
+               getWrappedPanel().doCancel();
                dispose();
             }
          });
       }
       return cancelButton;
-   }   
-   
+   }
+
    private JButton getOKButton() {
       if (okButton == null) {
          okButton = new JButton("OK");
@@ -177,8 +177,8 @@ public class WrapperDialog extends JDialog {
          });
       }
       return okButton;
-   }   
-   
+   }
+
    private JPanel getNavPanel() {
       if (navPanel == null) {
          navPanel = new JPanel();
@@ -194,5 +194,5 @@ public class WrapperDialog extends JDialog {
       }
       return navPanel;
    }
- 
+
 }

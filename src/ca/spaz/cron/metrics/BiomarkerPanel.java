@@ -33,24 +33,24 @@ public class BiomarkerPanel extends JPanel {
    private MetricTable metricTable;
    private JSplitPane splitPane;
    private ChartPanel chartPanel;
-   
+
    public BiomarkerPanel() {
       biomarkers = UserManager.getCurrentUser().getBiomarkerDefinitions().getEnabledBiomarkers();
       setBorder(BorderFactory.createEmptyBorder(3,3,3,3));
       setLayout(new BorderLayout());
       add(getSplitPane(), BorderLayout.CENTER);
    }
-   
+
    private JSplitPane getSplitPane() {
       if (splitPane == null) {
-         splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, 
+         splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT,
                getMetricTable(), getChartPanel());
          splitPane.setDividerLocation(300);
-         splitPane.setBorder(BorderFactory.createEmptyBorder(3,3,3,3)); 
+         splitPane.setBorder(BorderFactory.createEmptyBorder(3,3,3,3));
       }
       return splitPane;
    }
-   
+
    public MetricTable getMetricTable() {
       if (null == metricTable) {
          metricTable = new MetricTable();
@@ -58,12 +58,12 @@ public class BiomarkerPanel extends JPanel {
             public void stateChanged(ChangeEvent e) {
                // TODO: redraw graph?
                regenerateGraphData();
-            } 
-         }); 
+            }
+         });
       }
       return metricTable;
    }
-   
+
 
    public void setDate(Date d) {
       this.curDate = d;
@@ -82,12 +82,12 @@ public class BiomarkerPanel extends JPanel {
       }
       return curMetrics;
    }
-    
+
    ///////////////////////////////////////////////////////////////////////////////////////////
-   
-   
+
+
    private TimeSeries actualData = new TimeSeries("Weight", Minute.class);
-   
+
    private void regenerateGraphData() {
       List metrics = UserManager.getCurrentUser().getBiometricsHistory().getMetricsOfType("Weight");
       // Sort by date
@@ -98,15 +98,15 @@ public class BiomarkerPanel extends JPanel {
          actualData.addOrUpdate(new Day(m.getDate()), m.getValue());
       }
    }
-   
+
    private JPanel getChartPanel() {
       if (chartPanel == null) {
-         
+
          regenerateGraphData();
-         
-         TimeSeriesCollection dataset = new TimeSeriesCollection();         
+
+         TimeSeriesCollection dataset = new TimeSeriesCollection();
          dataset.addSeries(actualData);
-         
+
          JFreeChart chart;
          chart = ChartFactory.createTimeSeriesChart(
                "Biometrics Chart",  // title
@@ -136,7 +136,7 @@ public class BiomarkerPanel extends JPanel {
 
          DateAxis axis = (DateAxis) plot.getDomainAxis();
          axis.setDateFormatOverride(new SimpleDateFormat("dd-MMM-yyyy"));
-         chartPanel = new ChartPanel(chart); 
+         chartPanel = new ChartPanel(chart);
          chartPanel.setPreferredSize(new Dimension(300, 200));
          chartPanel.setMouseZoomable(true, false);
          chartPanel.setDisplayToolTips(true);

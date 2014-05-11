@@ -18,14 +18,14 @@ import ca.spaz.util.ImageFactory;
 
 public abstract class RecordTable extends JPanel {
 
-   protected JTable table; 
+   protected JTable table;
    protected RecordTableModel model;
    private Vector listeners = new Vector();
    private Vector recordListeners = new Vector();
    private JToolBar toolBar;
    private JButton addBtn, delBtn, printBtn;
    private String title = "Untitled";
-   
+
    public RecordTable(RecordTableModel entryModel) {
       setMinimumSize(new Dimension(400,250));
       setPreferredSize(new Dimension(560,300));
@@ -41,7 +41,7 @@ public abstract class RecordTable extends JPanel {
    public String getTitle() {
       return title;
    }
-   
+
    public void addChangeListener(ChangeListener listener) {
       listeners.add(listener);
    }
@@ -49,7 +49,7 @@ public abstract class RecordTable extends JPanel {
    public void removeChangeListener(ChangeListener listener) {
       listeners.remove(listener);
    }
-   
+
    public void addSelectionListener(RecordSelectionListener listener) {
       recordListeners.add(listener);
    }
@@ -57,7 +57,7 @@ public abstract class RecordTable extends JPanel {
    public void removeEntrySelectionListener(RecordSelectionListener listener) {
       recordListeners.remove(listener);
    }
-   
+
    protected void fireStateChangedEvent() {
       ChangeEvent e = new ChangeEvent(this);
       Iterator iter = listeners.iterator();
@@ -66,7 +66,7 @@ public abstract class RecordTable extends JPanel {
       }
       getDeleteButton().setEnabled(table.getSelectedRow() != -1);
    }
- 
+
    public JToolBar getToolBar() {
       if (null == toolBar) {
           toolBar = new JToolBar();
@@ -79,13 +79,13 @@ public abstract class RecordTable extends JPanel {
           toolBar.add(getDeleteButton());
           toolBar.add(Box.createHorizontalStrut(10));
 //          toolBar.add(Box.createGlue());
-//          toolBar.add(getPrintButton()); 
+//          toolBar.add(getPrintButton());
           //toolBar.add(Box.createGlue());
       }
       return toolBar;
   }
-   
-   
+
+
    private JButton getDeleteButton() {
       if (null == delBtn) {
           ImageIcon icon = new ImageIcon(ImageFactory.getInstance().loadImage("/img/trash.gif"));
@@ -101,7 +101,7 @@ public abstract class RecordTable extends JPanel {
       }
       return delBtn;
   }
-   
+
    private JButton getAddButton() {
       if (null == addBtn) {
           ImageIcon icon = new ImageIcon(ImageFactory.getInstance().loadImage("/img/add.gif"));
@@ -116,9 +116,9 @@ public abstract class RecordTable extends JPanel {
       }
       return addBtn;
   }
- 
+
    public abstract void doAddNewEntry();
-   
+
    private JComponent makeJScrollPane() {
       JScrollPane jsp = new JScrollPane(getTable());
       jsp.setPreferredSize(new Dimension(400, 250));
@@ -135,7 +135,7 @@ public abstract class RecordTable extends JPanel {
                      rowAtPoint(e.getPoint()),
                      columnAtPoint(e.getPoint()));
             }
-         }; 
+         };
          table.setColumnSelectionAllowed(false);
          table.getSelectionModel().setSelectionMode(
                ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
@@ -157,42 +157,42 @@ public abstract class RecordTable extends JPanel {
                }
             });
          addTableClickListener();
-  
-         
+
+
          table.registerKeyboardAction(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                deleteSelected();
             }
          }, "Clear", KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, 0, false), JComponent.WHEN_FOCUSED);
-         
+
          table.registerKeyboardAction(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                deleteSelected();
             }
          }, "Clear", KeyStroke.getKeyStroke(KeyEvent.VK_BACK_SPACE, 0, false), JComponent.WHEN_FOCUSED);
-         
+
          table.registerKeyboardAction(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                doCopy();
             }
          }, "Copy", KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.CTRL_MASK, false), JComponent.WHEN_FOCUSED);
-         
+
          table.registerKeyboardAction(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                doPaste();
             }
          }, "Paste", KeyStroke.getKeyStroke(KeyEvent.VK_V, ActionEvent.CTRL_MASK, false), JComponent.WHEN_FOCUSED);
-         
+
          table.registerKeyboardAction(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                doCut();
             }
          }, "Cut", KeyStroke.getKeyStroke(KeyEvent.VK_X, ActionEvent.CTRL_MASK, false), JComponent.WHEN_FOCUSED);
-       
+
       }
       return table;
-   } 
-    
+   }
+
 
    public void doClear() {
       deleteSelected();
@@ -202,14 +202,14 @@ public abstract class RecordTable extends JPanel {
       doCopy();
       doClear();
    }
-   
+
    public void doCopy() {
       copySelected();
-   }   
+   }
 
    /**
     * Add a list of entries to the daily listing
-    * Ugly because this table and model listens to the parent, which is 
+    * Ugly because this table and model listens to the parent, which is
     * backwards from normal patterns...
     * @param list
     */
@@ -218,17 +218,17 @@ public abstract class RecordTable extends JPanel {
          add(list[i].copy());
       }
    }
-   
+
    public void doPaste() {
       Transferable clipboardContent = CRONOMETER.getClipboard().getContents(this);
       if (clipboardContent != null) {
-         if (clipboardContent.isDataFlavorSupported(ServingSelection.servingFlavor)) {         
-            try {               
+         if (clipboardContent.isDataFlavorSupported(ServingSelection.servingFlavor)) {
+            try {
                Record[] list = (Record[])clipboardContent.getTransferData(ServingSelection.servingFlavor);
                if (list.length > 0) {
                   //int sel = table.getSelectedRow();
                   //doClear();
-                  addEntries(list); 
+                  addEntries(list);
                }
             } catch (Exception e) {
                e.printStackTrace();
@@ -236,7 +236,7 @@ public abstract class RecordTable extends JPanel {
          }
       }
    }
-   
+
    public void deleteSelected() {
       List sel = getSelectedEntries();
       // TODO: "Are you sure" ?
@@ -249,28 +249,28 @@ public abstract class RecordTable extends JPanel {
          fireStateChangedEvent();
       }
    }
-   
-   
-   public void copySelected() {  
+
+
+   public void copySelected() {
       // TODO: implement
    }
-   
+
    /**
-    * Installs a click listener to handle contextual 
+    * Installs a click listener to handle contextual
     * pop-up menus on row selections
     */
-   private void addTableClickListener() {     
+   private void addTableClickListener() {
       table.addMouseListener(new MouseAdapter() {
          int last = -1;
          public void mouseClicked(MouseEvent e) {
             int index = table.rowAtPoint(e.getPoint());
-            
+
             if (e.getButton() == MouseEvent.BUTTON3 || e.isControlDown()) {
-               if (index >= 0) {                
+               if (index >= 0) {
                   if (!table.isRowSelected(index)) {
                      table.getSelectionModel().setSelectionInterval(index,index);
                   }
-                  handleMouseClick(e);               
+                  handleMouseClick(e);
                }
             } else {
                if (e.getClickCount() == 2) {
@@ -284,10 +284,10 @@ public abstract class RecordTable extends JPanel {
                   }
                }
             }
-         }        
-      });          
+         }
+      });
    }
-  
+
    protected void fireEntrySelected(Record entry) {
       if (entry == null) return;
       getDeleteButton().setEnabled(!getSelectedEntries().isEmpty());
@@ -295,9 +295,9 @@ public abstract class RecordTable extends JPanel {
       while (iter.hasNext()) {
          ((RecordSelectionListener)iter.next()).recordSelected(entry);
       }
-      getTable().requestFocus();      
+      getTable().requestFocus();
    }
-   
+
    protected void fireEntryDoubleClicked(Record entry) {
       if (entry == null) return;
       Iterator iter = recordListeners.iterator();
@@ -305,7 +305,7 @@ public abstract class RecordTable extends JPanel {
          ((RecordSelectionListener)iter.next()).recordDoubleClicked(entry);
       }
    }
-   
+
    protected void fireUserEntryChosen(Record entry) {
       if (entry == null) return;
       Iterator iter = recordListeners.iterator();
@@ -313,11 +313,11 @@ public abstract class RecordTable extends JPanel {
          ((RecordSelectionListener)iter.next()).recordChosen(entry);
       }
    }
-   
+
    public void deselect() {
       getTable().getSelectionModel().clearSelection();
    }
-   
+
    public List getSelectedEntries() {
       List entries = new ArrayList();
       if (table.getSelectedRow() != -1) {
@@ -330,24 +330,24 @@ public abstract class RecordTable extends JPanel {
    }
 
    public void setEntries(List entrys) {
-      model.setUserEntrys(entrys); 
+      model.setUserEntrys(entrys);
       fireStateChangedEvent();
    }
 
    public List getEntries() {
       return model.getUserEntrys();
    }
-   
+
    public void add(Record entry) {
       model.addUserEntry(entry);
       fireStateChangedEvent();
    }
-   
+
    protected void handleMouseClick(MouseEvent e) {
       //JPopupMenu menu = new JPopupMenu();
       // TODO: implement
    }
-  
+
 
    private JButton getPrintButton() {
       if (null == printBtn) {
@@ -363,20 +363,20 @@ public abstract class RecordTable extends JPanel {
       }
       return printBtn;
    }
-   
+
    /**
     * Does a very simple print-out of the recipe.
     */
    public void doPrint() {
-      try {         
+      try {
          MessageFormat headerFormat = new MessageFormat(getTitle());
          MessageFormat footerFormat = new MessageFormat("- {0} -");
-         getTable().print(JTable.PrintMode.FIT_WIDTH, headerFormat, footerFormat);          
+         getTable().print(JTable.PrintMode.FIT_WIDTH, headerFormat, footerFormat);
       } catch (PrinterException e) {
          e.printStackTrace();
          JOptionPane.showMessageDialog(this, e.getMessage());
       }
-   }     
-   
-  
+   }
+
+
 }

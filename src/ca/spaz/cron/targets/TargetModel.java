@@ -8,16 +8,16 @@ import ca.spaz.cron.user.User;
 
 /**
  * A Target Model can suggest targets for a User
- * 
- * This lets us add different expert systems that 
+ *
+ * This lets us add different expert systems that
  * suggest nutrient target values for a user,
  * based on their parameters (age, weight, sex, etc...)
- *  
+ *
  * @author Aaron Davidson
  */
 public interface TargetModel {
 
    public double getTargetMinimum(User user, NutrientInfo ni);
-   public double getTargetMaximum(User user, NutrientInfo ni);   
-   
+   public double getTargetMaximum(User user, NutrientInfo ni);
+
 }

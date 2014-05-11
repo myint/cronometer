@@ -13,20 +13,20 @@ public class ExerciseTableModel extends PrettyTableModel {
    public static final int NAME_COL = 0;
    public static final int TIME_COL = 1;
    public static final int CALORIES_COL = 2;
-      
+
    public static String[] columnNames = { "Exercise", "Minutes", "Calories" };
 
 
    private static final DecimalFormat kcalf = new DecimalFormat("######0.0");
    private static final DecimalFormat amountf = new DecimalFormat("######0.##");
-   
+
    private List exercises = new ArrayList();
    private ExerciseTable table;
-   
+
    public ExerciseTableModel(ExerciseTable table) {
       this.table = table;
    }
-   
+
    public void UpdateTableModel(ExerciseTable table) {
       this.table = table;
    }
@@ -35,11 +35,11 @@ public class ExerciseTableModel extends PrettyTableModel {
       exercises = list;
       fireTableDataChanged();
    }
-   
+
    public List getExercises() {
       return exercises;
    }
-   
+
    public Class getColumnClass(int col) {
       Object o = getValueAt(0, col);
       if (o != null) {
@@ -64,7 +64,7 @@ public class ExerciseTableModel extends PrettyTableModel {
    public int getNumExercises() {
       return exercises.size();
    }
-   
+
    public int getRowCount() {
       return exercises.size();
    }
@@ -95,7 +95,7 @@ public class ExerciseTableModel extends PrettyTableModel {
       }
       return "";
    }
-   
+
    public boolean isCellEditable(int row, int col) {
       if (col == NAME_COL) return true;
       if (col == TIME_COL) return true;
@@ -120,26 +120,26 @@ public class ExerciseTableModel extends PrettyTableModel {
             double val = Double.parseDouble((String)value);
             s.setCalories(val);
          } catch (NumberFormatException e) {}
-      }        
+      }
       s.update();
-      fireTableRowsUpdated(row, row);         
+      fireTableRowsUpdated(row, row);
       table.fireStateChangedEvent();
    }
 
    public void delete(Exercise s) {
       exercises.remove(s);
-      fireTableDataChanged();      
+      fireTableDataChanged();
    }
 
    public void addExercise(Exercise s) {
       exercises.add(s);
-      fireTableDataChanged();      
+      fireTableDataChanged();
    }
 
    public void sort() {
       // no sorting in this table for now.
    }
-   
+
    /**
     * Allows custom rendering for a row and column. Can just return c, if no
     * changes to default are desired.

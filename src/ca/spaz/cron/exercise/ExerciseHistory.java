@@ -11,7 +11,7 @@ import ca.spaz.cron.records.Record;
  * The Exercise history for a user.
  */
 public class ExerciseHistory extends History {
-  
+
    public String getBaseName() {
       return "exercises";
    }
@@ -23,7 +23,7 @@ public class ExerciseHistory extends History {
    public Record loadUserEntry(Element item) {
       return new Exercise(item);
    }
-   
+
    /**
     * Add a new record of a Serving to the history
     */
@@ -31,13 +31,13 @@ public class ExerciseHistory extends History {
       addEntry(c);
    }
 
-   public synchronized List getConsumedOn(Date curDate) {     
+   public synchronized List getConsumedOn(Date curDate) {
       return getEntriesOn(curDate);
    }
-   
+
    /**
     * Copies the servings from one day to another.
-    * @param fromDate the day to copy from	
+    * @param fromDate the day to copy from
     * @param toDate the day to copy to
     * @return the copied servings
     */
@@ -52,7 +52,7 @@ public class ExerciseHistory extends History {
 	   }
 	   return consumed;
    }
-   
+
    public synchronized void deleteExercises(List list) {
       super.deleteEntries(list);
    }
@@ -64,5 +64,5 @@ public class ExerciseHistory extends History {
    public void update(Exercise exercise) {
       super.updateEntry(exercise);
    }
-          
+
 }

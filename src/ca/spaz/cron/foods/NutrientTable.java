@@ -8,17 +8,17 @@ import java.util.Arrays;
 /**
  * A base class for a group of related nutrient values Provides common support
  * for loading and updating the database.
- * 
+ *
  * The nutrient table is expected to have field names that match the names and
  * types of the corresponding database table. This greatly simplifies
  * maintaining the database and generating UI forms through reflection.
- * 
+ *
  * @author davidson
  */
 public class NutrientTable {
 
    public double[] nutrients = new double[NutrientInfo.getGlobalList().size()];
-   
+
    public NutrientTable() {
       Arrays.fill(nutrients, -1);
    }
@@ -33,17 +33,17 @@ public class NutrientTable {
       return val;
    }
 
-   public boolean dataExists(int index) {      
+   public boolean dataExists(int index) {
       return nutrients[index] >= 0;
    }
-   
+
    public void setAmount(int index, double val) {
       nutrients[index] = val;
    }
 
    /**
     * Add the nutrients in the given table to our total
-    * 
+    *
     * @param toAdd
     *            the nutrients ratios to add
     * @param weight

@@ -32,7 +32,7 @@ public class MetricChart extends JFrame {
    private JPanel toolbar;
    private TimeSeriesCollection dataset;
    private TimeSeries actualData;
-   private TimeSeries movingAverageData;   
+   private TimeSeries movingAverageData;
    private JFreeChart chart;
    private ChartPanel chartPanel;
 
@@ -44,10 +44,10 @@ public class MetricChart extends JFrame {
    private JCheckBox movingAverageChk;
    private IntegerField movingAverageDaysTxt;
    private int movingAverageDays = 7;
-   private DateFormat df = DateFormat.getDateInstance(DateFormat.LONG);   
+   private DateFormat df = DateFormat.getDateInstance(DateFormat.LONG);
 
    /**
-    * A demonstration application showing how to create a simple time series 
+    * A demonstration application showing how to create a simple time series
     * chart.  This example uses monthly data.
     *
     * @param title  the frame title.
@@ -62,11 +62,11 @@ public class MetricChart extends JFrame {
       chartPanel = createChartPanel();
 
       mainPanel.add(getToolbar(), BorderLayout.NORTH);
-      mainPanel.add(chartPanel, BorderLayout.CENTER);        
+      mainPanel.add(chartPanel, BorderLayout.CENTER);
       setContentPane(mainPanel);
       setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
    }
-   
+
    public void setBiomarker(Biomarker biomarker) {
       this.biomarker = biomarker;
       movingAverageDays = biomarker.getMovingAverageDays();
@@ -102,7 +102,7 @@ public class MetricChart extends JFrame {
          }
       }
    }
-   
+
    private void calculateMovingAverage() {
       movingAverageData = MovingAverage.createMovingAverage(
             actualData, movingAverageDays + " Day Moving Average", movingAverageDays, 0
@@ -111,9 +111,9 @@ public class MetricChart extends JFrame {
 
    /**
     * Creates a chart.
-    * 
+    *
     * @param dataset  a dataset.
-    * 
+    *
     * @return A chart.
     */
    private void createChart() {
@@ -149,7 +149,7 @@ public class MetricChart extends JFrame {
    }
 
    private ChartPanel createChartPanel() {
-      ChartPanel chartPanel = new ChartPanel(chart); 
+      ChartPanel chartPanel = new ChartPanel(chart);
       chartPanel.setPreferredSize(new java.awt.Dimension(550, 300));
       chartPanel.setMouseZoomable(true, false);
       chartPanel.setDisplayToolTips(true);
@@ -162,16 +162,16 @@ public class MetricChart extends JFrame {
          toolbar.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
          toolbar.setLayout(new BoxLayout(toolbar, BoxLayout.X_AXIS));
 
-         toolbar.add(getStartDateButton()); 
-         toolbar.add(new JLabel(" to ")); 
+         toolbar.add(getStartDateButton());
+         toolbar.add(new JLabel(" to "));
          toolbar.add(getEndDateButton());
-         toolbar.add(Box.createHorizontalGlue());         
+         toolbar.add(Box.createHorizontalGlue());
          toolbar.add(getMovingAverageCheckBox());
          toolbar.add(getMovingAverageDaysTxt());
-         toolbar.add(new JLabel(" Day Moving Average"));         
+         toolbar.add(new JLabel(" Day Moving Average"));
       }
       return toolbar;
-   }  
+   }
 
    private JButton getStartDateButton() {
       if (startDateBtn == null) {
@@ -188,23 +188,23 @@ public class MetricChart extends JFrame {
    private void updateStartDate() {
       startDate = pickStartDate(startDate);
       if (startDate.after(curDate)) {
-         startDate = curDate;                    
-      }      
-      startDateBtn.setText(df.format(startDate));      
+         startDate = curDate;
+      }
+      startDateBtn.setText(df.format(startDate));
       if (startDate.after(endDate)) {
          endDate = startDate;
          endDateBtn.setText(df.format(endDate));
       }
       getData();
-   }   
+   }
 
    private JButton getEndDateButton() {
       if (endDateBtn == null) {
          endDateBtn = new JButton(df.format(endDate));
          endDateBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-               updateEndDate();                
-            }            
+               updateEndDate();
+            }
          });
       }
       return endDateBtn;
@@ -213,9 +213,9 @@ public class MetricChart extends JFrame {
    private void updateEndDate() {
       endDate = pickEndDate(endDate);
       if (endDate.after(curDate)) {
-         endDate = curDate;                    
+         endDate = curDate;
       }
-      endDateBtn.setText(df.format(endDate));      
+      endDateBtn.setText(df.format(endDate));
       if (endDate.before(startDate)) {
          startDate = endDate;
          startDateBtn.setText(df.format(startDate));
@@ -225,12 +225,12 @@ public class MetricChart extends JFrame {
 
    public Date pickStartDate(Date startDate) {
       return DateChooser.pickDate(mainPanel, startDate, "Pick a start date");
-   }  
+   }
 
    public Date pickEndDate(Date startDate) {
       return DateChooser.pickDate(mainPanel, startDate, "Pick an end date");
-   }  
-   
+   }
+
    private JCheckBox getMovingAverageCheckBox() {
       if (movingAverageChk == null) {
          movingAverageChk = new JCheckBox("Show");
@@ -241,27 +241,27 @@ public class MetricChart extends JFrame {
          });
       }
       return movingAverageChk;
-   }  
-   
+   }
+
    private void toggleMovingAverage() {
       if (movingAverageChk.isSelected()) {
          movingAverageDays = movingAverageDaysTxt.getValue();
-         calculateMovingAverage();          
+         calculateMovingAverage();
          dataset.addSeries(movingAverageData);
          movingAverageDaysTxt.setEnabled(false);
       }
       else {
          dataset.removeSeries(movingAverageData);
-         movingAverageDaysTxt.setEnabled(true);         
+         movingAverageDaysTxt.setEnabled(true);
       }
    }
-   
+
    private IntegerField getMovingAverageDaysTxt() {
       if (movingAverageDaysTxt == null) {
          movingAverageDaysTxt = new IntegerField(movingAverageDays, 3);
          movingAverageDaysTxt.setRange(2, 1000);
-         movingAverageDaysTxt.setMaximumSize(new Dimension(40, 30));         
+         movingAverageDaysTxt.setMaximumSize(new Dimension(40, 30));
       }
       return movingAverageDaysTxt;
-   }    
+   }
 }

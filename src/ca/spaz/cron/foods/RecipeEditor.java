@@ -12,15 +12,15 @@ import javax.swing.event.ChangeListener;
 import ca.spaz.cron.CRONOMETER;
 
 public class RecipeEditor extends FoodEditor {
-  
+
    private ServingTable servingTable;
    private JLabel gramsLabel;
-   private JPanel servingPanel; 
-   
+   private JPanel servingPanel;
+
    public RecipeEditor(CRONOMETER app, Recipe r) {
-      super(app, r);      
+      super(app, r);
    }
-   
+
    /**
     * Copy changes to original and save.
     */
@@ -28,33 +28,33 @@ public class RecipeEditor extends FoodEditor {
       ((Recipe)original).copy(getRecipe());
       original.update();
    }
-   
+
 
    public void setFood(Food f) {
       this.original = f;
       this.food = new Recipe((Recipe)f); // edit on a copy
-      getServingTable().setServings(getRecipe().getServings());      
+      getServingTable().setServings(getRecipe().getServings());
    }
-   
+
    protected String getTitle() {
       return "Recipe Editor";
    }
-   
+
    protected void initialize() {
       this.setLayout(new BorderLayout(4, 4));
       this.setBorder(BorderFactory.createEmptyBorder(9, 9, 9, 9));
       this.add(getGeneralPanel(), BorderLayout.NORTH);
       this.add(getCenterPanel(), BorderLayout.WEST);
       this.add(getEastPanel(), BorderLayout.CENTER);
-      
+
       getMacroNutrientsTable().setEditable(false);
       getMineralsTable().setEditable(false);
       getVitaminsTable().setEditable(false);
       getAminoAcidsTable().setEditable(false);
       getLipidsTable().setEditable(false);
    }
-   
-   private void updateNutrients() { 
+
+   private void updateNutrients() {
       getMeasureSelector().updateMeasure();
 
       getMacroNutrientsTable().setFood(food);
@@ -65,11 +65,11 @@ public class RecipeEditor extends FoodEditor {
       getGramsLabel().setText("Recipe Weight: "+
             Math.round(getRecipe().getTotalGrams()*10)/10.0+"g");
    }
-   
+
    private Recipe getRecipe() {
       return (Recipe)food;
    }
-   
+
    private JLabel getGramsLabel() {
       if (gramsLabel == null) {
          gramsLabel = new JLabel();
@@ -84,20 +84,20 @@ public class RecipeEditor extends FoodEditor {
       getNutrientPanel().setBorder(BorderFactory.createEmptyBorder(3,3,3,3));
       return jp;
    }
-   
+
    public ServingTable getServingTable() {
       if (null == servingTable) {
          servingTable = new ServingTable();
          servingTable.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent e) {
                getRecipe().setServings(servingTable.getServings());
-               getMeasureEditor().resetMeasures();               
-               updateNutrients(); 
+               getMeasureEditor().resetMeasures();
+               updateNutrients();
             }
-         }); 
+         });
          servingTable.addServingSelectionListener(new ServingSelectionListener() {
             public void servingChosen(Serving s) {
-               if (s.getFoodProxy().getSource() == food.getSource() && 
+               if (s.getFoodProxy().getSource() == food.getSource() &&
                      s.getFoodProxy().getSourceID() == food.getSourceUID()) {
                     JOptionPane.showMessageDialog(servingTable, "A recipe can not contain itself!");
                  } else {
@@ -111,7 +111,7 @@ public class RecipeEditor extends FoodEditor {
       }
       return servingTable;
    }
-   
+
 
    private JPanel getServingPanel() {
       if (null == servingPanel) {
@@ -122,6 +122,6 @@ public class RecipeEditor extends FoodEditor {
          getServingTable().getToolBar().add(getGramsLabel());
       }
       return servingPanel;
-   } 
-   
+   }
+
 }

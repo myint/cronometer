@@ -9,7 +9,7 @@ import ca.spaz.util.Logger;
  * Simplifies constructing SQL Update Queries.
  */
 public class SQLUpdate extends SQLSelectableStatement implements Columns {
-  
+
    private SQLColumnSet cols;
 
    /**
@@ -21,16 +21,16 @@ public class SQLUpdate extends SQLSelectableStatement implements Columns {
       cols = new SQLColumnSet();
    }
 
-   /** 
+   /**
     * Overrides execute() and calls executeUpdate()
     */
    protected void doExecute(Connection con) throws SQLException {
-      Statement stmt = con.createStatement();      
+      Statement stmt = con.createStatement();
       String query = this.getQueryString();
       if (Logger.isDebugEnabled()) {
          Logger.debug("executeQuery() - Statement to be executed: " + query);
       }
-     
+
       stmt.executeUpdate(query);
    }
 
@@ -44,11 +44,11 @@ public class SQLUpdate extends SQLSelectableStatement implements Columns {
       sb.append(" SET ");
       List names = cols.getNames();
       List terms = cols.getValues();
-      for (int i=0; i<names.size(); i++) {         
+      for (int i=0; i<names.size(); i++) {
          Object name = names.get(i);
          Object term = terms.get(i);
          if (term == null) {
-            term = "NULL"; 
+            term = "NULL";
          }
          sb.append(name.toString());
          sb.append(" = '");

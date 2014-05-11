@@ -12,11 +12,11 @@ import ca.spaz.gui.ErrorReporter;
 import ca.spaz.util.Logger;
 
 public abstract class JarXMLFoodDataSource implements FoodDataSource {
-     
+
    private HashMap map; // maps sourceID to FoodProxy
-  
+
    public abstract String getBaseName();
-   
+
    public void initialize() {
       try {
          loadIndex();
@@ -24,30 +24,30 @@ public abstract class JarXMLFoodDataSource implements FoodDataSource {
          Logger.debug("Loaded " + map.size() +" foods.");
       } catch (IOException e) {
          Logger.error("Error Initliazing DataSource", e);
-         ErrorReporter.showError("Error Initliazing DataSource", e, CRONOMETER.getInstance()); 
+         ErrorReporter.showError("Error Initliazing DataSource", e, CRONOMETER.getInstance());
       }
    }
 
    private InputStream getStream(String name) {
-      return getClass().getResourceAsStream("/"+getBaseName()+"/"+name);   
+      return getClass().getResourceAsStream("/"+getBaseName()+"/"+name);
    }
-   
+
    private void loadIndex() throws IOException {
-      Logger.debug("Loading index..."); 
+      Logger.debug("Loading index...");
       InputStream in = getStream("foods.index");
       if (in != null) {
          BufferedReader bIn = new BufferedReader(new InputStreamReader(in));
          map = new HashMap();
          String line = bIn.readLine();
          while (line != null) {
-            String[] parts = line.split("\\|"); 
+            String[] parts = line.split("\\|");
             map.put(parts[0], new FoodProxy(parts[1],this,parts[0]));
             line = bIn.readLine();
          }
          bIn.close();
       }
    }
-   
+
 
    private void loadDeprecatedIndex() throws IOException {
       Logger.debug("Loading Deprecated index...");
@@ -56,7 +56,7 @@ public abstract class JarXMLFoodDataSource implements FoodDataSource {
          BufferedReader bIn = new BufferedReader(new InputStreamReader(in));
          String line = bIn.readLine();
          while (line != null) {
-            String[] parts = line.split("\\|"); 
+            String[] parts = line.split("\\|");
             map.put(parts[0], new DeprecatedFoodProxy(parts[1],this,parts[0]));
             line = bIn.readLine();
          }
@@ -68,25 +68,25 @@ public abstract class JarXMLFoodDataSource implements FoodDataSource {
       Food food = null;
       InputStream in = getStream(id+".xml");
       if (in != null) {
-         try { 
-            food = XMLFoodLoader.loadFood(in); 
+         try {
+            food = XMLFoodLoader.loadFood(in);
             in.close();
             food.setDataSource(this);
             food.setSourceUID(id);
          } catch (Exception e) {
-            Logger.error("Error loading: "+id, e); 
-            ErrorReporter.showError("Error loading: "+id, e, CRONOMETER.getInstance()); 
+            Logger.error("Error loading: "+id, e);
+            ErrorReporter.showError("Error loading: "+id, e, CRONOMETER.getInstance());
             food = null;
-         } 
+         }
       }
       return food;
    }
-   
+
    public FoodProxy getFoodProxy(String id) {
       return (FoodProxy)map.get(id);
    }
-    
-   
+
+
    public List findFoods(String[] keys) {
       ArrayList results = new ArrayList();
       Iterator iter = map.values().iterator();
@@ -114,25 +114,25 @@ public abstract class JarXMLFoodDataSource implements FoodDataSource {
    public List getFoodGroups() {
       return  new ArrayList();
    }
-   
+
    public void close() { }
 
    public boolean isAvailable() {
       return map != null;
    }
 
-   
+
    ////////////////////////////////////////////////////////////////////////////////
    /*
    private void generateIndex() {
       try {
          PrintStream ps = new PrintStream(
-               new BufferedOutputStream(new FileOutputStream("foods.index")));      
+               new BufferedOutputStream(new FileOutputStream("foods.index")));
          Enumeration e = zip.entries();
          while (e.hasMoreElements()) {
             Food f = loadFood((ZipEntry)e.nextElement());
             if (f != null) {
-               Logger.error(f.getSourceUID()+"|"+f.getDescription());               
+               Logger.error(f.getSourceUID()+"|"+f.getDescription());
                ps.println(f.getSourceUID()+"|"+f.getDescription());
             }
          }
@@ -141,5 +141,5 @@ public abstract class JarXMLFoodDataSource implements FoodDataSource {
          Logger.debug(ex);
       }
    }   */
-    
+
 }

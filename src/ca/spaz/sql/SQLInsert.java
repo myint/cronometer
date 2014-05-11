@@ -6,11 +6,11 @@ import ca.spaz.util.Logger;
 
 /**
  * Simplifies constructing SQL Insert Queries.
- * 
+ *
  * @author davidson
  */
 public class SQLInsert extends SQLStatement implements Columns {
-  
+
     private SQLColumnSet cols;
 
     public SQLInsert(String tableName) {
@@ -27,7 +27,7 @@ public class SQLInsert extends SQLStatement implements Columns {
 
         stmt.execute(query);
     }
-    
+
     protected ResultSet doExecuteQuery(Connection con) throws SQLException {
        Statement stmt = con.createStatement();
        String query = this.getQueryString();
@@ -42,15 +42,15 @@ public class SQLInsert extends SQLStatement implements Columns {
           return null;
        }
     }
-    
+
 
     protected String getQueryString() {
         StringBuffer sb = new StringBuffer();
         sb.append("INSERT INTO ");
         sb.append(this.table);
-        
+
         sb.append(cols.getNameString());
-        
+
         sb.append("\n   VALUES ");
         sb.append(cols.getValueString());
         sb.append(";");

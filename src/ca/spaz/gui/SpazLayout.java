@@ -3,20 +3,20 @@ package ca.spaz.gui;
 import java.awt.*;
 import java.util.Hashtable;
 
-/** 
+/**
  */
 
 public class SpazLayout implements LayoutManager2 {
     Hashtable compTable = new Hashtable();
-    
+
     /**
      */
     public SpazLayout() { }
-    
+
     public void setConstraints(Component comp, SpazPosition constraints) {
         compTable.put(comp, new SpazPosition(constraints));
     }
-    
+
     /**
      * Adds the specified component with the specified name to
      * the layout.  This does nothing in GraphPaperLayout, since constraints
@@ -31,7 +31,7 @@ public class SpazLayout implements LayoutManager2 {
     public void removeLayoutComponent(Component comp) {
         compTable.remove(comp);
     }
-    
+
     public SpazPosition getPosition(Component comp) {
     	return  (SpazPosition)compTable.get(comp);
     }
@@ -42,10 +42,10 @@ public class SpazLayout implements LayoutManager2 {
 
 
     /**
-     * Calculates the preferred size dimensions for the specified 
+     * Calculates the preferred size dimensions for the specified
      * panel given the components in the specified parent container.
      * @param parent the component to be laid out
-     *  
+     *
      * @see #minimumLayoutSize
      */
     public Dimension preferredLayoutSize(Container parent) {
@@ -53,22 +53,22 @@ public class SpazLayout implements LayoutManager2 {
 		if (ncomponents == 0) return new Dimension(1,1);
 		Rectangle totalRect = new Rectangle(0,0,1,1);
 		Dimension size = parent.getSize();
-      Insets insets = parent.getInsets();		
+      Insets insets = parent.getInsets();
 		int totalW = size.width - (insets.left + insets.right);
 		int totalH = size.height - (insets.top + insets.bottom);
 		for ( int i = 0; i < ncomponents; i++ ) {
 			Component c = parent.getComponent(i);
 			SpazPosition lp = (SpazPosition)compTable.get(c);
          Rectangle rect = lp.getRectangle(totalW, totalH);
-         if ( rect != null ) 
-         	totalRect = totalRect.union(rect); 
+         if ( rect != null )
+         	totalRect = totalRect.union(rect);
 
 		}
 		return new Dimension(totalRect.width,totalRect.height);
     }
 
-    /** 
-     * Calculates the minimum size dimensions for the specified 
+    /**
+     * Calculates the minimum size dimensions for the specified
      * panel given the components in the specified parent container.
      * @param parent the component to be laid out
      * @see #preferredLayoutSize
@@ -81,24 +81,24 @@ public class SpazLayout implements LayoutManager2 {
 			Component c = parent.getComponent(i);
 			SpazPosition lp = (SpazPosition)compTable.get(c);
          Rectangle rect = lp.getMinRectangle();
-         if ( rect != null ) 
-         	totalRect = totalRect.union(rect); 
+         if ( rect != null )
+         	totalRect = totalRect.union(rect);
 
 		}
 		return new Dimension(totalRect.width,totalRect.height);
     }
-    
 
-    /** 
+
+    /**
      * Lays out the container in the specified container.
-     * @param parent the component which needs to be laid out 
+     * @param parent the component which needs to be laid out
      */
     public void layoutContainer(Container parent) {
         synchronized (parent.getTreeLock()) {
             Insets insets = parent.getInsets();
             int ncomponents = parent.getComponentCount();
             if (ncomponents == 0) return;
-            
+
             // Total parent dimensions
             Dimension size = parent.getSize();
             int totalW = size.width - (insets.left + insets.right);
@@ -116,9 +116,9 @@ public class SpazLayout implements LayoutManager2 {
             }
         }
     }
-    
+
     // LayoutManager2 /////////////////////////////////////////////////////////
-    
+
     /**
      * Adds the specified component to the layout, using the specified
      * constraint object.
@@ -135,7 +135,7 @@ public class SpazLayout implements LayoutManager2 {
         }
     }
 
-    /** 
+    /**
      * Returns the maximum size of this component.
      * @see java.awt.Component#getMinimumSize()
      * @see java.awt.Component#getPreferredSize()
@@ -147,7 +147,7 @@ public class SpazLayout implements LayoutManager2 {
 
     /**
      * Returns the alignment along the x axis.  This specifies how
-     * the component would like to be aligned relative to other 
+     * the component would like to be aligned relative to other
      * components.  The value should be a number between 0 and 1
      * where 0 represents alignment along the origin, 1 is aligned
      * the furthest away from the origin, 0.5 is centered, etc.
@@ -158,7 +158,7 @@ public class SpazLayout implements LayoutManager2 {
 
     /**
      * Returns the alignment along the y axis.  This specifies how
-     * the component would like to be aligned relative to other 
+     * the component would like to be aligned relative to other
      * components.  The value should be a number between 0 and 1
      * where 0 represents alignment along the origin, 1 is aligned
      * the furthest away from the origin, 0.5 is centered, etc.

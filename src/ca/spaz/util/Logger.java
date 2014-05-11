@@ -7,12 +7,12 @@ public class Logger {
 
    public static void log(String str) {
       System.out.println(str);
-   } 
-   
+   }
+
    public static void debug(String str) {
       System.out.println(str);
-   } 
-   
+   }
+
 
    public static void error(Exception e) {
       e.printStackTrace();
@@ -24,7 +24,7 @@ public class Logger {
 
    public static void error(String str) {
       System.err.println(str);
-   }     
+   }
 
    public static void error(String str, Exception e) {
       System.err.println(str);
@@ -33,5 +33,5 @@ public class Logger {
 
    public static boolean isDebugEnabled() {
       return true;
-   } 
+   }
 }

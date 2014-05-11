@@ -13,7 +13,7 @@ import javax.swing.event.HyperlinkListener;
 import javax.swing.text.Document;
 import javax.swing.text.html.HTMLDocument;
 import javax.swing.text.html.HTMLFrameHyperlinkEvent;
- 
+
 /**
  * @author Aaron Davidson
  */
@@ -21,18 +21,18 @@ public class WebViewer extends JPanel {
    private JEditorPane htmlPane = new JEditorPane();
    private JScrollPane jsp;
    private boolean external = false;
-   
-   public WebViewer(URL url) {      
+
+   public WebViewer(URL url) {
       jsp = makeHTMLPane();
       setHTML(url);
       this.setLayout(new BorderLayout());
       this.add(jsp, BorderLayout.CENTER);
    }
-   
+
    public JScrollPane getScrollPane() {
       return jsp;
    }
-   
+
    public void setPreferredSize(Dimension d) {
       super.setPreferredSize(d);
       if (jsp != null) {
@@ -40,26 +40,26 @@ public class WebViewer extends JPanel {
          jsp.setMinimumSize(d);
       }
    }
-   
+
    public void setScrollbarPolicies(int horizPolicy, int vertPolicy) {
       jsp.setHorizontalScrollBarPolicy(horizPolicy);
       jsp.setVerticalScrollBarPolicy(vertPolicy);
    }
-   
+
    public WebViewer(String html) {
       jsp = makeHTMLPane();
       setHTML(html);
       this.setLayout(new BorderLayout());
       this.add(jsp, BorderLayout.CENTER);
    }
-   
+
    public WebViewer() {
       jsp = makeHTMLPane();
       this.setLayout(new BorderLayout());
       this.add(jsp, BorderLayout.CENTER);
    }
-    
- 
+
+
    private JScrollPane makeHTMLPane() {
       htmlPane.setContentType("text/html");
       htmlPane.setEditable(false);
@@ -70,7 +70,7 @@ public class WebViewer extends JPanel {
       //htmlView.setPreferredSize(new Dimension(50, 50));
       return htmlView;
    }
-   
+
    public void setURL(String url) {
       try {
          setHTML(new URL(url));
@@ -78,12 +78,12 @@ public class WebViewer extends JPanel {
          e.printStackTrace();
       }
    }
-   
+
    public void setHTML(final URL url) {
       Runnable proc = new Runnable() {
          public void run() {
-            try {         
-               htmlPane.setPage(url);               
+            try {
+               htmlPane.setPage(url);
             } catch (UnknownHostException ex) {
                setHTML( "<html><body>" +
                         "<h2 align=\"center\">Unknown Host Exception:</h2>" +
@@ -111,7 +111,7 @@ public class WebViewer extends JPanel {
       htmlPane.setText(html);
       scrollToTop();
    }
-   
+
 
    public void setText(String text) {
       htmlPane.setContentType("text/ascii");
@@ -125,7 +125,7 @@ public class WebViewer extends JPanel {
          doc.remove(0,doc.getLength());
       } catch (Exception e) { e.printStackTrace(); }
    }
-   
+
    public void scrollToTop() {
       SwingUtilities.invokeLater(new Runnable() {
          public void run() {
@@ -135,7 +135,7 @@ public class WebViewer extends JPanel {
          }
       });
    }
-   
+
    public void setHTML(File f) {
       try {
          setHTML(f.toURI().toURL());
@@ -143,13 +143,13 @@ public class WebViewer extends JPanel {
          e.printStackTrace();
       }
    }
-      
-   
+
+
    public class Hyperactive implements HyperlinkListener {
 
       public Hyperactive() {}
 
-      public void hyperlinkUpdate(HyperlinkEvent e) {       
+      public void hyperlinkUpdate(HyperlinkEvent e) {
          if (e.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
             JEditorPane pane = (JEditorPane)e.getSource();
             if (e instanceof HTMLFrameHyperlinkEvent) {
@@ -166,22 +166,22 @@ public class WebViewer extends JPanel {
                } catch (Exception t) {
                   t.printStackTrace();
                }
-            } 
+            }
          }
       }
    }
-   
+
    /**
     * Set to launch hyperlinks in external system browser, or in internal
     * window instead.
-    * 
+    *
     * @param val true if external browser should load links.
     */
    public void setExternal(boolean val) {
       external = val;
    }
-   
-   
+
+
    public JEditorPane getHTMLPane() {
       return htmlPane;
    }

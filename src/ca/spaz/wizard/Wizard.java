@@ -14,10 +14,10 @@ import ca.spaz.util.ToolBox;
 
 /**
  * A Wizard Dialog.
- * 
+ *
  * A Wizard contains one or more Wizard Panels
  * When a user clicks 'FINISH' on the last panel,
- * each Wizard Panel will be called in order, to 
+ * each Wizard Panel will be called in order, to
  * commit it's settings. If the user clicks cancel,
  * nothing will be called.
  */
@@ -27,59 +27,59 @@ public class Wizard extends JDialog {
    private JPanel outlinePanel;
    private JPanel titlePanel;
    private JPanel contentPanel;
-   private JPanel navPanel;   
+   private JPanel navPanel;
    private JLabel curPanelTitle;
    private CardLayout contentCards;
    private Vector wizardPanels;
    private JButton cancelBtn, nextBtn, prevBtn, finishBtn;
    private HashMap titleMap;
-   
+
    private int curPanel = 0;
-   
+
    public Wizard(JFrame parent, String title) {
       super(parent);
       this.title = title;
       setModal(true);
       setTitle(getTitle());
       getContentPane().setLayout(new BorderLayout(4,4));
-      getContentPane().add(getMainPanel(), BorderLayout.CENTER);      
+      getContentPane().add(getMainPanel(), BorderLayout.CENTER);
    }
-   
+
    public void startWizard() {
       showPanel(0);
       pack();
       ToolBox.centerFrame(this);
       setVisible(true);
    }
-   
-   public void addWizardPanel(WizardPanel wp) {     
+
+   public void addWizardPanel(WizardPanel wp) {
       getWizardPanels().add(wp);
       getWizardPanel().add(wp, wp.getWizardPanelTitle());
       JLabel wpLabel = makeOutlineLabel(wp);
       getTitleMap().put(wp, wpLabel);
-      
+
       getOutlinePanel().add(wpLabel);
       getOutlinePanel().add(Box.createVerticalStrut(10));
-   }   
-   
+   }
+
    private HashMap getTitleMap() {
       if (titleMap == null) {
          titleMap = new HashMap();
       }
       return titleMap;
    }
-   
-   private JLabel makeOutlineLabel(WizardPanel wp) {     
+
+   private JLabel makeOutlineLabel(WizardPanel wp) {
       JLabel label = new JLabel(wp.getWizardPanelTitle());
       label.setForeground(Color.DARK_GRAY);
       label.setAlignmentX(0.5f);
       return label;
    }
-   
+
    private WizardPanel getWizardPanel(int i) {
       return (WizardPanel)getWizardPanels().get(i);
    }
-   
+
    private void showPanel(int i) {
       WizardPanel wp = getWizardPanel(curPanel);
       if (wp != null) {
@@ -106,30 +106,30 @@ public class Wizard extends JDialog {
          label.setFont(label.getFont().deriveFont(Font.BOLD));
       }
    }
-   
+
    private Vector getWizardPanels() {
       if (wizardPanels == null) {
          wizardPanels = new Vector();
       }
       return wizardPanels;
    }
-   
+
    public int getNumPanels() {
       return getWizardPanels().size();
    }
-   
+
    private void showNext() {
       if (curPanel < getNumPanels() - 1) {
          showPanel(curPanel+1);
       }
    }
-   
+
    private void showPrevious() {
       if (curPanel > 0) {
          showPanel(curPanel-1);
       }
    }
-   
+
    private JPanel getMainPanel() {
       if (mainPanel == null) {
          mainPanel = new JPanel(new BorderLayout(4,4));
@@ -141,7 +141,7 @@ public class Wizard extends JDialog {
       }
       return mainPanel;
    }
-   
+
    private JLabel getCurrentPanelTitleLabel() {
       if (curPanelTitle == null) {
          curPanelTitle = new JLabel("", JLabel.CENTER);
@@ -151,15 +151,15 @@ public class Wizard extends JDialog {
       }
       return curPanelTitle;
    }
-   
+
    private JPanel getTitlePanel() {
       if (titlePanel == null) {
-         
+
          JLabel titleLabel = new JLabel(getTitle());
          titleLabel.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
          titleLabel.setFont(titleLabel.getFont().deriveFont(Font.BOLD));
          titleLabel.setForeground(Color.WHITE);
-         
+
          titlePanel = new JPanel(new BorderLayout(4,4));
          titlePanel.setBackground(Color.BLACK);
          titlePanel.setBorder(BorderFactory.createRaisedBevelBorder());
@@ -168,7 +168,7 @@ public class Wizard extends JDialog {
       }
       return titlePanel;
    }
-   
+
    private JPanel getOutlinePanel() {
       if (outlinePanel == null) {
          outlinePanel = new JPanel();
@@ -181,7 +181,7 @@ public class Wizard extends JDialog {
       }
       return outlinePanel;
    }
-   
+
    private JPanel getWizardPanel() {
       if (contentPanel == null) {
          contentPanel = new JPanel(getContentCards());
@@ -189,15 +189,15 @@ public class Wizard extends JDialog {
          contentPanel.add(Box.createRigidArea(new Dimension(400,300)), BorderLayout.CENTER);
       }
       return contentPanel;
-   }   
-   
+   }
+
    private CardLayout getContentCards() {
       if (contentCards == null) {
          contentCards = new CardLayout();
       }
       return contentCards;
    }
-   
+
    private JPanel getNavPanel() {
       if (navPanel == null) {
          navPanel = new JPanel();
@@ -218,11 +218,11 @@ public class Wizard extends JDialog {
    public String getTitle() {
       return title;
    }
-   
+
    public void doCancel() {
       dispose();
    }
-   
+
    public void doFinish() {
       Iterator iter = getWizardPanels().iterator();
       while (iter.hasNext()) {
@@ -230,19 +230,19 @@ public class Wizard extends JDialog {
       }
       dispose();
    }
-   
+
    private JButton getCancelButton() {
       if (cancelBtn == null) {
          cancelBtn = new JButton("Cancel");
          cancelBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                doCancel();
-            }            
+            }
          });
       }
       return cancelBtn;
    }
-   
+
    private JButton getNextButton() {
       if (nextBtn == null) {
          nextBtn = new JButton("Next");
@@ -251,25 +251,25 @@ public class Wizard extends JDialog {
                if (getWizardPanel(curPanel).isValid()) {
                   showNext();
                }
-            }            
+            }
          });
       }
       return nextBtn;
    }
-   
+
    private JButton getPrevButton() {
       if (prevBtn == null) {
          prevBtn = new JButton("Back");
          prevBtn.setEnabled(false);
          prevBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-               showPrevious(); 
-            }  
+               showPrevious();
+            }
          });
       }
       return prevBtn;
    }
-   
+
    private JButton getFinishButton() {
       if (finishBtn == null) {
          finishBtn = new JButton("Finish");

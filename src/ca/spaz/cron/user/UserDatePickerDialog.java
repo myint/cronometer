@@ -5,7 +5,7 @@
  * are made available under the terms of the Common Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/cpl-v10.html
- * 
+ *
  * Contributors:
  *     Simon Werner
  *******************************************************************************/
@@ -34,30 +34,30 @@ public class UserDatePickerDialog extends WrappedPanel implements ListSelectionL
    private DateFormat df = DateFormat.getDateInstance(DateFormat.LONG);
    private JXDatePicker datePicker;
    private JPanel userListPanel;
-   
+
    private User selectedUser = null;
    private boolean cancelled = false;
 
    public UserDatePickerDialog() {
-      JPanel cp = new JPanel(new RiverLayout(1,1)); 
+      JPanel cp = new JPanel(new RiverLayout(1,1));
       cp.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
       cp.add("p center hfill", getDatePicker());
       cp.add("p center hfill", getUserListPanel());
       cp.add("p center vfill", Box.createVerticalBox());
-      
+
       setBorder(BorderFactory.createEmptyBorder(6, 6, 6, 6));
       setLayout(new BorderLayout(12,12));
-        
+
       add(cp, BorderLayout.CENTER);
       selectDefaultUser();
    }
-   
+
    public String getTitle() { return "Copy servings to another user"; }
    public String getSubtitle() { return "Select a user and date"; }
    public String getInfoString() { return  ""; }
    public boolean showSidebar() { return false; }
    public ImageIcon getIcon() { return null; }
-   
+
    public static boolean showDialog(JComponent parent) {
       try {
          UserDatePickerDialog usd = new UserDatePickerDialog();
@@ -71,18 +71,18 @@ public class UserDatePickerDialog extends WrappedPanel implements ListSelectionL
    private static Border makeTitle(String str) {
       return BorderFactory.createCompoundBorder(
          BorderFactory.createTitledBorder(
-            BorderFactory.createEmptyBorder(), str), 
+            BorderFactory.createEmptyBorder(), str),
             BorderFactory.createEmptyBorder(2,26,2,26));
    }
- 
+
    public void addChangeListener(ChangeListener cl) {
       getListeners().add(cl);
    }
-   
+
    public void removeChangeListener(ChangeListener cl) {
       getListeners().remove(cl);
    }
-   
+
    private Vector<ChangeListener> getListeners() {
       if (listeners == null) {
          listeners = new Vector<ChangeListener>();
@@ -111,7 +111,7 @@ public class UserDatePickerDialog extends WrappedPanel implements ListSelectionL
 
       return userListPanel;
   }
-   
+
    public boolean isCancellable() {
       return true;
    }
@@ -120,14 +120,14 @@ public class UserDatePickerDialog extends WrappedPanel implements ListSelectionL
       selectedUser = null;
       cancelled = true;
    }
-   
+
    public boolean doAccept() {
       return true;
    }
 
    //Listener method for list selection changes.
    public void valueChanged(ListSelectionEvent e) {
-      
+
        if (e.getValueIsAdjusting() == false) {
 
            if (userList.getSelectedIndex() == -1) {
@@ -147,13 +147,13 @@ public class UserDatePickerDialog extends WrappedPanel implements ListSelectionL
     * Select the default user in the list. This is not the current user.
     */
    public void selectDefaultUser() {
-      userList.setSelectedValue(UserManager.selectOtherUser().getUsername(), true);   
+      userList.setSelectedValue(UserManager.selectOtherUser().getUsername(), true);
    }
 
    public boolean cancelPressed() {
       return cancelled;
    }
-   
+
    public Date getDate() {
       return datePicker.getDate();
    }
@@ -170,13 +170,13 @@ public class UserDatePickerDialog extends WrappedPanel implements ListSelectionL
       datePicker = new JXDatePicker();
       datePicker.setFormats(formats);
       datePicker.setDate(CRONOMETER.getDailySummary().getDate());
-      datePicker.setFont(new Font("Application", Font.BOLD, 12)); 
+      datePicker.setFont(new Font("Application", Font.BOLD, 12));
       datePicker.getEditor().setEnabled(false);
       datePicker.getEditor().setFocusable(false);
       datePicker.getEditor().setOpaque(false);
       datePicker.getEditor().setBorder(null);
       datePicker.setBorder(makeTitle("Date:"));
-      datePicker.setFocusable(false); 
+      datePicker.setFocusable(false);
       return datePicker;
    }
 }

@@ -23,11 +23,11 @@ import ca.spaz.cron.user.UserManager;
 import ca.spaz.gui.*;
 
 public class NutrientTable extends PrettyTable implements UserChangeListener {
-   
-   private List servings; 
+
+   private List servings;
    private List nutrients, master;
    private NutrientTableModel model;
-      
+
    public NutrientTable(List nutrients) {
       super();
       setNutrients(nutrients);
@@ -42,18 +42,18 @@ public class NutrientTable extends PrettyTable implements UserChangeListener {
             ListSelectionModel.SINGLE_SELECTION);
       this.addMouseListener(new MouseAdapter() {
          public void mouseClicked(MouseEvent e) {
-            if (getSelectedRow() != -1) {               
+            if (getSelectedRow() != -1) {
                if (e.getClickCount() == 2) {
                   NutrientInfo ni = model.getNutrientInfo(getSelectedRow());
                   WrapperDialog.showDialog(CRONOMETER.getInstance(), new NutrientInfoPanel(ni));
-                  model.fireTableDataChanged(); 
+                  model.fireTableDataChanged();
                }
             }
          }
       });
-      
+
       setModel(getNutrientTableModel());
-      
+
       //setColumnAlignment(0, SwingConstants.RIGHT);
       setColumnAlignment(1, SwingConstants.RIGHT);
       setColumnAlignment(3, SwingConstants.RIGHT);
@@ -63,13 +63,13 @@ public class NutrientTable extends PrettyTable implements UserChangeListener {
       getColumnModel().getColumn(1).setMinWidth(64);
       getColumnModel().getColumn(2).setMaxWidth(36);
       getColumnModel().getColumn(2).setMinWidth(36);
-      
+
       TableColumn tc = getColumnModel().getColumn(3);
       tc.setCellRenderer(new TargetRenderer());
-   }   
-   
+   }
+
    private void setNutrients(List list) {
-      this.master = list;     
+      this.master = list;
       this.nutrients = UserManager.getCurrentUser().getTracked(list);
       getNutrientTableModel().fireTableDataChanged();
    }
@@ -81,7 +81,7 @@ public class NutrientTable extends PrettyTable implements UserChangeListener {
       renderer.setHorizontalAlignment(alignment);
       column.setCellRenderer(renderer);
    }
-   
+
    public double getAmount(NutrientInfo ni) {
       // TODO: cache this value!
       double total = 0;
@@ -101,7 +101,7 @@ public class NutrientTable extends PrettyTable implements UserChangeListener {
       }
       return model;
    }
-   
+
    public class NutrientTableModel extends PrettyTableModel {
       private DecimalFormat df = new DecimalFormat("######0.0");
       private DecimalFormat nf = new DecimalFormat("######0%");
@@ -146,7 +146,7 @@ public class NutrientTable extends PrettyTable implements UserChangeListener {
                return df.format(getAmount(ni));
             case 2:
                return " " + ni.getUnits();
-            case 3: 
+            case 3:
                Target target = UserManager.getCurrentUser().getTarget(ni);
                if (target.getMin() > 0) {
                   return nf.format(getAmount(ni)/target.getMin());
@@ -160,7 +160,7 @@ public class NutrientTable extends PrettyTable implements UserChangeListener {
          return false;
       }
 
-      public String getToolTipText(int r, int c) {          
+      public String getToolTipText(int r, int c) {
          return null;
       }
 
@@ -168,7 +168,7 @@ public class NutrientTable extends PrettyTable implements UserChangeListener {
 
    }
 
-   public void update(List consumed) {    
+   public void update(List consumed) {
       this.servings = consumed;
       getNutrientTableModel().fireTableDataChanged();
    }
@@ -182,16 +182,16 @@ public class NutrientTable extends PrettyTable implements UserChangeListener {
             int column) {
          setValue(0);
          setMin(0);
-         setMax(0); 
-         
+         setMax(0);
+
          NutrientInfo ni = model.getNutrientInfo(row);
          if (ni != null) {
             Target target = UserManager.getCurrentUser().getTarget(ni);
             if (target.getMin() > 0) {
                setValue(getAmount(ni));
                setMin(target.getMin());
-               setMax(target.getMax()); 
-            } 
+               setMax(target.getMax());
+            }
          }
          return this;
       }
@@ -203,6 +203,6 @@ public class NutrientTable extends PrettyTable implements UserChangeListener {
       getNutrientTableModel().fireTableDataChanged();
    }
 
-   
+
 
 }

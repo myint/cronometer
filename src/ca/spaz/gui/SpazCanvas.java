@@ -17,7 +17,7 @@ import org.w3c.dom.*;
 /**
  * An XML definition of a GUI layout.
  *
- * @author Aaron Davidson 
+ * @author Aaron Davidson
  * @date   September 2002
  */
 
@@ -115,7 +115,7 @@ public class SpazCanvas extends JPanel implements ActionListener {
 		//text.setWrapStyleWord(true);
 		jsp.setAutoscrolls(true);
 		SpazPosition lp = parseSpazPosition(elm);
-		if (lp == null) 
+		if (lp == null)
 			return;
 		this.add(jsp, lp);
 		parseBorder(jsp, elm);
@@ -245,7 +245,7 @@ public class SpazCanvas extends JPanel implements ActionListener {
 				Object[] params2 = null;
 				m.invoke(listener, params2);
 			} catch (NoSuchMethodException me) {
-				JOptionPane.showMessageDialog(this, 
+				JOptionPane.showMessageDialog(this,
                   "No Action Handler for  '" + methodName + "'");
 			} catch (Exception ex) {
 				ex.printStackTrace();

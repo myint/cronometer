@@ -5,7 +5,7 @@
  * are made available under the terms of the Common Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/cpl-v10.html
- * 
+ *
  * Contributors:
  *     Chris Rose
  *     Simon Werner
@@ -26,27 +26,27 @@ import ca.spaz.cron.targets.*;
 import ca.spaz.util.Settings;
 
 /**
- * A CRONOMETER-specific, property-based <code>User</code> implementation. 
- * This contains all the necessary code for data relating to a 
+ * A CRONOMETER-specific, property-based <code>User</code> implementation.
+ * This contains all the necessary code for data relating to a
  * single user in CRONOMETER.
- * 
+ *
  * @author Chris Rose
  * @author Simon Werner
  */
 public class User {
-   
+
    public static final String CU_FIRST_RUN = "first.run";
    public static final String NORMAL_FEMALE = "Normal";
    public static final String PREGNANT_FEMALE = "Pregnant";
    public static final String LACTATING_FEMALE = "Lactating";
    public static final String DEFAULT_USERNAME = "Default User";
-   
+
    private static final String CU_PREF_BASE = "pref.";
    private static final String CU_HEIGHT = "height";
-   private static final String CU_WEIGHT = "weight"; 
+   private static final String CU_WEIGHT = "weight";
    private static final String CU_CUSTOM_TARGETS = "custom.targets";
    private static final String CU_MALE = "male";
-   private static final String CU_BD_DAY = "birthdate.day";   
+   private static final String CU_BD_DAY = "birthdate.day";
    private static final String CU_BD_MONTH = "birthdate.month";
    private static final String CU_BD_YEAR = "birthdate.year";
    private static final String CU_TARGET = "target.";
@@ -64,7 +64,7 @@ public class User {
    private BiometricsHistory bioHist;
    private BiomarkerDefinitions bioDefs;
    private ExerciseHistory exerciseHist;
-   
+
    private String username;
    private Date birthDate;
    private Settings settings;
@@ -76,7 +76,7 @@ public class User {
    public User(Settings settings) {
       this.settings = settings;
    }
-   
+
    public void setFemaleStatus(String status) {
       settings.set(CU_STATUS, status);
       UserManager.getUserManager().notifyUserChangeListeners();
@@ -104,7 +104,7 @@ public class User {
       birthDate = date;
       UserManager.getUserManager().notifyUserChangeListeners();
    }
-   
+
    /**
     * A rough estimate of the user's age, close enough for our purposes.
     */
@@ -129,26 +129,26 @@ public class User {
    }
 
    public void setWeightUnitMetric(boolean val) {
-      settings.set(CU_WEIGHT_UNIT_METRIC, val);       
+      settings.set(CU_WEIGHT_UNIT_METRIC, val);
    }
-   
+
    public boolean getWeightUnitMetric() {
       return settings.getBoolean(CU_WEIGHT_UNIT_METRIC, true);
    }
-   
+
    public void setHeightUnitMetric(boolean val) {
-      settings.set(CU_HEIGHT_UNIT_METRIC, val);       
+      settings.set(CU_HEIGHT_UNIT_METRIC, val);
    }
-   
+
    public boolean getHeightUnitMetric() {
       return settings.getBoolean(CU_HEIGHT_UNIT_METRIC, true);
    }
 
-   public double getHeightInCM() {     
+   public double getHeightInCM() {
       return settings.getDouble(CU_HEIGHT, 170);
    }
 
-   public void setHeightInCM(double height) { 
+   public void setHeightInCM(double height) {
       settings.set(CU_HEIGHT, height);
       UserManager.getUserManager().notifyUserChangeListeners();
    }
@@ -159,9 +159,9 @@ public class User {
 
    public void setUserPreference(String prefName, String value) {
       settings.set(CU_PREF_BASE + prefName, value);
-      UserManager.getUserManager().notifyUserChangeListeners();      
+      UserManager.getUserManager().notifyUserChangeListeners();
    }
-   
+
    public void setTarget(NutrientInfo nutrient, Target target) {
       settings.set(CU_TARGET + nutrient.getName()+".min", target.getMin());
       settings.set(CU_TARGET + nutrient.getName()+".max", target.getMax());
@@ -187,7 +187,7 @@ public class User {
    public boolean isTracking(NutrientInfo ni) {
       return settings.getBoolean(CU_TRACK+ni.getName(), ni.getDefaultTracking());
    }
-   
+
    public void setTracking(NutrientInfo ni, boolean b) {
       settings.set(CU_TRACK+ni.getName(), b);
       UserManager.getUserManager().notifyUserChangeListeners();
@@ -197,22 +197,22 @@ public class User {
       return settings.getBoolean(CU_MALE, true);
    }
 
-   public boolean isFemale() {     
+   public boolean isFemale() {
       return !isMale();
    }
 
-   public boolean isPregnant() {      
+   public boolean isPregnant() {
       return isFemale() && getFemaleStatus().equals(PREGNANT_FEMALE);
    }
 
-   public boolean isLactating() {      
+   public boolean isLactating() {
       return isFemale() && getFemaleStatus().equals(LACTATING_FEMALE);
    }
 
    public String getFemaleStatus() {
-      return settings.get(CU_STATUS, NORMAL_FEMALE);   
+      return settings.get(CU_STATUS, NORMAL_FEMALE);
    }
-   
+
    public void setGender(boolean male) {
       settings.set(CU_MALE, male);
       UserManager.getUserManager().notifyUserChangeListeners();
@@ -221,14 +221,14 @@ public class User {
    public boolean firstRun() {
       return settings.getBoolean(CU_FIRST_RUN, true);
    }
-   
+
    public void setFirstRun(boolean val) {
       settings.set(CU_FIRST_RUN, val);
       UserManager.getUserManager().notifyUserChangeListeners();
    }
 
    public double getWeightInKilograms() {
-      return settings.getDouble(CU_WEIGHT, 150/2.2); 
+      return settings.getDouble(CU_WEIGHT, 150/2.2);
    }
 
    public double getBMI() {
@@ -236,46 +236,46 @@ public class User {
       return getWeightInKilograms() / (meters*meters);
    }
 
-   public int getActivityLevel() { 
+   public int getActivityLevel() {
       return settings.getInt(CU_ACTIVITY, 0);
    }
 
    public void setActivityLevel(int act) {
-      settings.set(CU_ACTIVITY, act);         
+      settings.set(CU_ACTIVITY, act);
    }
-   
+
    public void setWeightInKilograms(double userWeight) {
-      settings.set(CU_WEIGHT, userWeight);       
+      settings.set(CU_WEIGHT, userWeight);
    }
 
-   public int getProteinPercentage() { 
-      return settings.getInt(CU_PROTEIN_PERC, 30); 
+   public int getProteinPercentage() {
+      return settings.getInt(CU_PROTEIN_PERC, 30);
    }
 
-   public int getCarbPercentage() { 
-      return settings.getInt(CU_CARBS_PERC, 40); 
+   public int getCarbPercentage() {
+      return settings.getInt(CU_CARBS_PERC, 40);
    }
 
-   public int getFatPercentage() { 
-      return settings.getInt(CU_FAT_PERC, 30); 
+   public int getFatPercentage() {
+      return settings.getInt(CU_FAT_PERC, 30);
    }
-   
-   public void setProteinPercentage(int val) { 
-      settings.set(CU_PROTEIN_PERC, val); 
+
+   public void setProteinPercentage(int val) {
+      settings.set(CU_PROTEIN_PERC, val);
    }
-   
-   public void setCarbPercentage(int val) { 
-      settings.set(CU_CARBS_PERC, val); 
+
+   public void setCarbPercentage(int val) {
+      settings.set(CU_CARBS_PERC, val);
    }
-   
-   public void setFatPercentage(int val) { 
-       settings.set(CU_FAT_PERC, val); 
-   }   
-   
+
+   public void setFatPercentage(int val) {
+       settings.set(CU_FAT_PERC, val);
+   }
+
    public static String removeCharAt(String s, int pos) {
       return s.substring(0,pos)+s.substring(pos+1);
    }
-   
+
    public List<NutrientInfo> getTracked(List<NutrientInfo> list) {
       List<NutrientInfo> tracked = new ArrayList<NutrientInfo>();
       for (int i=0; i<list.size(); i++) {
@@ -287,9 +287,9 @@ public class User {
       return tracked;
    }
 
-   
+
    /**
-    * Returns <code>true</code> when a character is a valid character for a username. 
+    * Returns <code>true</code> when a character is a valid character for a username.
     */
    public static boolean isValidChar(char c) {
       if ('0' <= c && c <= '9') {
@@ -305,12 +305,12 @@ public class User {
       }
       return false;
    }
-   
+
    /**
-    * Clean the username.  The resulting username will only have the following 
-    * characters: [A-Za-z0-9.-_]. 
+    * Clean the username.  The resulting username will only have the following
+    * characters: [A-Za-z0-9.-_].
     * @param username the string to clean
-    * @return the input string minus any invalid characters 
+    * @return the input string minus any invalid characters
     */
    public static String cleanUsername(String s) {
       int i = 0;
@@ -324,25 +324,25 @@ public class User {
       }
       return s;
    }
-   
+
    /**
     * Rename the current user to the given name.  Need to rename the directory as well.
     * @param username the new name of the user
     */
    public void setUsername(String newUsername) {
-      
-      String newCleanUsername = cleanUsername(newUsername); 
-      
+
+      String newCleanUsername = cleanUsername(newUsername);
+
       if ( ! newUsername.equals(newCleanUsername)) {
          CRONOMETER.okDialog("Your username contains invalid characters, " +
                "these have been removed.", "User name updated");
       }
-      
+
       if (newCleanUsername.equals(username)) {
          // given username is the same as current, therefore username has not changed
          return;
       }
-      
+
       if (username == null) {
          username = newCleanUsername;
       } else {
@@ -352,13 +352,13 @@ public class User {
             username = newCleanUsername;
          } else {
             // An error occurred while renaming the directory, inform the user
-            CRONOMETER.okDialog("An error occurred while changing your username. " + 
+            CRONOMETER.okDialog("An error occurred while changing your username. " +
                   "Your orignal username will be used.", "User name updated");
          }
       }
       UserManager.getUserManager().notifyUserChangeListeners();
    }
-   
+
    public String getUsername(){
       if (username == null) {
          // Loop until we find a username that is valid.
@@ -392,7 +392,7 @@ public class User {
    public Settings getSettings() {
       return settings;
    }
-   
+
    /**
     * Initialise the User specific data sources.
     */
@@ -411,18 +411,18 @@ public class User {
 
    public BiomarkerDefinitions getBiomarkerDefinitions() {
       if (bioDefs == null) {
-         bioDefs = new BiomarkerDefinitions();         
+         bioDefs = new BiomarkerDefinitions();
       }
       return bioDefs;
    }
-   
+
    public FoodHistory getFoodHistory() {
       if (foodHist == null) {
          foodHist = new FoodHistory();
       }
       return foodHist;
    }
-   
+
    public ExerciseHistory getExerciseHistory() {
       if (exerciseHist == null) {
          exerciseHist = new ExerciseHistory();
@@ -435,8 +435,8 @@ public class User {
          noteHist = new NotesHistory();
       }
       return noteHist;
-   } 
-   
+   }
+
    /**
     * Ensure all data is saved to backing stores.
     */
@@ -446,15 +446,15 @@ public class User {
       getNotesHistory().save();
       getExerciseHistory().save();
    }
-   
+
    public String getNotes(Date date) {
       return getNotesHistory().getNote(date);
    }
-   
+
    public void setNotes(String note, Date date) {
       getNotesHistory().setNote(note, date);
    }
-   
+
    public List getBiometrics(Date date) {
       return getBiometricsHistory().getMetricsOn(date);
    }
@@ -462,13 +462,13 @@ public class User {
    public void addMetric(Metric metric) {
       getBiometricsHistory().addMetric(metric);
    }
-   
+
    public void updateMetric(Metric metric) {
       getBiometricsHistory().update(metric);
-   }   
+   }
 
    public void removeMetric(Metric metric) {
       getBiometricsHistory().delete(metric);
    }
-   
+
 }
