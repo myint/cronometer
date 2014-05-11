@@ -333,7 +333,7 @@ public class ToolBox {
    
    /**
     * Return an object of the given type, or null if not able.
-    * Usefull if we don't want the detailed error handling.
+    * Useful if we don't want the detailed error handling.
     * @param classname a classname
     * @return  an object of the given type, or null if not able.
     */   

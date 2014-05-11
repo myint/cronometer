@@ -172,7 +172,7 @@ public class RiverLayout
             else x+= hgap;
             if (hasConstraint(m, TAB_STOP)) {
                ruler.setTab(tabIndex, x); // Will only increase
-               x = ruler.getTab(tabIndex++); // Jump forward if neccesary
+               x = ruler.getTab(tabIndex++); // Jump forward if necessary
             }
             Dimension d = m.getPreferredSize();
             x += d.width;

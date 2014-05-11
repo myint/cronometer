@@ -39,7 +39,7 @@ public class XMLFoodLoader {
    /**
     * Import a food or recipe from XML format
     * @param e an XML element to import from
-    * @return the imported food, or null if an error ocurred
+    * @return the imported food, or null if an error occurred
     */
    public static Food loadFood(Element e) {
        Food f = null;

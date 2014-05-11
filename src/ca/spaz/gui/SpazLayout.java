@@ -131,7 +131,7 @@ public class SpazLayout implements LayoutManager2 {
             setConstraints(comp, cons);
         } else if (constraints != null) {
             throw new IllegalArgumentException(
-                "cannot add to layout: constraint must be a SpazPostion");
+                "cannot add to layout: constraint must be a SpazPosition");
         }
     }
 

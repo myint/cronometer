@@ -192,7 +192,7 @@ public class UserManager {
    /**
     * Delete the user with the given <code>username</code>
     * @param username the name of the user
-    * @return true if the delete was succesful
+    * @return true if the delete was successful
     */
    public boolean deleteUser(String username) {
       User user = getUser(username);
