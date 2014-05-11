@@ -1,8 +1,9 @@
 language: objective-c
 
 before_script:
-    - brew install ant
+    - curl -o ant.tar.gz http://www.apache.org/dist/ant/binaries/apache-ant-1.9.4-bin.tar.gz
+    - tar xf ant.tar.gz
 
 script:
-    - ./build_osx.bash
+    - PATH="$PATH:$PWD/apache-ant-1.9.4/bin" ./build_osx.bash
     - open ./CRONoMeter.app
