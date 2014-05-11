@@ -1,5 +1,8 @@
 language: objective-c
 
+before_script:
+    - brew install ant
+
 script:
     - ./build_osx.bash
     - open ./CRONoMeter.app
