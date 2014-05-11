@@ -1,12 +1,18 @@
 #!/bin/bash -ex
 
 root="$(dirname "$0")"
-export CLASSPATH="$root/lib/jfreechart-1.0.6.jar:$CLASSPATH"
-export CLASSPATH="$root/lib/jcommon-1.0.10.jar:$CLASSPATH"
-export CLASSPATH="$root/lib/crdb_005.jar:$CLASSPATH"
-export CLASSPATH="$root/lib/jcommon-1.0.10.jar:$CLASSPATH"
-export CLASSPATH="$root/lib/jfreechart-1.0.6.jar:$CLASSPATH"
-export CLASSPATH="$root/lib/swingx-0.9.3.jar:$CLASSPATH"
-export CLASSPATH="$root/lib/usda_sr23.jar:$CLASSPATH"
+
+for jar in "$root/lib"/*.jar
+do
+    export CLASSPATH="$root/$jar:$CLASSPATH"
+done
 
 ant
+
+app="$root/CRONoMeter.app"
+rm -rf "$app"
+mkdir "$app"
+cp -r "$root/release/osx/Contents" "$app"
+
+mkdir -p "$app/Contents/Resources/Java"
+cp -r "$root/lib"/* "$app/Contents/Resources/Java/"

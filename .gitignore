@@ -1,3 +1,6 @@
 .*.swp
-/bin/
+/bin/ca/
+/bin/com/
+/bin/se/
 /lib/cronometer.jar
+CRONoMeter.app
