@@ -154,10 +154,10 @@ public class XMLNode {
          else if (c == '&') sb.append("&amp;");
          else if (c == '<') sb.append("&lt;");
          else if (c == '>') sb.append("&gt;");
-         else if (c == '“') sb.append("&quot;");
-         else if (c == '”') sb.append("&quot;");
-         else if (c == '‘') sb.append("'");
-         else if (c == '’') sb.append("'"); 
+         else if (c == '\u201C') sb.append("&quot;");
+         else if (c == '\u201D') sb.append("&quot;");
+         else if (c == '\u2018') sb.append("'");
+         else if (c == '\u2019') sb.append("'"); 
          //else if (c == '\\') sb.append("&#92;");
          else {
             int ci = 0xffff & c;
