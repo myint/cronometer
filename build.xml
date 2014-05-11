@@ -12,7 +12,7 @@
 
 	<!-- Compile the java code from ${src} into ${build} -->
 	<target name="compile" description="compile the source">
-		<javac source="1.4" srcdir="${source}" destdir="${build}">
+		<javac source="1.6" srcdir="${source}" destdir="${build}">
 			<classpath>
 				<fileset dir="${build}/lib">
 					<include name="*.jar"/>
@@ -39,6 +39,11 @@
 				<include name="ca/**"/>
 				<include name="com/**"/>
 				<include name="se/**"/>
+				<include name="img/**"/>
+				<include name="docs/**"/>
+			</fileset>
+			<fileset dir="${source}">
+				<include name="*.*"/>
 				<include name="img/**"/>
 				<include name="docs/**"/>
 			</fileset>
