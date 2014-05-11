@@ -6,4 +6,4 @@ before_script:
 
 script:
     - PATH="$PATH:$PWD/apache-ant-1.9.4/bin" ./build_osx.bash
-    - open ./CRONoMeter.app
+    - ls ./CRONoMeter.app
