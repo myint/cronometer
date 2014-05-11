@@ -2,6 +2,10 @@
 cronometer
 ==========
 
+.. image:: https://travis-ci.org/myint/cronometer.svg?branch=master
+    :target: https://travis-ci.org/myint/cronometer
+    :alt: Build status
+
 cronometer is a nutrition tracking tool. This is a fork of the original_.
 
 .. _original: http://sourceforge.net/projects/cronometer
