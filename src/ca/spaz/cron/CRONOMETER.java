@@ -456,7 +456,6 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
       }
 
       public void run() {
-         ToolBox.sleep(1000);
          Datasources.initialize(this);
       }
 
