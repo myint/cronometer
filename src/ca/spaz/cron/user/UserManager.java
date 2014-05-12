@@ -75,7 +75,7 @@ public class UserManager {
     }
 
     /**
-     * Get the last user that used CRON-o-meter.
+     * Get the last user that used Cronometer.
      */
     public User getLastUser() {
         User user = getUser(getLastUsername());
@@ -86,7 +86,7 @@ public class UserManager {
     }
 
     /**
-     * Get the last username that used CRON-o-meter, the last time it was run.
+     * Get the last username that used Cronometer, the last time it was run.
      * @return
      */
     public String getLastUsername() {

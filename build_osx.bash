@@ -3,7 +3,7 @@
 ant
 
 root="$(dirname "$0")"
-app="$root/CRONoMeter.app"
+app="$root/Cronometer.app"
 rm -rf "$app"
 mkdir "$app"
 cp -r "$root/release/osx/Contents" "$app"

@@ -60,10 +60,10 @@ public class UserManagerDialog extends WrappedPanel implements ListSelectionList
     }
     public String getInfoString() {
         return  "<div align=\"justify\" width=\"180\"><br>" +
-                "CRON-o-meter allows you to have multiple users, "
+                "Cronometer allows you to have multiple users, "
                 + "each user has their own profile."
                 + "<br><br>"
-                + "Here you can add and remove users from CRON-o-meter."
+                + "Here you can add and remove users from Cronometer."
                 + "</div>";
     }
 

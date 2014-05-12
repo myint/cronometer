@@ -9,15 +9,15 @@
 	<key>CFBundleExecutable</key>
 	<string>JavaApplicationStub</string>
 	<key>CFBundleGetInfoString</key>
-	<string>CRONoMeter v1.0</string>
+	<string>Cronometer</string>
 	<key>CFBundleIconFile</key>
 	<string>cronometer.icns</string>
 	<key>CFBundleIdentifier</key>
-	<string>CRONoMeter v1.0</string>
+	<string>Cronometer</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>CRONoMeter v1.0</string>
+	<string>Cronometer</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>

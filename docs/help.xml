@@ -1,4 +1,4 @@
-<page title="CRON-o-Meter Help" url="blank.html">
+<page title="Cronometer Help" url="blank.html">
 
 	<page title="Manual" url="blank.html">
    		<page title="Introduction" url="introduction.html" />
@@ -30,7 +30,7 @@
 	</page>
 
 	<page title="About" url="blank.html">
-   		<page title="About CRON-o-Meter" url="about.html" />
+   		<page title="About Cronometer" url="about.html" />
    		<page title="About cronometer.com" url="webversion.html" />
 	</page>
 

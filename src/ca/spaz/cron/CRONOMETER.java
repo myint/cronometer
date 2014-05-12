@@ -41,11 +41,11 @@ import com.apple.mrj.MRJQuitHandler;
  */
 public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, MRJAboutHandler, ClipboardOwner {
 
-    public static final String TITLE = "CRON-o-Meter";
+    public static final String TITLE = "Cronometer";
     public static final int BUILD = 19;
     public static JFrame mainFrame = null;
 
-    private static Clipboard clipboard = new Clipboard ("CRON-o-Meter");
+    private static Clipboard clipboard = new Clipboard ("Cronometer");
 
     private static DailySummary ds;
 
@@ -132,7 +132,7 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
     private void upgradeToB7() {
         if (UserManager.getCurrentUser().isFemale()) {
             JOptionPane.showMessageDialog(getMainPanel(),
-                                          "Previous versions of CRON-o-Meter were incorrectly \n" +
+                                          "Previous versions of Cronometer were incorrectly \n" +
                                           "suggesting male nutritional targets for women.\n" +
                                           "It is highly recommended that you reset your nutritional\n" +
                                           "targets to values appropriate for women.");
@@ -193,7 +193,7 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
         if (help == null) {
             try {
                 URL.setURLStreamHandlerFactory(new JarLoader());
-                help = new HelpBrowser("CRON-o-Meter Help", new URL("class://DocAnchor/"));
+                help = new HelpBrowser("Cronometer Help", new URL("class://DocAnchor/"));
                 help.setIconImage(CRONOMETER.getWindowIcon());
                 ToolBox.centerFrame(help);
             } catch (Exception e) {

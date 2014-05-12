@@ -40,7 +40,7 @@ public class SearchDialog extends JDialog implements ServingEditorListener, Food
     }
 
     private void init(Window parent) {
-        this.setTitle("CRON-o-Meter Food Database");
+        this.setTitle("Cronometer Food Database");
         this.getContentPane().add(getMainPanel());
         this.pack();
         ToolBox.centerOver(this, parent);
