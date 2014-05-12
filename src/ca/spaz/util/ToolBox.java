@@ -196,20 +196,6 @@ public class ToolBox {
    }
 
    /**
-    * Sleep for some amount of time.
-    * Conveniently wraps sleep in exception.
-    *
-    * @param tix milliseconds to sleep.
-    */
-   public static void sleep(int tix) {
-      try {
-         Thread.sleep(tix);
-      } catch (InterruptedException e) {
-         e.printStackTrace();
-      }
-   }
-
-   /**
     * Centers a given frame on the screen.
     * @return the location of the top-left of window
     */

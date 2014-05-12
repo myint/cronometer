@@ -25,7 +25,6 @@ import ca.spaz.cron.foods.FoodEditor;
 import ca.spaz.cron.targets.DRITargetModel;
 import ca.spaz.cron.targets.TargetEditor;
 import ca.spaz.cron.ui.*;
-import ca.spaz.cron.ui.SplashScreen;
 import ca.spaz.cron.user.*;
 import ca.spaz.gui.*;
 import ca.spaz.task.Task;
@@ -438,40 +437,6 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
       }
    }
 
-   private static final class SplashScreenTask implements Task, ProgressListener {
-      int prog = 0;
-
-      public int getTaskProgress() {
-         return prog;
-      }
-
-      public void abortTask() { }
-
-      public boolean canAbortTask() {
-         return false;
-      }
-
-      public String getTaskDescription() {
-         return "Starting "+TITLE+"...";
-      }
-
-      public void run() {
-         Datasources.initialize(this);
-      }
-
-      public void progressStart() {
-         prog = 0;
-      }
-
-      public void progressFinish() {
-         prog = 100;
-      }
-
-      public void progress(int percent) {
-         prog = percent;
-      }
-   }
-
    public void handleAbout() {
       doAbout();
    }
@@ -555,11 +520,8 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
       }
 
       final CRONOMETER cron = CRONOMETER.getInstance();
-      SplashScreen scr = new SplashScreen(new SplashScreenTask());
-      mainFrame = scr;
-      scr.setIconImage(CRONOMETER.getWindowIcon());
-      scr.addTaskListener(cron);
-      scr.start();
+      Datasources.initialize(null);
+      cron.initGUI();
    }
 
 }
