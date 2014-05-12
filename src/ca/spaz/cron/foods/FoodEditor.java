@@ -105,7 +105,6 @@ public class FoodEditor extends JPanel {
         if (centerPanel == null) {
             centerPanel = new JPanel();
             centerPanel.setLayout(new BorderLayout(4, 4));
-            //centerPanel.setBorder(BorderFactory.createEmptyBorder(8, 8, 8, 8));
             centerPanel.add(getMeasureEditor(), BorderLayout.CENTER);
             centerPanel.add(getCommentsPanel(), BorderLayout.SOUTH);
         }
@@ -233,7 +232,6 @@ public class FoodEditor extends JPanel {
             generalPanel.add(TAB_HFILL, getNameField());
             generalPanel.add(TAB_HFILL, getSourceLabel());
             generalPanel.add(TAB_HFILL, getButtonPanel());
-            // generalPanel.add(TAB_HFILL, getMeasureSelector());
         }
         return generalPanel;
     }
@@ -329,8 +327,6 @@ public class FoodEditor extends JPanel {
             if (ToolBox.isMacOSX()) {
                 tabPanel.setFont(tabPanel.getFont().deriveFont(10.0f));
             }
-            //tabPanel.addTab("Measures", getMeasureEditor());
-            //tabPanel.addTab("Comments", getCommentsPanel());
             tabPanel.addTab("General", getMacroNutrientsTable());
             tabPanel.addTab("Minerals", getMineralsTable());
             tabPanel.addTab("Vitamins", getVitaminsTable());

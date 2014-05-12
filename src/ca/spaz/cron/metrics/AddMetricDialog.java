@@ -69,7 +69,6 @@ public class AddMetricDialog extends JDialog implements MetricSelectionListener 
             final JList list = new JList(data); //data has type Object[]
             list.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 //         if (data.length > 0) {
-//            list.setSelectedIndex(0);
 //         }
             list.setVisibleRowCount(-1);
             list.getSelectionModel().addListSelectionListener(
@@ -78,7 +77,6 @@ public class AddMetricDialog extends JDialog implements MetricSelectionListener 
                     if (e.getValueIsAdjusting()) return;
                     ListSelectionModel lsm = (ListSelectionModel) e.getSource();
                     if (!lsm.isSelectionEmpty()) {
-                        // int selectedRow = lsm.getMinSelectionIndex();
                         Biomarker biomarker = (Biomarker)list.getSelectedValue();
                         biomarkerSelected(biomarker);
                     }
@@ -108,7 +106,6 @@ public class AddMetricDialog extends JDialog implements MetricSelectionListener 
 
     public void biomarkerDoubleClicked(Biomarker biomarker) {
         if (biomarker != null) {
-//       FoodEditor.editFood(food.getFood());
         }
     }
 
@@ -141,7 +138,6 @@ public class AddMetricDialog extends JDialog implements MetricSelectionListener 
             toolBar.add(getDeleteButton());
             toolBar.add(Box.createHorizontalStrut(4));
             toolBar.add(Box.createHorizontalStrut(4));
-//       foodSelected(null);
         }
         return toolBar;
     }

@@ -50,7 +50,6 @@ public class MacroChart extends JComponent {
         int h = getHeight();
         int min = w<h?w:h;
         g.setColor(Color.BLACK);
-        //   g.fillArc(0,0,w,h, 0, 360);
 
         g.setColor(Color.GREEN);
         int amount = 0;

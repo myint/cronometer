@@ -63,7 +63,6 @@ public abstract class History {
     public synchronized void addEntry(Record entry) {
         entries.add(entry);
         dirty = true;
-        //Logger.debug("Add Entry: " + entry);
     }
 
     public synchronized List getEntriesOn(Date curDate) {

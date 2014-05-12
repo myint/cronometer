@@ -78,9 +78,6 @@ public abstract class RecordTable extends JPanel {
             toolBar.add(Box.createHorizontalStrut(10));
             toolBar.add(getDeleteButton());
             toolBar.add(Box.createHorizontalStrut(10));
-//          toolBar.add(Box.createGlue());
-//          toolBar.add(getPrintButton());
-            //toolBar.add(Box.createGlue());
         }
         return toolBar;
     }
@@ -226,8 +223,6 @@ public abstract class RecordTable extends JPanel {
                 try {
                     Record[] list = (Record[])clipboardContent.getTransferData(ServingSelection.servingFlavor);
                     if (list.length > 0) {
-                        //int sel = table.getSelectedRow();
-                        //doClear();
                         addEntries(list);
                     }
                 } catch (Exception e) {
@@ -344,7 +339,6 @@ public abstract class RecordTable extends JPanel {
     }
 
     protected void handleMouseClick(MouseEvent e) {
-        //JPopupMenu menu = new JPopupMenu();
         // TODO: implement
     }
 

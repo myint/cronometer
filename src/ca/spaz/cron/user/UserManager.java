@@ -289,8 +289,6 @@ public class UserManager {
         // Update the settings file
         if (inFile.exists() && outFile.exists()) {
             // This condition should never occur
-            //System.err.println("Error: Upgrade of old settings file failed.  Please contact the CRON-o-meter developers.");
-            //    System.exit(-1);
         }
 
         if (!inFile.exists()) return;
@@ -303,7 +301,6 @@ public class UserManager {
                 Settings.convertSettingsFile(in, out);
                 out.close();
                 in.close();
-                //inFile.renameTo(new File(inFile.getParent(), "backup"));
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -411,11 +408,9 @@ public class UserManager {
         int h = settings.getInt(MAIN_WINDOW +".height", frame.getHeight());
         if (x < 0 || x+w*0.10 > screen.width) {
             x = p.x;
-            //w = frame.getWidth();
         }
         if (y < 0 || y+h*0.10 > screen.height) {
             y = p.y;
-            //h = frame.getHeight();
         }
         frame.setLocation(x, y);
         frame.setSize(w, h);

@@ -31,11 +31,6 @@ public class MetricEditorOld extends JPanel {
     private JButton plotBtn;
 
     private BiomarkerPanelOld bmp;
-//
-//   public MetricEditor(BiomarkerPanelOld bmp, String type) {
-//      this.metricType = type;
-//      this.bmp = bmp;
-//   }
 
     public MetricEditorOld(BiomarkerPanelOld bmp, Biomarker biomarker) {
         this.metricType = biomarker.getName();

@@ -155,12 +155,9 @@ public class MetricEditor extends JPanel {
         if (metric == null) {
             cards.show(this, "EMPTY");
         } else {
-//          getMeasure().setFood(f);
             getTitleLabel().setText(fixString(metric.getName()));
             getAddButton().setText("Add");
             cards.show(this, "MAIN");
-//         setFood(metric.getFood());
-//         setWeight(metric.getMeasure(), metric.getAmount());
         }
     }
 
@@ -169,7 +166,6 @@ public class MetricEditor extends JPanel {
      * @return
      */
     private String fixString(String str) {
-        //return "<html><div align=\"center\">" + str + "</div></html>";
         if (str.length() > 53) {
             return str.substring(0, 50)+"...";
         } else {

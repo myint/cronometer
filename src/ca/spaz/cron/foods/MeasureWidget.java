@@ -71,7 +71,6 @@ public class MeasureWidget extends JPanel implements ItemListener, ActionListene
      * @param mult the multiplier for that measure
      */
     public void setMeasure(Measure w, double mult) {
-        // measures.setSelectedItem(w);
         for (int i=0; i<measures.getItemCount(); i++) {
             Measure m = (Measure)measures.getItemAt(i);
             if (m.equals(w)) {
@@ -173,11 +172,9 @@ public class MeasureWidget extends JPanel implements ItemListener, ActionListene
     public void actionPerformed(ActionEvent e) {
         fireChangeEvent();
         fireActionEvent();
-        //Toolkit.getDefaultToolkit().beep();
     }
 
     public void keyTyped(KeyEvent e) {
-        //System.out.println("keyTyped: " + e);
     }
 
     public void keyPressed(KeyEvent e) {
@@ -195,7 +192,6 @@ public class MeasureWidget extends JPanel implements ItemListener, ActionListene
      * Called when the text field is edited
      */
     public void keyReleased(KeyEvent e) {
-        //System.out.println("keyReleased: " + e);
         fireChangeEvent();
     }
 

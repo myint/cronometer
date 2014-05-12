@@ -194,8 +194,6 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
         if (help == null) {
             try {
                 URL.setURLStreamHandlerFactory(new JarLoader());
-                //help = new HelpBrowser("CRON-o-Meter Help", new File("docs").toURI().toURL(), false);
-                //help = new HelpBrowser("CRON-o-Meter Help", new URL("http://spaz.ca/cronometer/docs/"));
                 help = new HelpBrowser("CRON-o-Meter Help", new URL("class://DocAnchor/"));
                 help.setIconImage(CRONOMETER.getWindowIcon());
                 ToolBox.centerFrame(help);
@@ -345,7 +343,6 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
     public void doAbout() {
         getHelpBrowser().showWindow();
         getHelpBrowser().showPage("about.html");
-        //AboutScreen.showAbout(this);
     }
 
     public void doQuit() {

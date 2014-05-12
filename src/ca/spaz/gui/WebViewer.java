@@ -67,7 +67,6 @@ public class WebViewer extends JPanel {
         htmlPane.addHyperlinkListener(new Hyperactive());
         JScrollPane htmlView = new JScrollPane(htmlPane);
         htmlView.setBorder(new BevelBorder(BevelBorder.LOWERED));
-        //htmlView.setPreferredSize(new Dimension(50, 50));
         return htmlView;
     }
 
@@ -163,7 +162,6 @@ public class WebViewer extends JPanel {
                 } else {
                     try {
                         if (external) {
-                            //launchURL(getHTMLPane(), e.getURL().toString());
                         } else {
                             setHTML(e.getURL());
                         }

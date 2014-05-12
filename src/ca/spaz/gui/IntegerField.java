@@ -36,7 +36,6 @@ public class IntegerField extends JTextField {
         try {
             retVal = Integer.parseInt(getText());
         } catch (NumberFormatException e) {
-//       toolkit.beep();
         }
         if (retVal < min) retVal = min;
         if (retVal > max) retVal = max;

@@ -48,7 +48,6 @@ public class DoubleField extends JTextField {
                 r[i] = Double.parseDouble(q[i]);
             }
         } catch (NumberFormatException e) {
-            // toolkit.beep();
         }
         retVal = ToolBox.safeDivide(r[0], r[1], r[0]);
         if (retVal < min) retVal = min;

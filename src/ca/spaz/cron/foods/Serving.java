@@ -170,7 +170,6 @@ public class Serving implements Record {
         if (food == null) {
             return null;
         }
-        //  assert food != null;
         return food.getFood();
     }
 
@@ -191,12 +190,10 @@ public class Serving implements Record {
      */
     public void update() {
         UserManager.getCurrentUser().getFoodHistory().update(this);
-        //lds.changeServingAmount(this);
     }
 
     public void delete() {
         UserManager.getCurrentUser().getFoodHistory().delete(this);
-        //lds.removeServing(this);
     }
 
     public void setGrams(double amount) {

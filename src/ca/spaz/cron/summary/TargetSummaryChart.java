@@ -251,14 +251,12 @@ public class TargetSummaryChart extends JComponent implements UserChangeListener
             yo = insets.top;
         }
 
-        //int b = 4;
         int barHeight = (h / 6) - 5;
         double barFill = 0;
 
         g.setFont(g.getFont().deriveFont(Font.BOLD));
         FontMetrics fm = g.getFontMetrics();
         Graphics2D g2d = (Graphics2D)g;
-        //g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.9f));
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
         Target energyTarget = user.getTarget(NutrientInfo.getByName("Energy"));

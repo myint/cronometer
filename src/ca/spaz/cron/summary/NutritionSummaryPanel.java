@@ -68,7 +68,6 @@ public class NutritionSummaryPanel extends JTabbedPane {
     protected MacroNutrientSummaryPanel getGeneralPanel() {
         if (null == generalPanel) {
             generalPanel = new MacroNutrientSummaryPanel();
-            //generalPanel = new NumericSummaryPanel();
         }
         return generalPanel;
     }

@@ -70,7 +70,6 @@ public abstract class RecordTableModel extends PrettyTableModel {
      * @return a custom rendering component
      */
     public Component customRender(Component c, PrettyTable table, int row, int col) {
-        //Record entry = getUserEntry(row);
         return c;
     }
 

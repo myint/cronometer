@@ -51,7 +51,6 @@ public class Recipe extends Food {
     }
 
     public void addServings(Collection s) {
-        //getServings().addAll(s);
         Iterator iter = s.iterator();
         while (iter.hasNext()) {
             addServing(new Serving((Serving)iter.next()));
@@ -97,7 +96,6 @@ public class Recipe extends Food {
         if (!found) {
             getMeasures().add( new Measure(1.0, "full recipe", total) );
         }
-        //update();
     }
 
     public double getTotalGrams() {

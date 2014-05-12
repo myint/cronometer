@@ -285,7 +285,6 @@ public class ServingEditor extends JPanel {
      * @return
      */
     private String fixString(String str) {
-        //return "<html><div align=\"center\">" + str + "</div></html>";
         if (str.length() > 53) {
             return str.substring(0, 50)+"...";
         } else {

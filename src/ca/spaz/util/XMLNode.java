@@ -160,7 +160,6 @@ public class XMLNode {
             else if (c == '\u201D') sb.append("&quot;");
             else if (c == '\u2018') sb.append("'");
             else if (c == '\u2019') sb.append("'");
-            //else if (c == '\\') sb.append("&#92;");
             else {
                 int ci = 0xffff & c;
                 if (ci < 160) {

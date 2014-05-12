@@ -266,7 +266,6 @@ public class UserSettingsDialog extends WrappedPanel {
             activityPanel.setBorder(makeTitle("Activity:"));
             activityPanel.add(getActivityUnits());
             activityPanel.add(new JLabel(""));
-            //activityPanel.add(getBMILabel());
         }
         return activityPanel;
     }

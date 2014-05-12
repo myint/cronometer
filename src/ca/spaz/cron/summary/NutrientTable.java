@@ -54,7 +54,6 @@ public class NutrientTable extends PrettyTable implements UserChangeListener {
 
         setModel(getNutrientTableModel());
 
-        //setColumnAlignment(0, SwingConstants.RIGHT);
         setColumnAlignment(1, SwingConstants.RIGHT);
         setColumnAlignment(3, SwingConstants.RIGHT);
         getColumnModel().getColumn(0).setMaxWidth(180);

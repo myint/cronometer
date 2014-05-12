@@ -96,8 +96,6 @@ public class ReportWindow extends WrappedPanel {
     private JPanel getToolbar() {
         if (toolbar == null) {
             toolbar = new JPanel();
-            //toolbar.setFloatable(false);
-            // toolbar.setRollover(true);
             toolbar.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
             toolbar.setLayout(new BoxLayout(toolbar, BoxLayout.X_AXIS));
 
@@ -190,7 +188,6 @@ public class ReportWindow extends WrappedPanel {
     private JCheckBox getTargetsOnlyBox() {
         if (targetsOnlyBox == null) {
             targetsOnlyBox = new JCheckBox("Targets Only", true);
-            //targetsOnlyBox.setRolloverEnabled(false);
             targetsOnlyBox.setToolTipText("Show only items with valid targets.");
             targetsOnlyBox.addItemListener(new ItemListener() {
                 public void itemStateChanged(ItemEvent e) {

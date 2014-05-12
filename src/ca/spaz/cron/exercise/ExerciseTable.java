@@ -89,7 +89,6 @@ public class ExerciseTable extends JPanel {
             toolBar.add(Box.createHorizontalStrut(10));
             toolBar.add(Box.createGlue());
             toolBar.add(getPrintButton());
-            //toolBar.add(Box.createGlue());
         }
         return toolBar;
     }
@@ -256,8 +255,6 @@ public class ExerciseTable extends JPanel {
                 try {
                     Exercise[] list = (Exercise[])clipboardContent.getTransferData(ExerciseSelection.exerciseFlavor);
                     if (list.length > 0) {
-                        //int sel = table.getSelectedRow();
-                        //doClear();
                         addExercises(list);
                     }
                 } catch (Exception e) {

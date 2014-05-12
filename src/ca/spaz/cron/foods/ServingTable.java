@@ -102,7 +102,6 @@ public class ServingTable extends JPanel {
             toolBar.add(Box.createHorizontalStrut(10));
             toolBar.add(Box.createGlue());
             toolBar.add(getPrintButton());
-            //toolBar.add(Box.createGlue());
         }
         return toolBar;
     }
@@ -275,8 +274,6 @@ public class ServingTable extends JPanel {
                 try {
                     Serving[] list = (Serving[])clipboardContent.getTransferData(ServingSelection.servingFlavor);
                     if (list.length > 0) {
-                        //int sel = table.getSelectedRow();
-                        //doClear();
                         addServings(list);
                     }
                 } catch (Exception e) {

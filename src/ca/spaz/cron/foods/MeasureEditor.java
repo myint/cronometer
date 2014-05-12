@@ -187,7 +187,6 @@ public class MeasureEditor extends JPanel {
     }
 
     private JComponent getWeightTable() {
-        //      model = new WeightTableModel(curWeights);
         if (null == weightTable) {
 
             weightTable = new PrettyTable(getWeightTableModel());

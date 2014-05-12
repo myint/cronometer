@@ -32,7 +32,6 @@ public class TEXTSummaryFormat extends SummaryFormat {
         sb.append(StringUtil.charRun('=', 42));
         sb.append('\n');
         sb.append('\n');
-        //List NutrientInfo.getMacroNutrients();
 
         for (int i=0; i<NutrientInfo.CATEGORIES.length; i++) {
             sb.append(exportCategory(NutrientInfo.CATEGORIES[i], servings, days, targetsOnly));

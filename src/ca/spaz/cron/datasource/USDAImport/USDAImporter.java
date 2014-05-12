@@ -188,7 +188,6 @@ public class USDAImporter implements Task {
                 f.setProteinConversionFactor(food.pCF);
                 f.setLipidConversionFactor(food.fCF);
                 f.setCarbConversionFactor(food.cCF);
-                //f.setFoodGroup(new FoodGroup(food.foodgroup));
                 foods.put(food.ndb_id, f);
                 break;
             case WEIGHT_INDEX:

@@ -112,7 +112,6 @@ public class SpazCanvas extends JPanel implements ActionListener {
             text,
             JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
             JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        //text.setWrapStyleWord(true);
         jsp.setAutoscrolls(true);
         SpazPosition lp = parseSpazPosition(elm);
         if (lp == null)

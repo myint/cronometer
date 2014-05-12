@@ -81,11 +81,9 @@ public class HelpBrowser extends JFrame {
                             try {
                                 if (e.getURL().getProtocol().equals("file")) {
                                     showPage(e.getURL());
-                                    //htmlPane.setPage(e.getURL());
                                 } else {
                                     ToolBox.launchURL(htmlPane, e.getURL().toString());
                                     // Java 6+ only:
-                                    // Desktop.getDesktop().browse(e.getURL().toURI());
                                 }
                             } catch (Exception ex) {
                                 ex.printStackTrace();

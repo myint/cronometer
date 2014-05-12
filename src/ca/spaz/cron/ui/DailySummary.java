@@ -414,7 +414,6 @@ public class DailySummary extends JPanel implements UserChangeListener {
     }
 
     public void userChanged(UserManager userMan) {
-        //getNotesEditor().clear();
         setDate(curDate, true);
     }
 
@@ -423,7 +422,6 @@ public class DailySummary extends JPanel implements UserChangeListener {
      */
     public void setDate(Date d, boolean userChanged) {
         curDate = d;
-        // getDateTitle().setDate(curDate);
         getDateTitle().setText(df.format(curDate));
         validate();
         getBioMarkersPanel().setDate(d);
