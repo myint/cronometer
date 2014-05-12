@@ -291,7 +291,7 @@ public class RiverLayout
     * @param width the width dimensions
     * @param height the height dimensions
     * @param rowStart the beginning of the row
-    * @param rowEnd the the ending of the row
+    * @param rowEnd the ending of the row
     */
    protected void moveComponents(Container target, int x, int y, int width,
                                int height,
