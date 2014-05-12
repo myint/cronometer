@@ -9,7 +9,7 @@
 	<key>CFBundleExecutable</key>
 	<string>JavaApplicationStub</string>
 	<key>CFBundleGetInfoString</key>
-	<string>Cronometer</string>
+	<string>1.0</string>
 	<key>CFBundleIconFile</key>
 	<string>cronometer.icns</string>
 	<key>CFBundleIdentifier</key>
