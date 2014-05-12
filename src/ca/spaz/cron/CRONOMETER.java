@@ -114,7 +114,6 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
          }
          UserManager.getUserManager().setLastBuild(CRONOMETER.BUILD);
          makeAutoSaveTimer();
-         installSystemTray();
          addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
                doQuit();
@@ -128,16 +127,6 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
       } catch (Exception e) {
          Logger.debug(e);
          ErrorReporter.showError(e, this);
-      }
-   }
-
-   /**
-    * Adds a system tray, if the JVM and OS support it.
-    */
-   private void installSystemTray() {
-      if (ToolBox.classExists("java.awt.SystemTray")) {
-         // this is a Java-6 feature only, so we use reflection to survive on older JVMs
-         ToolBox.instantiate("ca.spaz.cron.ui.SysTray");
       }
    }
 
