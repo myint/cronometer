@@ -1,78 +1,78 @@
 <project name="CRONOMETER" default="cronometer.jar" basedir=".">
 
-	<description>
-		Builds the CRONOMETER App
-	</description>
+    <description>
+        Builds the CRONOMETER App
+    </description>
 
-	<!-- set global properties for this build -->
-	<property name="name"  value="CRON-O-METER"/>
-	<property name="source" location="src/"/>
-	<property name="build" location="bin"/>
-	<property name="lib" location="lib"/>
+    <!-- set global properties for this build -->
+    <property name="name"  value="CRON-O-METER"/>
+    <property name="source" location="src/"/>
+    <property name="build" location="bin"/>
+    <property name="lib" location="lib"/>
 
-	<!-- Compile the java code from ${src} into ${build} -->
-	<target name="compile" description="compile the source">
-		<javac source="1.6" srcdir="${source}" destdir="${build}">
-			<classpath>
-				<fileset dir="${build}/lib">
-					<include name="*.jar"/>
-				</fileset>
-			</classpath>
-		</javac>
-	</target>
+    <!-- Compile the java code from ${src} into ${build} -->
+    <target name="compile" description="compile the source">
+        <javac source="1.6" srcdir="${source}" destdir="${build}">
+            <classpath>
+                <fileset dir="${build}/lib">
+                    <include name="*.jar"/>
+                </fileset>
+            </classpath>
+        </javac>
+    </target>
 
-	<target name="docs.jar" description="create the documentation jar file" >
-		<jar jarfile="lib/docs.jar" compress="true">
-			<fileset dir="docs">
-				<include name="**"/>
-			</fileset>
-			<manifest>
-				<attribute name="Built-By" value="${user.name}"/>
-			</manifest>
-		</jar>
-	</target>
+    <target name="docs.jar" description="create the documentation jar file" >
+        <jar jarfile="lib/docs.jar" compress="true">
+            <fileset dir="docs">
+                <include name="**"/>
+            </fileset>
+            <manifest>
+                <attribute name="Built-By" value="${user.name}"/>
+            </manifest>
+        </jar>
+    </target>
 
-	<target name="cronometer.jar" depends="compile" description="generate the distribution jar" >
-		<jar jarfile="lib/cronometer.jar" compress="true">
-			<fileset dir="${build}">
-				<include name="*.*"/>
-				<include name="ca/**"/>
-				<include name="com/**"/>
-				<include name="se/**"/>
-				<include name="img/**"/>
-				<include name="docs/**"/>
-			</fileset>
-			<fileset dir="${source}">
-				<include name="*.*"/>
-				<include name="img/**"/>
-				<include name="docs/**"/>
-			</fileset>
-			<manifest>
-			    <attribute name="Built-By" value="${user.name}"/>
-			    <attribute name="Main-Class" value="ca.spaz.cron.CRONOMETER"/>
-			</manifest>
-		</jar>
-	</target>
+    <target name="cronometer.jar" depends="compile" description="generate the distribution jar" >
+        <jar jarfile="lib/cronometer.jar" compress="true">
+            <fileset dir="${build}">
+                <include name="*.*"/>
+                <include name="ca/**"/>
+                <include name="com/**"/>
+                <include name="se/**"/>
+                <include name="img/**"/>
+                <include name="docs/**"/>
+            </fileset>
+            <fileset dir="${source}">
+                <include name="*.*"/>
+                <include name="img/**"/>
+                <include name="docs/**"/>
+            </fileset>
+            <manifest>
+                <attribute name="Built-By" value="${user.name}"/>
+                <attribute name="Main-Class" value="ca.spaz.cron.CRONOMETER"/>
+            </manifest>
+        </jar>
+    </target>
 
-	<target name="launcher" depends="cronometer.jar,docs.jar" description="generate the executable" >
-	</target>
+    <target name="launcher" depends="cronometer.jar,docs.jar" description="generate the executable" >
+    </target>
 
-	<target name="signalljars" depends="cronometer.jar,docs.jar" description="generate the signed jar package" >
-		<input message="Enter certificate password for signing:" addproperty="cert_pwd" />
+    <target name="signalljars" depends="cronometer.jar,docs.jar" description="generate the signed jar package" >
+        <input message="Enter certificate password for signing:" addproperty="cert_pwd" />
 
-		<signjar jar="${lib}/cronometer.jar" keystore="release/jws" alias="spaz.ca" storepass="${cert_pwd}"/>
-		<signjar jar="${lib}/swingx-core-1.6.2.jar" keystore="release/jws" alias="spaz.ca" storepass="${cert_pwd}"/>
-		<signjar jar="${lib}/jcommon-1.0.10.jar" keystore="release/jws" alias="spaz.ca" storepass="${cert_pwd}"/>
-		<signjar jar="${lib}/jfreechart-1.0.6.jar" keystore="release/jws" alias="spaz.ca" storepass="${cert_pwd}"/>
-		<signjar jar="${lib}/docs.jar" keystore="release/jws" alias="spaz.ca" storepass="${cert_pwd}"/>
-		<signjar jar="${lib}/crdb_005.jar" keystore="release/jws" alias="spaz.ca" storepass="${cert_pwd}"/>
-		<signjar jar="${lib}/usda_sr24.jar" keystore="release/jws" alias="spaz.ca" storepass="${cert_pwd}"/>
-	</target>
+        <signjar jar="${lib}/cronometer.jar" keystore="release/jws" alias="spaz.ca" storepass="${cert_pwd}"/>
+        <signjar jar="${lib}/swingx-core-1.6.2.jar" keystore="release/jws" alias="spaz.ca" storepass="${cert_pwd}"/>
+        <signjar jar="${lib}/jcommon-1.0.10.jar" keystore="release/jws" alias="spaz.ca" storepass="${cert_pwd}"/>
+        <signjar jar="${lib}/jfreechart-1.0.6.jar" keystore="release/jws" alias="spaz.ca" storepass="${cert_pwd}"/>
+        <signjar jar="${lib}/docs.jar" keystore="release/jws" alias="spaz.ca" storepass="${cert_pwd}"/>
+        <signjar jar="${lib}/crdb_005.jar" keystore="release/jws" alias="spaz.ca" storepass="${cert_pwd}"/>
+        <signjar jar="${lib}/usda_sr24.jar" keystore="release/jws" alias="spaz.ca" storepass="${cert_pwd}"/>
+    </target>
 
-	<target name="signsomejars" depends="cronometer.jar,docs.jar" description="generate the signed jar package" >
-		<input message="Enter certificate password for signing:" addproperty="cert_pwd" />
-		<signjar jar="${lib}/docs.jar" keystore="release/jws" alias="spaz.ca" storepass="${cert_pwd}"/>
-		<signjar jar="${lib}/cronometer.jar" keystore="release/jws" alias="spaz.ca" storepass="${cert_pwd}"/>
-	</target>
+    <target name="signsomejars" depends="cronometer.jar,docs.jar" description="generate the signed jar package" >
+        <input message="Enter certificate password for signing:" addproperty="cert_pwd" />
+        <signjar jar="${lib}/docs.jar" keystore="release/jws" alias="spaz.ca" storepass="${cert_pwd}"/>
+        <signjar jar="${lib}/cronometer.jar" keystore="release/jws" alias="spaz.ca" storepass="${cert_pwd}"/>
+    </target>
 
 </project>
