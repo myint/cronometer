@@ -1,14 +1,8 @@
 #!/bin/bash -ex
 
-root="$(dirname "$0")"
-
-for jar in "$root/lib"/*.jar
-do
-    export CLASSPATH="$root/$jar:$CLASSPATH"
-done
-
 ant
 
+root="$(dirname "$0")"
 app="$root/CRONoMeter.app"
 rm -rf "$app"
 mkdir "$app"

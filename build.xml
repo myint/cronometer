@@ -14,8 +14,9 @@
     <target name="compile" description="compile the source">
         <javac source="1.6" srcdir="${source}" destdir="${build}">
             <classpath>
-                <fileset dir="${build}/lib">
+                <fileset dir="${lib}">
                     <include name="*.jar"/>
+                    <exclude name="cronometer.jar"/>
                 </fileset>
             </classpath>
         </javac>
