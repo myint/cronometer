@@ -12,6 +12,12 @@ import javax.swing.JPanel;
 
 import ca.spaz.cron.user.UserManager;
 
+
+/** This old version is still being used.
+ *
+ * The new version is not being used yet, though there are getters that
+ * reference it.
+ */
 public class BiomarkerPanelOld extends JPanel {
     private Date curDate = new Date();
     private List curMetrics;

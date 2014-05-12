@@ -18,6 +18,9 @@ import ca.spaz.util.ImageFactory;
 
 /**
  * A panel for editing a biomarker metric.
+ *
+ * This old version is still being used. The new version is not being used yet,
+ * though there are getters that reference it.
  */
 public class MetricEditorOld extends JPanel {
     private Biomarker biomarker;
