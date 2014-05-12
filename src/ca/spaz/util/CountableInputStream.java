@@ -21,84 +21,84 @@ import java.io.*;
  */
 public class CountableInputStream extends FilterInputStream {
 
-   private long bytesRetrieved = 0;
+    private long bytesRetrieved = 0;
 
-   private long markpos = -1;
+    private long markpos = -1;
 
-   /**
-    * Create a new <code>CountableInputStream</code> and wrap it around the
-    * supplied <code>InputStream</code>.
-    *
-    * @param in an <code>InputStream</code> object to count.
-    */
-   public CountableInputStream(InputStream in) {
-      super(in);
-   }
+    /**
+     * Create a new <code>CountableInputStream</code> and wrap it around the
+     * supplied <code>InputStream</code>.
+     *
+     * @param in an <code>InputStream</code> object to count.
+     */
+    public CountableInputStream(InputStream in) {
+        super(in);
+    }
 
-   /* (non-Javadoc)
-    * @see java.io.InputStream#read()
-    */
-   public synchronized int read() throws IOException {
-      int next = super.read();
-      if (next != -1) {
-         bytesRetrieved++;
-      }
-      return next;
-   }
+    /* (non-Javadoc)
+     * @see java.io.InputStream#read()
+     */
+    public synchronized int read() throws IOException {
+        int next = super.read();
+        if (next != -1) {
+            bytesRetrieved++;
+        }
+        return next;
+    }
 
-   /* (non-Javadoc)
-    * @see java.io.InputStream#read(byte[], int, int)
-    */
-   public synchronized int read(byte[] b, int off, int len) throws IOException {
-      int next = super.read(b, off, len);
-      if (next != -1) {
-         bytesRetrieved += next;
-      }
-      return next;
-   }
+    /* (non-Javadoc)
+     * @see java.io.InputStream#read(byte[], int, int)
+     */
+    public synchronized int read(byte[] b, int off, int len) throws IOException {
+        int next = super.read(b, off, len);
+        if (next != -1) {
+            bytesRetrieved += next;
+        }
+        return next;
+    }
 
-   /* (non-Javadoc)
-    * @see java.io.InputStream#mark(int)
-    */
-   public synchronized void mark(int readlimit) {
-      super.mark(readlimit);
-      markpos = bytesRetrieved;
-   }
+    /* (non-Javadoc)
+     * @see java.io.InputStream#mark(int)
+     */
+    public synchronized void mark(int readlimit) {
+        super.mark(readlimit);
+        markpos = bytesRetrieved;
+    }
 
-   /* (non-Javadoc)
-    * @see java.io.InputStream#skip(long)
-    */
-   public long skip(long n) throws IOException {
-      long next = super.skip(n);
-      bytesRetrieved += next;
-      return next;
-   }
+    /* (non-Javadoc)
+     * @see java.io.InputStream#skip(long)
+     */
+    public long skip(long n) throws IOException {
+        long next = super.skip(n);
+        bytesRetrieved += next;
+        return next;
+    }
 
-   /* (non-Javadoc)
-    * @see java.io.InputStream#reset()
-    */
-   public synchronized void reset() throws IOException {
-      bytesRetrieved = markpos;
-      super.reset();
-   }
+    /* (non-Javadoc)
+     * @see java.io.InputStream#reset()
+     */
+    public synchronized void reset() throws IOException {
+        bytesRetrieved = markpos;
+        super.reset();
+    }
 
-   /* (non-Javadoc)
-    * @see java.io.InputStream#read(byte[])
-    */
-   public int read(byte[] b) throws IOException {
-      int next = super.read(b);
-      if (next != -1) {
-         bytesRetrieved += next;
-      }
-      return next;
-   }
+    /* (non-Javadoc)
+     * @see java.io.InputStream#read(byte[])
+     */
+    public int read(byte[] b) throws IOException {
+        int next = super.read(b);
+        if (next != -1) {
+            bytesRetrieved += next;
+        }
+        return next;
+    }
 
-   /**
-    * Get a count of the bytes read by this stream.
-    * @return the number of bytes read by this stream.
-    */
-   public long getBytesRead() {
-      return bytesRetrieved;
-   }
+    /**
+     * Get a count of the bytes read by this stream.
+     * @return the number of bytes read by this stream.
+     */
+    public long getBytesRead() {
+        return bytesRetrieved;
+    }
 
 }

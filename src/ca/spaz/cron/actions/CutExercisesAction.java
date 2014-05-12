@@ -14,17 +14,17 @@ import ca.spaz.util.ImageFactory;
 
 
 public class CutExercisesAction extends AbstractAction {
-   private ExerciseTable exerciseTable;
+    private ExerciseTable exerciseTable;
 
-   public CutExercisesAction(ExerciseTable exerciseTable) {
-      super("Cut Exercises");
-      this.exerciseTable = exerciseTable;
-      putValue(SMALL_ICON, new ImageIcon(ImageFactory.getInstance().loadImage("/img/cut.gif")));
-      putValue(SHORT_DESCRIPTION, "Cut the selected exercises from this list");
-   }
+    public CutExercisesAction(ExerciseTable exerciseTable) {
+        super("Cut Exercises");
+        this.exerciseTable = exerciseTable;
+        putValue(SMALL_ICON, new ImageIcon(ImageFactory.getInstance().loadImage("/img/cut.gif")));
+        putValue(SHORT_DESCRIPTION, "Cut the selected exercises from this list");
+    }
 
-   public void actionPerformed(ActionEvent e) {
-      assert (exerciseTable != null);
-      exerciseTable.cutSelectedExercises();
-   }
+    public void actionPerformed(ActionEvent e) {
+        assert (exerciseTable != null);
+        exerciseTable.cutSelectedExercises();
+    }
 }

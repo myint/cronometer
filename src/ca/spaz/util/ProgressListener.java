@@ -19,23 +19,23 @@ package ca.spaz.util;
  */
 public interface ProgressListener {
 
-   /**
-    * This event is fired when the progress item being tracked starts.
-    */
-   void progressStart();
+    /**
+     * This event is fired when the progress item being tracked starts.
+     */
+    void progressStart();
 
-   /**
-    * This event is fired when the progress item being tracked finishes.  At this point,
-    * the item's progress should be considered to be 100%
-    */
-   void progressFinish();
+    /**
+     * This event is fired when the progress item being tracked finishes.  At this point,
+     * the item's progress should be considered to be 100%
+     */
+    void progressFinish();
 
-   /**
-    * This event is fired whenever the progress item being tracked updates its public
-    * progress level.
-    *
-    * @param percent A number from 0 to 100 indicating the progress of the tracked item.
-    */
-   void progress(int percent);
+    /**
+     * This event is fired whenever the progress item being tracked updates its public
+     * progress level.
+     *
+     * @param percent A number from 0 to 100 indicating the progress of the tracked item.
+     */
+    void progress(int percent);
 
 }

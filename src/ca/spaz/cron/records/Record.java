@@ -8,14 +8,14 @@ import ca.spaz.util.XMLNode;
 
 public interface Record {
 
-   public Date getDate();
+    public Date getDate();
 
-   public XMLNode toXML();
+    public XMLNode toXML();
 
-   public void load(Element e);
+    public void load(Element e);
 
-   public Record copy();
+    public Record copy();
 
-   public boolean isLoaded();
+    public boolean isLoaded();
 
 }

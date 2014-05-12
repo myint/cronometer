@@ -21,7 +21,7 @@ import ca.spaz.util.XMLNode;
  */
 public class Exercise implements Record {
 
-   private String name;
+    private String name;
 
     private double calories;
 
@@ -39,74 +39,74 @@ public class Exercise implements Record {
     }
 
     public Exercise(Exercise e) {
-       this.name = e.name;
-       this.minutes = e.minutes;
-       this.date = e.date;
-       this.calories = e.calories;
+        this.name = e.name;
+        this.minutes = e.minutes;
+        this.date = e.date;
+        this.calories = e.calories;
     }
 
     public Exercise(Element e) {
-       load(e);
+        load(e);
     }
 
     public void load(Element e) {
-       this.name = e.getAttribute("name");
-       setMinutes(Double.parseDouble(e.getAttribute("minutes")));
-       setCalories(Double.parseDouble(e.getAttribute("calories")));
+        this.name = e.getAttribute("name");
+        setMinutes(Double.parseDouble(e.getAttribute("minutes")));
+        setCalories(Double.parseDouble(e.getAttribute("calories")));
 
-       if (e.hasAttribute("date")) {
-          setDate(new Date(Long.parseLong(e.getAttribute("date"))));
-       }
-   }
-
-   public synchronized XMLNode toXML() {
-      XMLNode node = new XMLNode("exercise");
-      node.addAttribute("name", name);
-      node.addAttribute("minutes", minutes);
-      node.addAttribute("calories", calories);
-      if (date != 0) {
-         node.addAttribute("date", date);
-      }
-      return node;
+        if (e.hasAttribute("date")) {
+            setDate(new Date(Long.parseLong(e.getAttribute("date"))));
+        }
     }
 
-   /**
-    * Update the existing food information
-    */
-   public void update() {
-      UserManager.getCurrentUser().getExerciseHistory().update(this);
-   }
+    public synchronized XMLNode toXML() {
+        XMLNode node = new XMLNode("exercise");
+        node.addAttribute("name", name);
+        node.addAttribute("minutes", minutes);
+        node.addAttribute("calories", calories);
+        if (date != 0) {
+            node.addAttribute("date", date);
+        }
+        return node;
+    }
 
-   public void delete() {
-      UserManager.getCurrentUser().getExerciseHistory().delete(this);
-   }
+    /**
+     * Update the existing food information
+     */
+    public void update() {
+        UserManager.getCurrentUser().getExerciseHistory().update(this);
+    }
 
-   public String getName() {
-      return name;
-   }
+    public void delete() {
+        UserManager.getCurrentUser().getExerciseHistory().delete(this);
+    }
 
-   public void setName(String name) {
-      this.name = name;
-   }
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public double getCalories() {
         return calories;
     }
 
     public void setCalories(double amount) {
-       this.calories = amount;
+        this.calories = amount;
     }
 
     public double getMinutes() {
-       return minutes;
-   }
+        return minutes;
+    }
 
-   public void setMinutes(double amount) {
-      this.minutes = amount;
-   }
+    public void setMinutes(double amount) {
+        this.minutes = amount;
+    }
 
     public String toString() {
-       return getMinutes() + " minutes of " + name;
+        return getMinutes() + " minutes of " + name;
     }
 
     public Date getDate() {
@@ -118,30 +118,30 @@ public class Exercise implements Record {
     }
 
     public Record copy() {
-      return new Exercise(this);
-   }
+        return new Exercise(this);
+    }
 
-   // generate the table mapping, could use xml def
-   public synchronized SQLRow toSQLRow() {
-      SQLRow row = new SQLRow("exercise");
-      row.addColumn("name", Types.VARCHAR);
-      row.addColumn("time", Types.TIMESTAMP);
-      row.addColumn("minutes", Types.DOUBLE);
-      row.addColumn("calories", Types.DOUBLE);
-      return row;
-   }
+    // generate the table mapping, could use xml def
+    public synchronized SQLRow toSQLRow() {
+        SQLRow row = new SQLRow("exercise");
+        row.addColumn("name", Types.VARCHAR);
+        row.addColumn("time", Types.TIMESTAMP);
+        row.addColumn("minutes", Types.DOUBLE);
+        row.addColumn("calories", Types.DOUBLE);
+        return row;
+    }
 
-   // populate (could optionally have reflective populate)
-   public synchronized void populate(SQLRow row) {
-      row.setValue("name", name);
-      row.setValue("minutes", new Double(minutes));
-      if (date != 0) {
-         row.setValue("time", new Timestamp(date));
-      }
-      row.setValue("calories", new Double(calories));
-   }
+    // populate (could optionally have reflective populate)
+    public synchronized void populate(SQLRow row) {
+        row.setValue("name", name);
+        row.setValue("minutes", new Double(minutes));
+        if (date != 0) {
+            row.setValue("time", new Timestamp(date));
+        }
+        row.setValue("calories", new Double(calories));
+    }
 
-   public boolean isLoaded() {
-      return true;
-   }
+    public boolean isLoaded() {
+        return true;
+    }
 }

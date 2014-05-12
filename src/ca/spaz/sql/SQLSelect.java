@@ -19,15 +19,15 @@ import ca.spaz.util.Logger;
  */
 public class SQLSelect extends SQLSelectableStatement {
 
-   protected List items = new ArrayList();
+    protected List items = new ArrayList();
 
-   protected ResultSet results = null;
+    protected ResultSet results = null;
 
-   private SQLSelect subSelection = null;
+    private SQLSelect subSelection = null;
 
-   private String[] joinedTables = null;
+    private String[] joinedTables = null;
 
-   private List orders = new ArrayList();
+    private List orders = new ArrayList();
 
     /**
      * Create a new SQLUpdate command for the given table
@@ -50,7 +50,7 @@ public class SQLSelect extends SQLSelectableStatement {
     }
 
     public void addOrderBy(String orderClause) {
-       orders.add(orderClause);
+        orders.add(orderClause);
     }
 
     /**
@@ -74,7 +74,7 @@ public class SQLSelect extends SQLSelectableStatement {
         Statement stmt = con.createStatement();
         String query = this.getQueryString();
         if (Logger.isDebugEnabled()) {
-           Logger.debug("executeQuery() - Statement to be executed: " + query);
+            Logger.debug("executeQuery() - Statement to be executed: " + query);
         }
 
         results = stmt.executeQuery(query);
@@ -82,18 +82,18 @@ public class SQLSelect extends SQLSelectableStatement {
     }
 
     private String getOrder() {
-       StringBuffer sb = new StringBuffer();
-       if (orders.size() > 0) {
-           sb.append(" ORDER BY ");
-           for (int i = 0; i < orders.size(); i++) {
-               Object w = orders.get(i);
-               sb.append(w.toString());
-               if (i < orders.size() - 1) {
-                   sb.append(",");
-               }
-           }
-       }
-       return sb.toString();
+        StringBuffer sb = new StringBuffer();
+        if (orders.size() > 0) {
+            sb.append(" ORDER BY ");
+            for (int i = 0; i < orders.size(); i++) {
+                Object w = orders.get(i);
+                sb.append(w.toString());
+                if (i < orders.size() - 1) {
+                    sb.append(",");
+                }
+            }
+        }
+        return sb.toString();
     }
 
     /**

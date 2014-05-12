@@ -14,12 +14,12 @@ package ca.spaz.cron.datasource;
  */
 public class DeprecatedFoodProxy extends FoodProxy {
 
-   public DeprecatedFoodProxy(String description, FoodDataSource source, String sourceid) {
-      super(description, source, sourceid);
-   }
+    public DeprecatedFoodProxy(String description, FoodDataSource source, String sourceid) {
+        super(description, source, sourceid);
+    }
 
-   public boolean isDeprecated() {
-      return true;
-   }
+    public boolean isDeprecated() {
+        return true;
+    }
 
 }

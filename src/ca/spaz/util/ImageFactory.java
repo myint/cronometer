@@ -22,56 +22,56 @@ import java.util.Map;
  */
 public class ImageFactory {
 
-   private static ImageFactory instance = null;
-   private int cacheSize;
-   private Map imageCache;
+    private static ImageFactory instance = null;
+    private int cacheSize;
+    private Map imageCache;
 
-   private ImageFactory(int cacheSz) {
-      this.cacheSize = cacheSz;
-      this.imageCache = new CacheMap(cacheSize);
-   }
+    private ImageFactory(int cacheSz) {
+        this.cacheSize = cacheSz;
+        this.imageCache = new CacheMap(cacheSize);
+    }
 
-   public static final ImageFactory getInstance() {
-      if (null == instance) {
-         instance = new ImageFactory(10);
-      }
-      return instance;
-   }
+    public static final ImageFactory getInstance() {
+        if (null == instance) {
+            instance = new ImageFactory(10);
+        }
+        return instance;
+    }
 
-   public Image loadImage(URL url) {
-      Image ret = null;
-      if (imageCache.containsKey(url)) {
-         ret = (Image) imageCache.get(url);
-      } else {
-         ret = Toolkit.getDefaultToolkit().createImage(url);
-         if (ret != null) {
-            imageCache.put(url, ret);
-         }
-      }
-      return ret;
-   }
+    public Image loadImage(URL url) {
+        Image ret = null;
+        if (imageCache.containsKey(url)) {
+            ret = (Image) imageCache.get(url);
+        } else {
+            ret = Toolkit.getDefaultToolkit().createImage(url);
+            if (ret != null) {
+                imageCache.put(url, ret);
+            }
+        }
+        return ret;
+    }
 
-   public Image loadImage(String resourceID) {
-      return loadImage(resourceID, this);
-   }
+    public Image loadImage(String resourceID) {
+        return loadImage(resourceID, this);
+    }
 
-   public Image loadImage(String resourceID, Object source) {
-      Class base = null;
-      if (null == source) {
-         base = this.getClass();
-      } else {
-         base = source.getClass();
-      }
-      URL url = base.getResource(resourceID);
-      Image ret = null;
-      if (url == null) {
-         url = this.getClass().getResource(resourceID);
-         if (url == null) {
-            throw new IllegalArgumentException(resourceID + " is not a valid resource identifier");
-         }
-      }
-      ret = loadImage(url);
-      return ret;
-   }
+    public Image loadImage(String resourceID, Object source) {
+        Class base = null;
+        if (null == source) {
+            base = this.getClass();
+        } else {
+            base = source.getClass();
+        }
+        URL url = base.getResource(resourceID);
+        Image ret = null;
+        if (url == null) {
+            url = this.getClass().getResource(resourceID);
+            if (url == null) {
+                throw new IllegalArgumentException(resourceID + " is not a valid resource identifier");
+            }
+        }
+        ret = loadImage(url);
+        return ret;
+    }
 
 }

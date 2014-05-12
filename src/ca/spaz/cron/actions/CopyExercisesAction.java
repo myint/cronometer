@@ -14,18 +14,18 @@ import ca.spaz.util.ImageFactory;
 
 
 public class CopyExercisesAction extends AbstractAction {
-   private ExerciseTable exerciseTable;
+    private ExerciseTable exerciseTable;
 
-   public CopyExercisesAction(ExerciseTable exerciseTable) {
-      super("Copy Exercises");
-      this.exerciseTable = exerciseTable;
-      putValue(SMALL_ICON, new ImageIcon(ImageFactory.getInstance().loadImage("/img/copy.gif")));
-      putValue(SHORT_DESCRIPTION, "Copy the selected exercises from this list");
+    public CopyExercisesAction(ExerciseTable exerciseTable) {
+        super("Copy Exercises");
+        this.exerciseTable = exerciseTable;
+        putValue(SMALL_ICON, new ImageIcon(ImageFactory.getInstance().loadImage("/img/copy.gif")));
+        putValue(SHORT_DESCRIPTION, "Copy the selected exercises from this list");
 
-   }
+    }
 
-   public void actionPerformed(ActionEvent e) {
-      assert (exerciseTable != null);
-      exerciseTable.copySelectedExercises();
-   }
+    public void actionPerformed(ActionEvent e) {
+        assert (exerciseTable != null);
+        exerciseTable.copySelectedExercises();
+    }
 }

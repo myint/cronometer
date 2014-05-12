@@ -17,6 +17,6 @@ package ca.spaz.sql;
  */
 public interface Columns {
 
-   SQLColumnSet getColumns();
+    SQLColumnSet getColumns();
 
 }

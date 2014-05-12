@@ -43,40 +43,40 @@ public class MeasureEditor extends JPanel {
     private Vector listeners;
 
     public MeasureEditor(Food f) {
-       this.food = f;
-       resetMeasures();
-       initialize();
-   }
+        this.food = f;
+        resetMeasures();
+        initialize();
+    }
 
     protected void resetMeasures() {
-       getWeightTableModel().getWeights().clear();
-       getWeightTableModel().getWeights().addAll(food.getMeasures());
-       getWeightTableModel().getWeights().remove(Measure.GRAM);
-       getWeightTableModel().fireTableDataChanged();
+        getWeightTableModel().getWeights().clear();
+        getWeightTableModel().getWeights().addAll(food.getMeasures());
+        getWeightTableModel().getWeights().remove(Measure.GRAM);
+        getWeightTableModel().fireTableDataChanged();
     }
 
     public void addChangeListener(ChangeListener cl) {
-       getListeners().add(cl);
+        getListeners().add(cl);
     }
 
     public void removeChangeListener(ChangeListener cl) {
-       getListeners().remove(cl);
+        getListeners().remove(cl);
     }
 
     private Vector getListeners() {
-       if (listeners == null) {
-          listeners = new Vector();
-       }
-       return listeners;
+        if (listeners == null) {
+            listeners = new Vector();
+        }
+        return listeners;
     }
 
 
     public void fireChangeEvent() {
-       ChangeEvent ce = new ChangeEvent(this);
-       Iterator iter = listeners.iterator();
-       while (iter.hasNext()) {
-          ((ChangeListener)iter.next()).stateChanged(ce);
-       }
+        ChangeEvent ce = new ChangeEvent(this);
+        Iterator iter = listeners.iterator();
+        while (iter.hasNext()) {
+            ((ChangeListener)iter.next()).stateChanged(ce);
+        }
     }
 
     /**
@@ -91,10 +91,10 @@ public class MeasureEditor extends JPanel {
 
 
     public List getMeasures() {
-       List measures = new ArrayList();
-       measures.add(Measure.GRAM);
-       measures.addAll(getWeightTableModel().getWeights());
-       return measures;
+        List measures = new ArrayList();
+        measures.add(Measure.GRAM);
+        measures.addAll(getWeightTableModel().getWeights());
+        return measures;
     }
 
     /**
@@ -169,16 +169,16 @@ public class MeasureEditor extends JPanel {
     private void deleteSelectedWeight() {
         int row = weightTable.getSelectedRow();
         if (row >= 0) {
-           model.getWeights().remove(row);
-           model.fireTableDataChanged();
-           setDirty(true);
+            model.getWeights().remove(row);
+            model.fireTableDataChanged();
+            setDirty(true);
         }
     }
 
     private void setDirty(boolean val) {
         dirty = val;
         if (dirty) {
-           fireChangeEvent();
+            fireChangeEvent();
         }
     }
 
@@ -192,24 +192,24 @@ public class MeasureEditor extends JPanel {
 
             weightTable = new PrettyTable(getWeightTableModel());
             weightTable.getSelectionModel().setSelectionMode(
-                    ListSelectionModel.SINGLE_SELECTION);
+                ListSelectionModel.SINGLE_SELECTION);
             weightTable
-                    .setAutoResizeMode(JTable.AUTO_RESIZE_SUBSEQUENT_COLUMNS);
+            .setAutoResizeMode(JTable.AUTO_RESIZE_SUBSEQUENT_COLUMNS);
             weightTable.getTableHeader().setReorderingAllowed(false);
             weightTable.getSelectionModel().addListSelectionListener(
-                    new ListSelectionListener() {
-                        public void valueChanged(ListSelectionEvent e) {
-                            if (e.getValueIsAdjusting())
-                                return;
-                            ListSelectionModel lsm = (ListSelectionModel) e
-                                    .getSource();
-                            if (!lsm.isSelectionEmpty()) {
-                                getDeleteButton().setEnabled(true);
-                            } else {
-                                getDeleteButton().setEnabled(false);
-                            }
-                        }
-                    });
+            new ListSelectionListener() {
+                public void valueChanged(ListSelectionEvent e) {
+                    if (e.getValueIsAdjusting())
+                        return;
+                    ListSelectionModel lsm = (ListSelectionModel) e
+                                             .getSource();
+                    if (!lsm.isSelectionEmpty()) {
+                        getDeleteButton().setEnabled(true);
+                    } else {
+                        getDeleteButton().setEnabled(false);
+                    }
+                }
+            });
             weightTable.getColumnModel().getColumn(0).setMaxWidth(60);
             weightTable.getColumnModel().getColumn(2).setMaxWidth(80);
         }
@@ -218,7 +218,7 @@ public class MeasureEditor extends JPanel {
 
     private WeightTableModel getWeightTableModel() {
         if (null == model) {
-           model = new WeightTableModel();
+            model = new WeightTableModel();
         }
         return model;
     }
@@ -241,14 +241,14 @@ public class MeasureEditor extends JPanel {
         }
 
         public List getWeights() {
-           return weights;
+            return weights;
         }
 
         public Measure getWeight(int i) {
-           if (weights.size() > i) {
-              return (Measure) weights.get(i);
-           }
-           return null;
+            if (weights.size() > i) {
+                return (Measure) weights.get(i);
+            }
+            return null;
         }
 
         public Object getValueAt(int row, int col) {
@@ -284,36 +284,36 @@ public class MeasureEditor extends JPanel {
             Measure w = getWeight(row);
             if (w != null) {
                 if (col == 0) {
-                   double val = ((Double) value).doubleValue();
-                   if (val > 0) {
-                      w.setAmount(val);
-                   } else {
-                      JOptionPane.showMessageDialog(getWeightTable(),
-                            "An amount cannot be zero!",
-                            "Error!", JOptionPane.ERROR_MESSAGE);
-                   }
+                    double val = ((Double) value).doubleValue();
+                    if (val > 0) {
+                        w.setAmount(val);
+                    } else {
+                        JOptionPane.showMessageDialog(getWeightTable(),
+                                                      "An amount cannot be zero!",
+                                                      "Error!", JOptionPane.ERROR_MESSAGE);
+                    }
                 } else if (col == 1) {
                     w.setDescription((String) value);
                 } else if (col == 2) {
-                   double val = ((Double) value).doubleValue();
-                   if (val > 0) {
-                      w.setGrams(val);
-                   } else {
-                      JOptionPane.showMessageDialog(getWeightTable(),
-                            "A measure cannot be zero grams!",
-                            "Error!", JOptionPane.ERROR_MESSAGE);
-                   }
+                    double val = ((Double) value).doubleValue();
+                    if (val > 0) {
+                        w.setGrams(val);
+                    } else {
+                        JOptionPane.showMessageDialog(getWeightTable(),
+                                                      "A measure cannot be zero grams!",
+                                                      "Error!", JOptionPane.ERROR_MESSAGE);
+                    }
                 }
             }
             setDirty(true);
             fireTableCellUpdated(row, col);
         }
 
-      public String getToolTipText(int r, int c) {
-         return null;
-      }
+        public String getToolTipText(int r, int c) {
+            return null;
+        }
 
-      public void sort() { }
+        public void sort() { }
 
     }
 }

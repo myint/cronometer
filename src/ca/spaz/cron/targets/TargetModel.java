@@ -17,7 +17,7 @@ import ca.spaz.cron.user.User;
  */
 public interface TargetModel {
 
-   public double getTargetMinimum(User user, NutrientInfo ni);
-   public double getTargetMaximum(User user, NutrientInfo ni);
+    public double getTargetMinimum(User user, NutrientInfo ni);
+    public double getTargetMaximum(User user, NutrientInfo ni);
 
 }

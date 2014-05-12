@@ -12,18 +12,18 @@ import ca.spaz.cron.foods.NutrientInfo;
 
 public class MineralSummaryPanel extends AbstractNutrientSummaryPanel {
 
-   public MineralSummaryPanel() {
-      setLayout(new BorderLayout());
-      setBorder(BorderFactory.createEmptyBorder(4,4,4,4));
-      add(getNutrientTablePane(), BorderLayout.CENTER);
-   }
+    public MineralSummaryPanel() {
+        setLayout(new BorderLayout());
+        setBorder(BorderFactory.createEmptyBorder(4,4,4,4));
+        add(getNutrientTablePane(), BorderLayout.CENTER);
+    }
 
-   protected List getNutrientList() {
-      return NutrientInfo.getMinerals();
-   }
+    protected List getNutrientList() {
+        return NutrientInfo.getMinerals();
+    }
 
-   protected String getCategoryName() {
-      return "Minerals";
-   }
+    protected String getCategoryName() {
+        return "Minerals";
+    }
 
 }

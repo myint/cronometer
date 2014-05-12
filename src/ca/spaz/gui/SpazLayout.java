@@ -33,11 +33,11 @@ public class SpazLayout implements LayoutManager2 {
     }
 
     public SpazPosition getPosition(Component comp) {
-    	return  (SpazPosition)compTable.get(comp);
+        return  (SpazPosition)compTable.get(comp);
     }
 
     public void setPosition(Component comp, SpazPosition lp) {
-    	compTable.put(comp, lp);
+        compTable.put(comp, lp);
     }
 
 
@@ -49,22 +49,22 @@ public class SpazLayout implements LayoutManager2 {
      * @see #minimumLayoutSize
      */
     public Dimension preferredLayoutSize(Container parent) {
-    	int ncomponents = parent.getComponentCount();
-		if (ncomponents == 0) return new Dimension(1,1);
-		Rectangle totalRect = new Rectangle(0,0,1,1);
-		Dimension size = parent.getSize();
-      Insets insets = parent.getInsets();
-		int totalW = size.width - (insets.left + insets.right);
-		int totalH = size.height - (insets.top + insets.bottom);
-		for ( int i = 0; i < ncomponents; i++ ) {
-			Component c = parent.getComponent(i);
-			SpazPosition lp = (SpazPosition)compTable.get(c);
-         Rectangle rect = lp.getRectangle(totalW, totalH);
-         if ( rect != null )
-         	totalRect = totalRect.union(rect);
+        int ncomponents = parent.getComponentCount();
+        if (ncomponents == 0) return new Dimension(1,1);
+        Rectangle totalRect = new Rectangle(0,0,1,1);
+        Dimension size = parent.getSize();
+        Insets insets = parent.getInsets();
+        int totalW = size.width - (insets.left + insets.right);
+        int totalH = size.height - (insets.top + insets.bottom);
+        for ( int i = 0; i < ncomponents; i++ ) {
+            Component c = parent.getComponent(i);
+            SpazPosition lp = (SpazPosition)compTable.get(c);
+            Rectangle rect = lp.getRectangle(totalW, totalH);
+            if ( rect != null )
+                totalRect = totalRect.union(rect);
 
-		}
-		return new Dimension(totalRect.width,totalRect.height);
+        }
+        return new Dimension(totalRect.width,totalRect.height);
     }
 
     /**
@@ -74,18 +74,18 @@ public class SpazLayout implements LayoutManager2 {
      * @see #preferredLayoutSize
      */
     public Dimension minimumLayoutSize(Container parent) {
-    	int ncomponents = parent.getComponentCount();
-		if (ncomponents == 0) return new Dimension(1,1);
-		Rectangle totalRect = new Rectangle(0,0,1,1);
-		for ( int i = 0; i < ncomponents; i++ ) {
-			Component c = parent.getComponent(i);
-			SpazPosition lp = (SpazPosition)compTable.get(c);
-         Rectangle rect = lp.getMinRectangle();
-         if ( rect != null )
-         	totalRect = totalRect.union(rect);
+        int ncomponents = parent.getComponentCount();
+        if (ncomponents == 0) return new Dimension(1,1);
+        Rectangle totalRect = new Rectangle(0,0,1,1);
+        for ( int i = 0; i < ncomponents; i++ ) {
+            Component c = parent.getComponent(i);
+            SpazPosition lp = (SpazPosition)compTable.get(c);
+            Rectangle rect = lp.getMinRectangle();
+            if ( rect != null )
+                totalRect = totalRect.union(rect);
 
-		}
-		return new Dimension(totalRect.width,totalRect.height);
+        }
+        return new Dimension(totalRect.width,totalRect.height);
     }
 
 

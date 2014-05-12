@@ -17,10 +17,10 @@ package ca.spaz.cron.user;
  */
 public interface UserChangeListener {
 
-   /**
-    * This event is fired whenever the user model changes in some way.
-    * @param userMan the <code>User</code> that has changed.
-    */
-   void userChanged(UserManager userMan);
+    /**
+     * This event is fired whenever the user model changes in some way.
+     * @param userMan the <code>User</code> that has changed.
+     */
+    void userChanged(UserManager userMan);
 
 }

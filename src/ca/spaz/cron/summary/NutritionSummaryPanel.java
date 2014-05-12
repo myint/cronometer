@@ -34,16 +34,16 @@ public class NutritionSummaryPanel extends JTabbedPane {
     private LipidSummaryPanel lipidsPanel;
 
     public NutritionSummaryPanel() {
-      if (ToolBox.isMacOSX()) {
-         setFont(getFont().deriveFont(10.0f));
-      }
-      add("Summary", getTargetSummaryPanel());
-      add("General", getGeneralPanel());
-      add("Vitamins", getVitaminsPanel());
-      add("Minerals", getMineralsPanel());
-      add("Amino Acids", getAminoAcidsPanel());
-      add("Lipids", getLipidsPanel());
-   }
+        if (ToolBox.isMacOSX()) {
+            setFont(getFont().deriveFont(10.0f));
+        }
+        add("Summary", getTargetSummaryPanel());
+        add("General", getGeneralPanel());
+        add("Vitamins", getVitaminsPanel());
+        add("Minerals", getMineralsPanel());
+        add("Amino Acids", getAminoAcidsPanel());
+        add("Lipids", getLipidsPanel());
+    }
 
     public void setServings(List consumed, boolean allSelected) {
         getGeneralPanel().update(consumed);
@@ -55,19 +55,19 @@ public class NutritionSummaryPanel extends JTabbedPane {
     }
 
     public void setExercises(List exercises) {
-       getTargetSummaryPanel().updateExercises(exercises);
+        getTargetSummaryPanel().updateExercises(exercises);
     }
 
     protected TargetSummaryChart getTargetSummaryPanel() {
-       if (null == targetPanel) {
-          targetPanel = new TargetSummaryChart(this);
-       }
-       return targetPanel;
-   }
+        if (null == targetPanel) {
+            targetPanel = new TargetSummaryChart(this);
+        }
+        return targetPanel;
+    }
 
     protected MacroNutrientSummaryPanel getGeneralPanel() {
         if (null == generalPanel) {
-           generalPanel = new MacroNutrientSummaryPanel();
+            generalPanel = new MacroNutrientSummaryPanel();
             //generalPanel = new NumericSummaryPanel();
         }
         return generalPanel;
@@ -95,15 +95,15 @@ public class NutritionSummaryPanel extends JTabbedPane {
     }
 
     protected LipidSummaryPanel getLipidsPanel() {
-       if (null == lipidsPanel) {
-          lipidsPanel = new LipidSummaryPanel();
-      }
-      return lipidsPanel;
+        if (null == lipidsPanel) {
+            lipidsPanel = new LipidSummaryPanel();
+        }
+        return lipidsPanel;
     }
 
-   public void generateReport(Date date) {
-      ReportWindow wp = new ReportWindow(this, date);
-      WrapperDialog.showDialog(this, wp, true);
-   }
+    public void generateReport(Date date) {
+        ReportWindow wp = new ReportWindow(this, date);
+        WrapperDialog.showDialog(this, wp, true);
+    }
 
 }

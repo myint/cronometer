@@ -19,41 +19,41 @@ import ca.spaz.util.Logger;
 
 public class ExportFoodAction extends AbstractAction {
 
-   private FoodProxy food;
-   private Component parent;
+    private FoodProxy food;
+    private Component parent;
 
-   public ExportFoodAction(FoodProxy food, Component parent) {
-      super("Export Food");
-      this.food = food;
-      this.parent = parent;
-      putValue(SMALL_ICON, new ImageIcon(ImageFactory.getInstance().loadImage("/img/export.gif")));
-      putValue(SHORT_DESCRIPTION, "Exports this food to a file which can be imported by other users");
-   }
+    public ExportFoodAction(FoodProxy food, Component parent) {
+        super("Export Food");
+        this.food = food;
+        this.parent = parent;
+        putValue(SMALL_ICON, new ImageIcon(ImageFactory.getInstance().loadImage("/img/export.gif")));
+        putValue(SHORT_DESCRIPTION, "Exports this food to a file which can be imported by other users");
+    }
 
-   public void actionPerformed(ActionEvent e) {
-      assert (food != null);
-      doExportFood(food, parent);
-   }
+    public void actionPerformed(ActionEvent e) {
+        assert (food != null);
+        doExportFood(food, parent);
+    }
 
-   public static void doExportFood(FoodProxy fp, Component parent) {
-      JFileChooser fd = new JFileChooser();
-      fd.setSelectedFile(new File(fp.getDescription()+".xml"));
-      if (fd.showSaveDialog(parent) == JFileChooser.APPROVE_OPTION) {
-         File f = fd.getSelectedFile();
-         if (f != null) {
-            try {
-               Food food = fp.getFood();
-               PrintStream ps = new PrintStream(
-                     new BufferedOutputStream(new FileOutputStream(f)));
-               food.writeXML(ps, true);
-               ps.close();
-            } catch (IOException ie) {
-               Logger.error(ie);
-               ErrorReporter.showError(ie, CRONOMETER.getInstance());
+    public static void doExportFood(FoodProxy fp, Component parent) {
+        JFileChooser fd = new JFileChooser();
+        fd.setSelectedFile(new File(fp.getDescription()+".xml"));
+        if (fd.showSaveDialog(parent) == JFileChooser.APPROVE_OPTION) {
+            File f = fd.getSelectedFile();
+            if (f != null) {
+                try {
+                    Food food = fp.getFood();
+                    PrintStream ps = new PrintStream(
+                        new BufferedOutputStream(new FileOutputStream(f)));
+                    food.writeXML(ps, true);
+                    ps.close();
+                } catch (IOException ie) {
+                    Logger.error(ie);
+                    ErrorReporter.showError(ie, CRONOMETER.getInstance());
+                }
             }
-         }
-      }
-   }
+        }
+    }
 
 
 }

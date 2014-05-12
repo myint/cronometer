@@ -6,5 +6,5 @@ package com.apple.mrj;
  * @author Aaron Davidson
  */
 public interface MRJAboutHandler {
-   public void handleAbout();
+    public void handleAbout();
 }

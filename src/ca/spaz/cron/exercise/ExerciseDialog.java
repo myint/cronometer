@@ -12,74 +12,74 @@ import ca.spaz.util.ToolBox;
 
 public class ExerciseDialog extends JDialog implements ExerciseEditorListener {
 
-   private ExerciseEditor exerciseEditor;
-   private JPanel mainPanel;
-   private boolean abort = true;
-   private Exercise exercise = null;
+    private ExerciseEditor exerciseEditor;
+    private JPanel mainPanel;
+    private boolean abort = true;
+    private Exercise exercise = null;
 
-   public ExerciseDialog(Frame parent) {
-     super(parent);
-     init(parent);
-   }
-
-   public ExerciseDialog(Dialog parent) {
-      super(parent);
-      init(parent);
+    public ExerciseDialog(Frame parent) {
+        super(parent);
+        init(parent);
     }
 
-   private void init(Window parent) {
-      this.setTitle("Add exercise");
-      this.getContentPane().add(getMainPanel());
-      this.pack();
-      ToolBox.centerOver(this, parent);
-      this.setModal(true);
+    public ExerciseDialog(Dialog parent) {
+        super(parent);
+        init(parent);
+    }
 
-      // add escape listener to dismiss window
-      getRootPane().registerKeyboardAction( new ActionListener() {
-         public void actionPerformed(ActionEvent e) {
-            dispose();
-         }
-      }, KeyStroke.getKeyStroke( KeyEvent.VK_ESCAPE, 0 ),
-      JComponent.WHEN_IN_FOCUSED_WINDOW );
+    private void init(Window parent) {
+        this.setTitle("Add exercise");
+        this.getContentPane().add(getMainPanel());
+        this.pack();
+        ToolBox.centerOver(this, parent);
+        this.setModal(true);
 
-      //Datasources.getUserFoods().addUserFoodsListener(this);
-   }
+        // add escape listener to dismiss window
+        getRootPane().registerKeyboardAction( new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+            }
+        }, KeyStroke.getKeyStroke( KeyEvent.VK_ESCAPE, 0 ),
+        JComponent.WHEN_IN_FOCUSED_WINDOW );
 
-   public void display(boolean addable) {
-      getExerciseEditor().getAddButton().setVisible(addable);
-      this.setVisible(true);
-   }
+        //Datasources.getUserFoods().addUserFoodsListener(this);
+    }
 
-   public Exercise getSelectedExercise() {
-      if (abort) return null;
-      return exercise;
-   }
+    public void display(boolean addable) {
+        getExerciseEditor().getAddButton().setVisible(addable);
+        this.setVisible(true);
+    }
 
-   public JPanel getMainPanel() {
-      if (null == mainPanel) {
-         mainPanel = new JPanel(new BorderLayout(4,4));
-         mainPanel.setBorder(BorderFactory.createEmptyBorder(4, 4, 4, 4));
-         mainPanel.add(getExerciseEditor(), BorderLayout.CENTER);
-      }
-      return mainPanel;
-   }
+    public Exercise getSelectedExercise() {
+        if (abort) return null;
+        return exercise;
+    }
 
-   public ExerciseEditor getExerciseEditor() {
-      if (exerciseEditor == null) {
-         exerciseEditor = new ExerciseEditor();
-         exerciseEditor.setBorder(BorderFactory.createEmptyBorder(12,12,12,12));
-         exerciseEditor.addExerciseEditorListener(this);
-      }
-      return exerciseEditor;
-   }
+    public JPanel getMainPanel() {
+        if (null == mainPanel) {
+            mainPanel = new JPanel(new BorderLayout(4,4));
+            mainPanel.setBorder(BorderFactory.createEmptyBorder(4, 4, 4, 4));
+            mainPanel.add(getExerciseEditor(), BorderLayout.CENTER);
+        }
+        return mainPanel;
+    }
 
-   public void exerciseChosen(Exercise s) {
-      exercise = s;
-      abort = false;
-      dispose();
-   }
+    public ExerciseEditor getExerciseEditor() {
+        if (exerciseEditor == null) {
+            exerciseEditor = new ExerciseEditor();
+            exerciseEditor.setBorder(BorderFactory.createEmptyBorder(12,12,12,12));
+            exerciseEditor.addExerciseEditorListener(this);
+        }
+        return exerciseEditor;
+    }
 
-   public void dispose() {
-      super.dispose();
-   }
+    public void exerciseChosen(Exercise s) {
+        exercise = s;
+        abort = false;
+        dispose();
+    }
+
+    public void dispose() {
+        super.dispose();
+    }
 }

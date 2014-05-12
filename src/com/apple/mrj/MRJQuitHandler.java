@@ -6,5 +6,5 @@ package com.apple.mrj;
  * @author Aaron Davidson
  */
 public interface MRJQuitHandler {
-   public void handleQuit();
+    public void handleQuit();
 }

@@ -12,7 +12,7 @@ public abstract class SQLStatement {
     public final void execute(Connection con) throws SQLException {
         if (!isExecuteSupported()) {
             throw new UnsupportedOperationException("Execute not supported on "
-                    + getClass().getName());
+                                                    + getClass().getName());
         }
         doExecute(con);
     }
@@ -26,7 +26,7 @@ public abstract class SQLStatement {
     public final ResultSet executeQuery(Connection con) throws SQLException {
         if (!isQuerySupported()) {
             throw new UnsupportedOperationException("Query not supported on "
-                    + getClass().getName());
+                                                    + getClass().getName());
         }
         return doExecuteQuery(con);
     }
@@ -46,7 +46,7 @@ public abstract class SQLStatement {
     private boolean executeSupport;
 
     protected SQLStatement(String table, boolean querySupport,
-            boolean executeSupport) {
+                           boolean executeSupport) {
         this.table = table;
         this.querySupport = querySupport;
         this.executeSupport = executeSupport;
@@ -73,10 +73,10 @@ public abstract class SQLStatement {
      * @return a valid class for SQL
      */
     static Object fixClass(Object o) {
-       if (o instanceof java.util.Date) {
-          o = new java.sql.Date(((java.util.Date)o).getTime());
-       }
-       return o;
+        if (o instanceof java.util.Date) {
+            o = new java.sql.Date(((java.util.Date)o).getTime());
+        }
+        return o;
     }
 
 

@@ -23,7 +23,7 @@ public abstract class SQLSelectableStatement extends SQLStatement {
 
     private boolean and;
 
-   protected SQLSelectableStatement(String table, boolean and, boolean querySupport, boolean executeSupport) {
+    protected SQLSelectableStatement(String table, boolean and, boolean querySupport, boolean executeSupport) {
         super(table, querySupport, executeSupport);
         this.and = and;
     }
@@ -47,7 +47,7 @@ public abstract class SQLSelectableStatement extends SQLStatement {
 
     public void addWhere(String name, String operator, Object val) {
         where.add("upper(" + name + ") " + operator + " '"
-                + escape(fixClass(val).toString()).toUpperCase() + "' ");
+                  + escape(fixClass(val).toString()).toUpperCase() + "' ");
     }
 
     public void addWhere(String name, int val) {
@@ -84,7 +84,7 @@ public abstract class SQLSelectableStatement extends SQLStatement {
      */
     public void addWhereLike(String name, String val) {
         where.add("upper(" + name + ") like '"
-                + escape(val.toString()).toUpperCase() + "' ");
+                  + escape(val.toString()).toUpperCase() + "' ");
     }
 
     /**

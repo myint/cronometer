@@ -16,24 +16,24 @@ import ca.spaz.util.ImageFactory;
 
 public class EditFoodAction extends AbstractAction {
 
-   private FoodProxy food;
-   private Component parent;
+    private FoodProxy food;
+    private Component parent;
 
-   public EditFoodAction(FoodProxy food, Component parent) {
-      super("Edit Food");
-      this.food = food;
-      this.parent = parent;
-      putValue(SMALL_ICON, new ImageIcon(ImageFactory.getInstance().loadImage("/img/edit.gif")));
-      putValue(SHORT_DESCRIPTION, "Edit this food");
-      if (!food.getSource().isMutable()) {
-         putValue(SHORT_DESCRIPTION, "Edit a copy of this food");
-         putValue(NAME, "Edit a Copy of Food");
-      }
-   }
+    public EditFoodAction(FoodProxy food, Component parent) {
+        super("Edit Food");
+        this.food = food;
+        this.parent = parent;
+        putValue(SMALL_ICON, new ImageIcon(ImageFactory.getInstance().loadImage("/img/edit.gif")));
+        putValue(SHORT_DESCRIPTION, "Edit this food");
+        if (!food.getSource().isMutable()) {
+            putValue(SHORT_DESCRIPTION, "Edit a copy of this food");
+            putValue(NAME, "Edit a Copy of Food");
+        }
+    }
 
-   public void actionPerformed(ActionEvent e) {
-      assert (food != null);
-      FoodEditor.editFood(food.getFood());
-   }
+    public void actionPerformed(ActionEvent e) {
+        assert (food != null);
+        FoodEditor.editFood(food.getFood());
+    }
 
 }

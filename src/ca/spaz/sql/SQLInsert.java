@@ -22,25 +22,25 @@ public class SQLInsert extends SQLStatement implements Columns {
         Statement stmt = con.createStatement();
         String query = this.getQueryString();
         if (Logger.isDebugEnabled()) {
-           Logger.debug("executeQuery() - Statement to be executed: " + query);
+            Logger.debug("executeQuery() - Statement to be executed: " + query);
         }
 
         stmt.execute(query);
     }
 
     protected ResultSet doExecuteQuery(Connection con) throws SQLException {
-       Statement stmt = con.createStatement();
-       String query = this.getQueryString();
-       if (Logger.isDebugEnabled()) {
-          Logger.debug("executeQuery() - Statement to be executed: " + query);
-       }
+        Statement stmt = con.createStatement();
+        String query = this.getQueryString();
+        if (Logger.isDebugEnabled()) {
+            Logger.debug("executeQuery() - Statement to be executed: " + query);
+        }
 
-       stmt.executeUpdate(query);
-       if (con.getMetaData().supportsGetGeneratedKeys()) {
-          return stmt.getGeneratedKeys();
-       } else {
-          return null;
-       }
+        stmt.executeUpdate(query);
+        if (con.getMetaData().supportsGetGeneratedKeys()) {
+            return stmt.getGeneratedKeys();
+        } else {
+            return null;
+        }
     }
 
 
@@ -57,12 +57,12 @@ public class SQLInsert extends SQLStatement implements Columns {
         return sb.toString();
     }
 
-   /**
-    * Retrieve the <code>cols</code> from the <code>SQLInsert</code>
-    * @return Returns the cols.
-    */
-   public SQLColumnSet getColumns() {
-      return cols;
-   }
+    /**
+     * Retrieve the <code>cols</code> from the <code>SQLInsert</code>
+     * @return Returns the cols.
+     */
+    public SQLColumnSet getColumns() {
+        return cols;
+    }
 
 }

@@ -13,18 +13,18 @@ import ca.spaz.util.ImageFactory;
 
 
 public class DeleteServingsAction extends AbstractAction {
-   private ServingTable servingTable;
+    private ServingTable servingTable;
 
-   public DeleteServingsAction(ServingTable servingTable) {
-      super("Delete Servings");
-      this.servingTable = servingTable;
-      putValue(SMALL_ICON, new ImageIcon(ImageFactory.getInstance().loadImage("/img/trash.gif")));
-      putValue(SHORT_DESCRIPTION, "Delete the selected servings from this list");
+    public DeleteServingsAction(ServingTable servingTable) {
+        super("Delete Servings");
+        this.servingTable = servingTable;
+        putValue(SMALL_ICON, new ImageIcon(ImageFactory.getInstance().loadImage("/img/trash.gif")));
+        putValue(SHORT_DESCRIPTION, "Delete the selected servings from this list");
 
-   }
+    }
 
-   public void actionPerformed(ActionEvent e) {
-      assert (servingTable != null);
-      servingTable.deleteSelectedServings();
-   }
+    public void actionPerformed(ActionEvent e) {
+        assert (servingTable != null);
+        servingTable.deleteSelectedServings();
+    }
 }

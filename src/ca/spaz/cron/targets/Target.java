@@ -12,32 +12,32 @@
 package ca.spaz.cron.targets;
 
 public class Target {
-   double min, max;
+    double min, max;
 
-   public Target() {}
+    public Target() {}
 
-   public Target(double min, double max) {
-      this.min = min;
-      this.max = max;
-   }
+    public Target(double min, double max) {
+        this.min = min;
+        this.max = max;
+    }
 
-   public double getMax() {
-      return max;
-   }
+    public double getMax() {
+        return max;
+    }
 
-   public void setMax(double max) {
-      this.max = max;
-   }
+    public void setMax(double max) {
+        this.max = max;
+    }
 
-   public double getMin() {
-      return min;
-   }
+    public double getMin() {
+        return min;
+    }
 
-   public void setMin(double min) {
-      this.min = min;
-   }
+    public void setMin(double min) {
+        this.min = min;
+    }
 
-   public boolean isUndefined() {
-      return min <= 0 && max <= 0;
-   }
+    public boolean isUndefined() {
+        return min <= 0 && max <= 0;
+    }
 }

@@ -12,16 +12,16 @@ import javax.swing.JPanel;
  */
 
 public class SpazCanvasLoader extends SpazCanvas {
-	public JPanel proxy;
+    public JPanel proxy;
 
-	public SpazCanvasLoader(String file, JPanel proxy) {
-		super(file, null);
-		this.proxy = proxy;
-		this.actions = null;
-	}
+    public SpazCanvasLoader(String file, JPanel proxy) {
+        super(file, null);
+        this.proxy = proxy;
+        this.actions = null;
+    }
 
-	public void add(JComponent c, SpazPosition lp) {
-		proxy.add(c, lp);
-	}
+    public void add(JComponent c, SpazPosition lp) {
+        proxy.add(c, lp);
+    }
 
 }

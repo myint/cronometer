@@ -95,30 +95,30 @@ public class Measure {
     }
 
     public String toString() {
-       if (amount != 1.0) {
-          if (amount == 0.5) {
-             return "1/2 " + description;
-          }
-          if (amount == (int)amount) {
-             return (int)amount + " " + description;
-          }
-          return amount + " " + description;
-       }
-       return description;
+        if (amount != 1.0) {
+            if (amount == 0.5) {
+                return "1/2 " + description;
+            }
+            if (amount == (int)amount) {
+                return (int)amount + " " + description;
+            }
+            return amount + " " + description;
+        }
+        return description;
     }
 
     public boolean equals(Measure m) {
-       if (amount != m.amount) return false;
-       if (grams != m.grams) return false;
-       return description.equals(m.getDescription());
+        if (amount != m.amount) return false;
+        if (grams != m.grams) return false;
+        return description.equals(m.getDescription());
     }
 
-   public XMLNode toXMLNode() {
-      XMLNode node = new XMLNode("measure");
-      node.addAttribute("name", getDescription());
-      node.addAttribute("amount", getAmount());
-      node.addAttribute("grams", getGrams());
-      return node;
-   }
+    public XMLNode toXMLNode() {
+        XMLNode node = new XMLNode("measure");
+        node.addAttribute("name", getDescription());
+        node.addAttribute("amount", getAmount());
+        node.addAttribute("grams", getGrams());
+        return node;
+    }
 
 }
