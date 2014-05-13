@@ -202,7 +202,6 @@ public class ServingTable extends JPanel {
             table.getSelectionModel().addListSelectionListener(
             new ListSelectionListener() {
                 public void valueChanged(ListSelectionEvent e) {
-                    /* if (e.getValueIsAdjusting()) return;*/
                     ListSelectionModel lsm = (ListSelectionModel)e.getSource();
                     if (!lsm.isSelectionEmpty()) {
                         int sel = table.getSelectedRow();
@@ -466,7 +465,6 @@ public class ServingTable extends JPanel {
             menu.show(table, e.getX(), e.getY());
         }
     }
-
 
     private JButton getPrintButton() {
         if (null == printBtn) {
