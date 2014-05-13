@@ -197,7 +197,8 @@ public class DailySummary extends JPanel implements UserChangeListener {
             servingTable = ServingTable.getServingTable();
 
             servingTable.addServingSelectionListener(new ServingSelectionListener() {
-                public void servingSelected(Serving s) { }
+                public void servingSelected(Serving s) {
+                }
                 public void servingDoubleClicked(Serving s) {
                     FoodEditor.editFood(s);
                 }

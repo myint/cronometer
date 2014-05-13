@@ -29,7 +29,8 @@ public class Exercise implements Record {
 
     private long date = 0;
 
-    public Exercise() {}
+    public Exercise() {
+    }
 
     public Exercise(String n, double t, double c) {
         this.name = n;

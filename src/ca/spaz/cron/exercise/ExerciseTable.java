@@ -265,7 +265,9 @@ public class ExerciseTable extends JPanel {
     }
 
     private void fireExerciseSelected(Exercise e) {
-        if (e == null) return;
+        if (e == null) {
+            return;
+        }
         getDeleteButton().setEnabled(!getSelectedExercises().isEmpty());
         getTable().requestFocus();
     }
@@ -429,7 +431,9 @@ public class ExerciseTable extends JPanel {
     }
 
     private void fireExerciseChosen(Exercise e) {
-        if (e == null) return;
+        if (e == null) {
+            return;
+        }
         Iterator iter = listeners.iterator();
         while (iter.hasNext()) {
             ((ExerciseEditorListener)iter.next()).exerciseChosen(e);

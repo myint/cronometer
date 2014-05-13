@@ -61,7 +61,9 @@ public class ServingTableModel extends PrettyTableModel {
     }
 
     public Serving getServing(int i) {
-        if (i<0 || i >= servings.size()) return null;
+        if (i<0 || i >= servings.size()) {
+            return null;
+        }
         return (Serving) servings.get(i);
     }
 
@@ -103,16 +105,26 @@ public class ServingTableModel extends PrettyTableModel {
     }
 
     public boolean isCellEditable(int row, int col) {
-        if (col == AMOUNT_COL) return true;
-        if (col == MEASURE_COL) return true;
-        if (col == CALORIES_COL) return true;
+        if (col == AMOUNT_COL) {
+            return true;
+        }
+        if (col == MEASURE_COL) {
+            return true;
+        }
+        if (col == CALORIES_COL) {
+            return true;
+        }
         return false;
     }
 
     public void setValueAt(Object value, int row, int col) {
-        if (row < 0 || row >= getRowCount()) return;
+        if (row < 0 || row >= getRowCount()) {
+            return;
+        }
         Serving s = getServing(row);
-        if (value == null || s == null) return;
+        if (value == null || s == null) {
+            return;
+        }
         if (col == AMOUNT_COL) {
             try {
                 double val = Double.parseDouble((String)value);

@@ -29,7 +29,7 @@ public abstract class SummaryFormat {
 
     public double getAmount(List servings, NutrientInfo ni) {
         double total = 0;
-        for (Iterator iter = servings.iterator(); iter.hasNext();) {
+        for (Iterator iter = servings.iterator(); iter.hasNext(); ) {
             Serving serving = (Serving) iter.next();
             double weight = serving.getGrams()/100.0;
             total += weight * serving.getFood().getNutrientAmount(ni);
@@ -68,7 +68,6 @@ public abstract class SummaryFormat {
             return value / total;
         }
     }
-
 
 
 }

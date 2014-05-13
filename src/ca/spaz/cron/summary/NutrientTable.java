@@ -85,7 +85,7 @@ public class NutrientTable extends PrettyTable implements UserChangeListener {
         // TODO: cache this value!
         double total = 0;
         if (servings != null) {
-            for (Iterator iter = servings.iterator(); iter.hasNext();) {
+            for (Iterator iter = servings.iterator(); iter.hasNext(); ) {
                 Serving serving = (Serving) iter.next();
                 double weight = serving.getGrams()/100.0;
                 total += weight * serving.getFood().getNutrientAmount(ni);
@@ -104,7 +104,7 @@ public class NutrientTable extends PrettyTable implements UserChangeListener {
     public class NutrientTableModel extends PrettyTableModel {
         private DecimalFormat df = new DecimalFormat("######0.0");
         private DecimalFormat nf = new DecimalFormat("######0%");
-        private String[] columnNames = { "Nutrient", "Amount", "Unit" , "% Target"};
+        private String[] columnNames = { "Nutrient", "Amount", "Unit", "% Target"};
 
 
         public Class getColumnClass(int col) {
@@ -163,7 +163,8 @@ public class NutrientTable extends PrettyTable implements UserChangeListener {
             return null;
         }
 
-        public void sort() {}
+        public void sort() {
+        }
 
     }
 
@@ -174,7 +175,8 @@ public class NutrientTable extends PrettyTable implements UserChangeListener {
 
     public class TargetRenderer extends TargetBar implements TableCellRenderer {
 
-        public TargetRenderer() { }
+        public TargetRenderer() {
+        }
 
         public Component getTableCellRendererComponent(JTable table,
                 Object value, boolean isSelected, boolean hasFocus, int row,
@@ -201,7 +203,6 @@ public class NutrientTable extends PrettyTable implements UserChangeListener {
         setNutrients(master);
         getNutrientTableModel().fireTableDataChanged();
     }
-
 
 
 }

@@ -59,12 +59,12 @@ public class UserManagerDialog extends WrappedPanel implements ListSelectionList
         return "Manager Users";
     }
     public String getInfoString() {
-        return  "<div align=\"justify\" width=\"180\"><br>" +
-                "Cronometer allows you to have multiple users, "
-                + "each user has their own profile."
-                + "<br><br>"
-                + "Here you can add and remove users from Cronometer."
-                + "</div>";
+        return "<div align=\"justify\" width=\"180\"><br>" +
+               "Cronometer allows you to have multiple users, "
+               + "each user has their own profile."
+               + "<br><br>"
+               + "Here you can add and remove users from Cronometer."
+               + "</div>";
     }
 
     public boolean showSidebar() {
@@ -257,7 +257,7 @@ public class UserManagerDialog extends WrappedPanel implements ListSelectionList
     private void deleteSelectedUser(int row) {
         String username = (String)userListModel.get(row);
 
-        if ( ! isOkToDeleteUser()) {
+        if ( !isOkToDeleteUser()) {
             return;
         }
 

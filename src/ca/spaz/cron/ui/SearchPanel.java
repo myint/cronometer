@@ -155,7 +155,9 @@ public class SearchPanel extends JPanel implements ItemListener {
         resultTable.getSelectionModel().addListSelectionListener(
         new ListSelectionListener() {
             public void valueChanged(ListSelectionEvent e) {
-                if (e.getValueIsAdjusting()) return;
+                if (e.getValueIsAdjusting()) {
+                    return;
+                }
                 ListSelectionModel lsm = (ListSelectionModel) e.getSource();
                 if (!lsm.isSelectionEmpty()) {
                     int selectedRow = lsm.getMinSelectionIndex();
@@ -232,7 +234,6 @@ public class SearchPanel extends JPanel implements ItemListener {
     public void removeFoodSelectionListener(FoodSelectionListener listener) {
         listeners.remove(listener);
     }
-
 
 
     public FoodProxy getSelectedFood() {
@@ -330,7 +331,9 @@ public class SearchPanel extends JPanel implements ItemListener {
 
         public SearchHit getSearchHit(int i) {
             synchronized (result) {
-                if (i< 0 || i >= result.size()) return null;
+                if (i< 0 || i >= result.size()) {
+                    return null;
+                }
                 return (SearchHit) result.get(i);
             }
         }

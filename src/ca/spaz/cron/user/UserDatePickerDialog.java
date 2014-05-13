@@ -59,7 +59,7 @@ public class UserDatePickerDialog extends WrappedPanel implements ListSelectionL
         return "Select a user and date";
     }
     public String getInfoString() {
-        return  "";
+        return "";
     }
     public boolean showSidebar() {
         return false;

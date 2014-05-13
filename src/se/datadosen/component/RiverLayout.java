@@ -146,10 +146,14 @@ public class RiverLayout
 
     boolean hasConstraint(Component comp, String test) {
         String cons = (String) constraints.get(comp);
-        if (cons == null) return false;
+        if (cons == null) {
+            return false;
+        }
         StringTokenizer tokens = new StringTokenizer(cons);
         while (tokens.hasMoreTokens())
-            if (tokens.nextToken().equals(test)) return true;
+            if (tokens.nextToken().equals(test)) {
+                return true;
+            }
         return false;
     }
 
@@ -168,7 +172,9 @@ public class RiverLayout
             if (isFirstInRow(m) || i == 0) {
                 x = 0;
                 tabIndex = 0;
-            } else x+= hgap;
+            } else {
+                x+= hgap;
+            }
             if (hasConstraint(m, TAB_STOP)) {
                 ruler.setTab(tabIndex, x); // Will only increase
                 x = ruler.getTab(tabIndex++); // Jump forward if necessary
@@ -206,10 +212,14 @@ public class RiverLayout
                     tabIndex = 0;
                     dim.width = Math.max(dim.width, rowDim.width);
                     dim.height += rowDim.height + vgap;
-                    if (hasConstraint(m, PARAGRAPH_BREAK)) dim.height += 2*vgap;
+                    if (hasConstraint(m, PARAGRAPH_BREAK)) {
+                        dim.height += 2*vgap;
+                    }
                     rowDim = new Dimension(0, 0);
                 }
-                if (hasConstraint(m, TAB_STOP)) rowDim.width = ruler.getTab(tabIndex++);
+                if (hasConstraint(m, TAB_STOP)) {
+                    rowDim.width = ruler.getTab(tabIndex++);
+                }
                 Dimension d = m.getPreferredSize();
                 rowDim.height = Math.max(rowDim.height, d.height);
                 if (firstVisibleComponent) {
@@ -256,10 +266,14 @@ public class RiverLayout
                     tabIndex = 0;
                     dim.width = Math.max(dim.width, rowDim.width);
                     dim.height += rowDim.height + vgap;
-                    if (hasConstraint(m, PARAGRAPH_BREAK)) dim.height += 2*vgap;
+                    if (hasConstraint(m, PARAGRAPH_BREAK)) {
+                        dim.height += 2*vgap;
+                    }
                     rowDim = new Dimension(0, 0);
                 }
-                if (hasConstraint(m, TAB_STOP)) rowDim.width = ruler.getTab(tabIndex++);
+                if (hasConstraint(m, TAB_STOP)) {
+                    rowDim.width = ruler.getTab(tabIndex++);
+                }
                 Dimension d = m.getMinimumSize();
                 rowDim.height = Math.max(rowDim.height, d.height);
                 if (firstVisibleComponent) {
@@ -314,7 +328,9 @@ public class RiverLayout
             for (int i = rowStart; i < rowEnd; i++) {
                 Component m = target.getComponent(i);
 //          if (m.isVisible()) {
-                if (hasConstraint(m, TAB_STOP)) x = getInsets(target).left + ruler.getTab(tabIndex++);
+                if (hasConstraint(m, TAB_STOP)) {
+                    x = getInsets(target).left + ruler.getTab(tabIndex++);
+                }
                 int dy = (valign == VTOP) ? 0 : (height - m.getHeight()) / 2;
                 if (ltr) {
                     m.setLocation(x, y + dy);
@@ -343,11 +359,18 @@ public class RiverLayout
     }
 
     protected void adjustAlignment(Component m) {
-        if (hasConstraint(m, RiverLayout.LEFT)) setAlignment(FlowLayout.LEFT);
-        else if (hasConstraint(m, RiverLayout.RIGHT)) setAlignment(FlowLayout.RIGHT);
-        else if (hasConstraint(m, RiverLayout.CENTER)) setAlignment(FlowLayout.CENTER);
-        if (hasConstraint(m, RiverLayout.VTOP)) valign = VTOP;
-        else if (hasConstraint(m, RiverLayout.VCENTER)) valign = VCENTER;
+        if (hasConstraint(m, RiverLayout.LEFT)) {
+            setAlignment(FlowLayout.LEFT);
+        } else if (hasConstraint(m, RiverLayout.RIGHT)) {
+            setAlignment(FlowLayout.RIGHT);
+        } else if (hasConstraint(m, RiverLayout.CENTER)) {
+            setAlignment(FlowLayout.CENTER);
+        }
+        if (hasConstraint(m, RiverLayout.VTOP)) {
+            valign = VTOP;
+        } else if (hasConstraint(m, RiverLayout.VCENTER)) {
+            valign = VCENTER;
+        }
 
     }
     /**
@@ -384,8 +407,12 @@ public class RiverLayout
                 Dimension d = m.getPreferredSize();
                 m.setSize(d.width, d.height);
 
-                if (isFirstInRow(m)) tabIndex = 0;
-                if (hasConstraint(m, TAB_STOP)) x = ruler.getTab(tabIndex++);
+                if (isFirstInRow(m)) {
+                    tabIndex = 0;
+                }
+                if (hasConstraint(m, TAB_STOP)) {
+                    x = ruler.getTab(tabIndex++);
+                }
                 if (!isFirstInRow(m)) {
                     if (i > 0 && !hasConstraint(m, TAB_STOP)) {
                         x += hgap;
@@ -406,7 +433,9 @@ public class RiverLayout
                                    rowh, start, i, ltr, ruler);
                     x = d.width;
                     y += vgap + rowh;
-                    if (hasConstraint(m, PARAGRAPH_BREAK)) y += 2*vgap;
+                    if (hasConstraint(m, PARAGRAPH_BREAK)) {
+                        y += 2*vgap;
+                    }
                     rowh = d.height;
                     start = i;
                     toHfill = null;
@@ -445,8 +474,9 @@ class Ruler {
     private Vector tabs = new Vector();
 
     public void setTab(int num, int xpos) {
-        if (num >= tabs.size()) tabs.add(num, new Integer(xpos));
-        else {
+        if (num >= tabs.size()) {
+            tabs.add(num, new Integer(xpos));
+        } else {
             // Transpose all tabs from this tab stop and onwards
             int delta = xpos - getTab(num);
             if (delta > 0) {
@@ -465,7 +495,9 @@ class Ruler {
         StringBuffer ret = new StringBuffer(getClass().getName() + " {");
         for (int i=0; i<tabs.size(); i++) {
             ret.append(tabs.get(i));
-            if (i < tabs.size()-1) ret.append(',');
+            if (i < tabs.size()-1) {
+                ret.append(',');
+            }
         }
         ret.append('}');
         return ret.toString();

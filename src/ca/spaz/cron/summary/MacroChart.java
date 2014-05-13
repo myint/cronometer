@@ -48,7 +48,7 @@ public class MacroChart extends JComponent {
         double total = protein + carbs + fat;
         int w = getWidth();
         int h = getHeight();
-        int min = w<h?w:h;
+        int min = w<h ? w : h;
         g.setColor(Color.BLACK);
 
         g.setColor(Color.GREEN);

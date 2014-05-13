@@ -83,7 +83,7 @@ public class Datasources {
      * Closes all data sources in the application.
      */
     public static void closeAll() {
-        for (Iterator iter = sources.iterator(); iter.hasNext();) {
+        for (Iterator iter = sources.iterator(); iter.hasNext(); ) {
             FoodDataSource element = (FoodDataSource) iter.next();
             element.close();
         }
@@ -98,7 +98,7 @@ public class Datasources {
      * @return the datasource or null if not found
      */
     public static FoodDataSource getSource(String name) {
-        for (Iterator iter = sources.iterator(); iter.hasNext();) {
+        for (Iterator iter = sources.iterator(); iter.hasNext(); ) {
             FoodDataSource fds = (FoodDataSource) iter.next();
             if (fds.getName().equals(name)) {
                 return fds;

@@ -61,7 +61,7 @@ public class CacheMap implements Map {
      * @see java.util.Map#get(java.lang.Object)
      */
     public Object get(Object key) {
-        assert(orderStack.size() == backingMap.size());
+        assert (orderStack.size() == backingMap.size());
         //TODO caching behaviour, if necessary
         return backingMap.get(key);
     }
@@ -70,7 +70,7 @@ public class CacheMap implements Map {
      * @see java.util.Map#put(java.lang.Object,java.lang.Object)
      */
     public Object put(Object arg0, Object arg1) {
-        assert(orderStack.size() == backingMap.size());
+        assert (orderStack.size() == backingMap.size());
         if (!orderStack.contains(arg0)) {
             if (orderStack.size() >= maxCacheSize) {
                 prepQueue();
@@ -78,10 +78,10 @@ public class CacheMap implements Map {
             orderStack.addLast(arg0);
             backingMap.put(arg0, arg1);
         } else {
-            assert(backingMap.containsKey(arg0));
+            assert (backingMap.containsKey(arg0));
         }
-        assert(orderStack.size() == backingMap.size());
-        assert(backingMap.size() <= maxCacheSize);
+        assert (orderStack.size() == backingMap.size());
+        assert (backingMap.size() <= maxCacheSize);
         return null;
     }
 
@@ -97,10 +97,10 @@ public class CacheMap implements Map {
      * @see java.util.Map#remove(java.lang.Object)
      */
     public Object remove(Object key) {
-        assert(orderStack.size() == backingMap.size());
+        assert (orderStack.size() == backingMap.size());
         orderStack.remove(key);
         Object ret = backingMap.remove(key);
-        assert(orderStack.size() == backingMap.size());
+        assert (orderStack.size() == backingMap.size());
         return ret;
     }
 
@@ -108,12 +108,12 @@ public class CacheMap implements Map {
      * @see java.util.Map#putAll(java.util.Map)
      */
     public void putAll(Map arg0) {
-        assert(orderStack.size() == backingMap.size());
-        for (Iterator iter = arg0.entrySet().iterator(); iter.hasNext();) {
-            Map.Entry entry = (Map.Entry) iter.next();
+        assert (orderStack.size() == backingMap.size());
+        for (Iterator iter = arg0.entrySet().iterator(); iter.hasNext(); ) {
+            Map.Entry entry = (Map.Entry)iter.next();
             put(entry.getKey(), entry.getValue());
         }
-        assert(orderStack.size() == backingMap.size());
+        assert (orderStack.size() == backingMap.size());
     }
 
     /* (non-Javadoc)

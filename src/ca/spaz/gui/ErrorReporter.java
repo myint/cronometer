@@ -73,14 +73,15 @@ public class ErrorReporter extends WrappedPanel {
     }
 
     public ImageIcon getIcon() {
-        return  new ImageIcon(ImageFactory.getInstance().loadImage("/img/apple-100x100.png"));
+        return new ImageIcon(ImageFactory.getInstance().loadImage("/img/apple-100x100.png"));
     }
 
     public boolean isCancellable() {
         return false;
     }
 
-    public void doCancel() { }
+    public void doCancel() {
+    }
 
     public boolean doAccept() {
         return true;

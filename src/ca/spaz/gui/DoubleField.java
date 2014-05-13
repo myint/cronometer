@@ -50,16 +50,22 @@ public class DoubleField extends JTextField {
         } catch (NumberFormatException e) {
         }
         retVal = ToolBox.safeDivide(r[0], r[1], r[0]);
-        if (retVal < min) retVal = min;
-        if (retVal > max) retVal = max;
+        if (retVal < min) {
+            retVal = min;
+        }
+        if (retVal > max) {
+            retVal = max;
+        }
         return retVal;
     }
 
     public void setValue(double value) {
-        if (value < min)
+        if (value < min) {
             value = min;
-        if (value > max)
+        }
+        if (value > max) {
             value = max;
+        }
         if (value == 0.0) {
             setText("");
         } else {

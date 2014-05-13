@@ -108,8 +108,12 @@ public class Measure {
     }
 
     public boolean equals(Measure m) {
-        if (amount != m.amount) return false;
-        if (grams != m.grams) return false;
+        if (amount != m.amount) {
+            return false;
+        }
+        if (grams != m.grams) {
+            return false;
+        }
         return description.equals(m.getDescription());
     }
 

@@ -8,10 +8,11 @@ import java.util.*;
 
 public class SmartList extends ArrayList {
 
-    private List listeners; // lazy initilized
+    private List listeners;     // lazy initilized
     private boolean suppressEvents;
 
-    public SmartList() {}
+    public SmartList() {
+    }
 
     public SmartList(List copy) {
         addAll(copy);
@@ -65,7 +66,9 @@ public class SmartList extends ArrayList {
     }
 
     public synchronized void fireListChangedEvent() {
-        if (suppressEvents || listeners == null) return;
+        if (suppressEvents || listeners == null) {
+            return;
+        }
         Iterator iter = getListeners().iterator();
         while (iter.hasNext()) {
             ((ListListener)iter.next()).listChanged();
@@ -73,7 +76,9 @@ public class SmartList extends ArrayList {
     }
 
     public synchronized void fireItemRemovedEvent(Object o) {
-        if (suppressEvents || listeners == null) return;
+        if (suppressEvents || listeners == null) {
+            return;
+        }
         Iterator iter = getListeners().iterator();
         while (iter.hasNext()) {
             ((ListListener)iter.next()).itemRemoved(o);
@@ -82,7 +87,9 @@ public class SmartList extends ArrayList {
 
 
     public synchronized void fireItemAddedEvent(Object o) {
-        if (suppressEvents || listeners == null) return;
+        if (suppressEvents || listeners == null) {
+            return;
+        }
         Iterator iter = getListeners().iterator();
         while (iter.hasNext()) {
             ((ListListener)iter.next()).itemAdded(o);
@@ -90,7 +97,9 @@ public class SmartList extends ArrayList {
     }
 
     public synchronized void fireItemChangedEvent(Object o) {
-        if (suppressEvents || listeners == null) return;
+        if (suppressEvents || listeners == null) {
+            return;
+        }
         Iterator iter = getListeners().iterator();
         while (iter.hasNext()) {
             ((ListListener)iter.next()).itemChanged(o);

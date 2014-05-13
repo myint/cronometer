@@ -291,7 +291,9 @@ public class UserManager {
             // This condition should never occur
         }
 
-        if (!inFile.exists()) return;
+        if (!inFile.exists()) {
+            return;
+        }
 
         if (!outFile.exists()) {
             try {
@@ -460,14 +462,14 @@ public class UserManager {
     }
 
     public final void addUserChangeListener(UserChangeListener l) {
-        if ( ! getListeners().contains(l)) {
+        if ( !getListeners().contains(l)) {
             getListeners().add(l);
         }
     }
 
     protected final void notifyUserChangeListeners() {
         List l = getListeners();
-        for (Iterator iter = l.iterator(); iter.hasNext();) {
+        for (Iterator iter = l.iterator(); iter.hasNext(); ) {
             UserChangeListener listener = (UserChangeListener) iter.next();
             listener.userChanged(this);
         }

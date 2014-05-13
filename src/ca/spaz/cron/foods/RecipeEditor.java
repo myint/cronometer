@@ -104,8 +104,10 @@ public class RecipeEditor extends FoodEditor {
                         getServingTable().addServing(s);
                     }
                 }
-                public void servingDoubleClicked(Serving s) { }
-                public void servingSelected(Serving s) { }
+                public void servingDoubleClicked(Serving s) {
+                }
+                public void servingSelected(Serving s) {
+                }
             });
             servingTable.setTitle("Recipe '"+food.getDescription()+"'");
         }

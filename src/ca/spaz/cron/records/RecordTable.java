@@ -284,7 +284,9 @@ public abstract class RecordTable extends JPanel {
     }
 
     protected void fireEntrySelected(Record entry) {
-        if (entry == null) return;
+        if (entry == null) {
+            return;
+        }
         getDeleteButton().setEnabled(!getSelectedEntries().isEmpty());
         Iterator iter = recordListeners.iterator();
         while (iter.hasNext()) {
@@ -294,7 +296,9 @@ public abstract class RecordTable extends JPanel {
     }
 
     protected void fireEntryDoubleClicked(Record entry) {
-        if (entry == null) return;
+        if (entry == null) {
+            return;
+        }
         Iterator iter = recordListeners.iterator();
         while (iter.hasNext()) {
             ((RecordSelectionListener)iter.next()).recordDoubleClicked(entry);
@@ -302,7 +306,9 @@ public abstract class RecordTable extends JPanel {
     }
 
     protected void fireUserEntryChosen(Record entry) {
-        if (entry == null) return;
+        if (entry == null) {
+            return;
+        }
         Iterator iter = recordListeners.iterator();
         while (iter.hasNext()) {
             ((RecordSelectionListener)iter.next()).recordChosen(entry);

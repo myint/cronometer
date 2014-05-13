@@ -17,7 +17,8 @@ public abstract class SQLStatement {
         doExecute(con);
     }
 
-    protected void doExecute(Connection con) throws SQLException { }
+    protected void doExecute(Connection con) throws SQLException {
+    }
 
     public final boolean isExecuteSupported() {
         return executeSupport;

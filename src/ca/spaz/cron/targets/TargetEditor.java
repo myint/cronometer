@@ -136,7 +136,9 @@ public class TargetEditor extends WrappedPanel {
                                                    "Are you sure you want to replace the current targets with" +
                                                    " '"+ model.toString()+"'?",
                                                    "Replace Targets?", JOptionPane.YES_NO_OPTION);
-            if (rc != JOptionPane.YES_OPTION) return;
+            if (rc != JOptionPane.YES_OPTION) {
+                return;
+            }
             setDefaultTargets(model, user);
             setRatios();
             getAminoAcidsTable().fireTargetsChanged();
@@ -167,15 +169,15 @@ public class TargetEditor extends WrappedPanel {
     }
 
     public String getInfoString() {
-        return  "<div align=\"justify\" width=\"180\"><br>"
-                + "Set your nutritional targets for tracking within the program.<br><br>"
-                + "Clicking 'Set to Dietary Reference Intakes' will set all the targets "
-                + "to values configured for your weight, height, gender, age, and activity level. "
-                + "These values are based on the DRIs published by USDA.*<br><br>"
-                + "You may also edit the targets directly in the table to the right "
-                + "choosing customized values for your tracking. <br><br>"
-                + "<small>* DRIs are not specified for all nutrients.<br></small>"
-                + "</div>";
+        return "<div align=\"justify\" width=\"180\"><br>"
+               + "Set your nutritional targets for tracking within the program.<br><br>"
+               + "Clicking 'Set to Dietary Reference Intakes' will set all the targets "
+               + "to values configured for your weight, height, gender, age, and activity level. "
+               + "These values are based on the DRIs published by USDA.*<br><br>"
+               + "You may also edit the targets directly in the table to the right "
+               + "choosing customized values for your tracking. <br><br>"
+               + "<small>* DRIs are not specified for all nutrients.<br></small>"
+               + "</div>";
     }
 
     public boolean showSidebar() {

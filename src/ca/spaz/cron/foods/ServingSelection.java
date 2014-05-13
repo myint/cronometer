@@ -31,10 +31,11 @@ public class ServingSelection implements Transferable {
     }
 
     public Object getTransferData(DataFlavor flavor) throws UnsupportedFlavorException, IOException {
-        if (flavor.equals(servingFlavor))
+        if (flavor.equals(servingFlavor)) {
             return (servings);
-        else
+        } else {
             throw new UnsupportedFlavorException(flavor);
+        }
     }
 
 }

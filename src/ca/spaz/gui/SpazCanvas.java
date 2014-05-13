@@ -62,7 +62,7 @@ public class SpazCanvas extends JPanel implements ActionListener {
     }
 
     public SpazPosition getPosition(JComponent c) {
-        return ((SpazLayout)this.getLayout()).getPosition(c);
+        return ((SpazLayout) this.getLayout()).getPosition(c);
     }
 
     public String getAction(JComponent c) {
@@ -114,8 +114,9 @@ public class SpazCanvas extends JPanel implements ActionListener {
             JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         jsp.setAutoscrolls(true);
         SpazPosition lp = parseSpazPosition(elm);
-        if (lp == null)
+        if (lp == null) {
             return;
+        }
         this.add(jsp, lp);
         parseBorder(jsp, elm);
         parseAttributes(elm, jsp);
@@ -124,11 +125,13 @@ public class SpazCanvas extends JPanel implements ActionListener {
     public void parseLabel(Element elm) {
         JLabel label = new JLabel();
         String title = elm.getAttribute("title");
-        if (title != null)
+        if (title != null) {
             label.setText(title);
+        }
         SpazPosition lp = parseSpazPosition(elm);
-        if (lp == null)
+        if (lp == null) {
             return;
+        }
         this.add(label, lp);
         parseBorder(label, elm);
         parseAttributes(elm, label);
@@ -137,8 +140,9 @@ public class SpazCanvas extends JPanel implements ActionListener {
     public void parseProgressBar(Element elm) {
         JProgressBar bar = new JProgressBar();
         SpazPosition lp = parseSpazPosition(elm);
-        if (lp == null)
+        if (lp == null) {
             return;
+        }
         this.add(bar, lp);
         parseBorder(bar, elm);
         parseAttributes(elm, bar);
@@ -147,11 +151,13 @@ public class SpazCanvas extends JPanel implements ActionListener {
     public void parseButton(Element elm) {
         JButton btn = new JButton();
         String title = elm.getAttribute("title");
-        if (title != null)
+        if (title != null) {
             btn.setText(title);
+        }
         SpazPosition lp = parseSpazPosition(elm);
-        if (lp == null)
+        if (lp == null) {
             return;
+        }
         this.add(btn, lp);
         parseBorder(btn, elm);
         parseAttributes(elm, btn);
@@ -167,8 +173,9 @@ public class SpazCanvas extends JPanel implements ActionListener {
         String title = "";
         JTextField textField = new JTextField(title);
         SpazPosition lp = parseSpazPosition(elm);
-        if (lp == null)
+        if (lp == null) {
             return;
+        }
         this.add(textField, lp);
         parseBorder(textField, elm);
         parseAttributes(elm, textField);
@@ -176,8 +183,9 @@ public class SpazCanvas extends JPanel implements ActionListener {
 
     public void parseAttributes(Element elm, JComponent comp) {
         String enabled = elm.getAttribute("enabled");
-        if (enabled != null)
+        if (enabled != null) {
             comp.setEnabled(!enabled.equals("false"));
+        }
         String id = elm.getAttribute("id");
         if (id.length() > 0) {
             components.put(id, comp);
@@ -234,8 +242,9 @@ public class SpazCanvas extends JPanel implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
-        if (listener == null)
+        if (listener == null) {
             return;
+        }
         String methodName = (String)actions.get(e.getSource());
         if (methodName != null) {
             try {

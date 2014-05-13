@@ -120,26 +120,4 @@ public abstract class JarXMLFoodDataSource implements FoodDataSource {
     public boolean isAvailable() {
         return map != null;
     }
-
-
-    ////////////////////////////////////////////////////////////////////////////////
-    /*
-    private void generateIndex() {
-       try {
-          PrintStream ps = new PrintStream(
-                new BufferedOutputStream(new FileOutputStream("foods.index")));
-          Enumeration e = zip.entries();
-          while (e.hasMoreElements()) {
-             Food f = loadFood((ZipEntry)e.nextElement());
-             if (f != null) {
-                Logger.error(f.getSourceUID()+"|"+f.getDescription());
-                ps.println(f.getSourceUID()+"|"+f.getDescription());
-             }
-          }
-          ps.close();
-       } catch (Exception ex) {
-          Logger.debug(ex);
-       }
-    }   */
-
 }

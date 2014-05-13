@@ -48,7 +48,9 @@ public class XMLFoodLoader {
         } else if (e.getNodeName().equals("recipe")) {
             f = new Recipe();
         }
-        if (f == null) return null;
+        if (f == null) {
+            return null;
+        }
 
         f.setDescription(e.getAttribute("name"));
         f.setSourceUID(e.getAttribute("uid"));

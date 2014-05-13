@@ -9,7 +9,8 @@ public class SpazPosition {
     public int leftA, rightA, topA, bottomA;
     public double leftR, rightR, topR, bottomR;
 
-    public SpazPosition() {}
+    public SpazPosition() {
+    }
 
     public SpazPosition(SpazPosition copy) {
         this.leftA = copy.leftA;
@@ -73,12 +74,24 @@ public class SpazPosition {
     }
 
     public boolean valid() {
-        if ((topA + (topR*500)) > (bottomA + (bottomR*500))) return false;
-        if ((leftA + (leftR*500)) > (rightA + (rightR*500))) return false;
-        if (leftR < 0 || leftR > 1) return false;
-        if (rightR < 0 || rightR > 1) return false;
-        if (topR < 0 || topR > 1) return false;
-        if (bottomR < 0 || bottomR > 1) return false;
+        if ((topA + (topR*500)) > (bottomA + (bottomR*500))) {
+            return false;
+        }
+        if ((leftA + (leftR*500)) > (rightA + (rightR*500))) {
+            return false;
+        }
+        if (leftR < 0 || leftR > 1) {
+            return false;
+        }
+        if (rightR < 0 || rightR > 1) {
+            return false;
+        }
+        if (topR < 0 || topR > 1) {
+            return false;
+        }
+        if (bottomR < 0 || bottomR > 1) {
+            return false;
+        }
         return true;
     }
 

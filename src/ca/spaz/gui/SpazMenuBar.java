@@ -84,7 +84,6 @@ public class SpazMenuBar extends JMenuBar implements ActionListener {
     }
 
 
-
     public void loadXMLMenu(Element elm) {
         String title = elm.getAttribute("title");
         JMenu menu = new JMenu(title);
@@ -208,14 +207,9 @@ public class SpazMenuBar extends JMenuBar implements ActionListener {
                 m.invoke(listener, params2);
             } catch (NoSuchMethodException me) {
                 JOptionPane.showMessageDialog(null, "No Menu Handler for  '"+methodName+"'");
-                /*   		} catch (SecurityException se) {
-                   		} catch (IllegalAccessException ae) {
-                   		} catch (InvocationTargetException  ie) {*/
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
         }
     }
-
-
 }

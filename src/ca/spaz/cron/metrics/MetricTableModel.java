@@ -75,14 +75,20 @@ public class MetricTableModel extends RecordTableModel {
     }
 
     public boolean isCellEditable(int row, int col) {
-        if (col == VALUE_COL) return true;
+        if (col == VALUE_COL) {
+            return true;
+        }
         return false;
     }
 
     public void setValueAt(Object value, int row, int col) {
-        if (row < 0 || row >= getRowCount()) return;
+        if (row < 0 || row >= getRowCount()) {
+            return;
+        }
         Metric metric = getMetric(row);
-        if (value == null || metric == null) return;
+        if (value == null || metric == null) {
+            return;
+        }
         if (col == VALUE_COL) {
             try {
                 metric.setValue((Double)value);

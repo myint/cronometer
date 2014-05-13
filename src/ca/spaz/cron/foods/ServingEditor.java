@@ -193,7 +193,9 @@ public class ServingEditor extends JPanel {
             addAction = new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     if (cur.getFoodProxy().isDeprecated()) {
-                        if (!deprecatedFoodWarning()) return;
+                        if (!deprecatedFoodWarning()) {
+                            return;
+                        }
                     }
                     fireServingChosenEvent();
                 }

@@ -66,7 +66,9 @@ public class HTMLSummaryFormat extends SummaryFormat {
             NutrientInfo ni = (NutrientInfo)iter.next();
             Target target = UserManager.getCurrentUser().getTarget(ni);
             if (targetsOnly) {
-                if (target.isUndefined() || !UserManager.getCurrentUser().isTracking(ni)) continue;
+                if (target.isUndefined() || !UserManager.getCurrentUser().isTracking(ni)) {
+                    continue;
+                }
             }
             i++;
             if (i%2==0) {

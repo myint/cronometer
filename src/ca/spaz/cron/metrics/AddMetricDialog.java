@@ -58,7 +58,9 @@ public class AddMetricDialog extends JDialog implements MetricSelectionListener 
     }
 
     public Metric getSelectedMetric() {
-        if (abort) return null;
+        if (abort) {
+            return null;
+        }
         return metric;
     }
 
@@ -74,7 +76,9 @@ public class AddMetricDialog extends JDialog implements MetricSelectionListener 
             list.getSelectionModel().addListSelectionListener(
             new ListSelectionListener() {
                 public void valueChanged(ListSelectionEvent e) {
-                    if (e.getValueIsAdjusting()) return;
+                    if (e.getValueIsAdjusting()) {
+                        return;
+                    }
                     ListSelectionModel lsm = (ListSelectionModel) e.getSource();
                     if (!lsm.isSelectionEmpty()) {
                         Biomarker biomarker = (Biomarker)list.getSelectedValue();
@@ -204,9 +208,11 @@ public class AddMetricDialog extends JDialog implements MetricSelectionListener 
         dispose();
     }
 
-    public void metricDoubleClicked(Metric metric) { }
+    public void metricDoubleClicked(Metric metric) {
+    }
 
-    public void metricSelected(Metric metric) {   }
+    public void metricSelected(Metric metric) {
+    }
 
 
 }

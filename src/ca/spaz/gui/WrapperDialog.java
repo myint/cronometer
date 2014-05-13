@@ -143,7 +143,6 @@ public class WrapperDialog extends JDialog {
     }
 
 
-
     public void dispose() {
         wrappedPanel = null;
         super.dispose();

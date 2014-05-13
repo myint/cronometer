@@ -72,7 +72,9 @@ public final class Loader extends ClassLoader {
     }
 
     private byte[] loadClassData(String filename) throws IOException {
-        if (archive == null) return null;
+        if (archive == null) {
+            return null;
+        }
         filename = filename.replaceAll("\\.", "/");
         return loadResource(filename + ".class");
     }

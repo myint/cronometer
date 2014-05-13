@@ -80,7 +80,9 @@ public class Settings implements Serializable {
      */
     public synchronized String getSetting(String name, String def) {
         String s = (String)map.get(name);
-        if (s == null) return def;
+        if (s == null) {
+            return def;
+        }
         return s;
     }
 
@@ -135,7 +137,9 @@ public class Settings implements Serializable {
      */
     public synchronized double getDouble(String name, double def) {
         String str = this.getSetting(name);
-        if (str == null) return def;
+        if (str == null) {
+            return def;
+        }
         return Double.parseDouble(str);
     }
 
@@ -146,7 +150,9 @@ public class Settings implements Serializable {
      */
     public synchronized boolean getBoolean(String name, boolean bool) {
         String str = this.getSetting(name);
-        if (str == null) return bool;
+        if (str == null) {
+            return bool;
+        }
         return str.equals("true");
     }
 
@@ -221,8 +227,8 @@ public class Settings implements Serializable {
     }
 
     /**
-    * Flush current Settings to disk.
-    */
+     * Flush current Settings to disk.
+     */
     public synchronized void save() {
         try {
             PrintStream ps = new PrintStream(
@@ -297,7 +303,7 @@ public class Settings implements Serializable {
     public synchronized ArrayList<User> loadSettings(File f) {
         ArrayList<User> userList = null;
         file = f;
-        if ( ! file.exists() || file.length()==0 ) {
+        if ( !file.exists() || file.length()==0 ) {
             User user = new User(new Settings(Settings.TAG_USER));
             user.setUsername(User.DEFAULT_USERNAME);
             user.setFirstRun(true);
@@ -316,8 +322,8 @@ public class Settings implements Serializable {
     }
 
     /**
-    * Load Settings fresh from disk
-    */
+     * Load Settings fresh from disk
+     */
     private synchronized ArrayList<User> loadSettings(InputStream in) {
         ArrayList<User> userList = new ArrayList<User>();
 

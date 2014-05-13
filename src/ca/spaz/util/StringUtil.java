@@ -22,7 +22,9 @@ public class StringUtil {
 
     public static String pad(String str, int num, int side, char pad) {
         int len = str.length();
-        if (len >= num) return str;
+        if (len >= num) {
+            return str;
+        }
         StringBuffer sb = new StringBuffer();
         switch (side) {
         case PAD_LEFT:

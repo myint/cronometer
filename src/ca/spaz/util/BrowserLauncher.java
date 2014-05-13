@@ -239,7 +239,8 @@ public class BrowserLauncher {
     /**
      * This class should be never be instantiated; this just ensures so.
      */
-    private BrowserLauncher() { }
+    private BrowserLauncher() {
+    }
 
     /**
      * Called by a static initializer to load any classes, fields, and methods required at runtime

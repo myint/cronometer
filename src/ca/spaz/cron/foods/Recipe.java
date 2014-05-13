@@ -10,7 +10,8 @@ import ca.spaz.util.XMLNode;
 public class Recipe extends Food {
     private List servings;
 
-    public Recipe() {}
+    public Recipe() {
+    }
 
     public Recipe(Recipe r) {
         copy(r);
@@ -36,7 +37,7 @@ public class Recipe extends Food {
 
     public XMLNode toXML(boolean export) {
         XMLNode node = super.toXML();
-        for (Iterator iter = getServings().iterator(); iter.hasNext();) {
+        for (Iterator iter = getServings().iterator(); iter.hasNext(); ) {
             Serving serving = (Serving) iter.next();
             node.addChild(serving.toXML(export));
         }
@@ -100,7 +101,7 @@ public class Recipe extends Food {
 
     public double getTotalGrams() {
         double total = 0;
-        for (Iterator iter = getServings().iterator(); iter.hasNext();) {
+        for (Iterator iter = getServings().iterator(); iter.hasNext(); ) {
             Serving serving = (Serving) iter.next();
             total += serving.getGrams();
         }
@@ -113,7 +114,7 @@ public class Recipe extends Food {
      */
     private double getAmount(NutrientInfo ni, double totalGrams) {
         double total = 0;
-        for (Iterator iter = getServings().iterator(); iter.hasNext();) {
+        for (Iterator iter = getServings().iterator(); iter.hasNext(); ) {
             Serving serving = (Serving) iter.next();
             if (serving.getFood() != null) {
                 double weight = (serving.getGrams()/totalGrams);
@@ -133,7 +134,7 @@ public class Recipe extends Food {
         NutrientInfo cni = NutrientInfo.getByName("Carbs");
         double pcals = 0, fcals = 0, ccals = 0;
         double pgrams = 0, fgrams = 0, cgrams = 0;
-        for (Iterator iter = getServings().iterator(); iter.hasNext();) {
+        for (Iterator iter = getServings().iterator(); iter.hasNext(); ) {
             Serving serving = (Serving) iter.next();
             Food f = serving.getFood();
             if (serving.isLoaded()) {

@@ -35,7 +35,9 @@ public abstract class RecordTableModel extends PrettyTableModel {
     }
 
     public Record getUserEntry(int i) {
-        if (i<0 || i >= entries.size()) return null;
+        if (i<0 || i >= entries.size()) {
+            return null;
+        }
         return (Record) entries.get(i);
     }
 

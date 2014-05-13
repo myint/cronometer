@@ -241,7 +241,7 @@ public class ReportWindow extends WrappedPanel {
     }
 
     public ImageIcon getIcon() {
-        return  new ImageIcon(ImageFactory.getInstance().loadImage("/img/apple-50x50.png"));
+        return new ImageIcon(ImageFactory.getInstance().loadImage("/img/apple-50x50.png"));
     }
 
     public boolean showSidebar() {
@@ -252,7 +252,8 @@ public class ReportWindow extends WrappedPanel {
         return false;
     }
 
-    public void doCancel() {  }
+    public void doCancel() {
+    }
 
     public boolean doAccept() {
         return true;

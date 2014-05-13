@@ -110,8 +110,12 @@ public class TargetBar extends JComponent {
     }
 
     private Color mixColor(Color a, Color b, double val) {
-        if (val > 1) val = 1;
-        if (val < 0) val = 0;
+        if (val > 1) {
+            val = 1;
+        }
+        if (val < 0) {
+            val = 0;
+        }
         return new Color(
                    (int)(a.getRed()*val + b.getRed()*(1.0-val)),
                    (int)(a.getGreen()*val + b.getGreen()*(1.0-val)),

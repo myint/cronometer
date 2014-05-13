@@ -291,5 +291,4 @@ public class HelpBrowser extends JFrame {
     }
 
 
-
 }

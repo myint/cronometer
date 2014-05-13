@@ -37,14 +37,22 @@ public class IntegerField extends JTextField {
             retVal = Integer.parseInt(getText());
         } catch (NumberFormatException e) {
         }
-        if (retVal < min) retVal = min;
-        if (retVal > max) retVal = max;
+        if (retVal < min) {
+            retVal = min;
+        }
+        if (retVal > max) {
+            retVal = max;
+        }
         return retVal;
     }
 
     public void setValue(int value) {
-        if (value < min) value = min;
-        if (value > max) value = max;
+        if (value < min) {
+            value = min;
+        }
+        if (value > max) {
+            value = max;
+        }
         if (value == 0) {
             setText("");
         } else {

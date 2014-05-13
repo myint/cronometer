@@ -20,7 +20,8 @@ public class FoodProxy {
     private SoftReference food;
     private int references = 0;
 
-    public FoodProxy() {}
+    public FoodProxy() {
+    }
 
     public FoodProxy(Food f) {
         description = f.getDescription();
@@ -35,9 +36,15 @@ public class FoodProxy {
     }
 
     public boolean equals(FoodProxy fp) {
-        if (source != fp.getSource()) return false;
-        if (!sourceID.equals(fp.getSourceID())) return false;
-        if (!description.equals(fp.getDescription())) return false;
+        if (source != fp.getSource()) {
+            return false;
+        }
+        if (!sourceID.equals(fp.getSourceID())) {
+            return false;
+        }
+        if (!description.equals(fp.getDescription())) {
+            return false;
+        }
         return true;
     }
 

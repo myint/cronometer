@@ -80,14 +80,15 @@ public class NutrientInfoPanel extends WrappedPanel {
 
 
     public ImageIcon getIcon() {
-        return  new ImageIcon(ImageFactory.getInstance().loadImage("/img/apple-50x50.png"));
+        return new ImageIcon(ImageFactory.getInstance().loadImage("/img/apple-50x50.png"));
     }
 
     public boolean isCancellable() {
         return true;
     }
 
-    public void doCancel() { }
+    public void doCancel() {
+    }
 
     public boolean doAccept() {
         setTargets();

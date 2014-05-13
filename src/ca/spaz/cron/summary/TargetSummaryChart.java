@@ -100,7 +100,7 @@ public class TargetSummaryChart extends JComponent implements UserChangeListener
         NutrientInfo cni = NutrientInfo.getByName("Carbs");
         NutrientInfo ani = NutrientInfo.getByName("Alcohol");
         pcals = ccals = fcals = acals = 0;
-        for (Iterator iter = servings.iterator(); iter.hasNext();) {
+        for (Iterator iter = servings.iterator(); iter.hasNext(); ) {
             Serving serving = (Serving) iter.next();
             Food f = serving.getFood();
             if (serving.isLoaded()) {
@@ -124,7 +124,7 @@ public class TargetSummaryChart extends JComponent implements UserChangeListener
 
     private double getAmount(List servings, NutrientInfo ni) {
         double total = 0;
-        for (Iterator iter = servings.iterator(); iter.hasNext();) {
+        for (Iterator iter = servings.iterator(); iter.hasNext(); ) {
             Serving serving = (Serving) iter.next();
             if (serving.isLoaded()) {
                 double weight = serving.getGrams()/100.0;
@@ -138,7 +138,7 @@ public class TargetSummaryChart extends JComponent implements UserChangeListener
         double total = 0;
 
         if(exercises != null) {
-            for (Iterator iter = exercises.iterator(); iter.hasNext();) {
+            for (Iterator iter = exercises.iterator(); iter.hasNext(); ) {
                 Exercise exercise = (Exercise) iter.next();
                 total += exercise.getCalories();
             }
@@ -317,7 +317,9 @@ public class TargetSummaryChart extends JComponent implements UserChangeListener
 
 
     private void paintPFC(Graphics g, int xo, int yo, int radius) {
-        if (total <= 0) return;
+        if (total <= 0) {
+            return;
+        }
 
         g.setColor(PROTEIN_COLOR);
         int amount = 0;
@@ -361,7 +363,9 @@ public class TargetSummaryChart extends JComponent implements UserChangeListener
         g.drawString(str, sw-1, yo+radius+7);
 
         str = "      "+valFormat.format(((int)Math.round(100*(fcals/total))));
-        if (acals > 0) str += ":";
+        if (acals > 0) {
+            str += ":";
+        }
         g.setColor(getBackground().darker());
         g.drawString(str, sw-1+1, yo+radius+7+1);
         g.setColor(LIPID_COLOR);

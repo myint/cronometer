@@ -169,7 +169,9 @@ public class User {
     }
 
     public Target getTarget(NutrientInfo nutrient) {
-        if (nutrient == null) return null;
+        if (nutrient == null) {
+            return null;
+        }
         double min = settings.getDouble(CU_TARGET+nutrient.getName()+".min", 0);
         double max = settings.getDouble(CU_TARGET+nutrient.getName()+".max", 0);
         return new Target(min,max);
@@ -333,7 +335,7 @@ public class User {
 
         String newCleanUsername = cleanUsername(newUsername);
 
-        if ( ! newUsername.equals(newCleanUsername)) {
+        if ( !newUsername.equals(newCleanUsername)) {
             CRONOMETER.okDialog("Your username contains invalid characters, " +
                                 "these have been removed.", "User name updated");
         }

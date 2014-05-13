@@ -34,7 +34,8 @@ public class Serving implements Record {
 
     private int meal;
 
-    public Serving() {}
+    public Serving() {
+    }
 
     public Serving(FoodProxy f) {
         this(f, 1.0);
@@ -109,7 +110,9 @@ public class Serving implements Record {
         if (allegedSource != null) {
             FoodProxy f2 = allegedSource.getFoodProxy(f.getSourceUID());
             if (f2 != null) {
-                if (f2.getFood().equals(f)) return f2;
+                if (f2.getFood().equals(f)) {
+                    return f2;
+                }
             }
         }
         // TODO: scan all foods for identical matches first!
@@ -152,12 +155,12 @@ public class Serving implements Record {
     }
 
     public double getAmount() {
-        assert(getMeasure() != null);
+        assert (getMeasure() != null);
         return getGrams()/getMeasure().getGrams();
     }
 
     public void setAmount(double val) {
-        assert(getMeasure() != null);
+        assert (getMeasure() != null);
         // TODO: verify this is correct with measures that have Amount != 1
         setGrams(getMeasure().getGrams() * val);
     }
@@ -182,7 +185,7 @@ public class Serving implements Record {
     }
 
     public void setDate(Date d) {
-        this.date = d == null ? 0: d.getTime();
+        this.date = d == null ? 0 : d.getTime();
     }
 
     /**
@@ -241,7 +244,9 @@ public class Serving implements Record {
      * @param measureName
      */
     public void setMeasure(String measureName) {
-        if (food == null) return;
+        if (food == null) {
+            return;
+        }
         List measures = getFoodProxy().getFood().getMeasures();
         for (int i=0; i<measures.size(); i++) {
             Measure m = (Measure)measures.get(i);

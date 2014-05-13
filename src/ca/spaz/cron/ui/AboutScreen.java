@@ -19,7 +19,7 @@ import ca.spaz.util.ToolBox;
 /**
  * @deprecated
  */
-public class AboutScreen  extends WrappedPanel {
+public class AboutScreen extends WrappedPanel {
 
     public AboutScreen() {
         JLabel info = new JLabel("<html>"
@@ -88,7 +88,7 @@ public class AboutScreen  extends WrappedPanel {
 
 
     public ImageIcon getIcon() {
-        return  new ImageIcon(ImageFactory.getInstance().loadImage("/img/apple-100x100.png"));
+        return new ImageIcon(ImageFactory.getInstance().loadImage("/img/apple-100x100.png"));
     }
 
 
@@ -96,7 +96,8 @@ public class AboutScreen  extends WrappedPanel {
         return false;
     }
 
-    public void doCancel() {}
+    public void doCancel() {
+    }
 
     public boolean doAccept() {
         return true;

@@ -50,7 +50,7 @@ public class BiomarkerDefinitions {
 
     public List getEnabledBiomarkers() {
         List enabledBiomarkers = new ArrayList();
-        for (Iterator iter = biomarkers.iterator(); iter.hasNext();) {
+        for (Iterator iter = biomarkers.iterator(); iter.hasNext(); ) {
             Biomarker biomarker = (Biomarker) iter.next();
             if (biomarker.isEnabled()) {
                 enabledBiomarkers.add(biomarker);
@@ -60,7 +60,7 @@ public class BiomarkerDefinitions {
     }
 
     public Biomarker getBiomarker(String name) {
-        for (Iterator iter = biomarkers.iterator(); iter.hasNext();) {
+        for (Iterator iter = biomarkers.iterator(); iter.hasNext(); ) {
             Biomarker biomarker = (Biomarker) iter.next();
             if (biomarker.getName().equals(name)) {
                 return biomarker;
@@ -75,7 +75,7 @@ public class BiomarkerDefinitions {
         Logger.debug("Remove Biomarker: " + biomarker);
     }
 
-    public void update(Biomarker  biomarker) {
+    public void update(Biomarker biomarker) {
         Logger.debug("Update Biomarker: " + biomarker);
         dirty = true;
     }
@@ -133,7 +133,7 @@ public class BiomarkerDefinitions {
      * Creates the pre-defined biomarkers and flushes to disk
      */
     private void createFile() {
-        for (Iterator iter = Biomarker.createPredefinedBiomarkers().iterator(); iter.hasNext();) {
+        for (Iterator iter = Biomarker.createPredefinedBiomarkers().iterator(); iter.hasNext(); ) {
             Biomarker biomarker = (Biomarker) iter.next();
             addBiomarker(biomarker);
         }

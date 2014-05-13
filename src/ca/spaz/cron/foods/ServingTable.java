@@ -385,7 +385,9 @@ public class ServingTable extends JPanel {
     }
 
     private void fireServingSelected(Serving s) {
-        if (s == null) return;
+        if (s == null) {
+            return;
+        }
         setMeasureBox(s);
         getDeleteButton().setEnabled(!getSelectedServings().isEmpty());
         Iterator iter = servingListeners.iterator();
@@ -396,7 +398,9 @@ public class ServingTable extends JPanel {
     }
 
     private void fireServingDoubleClicked(Serving s) {
-        if (s == null) return;
+        if (s == null) {
+            return;
+        }
         Iterator iter = servingListeners.iterator();
         while (iter.hasNext()) {
             ((ServingSelectionListener)iter.next()).servingDoubleClicked(s);
@@ -404,7 +408,9 @@ public class ServingTable extends JPanel {
     }
 
     private void fireServingChosen(Serving s) {
-        if (s == null) return;
+        if (s == null) {
+            return;
+        }
         Iterator iter = servingListeners.iterator();
         while (iter.hasNext()) {
             ((ServingSelectionListener)iter.next()).servingChosen(s);

@@ -29,7 +29,9 @@ public class NutrientTable {
 
     public double getAmount(int index) {
         double val = nutrients[index];
-        if (val < 0) val = 0;
+        if (val < 0) {
+            val = 0;
+        }
         return val;
     }
 

@@ -152,15 +152,23 @@ public class XMLNode {
         for (int i = 0; i < len; i++) {
             // we let spaces be
             c = string.charAt(i);
-            if (c == '"') sb.append("&quot;");
-            else if (c == '&') sb.append("&amp;");
-            else if (c == '<') sb.append("&lt;");
-            else if (c == '>') sb.append("&gt;");
-            else if (c == '\u201C') sb.append("&quot;");
-            else if (c == '\u201D') sb.append("&quot;");
-            else if (c == '\u2018') sb.append("'");
-            else if (c == '\u2019') sb.append("'");
-            else {
+            if (c == '"') {
+                sb.append("&quot;");
+            } else if (c == '&') {
+                sb.append("&amp;");
+            } else if (c == '<') {
+                sb.append("&lt;");
+            } else if (c == '>') {
+                sb.append("&gt;");
+            } else if (c == '\u201C') {
+                sb.append("&quot;");
+            } else if (c == '\u201D') {
+                sb.append("&quot;");
+            } else if (c == '\u2018') {
+                sb.append("'");
+            } else if (c == '\u2019') {
+                sb.append("'");
+            } else {
                 int ci = 0xffff & c;
                 if (ci < 160) {
                     // nothing special only 7 Bit
@@ -182,12 +190,16 @@ public class XMLNode {
 
     public static String getString(Attributes e, String name, String defVal) {
         String val = e.getValue(name);
-        if (val == null) return defVal;
+        if (val == null) {
+            return defVal;
+        }
         return val;
     }
 
     public static String getString(Element e, String name, String defVal) {
-        if (!e.hasAttribute(name)) return defVal;
+        if (!e.hasAttribute(name)) {
+            return defVal;
+        }
         return e.getAttribute(name);
     }
 

@@ -50,7 +50,9 @@ public class ExerciseDialog extends JDialog implements ExerciseEditorListener {
     }
 
     public Exercise getSelectedExercise() {
-        if (abort) return null;
+        if (abort) {
+            return null;
+        }
         return exercise;
     }
 

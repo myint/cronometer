@@ -73,9 +73,15 @@ public class ToolBox {
      */
     public static boolean isOlderWindows() {
         String osname = System.getProperty("os.name");
-        if (osname.equalsIgnoreCase("Windows 95")) return true;
-        if (osname.equalsIgnoreCase("Windows 98")) return true;
-        if (osname.equalsIgnoreCase("Windows Me")) return true;
+        if (osname.equalsIgnoreCase("Windows 95")) {
+            return true;
+        }
+        if (osname.equalsIgnoreCase("Windows 98")) {
+            return true;
+        }
+        if (osname.equalsIgnoreCase("Windows Me")) {
+            return true;
+        }
         return false;
     }
 
@@ -164,7 +170,9 @@ public class ToolBox {
                 if (!deleted) {
                     // deleting the file failed, so maybe it's a non-empty
                     // directory
-                    if (file.isDirectory()) deleteDir(file);
+                    if (file.isDirectory()) {
+                        deleteDir(file);
+                    }
 
                     // otherwise, there's nothing else we can do
                 }
@@ -350,7 +358,6 @@ public class ToolBox {
         }
         return false;
     }
-
 
 
     public static void launchURL(Component parent, String url) {

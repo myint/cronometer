@@ -98,8 +98,12 @@ public class DRITargetModel implements TargetModel {
 
     public double getCalories(User user) {
         int PAL = user.getActivityLevel();
-        if (PAL < 0) PAL = 0;
-        if (PAL > 3) PAL = 3;
+        if (PAL < 0) {
+            PAL = 0;
+        }
+        if (PAL > 3) {
+            PAL = 3;
+        }
 
         double cm = user.getHeightInCM();
         int height = Math.abs(cm-150) < Math.abs(cm-165) ? 0 : ((Math.abs(cm-165) < Math.abs(cm-180) ? 1 : 2));
@@ -116,7 +120,7 @@ public class DRITargetModel implements TargetModel {
         if (BMI >= 25) {
             calories = calories_BMI_H;
         }
-        calories += (user.isMale()?10:7)*(30 - user.getAge());
+        calories += (user.isMale() ? 10 : 7)*(30 - user.getAge());
         return Math.round(calories);
     }
 

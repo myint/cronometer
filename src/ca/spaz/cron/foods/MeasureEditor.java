@@ -198,8 +198,9 @@ public class MeasureEditor extends JPanel {
             weightTable.getSelectionModel().addListSelectionListener(
             new ListSelectionListener() {
                 public void valueChanged(ListSelectionEvent e) {
-                    if (e.getValueIsAdjusting())
+                    if (e.getValueIsAdjusting()) {
                         return;
+                    }
                     ListSelectionModel lsm = (ListSelectionModel) e
                                              .getSource();
                     if (!lsm.isSelectionEmpty()) {
@@ -274,8 +275,9 @@ public class MeasureEditor extends JPanel {
         }
 
         public boolean isCellEditable(int row, int col) {
-            if (getWeight(row) == Measure.GRAM)
+            if (getWeight(row) == Measure.GRAM) {
                 return false;
+            }
             return (true);
         }
 
@@ -312,7 +314,8 @@ public class MeasureEditor extends JPanel {
             return null;
         }
 
-        public void sort() { }
+        public void sort() {
+        }
 
     }
 }

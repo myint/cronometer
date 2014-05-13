@@ -196,7 +196,6 @@ public class MeasureWidget extends JPanel implements ItemListener, ActionListene
     }
 
 
-
     private SearchPanel searchPanel = null;
 
     public void linkToSearchResults(SearchPanel sp) {

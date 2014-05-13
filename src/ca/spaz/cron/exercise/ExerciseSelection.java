@@ -31,10 +31,11 @@ public class ExerciseSelection implements Transferable {
     }
 
     public Object getTransferData(DataFlavor flavor) throws UnsupportedFlavorException, IOException {
-        if (flavor.equals(exerciseFlavor))
+        if (flavor.equals(exerciseFlavor)) {
             return (exercises);
-        else
+        } else {
             throw new UnsupportedFlavorException(flavor);
+        }
     }
 
 }

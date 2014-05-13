@@ -34,7 +34,7 @@ public class USDAWeight {
 
     public void addToDB(HashMap foods) {
         Food food = (Food)foods.get(ndb_id);
-        assert(food != null);
+        assert (food != null);
         food.getMeasures().add(new Measure(amount, description, grams));
     }
 

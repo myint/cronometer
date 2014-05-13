@@ -108,7 +108,9 @@ public class USDAImporter implements Task {
                 //   if (!downloadFile(sourceURL, tempFile, DOWNLOAD_PROGRESS_PORTION)) {
                 //      return; // Indicate failure.
                 //   }
-                if (abort) return;
+                if (abort) {
+                    return;
+                }
                 ZipFile zif = new ZipFile(tempFile);
                 ZipEntry[] relevantEntries = getZipEntries(zif);
                 // Prepare the progress counts, starting with 50%, for the number of bytes
@@ -175,7 +177,9 @@ public class USDAImporter implements Task {
         String line = brin.readLine();
         int linenumber = 0;
         while (line != null) {
-            if (abort) return;
+            if (abort) {
+                return;
+            }
             switch (parseType) {
             case FD_GROUP_INDEX:
                 parseFoodGroupLine(line);
@@ -263,7 +267,6 @@ public class USDAImporter implements Task {
     }
 
 
-
     private void writeFoods() {
         Iterator iter = foods.values().iterator();
         while (iter.hasNext()) {
@@ -333,7 +336,7 @@ public class USDAImporter implements Task {
      */
     private ZipEntry[] getZipEntries(ZipFile zif) {
         ZipEntry[] relevantEntries = new ZipEntry[4];
-        for(Enumeration e = zif.entries(); e.hasMoreElements();) {
+        for(Enumeration e = zif.entries(); e.hasMoreElements(); ) {
             ZipEntry went = (ZipEntry) e.nextElement();
             if (went.getName().equalsIgnoreCase("food_des.txt")) {
                 relevantEntries[FOOD_DES_INDEX] = went;

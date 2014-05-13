@@ -41,8 +41,12 @@ public class DRI {
 
         if (e.hasAttribute("gender")) {
             String str = XMLNode.getString(e, "gender");
-            if (str.equals("male")) gender = MALE;
-            if (str.equals("female")) gender = FEMALE;
+            if (str.equals("male")) {
+                gender = MALE;
+            }
+            if (str.equals("female")) {
+                gender = FEMALE;
+            }
         }
     }
 
@@ -110,24 +114,40 @@ public class DRI {
 
         // gender check
         if (getGender() != ALL) {
-            if (user.isMale() && getGender() == FEMALE) return false;
-            if (user.isFemale() && getGender() == MALE) return false;
+            if (user.isMale() && getGender() == FEMALE) {
+                return false;
+            }
+            if (user.isFemale() && getGender() == MALE) {
+                return false;
+            }
         }
 
         // age check
         int age = user.getAge();
-        if (age < getMinAge()) return false;
-        if (age > getMaxAge()) return false;
+        if (age < getMinAge()) {
+            return false;
+        }
+        if (age > getMaxAge()) {
+            return false;
+        }
 
         // status check
 
         if (user.isPregnant()) {
-            if (getStatus() == null) return false;
-            if (!getStatus().equals("pregnant")) return false;
+            if (getStatus() == null) {
+                return false;
+            }
+            if (!getStatus().equals("pregnant")) {
+                return false;
+            }
         }
         if (user.isLactating()) {
-            if (getStatus() == null) return false;
-            if (!getStatus().equals("lactating")) return false;
+            if (getStatus() == null) {
+                return false;
+            }
+            if (!getStatus().equals("lactating")) {
+                return false;
+            }
         }
 
         // good match

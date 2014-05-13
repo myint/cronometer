@@ -14,7 +14,8 @@ package ca.spaz.cron.targets;
 public class Target {
     double min, max;
 
-    public Target() {}
+    public Target() {
+    }
 
     public Target(double min, double max) {
         this.min = min;

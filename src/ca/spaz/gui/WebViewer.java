@@ -150,7 +150,8 @@ public class WebViewer extends JPanel {
 
     public class Hyperactive implements HyperlinkListener {
 
-        public Hyperactive() {}
+        public Hyperactive() {
+        }
 
         public void hyperlinkUpdate(HyperlinkEvent e) {
             if (e.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {

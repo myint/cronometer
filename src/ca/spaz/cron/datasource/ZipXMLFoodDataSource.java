@@ -120,7 +120,7 @@ public abstract class ZipXMLFoodDataSource implements FoodDataSource {
     }
 
     public List getFoodGroups() {
-        return  new ArrayList();
+        return new ArrayList();
     }
 
     public void close() {
@@ -130,9 +130,6 @@ public abstract class ZipXMLFoodDataSource implements FoodDataSource {
     public boolean isAvailable() {
         return zip != null;
     }
-
-
-    ////////////////////////////////////////////////////////////////////////////////
 
     private void generateIndex() {
         try {

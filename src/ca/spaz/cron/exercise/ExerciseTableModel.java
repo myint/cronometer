@@ -57,7 +57,9 @@ public class ExerciseTableModel extends PrettyTableModel {
     }
 
     public Exercise getExercise(int i) {
-        if (i<0 || i >= exercises.size()) return null;
+        if (i<0 || i >= exercises.size()) {
+            return null;
+        }
         return (Exercise) exercises.get(i);
     }
 
@@ -97,16 +99,26 @@ public class ExerciseTableModel extends PrettyTableModel {
     }
 
     public boolean isCellEditable(int row, int col) {
-        if (col == NAME_COL) return true;
-        if (col == TIME_COL) return true;
-        if (col == CALORIES_COL) return true;
+        if (col == NAME_COL) {
+            return true;
+        }
+        if (col == TIME_COL) {
+            return true;
+        }
+        if (col == CALORIES_COL) {
+            return true;
+        }
         return false;
     }
 
     public void setValueAt(Object value, int row, int col) {
-        if (row < 0 || row >= getRowCount()) return;
+        if (row < 0 || row >= getRowCount()) {
+            return;
+        }
         Exercise s = getExercise(row);
-        if (value == null || s == null) return;
+        if (value == null || s == null) {
+            return;
+        }
         if (col == TIME_COL) {
             try {
                 double val = Double.parseDouble((String)value);

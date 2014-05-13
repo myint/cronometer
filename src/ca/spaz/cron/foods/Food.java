@@ -115,7 +115,9 @@ public class Food {
      * @return true if a value exists in this food
      */
     public boolean hasDataFor(NutrientInfo ni) {
-        if (ni == null) return false;
+        if (ni == null) {
+            return false;
+        }
         return getNutrients().dataExists(ni.getIndex());
     }
 
@@ -126,7 +128,9 @@ public class Food {
      * @return the amount of the requested nutrient per unit.
      */
     public double getNutrientAmount(NutrientInfo ni) {
-        if (ni == null) return 0;
+        if (ni == null) {
+            return 0;
+        }
         return getNutrients().getAmount(ni.getIndex());
     }
 
@@ -283,7 +287,9 @@ public class Food {
      * @return true if the two foods contain the same food data (description, nutrients, and measures)
      */
     public boolean equals(Food f) {
-        if (!f.getDescription().equals(getDescription())) return false;
+        if (!f.getDescription().equals(getDescription())) {
+            return false;
+        }
         List nutrients = NutrientInfo.getGlobalList();
         for (int i=0; i<nutrients.size(); i++) {
             NutrientInfo ni = (NutrientInfo)nutrients.get(i);
@@ -333,7 +339,6 @@ public class Food {
     public void setCarbConversionFactor(double v) {
         this.cCF = v;
     }
-
 
     public NutrientTable getNutrients() {
         if (nutrients == null) {

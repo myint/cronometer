@@ -40,7 +40,7 @@ public class CopyServingsToUserAction extends AbstractAction {
         UserDatePickerDialog userDP = new UserDatePickerDialog();
         WrapperDialog.showDialog(CRONOMETER.getInstance(), userDP, true);
 
-        if ( ! userDP.cancelPressed()) {
+        if ( !userDP.cancelPressed()) {
             Logger.debug("Date selected is: " + userDP.getDate().toString());
             ServingTable.getServingTable().copySelectedServingsToUser(userDP.getUser(), userDP.getDate());
         }

@@ -83,9 +83,6 @@ public class BiomarkerPanel extends JPanel {
         return curMetrics;
     }
 
-    ///////////////////////////////////////////////////////////////////////////////////////////
-
-
     private TimeSeries actualData = new TimeSeries("Weight", Minute.class);
 
     private void regenerateGraphData() {

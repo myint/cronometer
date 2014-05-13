@@ -100,7 +100,6 @@ public class FoodEditor extends JPanel {
     }
 
 
-
     protected JPanel getCenterPanel() {
         if (centerPanel == null) {
             centerPanel = new JPanel();
@@ -301,8 +300,9 @@ public class FoodEditor extends JPanel {
      * @return the food comment panel.
      */
     private JPanel getCommentsPanel() {
-        if (commentsPanel != null)
+        if (commentsPanel != null) {
             return commentsPanel;
+        }
         commentsPanel = new JPanel(new BorderLayout());
         commentsPanel.setBorder(makeTitleBorder("Comments"));
         JScrollPane jsp = new JScrollPane(getCommentEditor());
@@ -312,8 +312,9 @@ public class FoodEditor extends JPanel {
     }
 
     protected JTextArea getCommentEditor() {
-        if (commentEditor != null)
+        if (commentEditor != null) {
             return commentEditor;
+        }
 
         commentEditor = new JTextArea(food == null ? "" : food.getComment());
         commentEditor.setWrapStyleWord(true);

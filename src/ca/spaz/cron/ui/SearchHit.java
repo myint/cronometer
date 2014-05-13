@@ -57,8 +57,12 @@ public class SearchHit implements Comparable {
     public int compareTo(Object obj) {
         SearchHit hit = (SearchHit) obj;
 
-        if (getScore() > hit.getScore()) return -1;
-        if (getScore() < hit.getScore()) return 1;
+        if (getScore() > hit.getScore()) {
+            return -1;
+        }
+        if (getScore() < hit.getScore()) {
+            return 1;
+        }
 
         // break tie with alphabetical order
         return getFoodProxy().getDescription().compareToIgnoreCase(hit.getFoodProxy().getDescription());

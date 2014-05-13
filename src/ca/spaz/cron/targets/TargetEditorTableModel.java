@@ -102,7 +102,9 @@ public class TargetEditorTableModel extends PrettyTableModel {
 
     public void setValueAt(Object value, int row, int col) {
         NutrientInfo ni = getNutrientInfo(row);
-        if (ni == null || value == null) return;
+        if (ni == null || value == null) {
+            return;
+        }
         if (col == TARGET_MIN && value != null) {
             double val = ((Double) value).doubleValue();
             Target target = user.getTarget(ni);
@@ -131,7 +133,7 @@ public class TargetEditorTableModel extends PrettyTableModel {
      * @return true if edit should be aborted because of warning
      */
     private boolean promptForSparseData(NutrientInfo ni) {
-        String data = (ni.getUSDA() == null) ? " does not have any data" : " has limited data available" ;
+        String data = (ni.getUSDA() == null) ? " does not have any data" : " has limited data available";
         int rc = JOptionPane.showConfirmDialog(CRONOMETER.mainFrame,
                                                ni.getName() + data + " in the USDA food database.\n" +
                                                "Are you sure you want to track it?",

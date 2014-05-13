@@ -64,7 +64,9 @@ public class SearchDialog extends JDialog implements ServingEditorListener, Food
     }
 
     public Serving getSelectedServing() {
-        if (abort) return null;
+        if (abort) {
+            return null;
+        }
         return serving;
     }
 
@@ -185,7 +187,7 @@ public class SearchDialog extends JDialog implements ServingEditorListener, Food
             CRONOMETER.fixButton(deleteButton);
             deleteButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    assert(serving != null);
+                    assert (serving != null);
                     DeleteFoodAction.doDeleteFood(serving.getFoodProxy(), deleteButton);
                     getSearchPanel().doDBSearch();
                 }
@@ -223,7 +225,7 @@ public class SearchDialog extends JDialog implements ServingEditorListener, Food
     }
 
     public void doExportFood() {
-        assert(serving != null);
+        assert (serving != null);
         ExportFoodAction.doExportFood(serving.getFoodProxy(), this);
     }
 

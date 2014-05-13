@@ -86,15 +86,15 @@ public class UserSettingsDialog extends WrappedPanel {
         return "Body Profile";
     }
     public String getInfoString() {
-        return  "<div align=\"justify\" width=\"180\"><br>" +
-                "The following information is needed to define "
-                + "your profile and to calculate appropriate "
-                + "nutritional targets for your body type."
-                + "<br><br>"
-                + "Targets default to the <i>Dietary Reference Intake</i> (DRI) "
-                + "values. Alternatively, you may manually edit the target "
-                + "values to your custom perference."
-                + "</div>";
+        return "<div align=\"justify\" width=\"180\"><br>" +
+               "The following information is needed to define "
+               + "your profile and to calculate appropriate "
+               + "nutritional targets for your body type."
+               + "<br><br>"
+               + "Targets default to the <i>Dietary Reference Intake</i> (DRI) "
+               + "values. Alternatively, you may manually edit the target "
+               + "values to your custom perference."
+               + "</div>";
     }
 
     public boolean showSidebar() {
@@ -315,7 +315,7 @@ public class UserSettingsDialog extends WrappedPanel {
     private boolean isValidSettings() {
         if (UserManagerDialog.isAddingNewUser()) {
 
-            if ( ! currentUser.getUsername().equals(username.getText().trim())) {
+            if ( !currentUser.getUsername().equals(username.getText().trim())) {
                 // User name has changed, need to validate that it is correct.
 
                 if (userMan.userExists(username.getText().trim())) {
