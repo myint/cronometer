@@ -65,6 +65,11 @@ public class BiomarkerPanelOld extends JPanel {
         setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
         setLayout(new BorderLayout(4, 4));
         add(x, BorderLayout.WEST);
+
+        // Avoid ugly color mismatch with background.
+        fp.setOpaque(false);
+        ed.setOpaque(false);
+        x.setOpaque(false);
     }
 
     public void setDate(Date d) {

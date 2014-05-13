@@ -171,8 +171,28 @@ public class DailySummary extends JPanel implements UserChangeListener {
             dailyTracker.addTab("Biomarkers", new ImageIcon(ImageFactory.getInstance().loadImage("/img/graph.png")), getBioMarkersPanel());
             dailyTracker.addTab("Exercise", new ImageIcon(ImageFactory.getInstance().loadImage("/img/runner.gif")), getExercisePanel());
             dailyTracker.addTab("Notes", new ImageIcon(ImageFactory.getInstance().loadImage("/img/toc_open.gif")), getNotesEditor());
+
+            makeContentsTransparent();
         }
         return dailyTracker;
+    }
+
+    /** Avoid ugly color mismatch.
+     *
+     * This is needed since the inside of the background for the pane
+     * is darker.
+     */
+    private void makeContentsTransparent()
+    {
+        getDietPanel().setOpaque(false);
+        getServingTable().setOpaque(false);
+        getServingTable().getToolBar().setOpaque(false);
+        getNutritionSummaryPanel().setOpaque(false);
+        getBioMarkersPanel().setOpaque(false);
+        getExercisePanel().setOpaque(false);
+        getExerciseTable().setOpaque(false);
+        getExerciseTable().getToolBar().setOpaque(false);
+        getNotesEditor().setOpaque(false);
     }
 
     public NoteEditor getNotesEditor() {

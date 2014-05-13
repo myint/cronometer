@@ -43,6 +43,23 @@ public class NutritionSummaryPanel extends JTabbedPane {
         add("Minerals", getMineralsPanel());
         add("Amino Acids", getAminoAcidsPanel());
         add("Lipids", getLipidsPanel());
+
+        makeContentsTransparent();
+    }
+
+    /** Avoid ugly color mismatch.
+     *
+     * This is needed since the inside of the background for the pane
+     * is darker.
+     */
+    private void makeContentsTransparent()
+    {
+        getTargetSummaryPanel().setOpaque(false);
+        getGeneralPanel().setOpaque(false);
+        getVitaminsPanel().setOpaque(false);
+        getMineralsPanel().setOpaque(false);
+        getAminoAcidsPanel().setOpaque(false);
+        getLipidsPanel().setOpaque(false);
     }
 
     public void setServings(List consumed, boolean allSelected) {
