@@ -214,7 +214,6 @@ public class ServingTable extends JPanel {
             });
             addTableClickListener();
 
-
             table.registerKeyboardAction(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     deleteSelectedServings();
@@ -495,6 +494,4 @@ public class ServingTable extends JPanel {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
     }
-
-
 }
