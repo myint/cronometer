@@ -168,7 +168,7 @@ public class DailySummary extends JPanel implements UserChangeListener {
         if (null == dailyTracker) {
             dailyTracker = new JTabbedPane();
             dailyTracker.addTab("Diet", new ImageIcon(ImageFactory.getInstance().loadImage("/img/apple-50x50.png")), getDietPanel());
-            dailyTracker.addTab("Biomarkers", new ImageIcon(ImageFactory.getInstance().loadImage("/img/graph.gif")), getBioMarkersPanel());
+            dailyTracker.addTab("Biomarkers", new ImageIcon(ImageFactory.getInstance().loadImage("/img/graph.png")), getBioMarkersPanel());
             dailyTracker.addTab("Exercise", new ImageIcon(ImageFactory.getInstance().loadImage("/img/runner.gif")), getExercisePanel());
             dailyTracker.addTab("Notes", new ImageIcon(ImageFactory.getInstance().loadImage("/img/toc_open.gif")), getNotesEditor());
         }

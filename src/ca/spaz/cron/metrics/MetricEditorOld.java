@@ -83,7 +83,7 @@ public class MetricEditorOld extends JPanel {
 
     public JButton getPlotButton() {
         if (plotBtn == null) {
-            ImageIcon icon = new ImageIcon(ImageFactory.getInstance().loadImage("/img/graph.gif"));
+            ImageIcon icon = new ImageIcon(ImageFactory.getInstance().loadImage("/img/graph.png"));
             plotBtn = new JButton("Chart", icon);
             plotBtn.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
