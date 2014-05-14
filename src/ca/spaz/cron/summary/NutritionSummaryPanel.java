@@ -52,8 +52,7 @@ public class NutritionSummaryPanel extends JTabbedPane {
      * This is needed since the inside of the background for the pane
      * is darker.
      */
-    private void makeContentsTransparent()
-    {
+    private void makeContentsTransparent() {
         getTargetSummaryPanel().setOpaque(false);
         getGeneralPanel().setOpaque(false);
         getVitaminsPanel().setOpaque(false);

@@ -182,8 +182,7 @@ public class DailySummary extends JPanel implements UserChangeListener {
      * This is needed since the inside of the background for the pane
      * is darker.
      */
-    private void makeContentsTransparent()
-    {
+    private void makeContentsTransparent() {
         getDietPanel().setOpaque(false);
         getServingTable().setOpaque(false);
         getServingTable().getToolBar().setOpaque(false);
