@@ -68,10 +68,8 @@ public class AddMetricDialog extends JDialog implements MetricSelectionListener 
         if (null == listPanel) {
             listPanel = new JPanel();
             Object[] data = UserManager.getCurrentUser().getBiomarkerDefinitions().getEnabledBiomarkers().toArray();
-            final JList list = new JList(data); //data has type Object[]
+            final JList list = new JList(data);
             list.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-//         if (data.length > 0) {
-//         }
             list.setVisibleRowCount(-1);
             list.getSelectionModel().addListSelectionListener(
             new ListSelectionListener() {

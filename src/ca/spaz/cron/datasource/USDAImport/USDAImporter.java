@@ -86,7 +86,7 @@ public class USDAImporter implements Task {
             return;
         }
         if (null == sourceStream) {
-//       From a source URL -- this will probably also be a zip.
+            // From a source URL -- this will probably also be a zip.
             try {
                 File tempDir = new File(System.getProperty("java.io.tmpdir"));
                 tempDir = new File(tempDir, "usda_dl");
@@ -105,9 +105,6 @@ public class USDAImporter implements Task {
                     return;
                 }
                 File tempFile = new File("sr24.zip");
-                //   if (!downloadFile(sourceURL, tempFile, DOWNLOAD_PROGRESS_PORTION)) {
-                //      return; // Indicate failure.
-                //   }
                 if (abort) {
                     return;
                 }
@@ -157,7 +154,7 @@ public class USDAImporter implements Task {
                 return;
             }
         } else {
-//       From an input stream.  Assume that it is the zip.
+            // From an input stream. Assume that it is the zip.
             out.println("Reading data from local input stream");
         }
         if (!TEST_MODE) {

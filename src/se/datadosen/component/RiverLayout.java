@@ -168,7 +168,6 @@ public class RiverLayout
         int tabIndex = 0; // First tab stop
         for (int i = 0; i < nmembers; i++) {
             Component m = target.getComponent(i);
-//         if (m.isVisible()) {
             if (isFirstInRow(m) || i == 0) {
                 x = 0;
                 tabIndex = 0;
@@ -182,7 +181,6 @@ public class RiverLayout
             Dimension d = m.getPreferredSize();
             x += d.width;
         }
-//      }
         return ruler;
     }
 
@@ -207,7 +205,6 @@ public class RiverLayout
 
             for (int i = 0; i < nmembers; i++) {
                 Component m = target.getComponent(i);
-//            if (m.isVisible()) {
                 if (isFirstInRow(m)) {
                     tabIndex = 0;
                     dim.width = Math.max(dim.width, rowDim.width);
@@ -228,14 +225,13 @@ public class RiverLayout
                     rowDim.width += hgap;
                 }
                 rowDim.width += d.width;
-                //          }
             }
             dim.width = Math.max(dim.width, rowDim.width);
             dim.height += rowDim.height;
 
             Insets insets = getInsets(target);
-            dim.width += insets.left + insets.right;// + hgap * 2;
-            dim.height += insets.top + insets.bottom;// + vgap * 2;
+            dim.width += insets.left + insets.right;
+            dim.height += insets.top + insets.bottom;
             return dim;
         }
     }
@@ -261,7 +257,6 @@ public class RiverLayout
 
             for (int i = 0; i < nmembers; i++) {
                 Component m = target.getComponent(i);
-                //          if (m.isVisible()) {
                 if (isFirstInRow(m)) {
                     tabIndex = 0;
                     dim.width = Math.max(dim.width, rowDim.width);
@@ -282,7 +277,6 @@ public class RiverLayout
                     rowDim.width += hgap;
                 }
                 rowDim.width += d.width;
-//            }
             }
             dim.width = Math.max(dim.width, rowDim.width);
             dim.height += rowDim.height;
@@ -327,7 +321,6 @@ public class RiverLayout
             int tabIndex = 0;
             for (int i = rowStart; i < rowEnd; i++) {
                 Component m = target.getComponent(i);
-//          if (m.isVisible()) {
                 if (hasConstraint(m, TAB_STOP)) {
                     x = getInsets(target).left + ruler.getTab(tabIndex++);
                 }
@@ -339,7 +332,6 @@ public class RiverLayout
                                   y + dy);
                 }
                 x += m.getWidth() + hgap;
-//            }
             }
         }
     }
@@ -350,9 +342,7 @@ public class RiverLayout
         synchronized (target.getTreeLock()) {
             for (int i = rowStart; i < rowEnd; i++) {
                 Component m = target.getComponent(i);
-//            if (m.isVisible()) {
                 m.setLocation(m.getX() + dx, m.getY() + dy);
-//            }
             }
 
         }
@@ -403,7 +393,6 @@ public class RiverLayout
 
             for (int i = 0; i < nmembers; i++) {
                 Component m = target.getComponent(i);
-                //if (m.isVisible()) {
                 Dimension d = m.getPreferredSize();
                 m.setSize(d.width, d.height);
 
@@ -440,7 +429,6 @@ public class RiverLayout
                     start = i;
                     toHfill = null;
                 }
-                //}
                 if (hasHfill(m)) {
                     toHfill = m;
                 }

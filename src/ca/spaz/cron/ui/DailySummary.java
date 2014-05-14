@@ -363,11 +363,9 @@ public class DailySummary extends JPanel implements UserChangeListener {
      * Copies the foods from the previous day into this day.
      */
     private void copyPreviousDay() {
-//      if (isOkToAddServings(curDate)) {
         Date previousDay = new Date(curDate.getTime() - ONE_DAY);
         UserManager.getCurrentUser().getFoodHistory().copyConsumedOn(previousDay, curDate);
         notifyObservers();
-//      }
     }
 
     /**
