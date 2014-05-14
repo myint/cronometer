@@ -88,11 +88,9 @@ public class ExerciseTable extends JPanel {
             toolBar.add(getDeleteButton());
             toolBar.add(Box.createHorizontalStrut(10));
             toolBar.add(Box.createGlue());
-            toolBar.add(getPrintButton());
         }
         return toolBar;
     }
-
 
     private JButton getDeleteButton() {
         if (null == delBtn) {
@@ -396,37 +394,6 @@ public class ExerciseTable extends JPanel {
 
         if (menu.getComponents().length > 0) {
             menu.show(table, e.getX(), e.getY());
-        }
-    }
-
-
-    private JButton getPrintButton() {
-        if (null == printBtn) {
-            ImageIcon icon = new ImageIcon(ImageFactory.getInstance().loadImage(
-                                               "/img/print.gif"));
-            printBtn = new JButton(icon);
-            printBtn.setToolTipText("Print the exercise listing");
-            printBtn.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    doPrint();
-                }
-            });
-            CRONOMETER.fixButton(printBtn);
-        }
-        return printBtn;
-    }
-
-    /**
-     * Does a very simple print-out of the recipe.
-     */
-    public void doPrint() {
-        try {
-            MessageFormat headerFormat = new MessageFormat(getTitle());
-            MessageFormat footerFormat = new MessageFormat("- {0} -");
-            getTable().print(JTable.PrintMode.FIT_WIDTH, headerFormat, footerFormat);
-        } catch (PrinterException e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this, e.getMessage());
         }
     }
 

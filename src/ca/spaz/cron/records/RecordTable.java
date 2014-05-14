@@ -3,7 +3,6 @@ package ca.spaz.cron.records;
 import java.awt.*;
 import java.awt.datatransfer.Transferable;
 import java.awt.event.*;
-import java.awt.print.PrinterException;
 import java.text.MessageFormat;
 import java.util.*;
 import java.util.List;
@@ -23,7 +22,7 @@ public abstract class RecordTable extends JPanel {
     private Vector listeners = new Vector();
     private Vector recordListeners = new Vector();
     private JToolBar toolBar;
-    private JButton addBtn, delBtn, printBtn;
+    private JButton addBtn, delBtn;
     private String title = "Untitled";
 
     public RecordTable(RecordTableModel entryModel) {
@@ -142,7 +141,6 @@ public abstract class RecordTable extends JPanel {
             table.getSelectionModel().addListSelectionListener(
             new ListSelectionListener() {
                 public void valueChanged(ListSelectionEvent e) {
-                    /* if (e.getValueIsAdjusting()) return;*/
                     ListSelectionModel lsm = (ListSelectionModel)e.getSource();
                     if (!lsm.isSelectionEmpty()) {
                         int sel = table.getSelectedRow();
@@ -347,36 +345,4 @@ public abstract class RecordTable extends JPanel {
     protected void handleMouseClick(MouseEvent e) {
         // TODO: implement
     }
-
-
-    private JButton getPrintButton() {
-        if (null == printBtn) {
-            ImageIcon icon = new ImageIcon(ImageFactory.getInstance().loadImage("/img/print.gif"));
-            printBtn = new JButton(icon);
-            printBtn.setToolTipText("Print the listing");
-            printBtn.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    doPrint();
-                }
-            });
-            CRONOMETER.fixButton(printBtn);
-        }
-        return printBtn;
-    }
-
-    /**
-     * Does a very simple print-out of the recipe.
-     */
-    public void doPrint() {
-        try {
-            MessageFormat headerFormat = new MessageFormat(getTitle());
-            MessageFormat footerFormat = new MessageFormat("- {0} -");
-            getTable().print(JTable.PrintMode.FIT_WIDTH, headerFormat, footerFormat);
-        } catch (PrinterException e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this, e.getMessage());
-        }
-    }
-
-
 }

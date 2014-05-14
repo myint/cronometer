@@ -6,7 +6,6 @@ package ca.spaz.cron.foods;
 import java.awt.*;
 import java.awt.datatransfer.Transferable;
 import java.awt.event.*;
-import java.awt.print.PrinterException;
 import java.text.MessageFormat;
 import java.util.*;
 import java.util.List;
@@ -36,7 +35,7 @@ public class ServingTable extends JPanel {
     private Vector listeners = new Vector();
     private Vector servingListeners = new Vector();
     private JToolBar toolBar;
-    private JButton addBtn, delBtn, printBtn;
+    private JButton addBtn, delBtn;
     private String title = "Untitled";
     private static ServingTable instance;
 
@@ -101,11 +100,9 @@ public class ServingTable extends JPanel {
             toolBar.add(getDeleteButton());
             toolBar.add(Box.createHorizontalStrut(10));
             toolBar.add(Box.createGlue());
-            toolBar.add(getPrintButton());
         }
         return toolBar;
     }
-
 
     private JButton getDeleteButton() {
         if (null == delBtn) {
@@ -462,36 +459,6 @@ public class ServingTable extends JPanel {
 
         if (menu.getComponents().length > 0) {
             menu.show(table, e.getX(), e.getY());
-        }
-    }
-
-    private JButton getPrintButton() {
-        if (null == printBtn) {
-            ImageIcon icon = new ImageIcon(ImageFactory.getInstance().loadImage(
-                                               "/img/print.gif"));
-            printBtn = new JButton(icon);
-            printBtn.setToolTipText("Print the food listing");
-            printBtn.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    doPrint();
-                }
-            });
-            CRONOMETER.fixButton(printBtn);
-        }
-        return printBtn;
-    }
-
-    /**
-     * Does a very simple print-out of the recipe.
-     */
-    public void doPrint() {
-        try {
-            MessageFormat headerFormat = new MessageFormat(getTitle());
-            MessageFormat footerFormat = new MessageFormat("- {0} -");
-            getTable().print(JTable.PrintMode.FIT_WIDTH, headerFormat, footerFormat);
-        } catch (PrinterException e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this, e.getMessage());
         }
     }
 }
