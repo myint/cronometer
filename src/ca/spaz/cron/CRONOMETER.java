@@ -27,8 +27,6 @@ import ca.spaz.cron.targets.TargetEditor;
 import ca.spaz.cron.ui.*;
 import ca.spaz.cron.user.*;
 import ca.spaz.gui.*;
-import ca.spaz.task.Task;
-import ca.spaz.task.TaskListener;
 import ca.spaz.util.*;
 
 import com.apple.mrj.MRJAboutHandler;
@@ -39,7 +37,7 @@ import com.apple.mrj.MRJQuitHandler;
  *
  * @author davidson
  */
-public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, MRJAboutHandler, ClipboardOwner {
+public class CRONOMETER extends JFrame implements MRJQuitHandler, MRJAboutHandler, ClipboardOwner {
 
     public static final String TITLE = "Cronometer";
     public static final int BUILD = 19;
@@ -361,27 +359,6 @@ public class CRONOMETER extends JFrame implements TaskListener, MRJQuitHandler, 
 
     public void doToday() {
         getDailySummary().goToToday();
-    }
-
-    public void doPrint() {
-        getDailySummary().getServingTable().doPrint();
-    }
-
-    public void taskStarted(Task t) {
-        // Nothing
-    }
-
-    public void taskFinished(Task t) {
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                initGUI();
-            }
-        });
-    }
-
-    public void taskAborted(Task t) {
-        Logger.error("Startup tasks aborted unexpectedly.  Halting...");
-        System.exit(1);
     }
 
     public void handleQuit() {
