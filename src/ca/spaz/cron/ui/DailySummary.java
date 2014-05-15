@@ -293,7 +293,8 @@ public class DailySummary extends JPanel implements UserChangeListener {
 
     private JButton getNextButton() {
         if (null == nextButton) {
-            nextButton = new JButton(new ImageIcon(ImageFactory.getInstance().loadImage("/img/forth.gif")));
+            nextButton = new JButton("\u25b6");
+            nextButton.setFont(new Font("Application", Font.BOLD, 16));
             nextButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     setDate(new Date(curDate.getTime() + ONE_DAY), false);
@@ -308,7 +309,8 @@ public class DailySummary extends JPanel implements UserChangeListener {
 
     private JButton getPreviousButton() {
         if (null == prevButton) {
-            prevButton = new JButton(new ImageIcon(ImageFactory.getInstance().loadImage("/img/back.gif")));
+            prevButton = new JButton("\u25c0");
+            prevButton.setFont(new Font("Application", Font.BOLD, 16));
             prevButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     setDate(new Date(curDate.getTime() - ONE_DAY), false);
