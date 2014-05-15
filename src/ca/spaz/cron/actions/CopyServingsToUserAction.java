@@ -25,8 +25,6 @@ public class CopyServingsToUserAction extends AbstractAction {
         if (UserManager.getUserManager().numberOfUsers() == 1) {
             this.setEnabled(false);
         }
-        //TODO: Create a copy_user.gif image
-        putValue(SMALL_ICON, new ImageIcon(ImageFactory.getInstance().loadImage("/img/copy.gif")));
         putValue(SHORT_DESCRIPTION, "Copy the selected servings to another user");
     }
 

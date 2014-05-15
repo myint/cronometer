@@ -26,7 +26,6 @@ public class ExportFoodAction extends AbstractAction {
         super("Export Food");
         this.food = food;
         this.parent = parent;
-        putValue(SMALL_ICON, new ImageIcon(ImageFactory.getInstance().loadImage("/img/export.gif")));
         putValue(SHORT_DESCRIPTION, "Exports this food to a file which can be imported by other users");
     }
 

@@ -19,7 +19,6 @@ public class CopyExercisesAction extends AbstractAction {
     public CopyExercisesAction(ExerciseTable exerciseTable) {
         super("Copy Exercises");
         this.exerciseTable = exerciseTable;
-        putValue(SMALL_ICON, new ImageIcon(ImageFactory.getInstance().loadImage("/img/copy.gif")));
         putValue(SHORT_DESCRIPTION, "Copy the selected exercises from this list");
 
     }

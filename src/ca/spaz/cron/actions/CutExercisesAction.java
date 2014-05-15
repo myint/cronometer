@@ -19,7 +19,6 @@ public class CutExercisesAction extends AbstractAction {
     public CutExercisesAction(ExerciseTable exerciseTable) {
         super("Cut Exercises");
         this.exerciseTable = exerciseTable;
-        putValue(SMALL_ICON, new ImageIcon(ImageFactory.getInstance().loadImage("/img/cut.gif")));
         putValue(SHORT_DESCRIPTION, "Cut the selected exercises from this list");
     }
 

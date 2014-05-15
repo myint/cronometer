@@ -18,7 +18,6 @@ public class DeleteExercisesAction extends AbstractAction {
     public DeleteExercisesAction(ExerciseTable exerciseTable) {
         super("Delete Servings");
         this.exerciseTable = exerciseTable;
-        putValue(SMALL_ICON, new ImageIcon(ImageFactory.getInstance().loadImage("/img/trash.gif")));
         putValue(SHORT_DESCRIPTION, "Delete the selected servings from this list");
 
     }
