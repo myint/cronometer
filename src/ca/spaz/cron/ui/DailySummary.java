@@ -6,6 +6,8 @@ package ca.spaz.cron.ui;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.io.InputStream;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.List;
@@ -23,6 +25,7 @@ import ca.spaz.cron.notes.NoteEditor;
 import ca.spaz.cron.summary.NutritionSummaryPanel;
 import ca.spaz.cron.user.*;
 import ca.spaz.gui.DateChooser;
+import ca.spaz.gui.ErrorReporter;
 import ca.spaz.gui.TranslucentToolBar;
 import ca.spaz.util.ImageFactory;
 import ca.spaz.util.ToolBox;
@@ -37,6 +40,8 @@ import ca.spaz.util.ToolBox;
 public class DailySummary extends JPanel implements UserChangeListener {
 
     private static final long ONE_DAY = 1000 * 60 * 60 * 24;
+
+    private Font icon_font;
 
     private BiomarkerPanel bioMarkerPanel;
     private BiomarkerPanelOld bioMarkerPanelOld;
@@ -58,7 +63,6 @@ public class DailySummary extends JPanel implements UserChangeListener {
     private JButton dateTitle;
     private JButton copyPrevDayButton;
     private JButton todayButton;
-    private JButton prefsButton;
 
     private TranslucentToolBar toolBar;
     private NutritionSummaryPanel totals;
@@ -70,6 +74,30 @@ public class DailySummary extends JPanel implements UserChangeListener {
         setDate(curDate, false);
         UserManager.getUserManager().addUserChangeListener(this);
         notifyObservers();
+    }
+
+    private Font getIconFont() {
+        try {
+            InputStream in = this.getClass().getResourceAsStream(
+                "/fontawesome.tff");
+
+            try {
+                Font base = Font.createFont(Font.TRUETYPE_FONT, in);
+                return base.deriveFont(Font.PLAIN, 16);
+            } catch (java.awt.FontFormatException exception) {
+                ErrorReporter.showError(exception, this);
+                return new Font("Application", Font.BOLD, 16);
+            }
+        } catch (java.io.IOException exception) {
+            ErrorReporter.showError(exception, this);
+            return new Font("Application", Font.BOLD, 16);
+        }
+    }
+
+    private JButton createIconFontButton(String code) {
+        JButton button = new JButton(code);
+        button.setFont(getIconFont());
+        return button;
     }
 
     public void addServingToUser(Serving c, User user, Date date) {
@@ -258,43 +286,9 @@ public class DailySummary extends JPanel implements UserChangeListener {
         return exerciseTable;
     }
 
-    private JButton getPrefsButton() {
-        if (null == prefsButton) {
-            ImageIcon icon = new ImageIcon(ImageFactory.getInstance().loadImage("/img/task.gif"));
-            prefsButton = new JButton(icon);
-            CRONOMETER.fixButton(prefsButton);
-            prefsButton.setFocusable(false);
-            prefsButton.setToolTipText("Edit Nutritional Targets");
-            prefsButton.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    CRONOMETER.getInstance().doEditUserSettings();
-                }
-            });
-        }
-        return prefsButton;
-    }
-
-    private JButton helpButton;
-
-    private JButton getHelpButton() {
-        if (null == helpButton) {
-            helpButton = new JButton(new ImageIcon(ImageFactory.getInstance().loadImage("/img/help.gif")));
-            helpButton.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    CRONOMETER.getInstance().doHelp();
-                }
-            });
-            CRONOMETER.fixButton(helpButton);
-            helpButton.setFocusable(false);
-            helpButton.setToolTipText("Help Browser");
-        }
-        return helpButton;
-    }
-
     private JButton getNextButton() {
         if (null == nextButton) {
-            nextButton = new JButton("\u25b6");
-            nextButton.setFont(new Font("Application", Font.BOLD, 16));
+            nextButton = createIconFontButton("\uf061");
             nextButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     setDate(new Date(curDate.getTime() + ONE_DAY), false);
@@ -309,8 +303,7 @@ public class DailySummary extends JPanel implements UserChangeListener {
 
     private JButton getPreviousButton() {
         if (null == prevButton) {
-            prevButton = new JButton("\u25c0");
-            prevButton.setFont(new Font("Application", Font.BOLD, 16));
+            prevButton = createIconFontButton("\uf060");
             prevButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     setDate(new Date(curDate.getTime() - ONE_DAY), false);
@@ -325,7 +318,7 @@ public class DailySummary extends JPanel implements UserChangeListener {
 
     private JButton getCopyPreviousDayButton() {
         if (null == copyPrevDayButton) {
-            copyPrevDayButton = new JButton(new ImageIcon(ImageFactory.getInstance().loadImage("/img/copy.gif")));
+            copyPrevDayButton = createIconFontButton("\uf0c5");
             copyPrevDayButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     copyPreviousDay();
@@ -340,7 +333,7 @@ public class DailySummary extends JPanel implements UserChangeListener {
 
     private JButton getTodayButton() {
         if (null == todayButton) {
-            todayButton = new JButton(new ImageIcon(ImageFactory.getInstance().loadImage("/img/trace.gif")));
+            todayButton = createIconFontButton("\uf063");
             todayButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     goToToday();
@@ -395,8 +388,6 @@ public class DailySummary extends JPanel implements UserChangeListener {
             toolBar.setBackground(Color.BLACK);
             toolBar.setLayout(new BoxLayout(toolBar, BoxLayout.X_AXIS));
             toolBar.setBorder(BorderFactory.createEmptyBorder(4, 5, 4, 5));
-            toolBar.add(getHelpButton());
-            toolBar.add(Box.createHorizontalStrut(5));
             toolBar.add(getTodayButton());
             toolBar.add(Box.createHorizontalGlue());
             toolBar.add(getPreviousButton());
@@ -406,8 +397,6 @@ public class DailySummary extends JPanel implements UserChangeListener {
             toolBar.add(getNextButton());
             toolBar.add(Box.createHorizontalGlue());
             toolBar.add(getCopyPreviousDayButton());
-            toolBar.add(Box.createHorizontalStrut(5));
-            toolBar.add(getPrefsButton());
         }
         return toolBar;
     }
