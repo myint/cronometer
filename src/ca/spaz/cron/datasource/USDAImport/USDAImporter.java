@@ -263,7 +263,6 @@ public class USDAImporter implements Task {
 
     }
 
-
     private void writeFoods() {
         Iterator iter = foods.values().iterator();
         while (iter.hasNext()) {
@@ -298,7 +297,6 @@ public class USDAImporter implements Task {
             Logger.error(ie);
         }
     }
-
 
     /**
      * @param line
@@ -414,12 +412,9 @@ public class USDAImporter implements Task {
         return curTask;
     }
 
-
     public static void main(String args[]) {
         USDAImporter ui = new USDAImporter(System.out);
         ui.setSourceURL(ui.getFoodSourceURL());
         ui.run();
     }
-
-
 }

@@ -98,5 +98,4 @@ public class FoodProxy {
     public boolean isDeprecated() {
         return false;
     }
-
 }

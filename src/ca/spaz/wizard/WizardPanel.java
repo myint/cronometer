@@ -23,6 +23,4 @@ public abstract class WizardPanel extends JPanel {
     protected void setWizard(Wizard w) {
         this.controller = w;
     }
-
-
 }

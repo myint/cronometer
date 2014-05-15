@@ -359,7 +359,6 @@ public class ToolBox {
         return false;
     }
 
-
     public static void launchURL(Component parent, String url) {
         try {
             BrowserLauncher.openURL(url);
@@ -404,5 +403,4 @@ public class ToolBox {
             }
         }
     }
-
 }

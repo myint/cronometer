@@ -178,5 +178,4 @@ public class PrettyTable extends JXTable implements TableCellRenderer {
     public void setAllowsHorizontalScrollbar(boolean allowHorizScroll) {
         this.allowHorizScroll = allowHorizScroll;
     }
-
 }

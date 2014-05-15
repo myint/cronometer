@@ -149,7 +149,6 @@ public class Serving implements Record {
         return node;
     }
 
-
     public double getGrams() {
         return grams;
     }
@@ -209,7 +208,6 @@ public class Serving implements Record {
     public int getMeal() {
         return meal;
     }
-
 
     /**
      * @return Returns the measure.
@@ -290,5 +288,4 @@ public class Serving implements Record {
             row.setValue("measure", measure.getDescription());
         }
     }
-
 }

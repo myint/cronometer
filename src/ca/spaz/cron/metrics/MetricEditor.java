@@ -96,7 +96,6 @@ public class MetricEditor extends JPanel {
         return addMeasurementPanel;
     }
 
-
     private JLabel getTitleLabel() {
         if (null == titleLabel) {
             titleLabel = new TranslucentLabel(0.85, " ", JLabel.CENTER);
@@ -188,6 +187,4 @@ public class MetricEditor extends JPanel {
             sel.metricChosen(cur);
         }
     }
-
-
 }

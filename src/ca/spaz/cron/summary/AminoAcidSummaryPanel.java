@@ -25,6 +25,4 @@ public class AminoAcidSummaryPanel extends AbstractNutrientSummaryPanel {
     protected String getCategoryName() {
         return "Amino Acids";
     }
-
-
 }

@@ -103,5 +103,4 @@ public abstract class SQLSelectableStatement extends SQLStatement {
         }
         return sb.toString();
     }
-
 }

@@ -93,7 +93,6 @@ public class AddMetricDialog extends JDialog implements MetricSelectionListener 
         return listPanel;
     }
 
-
     public void biomarkerSelected(Biomarker biomarker) {
         if (biomarker != null) {
             metric = new Metric(biomarker);
@@ -110,7 +109,6 @@ public class AddMetricDialog extends JDialog implements MetricSelectionListener 
         if (biomarker != null) {
         }
     }
-
 
     public JPanel getMainPanel() {
         if (null == mainPanel) {
@@ -172,7 +170,6 @@ public class AddMetricDialog extends JDialog implements MetricSelectionListener 
 
     }
 
-
     private JButton getDeleteButton() {
         if (null == deleteButton) {
             deleteButton = new JButton(new ImageIcon(ImageFactory.getInstance().loadImage("/img/trash.gif")));
@@ -211,6 +208,4 @@ public class AddMetricDialog extends JDialog implements MetricSelectionListener 
 
     public void metricSelected(Metric metric) {
     }
-
-
 }

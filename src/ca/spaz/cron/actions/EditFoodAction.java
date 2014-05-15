@@ -34,5 +34,4 @@ public class EditFoodAction extends AbstractAction {
         assert (food != null);
         FoodEditor.editFood(food.getFood());
     }
-
 }

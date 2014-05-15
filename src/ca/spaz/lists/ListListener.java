@@ -30,6 +30,4 @@ public interface ListListener {
      * @param o the modified item
      */
     public void itemChanged(Object o);
-
-
 }

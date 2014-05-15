@@ -186,7 +186,6 @@ public class CRONOMETER extends JFrame implements MRJQuitHandler, MRJAboutHandle
         getHelpBrowser().showPage("introduction.html");
     }
 
-
     public HelpBrowser getHelpBrowser() {
         if (help == null) {
             try {
@@ -223,7 +222,6 @@ public class CRONOMETER extends JFrame implements MRJQuitHandler, MRJAboutHandle
             return heading + " - " + currentUser.getUsername();
         }
     }
-
 
     private JMenuBar getMenu() {
         if (null == menu) {
@@ -272,7 +270,6 @@ public class CRONOMETER extends JFrame implements MRJQuitHandler, MRJAboutHandle
         return menu;
     }
 
-
     private JPanel getMainPanel() {
         if (null == mainPanel) {
             mainPanel = new JPanel(new BorderLayout(4, 4));
@@ -282,7 +279,6 @@ public class CRONOMETER extends JFrame implements MRJQuitHandler, MRJAboutHandle
         }
         return mainPanel;
     }
-
 
     public static DailySummary getDailySummary() {
         if (null == ds) {
@@ -485,5 +481,4 @@ public class CRONOMETER extends JFrame implements MRJQuitHandler, MRJAboutHandle
         Datasources.initialize(null);
         cron.initGUI();
     }
-
 }

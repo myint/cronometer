@@ -120,5 +120,4 @@ public class NutritionSummaryPanel extends JTabbedPane {
         ReportWindow wp = new ReportWindow(this, date);
         WrapperDialog.showDialog(this, wp, true);
     }
-
 }

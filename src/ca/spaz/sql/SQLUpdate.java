@@ -69,5 +69,4 @@ public class SQLUpdate extends SQLSelectableStatement implements Columns {
     public SQLColumnSet getColumns() {
         return cols;
     }
-
 }

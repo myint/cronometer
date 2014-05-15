@@ -82,5 +82,4 @@ public class FoodHistory extends History {
     public void update(Serving serving) {
         super.updateEntry(serving);
     }
-
 }

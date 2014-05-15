@@ -27,7 +27,6 @@ public class NotesHistory extends History {
         return "notes";
     }
 
-
     public String getEntryTagName() {
         return "note";
     }
@@ -70,5 +69,4 @@ public class NotesHistory extends History {
             addEntry(n);
         }
     }
-
 }

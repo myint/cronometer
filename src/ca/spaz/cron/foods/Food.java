@@ -58,7 +58,6 @@ public class Food {
         }
     }
 
-
     public double getCalories() {
         return getNutrientAmount(NutrientInfo.getByName("Energy"));
     }
@@ -193,7 +192,6 @@ public class Food {
     public void writeXML(PrintStream out, boolean export) {
         toXML(export).write(out);
     }
-
 
     /**
      * Get the number of times this food was consumed.
@@ -346,5 +344,4 @@ public class Food {
         }
         return nutrients;
     }
-
 }

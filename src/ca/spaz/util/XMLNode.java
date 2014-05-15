@@ -134,7 +134,6 @@ public class XMLNode {
         return sb.toString();
     }
 
-
     /**
      * Escape special XML characters from string
      * before inserting it into an XML file
@@ -214,7 +213,6 @@ public class XMLNode {
         return getString((Element)e, name);
     }
 
-
     public static String getString(Object e, String name, String defVal) {
         if (e instanceof Attributes) {
             return getString((Attributes)e, name, defVal);
@@ -264,7 +262,6 @@ public class XMLNode {
             return defval;
         }
     }
-
 
     public static double getDouble(Element e, String name, double defval) {
         if (e.hasAttribute(name)) {
@@ -367,5 +364,4 @@ public class XMLNode {
             ((XMLNode)iter.next()).setPrintNewLines(b);
         }
     }
-
 }

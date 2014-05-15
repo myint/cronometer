@@ -42,5 +42,4 @@ public class JarLoader extends URLStreamHandler implements URLStreamHandlerFacto
 
         };
     }
-
 }

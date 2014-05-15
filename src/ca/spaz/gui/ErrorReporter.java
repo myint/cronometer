@@ -86,5 +86,4 @@ public class ErrorReporter extends WrappedPanel {
     public boolean doAccept() {
         return true;
     }
-
 }

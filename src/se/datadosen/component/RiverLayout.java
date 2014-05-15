@@ -111,7 +111,6 @@ public class RiverLayout
         this.vgap = vgap;
     }
 
-
     /**
      * @param name the name of the component
      * @param comp the component to be added
@@ -336,7 +335,6 @@ public class RiverLayout
         }
     }
 
-
     protected void relMove(Container target, int dx, int dy, int rowStart,
                            int rowEnd) {
         synchronized (target.getTreeLock()) {
@@ -455,7 +453,6 @@ public class RiverLayout
             }
         }
     }
-
 }
 
 class Ruler {

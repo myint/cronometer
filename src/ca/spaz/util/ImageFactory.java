@@ -73,5 +73,4 @@ public class ImageFactory {
         ret = loadImage(url);
         return ret;
     }
-
 }

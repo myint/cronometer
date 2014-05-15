@@ -31,5 +31,4 @@ public interface Task extends Runnable {
      * @return the description of the current Task being performed
      */
     public String getTaskDescription();
-
 }

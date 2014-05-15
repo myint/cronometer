@@ -37,5 +37,4 @@ public interface ProgressListener {
      * @param percent A number from 0 to 100 indicating the progress of the tracked item.
      */
     void progress(int percent);
-
 }

@@ -48,7 +48,6 @@ public abstract class JarXMLFoodDataSource implements FoodDataSource {
         }
     }
 
-
     private void loadDeprecatedIndex() throws IOException {
         Logger.debug("Loading Deprecated index...");
         InputStream in = getStream("deprecated.index");
@@ -86,7 +85,6 @@ public abstract class JarXMLFoodDataSource implements FoodDataSource {
         return (FoodProxy)map.get(id);
     }
 
-
     public List findFoods(String[] keys) {
         ArrayList results = new ArrayList();
         Iterator iter = map.values().iterator();
@@ -105,7 +103,6 @@ public abstract class JarXMLFoodDataSource implements FoodDataSource {
         }
         return results;
     }
-
 
     public List getAllFoods() {
         return new ArrayList(map.values());

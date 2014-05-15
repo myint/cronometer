@@ -60,7 +60,6 @@ public class HyperLabel extends JLabel implements MouseListener {
         }
     }
 
-
     public String getPlainText() {
         return text;
     }
@@ -84,5 +83,4 @@ public class HyperLabel extends JLabel implements MouseListener {
     public void removeActionListener(ActionListener al) {
         listeners.remove(al);
     }
-
 }

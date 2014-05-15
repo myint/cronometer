@@ -42,7 +42,6 @@ public class SpazLayout implements LayoutManager2 {
         compTable.put(comp, lp);
     }
 
-
     /**
      * Calculates the preferred size dimensions for the specified
      * panel given the components in the specified parent container.
@@ -95,7 +94,6 @@ public class SpazLayout implements LayoutManager2 {
         }
         return new Dimension(totalRect.width,totalRect.height);
     }
-
 
     /**
      * Lays out the container in the specified container.

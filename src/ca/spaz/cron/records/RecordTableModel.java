@@ -74,5 +74,4 @@ public abstract class RecordTableModel extends PrettyTableModel {
     public Component customRender(Component c, PrettyTable table, int row, int col) {
         return c;
     }
-
 }

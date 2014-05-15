@@ -11,5 +11,4 @@ public interface RecordSelectionListener {
     public void recordDoubleClicked(Record record);
 
     public void recordChosen(Record record);
-
 }

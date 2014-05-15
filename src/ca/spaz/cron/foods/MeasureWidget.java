@@ -133,7 +133,6 @@ public class MeasureWidget extends JPanel implements ItemListener, ActionListene
         listeners.remove(l);
     }
 
-
     public void addActionListener(ActionListener l) {
         actionListeners.add(l);
     }
@@ -157,7 +156,6 @@ public class MeasureWidget extends JPanel implements ItemListener, ActionListene
             ((ActionListener)iter.next()).actionPerformed(ae);
         }
     }
-
 
     /**
      * Called if the weight menu state is changed
@@ -195,13 +193,11 @@ public class MeasureWidget extends JPanel implements ItemListener, ActionListene
         fireChangeEvent();
     }
 
-
     private SearchPanel searchPanel = null;
 
     public void linkToSearchResults(SearchPanel sp) {
         this.searchPanel = sp;
     }
-
 
     /**
      * If linked, changing a weight will update the multiplier
@@ -212,7 +208,6 @@ public class MeasureWidget extends JPanel implements ItemListener, ActionListene
     public boolean isLinked() {
         return linked;
     }
-
 
     /**
      * If linked, changing a weight will update the multiplier

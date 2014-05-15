@@ -111,5 +111,4 @@ public class SQLColumnSet {
     public List getValues() {
         return Collections.unmodifiableList(terms);
     }
-
 }

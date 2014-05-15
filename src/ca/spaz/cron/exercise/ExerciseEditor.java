@@ -73,7 +73,6 @@ public class ExerciseEditor extends JPanel {
         return exerciseTakenPanel;
     }
 
-
     /**
      * Return a label with the given text, right-aligned.
      * @param text the text to use on the label.

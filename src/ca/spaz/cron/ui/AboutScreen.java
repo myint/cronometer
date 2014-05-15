@@ -86,11 +86,9 @@ public class AboutScreen extends WrappedPanel {
         return CRONOMETER.getFullTitle();
     }
 
-
     public ImageIcon getIcon() {
         return new ImageIcon(ImageFactory.getInstance().loadImage("/img/apple-100x100.png"));
     }
-
 
     public boolean isCancellable() {
         return false;
@@ -102,5 +100,4 @@ public class AboutScreen extends WrappedPanel {
     public boolean doAccept() {
         return true;
     }
-
 }

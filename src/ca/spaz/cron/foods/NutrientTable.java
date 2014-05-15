@@ -60,5 +60,4 @@ public class NutrientTable {
     public void addFood(Serving food) {
         addFood(food.getFood().getNutrients(), food.getGrams() / 100.0);
     }
-
 }

@@ -124,11 +124,9 @@ public class TargetEditor extends WrappedPanel {
         return setDefaultsBtn;
     }
 
-
     public static void editTargets() {
         WrapperDialog.showDialog(CRONOMETER.getInstance(), new TargetEditor(UserManager.getCurrentUser()), true);
     }
-
 
     private void setDefaultTargets(TargetModel model) {
         if (UserSettingsDialog.showDialog(UserManager.getUserManager(), setDefaultsBtn)) {
@@ -299,7 +297,6 @@ public class TargetEditor extends WrappedPanel {
         return carbSpinner;
     }
 
-
     private JSpinner fatSpinner;
     private JSpinner getFatSpinner() {
         if (fatSpinner == null) {
@@ -313,5 +310,4 @@ public class TargetEditor extends WrappedPanel {
         }
         return fatSpinner;
     }
-
 }

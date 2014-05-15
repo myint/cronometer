@@ -189,7 +189,6 @@ public class UserManager {
         }
     }
 
-
     /**
      * Delete the user with the given <code>username</code>
      * @param username the name of the user
@@ -336,7 +335,6 @@ public class UserManager {
             e.printStackTrace();
         }
     }
-
 
     public File getSettingsFile() {
         File settingFile = new File(getCronometerDirectory(), SETTINGS_FILE);

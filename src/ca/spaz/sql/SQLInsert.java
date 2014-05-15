@@ -43,7 +43,6 @@ public class SQLInsert extends SQLStatement implements Columns {
         }
     }
 
-
     protected String getQueryString() {
         StringBuffer sb = new StringBuffer();
         sb.append("INSERT INTO ");
@@ -64,5 +63,4 @@ public class SQLInsert extends SQLStatement implements Columns {
     public SQLColumnSet getColumns() {
         return cols;
     }
-
 }

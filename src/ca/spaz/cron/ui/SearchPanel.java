@@ -196,7 +196,6 @@ public class SearchPanel extends JPanel implements ItemListener {
         return jsp;
     }
 
-
     public void arrowUp() {
         if (resultTable.getSelectedRow() > 0) {
             resultTable.changeSelection(resultTable.getSelectedRow()-1, 0, false, false);
@@ -208,7 +207,6 @@ public class SearchPanel extends JPanel implements ItemListener {
             resultTable.changeSelection(resultTable.getSelectedRow()+1, 0, false, false);
         }
     }
-
 
     protected void foodSelected(FoodProxy f) {
         selectedFood = f;
@@ -234,7 +232,6 @@ public class SearchPanel extends JPanel implements ItemListener {
     public void removeFoodSelectionListener(FoodSelectionListener listener) {
         listeners.remove(listener);
     }
-
 
     public FoodProxy getSelectedFood() {
         return selectedFood;
@@ -474,7 +471,6 @@ public class SearchPanel extends JPanel implements ItemListener {
         }
     }
 
-
     public class PercentageRenderer extends PercentageBar implements TableCellRenderer {
 
         public PercentageRenderer() {
@@ -492,6 +488,4 @@ public class SearchPanel extends JPanel implements ItemListener {
         }
 
     }
-
-
 }

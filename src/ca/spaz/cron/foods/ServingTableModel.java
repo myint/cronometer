@@ -181,5 +181,4 @@ public class ServingTableModel extends PrettyTableModel {
         }
         return c;
     }
-
 }

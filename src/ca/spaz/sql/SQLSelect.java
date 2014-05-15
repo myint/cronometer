@@ -134,5 +134,4 @@ public class SQLSelect extends SQLSelectableStatement {
         sb.append(getOrder());
         return sb.toString();
     }
-
 }

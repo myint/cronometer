@@ -58,5 +58,4 @@ public class DeleteFoodAction extends AbstractAction {
             }
         }
     }
-
 }

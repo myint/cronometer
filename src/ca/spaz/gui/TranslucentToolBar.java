@@ -31,5 +31,4 @@ public class TranslucentToolBar extends JToolBar {
         g2d.setComposite(c);
         super.paint(g);
     }
-
 }

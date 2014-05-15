@@ -39,5 +39,4 @@ public class CreateRecipeAction extends AbstractAction {
         r.setSourceUID("a"+servings.size()+"-"+r.getCalories());
         FoodEditor.editFood(r);
     }
-
 }

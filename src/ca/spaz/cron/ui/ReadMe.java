@@ -51,5 +51,4 @@ public class ReadMe extends WrappedPanel {
     public boolean doAccept() {
         return true;
     }
-
 }

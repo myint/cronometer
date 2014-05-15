@@ -41,7 +41,6 @@ public class HTMLSummaryFormat extends SummaryFormat {
         return sb.toString();
     }
 
-
     public String exportCategory(String category, List servings, int days, boolean targetsOnly) {
 
         StringBuffer sb = new StringBuffer();
@@ -115,5 +114,4 @@ public class HTMLSummaryFormat extends SummaryFormat {
 
         return sb.toString();
     }
-
 }

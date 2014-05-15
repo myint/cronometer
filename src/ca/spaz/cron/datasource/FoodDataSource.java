@@ -94,5 +94,4 @@ public interface FoodDataSource {
      * @return a unique display color for highlighting in lists with multiple datasources.
      */
     public Color getDisplayColor();
-
 }

@@ -86,7 +86,6 @@ public class Settings implements Serializable {
         return s;
     }
 
-
     /**
      * given a key Setting name, obtain its value.
      * @param name the name of the Setting.
@@ -127,7 +126,6 @@ public class Settings implements Serializable {
             return def;
         }
     }
-
 
     /**
      * given a key Setting name, obtain its value as an int.
@@ -176,7 +174,6 @@ public class Settings implements Serializable {
         dirty = true;
         fireSettingChangeEvent(name, val);
     }
-
 
     /**
      * Set a Setting.
@@ -240,7 +237,6 @@ public class Settings implements Serializable {
         }
         dirty = false;
     }
-
 
     public synchronized void writeXML(PrintStream out) {
         XMLNode node = new XMLNode("Settings");
@@ -509,5 +505,4 @@ public class Settings implements Serializable {
     public boolean isUserSettings() {
         return settingTag.equals(TAG_USER);
     }
-
 }

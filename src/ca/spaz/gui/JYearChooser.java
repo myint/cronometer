@@ -28,5 +28,4 @@ public class JYearChooser extends JSpinner {
     public void setEndYear(int i) {
         numberModel.setMaximum(new Integer(i));
     }
-
 }

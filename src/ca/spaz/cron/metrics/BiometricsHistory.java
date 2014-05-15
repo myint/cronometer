@@ -62,5 +62,4 @@ public class BiometricsHistory extends History {
     public void update(Metric m) {
         updateEntry(m);
     }
-
 }

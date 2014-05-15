@@ -144,7 +144,6 @@ public class ServingTable extends JPanel {
         return addBtn;
     }
 
-
     public void doAddServing() {
         SearchDialog sd = new SearchDialog(JOptionPane.getFrameForComponent(this));
         sd.display(true);
@@ -292,7 +291,6 @@ public class ServingTable extends JPanel {
         }
     }
 
-
     private boolean isOkToDeleteServing(int numServings) {
         String msg;
         if (numServings > 1) {
@@ -361,7 +359,6 @@ public class ServingTable extends JPanel {
             }
         });
     }
-
 
     /**
      * Set the comboBox table cell editor to the currently

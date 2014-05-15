@@ -81,7 +81,6 @@ public abstract class RecordTable extends JPanel {
         return toolBar;
     }
 
-
     private JButton getDeleteButton() {
         if (null == delBtn) {
             ImageIcon icon = new ImageIcon(ImageFactory.getInstance().loadImage("/img/trash.gif"));
@@ -188,7 +187,6 @@ public abstract class RecordTable extends JPanel {
         return table;
     }
 
-
     public void doClear() {
         deleteSelected();
     }
@@ -242,7 +240,6 @@ public abstract class RecordTable extends JPanel {
             fireStateChangedEvent();
         }
     }
-
 
     public void copySelected() {
         // TODO: implement

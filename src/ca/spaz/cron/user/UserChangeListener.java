@@ -22,5 +22,4 @@ public interface UserChangeListener {
      * @param userMan the <code>User</code> that has changed.
      */
     void userChanged(UserManager userMan);
-
 }

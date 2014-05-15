@@ -58,5 +58,4 @@ public class PercentageBar extends JComponent {
 
         g.setColor(Color.BLACK);
     }
-
 }

@@ -203,6 +203,4 @@ public class NutrientTable extends PrettyTable implements UserChangeListener {
         setNutrients(master);
         getNutrientTableModel().fireTableDataChanged();
     }
-
-
 }

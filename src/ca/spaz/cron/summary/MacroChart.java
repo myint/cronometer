@@ -40,7 +40,6 @@ public class MacroChart extends JComponent {
         repaint();
     }
 
-
     public void paint(Graphics g) {
         Graphics2D g2d = (Graphics2D)g;
         g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.75f));
@@ -66,6 +65,4 @@ public class MacroChart extends JComponent {
         g.setColor(Color.GREEN);
         g.drawString(Integer.toString((int)(100*(protein/total))), 5, h/2);
     }
-
-
 }

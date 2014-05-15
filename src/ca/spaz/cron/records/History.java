@@ -36,11 +36,9 @@ public abstract class History {
         return new File(UserManager.getUserDirectory(UserManager.getCurrentUser()), getBaseName() + ".xml");
     }
 
-
     public File getOldHistoryFile() {
         return new File(UserManager.getUserDirectory(UserManager.getCurrentUser()), getBaseName() + ".bkp");
     }
-
 
     public File getTempHistoryFile() {
         return new File(UserManager.getUserDirectory(UserManager.getCurrentUser()), getBaseName() + ".tmp");
@@ -205,5 +203,4 @@ public abstract class History {
     }
 
     public abstract Record loadUserEntry(Element item);
-
 }

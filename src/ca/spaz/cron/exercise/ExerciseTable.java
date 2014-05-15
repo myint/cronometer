@@ -132,7 +132,6 @@ public class ExerciseTable extends JPanel {
         return addBtn;
     }
 
-
     public void doAddExercise() {
         ExerciseDialog sd = new ExerciseDialog(JOptionPane.getFrameForComponent(this));
         sd.display(true);
@@ -284,7 +283,6 @@ public class ExerciseTable extends JPanel {
         }
     }
 
-
     private boolean isOkToDeleteExercise(int numExercises) {
         String msg;
         if (numExercises > 1) {
@@ -352,7 +350,6 @@ public class ExerciseTable extends JPanel {
             }
         });
     }
-
 
     public void deselect() {
         getTable().getSelectionModel().clearSelection();

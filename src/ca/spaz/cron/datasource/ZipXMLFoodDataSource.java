@@ -49,7 +49,6 @@ public abstract class ZipXMLFoodDataSource implements FoodDataSource {
         in.close();
     }
 
-
     private void loadDeprecatedIndex() throws IOException {
         Logger.debug("Loading Deprecated index...");
         ZipEntry entry = zip.getEntry("deprecated.index");
@@ -67,7 +66,6 @@ public abstract class ZipXMLFoodDataSource implements FoodDataSource {
         }
     }
 
-
     public Food loadFood(String id) {
         Food food = loadFood(zip.getEntry(id+".xml"));
         food.setDataSource(this);
@@ -78,7 +76,6 @@ public abstract class ZipXMLFoodDataSource implements FoodDataSource {
     public FoodProxy getFoodProxy(String id) {
         return (FoodProxy)map.get(id);
     }
-
 
     private Food loadFood(ZipEntry entry) {
         Food f = null;
@@ -93,7 +90,6 @@ public abstract class ZipXMLFoodDataSource implements FoodDataSource {
         }
         return f;
     }
-
 
     public List findFoods(String[] keys) {
         ArrayList results = new ArrayList();
@@ -113,7 +109,6 @@ public abstract class ZipXMLFoodDataSource implements FoodDataSource {
         }
         return results;
     }
-
 
     public List getAllFoods() {
         return new ArrayList(map.values());
@@ -148,5 +143,4 @@ public abstract class ZipXMLFoodDataSource implements FoodDataSource {
             Logger.debug(ex);
         }
     }
-
 }

@@ -13,7 +13,6 @@ public class Logger {
         System.out.println(str);
     }
 
-
     public static void error(Exception e) {
         e.printStackTrace();
     }

@@ -79,6 +79,4 @@ public abstract class SQLStatement {
         }
         return o;
     }
-
-
 }

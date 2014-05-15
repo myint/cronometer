@@ -260,6 +260,4 @@ public class SearchDialog extends JDialog implements ServingEditorListener, Food
     public void userFoodModified(FoodProxy fp) {
         getSearchPanel().doDBSearch();
     }
-
-
 }

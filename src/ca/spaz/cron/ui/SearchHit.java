@@ -72,5 +72,4 @@ public class SearchHit implements Comparable {
         SearchHit hit = (SearchHit) obj;
         return getFoodProxy().getDescription().compareToIgnoreCase(hit.getFoodProxy().getDescription());
     }
-
 }

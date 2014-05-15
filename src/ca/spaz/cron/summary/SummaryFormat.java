@@ -37,7 +37,6 @@ public abstract class SummaryFormat {
         return total;
     }
 
-
     /**
      * Look through all nutrients and see what overall percentage of the targets
      * are completed.
@@ -68,6 +67,4 @@ public abstract class SummaryFormat {
             return value / total;
         }
     }
-
-
 }

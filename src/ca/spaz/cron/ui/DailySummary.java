@@ -464,5 +464,4 @@ public class DailySummary extends JPanel implements UserChangeListener {
             getTodayButton().setEnabled(false);
         }
     }
-
 }

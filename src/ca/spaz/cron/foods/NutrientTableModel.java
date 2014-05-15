@@ -148,5 +148,4 @@ public class NutrientTableModel extends PrettyTableModel {
         }
         return c;
     }
-
 }

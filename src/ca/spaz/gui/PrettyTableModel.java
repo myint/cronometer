@@ -61,5 +61,4 @@ public abstract class PrettyTableModel extends AbstractTableModel {
     public void setSortOnColumn(int sortOnColumn) {
         this.sortOnColumn = sortOnColumn;
     }
-
 }

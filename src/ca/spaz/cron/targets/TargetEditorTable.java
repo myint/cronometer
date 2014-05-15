@@ -45,5 +45,4 @@ public class TargetEditorTable extends JScrollPane {
     public void fireTargetsChanged() {
         model.fireTableDataChanged();
     }
-
 }

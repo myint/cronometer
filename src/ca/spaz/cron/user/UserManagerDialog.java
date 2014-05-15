@@ -317,5 +317,4 @@ public class UserManagerDialog extends WrappedPanel implements ListSelectionList
             delBtn.setEnabled(false);
         }
     }
-
 }

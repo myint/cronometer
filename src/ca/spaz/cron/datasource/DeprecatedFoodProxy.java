@@ -21,5 +21,4 @@ public class DeprecatedFoodProxy extends FoodProxy {
     public boolean isDeprecated() {
         return true;
     }
-
 }

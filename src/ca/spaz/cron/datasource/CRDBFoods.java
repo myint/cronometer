@@ -19,7 +19,6 @@ public class CRDBFoods extends JarXMLFoodDataSource {
         return "crdb_005";
     }
 
-
     public String getName() {
         return "CRDB";
     }
@@ -46,6 +45,4 @@ public class CRDBFoods extends JarXMLFoodDataSource {
     public Color getDisplayColor() {
         return CRDB_COL;
     }
-
-
 }

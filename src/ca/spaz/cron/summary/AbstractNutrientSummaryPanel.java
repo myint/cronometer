@@ -74,6 +74,4 @@ public abstract class AbstractNutrientSummaryPanel extends JPanel {
             return value / total;
         }
     }
-
-
 }

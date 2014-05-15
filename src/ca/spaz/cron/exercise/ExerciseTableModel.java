@@ -167,5 +167,4 @@ public class ExerciseTableModel extends PrettyTableModel {
         }
         return c;
     }
-
 }

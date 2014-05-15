@@ -43,5 +43,4 @@ public class MacroNutrientSummaryPanel extends AbstractNutrientSummaryPanel {
         }
         return nutrientTable;
     }
-
 }

@@ -64,7 +64,6 @@ public class BiomarkerPanel extends JPanel {
         return metricTable;
     }
 
-
     public void setDate(Date d) {
         this.curDate = d;
         curMetrics = null;

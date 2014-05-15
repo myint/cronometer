@@ -39,11 +39,9 @@ public class NutrientInfoPanel extends WrappedPanel {
         setBorder(BorderFactory.createEmptyBorder(12,12,12,12));
     }
 
-
     public String getTitle() {
         return "Nutrient Info: " + ni.getName();
     }
-
 
     public String getSubtitle() {
         return ni.getName();
@@ -77,7 +75,6 @@ public class NutrientInfoPanel extends WrappedPanel {
 
         return sb.toString();
     }
-
 
     public ImageIcon getIcon() {
         return new ImageIcon(ImageFactory.getInstance().loadImage("/img/apple-50x50.png"));
@@ -127,7 +124,6 @@ public class NutrientInfoPanel extends WrappedPanel {
         }
         return rdaBtn;
     }
-
 
     public SpinnerNumberModel getMaxModel() {
         if (maxModel == null) {
@@ -190,5 +186,4 @@ public class NutrientInfoPanel extends WrappedPanel {
         target.setMax(val);
         UserManager.getCurrentUser().setTarget(ni, target);
     }
-
 }

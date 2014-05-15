@@ -37,5 +37,4 @@ public class USDAWeight {
         assert (food != null);
         food.getMeasures().add(new Measure(amount, description, grams));
     }
-
 }

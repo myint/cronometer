@@ -83,7 +83,6 @@ public class ReportWindow extends WrappedPanel {
         return endDate;
     }
 
-
     private Vector getFormats() {
         if (formats == null) {
             formats = new Vector();
@@ -280,6 +279,4 @@ public class ReportWindow extends WrappedPanel {
             }
         }
     }
-
-
 }

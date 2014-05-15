@@ -69,7 +69,6 @@ public class TEXTSummaryFormat extends SummaryFormat {
         return sb.toString();
     }
 
-
     public String export(NutrientInfo ni, List servings, int days, boolean targetsOnly) {
 
         StringBuffer sb = new StringBuffer();
@@ -100,5 +99,4 @@ public class TEXTSummaryFormat extends SummaryFormat {
 
         return sb.toString();
     }
-
 }

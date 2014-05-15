@@ -64,5 +64,4 @@ public class ExerciseHistory extends History {
     public void update(Exercise exercise) {
         super.updateEntry(exercise);
     }
-
 }

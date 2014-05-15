@@ -37,5 +37,4 @@ public class ExerciseSelection implements Transferable {
             throw new UnsupportedFlavorException(flavor);
         }
     }
-
 }

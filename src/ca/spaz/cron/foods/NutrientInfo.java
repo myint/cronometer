@@ -123,7 +123,6 @@ public class NutrientInfo {
         }
     }
 
-
     public boolean isVitamin() {
         return getCategory().equals(VITAMINS);
     }
@@ -160,11 +159,9 @@ public class NutrientInfo {
         return units;
     }
 
-
     public String getCategory() {
         return category;
     }
-
 
     public static List getMacroNutrients() {
         return (List)categories.get(MACRO_NUTRIENTS);
@@ -224,7 +221,6 @@ public class NutrientInfo {
     public int getIndex() {
         return index;
     }
-
 
     public double getTargetMinimum(User user) {
         DRI dri = findMatch(user, getDRIs());
@@ -293,5 +289,4 @@ public class NutrientInfo {
     public boolean getDefaultTracking() {
         return usda != null && track;
     }
-
 }

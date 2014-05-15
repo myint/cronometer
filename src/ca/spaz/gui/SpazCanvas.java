@@ -260,5 +260,4 @@ public class SpazCanvas extends JPanel implements ActionListener {
             }
         }
     }
-
 }

@@ -57,7 +57,6 @@ public class DateChooser extends WrappedPanel {
         return null;
     }
 
-
     public boolean showSidebar() {
         return false;
     }
@@ -72,6 +71,4 @@ public class DateChooser extends WrappedPanel {
     public boolean doAccept() {
         return true;
     }
-
-
 }

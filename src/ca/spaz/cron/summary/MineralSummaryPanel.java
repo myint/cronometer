@@ -25,5 +25,4 @@ public class MineralSummaryPanel extends AbstractNutrientSummaryPanel {
     protected String getCategoryName() {
         return "Minerals";
     }
-
 }

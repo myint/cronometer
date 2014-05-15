@@ -100,5 +100,4 @@ public class MetricTableModel extends RecordTableModel {
     public String getToolTipText(int r, int c) {
         return null;
     }
-
 }

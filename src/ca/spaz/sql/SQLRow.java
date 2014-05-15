@@ -92,5 +92,4 @@ public class SQLRow {
         conn.createStatement().execute(sql.toString());
 
     }
-
 }

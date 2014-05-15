@@ -59,7 +59,6 @@ public class WebViewer extends JPanel {
         this.add(jsp, BorderLayout.CENTER);
     }
 
-
     private JScrollPane makeHTMLPane() {
         htmlPane.setContentType("text/html");
         htmlPane.setEditable(false);
@@ -111,7 +110,6 @@ public class WebViewer extends JPanel {
         scrollToTop();
     }
 
-
     public void setText(String text) {
         htmlPane.setContentType("text/ascii");
         htmlPane.setText(text);
@@ -146,7 +144,6 @@ public class WebViewer extends JPanel {
             e.printStackTrace();
         }
     }
-
 
     public class Hyperactive implements HyperlinkListener {
 
@@ -183,7 +180,6 @@ public class WebViewer extends JPanel {
     public void setExternal(boolean val) {
         external = val;
     }
-
 
     public JEditorPane getHTMLPane() {
         return htmlPane;

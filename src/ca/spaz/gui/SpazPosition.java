@@ -95,7 +95,6 @@ public class SpazPosition {
         return true;
     }
 
-
     public String toXMLString() {
         StringBuffer sb = new StringBuffer();
         sb.append("<position ");
@@ -110,6 +109,4 @@ public class SpazPosition {
         sb.append("/>\n");
         return sb.toString();
     }
-
-
 }

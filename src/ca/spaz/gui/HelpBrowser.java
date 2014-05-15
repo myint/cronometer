@@ -182,7 +182,6 @@ public class HelpBrowser extends JFrame {
         return new Page(e);
     }
 
-
     public void showPage(URL url) {
         Page page = findPage(url, getHelpContentsModel());
         if (page != null) {
@@ -214,7 +213,6 @@ public class HelpBrowser extends JFrame {
         return null;
     }
 
-
     private Page findPage(URL url) {
         return findPage(url, getHelpContentsModel());
     }
@@ -231,7 +229,6 @@ public class HelpBrowser extends JFrame {
         }
         return null;
     }
-
 
     private void selectPageInTree(Page page) {
         TreePath path = new TreePath(page.getPath());
@@ -289,6 +286,4 @@ public class HelpBrowser extends JFrame {
             }
         }
     }
-
-
 }

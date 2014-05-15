@@ -121,5 +121,4 @@ public class TargetBar extends JComponent {
                    (int)(a.getGreen()*val + b.getGreen()*(1.0-val)),
                    (int)(a.getBlue()*val + b.getBlue()*(1.0-val)) );
     }
-
 }

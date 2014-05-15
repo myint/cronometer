@@ -99,7 +99,6 @@ public class FoodEditor extends JPanel {
         this.add(getNutrientPanel(), BorderLayout.CENTER);
     }
 
-
     protected JPanel getCenterPanel() {
         if (centerPanel == null) {
             centerPanel = new JPanel();
@@ -109,7 +108,6 @@ public class FoodEditor extends JPanel {
         }
         return centerPanel;
     }
-
 
     protected Border makeTitleBorder(String str) {
         return new CompoundBorder(
@@ -134,7 +132,6 @@ public class FoodEditor extends JPanel {
     public void doCancel() {
         getDialog().dispose();
     }
-
 
     /**
      * Commit any changes made to the food
@@ -220,7 +217,6 @@ public class FoodEditor extends JPanel {
         }
         return saveButton;
     }
-
 
     protected JPanel getGeneralPanel() {
         if (null == generalPanel) {
@@ -351,7 +347,6 @@ public class FoodEditor extends JPanel {
         return measureEditor;
     }
 
-
     MeasureWidget getMeasureSelector() {
         if (null == measure) {
             measure = new MeasureWidget();
@@ -368,7 +363,6 @@ public class FoodEditor extends JPanel {
         }
         return measure;
     }
-
 
     public void setMeasure(Measure m, double amount) {
         getMeasureSelector().setMeasure(m, amount);
@@ -397,6 +391,4 @@ public class FoodEditor extends JPanel {
             editor.display();
         }
     }
-
-
 }

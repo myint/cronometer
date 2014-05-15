@@ -14,6 +14,4 @@ public class Favorites {
     }
 
     private Favorite[] favorites = new Favorite[MAX_SLOTS];
-
-
 }

@@ -159,11 +159,8 @@ public class Recipe extends Food {
 
     }
 
-
     public void setServings(List list) {
         servings = list;
         recomputeNutrients();
     }
-
-
 }

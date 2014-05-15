@@ -29,5 +29,4 @@ public class TranslucentPanel extends JPanel {
         g2d.setComposite(c);
         super.paint(g);
     }
-
 }

@@ -60,7 +60,6 @@ public class TargetEditorTableModel extends PrettyTableModel {
         return columnMaxWidth[col];
     }
 
-
     public NutrientInfo getNutrientInfo(int i) {
         return (NutrientInfo) nutrients.get(i);
     }
@@ -68,7 +67,6 @@ public class TargetEditorTableModel extends PrettyTableModel {
     public int getRowCount() {
         return nutrients.size();
     }
-
 
     public Object getValueAt(int row, int col) {
         NutrientInfo ni = getNutrientInfo(row);
@@ -159,5 +157,4 @@ public class TargetEditorTableModel extends PrettyTableModel {
 
     public void sort() {
     }
-
 }

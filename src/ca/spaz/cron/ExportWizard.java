@@ -287,7 +287,6 @@ public class ExportWizard extends JFrame {
         return sb.toString();
     }
 
-
     public void valdiate(String xmldata) throws IOException {
         try {
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
@@ -343,5 +342,4 @@ public class ExportWizard extends JFrame {
         ExportWizard ex = new ExportWizard();
         ex.setVisible(true);
     }
-
 }

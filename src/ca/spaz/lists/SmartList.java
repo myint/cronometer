@@ -85,7 +85,6 @@ public class SmartList extends ArrayList {
         }
     }
 
-
     public synchronized void fireItemAddedEvent(Object o) {
         if (suppressEvents || listeners == null) {
             return;
@@ -105,6 +104,4 @@ public class SmartList extends ArrayList {
             ((ListListener)iter.next()).itemChanged(o);
         }
     }
-
-
 }

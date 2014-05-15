@@ -289,7 +289,6 @@ public class User {
         return tracked;
     }
 
-
     /**
      * Returns <code>true</code> when a character is a valid character for a username.
      */
@@ -472,5 +471,4 @@ public class User {
     public void removeMetric(Metric metric) {
         getBiometricsHistory().delete(metric);
     }
-
 }

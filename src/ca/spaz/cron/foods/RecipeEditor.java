@@ -29,7 +29,6 @@ public class RecipeEditor extends FoodEditor {
         original.update();
     }
 
-
     public void setFood(Food f) {
         this.original = f;
         this.food = new Recipe((Recipe)f); // edit on a copy
@@ -114,7 +113,6 @@ public class RecipeEditor extends FoodEditor {
         return servingTable;
     }
 
-
     private JPanel getServingPanel() {
         if (null == servingPanel) {
             servingPanel = new JPanel(new BorderLayout(4,4));
@@ -125,5 +123,4 @@ public class RecipeEditor extends FoodEditor {
         }
         return servingPanel;
     }
-
 }

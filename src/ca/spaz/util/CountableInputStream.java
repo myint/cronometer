@@ -100,5 +100,4 @@ public class CountableInputStream extends FilterInputStream {
     public long getBytesRead() {
         return bytesRetrieved;
     }
-
 }

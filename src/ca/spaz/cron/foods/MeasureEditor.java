@@ -70,7 +70,6 @@ public class MeasureEditor extends JPanel {
         return listeners;
     }
 
-
     public void fireChangeEvent() {
         ChangeEvent ce = new ChangeEvent(this);
         Iterator iter = listeners.iterator();
@@ -88,7 +87,6 @@ public class MeasureEditor extends JPanel {
         this.add(getToolBar(), BorderLayout.WEST);
         this.add(getWeightScrollTable(), BorderLayout.CENTER);
     }
-
 
     public List getMeasures() {
         List measures = new ArrayList();

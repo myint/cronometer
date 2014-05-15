@@ -57,7 +57,6 @@ public class SpazMenuBar extends JMenuBar implements ActionListener {
         loadXML(in);
     }
 
-
     public void loadXML(InputStream file) {
         try {
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
@@ -83,7 +82,6 @@ public class SpazMenuBar extends JMenuBar implements ActionListener {
         }
     }
 
-
     public void loadXMLMenu(Element elm) {
         String title = elm.getAttribute("title");
         JMenu menu = new JMenu(title);
@@ -98,7 +96,6 @@ public class SpazMenuBar extends JMenuBar implements ActionListener {
         loadXMLMenuItems(elm, menu);
         add(menu);
     }
-
 
     public void loadXMLMenuItems(Element elm, JMenu menu) {
         NodeList nl = elm.getChildNodes();
@@ -190,7 +187,6 @@ public class SpazMenuBar extends JMenuBar implements ActionListener {
         }
         return null;
     }
-
 
     public boolean isSelected(String name) {
         JCheckBoxMenuItem item = (JCheckBoxMenuItem)getItem(name);

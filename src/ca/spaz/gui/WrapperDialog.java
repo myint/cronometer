@@ -142,7 +142,6 @@ public class WrapperDialog extends JDialog {
         return logo;
     }
 
-
     public void dispose() {
         wrappedPanel = null;
         super.dispose();
@@ -193,5 +192,4 @@ public class WrapperDialog extends JDialog {
         }
         return navPanel;
     }
-
 }

@@ -102,7 +102,6 @@ public class XMLFoodLoader {
         return f;
     }
 
-
     /**
      * load special tags for this recipe
      */
@@ -118,7 +117,6 @@ public class XMLFoodLoader {
         r.addServings(list);
     }
 
-
     public static Food loadFood(File file) {
         Food f = null;
         try {
@@ -132,5 +130,4 @@ public class XMLFoodLoader {
         }
         return f;
     }
-
 }

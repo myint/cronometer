@@ -23,5 +23,4 @@ public class SpazCanvasLoader extends SpazCanvas {
     public void add(JComponent c, SpazPosition lp) {
         proxy.add(c, lp);
     }
-
 }

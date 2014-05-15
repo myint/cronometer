@@ -23,7 +23,6 @@ public class TranslucentLabel extends JLabel {
         setOpaque(false);
     }
 
-
     public TranslucentLabel(double transparency, Icon icon) {
         super(icon);
         this.transparency = transparency;
@@ -48,5 +47,4 @@ public class TranslucentLabel extends JLabel {
         g2d.setComposite(c);
         super.paint(g);
     }
-
 }

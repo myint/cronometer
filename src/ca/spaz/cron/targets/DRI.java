@@ -50,56 +50,45 @@ public class DRI {
         }
     }
 
-
     public int getGender() {
         return gender;
     }
-
 
     public void setGender(int gender) {
         this.gender = gender;
     }
 
-
     public double getMaxAge() {
         return max_age;
     }
-
 
     public void setMaxAge(double max_age) {
         this.max_age = max_age;
     }
 
-
     public double getMinAge() {
         return min_age;
     }
-
 
     public void setMinAge(double min_age) {
         this.min_age = min_age;
     }
 
-
     public double getRDA() {
         return RDA;
     }
-
 
     public void setRDA(double rda) {
         RDA = rda;
     }
 
-
     public String getStatus() {
         return status;
     }
 
-
     public void setStatus(String status) {
         this.status = status;
     }
-
 
     public double getTUL() {
         return TUL;
@@ -108,7 +97,6 @@ public class DRI {
     public void setTUL(double tul) {
         TUL = tul;
     }
-
 
     public boolean matches(User user) {
 

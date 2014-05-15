@@ -51,6 +51,4 @@ public class StatusBar extends JPanel  {
         }
         return hoverLabel;
     }
-
-
 }

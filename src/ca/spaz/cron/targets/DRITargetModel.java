@@ -123,6 +123,4 @@ public class DRITargetModel implements TargetModel {
         calories += (user.isMale() ? 10 : 7)*(30 - user.getAge());
         return Math.round(calories);
     }
-
-
 }

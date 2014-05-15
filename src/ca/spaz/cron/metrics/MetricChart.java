@@ -84,7 +84,6 @@ public class MetricChart extends JFrame {
         dataset.addSeries(actualData);
     }
 
-
     private void getData() {
         actualData.clear();
         List metrics = UserManager.getCurrentUser().getBiometricsHistory().getMetricsOfType(metricName);

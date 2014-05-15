@@ -220,7 +220,6 @@ public class UserSettingsDialog extends WrappedPanel {
         return heightUnits;
     }
 
-
     private JPanel getWeightPanel() {
         if (weightPanel == null) {
             weightPanel = new JPanel(new GridLayout(1, 2, 4, 4));
@@ -270,7 +269,6 @@ public class UserSettingsDialog extends WrappedPanel {
         return activityPanel;
     }
 
-
     private JComboBox getActivityUnits() {
         if (activityUnits == null) {
             activityUnits = new JComboBox(ACTIVITY_MEASURES);
@@ -287,7 +285,6 @@ public class UserSettingsDialog extends WrappedPanel {
         }
         return status;
     }
-
 
     private Date getBirthDate() {
         Calendar calendar = Calendar.getInstance();

@@ -227,7 +227,6 @@ public class UserFoods implements FoodDataSource {
         }
     }
 
-
     public void addUserFoodsListener(UserFoodsListener listener) {
         listeners.add(listener);
     }
@@ -235,6 +234,4 @@ public class UserFoods implements FoodDataSource {
     public void removeUserFoodsListener(UserFoodsListener listener) {
         listeners.remove(listener);
     }
-
-
 }

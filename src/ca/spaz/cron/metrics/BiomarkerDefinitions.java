@@ -102,7 +102,6 @@ public class BiomarkerDefinitions {
         }
     }
 
-
     public synchronized void writeXML(PrintStream out) {
         XMLNode node = new XMLNode("biomarkers");
         for (int i=0; i<biomarkers.size(); i++) {

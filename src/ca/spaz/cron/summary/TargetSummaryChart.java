@@ -192,7 +192,6 @@ public class TargetSummaryChart extends JComponent implements UserChangeListener
         g.drawRoundRect(x, y, w, h, h/2, h/2);
     }
 
-
     private void paintCaloriesBar(Graphics2D g, int x, int y, int w, int h, int w2, Color col) {
         GradientPaint gradient = new GradientPaint(0, 0, Color.GRAY, w, 0, Color.LIGHT_GRAY, false);
         g.setPaint(gradient);
@@ -314,7 +313,6 @@ public class TargetSummaryChart extends JComponent implements UserChangeListener
 
         paintPFC(g, xo+w+12, yo, 80);
     }
-
 
     private void paintPFC(Graphics g, int xo, int yo, int radius) {
         if (total <= 0) {

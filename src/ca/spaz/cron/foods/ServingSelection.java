@@ -37,5 +37,4 @@ public class ServingSelection implements Transferable {
             throw new UnsupportedFlavorException(flavor);
         }
     }
-
 }

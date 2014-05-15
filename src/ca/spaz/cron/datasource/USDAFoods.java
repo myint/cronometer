@@ -42,9 +42,7 @@ public class USDAFoods extends JarXMLFoodDataSource {
 
     }
 
-
     public Color getDisplayColor() {
         return Color.BLACK;
     }
-
 }

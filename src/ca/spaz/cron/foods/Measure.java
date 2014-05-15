@@ -124,5 +124,4 @@ public class Measure {
         node.addAttribute("grams", getGrams());
         return node;
     }
-
 }

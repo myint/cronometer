@@ -88,7 +88,6 @@ public class ServingEditor extends JPanel {
         return emptyPanel;
     }
 
-
     /**
      * @return
      */
@@ -108,7 +107,6 @@ public class ServingEditor extends JPanel {
         return addEatenPanel;
     }
 
-
     private JLabel getTitleLabel() {
         if (null == titleLabel) {
             titleLabel = new TranslucentLabel(0.85, " ", JLabel.CENTER);
@@ -119,7 +117,6 @@ public class ServingEditor extends JPanel {
         }
         return titleLabel;
     }
-
 
     private JPanel getNutrientsPanel() {
         if (null == nutrientsPanel) {
@@ -328,7 +325,6 @@ public class ServingEditor extends JPanel {
         fiberLabel.setText(labelFormatter.format(fiber) + " g");
     }
 
-
     public synchronized void addServingEditorListener(ServingEditorListener sel) {
         listeners.add(sel);
     }
@@ -349,6 +345,4 @@ public class ServingEditor extends JPanel {
     public void linkToSearchResults(SearchPanel sp) {
         getMeasure().linkToSearchResults(sp);
     }
-
-
 }
