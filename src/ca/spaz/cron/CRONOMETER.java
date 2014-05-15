@@ -202,11 +202,12 @@ public class CRONOMETER extends JFrame implements MRJQuitHandler, MRJAboutHandle
     }
 
     public void doReportBug() {
-        ToolBox.launchURL(CRONOMETER.getInstance(), "http://sourceforge.net/tracker/?atid=735995&group_id=136481&func=browse");
+        ToolBox.launchURL(CRONOMETER.getInstance(),
+                          "https://github.com/myint/cronometer/issues");
     }
 
     public void doRequestFeature() {
-        ToolBox.launchURL(CRONOMETER.getInstance(), "http://sourceforge.net/tracker/?group_id=136481&atid=735998");
+        doReportBug();
     }
 
     public static String getFullTitle() {
