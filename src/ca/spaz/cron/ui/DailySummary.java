@@ -76,22 +76,21 @@ public class DailySummary extends JPanel implements UserChangeListener {
         notifyObservers();
     }
 
+    private Font iconFont;
+
     private Font getIconFont() {
         try {
             InputStream in = this.getClass().getResourceAsStream(
                 "/fontawesome.tff");
 
-            try {
-                Font base = Font.createFont(Font.TRUETYPE_FONT, in);
-                return base.deriveFont(Font.PLAIN, 16);
-            } catch (java.awt.FontFormatException exception) {
-                ErrorReporter.showError(exception, this);
-                return new Font("Application", Font.BOLD, 16);
-            }
-        } catch (java.io.IOException exception) {
+            Font base = Font.createFont(Font.TRUETYPE_FONT, in);
+            iconFont = base.deriveFont(Font.PLAIN, 16);
+        } catch (java.lang.Exception exception) {
             ErrorReporter.showError(exception, this);
-            return new Font("Application", Font.BOLD, 16);
+            iconFont = new Font("Application", Font.PLAIN, 16);
         }
+
+        return iconFont;
     }
 
     private JButton createIconFontButton(String code) {
@@ -380,7 +379,6 @@ public class DailySummary extends JPanel implements UserChangeListener {
         }
         return dateTitle;
     }
-
 
     private JComponent getToolbar() {
         if (null == toolBar) {
