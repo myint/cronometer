@@ -386,8 +386,6 @@ public class ExerciseTable extends JPanel {
     private void handleMouseClick(MouseEvent e) {
         JPopupMenu menu = new JPopupMenu();
 
-        // actions that apply to both single and multiple selections:
-        menu.addSeparator();
         menu.add(new CutExercisesAction(this));
         menu.add(new CopyExercisesAction(this));
         menu.add(new DeleteExercisesAction(this));
