@@ -4,6 +4,10 @@
 		<item title="Manage Users..." key="u" index="7" acc="VK_U" action="doManageUsers" />
 		<item title="Edit Nutritional Targets..." key="," index="17" acc="VK_COMMA" action="doEditUserSettings" />
 		<item title="Today" key="t" acc="VK_T" action="doToday"/>
+		<item title="Previous Day" key="[" acc="VK_OPEN_BRACKET"
+			action="doPreviousDay"/>
+		<item title="Next Day" key="]" acc="VK_CLOSE_BRACKET"
+			action="doNextDay"/>
 		<item separator="true" macosx="false"></item>
 		<item title="Quit" key="q" acc="VK_Q"  macosx="false" action="doQuit"/>
 	</menu>

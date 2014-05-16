@@ -268,7 +268,7 @@ public class DailySummary extends JPanel implements UserChangeListener {
             nextButton = IconFont.createIconFontButton("\uf061", this);
             nextButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    setDate(new Date(curDate.getTime() + ONE_DAY), false);
+                    goToNextDay();
                 }
             });
             Cronometer.fixButton(nextButton);
@@ -283,7 +283,7 @@ public class DailySummary extends JPanel implements UserChangeListener {
             prevButton = IconFont.createIconFontButton("\uf060", this);
             prevButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    setDate(new Date(curDate.getTime() - ONE_DAY), false);
+                    goToPreviousDay();
                 }
             });
             Cronometer.fixButton(prevButton);
@@ -328,6 +328,14 @@ public class DailySummary extends JPanel implements UserChangeListener {
      */
     public void goToToday() {
         setDate(new Date(System.currentTimeMillis()), false);
+    }
+
+    public void goToPreviousDay() {
+        setDate(new Date(curDate.getTime() - ONE_DAY), false);
+    }
+
+    public void goToNextDay() {
+        setDate(new Date(curDate.getTime() + ONE_DAY), false);
     }
 
     /**

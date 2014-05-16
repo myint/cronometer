@@ -358,6 +358,14 @@ public class Cronometer extends JFrame implements MRJQuitHandler, MRJAboutHandle
         getDailySummary().goToToday();
     }
 
+    public void doPreviousDay() {
+        getDailySummary().goToPreviousDay();
+    }
+
+    public void doNextDay() {
+        getDailySummary().goToNextDay();
+    }
+
     public void handleQuit() {
         doQuit();
     }
