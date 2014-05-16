@@ -79,15 +79,18 @@ public class DailySummary extends JPanel implements UserChangeListener {
     private Font iconFont;
 
     private Font getIconFont() {
-        try {
-            InputStream in = this.getClass().getResourceAsStream(
-                "/fontawesome.tff");
+        if (iconFont == null)
+        {
+            try {
+                InputStream in = this.getClass().getResourceAsStream(
+                    "/fontawesome.tff");
 
-            Font base = Font.createFont(Font.TRUETYPE_FONT, in);
-            iconFont = base.deriveFont(Font.PLAIN, 16);
-        } catch (java.lang.Exception exception) {
-            ErrorReporter.showError(exception, this);
-            iconFont = new Font("Application", Font.PLAIN, 16);
+                Font base = Font.createFont(Font.TRUETYPE_FONT, in);
+                iconFont = base.deriveFont(Font.PLAIN, 16);
+            } catch (java.lang.Exception exception) {
+                ErrorReporter.showError(exception, this);
+                iconFont = new Font("Application", Font.PLAIN, 16);
+            }
         }
 
         return iconFont;
