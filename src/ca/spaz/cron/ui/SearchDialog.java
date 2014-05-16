@@ -13,6 +13,7 @@ import ca.spaz.cron.actions.DeleteFoodAction;
 import ca.spaz.cron.actions.ExportFoodAction;
 import ca.spaz.cron.datasource.*;
 import ca.spaz.cron.foods.*;
+import ca.spaz.gui.IconFont;
 import ca.spaz.util.ImageFactory;
 import ca.spaz.util.ToolBox;
 
@@ -161,8 +162,7 @@ public class SearchDialog extends JDialog implements ServingEditorListener, Food
 
     private JButton getEditButton() {
         if (null == editButton) {
-            ImageIcon icon = new ImageIcon(ImageFactory.getInstance().loadImage("/img/edit.gif"));
-            editButton = new JButton(icon);
+            editButton = IconFont.createIconFontButton("\uf044", this);
             CRONOMETER.fixButton(editButton);
             editButton.setToolTipText("Edit Food");
             editButton.addActionListener(new ActionListener() {
@@ -182,7 +182,7 @@ public class SearchDialog extends JDialog implements ServingEditorListener, Food
 
     private JButton getDeleteButton() {
         if (null == deleteButton) {
-            deleteButton = new JButton(new ImageIcon(ImageFactory.getInstance().loadImage("/img/trash.gif")));
+            deleteButton = IconFont.createIconFontButton("\uf014", this);
             deleteButton.setToolTipText("Delete Food");
             CRONOMETER.fixButton(deleteButton);
             deleteButton.addActionListener(new ActionListener() {
@@ -198,7 +198,7 @@ public class SearchDialog extends JDialog implements ServingEditorListener, Food
 
     private JButton getImportButton() {
         if (null == importButton) {
-            importButton = new JButton(new ImageIcon(ImageFactory.getInstance().loadImage("/img/import.gif")));
+            importButton = IconFont.createIconFontButton("\uf019", this);
             importButton.setToolTipText("Import Food");
             CRONOMETER.fixButton(importButton);
             importButton.addActionListener(new ActionListener() {
@@ -212,7 +212,7 @@ public class SearchDialog extends JDialog implements ServingEditorListener, Food
 
     private JButton getExportButton() {
         if (null == exportButton) {
-            exportButton = new JButton(new ImageIcon(ImageFactory.getInstance().loadImage("/img/export.gif")));
+            exportButton = IconFont.createIconFontButton("\uf093", this);
             exportButton.setToolTipText("Export Food");
             CRONOMETER.fixButton(exportButton);
             exportButton.addActionListener(new ActionListener() {
@@ -231,7 +231,7 @@ public class SearchDialog extends JDialog implements ServingEditorListener, Food
 
     private JButton getAddButton() {
         if (null == addButton) {
-            addButton = new JButton(new ImageIcon(ImageFactory.getInstance().loadImage("/img/add.gif")));
+            addButton = IconFont.createIconFontButton("\uf067", this);
             addButton.setToolTipText("Create New Food");
             addButton.requestFocusInWindow();
             CRONOMETER.fixButton(addButton);

@@ -197,8 +197,7 @@ public class UserManagerDialog extends WrappedPanel implements ListSelectionList
 
     private JButton getAddButton() {
         if (null == addBtn) {
-            ImageIcon icon = new ImageIcon(ImageFactory.getInstance().loadImage("/img/add.gif"));
-            addBtn = new JButton(icon);
+            addBtn = IconFont.createIconFontButton("\uf067", this);
             addBtn.setToolTipText("Add a new user.");
             addBtn.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
@@ -212,8 +211,7 @@ public class UserManagerDialog extends WrappedPanel implements ListSelectionList
 
     private JButton getDeleteButton() {
         if (null == delBtn) {
-            ImageIcon icon = new ImageIcon(ImageFactory.getInstance().loadImage("/img/trash.gif"));
-            delBtn = new JButton(icon);
+            delBtn = IconFont.createIconFontButton("\uf014", this);
             delBtn.setToolTipText("Delete the selected user.");
             delBtn.addActionListener(new DeleteButtonListener());
             CRONOMETER.fixButton(delBtn);

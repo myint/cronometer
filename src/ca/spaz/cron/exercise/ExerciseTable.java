@@ -20,6 +20,7 @@ import ca.spaz.cron.actions.*;
 import ca.spaz.cron.ui.DailySummary;
 import ca.spaz.cron.user.User;
 import ca.spaz.cron.user.UserManager;
+import ca.spaz.gui.IconFont;
 import ca.spaz.gui.PrettyTable;
 import ca.spaz.util.ImageFactory;
 
@@ -94,8 +95,7 @@ public class ExerciseTable extends JPanel {
 
     private JButton getDeleteButton() {
         if (null == delBtn) {
-            ImageIcon icon = new ImageIcon(ImageFactory.getInstance().loadImage("/img/trash.gif"));
-            delBtn = new JButton("Delete Exercise", icon);
+            delBtn = IconFont.createIconFontButton("\uf014", this);
             delBtn.setEnabled(false);
             delBtn.setToolTipText("Delete the selected exercise");
             delBtn.addActionListener(new ActionListener() {
@@ -110,8 +110,7 @@ public class ExerciseTable extends JPanel {
 
     private JButton getAddButton() {
         if (null == addBtn) {
-            ImageIcon icon = new ImageIcon(ImageFactory.getInstance().loadImage("/img/add.gif"));
-            addBtn = new JButton("Add Exercise", icon);
+            addBtn = IconFont.createIconFontButton("\uf067", this);
             addBtn.setToolTipText("Add a new exercise");
 
             addBtn.addActionListener(new ActionListener() {

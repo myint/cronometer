@@ -12,6 +12,7 @@ import javax.swing.event.*;
 
 import ca.spaz.cron.CRONOMETER;
 import ca.spaz.cron.foods.ServingSelection;
+import ca.spaz.gui.IconFont;
 import ca.spaz.gui.PrettyTable;
 import ca.spaz.util.ImageFactory;
 
@@ -83,8 +84,7 @@ public abstract class RecordTable extends JPanel {
 
     private JButton getDeleteButton() {
         if (null == delBtn) {
-            ImageIcon icon = new ImageIcon(ImageFactory.getInstance().loadImage("/img/trash.gif"));
-            delBtn = new JButton("Delete Measurement", icon);
+            delBtn = IconFont.createIconFontButton("\uf014", this);
             delBtn.setEnabled(false);
             delBtn.setToolTipText("Delete the selected biomarker measurement");
             delBtn.addActionListener(new ActionListener() {
@@ -99,8 +99,7 @@ public abstract class RecordTable extends JPanel {
 
     private JButton getAddButton() {
         if (null == addBtn) {
-            ImageIcon icon = new ImageIcon(ImageFactory.getInstance().loadImage("/img/add.gif"));
-            addBtn = new JButton("Add Measurement", icon);
+            addBtn = IconFont.createIconFontButton("\uf067", this);
             addBtn.setToolTipText("Add a new biomarker measurement");
             addBtn.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {

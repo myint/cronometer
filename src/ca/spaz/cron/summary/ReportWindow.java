@@ -202,7 +202,7 @@ public class ReportWindow extends WrappedPanel {
 
     private JButton getSaveButton() {
         if (null == saveBtn) {
-            saveBtn = new JButton(new ImageIcon(ImageFactory.getInstance().loadImage("/img/save_edit.gif")));
+            saveBtn = IconFont.createIconFontButton("\uf0c7", this);
             saveBtn.setToolTipText("Save to File");
             saveBtn.setBorderPainted(false);
             saveBtn.setFocusable(false);

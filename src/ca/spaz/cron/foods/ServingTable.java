@@ -24,6 +24,7 @@ import ca.spaz.cron.ui.DailySummary;
 import ca.spaz.cron.ui.SearchDialog;
 import ca.spaz.cron.user.User;
 import ca.spaz.cron.user.UserManager;
+import ca.spaz.gui.IconFont;
 import ca.spaz.gui.PrettyTable;
 import ca.spaz.util.ImageFactory;
 
@@ -106,8 +107,7 @@ public class ServingTable extends JPanel {
 
     private JButton getDeleteButton() {
         if (null == delBtn) {
-            ImageIcon icon = new ImageIcon(ImageFactory.getInstance().loadImage("/img/trash.gif"));
-            delBtn = new JButton("Delete Serving", icon);
+            delBtn = IconFont.createIconFontButton("\uf014", this);
             delBtn.setEnabled(false);
             delBtn.setToolTipText("Delete the selected serving");
             delBtn.addActionListener(new ActionListener() {
@@ -122,8 +122,7 @@ public class ServingTable extends JPanel {
 
     private JButton getAddButton() {
         if (null == addBtn) {
-            ImageIcon icon = new ImageIcon(ImageFactory.getInstance().loadImage("/img/add.gif"));
-            addBtn = new JButton("Add Serving", icon);
+            addBtn = IconFont.createIconFontButton("\uf067", this);
             addBtn.setToolTipText("Add a new serving");
 
             addBtn.addActionListener(new ActionListener() {
