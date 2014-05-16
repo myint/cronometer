@@ -6,8 +6,10 @@ package ca.spaz.gui;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 
 import javax.swing.*;
+
 
 public class WrapperDialog extends JDialog {
     private JPanel mainPanel;
@@ -38,6 +40,16 @@ public class WrapperDialog extends JDialog {
         super(JOptionPane.getFrameForComponent(parent));
         init(wp);
         setResizable(resizeable);
+
+        // Add escape listener to dismiss window.
+        getRootPane().registerKeyboardAction(
+            new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    dispose();
+                }
+            },
+            KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0),
+            JComponent.WHEN_IN_FOCUSED_WINDOW);
     }
 
     private void init(WrappedPanel wp) {
