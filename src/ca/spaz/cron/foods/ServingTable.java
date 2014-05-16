@@ -390,7 +390,7 @@ public class ServingTable extends JPanel {
 
     private void fireServingDoubleClicked(Serving s) {
         if (s == null) {
-            return;
+            doAddServing();
         }
         Iterator iter = servingListeners.iterator();
         while (iter.hasNext()) {

@@ -336,7 +336,7 @@ public class ExerciseTable extends JPanel {
                     }
                 } else {
                     if (e.getClickCount() == 2) {
-
+                        doAddExercise();
                     } else {
                         if (last == index) {
                             table.getSelectionModel().clearSelection();
