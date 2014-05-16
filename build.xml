@@ -4,13 +4,11 @@
         Builds the CRONOMETER App
     </description>
 
-    <!-- set global properties for this build -->
     <property name="name"  value="Cronometer"/>
     <property name="source" location="src/"/>
     <property name="build" location="bin"/>
     <property name="lib" location="lib"/>
 
-    <!-- Compile the java code from ${src} into ${build} -->
     <target name="compile" description="compile the source">
         <javac source="1.6" srcdir="${source}" destdir="${build}"
             includeantruntime="false">
@@ -34,7 +32,8 @@
         </jar>
     </target>
 
-    <target name="cronometer.jar" depends="docs.jar,compile" description="generate the distribution jar" >
+    <target name="cronometer.jar" depends="docs.jar,compile"
+        description="generate the distribution jar" >
         <jar jarfile="lib/cronometer.jar" compress="true">
             <fileset dir="${build}">
                 <include name="*.*"/>
@@ -54,27 +53,6 @@
                 <attribute name="Main-Class" value="ca.spaz.cron.CRONOMETER"/>
             </manifest>
         </jar>
-    </target>
-
-    <target name="launcher" depends="cronometer.jar,docs.jar" description="generate the executable" >
-    </target>
-
-    <target name="signalljars" depends="cronometer.jar,docs.jar" description="generate the signed jar package" >
-        <input message="Enter certificate password for signing:" addproperty="cert_pwd" />
-
-        <signjar jar="${lib}/cronometer.jar" keystore="release/jws" alias="spaz.ca" storepass="${cert_pwd}"/>
-        <signjar jar="${lib}/swingx-core-1.6.2.jar" keystore="release/jws" alias="spaz.ca" storepass="${cert_pwd}"/>
-        <signjar jar="${lib}/jcommon-1.0.10.jar" keystore="release/jws" alias="spaz.ca" storepass="${cert_pwd}"/>
-        <signjar jar="${lib}/jfreechart-1.0.6.jar" keystore="release/jws" alias="spaz.ca" storepass="${cert_pwd}"/>
-        <signjar jar="${lib}/docs.jar" keystore="release/jws" alias="spaz.ca" storepass="${cert_pwd}"/>
-        <signjar jar="${lib}/crdb_005.jar" keystore="release/jws" alias="spaz.ca" storepass="${cert_pwd}"/>
-        <signjar jar="${lib}/usda_sr24.jar" keystore="release/jws" alias="spaz.ca" storepass="${cert_pwd}"/>
-    </target>
-
-    <target name="signsomejars" depends="cronometer.jar,docs.jar" description="generate the signed jar package" >
-        <input message="Enter certificate password for signing:" addproperty="cert_pwd" />
-        <signjar jar="${lib}/docs.jar" keystore="release/jws" alias="spaz.ca" storepass="${cert_pwd}"/>
-        <signjar jar="${lib}/cronometer.jar" keystore="release/jws" alias="spaz.ca" storepass="${cert_pwd}"/>
     </target>
 
 </project>
