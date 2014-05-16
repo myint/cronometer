@@ -360,8 +360,8 @@ public class DailySummary extends JPanel implements UserChangeListener {
 
     private JComponent getToolbar() {
         if (null == toolBar) {
-            toolBar = new TranslucentToolBar(0.25);
-            toolBar.setBackground(Color.BLACK);
+            toolBar = new TranslucentToolBar(0.5);
+            toolBar.setBackground(Color.RED);
             toolBar.setLayout(new BoxLayout(toolBar, BoxLayout.X_AXIS));
             toolBar.setBorder(BorderFactory.createEmptyBorder(4, 5, 4, 5));
             toolBar.add(getTodayButton());
@@ -430,16 +430,19 @@ public class DailySummary extends JPanel implements UserChangeListener {
     /**
      * Called periodically.
      *
-     * Currently just checks if the date has changed, and updates the state of the today-button
+     * Currently just checks if the date has changed, and updates the state of
+     * the today-button.
      */
     public void refreshTime() {
         if (ToolBox.isSameDay(curDate, new Date(System.currentTimeMillis()))) {
             getTodayButton().setEnabled(false);
+            toolBar.setTransparency(.5);
         } else {
             if (asked && getTodayButton().isEnabled()) {
                 asked = false;
             }
             getTodayButton().setEnabled(true);
+            toolBar.setTransparency(.25);
         }
     }
 }

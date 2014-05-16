@@ -18,6 +18,14 @@ public class TranslucentToolBar extends JToolBar {
         setOpaque(false);
     }
 
+    public void setTransparency(double value) {
+        transparency = value;
+
+        // FIXME: Not sure which one to call.
+        invalidate();
+        updateUI();
+    }
+
     public void paint(Graphics g) {
         Graphics2D g2d = (Graphics2D)g;
         g2d.setRenderingHint(
