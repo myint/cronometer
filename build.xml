@@ -33,7 +33,7 @@
         </jar>
     </target>
 
-    <target name="cronometer.jar" depends="compile" description="generate the distribution jar" >
+    <target name="cronometer.jar" depends="docs.jar,compile" description="generate the distribution jar" >
         <jar jarfile="lib/cronometer.jar" compress="true">
             <fileset dir="${build}">
                 <include name="*.*"/>

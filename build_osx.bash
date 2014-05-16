@@ -1,6 +1,5 @@
 #!/bin/bash -eux
 
-ant docs.jar
 ant
 
 root="$(dirname "$0")"
