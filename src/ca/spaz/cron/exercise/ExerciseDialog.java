@@ -34,14 +34,15 @@ public class ExerciseDialog extends JDialog implements ExerciseEditorListener {
         ToolBox.centerOver(this, parent);
         this.setModal(true);
 
-        // add escape listener to dismiss window
-        getRootPane().registerKeyboardAction( new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-            }
-        }, KeyStroke.getKeyStroke( KeyEvent.VK_ESCAPE, 0 ),
-        JComponent.WHEN_IN_FOCUSED_WINDOW );
-
+        // Add escape listener to dismiss window.
+        getRootPane().registerKeyboardAction(
+            new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    dispose();
+                }
+            },
+            KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0),
+            JComponent.WHEN_IN_FOCUSED_WINDOW);
     }
 
     public void display(boolean addable) {
