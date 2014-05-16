@@ -9,7 +9,7 @@ import java.io.*;
 
 import javax.swing.*;
 
-import ca.spaz.cron.CRONOMETER;
+import ca.spaz.cron.Cronometer;
 import ca.spaz.cron.datasource.FoodProxy;
 import ca.spaz.cron.foods.Food;
 import ca.spaz.gui.ErrorReporter;
@@ -48,7 +48,7 @@ public class ExportFoodAction extends AbstractAction {
                     ps.close();
                 } catch (IOException ie) {
                     Logger.error(ie);
-                    ErrorReporter.showError(ie, CRONOMETER.getInstance());
+                    ErrorReporter.showError(ie, Cronometer.getInstance());
                 }
             }
         }

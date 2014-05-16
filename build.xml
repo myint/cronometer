@@ -1,7 +1,7 @@
-<project name="CRONOMETER" default="cronometer.jar" basedir=".">
+<project name="Cronometer" default="cronometer.jar" basedir=".">
 
     <description>
-        Builds the CRONOMETER App
+        Builds the Cronometer application.
     </description>
 
     <property name="name"  value="Cronometer"/>
@@ -50,7 +50,7 @@
             </fileset>
             <manifest>
                 <attribute name="Built-By" value="${user.name}"/>
-                <attribute name="Main-Class" value="ca.spaz.cron.CRONOMETER"/>
+                <attribute name="Main-Class" value="ca.spaz.cron.Cronometer"/>
             </manifest>
         </jar>
     </target>

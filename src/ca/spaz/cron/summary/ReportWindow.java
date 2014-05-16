@@ -12,7 +12,7 @@ import java.util.List;
 
 import javax.swing.*;
 
-import ca.spaz.cron.CRONOMETER;
+import ca.spaz.cron.Cronometer;
 import ca.spaz.cron.user.UserManager;
 import ca.spaz.gui.*;
 import ca.spaz.util.ImageFactory;
@@ -274,7 +274,7 @@ public class ReportWindow extends WrappedPanel {
                     ps.print(report);
                     ps.close();
                 } catch (IOException ie) {
-                    ErrorReporter.showError(ie, CRONOMETER.getInstance());
+                    ErrorReporter.showError(ie, Cronometer.getInstance());
                 }
             }
         }

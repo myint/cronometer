@@ -22,7 +22,7 @@ import javax.swing.event.*;
 import org.jdesktop.swingx.JXDatePicker;
 
 import se.datadosen.component.RiverLayout;
-import ca.spaz.cron.CRONOMETER;
+import ca.spaz.cron.Cronometer;
 import ca.spaz.gui.*;
 import ca.spaz.util.Logger;
 
@@ -179,7 +179,7 @@ public class UserDatePickerDialog extends WrappedPanel implements ListSelectionL
         DateFormat[] formats = {df};
         datePicker = new JXDatePicker();
         datePicker.setFormats(formats);
-        datePicker.setDate(CRONOMETER.getDailySummary().getDate());
+        datePicker.setDate(Cronometer.getDailySummary().getDate());
         datePicker.setFont(new Font("Application", Font.BOLD, 12));
         datePicker.getEditor().setEnabled(false);
         datePicker.getEditor().setFocusable(false);

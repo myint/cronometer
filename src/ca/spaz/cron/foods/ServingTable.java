@@ -17,7 +17,7 @@ import javax.swing.table.TableColumnModel;
 
 import org.jdesktop.swingx.JXTable;
 
-import ca.spaz.cron.CRONOMETER;
+import ca.spaz.cron.Cronometer;
 import ca.spaz.cron.actions.*;
 import ca.spaz.cron.datasource.FoodProxy;
 import ca.spaz.cron.ui.DailySummary;
@@ -115,7 +115,7 @@ public class ServingTable extends JPanel {
                     deleteSelectedServings();
                 }
             });
-            CRONOMETER.fixButton(delBtn);
+            Cronometer.fixButton(delBtn);
         }
         return delBtn;
     }
@@ -130,7 +130,7 @@ public class ServingTable extends JPanel {
                     doAddServing();
                 }
             });
-            CRONOMETER.fixButton(addBtn);
+            Cronometer.fixButton(addBtn);
 
             addBtn.addKeyListener(new KeyAdapter() {
                 public void keyTyped(KeyEvent e) {
@@ -250,18 +250,18 @@ public class ServingTable extends JPanel {
      * @param list
      */
     public void addServings(Serving[] list) {
-        addServingsToUser(list, UserManager.getCurrentUser(), CRONOMETER.getDailySummary().getDate());
+        addServingsToUser(list, UserManager.getCurrentUser(), Cronometer.getDailySummary().getDate());
     }
 
     public void addServingsToUser(Serving[] list, User user, Date date) {
-        DailySummary ds = CRONOMETER.getDailySummary();
+        DailySummary ds = Cronometer.getDailySummary();
         for (int i=0; i<list.length; i++) {
             ds.addServingToUser(new Serving(list[i]), user, date);
         }
     }
 
     public void doPaste() {
-        Transferable clipboardContent = CRONOMETER.getClipboard().getContents(this);
+        Transferable clipboardContent = Cronometer.getClipboard().getContents(this);
         if (clipboardContent != null) {
             if (clipboardContent.isDataFlavorSupported(ServingSelection.servingFlavor)) {
                 try {
@@ -305,7 +305,7 @@ public class ServingTable extends JPanel {
     }
 
     public void copySelectedServings() {
-        CRONOMETER.getClipboard().setContents (new ServingSelection(this), CRONOMETER.getInstance());
+        Cronometer.getClipboard().setContents (new ServingSelection(this), Cronometer.getInstance());
         TransferHandler.getCopyAction().actionPerformed(new ActionEvent(getTable(), 0, "Copy"));
     }
 
@@ -316,7 +316,7 @@ public class ServingTable extends JPanel {
             sel.toArray(servings);
             addServingsToUser(servings, user, date);
         } else {
-            CRONOMETER.okDialog("Please select at least one serving", "No servings selected");
+            Cronometer.okDialog("Please select at least one serving", "No servings selected");
         }
     }
 

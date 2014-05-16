@@ -8,7 +8,7 @@ import javax.xml.parsers.*;
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
 
-import ca.spaz.cron.CRONOMETER;
+import ca.spaz.cron.Cronometer;
 import ca.spaz.cron.user.UserManager;
 import ca.spaz.gui.ErrorReporter;
 import ca.spaz.util.*;
@@ -116,7 +116,7 @@ public abstract class History {
             } catch (IOException e) {
                 backupFile(getTempHistoryFile());
                 e.printStackTrace();
-                ErrorReporter.showError("An error occurred while trying to save.", e, CRONOMETER.getInstance());
+                ErrorReporter.showError("An error occurred while trying to save.", e, Cronometer.getInstance());
             }
             dirty = false;
         }
@@ -161,7 +161,7 @@ public abstract class History {
         } catch (Exception e) {
             backupFile(getHistoryFile());
             e.printStackTrace();
-            ErrorReporter.showError(e, CRONOMETER.getInstance());
+            ErrorReporter.showError(e, Cronometer.getInstance());
         }
         dirty = false;
     }
@@ -189,7 +189,7 @@ public abstract class History {
                     }
                 }
             } catch (Exception ex) {
-                ErrorReporter.showError(ex, CRONOMETER.getInstance());
+                ErrorReporter.showError(ex, Cronometer.getInstance());
             }
         }
     }

@@ -6,7 +6,7 @@ package ca.spaz.cron.datasource;
 import java.io.*;
 import java.util.*;
 
-import ca.spaz.cron.CRONOMETER;
+import ca.spaz.cron.Cronometer;
 import ca.spaz.cron.foods.Food;
 import ca.spaz.gui.ErrorReporter;
 import ca.spaz.util.Logger;
@@ -24,7 +24,7 @@ public abstract class JarXMLFoodDataSource implements FoodDataSource {
             Logger.debug("Loaded " + map.size() +" foods.");
         } catch (IOException e) {
             Logger.error("Error Initliazing DataSource", e);
-            ErrorReporter.showError("Error Initliazing DataSource", e, CRONOMETER.getInstance());
+            ErrorReporter.showError("Error Initliazing DataSource", e, Cronometer.getInstance());
         }
     }
 
@@ -74,7 +74,7 @@ public abstract class JarXMLFoodDataSource implements FoodDataSource {
                 food.setSourceUID(id);
             } catch (Exception e) {
                 Logger.error("Error loading: "+id, e);
-                ErrorReporter.showError("Error loading: "+id, e, CRONOMETER.getInstance());
+                ErrorReporter.showError("Error loading: "+id, e, Cronometer.getInstance());
                 food = null;
             }
         }

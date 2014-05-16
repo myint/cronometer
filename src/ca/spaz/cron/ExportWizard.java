@@ -43,7 +43,7 @@ public class ExportWizard extends JFrame {
 
     public ExportWizard() {
         super("Export to cronometer.com");
-        setIconImage(CRONOMETER.getWindowIcon());
+        setIconImage(Cronometer.getWindowIcon());
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
         text = new JTextPane();
@@ -304,7 +304,7 @@ public class ExportWizard extends JFrame {
         println("Importing " + UserManager.getUserDirectory(user));
 
         // wrap it all in a root tag for importing
-        sb.append(String.format("<import testing=\"%b\" timezone=\"%s\" version=\"%s\">", testing, TimeZone.getDefault().getID(), CRONOMETER.BUILD));
+        sb.append(String.format("<import testing=\"%b\" timezone=\"%s\" version=\"%s\">", testing, TimeZone.getDefault().getID(), Cronometer.BUILD));
 
         List<FoodProxy> foods = Datasources.getUserFoods().getAllFoods();
         Collections.sort(foods, new Comparator<FoodProxy>() {

@@ -12,7 +12,7 @@ import javax.xml.parsers.*;
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
 
-import ca.spaz.cron.CRONOMETER;
+import ca.spaz.cron.Cronometer;
 import ca.spaz.cron.foods.*;
 import ca.spaz.gui.ErrorReporter;
 import ca.spaz.util.Logger;
@@ -125,7 +125,7 @@ public class XMLFoodLoader {
             in.close();
         } catch (Exception e) {
             Logger.error("Error loading: " + file, e);
-            ErrorReporter.showError("Error loading: " + file, e, CRONOMETER.getInstance());
+            ErrorReporter.showError("Error loading: " + file, e, Cronometer.getInstance());
             f = null;
         }
         return f;

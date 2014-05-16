@@ -16,7 +16,7 @@ import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import ca.spaz.cron.CRONOMETER;
+import ca.spaz.cron.Cronometer;
 import ca.spaz.cron.exercise.*;
 import ca.spaz.cron.foods.*;
 import ca.spaz.cron.metrics.BiomarkerPanel;
@@ -84,7 +84,7 @@ public class DailySummary extends JPanel implements UserChangeListener {
             user.getFoodHistory().addServing(copy);
             notifyObservers();
         } else {
-            CRONOMETER.okDialog("No servings copied", "Warning");
+            Cronometer.okDialog("No servings copied", "Warning");
         }
     }
 
@@ -103,7 +103,7 @@ public class DailySummary extends JPanel implements UserChangeListener {
             user.getExerciseHistory().addExercise(copy);
             notifyObservers();
         } else {
-            CRONOMETER.okDialog("No servings copied", "Warning");
+            Cronometer.okDialog("No servings copied", "Warning");
         }
     }
 
@@ -271,7 +271,7 @@ public class DailySummary extends JPanel implements UserChangeListener {
                     setDate(new Date(curDate.getTime() + ONE_DAY), false);
                 }
             });
-            CRONOMETER.fixButton(nextButton);
+            Cronometer.fixButton(nextButton);
             nextButton.setFocusable(false);
             nextButton.setToolTipText("Next Day");
         }
@@ -286,7 +286,7 @@ public class DailySummary extends JPanel implements UserChangeListener {
                     setDate(new Date(curDate.getTime() - ONE_DAY), false);
                 }
             });
-            CRONOMETER.fixButton(prevButton);
+            Cronometer.fixButton(prevButton);
             prevButton.setToolTipText("Previous Day");
             prevButton.setFocusable(false);
         }
@@ -301,7 +301,7 @@ public class DailySummary extends JPanel implements UserChangeListener {
                     copyPreviousDay();
                 }
             });
-            CRONOMETER.fixButton(copyPrevDayButton);
+            Cronometer.fixButton(copyPrevDayButton);
             copyPrevDayButton.setToolTipText("Copy Previous Day");
             copyPrevDayButton.setFocusable(false);
         }
@@ -316,7 +316,7 @@ public class DailySummary extends JPanel implements UserChangeListener {
                     goToToday();
                 }
             });
-            CRONOMETER.fixButton(todayButton);
+            Cronometer.fixButton(todayButton);
             todayButton.setToolTipText("Go To Today");
             todayButton.setFocusable(false);
         }
@@ -352,7 +352,7 @@ public class DailySummary extends JPanel implements UserChangeListener {
                     chooseDate();
                 }
             });
-            CRONOMETER.fixButton(dateTitle);
+            Cronometer.fixButton(dateTitle);
             dateTitle.setFocusable(false);
         }
         return dateTitle;

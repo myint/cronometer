@@ -9,7 +9,7 @@ import java.util.List;
 
 import javax.swing.*;
 
-import ca.spaz.cron.CRONOMETER;
+import ca.spaz.cron.Cronometer;
 import ca.spaz.cron.datasource.FoodProxy;
 import ca.spaz.cron.user.UserManager;
 import ca.spaz.util.ImageFactory;
@@ -54,7 +54,7 @@ public class DeleteFoodAction extends AbstractAction {
                 fp.getFood().delete();
                 UserManager.getCurrentUser().getFoodHistory().deleteServings(servings);
                 // TODO: must also delete from recipes that refer to it
-                CRONOMETER.getInstance().refreshDisplays();
+                Cronometer.getInstance().refreshDisplays();
             }
         }
     }

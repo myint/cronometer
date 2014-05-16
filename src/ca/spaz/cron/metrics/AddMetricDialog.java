@@ -7,7 +7,7 @@ import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import ca.spaz.cron.CRONOMETER;
+import ca.spaz.cron.Cronometer;
 import ca.spaz.cron.user.UserManager;
 import ca.spaz.gui.IconFont;
 import ca.spaz.util.ImageFactory;
@@ -155,7 +155,7 @@ public class AddMetricDialog extends JDialog implements MetricSelectionListener 
     private JButton getEditButton() {
         if (null == editButton) {
             editButton = IconFont.createIconFontButton("\uf044", this);
-            CRONOMETER.fixButton(editButton);
+            Cronometer.fixButton(editButton);
             editButton.setToolTipText("Edit Biomarker");
             editButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
@@ -174,7 +174,7 @@ public class AddMetricDialog extends JDialog implements MetricSelectionListener 
         if (null == deleteButton) {
             deleteButton = IconFont.createIconFontButton("\uf014", this);
             deleteButton.setToolTipText("Delete Biomarker");
-            CRONOMETER.fixButton(deleteButton);
+            Cronometer.fixButton(deleteButton);
 
         }
         return deleteButton;
@@ -184,7 +184,7 @@ public class AddMetricDialog extends JDialog implements MetricSelectionListener 
         if (null == addButton) {
             addButton = IconFont.createIconFontButton("\uf067", this);
             addButton.setToolTipText("Create New Biomarker");
-            CRONOMETER.fixButton(addButton);
+            Cronometer.fixButton(addButton);
             addButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     doAddNewBiomarker();

@@ -12,7 +12,7 @@ import javax.xml.parsers.*;
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
 
-import ca.spaz.cron.CRONOMETER;
+import ca.spaz.cron.Cronometer;
 import ca.spaz.cron.targets.DRI;
 import ca.spaz.cron.user.User;
 import ca.spaz.gui.ErrorReporter;
@@ -52,7 +52,7 @@ public class NutrientInfo {
         try {
             load(NutrientInfo.class.getResourceAsStream("/nutrients.xml"));
         } catch (Exception e) {
-            ErrorReporter.showError("Error Loading nutrients.xml", e, CRONOMETER.getInstance());
+            ErrorReporter.showError("Error Loading nutrients.xml", e, Cronometer.getInstance());
         }
     }
 

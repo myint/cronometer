@@ -8,7 +8,7 @@ import java.awt.BorderLayout;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
-import ca.spaz.cron.CRONOMETER;
+import ca.spaz.cron.Cronometer;
 import ca.spaz.cron.ui.DailySummary;
 
 public class ExercisePanel extends JPanel {
@@ -27,7 +27,7 @@ public class ExercisePanel extends JPanel {
 
             exerciseTable.addExerciseEditorListener(new ExerciseEditorListener() {
                 public void exerciseChosen(Exercise e) {
-                    DailySummary ds = CRONOMETER.getDailySummary();
+                    DailySummary ds = Cronometer.getDailySummary();
                     if (ds.isOkToAddServings(ds.getDate(), false)) {
                         ds.addExercise(e);
                     }

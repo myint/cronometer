@@ -16,7 +16,7 @@ import java.util.*;
 
 import javax.swing.JComponent;
 
-import ca.spaz.cron.CRONOMETER;
+import ca.spaz.cron.Cronometer;
 import ca.spaz.cron.exercise.ExerciseHistory;
 import ca.spaz.cron.foods.FoodHistory;
 import ca.spaz.cron.foods.NutrientInfo;
@@ -26,9 +26,9 @@ import ca.spaz.cron.targets.*;
 import ca.spaz.util.Settings;
 
 /**
- * A CRONOMETER-specific, property-based <code>User</code> implementation.
+ * A Cronometer-specific, property-based <code>User</code> implementation.
  * This contains all the necessary code for data relating to a
- * single user in CRONOMETER.
+ * single user in Cronometer.
  *
  * @author Chris Rose
  * @author Simon Werner
@@ -335,7 +335,7 @@ public class User {
         String newCleanUsername = cleanUsername(newUsername);
 
         if ( !newUsername.equals(newCleanUsername)) {
-            CRONOMETER.okDialog("Your username contains invalid characters, " +
+            Cronometer.okDialog("Your username contains invalid characters, " +
                                 "these have been removed.", "User name updated");
         }
 
@@ -353,7 +353,7 @@ public class User {
                 username = newCleanUsername;
             } else {
                 // An error occurred while renaming the directory, inform the user
-                CRONOMETER.okDialog("An error occurred while changing your username. " +
+                Cronometer.okDialog("An error occurred while changing your username. " +
                                     "Your orignal username will be used.", "User name updated");
             }
         }

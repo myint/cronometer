@@ -10,7 +10,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
 
-import ca.spaz.cron.CRONOMETER;
+import ca.spaz.cron.Cronometer;
 import ca.spaz.cron.foods.ServingTable;
 import ca.spaz.cron.user.UserDatePickerDialog;
 import ca.spaz.cron.user.UserManager;
@@ -36,7 +36,7 @@ public class CopyServingsToUserAction extends AbstractAction {
         Logger.debug("actionPerformed");
         assert (ServingTable.getServingTable() != null);
         UserDatePickerDialog userDP = new UserDatePickerDialog();
-        WrapperDialog.showDialog(CRONOMETER.getInstance(), userDP, true);
+        WrapperDialog.showDialog(Cronometer.getInstance(), userDP, true);
 
         if ( !userDP.cancelPressed()) {
             Logger.debug("Date selected is: " + userDP.getDate().toString());

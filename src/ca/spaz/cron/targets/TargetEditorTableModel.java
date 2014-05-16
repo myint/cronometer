@@ -9,7 +9,7 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
-import ca.spaz.cron.CRONOMETER;
+import ca.spaz.cron.Cronometer;
 import ca.spaz.cron.foods.NutrientInfo;
 import ca.spaz.cron.user.User;
 import ca.spaz.gui.PrettyTable;
@@ -132,7 +132,7 @@ public class TargetEditorTableModel extends PrettyTableModel {
      */
     private boolean promptForSparseData(NutrientInfo ni) {
         String data = (ni.getUSDA() == null) ? " does not have any data" : " has limited data available";
-        int rc = JOptionPane.showConfirmDialog(CRONOMETER.mainFrame,
+        int rc = JOptionPane.showConfirmDialog(Cronometer.mainFrame,
                                                ni.getName() + data + " in the USDA food database.\n" +
                                                "Are you sure you want to track it?",
                                                "Track " + ni.getName()+"?",

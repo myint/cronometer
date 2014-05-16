@@ -8,7 +8,7 @@ import java.util.*;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
-import ca.spaz.cron.CRONOMETER;
+import ca.spaz.cron.Cronometer;
 import ca.spaz.cron.foods.Food;
 import ca.spaz.gui.ErrorReporter;
 import ca.spaz.util.Logger;
@@ -28,7 +28,7 @@ public abstract class ZipXMLFoodDataSource implements FoodDataSource {
             Logger.debug("Loaded " + map.size() +" foods.");
         } catch (IOException e) {
             Logger.error("Error Initliazing DataSource", e);
-            ErrorReporter.showError("Error Initliazing DataSource", e, CRONOMETER.getInstance());
+            ErrorReporter.showError("Error Initliazing DataSource", e, Cronometer.getInstance());
             zip = null;
         }
     }
@@ -85,7 +85,7 @@ public abstract class ZipXMLFoodDataSource implements FoodDataSource {
             zIn.close();
         } catch (Exception e) {
             Logger.error("Error loading: "+entry, e);
-            ErrorReporter.showError("Error loading: "+entry, e, CRONOMETER.getInstance());
+            ErrorReporter.showError("Error loading: "+entry, e, Cronometer.getInstance());
             f = null;
         }
         return f;

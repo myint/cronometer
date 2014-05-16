@@ -10,7 +10,7 @@ import java.util.List;
 import javax.swing.*;
 import javax.swing.event.*;
 
-import ca.spaz.cron.CRONOMETER;
+import ca.spaz.cron.Cronometer;
 import ca.spaz.cron.foods.ServingSelection;
 import ca.spaz.gui.IconFont;
 import ca.spaz.gui.PrettyTable;
@@ -92,7 +92,7 @@ public abstract class RecordTable extends JPanel {
                     deleteSelected();
                 }
             });
-            CRONOMETER.fixButton(delBtn);
+            Cronometer.fixButton(delBtn);
         }
         return delBtn;
     }
@@ -106,7 +106,7 @@ public abstract class RecordTable extends JPanel {
                     doAddNewEntry();
                 }
             });
-            CRONOMETER.fixButton(addBtn);
+            Cronometer.fixButton(addBtn);
         }
         return addBtn;
     }
@@ -212,7 +212,7 @@ public abstract class RecordTable extends JPanel {
     }
 
     public void doPaste() {
-        Transferable clipboardContent = CRONOMETER.getClipboard().getContents(this);
+        Transferable clipboardContent = Cronometer.getClipboard().getContents(this);
         if (clipboardContent != null) {
             if (clipboardContent.isDataFlavorSupported(ServingSelection.servingFlavor)) {
                 try {

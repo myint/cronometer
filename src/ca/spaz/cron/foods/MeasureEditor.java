@@ -12,7 +12,7 @@ import java.util.List;
 import javax.swing.*;
 import javax.swing.event.*;
 
-import ca.spaz.cron.CRONOMETER;
+import ca.spaz.cron.Cronometer;
 import ca.spaz.gui.IconFont;
 import ca.spaz.gui.PrettyTable;
 import ca.spaz.gui.PrettyTableModel;
@@ -136,7 +136,7 @@ public class MeasureEditor extends JPanel {
                     addMeasure();
                 }
             });
-            CRONOMETER.fixButton(addBtn);
+            Cronometer.fixButton(addBtn);
         }
         return addBtn;
     }
@@ -150,7 +150,7 @@ public class MeasureEditor extends JPanel {
                     deleteSelectedWeight();
                 }
             });
-            CRONOMETER.fixButton(delBtn);
+            Cronometer.fixButton(delBtn);
         }
         return delBtn;
     }

@@ -13,7 +13,7 @@ import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import ca.spaz.cron.CRONOMETER;
+import ca.spaz.cron.Cronometer;
 import ca.spaz.cron.foods.NutrientInfo;
 import ca.spaz.cron.user.*;
 import ca.spaz.gui.WrappedPanel;
@@ -125,7 +125,7 @@ public class TargetEditor extends WrappedPanel {
     }
 
     public static void editTargets() {
-        WrapperDialog.showDialog(CRONOMETER.getInstance(), new TargetEditor(UserManager.getCurrentUser()), true);
+        WrapperDialog.showDialog(Cronometer.getInstance(), new TargetEditor(UserManager.getCurrentUser()), true);
     }
 
     private void setDefaultTargets(TargetModel model) {

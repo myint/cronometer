@@ -8,7 +8,7 @@ import java.awt.event.*;
 
 import javax.swing.*;
 
-import ca.spaz.cron.CRONOMETER;
+import ca.spaz.cron.Cronometer;
 import ca.spaz.cron.actions.DeleteFoodAction;
 import ca.spaz.cron.actions.ExportFoodAction;
 import ca.spaz.cron.datasource.*;
@@ -163,7 +163,7 @@ public class SearchDialog extends JDialog implements ServingEditorListener, Food
     private JButton getEditButton() {
         if (null == editButton) {
             editButton = IconFont.createIconFontButton("\uf044", this);
-            CRONOMETER.fixButton(editButton);
+            Cronometer.fixButton(editButton);
             editButton.setToolTipText("Edit Food");
             editButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
@@ -184,7 +184,7 @@ public class SearchDialog extends JDialog implements ServingEditorListener, Food
         if (null == deleteButton) {
             deleteButton = IconFont.createIconFontButton("\uf014", this);
             deleteButton.setToolTipText("Delete Food");
-            CRONOMETER.fixButton(deleteButton);
+            Cronometer.fixButton(deleteButton);
             deleteButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     assert (serving != null);
@@ -200,10 +200,10 @@ public class SearchDialog extends JDialog implements ServingEditorListener, Food
         if (null == importButton) {
             importButton = IconFont.createIconFontButton("\uf019", this);
             importButton.setToolTipText("Import Food");
-            CRONOMETER.fixButton(importButton);
+            Cronometer.fixButton(importButton);
             importButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    CRONOMETER.getInstance().doImportFood();
+                    Cronometer.getInstance().doImportFood();
                 }
             });
         }
@@ -214,7 +214,7 @@ public class SearchDialog extends JDialog implements ServingEditorListener, Food
         if (null == exportButton) {
             exportButton = IconFont.createIconFontButton("\uf093", this);
             exportButton.setToolTipText("Export Food");
-            CRONOMETER.fixButton(exportButton);
+            Cronometer.fixButton(exportButton);
             exportButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     doExportFood();
@@ -234,7 +234,7 @@ public class SearchDialog extends JDialog implements ServingEditorListener, Food
             addButton = IconFont.createIconFontButton("\uf067", this);
             addButton.setToolTipText("Create New Food");
             addButton.requestFocusInWindow();
-            CRONOMETER.fixButton(addButton);
+            Cronometer.fixButton(addButton);
             addButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     doAddNewFood();

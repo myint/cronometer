@@ -16,7 +16,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import se.datadosen.component.RiverLayout;
-import ca.spaz.cron.CRONOMETER;
+import ca.spaz.cron.Cronometer;
 import ca.spaz.cron.datasource.Datasources;
 import ca.spaz.util.ToolBox;
 
@@ -28,7 +28,7 @@ import ca.spaz.util.ToolBox;
  */
 public class FoodEditor extends JPanel {
 
-    private CRONOMETER cwapp;
+    private Cronometer cwapp;
 
     private JDialog dialog;
 
@@ -52,7 +52,7 @@ public class FoodEditor extends JPanel {
     private JPanel commentsPanel;
     private JTextArea commentEditor;
 
-    public FoodEditor(CRONOMETER app, Food f) {
+    public FoodEditor(Cronometer app, Food f) {
         this.cwapp = app;
         setFood(f);
         initialize();
@@ -182,7 +182,7 @@ public class FoodEditor extends JPanel {
             updateOriginal(); // commit changes
         }
         getDialog().dispose();
-        CRONOMETER.getInstance().refreshDisplays();
+        Cronometer.getInstance().refreshDisplays();
     }
 
     private JPanel getButtonPanel() {
@@ -381,10 +381,10 @@ public class FoodEditor extends JPanel {
 
     public static void editFood(Food f) {
         if (f instanceof Recipe) {
-            RecipeEditor editor = new RecipeEditor(CRONOMETER.getInstance(), (Recipe)f);
+            RecipeEditor editor = new RecipeEditor(Cronometer.getInstance(), (Recipe)f);
             editor.display();
         } else {
-            FoodEditor editor = new FoodEditor(CRONOMETER.getInstance(), f);
+            FoodEditor editor = new FoodEditor(Cronometer.getInstance(), f);
             editor.display();
         }
     }
@@ -393,11 +393,11 @@ public class FoodEditor extends JPanel {
         Food f = s.getFood();
         assert (f != null);
         if (f instanceof Recipe) {
-            RecipeEditor editor = new RecipeEditor(CRONOMETER.getInstance(), (Recipe)f);
+            RecipeEditor editor = new RecipeEditor(Cronometer.getInstance(), (Recipe)f);
             editor.display();
             editor.setMeasure(s.getMeasure(), s.getAmount());
         } else {
-            FoodEditor editor = new FoodEditor(CRONOMETER.getInstance(), f);
+            FoodEditor editor = new FoodEditor(Cronometer.getInstance(), f);
             editor.setMeasure(s.getMeasure(), s.getAmount());
             editor.display();
         }

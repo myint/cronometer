@@ -13,7 +13,7 @@ import java.util.List;
 import javax.swing.*;
 import javax.swing.table.*;
 
-import ca.spaz.cron.CRONOMETER;
+import ca.spaz.cron.Cronometer;
 import ca.spaz.cron.foods.NutrientInfo;
 import ca.spaz.cron.foods.Serving;
 import ca.spaz.cron.targets.NutrientInfoPanel;
@@ -45,7 +45,7 @@ public class NutrientTable extends PrettyTable implements UserChangeListener {
                 if (getSelectedRow() != -1) {
                     if (e.getClickCount() == 2) {
                         NutrientInfo ni = model.getNutrientInfo(getSelectedRow());
-                        WrapperDialog.showDialog(CRONOMETER.getInstance(), new NutrientInfoPanel(ni));
+                        WrapperDialog.showDialog(Cronometer.getInstance(), new NutrientInfoPanel(ni));
                         model.fireTableDataChanged();
                     }
                 }

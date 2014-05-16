@@ -8,7 +8,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.w3c.dom.*;
 
-import ca.spaz.cron.CRONOMETER;
+import ca.spaz.cron.Cronometer;
 import ca.spaz.cron.user.UserManager;
 import ca.spaz.gui.ErrorReporter;
 import ca.spaz.util.Logger;
@@ -96,7 +96,7 @@ public class BiomarkerDefinitions {
                 ps.close();
             } catch (IOException e) {
                 e.printStackTrace();
-                ErrorReporter.showError(e, CRONOMETER.getInstance());
+                ErrorReporter.showError(e, Cronometer.getInstance());
             }
             dirty = false;
         }
@@ -124,7 +124,7 @@ public class BiomarkerDefinitions {
             createFile();
         } catch (Exception e) {
             e.printStackTrace();
-            ErrorReporter.showError(e, CRONOMETER.getInstance());
+            ErrorReporter.showError(e, Cronometer.getInstance());
         }
     }
 
@@ -159,7 +159,7 @@ public class BiomarkerDefinitions {
             e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
-            ErrorReporter.showError(e, CRONOMETER.getInstance());
+            ErrorReporter.showError(e, Cronometer.getInstance());
         }
         dirty = false;
     }

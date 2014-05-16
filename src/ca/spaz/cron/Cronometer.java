@@ -37,7 +37,7 @@ import com.apple.mrj.MRJQuitHandler;
  *
  * @author davidson
  */
-public class CRONOMETER extends JFrame implements MRJQuitHandler, MRJAboutHandler, ClipboardOwner {
+public class Cronometer extends JFrame implements MRJQuitHandler, MRJAboutHandler, ClipboardOwner {
 
     public static final String TITLE = "Cronometer";
     public static final int BUILD = 19;
@@ -51,11 +51,11 @@ public class CRONOMETER extends JFrame implements MRJQuitHandler, MRJAboutHandle
     private HelpBrowser help;
     private JPanel mainPanel;
 
-    private static CRONOMETER instance;
+    private static Cronometer instance;
 
-    public static CRONOMETER getInstance() {
+    public static Cronometer getInstance() {
         if (null == instance) {
-            instance = new CRONOMETER();
+            instance = new Cronometer();
         }
         return instance;
     }
@@ -63,7 +63,7 @@ public class CRONOMETER extends JFrame implements MRJQuitHandler, MRJAboutHandle
     /**
      * Constructor
      */
-    public CRONOMETER() {
+    public Cronometer() {
         setupForMacOSX();
     }
 
@@ -89,7 +89,7 @@ public class CRONOMETER extends JFrame implements MRJQuitHandler, MRJAboutHandle
             pack();
             Point p = ToolBox.centerFrame(this);
             if (!UserManager.getUserManager().firstCronRun()) {
-                UserManager.getUserManager().restoreWindow(CRONOMETER.getInstance(), p);
+                UserManager.getUserManager().restoreWindow(Cronometer.getInstance(), p);
                 getDailySummary().getDietPanel().setDividerLocation(UserManager.getUserManager().getDietDivider(300));
             }
             setVisible(true);
@@ -109,7 +109,7 @@ public class CRONOMETER extends JFrame implements MRJQuitHandler, MRJAboutHandle
                     upgradeToB7();
                 }
             }
-            UserManager.getUserManager().setLastBuild(CRONOMETER.BUILD);
+            UserManager.getUserManager().setLastBuild(Cronometer.BUILD);
             makeAutoSaveTimer();
             addWindowListener(new WindowAdapter() {
                 public void windowClosing(WindowEvent e) {
@@ -191,7 +191,7 @@ public class CRONOMETER extends JFrame implements MRJQuitHandler, MRJAboutHandle
             try {
                 URL.setURLStreamHandlerFactory(new JarLoader());
                 help = new HelpBrowser("Cronometer Help", new URL("class://DocAnchor/"));
-                help.setIconImage(CRONOMETER.getWindowIcon());
+                help.setIconImage(Cronometer.getWindowIcon());
                 ToolBox.centerFrame(help);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -202,7 +202,7 @@ public class CRONOMETER extends JFrame implements MRJQuitHandler, MRJAboutHandle
     }
 
     public void doReportBug() {
-        ToolBox.launchURL(CRONOMETER.getInstance(),
+        ToolBox.launchURL(Cronometer.getInstance(),
                           "https://github.com/myint/cronometer/issues");
     }
 
@@ -413,7 +413,7 @@ public class CRONOMETER extends JFrame implements MRJQuitHandler, MRJAboutHandle
     public void refreshDisplays() {
         repaint();
         // TODO: replace this with a direct user servings listener model
-        CRONOMETER.getInstance().getDailySummary().notifyObservers();
+        Cronometer.getInstance().getDailySummary().notifyObservers();
     }
 
     /**
@@ -478,7 +478,7 @@ public class CRONOMETER extends JFrame implements MRJQuitHandler, MRJAboutHandle
             UserManager.setSubdirectory(args[0]);
         }
 
-        final CRONOMETER cron = CRONOMETER.getInstance();
+        final Cronometer cron = Cronometer.getInstance();
         Datasources.initialize(null);
         cron.initGUI();
     }

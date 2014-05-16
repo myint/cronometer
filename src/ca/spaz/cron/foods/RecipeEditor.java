@@ -9,7 +9,7 @@ import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import ca.spaz.cron.CRONOMETER;
+import ca.spaz.cron.Cronometer;
 
 public class RecipeEditor extends FoodEditor {
 
@@ -17,7 +17,7 @@ public class RecipeEditor extends FoodEditor {
     private JLabel gramsLabel;
     private JPanel servingPanel;
 
-    public RecipeEditor(CRONOMETER app, Recipe r) {
+    public RecipeEditor(Cronometer app, Recipe r) {
         super(app, r);
     }
 

@@ -10,7 +10,7 @@ import javax.swing.*;
 
 import org.jfree.ui.RefineryUtilities;
 
-import ca.spaz.cron.CRONOMETER;
+import ca.spaz.cron.Cronometer;
 import ca.spaz.cron.user.UserManager;
 import ca.spaz.gui.DoubleField;
 import ca.spaz.gui.ErrorReporter;
@@ -98,7 +98,7 @@ public class MetricEditorOld extends JPanel {
             MetricChart chart = new MetricChart(metricType);
             chart.setBiomarker(biomarker);
             chart.pack();
-            chart.setIconImage(CRONOMETER.getWindowIcon());
+            chart.setIconImage(Cronometer.getWindowIcon());
             RefineryUtilities.centerFrameOnScreen(chart);
             chart.setVisible(true);
         } catch (Exception e) {

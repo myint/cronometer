@@ -11,7 +11,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumnModel;
 
-import ca.spaz.cron.CRONOMETER;
+import ca.spaz.cron.Cronometer;
 import ca.spaz.cron.records.RecordTable;
 import ca.spaz.cron.user.UserManager;
 
@@ -29,7 +29,7 @@ public class MetricTable extends RecordTable {
 
         Metric metric = md.getSelectedMetric();
         if (metric != null) {
-            metric.setDate(CRONOMETER.getInstance().getDailySummary().getDate());
+            metric.setDate(Cronometer.getInstance().getDailySummary().getDate());
             addMetric(metric);
             fireUserEntryChosen(metric);
         }

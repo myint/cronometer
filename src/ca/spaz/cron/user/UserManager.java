@@ -20,15 +20,15 @@ import java.util.List;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 
-import ca.spaz.cron.CRONOMETER;
+import ca.spaz.cron.Cronometer;
 import ca.spaz.gui.ErrorReporter;
 import ca.spaz.gui.WrapperDialog;
 import ca.spaz.util.*;
 
 /**
- * A CRONOMETER-specific, property-based <code>User</code> implementation. This
+ * A Cronometer-specific, property-based <code>User</code> implementation. This
  * class stores all the global settings for all users and manages the list of
- * individual <code>User</code>'s in CRONOMETER.
+ * individual <code>User</code>'s in Cronometer.
  *
  * @author Simon Werner
  */
@@ -97,7 +97,7 @@ public class UserManager {
      * Open the dialog to manage the users.
      */
     public static void startUserManagerDialog() {
-        WrapperDialog.showDialog(CRONOMETER.getInstance(), new UserManagerDialog(), true);
+        WrapperDialog.showDialog(Cronometer.getInstance(), new UserManagerDialog(), true);
     }
 
     public void saveUserProperties() throws IOException {
@@ -354,7 +354,7 @@ public class UserManager {
                 }
             } catch (IOException e) {
                 Logger.error("getSettingsFile()", e);
-                ErrorReporter.showError(e, CRONOMETER.getInstance());
+                ErrorReporter.showError(e, Cronometer.getInstance());
             }
         } else {
             // Nothing.  All is well.
@@ -471,7 +471,7 @@ public class UserManager {
             UserChangeListener listener = (UserChangeListener) iter.next();
             listener.userChanged(this);
         }
-        CRONOMETER.getInstance().setTitle(CRONOMETER.getFullTitleWithUser());
+        Cronometer.getInstance().setTitle(Cronometer.getFullTitleWithUser());
     }
 
     public final void removeUserChangeListener(UserChangeListener l) {

@@ -89,7 +89,7 @@ public class Serving implements Record {
             System.err.println("Failed to load food ["+source+":"+e.getAttribute("food")+"]");
             /*ErrorReporter.showError(
                   "Failed to load food ["+source+":"+e.getAttribute("food")+"]",
-                  CRONOMETER.getInstance());*/
+                  Cronometer.getInstance());*/
             return;
         }
 

@@ -11,7 +11,7 @@ import javax.swing.border.Border;
 import javax.swing.event.*;
 
 import se.datadosen.component.RiverLayout;
-import ca.spaz.cron.CRONOMETER;
+import ca.spaz.cron.Cronometer;
 import ca.spaz.gui.*;
 import ca.spaz.util.ImageFactory;
 import ca.spaz.util.Logger;
@@ -204,7 +204,7 @@ public class UserManagerDialog extends WrappedPanel implements ListSelectionList
                     addUser();
                 }
             });
-            CRONOMETER.fixButton(addBtn);
+            Cronometer.fixButton(addBtn);
         }
         return addBtn;
     }
@@ -214,7 +214,7 @@ public class UserManagerDialog extends WrappedPanel implements ListSelectionList
             delBtn = IconFont.createIconFontButton("\uf014", this);
             delBtn.setToolTipText("Delete the selected user.");
             delBtn.addActionListener(new DeleteButtonListener());
-            CRONOMETER.fixButton(delBtn);
+            Cronometer.fixButton(delBtn);
         }
         return delBtn;
     }

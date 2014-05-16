@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-import ca.spaz.cron.CRONOMETER;
+import ca.spaz.cron.Cronometer;
 import ca.spaz.gui.*;
 import ca.spaz.util.ImageFactory;
 import ca.spaz.util.ToolBox;
@@ -75,15 +75,15 @@ public class AboutScreen extends WrappedPanel {
     }
 
     public String getTitle() {
-        return "About " + CRONOMETER.getFullTitle();
+        return "About " + Cronometer.getFullTitle();
     }
 
     public String getSubtitle() {
-        return "About " + CRONOMETER.getFullTitle();
+        return "About " + Cronometer.getFullTitle();
     }
 
     public String getInfoString() {
-        return CRONOMETER.getFullTitle();
+        return Cronometer.getFullTitle();
     }
 
     public ImageIcon getIcon() {

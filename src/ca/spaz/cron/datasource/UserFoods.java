@@ -7,7 +7,7 @@ import java.awt.Color;
 import java.io.*;
 import java.util.*;
 
-import ca.spaz.cron.CRONOMETER;
+import ca.spaz.cron.Cronometer;
 import ca.spaz.cron.foods.Food;
 import ca.spaz.gui.ErrorReporter;
 import ca.spaz.util.Logger;
@@ -36,7 +36,7 @@ public class UserFoods implements FoodDataSource {
         } catch (FileNotFoundException e) {
             // normal on first run
         } catch (IOException e) {
-            ErrorReporter.showError(e, CRONOMETER.getInstance());
+            ErrorReporter.showError(e, Cronometer.getInstance());
             e.printStackTrace();
         }
     }
@@ -82,7 +82,7 @@ public class UserFoods implements FoodDataSource {
             ps.close();
         } catch (Exception ex) {
             Logger.debug(ex);
-            ErrorReporter.showError(ex, CRONOMETER.getInstance());
+            ErrorReporter.showError(ex, Cronometer.getInstance());
         }
     }
 
@@ -150,7 +150,7 @@ public class UserFoods implements FoodDataSource {
             ps.close();
         } catch (IOException e) {
             Logger.error("Error writing food " + file, e);
-            ErrorReporter.showError("Error writing food " + file, e, CRONOMETER.getInstance());
+            ErrorReporter.showError("Error writing food " + file, e, Cronometer.getInstance());
         }
         FoodProxy fp = getFoodProxy(f.getSourceUID());
         assert (fp != null);
