@@ -26,6 +26,7 @@ import ca.spaz.cron.summary.NutritionSummaryPanel;
 import ca.spaz.cron.user.*;
 import ca.spaz.gui.DateChooser;
 import ca.spaz.gui.ErrorReporter;
+import ca.spaz.gui.IconFont;
 import ca.spaz.gui.TranslucentToolBar;
 import ca.spaz.util.ImageFactory;
 import ca.spaz.util.ToolBox;
@@ -74,32 +75,6 @@ public class DailySummary extends JPanel implements UserChangeListener {
         setDate(curDate, false);
         UserManager.getUserManager().addUserChangeListener(this);
         notifyObservers();
-    }
-
-    private Font iconFont;
-
-    private Font getIconFont() {
-        if (iconFont == null)
-        {
-            try {
-                InputStream in = this.getClass().getResourceAsStream(
-                    "/fontawesome.tff");
-
-                Font base = Font.createFont(Font.TRUETYPE_FONT, in);
-                iconFont = base.deriveFont(Font.PLAIN, 16);
-            } catch (java.lang.Exception exception) {
-                ErrorReporter.showError(exception, this);
-                iconFont = new Font("Application", Font.PLAIN, 16);
-            }
-        }
-
-        return iconFont;
-    }
-
-    private JButton createIconFontButton(String code) {
-        JButton button = new JButton(code);
-        button.setFont(getIconFont());
-        return button;
     }
 
     public void addServingToUser(Serving c, User user, Date date) {
@@ -290,7 +265,7 @@ public class DailySummary extends JPanel implements UserChangeListener {
 
     private JButton getNextButton() {
         if (null == nextButton) {
-            nextButton = createIconFontButton("\uf061");
+            nextButton = IconFont.createIconFontButton("\uf061", this);
             nextButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     setDate(new Date(curDate.getTime() + ONE_DAY), false);
@@ -305,7 +280,7 @@ public class DailySummary extends JPanel implements UserChangeListener {
 
     private JButton getPreviousButton() {
         if (null == prevButton) {
-            prevButton = createIconFontButton("\uf060");
+            prevButton = IconFont.createIconFontButton("\uf060", this);
             prevButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     setDate(new Date(curDate.getTime() - ONE_DAY), false);
@@ -320,7 +295,7 @@ public class DailySummary extends JPanel implements UserChangeListener {
 
     private JButton getCopyPreviousDayButton() {
         if (null == copyPrevDayButton) {
-            copyPrevDayButton = createIconFontButton("\uf0c5");
+            copyPrevDayButton = IconFont.createIconFontButton("\uf0c5", this);
             copyPrevDayButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     copyPreviousDay();
@@ -335,7 +310,7 @@ public class DailySummary extends JPanel implements UserChangeListener {
 
     private JButton getTodayButton() {
         if (null == todayButton) {
-            todayButton = createIconFontButton("\uf063");
+            todayButton = IconFont.createIconFontButton("\uf063", this);
             todayButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     goToToday();
