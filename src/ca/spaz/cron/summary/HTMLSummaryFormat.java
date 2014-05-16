@@ -49,12 +49,12 @@ public class HTMLSummaryFormat extends SummaryFormat {
         sb.append("<tr><td colspan=\"4\"><b><u>");
         sb.append(category);
         double tcp = getTargetCompletion(servings, nutrients, days, false);
-        if (!Double.isNaN(tcp)) {
+        if (Double.isNaN(tcp)) {
+            return "";
+        } else {
             sb.append(" (");
             sb.append(nf.format(tcp));
             sb.append(")");
-        } else {
-            return "";
         }
         sb.append("</u></b>");
         sb.append("</td></tr>\n");

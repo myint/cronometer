@@ -462,10 +462,10 @@ public class CRONOMETER extends JFrame implements MRJQuitHandler, MRJAboutHandle
 
     public static void main(String[] args) {
         try {
-            if (!ToolBox.isMacOSX()) {
-                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-            } else {
+            if (ToolBox.isMacOSX()) {
                 System.setProperty("apple.laf.useScreenMenuBar", "true");
+            } else {
+                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
             }
         } catch (Exception e) {
             Logger.error("Error: setLookAndFeel() failed", e);

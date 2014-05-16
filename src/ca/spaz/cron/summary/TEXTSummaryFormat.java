@@ -48,12 +48,12 @@ public class TEXTSummaryFormat extends SummaryFormat {
         List nutrients = NutrientInfo.getCategory(category);
 
         double tcp = getTargetCompletion(servings, nutrients, days, false);
-        if (!Double.isNaN(tcp)) {
+        if (Double.isNaN(tcp)) {
+            return "";
+        } else {
             sb.append(" (");
             sb.append(nf.format(tcp));
             sb.append(")");
-        } else {
-            return "";
         }
         sb.append('\n');
         sb.append(StringUtil.charRun('=', 42));

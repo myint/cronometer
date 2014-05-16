@@ -200,10 +200,10 @@ public class MeasureEditor extends JPanel {
                     }
                     ListSelectionModel lsm = (ListSelectionModel) e
                                              .getSource();
-                    if (!lsm.isSelectionEmpty()) {
-                        getDeleteButton().setEnabled(true);
-                    } else {
+                    if (lsm.isSelectionEmpty()) {
                         getDeleteButton().setEnabled(false);
+                    } else {
+                        getDeleteButton().setEnabled(true);
                     }
                 }
             });

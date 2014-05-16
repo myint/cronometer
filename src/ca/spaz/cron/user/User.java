@@ -317,10 +317,10 @@ public class User {
         int i = 0;
         s = s.trim();
         while (i < s.length()) {
-            if (!isValidChar(s.charAt(i))) {
-                s = removeCharAt(s, i);
-            } else {
+            if (isValidChar(s.charAt(i))) {
                 i++;
+            } else {
+                s = removeCharAt(s, i);
             }
         }
         return s;

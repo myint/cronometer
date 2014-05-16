@@ -433,13 +433,13 @@ public class DailySummary extends JPanel implements UserChangeListener {
      * Currently just checks if the date has changed, and updates the state of the today-button
      */
     public void refreshTime() {
-        if (!ToolBox.isSameDay(curDate, new Date(System.currentTimeMillis()))) {
+        if (ToolBox.isSameDay(curDate, new Date(System.currentTimeMillis()))) {
+            getTodayButton().setEnabled(false);
+        } else {
             if (asked && getTodayButton().isEnabled()) {
                 asked = false;
             }
             getTodayButton().setEnabled(true);
-        } else {
-            getTodayButton().setEnabled(false);
         }
     }
 }

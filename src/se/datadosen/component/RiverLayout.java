@@ -400,13 +400,7 @@ public class RiverLayout
                 if (hasConstraint(m, TAB_STOP)) {
                     x = ruler.getTab(tabIndex++);
                 }
-                if (!isFirstInRow(m)) {
-                    if (i > 0 && !hasConstraint(m, TAB_STOP)) {
-                        x += hgap;
-                    }
-                    x += d.width;
-                    rowh = Math.max(rowh, d.height);
-                } else {
+                if (isFirstInRow(m)) {
                     if (toVfill != null && moveDownStart == 0) {
                         moveDownStart = i;
                     }
@@ -426,6 +420,12 @@ public class RiverLayout
                     rowh = d.height;
                     start = i;
                     toHfill = null;
+                } else {
+                    if (i > 0 && !hasConstraint(m, TAB_STOP)) {
+                        x += hgap;
+                    }
+                    x += d.width;
+                    rowh = Math.max(rowh, d.height);
                 }
                 if (hasHfill(m)) {
                     toHfill = m;
