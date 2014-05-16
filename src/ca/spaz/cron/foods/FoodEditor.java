@@ -7,6 +7,7 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -87,6 +88,16 @@ public class FoodEditor extends JPanel {
             dialog.pack();
             dialog.setModal(true);
             dialog.setLocationRelativeTo(cwapp);
+
+            // Add escape listener to dismiss window.
+            dialog.getRootPane().registerKeyboardAction(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        doCancel();
+                    }
+                },
+                KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0),
+                JComponent.WHEN_IN_FOCUSED_WINDOW);
         }
         return dialog;
     }
