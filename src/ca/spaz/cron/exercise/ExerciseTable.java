@@ -3,8 +3,6 @@ package ca.spaz.cron.exercise;
 import java.awt.*;
 import java.awt.datatransfer.Transferable;
 import java.awt.event.*;
-import java.awt.print.PrinterException;
-import java.text.MessageFormat;
 import java.util.*;
 import java.util.List;
 
@@ -22,7 +20,7 @@ import ca.spaz.cron.user.User;
 import ca.spaz.cron.user.UserManager;
 import ca.spaz.gui.IconFont;
 import ca.spaz.gui.PrettyTable;
-import ca.spaz.util.ImageFactory;
+
 
 public class ExerciseTable extends JPanel {
 

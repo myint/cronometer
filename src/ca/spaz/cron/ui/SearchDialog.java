@@ -1,6 +1,3 @@
-/*
- * Created on 26-Nov-2005
- */
 package ca.spaz.cron.ui;
 
 import java.awt.*;
@@ -14,8 +11,8 @@ import ca.spaz.cron.actions.ExportFoodAction;
 import ca.spaz.cron.datasource.*;
 import ca.spaz.cron.foods.*;
 import ca.spaz.gui.IconFont;
-import ca.spaz.util.ImageFactory;
 import ca.spaz.util.ToolBox;
+
 
 public class SearchDialog extends JDialog implements ServingEditorListener, FoodSelectionListener, UserFoodsListener {
 

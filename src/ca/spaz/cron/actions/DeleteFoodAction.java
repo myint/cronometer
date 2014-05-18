@@ -12,7 +12,6 @@ import javax.swing.*;
 import ca.spaz.cron.Cronometer;
 import ca.spaz.cron.datasource.FoodProxy;
 import ca.spaz.cron.user.UserManager;
-import ca.spaz.util.ImageFactory;
 
 
 public class DeleteFoodAction extends AbstractAction {

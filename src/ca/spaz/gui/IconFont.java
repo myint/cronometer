@@ -6,8 +6,6 @@ import java.io.InputStream;
 
 import javax.swing.JButton;
 
-import ca.spaz.gui.ErrorReporter;
-
 
 public class IconFont {
 

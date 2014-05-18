@@ -1,13 +1,8 @@
-/*
- * Created on Apr 2, 2005 by davidson
- */
 package ca.spaz.cron.ui;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
-import java.io.InputStream;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.List;
@@ -25,11 +20,10 @@ import ca.spaz.cron.notes.NoteEditor;
 import ca.spaz.cron.summary.NutritionSummaryPanel;
 import ca.spaz.cron.user.*;
 import ca.spaz.gui.DateChooser;
-import ca.spaz.gui.ErrorReporter;
 import ca.spaz.gui.IconFont;
 import ca.spaz.gui.TranslucentToolBar;
-import ca.spaz.util.ImageFactory;
 import ca.spaz.util.ToolBox;
+
 
 /**
  * Shows all data for a particular date

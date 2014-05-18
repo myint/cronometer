@@ -1,6 +1,3 @@
-/*
- * Created on 31-Dec-2005
- */
 package ca.spaz.cron.actions;
 
 import java.awt.Component;
@@ -13,7 +10,6 @@ import ca.spaz.cron.Cronometer;
 import ca.spaz.cron.datasource.FoodProxy;
 import ca.spaz.cron.foods.Food;
 import ca.spaz.gui.ErrorReporter;
-import ca.spaz.util.ImageFactory;
 import ca.spaz.util.Logger;
 
 

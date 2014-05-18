@@ -10,8 +10,8 @@ import javax.swing.event.ListSelectionListener;
 import ca.spaz.cron.Cronometer;
 import ca.spaz.cron.user.UserManager;
 import ca.spaz.gui.IconFont;
-import ca.spaz.util.ImageFactory;
 import ca.spaz.util.ToolBox;
+
 
 public class AddMetricDialog extends JDialog implements MetricSelectionListener {
 

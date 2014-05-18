@@ -25,21 +25,25 @@ import ca.spaz.cron.user.User;
 import ca.spaz.cron.user.UserManager;
 import ca.spaz.gui.ErrorReporter;
 
+
 public class ExportWizard extends JFrame {
 
     private static String  hostname = "cronometer.com";
-    private static int     port     = 80;
-    private static boolean testing  = false;           // if true, data is not committed
+    private static int port = 80;
 
-    private JTextField      username = new JTextField(24);
-    private JPasswordField  password = new JPasswordField();
-    private JPanel          loginPanel;
+    /** If true, data is not committed.
+     */
+    private static boolean testing = false;
 
-    private String          token;
-    private JPanel          panel;
-    private JTextPane       text;
-    private JButton         importBtn;
-    private JCheckBox       importDiary = new JCheckBox("Import Diary", true);
+    private JTextField username = new JTextField(24);
+    private JPasswordField password = new JPasswordField();
+    private JPanel loginPanel;
+
+    private String token;
+    private JPanel panel;
+    private JTextPane text;
+    private JButton importBtn;
+    private JCheckBox importDiary = new JCheckBox("Import Diary", true);
 
     public ExportWizard() {
         super("Export to cronometer.com");

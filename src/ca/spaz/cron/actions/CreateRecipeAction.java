@@ -8,11 +8,9 @@ import java.awt.event.ActionEvent;
 import java.util.List;
 
 import javax.swing.AbstractAction;
-import javax.swing.ImageIcon;
 
 import ca.spaz.cron.foods.FoodEditor;
 import ca.spaz.cron.foods.Recipe;
-import ca.spaz.util.ImageFactory;
 
 
 public class CreateRecipeAction extends AbstractAction {

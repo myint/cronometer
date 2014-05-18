@@ -1,6 +1,3 @@
-/*
- * Created on Apr 13, 2005 by davidson
- */
 package ca.spaz.cron.foods;
 
 import java.awt.*;
@@ -16,7 +13,7 @@ import ca.spaz.cron.Cronometer;
 import ca.spaz.gui.IconFont;
 import ca.spaz.gui.PrettyTable;
 import ca.spaz.gui.PrettyTableModel;
-import ca.spaz.util.ImageFactory;
+
 
 /**
  * A class for editing the set of weights for a food item

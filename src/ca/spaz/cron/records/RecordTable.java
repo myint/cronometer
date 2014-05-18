@@ -3,7 +3,6 @@ package ca.spaz.cron.records;
 import java.awt.*;
 import java.awt.datatransfer.Transferable;
 import java.awt.event.*;
-import java.text.MessageFormat;
 import java.util.*;
 import java.util.List;
 
@@ -14,7 +13,7 @@ import ca.spaz.cron.Cronometer;
 import ca.spaz.cron.foods.ServingSelection;
 import ca.spaz.gui.IconFont;
 import ca.spaz.gui.PrettyTable;
-import ca.spaz.util.ImageFactory;
+
 
 public abstract class RecordTable extends JPanel {
 

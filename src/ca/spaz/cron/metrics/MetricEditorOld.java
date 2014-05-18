@@ -1,6 +1,3 @@
-/*
- * Created on 19-Nov-2005
- */
 package ca.spaz.cron.metrics;
 
 import java.awt.event.*;
@@ -14,7 +11,7 @@ import ca.spaz.cron.Cronometer;
 import ca.spaz.cron.user.UserManager;
 import ca.spaz.gui.DoubleField;
 import ca.spaz.gui.ErrorReporter;
-import ca.spaz.util.ImageFactory;
+
 
 /**
  * A panel for editing a biomarker metric.
