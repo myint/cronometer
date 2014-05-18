@@ -1,6 +1,3 @@
-/*
- * Created on 21-Jan-2006
- */
 package ca.spaz.cron.targets;
 
 import org.w3c.dom.Element;

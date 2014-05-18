@@ -1,6 +1,3 @@
-/*
- * Created on 4-Jun-2005
- */
 package ca.spaz.cron.targets;
 
 import ca.spaz.cron.foods.NutrientInfo;

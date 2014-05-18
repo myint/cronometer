@@ -1,6 +1,3 @@
-/*
- * Created on 26-Nov-2005
- */
 package ca.spaz.cron.foods;
 
 import ca.spaz.cron.datasource.FoodProxy;

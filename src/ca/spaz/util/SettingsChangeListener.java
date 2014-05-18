@@ -1,6 +1,3 @@
-/*
- * Created on 31-Aug-2005
- */
 package ca.spaz.util;
 
 public interface SettingsChangeListener extends java.util.EventListener {

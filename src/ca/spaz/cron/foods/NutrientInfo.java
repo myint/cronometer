@@ -1,6 +1,3 @@
-/*
- * Created on Apr 6, 2005 by davidson
- */
 package ca.spaz.cron.foods;
 
 import java.io.IOException;

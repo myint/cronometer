@@ -1,6 +1,3 @@
-/*
- * Created on 12-Nov-2005
- */
 package ca.spaz.cron.datasource;
 
 import java.awt.Color;

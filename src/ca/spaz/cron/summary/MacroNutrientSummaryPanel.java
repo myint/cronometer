@@ -1,6 +1,3 @@
-/*
- * Created on 24-Apr-2005
- */
 package ca.spaz.cron.summary;
 
 import java.awt.BorderLayout;

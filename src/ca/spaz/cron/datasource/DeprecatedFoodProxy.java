@@ -1,6 +1,3 @@
-/*
- * Created on Jan 20, 2007 by davidson
- */
 package ca.spaz.cron.datasource;
 
 /**

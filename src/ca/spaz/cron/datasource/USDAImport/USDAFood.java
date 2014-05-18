@@ -1,6 +1,3 @@
-/*
- * Created on 7-May-2005
- */
 package ca.spaz.cron.datasource.USDAImport;
 
 import java.sql.*;

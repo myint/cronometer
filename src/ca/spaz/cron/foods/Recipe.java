@@ -1,6 +1,3 @@
-/*
- * Created on 20-Nov-2005
- */
 package ca.spaz.cron.foods;
 
 import java.util.*;

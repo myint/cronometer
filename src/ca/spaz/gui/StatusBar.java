@@ -1,6 +1,3 @@
-/*
- * Created on Nov 1, 2006 by davidson
- */
 package ca.spaz.gui;
 
 

@@ -1,7 +1,3 @@
-/*
- * Adapted from: http://java.sun.com/docs/books/tutorial/uiswing/
- * components/example-swing/WholeNumberField.java Created on Oct 17, 2003
- */
 package ca.spaz.gui;
 
 import java.awt.Toolkit;

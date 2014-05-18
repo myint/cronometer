@@ -1,6 +1,3 @@
-/*
- * Created on Apr 2, 2005 by davidson
- */
 package ca.spaz.cron.foods;
 
 import java.sql.Timestamp;

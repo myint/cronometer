@@ -1,6 +1,3 @@
-/*
- * Created on 5-Dec-2005
- */
 package ca.spaz.util;
 
 import java.io.PrintStream;

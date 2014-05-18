@@ -1,8 +1,3 @@
-/***
- * Created on 11-July-2007
- *
- * @author Simon Werner
- */
 package ca.spaz.cron.actions;
 
 import java.awt.event.ActionEvent;

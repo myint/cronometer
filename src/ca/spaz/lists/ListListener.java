@@ -1,6 +1,3 @@
-/*
- * Created on 5-May-2006
- */
 package ca.spaz.lists;
 
 public interface ListListener {

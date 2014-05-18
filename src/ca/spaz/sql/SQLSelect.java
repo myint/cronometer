@@ -1,6 +1,3 @@
-/*
- * Created on 16-Apr-2005
- */
 package ca.spaz.sql;
 
 import java.sql.*;

@@ -1,6 +1,3 @@
-/*
- * Created on Mar 11, 2006 by davidson
- */
 package ca.spaz.gui;
 
 import java.util.Date;

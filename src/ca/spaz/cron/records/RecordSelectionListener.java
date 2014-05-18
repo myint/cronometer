@@ -1,6 +1,3 @@
-/*
- * Created on Jun 30, 2007 by davidson
- */
 package ca.spaz.cron.records;
 
 

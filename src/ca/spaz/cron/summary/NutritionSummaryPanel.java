@@ -1,6 +1,3 @@
-/*
- * Created on Apr 3, 2005 by davidson
- */
 package ca.spaz.cron.summary;
 
 import java.util.Date;

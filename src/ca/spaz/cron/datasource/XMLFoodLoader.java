@@ -1,6 +1,3 @@
-/*
- * Created on 3-Dec-2005
- */
 package ca.spaz.cron.datasource;
 
 import java.io.*;

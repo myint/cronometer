@@ -1,6 +1,3 @@
-/*
- * Created on Apr 9, 2005 by davidson
- */
 package ca.spaz.cron.foods;
 
 import java.awt.BorderLayout;

@@ -1,6 +1,3 @@
-/*
- * Created on 11-May-2005
- */
 package ca.spaz.cron.foods;
 
 import java.awt.Color;

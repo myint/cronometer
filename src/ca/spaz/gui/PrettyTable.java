@@ -1,6 +1,3 @@
-/*
- * Created on 18-Jul-2005
- */
 package ca.spaz.gui;
 
 import java.awt.*;

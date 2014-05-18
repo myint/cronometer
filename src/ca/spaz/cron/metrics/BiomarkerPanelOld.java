@@ -1,6 +1,3 @@
-/*
- * Created on Feb 25, 2007 by davidson
- */
 package ca.spaz.cron.metrics;
 
 import java.awt.*;

@@ -1,6 +1,3 @@
-/*
- * Created on 4-Jun-2005
- */
 package ca.spaz.task;
 
 public interface TaskListener {

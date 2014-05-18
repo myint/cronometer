@@ -1,6 +1,3 @@
-/*
- * Created on 27-Jun-06
- */
 package ca.spaz.util;
 
 public class Logger {

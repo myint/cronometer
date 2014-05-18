@@ -1,6 +1,3 @@
-/*
- * Created on 31-Aug-2005
- */
 package ca.spaz.util;
 
 import java.util.EventObject;
