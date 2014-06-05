@@ -79,7 +79,7 @@ public class Settings implements Serializable {
      * @return the value of the Setting
      */
     public synchronized String getSetting(String name, String def) {
-        String s = (String)map.get(name);
+        String s = map.get(name);
         if (s == null) {
             return def;
         }
@@ -92,7 +92,7 @@ public class Settings implements Serializable {
      * @return the value of the Setting or null if not found
      */
     public synchronized String getSetting(String name) {
-        return (String)map.get(name);
+        return map.get(name);
     }
 
     /**
@@ -285,7 +285,7 @@ public class Settings implements Serializable {
             String k = (String)e.nextElement();
             sb.append(k);
             sb.append('=');
-            sb.append((String)map.get(k));
+            sb.append(map.get(k));
             sb.append(separator);
         }
         return sb.toString();
@@ -493,7 +493,7 @@ public class Settings implements Serializable {
         if (listeners != null) {
             SettingsChangeEvent event = new SettingsChangeEvent(this, key, val);
             for (int i=0; i<listeners.size(); i++) {
-                ((SettingsChangeListener)listeners.get(i)).settingChange(event);
+                listeners.get(i).settingChange(event);
             }
         }
     }

@@ -22,7 +22,7 @@ public class TransferActionListener implements ActionListener,
     public void propertyChange(PropertyChangeEvent e) {
         Object o = e.getNewValue();
         if (o instanceof JComponent) {
-            focusOwner = (JComponent) o;
+            focusOwner = (JComponent)o;
         } else {
             focusOwner = null;
         }
@@ -32,7 +32,7 @@ public class TransferActionListener implements ActionListener,
         if (focusOwner == null) {
             return;
         }
-        String action = (String) e.getActionCommand();
+        String action = e.getActionCommand();
         Action a = focusOwner.getActionMap().get(action);
         if (a != null) {
             a.actionPerformed(new ActionEvent(focusOwner,

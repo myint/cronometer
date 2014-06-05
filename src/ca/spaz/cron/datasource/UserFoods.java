@@ -84,7 +84,7 @@ public class UserFoods implements FoodDataSource {
     }
 
     public FoodProxy getFoodProxy(String id) {
-        return (FoodProxy)map.get(id);
+        return map.get(id);
     }
 
     public Food loadFood(String id) {

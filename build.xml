@@ -12,6 +12,7 @@
     <target name="compile" description="compile the source">
         <javac source="1.6" srcdir="${source}" destdir="${build}"
             includeantruntime="false">
+            <compilerarg line= "-Xlint:all -Xlint:-serial -Xlint:-unchecked"/>
             <classpath>
                 <fileset dir="${lib}">
                     <include name="*.jar"/>

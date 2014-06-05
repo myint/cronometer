@@ -123,7 +123,7 @@ public class User {
         bdcal.setTime(date);
         Calendar cal = Calendar.getInstance();
         long age = (cal.getTimeInMillis() - bdcal.getTimeInMillis());
-        long ONE_YEAR = (long)((long)365*(long)24*(long)60*(long)60*(long)1000);
+        long ONE_YEAR = 365L * 24L * 60L * 60L * 1000L;
         age = age / ONE_YEAR;
         return (int)age;
     }
@@ -281,7 +281,7 @@ public class User {
     public List<NutrientInfo> getTracked(List<NutrientInfo> list) {
         List<NutrientInfo> tracked = new ArrayList<NutrientInfo>();
         for (int i=0; i<list.size(); i++) {
-            NutrientInfo ni = (NutrientInfo)list.get(i);
+            NutrientInfo ni = list.get(i);
             if (isTracking(ni)) {
                 tracked.add(ni);
             }
