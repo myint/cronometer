@@ -28,10 +28,16 @@ https://github.com/myint/cronometer/releases
 Importing new USDA food database
 ================================
 
+As an example, below is the procedure that was used to upgrade from ``SR24`` to
+``SR26``.
+
 Unzip the old processed database::
 
     $ unzip lib/usda_sr24.jar
     $ mv usda_sr24 usda_sr26
+
+Update ``src/ca/spaz/cron/datasource/USDAImport/USDAImporter.java`` to point
+to ``sr26``.
 
 Run the importer to update the old processed data::
 
