@@ -41,7 +41,7 @@ to ``sr26``.
 
 Run the importer to update the old processed data::
 
-    $ java -cp lib/cronometer.jar \
+    $ java -classpath lib/cronometer.jar \
         ca.spaz.cron.datasource.USDAImport.USDAImporter < sr26.zip
 
 Append deleted items from the old ``foods.index`` into the new
