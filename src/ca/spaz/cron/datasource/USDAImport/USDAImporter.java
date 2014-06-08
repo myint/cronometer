@@ -78,7 +78,7 @@ public class USDAImporter implements Task {
      */
     public void run() {
         abort = false;
-        curTask = "Importing USDA sr24";
+        curTask = "Importing USDA sr26";
         if (null == sourceURL && null == sourceStream) {
             return;
         }
@@ -101,7 +101,7 @@ public class USDAImporter implements Task {
                     // Indicate that it aborted, somehow.
                     return;
                 }
-                File tempFile = new File("sr24.zip");
+                File tempFile = new File("sr26.zip");
                 if (abort) {
                     return;
                 }
@@ -266,7 +266,7 @@ public class USDAImporter implements Task {
             try {
                 Food f = (Food)iter.next();
                 fixOmegaFats(f);
-                File file = new File("usda_sr24/"+f.getSourceUID()+".xml");
+                File file = new File("usda_sr26/"+f.getSourceUID()+".xml");
                 PrintStream ps = new PrintStream(
                     new BufferedOutputStream(new FileOutputStream(file)));
                 f.writeXML(ps, false);
@@ -281,7 +281,7 @@ public class USDAImporter implements Task {
 
     private void writeFoodsIndex() {
         try {
-            File file = new File("usda_sr24/foods.index");
+            File file = new File("usda_sr26/foods.index");
             PrintStream ps = new PrintStream(
                 new BufferedOutputStream(new FileOutputStream(file)));
             Iterator iter = foods.values().iterator();

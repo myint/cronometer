@@ -31,8 +31,23 @@ Importing new USDA food database
 Unzip the old processed database::
 
     $ unzip lib/usda_sr24.jar
+    $ mv usda_sr24 usda_sr26
 
 Run the importer to update the old processed data::
 
     $ java -cp lib/cronometer.jar \
-        ca.spaz.cron.datasource.USDAImport.USDAImporter < sr24.zip
+        ca.spaz.cron.datasource.USDAImport.USDAImporter < sr26.zip
+
+Append deleted items from the old ``foods.index`` into the new
+``deprecated.index``::
+
+    $ ./deprecated.py usda_sr24/foods.index usda_sr26/foods.index \
+         >> usda_sr26/deprecated.index
+
+Create the new JAR::
+
+    $ rm lib/usda_sr24.jar
+    $ zip -r lib/usda_sr26.jar usda_sr26
+
+Update ``src/ca/spaz/cron/datasource/USDAFoods.java`` to point to the new JAR.
+And update the OS X app to point to the new JAR.
