@@ -35,19 +35,7 @@ public class USDAImporter implements Task {
 
     private URL sourceURL;
 
-    private InputStream sourceStream;
-
     private PrintStream out;
-
-    private URL getFoodSourceURL() {
-        URL url = null;
-        try {
-            url = new URL("http://www.nal.usda.gov/fnic/foodcomp/Data/SR24/dnload/sr24.zip");
-        } catch (MalformedURLException e) {
-            Logger.error("getFoodSourceURL()", e);
-        }
-        return url;
-    }
 
     public USDAImporter(OutputStream out) {
         if (null == out) {
@@ -55,14 +43,6 @@ public class USDAImporter implements Task {
         } else {
             this.out = new PrintStream(out);
         }
-    }
-
-    public InputStream getSourceStream() {
-        return sourceStream;
-    }
-
-    public void setSourceStream(InputStream sourceStream) {
-        this.sourceStream = sourceStream;
     }
 
     public URL getSourceURL() {
@@ -79,10 +59,7 @@ public class USDAImporter implements Task {
     public void run() {
         abort = false;
         curTask = "Importing USDA sr26";
-        if (null == sourceURL && null == sourceStream) {
-            return;
-        }
-        if (null == sourceStream) {
+        {
             // From a source URL -- this will probably also be a zip.
             try {
                 File tempDir = new File(System.getProperty("java.io.tmpdir"));
@@ -150,9 +127,6 @@ public class USDAImporter implements Task {
                 e.printStackTrace();
                 return;
             }
-        } else {
-            // From an input stream. Assume that it is the zip.
-            out.println("Reading data from local input stream");
         }
         if (!TEST_MODE) {
             out.println("Writing XML:");
@@ -411,7 +385,6 @@ public class USDAImporter implements Task {
 
     public static void main(String args[]) {
         USDAImporter ui = new USDAImporter(System.out);
-        ui.setSourceURL(ui.getFoodSourceURL());
         ui.run();
     }
 }
