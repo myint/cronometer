@@ -23,3 +23,16 @@ Download
 ========
 
 https://github.com/myint/cronometer/releases
+
+
+Importing new USDA food database
+================================
+
+Unzip the old processed database::
+
+    $ unzip lib/usda_sr24.jar
+
+Run the importer to update the old processed data::
+
+    $ java -cp lib/cronometer.jar \
+        ca.spaz.cron.datasource.USDAImport.USDAImporter < sr24.zip
