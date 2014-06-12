@@ -59,7 +59,6 @@ public class Cronometer extends JFrame implements MRJQuitHandler, MRJAboutHandle
      * Constructor
      */
     public Cronometer() {
-        setupForMacOSX();
     }
 
     public static Clipboard getClipboard() {
@@ -372,7 +371,7 @@ public class Cronometer extends JFrame implements MRJQuitHandler, MRJAboutHandle
     /**
      * Installs special apple event listeners for Mac OS X specific functions
      */
-    private void setupForMacOSX() {
+    private void setUpOSX() {
         if (ToolBox.isMacOSX()) {
             try {
                 Class appleAppClass = Class.forName("com.apple.mrj.MRJApplicationUtils");
@@ -484,5 +483,9 @@ public class Cronometer extends JFrame implements MRJQuitHandler, MRJAboutHandle
         final Cronometer cron = Cronometer.getInstance();
         Datasources.initialize(null);
         cron.initGUI();
+
+        // Do not enable quit until application has completed loading.
+        // Otherwise we risk crashes if the user tries to quit during loading.
+        cron.setUpOSX();
     }
 }
