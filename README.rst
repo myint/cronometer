@@ -47,7 +47,7 @@ Run the importer to update the old processed data::
 Append deleted items from the old ``foods.index`` into the new
 ``deprecated.index``::
 
-    $ ./deprecated.py usda_sr24/foods.index usda_sr26/foods.index \
+    $ ./scripts/deprecated.py usda_sr24/foods.index usda_sr26/foods.index \
          >> usda_sr26/deprecated.index
 
 Create the new JAR::
