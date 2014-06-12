@@ -153,7 +153,7 @@ public class Cronometer extends JFrame implements MRJQuitHandler, MRJAboutHandle
 
     public void doShowReleaseNotes() {
         getHelpBrowser().showWindow();
-        getHelpBrowser().showPage("release9.html");
+        getHelpBrowser().showPage("release1.0.html");
     }
 
     public void doShowCronometerDotCom() {
