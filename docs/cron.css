@@ -64,17 +64,6 @@ h4 {
     vertical-align:middle;
  }
 
- #plea {
-    background:  #ccccee;
-    padding: 4px;
-    margin-left: 40px;
-    margin-right: 40px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    font-style: italics;
-    text-align: center;
- }
-
  #alert {
     background:  #ffcccc;
     padding: 4px;
