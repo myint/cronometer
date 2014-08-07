@@ -12,7 +12,7 @@ public class USDAFood {
     String ndb_id;
     String description;
     String foodgroup;
-    double pCF=4, fCF=9, cCF=4;
+    double pCF = 4, fCF = 9, cCF = 4;
 
 
     /**
@@ -46,7 +46,7 @@ public class USDAFood {
                 cCF = Double.parseDouble(parts[13]);
             } catch (NumberFormatException e) {}
         } else {
-            System.out.println("bad parts size?\n\t"+parts.length+"|"+str);
+            System.out.println("bad parts size?\n\t" + parts.length + "|" + str);
         }
     }
 

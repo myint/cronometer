@@ -18,11 +18,11 @@ public class NoteEditor extends JPanel implements FocusListener {
     private Date curDate = null;
 
     public NoteEditor() {
-        setLayout(new BorderLayout(4,4));
-        setBorder(BorderFactory.createEmptyBorder(8,8,8,8));
+        setLayout(new BorderLayout(4, 4));
+        setBorder(BorderFactory.createEmptyBorder(8, 8, 8, 8));
         jsp = new JScrollPane(getEditor());
         jsp.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-        jsp.setPreferredSize(new Dimension(200,200));
+        jsp.setPreferredSize(new Dimension(200, 200));
         add(jsp, BorderLayout.CENTER);
     }
 
@@ -31,7 +31,7 @@ public class NoteEditor extends JPanel implements FocusListener {
             edit = new JTextArea();
             edit.setWrapStyleWord(true);
             edit.setLineWrap(true);
-            edit.setBorder(BorderFactory.createEmptyBorder(8,8,8,8));
+            edit.setBorder(BorderFactory.createEmptyBorder(8, 8, 8, 8));
             edit.addFocusListener(this);
         }
         return edit;

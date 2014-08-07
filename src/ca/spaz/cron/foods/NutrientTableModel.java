@@ -66,7 +66,7 @@ public class NutrientTableModel extends PrettyTableModel {
             switch (col) {
             case NAME_COLUMN:
                 if (ni.getParent() != null) {
-                    return "   "+ni.getName();
+                    return "   " + ni.getName();
                 } else {
                     return ni.getName();
                 }
@@ -78,7 +78,7 @@ public class NutrientTableModel extends PrettyTableModel {
             case RDI_COLUMN:
                 double RDI = ni.getReferenceDailyIntake();
                 if (RDI > 0) {
-                    return new Integer((int)(100*val/RDI));
+                    return new Integer((int)(100 * val / RDI));
                 }
                 return null;
             }
@@ -118,7 +118,7 @@ public class NutrientTableModel extends PrettyTableModel {
             if (ni != null) {
                 double val = ((Integer) value).intValue();
                 double RDI = ni.getReferenceDailyIntake();
-                val = (val/100.0) * RDI;
+                val = (val / 100.0) * RDI;
                 if (multiplier != 0) {
                     food.setNutrientAmount(ni, val / multiplier);
                 }

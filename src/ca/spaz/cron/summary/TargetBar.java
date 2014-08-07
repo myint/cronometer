@@ -16,7 +16,7 @@ public class TargetBar extends JComponent {
     private double min;
 
     public TargetBar() {
-        setForeground(new Color(150,150,250));
+        setForeground(new Color(150, 150, 250));
         setPreferredSize(new Dimension(100, 20));
     }
 
@@ -70,7 +70,7 @@ public class TargetBar extends JComponent {
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
         g.setColor(getBackground());
-        g.fill3DRect(xo,yo,w,h,false);
+        g.fill3DRect(xo, yo, w, h, false);
 
         if (min <= 0) {
             g.setFont(g.getFont().deriveFont(Font.ITALIC));
@@ -80,30 +80,30 @@ public class TargetBar extends JComponent {
             }
             String str = "unspecified target";
             g.drawString(str,
-                         xo+(w-g.getFontMetrics().stringWidth(str))/2,
-                         (yo-1) + (h-1 + g.getFontMetrics().getAscent())/2);
+                         xo + (w - g.getFontMetrics().stringWidth(str)) / 2,
+                         (yo - 1) + (h - 1 + g.getFontMetrics().getAscent()) / 2);
             return;
         }
 
         g.setColor(getForeground());
-        int bar = (int)Math.round(w*value/min);
+        int bar = (int)Math.round(w * value / min);
         if (bar > 1) {
             if (bar > w) {
                 bar = w;
-                g.setColor(mixColor(Color.RED,getForeground(), value/max));
+                g.setColor(mixColor(Color.RED, getForeground(), value / max));
             }
-            g.fill3DRect(xo,yo,bar,h-1,true);
+            g.fill3DRect(xo, yo, bar, h - 1, true);
         }
 
         g.setColor(Color.BLACK);
         if (value > max) {
             g.setColor(Color.YELLOW);
         }
-        String str = (int)Math.round(100*value/min) +"%";
+        String str = (int)Math.round(100 * value / min) + "%";
         g.setFont(g.getFont().deriveFont(Font.BOLD));
         g.drawString(str,
-                     xo+(w-g.getFontMetrics().stringWidth(str))/2,
-                     (yo-1) + (h-1 + g.getFontMetrics().getAscent())/2);
+                     xo + (w - g.getFontMetrics().stringWidth(str)) / 2,
+                     (yo - 1) + (h - 1 + g.getFontMetrics().getAscent()) / 2);
     }
 
     private Color mixColor(Color a, Color b, double val) {
@@ -114,8 +114,8 @@ public class TargetBar extends JComponent {
             val = 0;
         }
         return new Color(
-                   (int)(a.getRed()*val + b.getRed()*(1.0-val)),
-                   (int)(a.getGreen()*val + b.getGreen()*(1.0-val)),
-                   (int)(a.getBlue()*val + b.getBlue()*(1.0-val)) );
+                   (int)(a.getRed() * val + b.getRed() * (1.0 - val)),
+                   (int)(a.getGreen() * val + b.getGreen() * (1.0 - val)),
+                   (int)(a.getBlue() * val + b.getBlue() * (1.0 - val)) );
     }
 }

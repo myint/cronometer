@@ -33,7 +33,7 @@ public class UserManagerDialog extends WrappedPanel implements ListSelectionList
     public UserManagerDialog() {
         this.userMan = UserManager.getUserManager();
 
-        JPanel cp = new JPanel(new RiverLayout(2,1));
+        JPanel cp = new JPanel(new RiverLayout(2, 1));
         cp.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
         cp.add("tab center vfill", getToolBar());
         cp.add("tab center vfill", getUserListPanel());
@@ -45,7 +45,7 @@ public class UserManagerDialog extends WrappedPanel implements ListSelectionList
         }
 
         setBorder(BorderFactory.createEmptyBorder(6, 6, 6, 6));
-        setLayout(new BorderLayout(12,12));
+        setLayout(new BorderLayout(12, 12));
 
         add(cp, BorderLayout.CENTER);
         selectCurrentUser();
@@ -89,7 +89,7 @@ public class UserManagerDialog extends WrappedPanel implements ListSelectionList
         return BorderFactory.createCompoundBorder(
                    BorderFactory.createTitledBorder(
                        BorderFactory.createEmptyBorder(), str),
-                   BorderFactory.createEmptyBorder(2,26,2,26));
+                   BorderFactory.createEmptyBorder(2, 26, 2, 26));
     }
 
     public void addChangeListener(ChangeListener cl) {
@@ -122,7 +122,7 @@ public class UserManagerDialog extends WrappedPanel implements ListSelectionList
             userList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
             userList.setSelectedIndex(0);
             userList.addListSelectionListener(this);
-            userListPanel = new JPanel(new GridLayout(1,1));
+            userListPanel = new JPanel(new GridLayout(1, 1));
             userListPanel.setPreferredSize(new Dimension(150, 100));
             userListPanel.setBorder(BorderFactory.createTitledBorder("Users"));
             JScrollPane listScrollPane = new JScrollPane(userList);
@@ -187,7 +187,7 @@ public class UserManagerDialog extends WrappedPanel implements ListSelectionList
             toolBar.setRollover(true);
             toolBar.setOrientation(JToolBar.VERTICAL);
             toolBar.setFloatable(false);
-            toolBar.setBorder(BorderFactory.createEmptyBorder(1,1,1,1));
+            toolBar.setBorder(BorderFactory.createEmptyBorder(1, 1, 1, 1));
             toolBar.add(getAddButton());
             toolBar.add(getDeleteButton());
             toolBar.add(Box.createGlue());

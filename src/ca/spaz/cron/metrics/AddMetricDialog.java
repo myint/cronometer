@@ -113,7 +113,7 @@ public class AddMetricDialog extends JDialog implements MetricSelectionListener 
 
     public JPanel getMainPanel() {
         if (null == mainPanel) {
-            mainPanel = new JPanel(new BorderLayout(4,4));
+            mainPanel = new JPanel(new BorderLayout(4, 4));
             mainPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
             mainPanel.add(getToolBar(), BorderLayout.NORTH);
             mainPanel.add(getListPanel(), BorderLayout.CENTER);
@@ -130,7 +130,7 @@ public class AddMetricDialog extends JDialog implements MetricSelectionListener 
             toolBar.setRollover(true);
             toolBar.setLayout(new BoxLayout(toolBar, BoxLayout.X_AXIS));
             toolBar.setOpaque(false);
-            toolBar.setBorder(BorderFactory.createEmptyBorder(4,2,4,2));
+            toolBar.setBorder(BorderFactory.createEmptyBorder(4, 2, 4, 2));
             toolBar.add(Box.createHorizontalStrut(4));
             toolBar.add(getAddButton());
             toolBar.add(Box.createHorizontalGlue());
@@ -146,7 +146,7 @@ public class AddMetricDialog extends JDialog implements MetricSelectionListener 
     public MetricEditor getMetricEditor() {
         if (metricEditor == null) {
             metricEditor = new MetricEditor();
-            metricEditor.setBorder(BorderFactory.createEmptyBorder(12,12,12,12));
+            metricEditor.setBorder(BorderFactory.createEmptyBorder(12, 12, 12, 12));
             metricEditor.addMetricEditorListener(this);
         }
         return metricEditor;

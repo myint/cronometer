@@ -170,7 +170,7 @@ public class Settings implements Serializable {
      * @param val value of the Setting to set
      */
     public synchronized void set(String name, String val) {
-        map.put(name,val);
+        map.put(name, val);
         dirty = true;
         fireSettingChangeEvent(name, val);
     }
@@ -299,7 +299,7 @@ public class Settings implements Serializable {
     public synchronized ArrayList<User> loadSettings(File f) {
         ArrayList<User> userList = null;
         file = f;
-        if ( !file.exists() || file.length()==0 ) {
+        if ( !file.exists() || file.length() == 0 ) {
             User user = new User(new Settings(Settings.TAG_USER));
             user.setUsername(User.DEFAULT_USERNAME);
             user.setFirstRun(true);
@@ -331,14 +331,14 @@ public class Settings implements Serializable {
             Element e = d.getDocumentElement();
 
             NodeList nl = e.getElementsByTagName(TAG_GENERAL);
-            for (int i=0; i<nl.getLength(); i++) {
+            for (int i = 0; i < nl.getLength(); i++) {
                 Element m = (Element)nl.item(i);
                 generalSettings.set(m.getAttribute("name"), m.getAttribute("value"));
             }
 
             // Get the user settings
             nl = e.getElementsByTagName(TAG_USER);
-            for (int i=0; i<nl.getLength(); i++) {
+            for (int i = 0; i < nl.getLength(); i++) {
                 Element m = (Element)nl.item(i);
 
                 String username = m.getAttribute("username");
@@ -406,7 +406,7 @@ public class Settings implements Serializable {
             Element e = d.getDocumentElement();
 
             NodeList nl = e.getElementsByTagName("setting");
-            for (int i=0; i<nl.getLength(); i++) {
+            for (int i = 0; i < nl.getLength(); i++) {
                 Element m = (Element)nl.item(i);
                 if (m.getAttribute("name").startsWith("cron.user.target.")) {
                     XMLNode sNode = new XMLNode("User");
@@ -492,7 +492,7 @@ public class Settings implements Serializable {
     public synchronized void fireSettingChangeEvent(String key, String val) {
         if (listeners != null) {
             SettingsChangeEvent event = new SettingsChangeEvent(this, key, val);
-            for (int i=0; i<listeners.size(); i++) {
+            for (int i = 0; i < listeners.size(); i++) {
                 listeners.get(i).settingChange(event);
             }
         }

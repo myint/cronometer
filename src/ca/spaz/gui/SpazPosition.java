@@ -38,10 +38,10 @@ public class SpazPosition {
     }
 
     public Rectangle getRectangle(int width, int height) {
-        int top = (int)(topR*height) + topA;
-        int bottom = (int)(bottomR*height) + bottomA;
-        int left = (int)(leftR*width) + leftA;
-        int right = (int)(rightR*width) + rightA;
+        int top = (int)(topR * height) + topA;
+        int bottom = (int)(bottomR * height) + bottomA;
+        int left = (int)(leftR * width) + leftA;
+        int right = (int)(rightR * width) + rightA;
         return ( new Rectangle(left, top, (right - left), (bottom - top)) );
     }
 
@@ -74,10 +74,10 @@ public class SpazPosition {
     }
 
     public boolean valid() {
-        if ((topA + (topR*500)) > (bottomA + (bottomR*500))) {
+        if ((topA + (topR * 500)) > (bottomA + (bottomR * 500))) {
             return false;
         }
-        if ((leftA + (leftR*500)) > (rightA + (rightR*500))) {
+        if ((leftA + (leftR * 500)) > (rightA + (rightR * 500))) {
             return false;
         }
         if (leftR < 0 || leftR > 1) {
@@ -98,14 +98,14 @@ public class SpazPosition {
     public String toXMLString() {
         StringBuffer sb = new StringBuffer();
         sb.append("<position ");
-        sb.append(" left_rel=\""+ leftR + '"');
-        sb.append(" left_abs=\""+ leftA + '"');
-        sb.append(" right_rel=\""+ rightR + '"');
-        sb.append(" right_abs=\""+ rightA + '"');
-        sb.append(" top_rel=\""+ topR + '"');
-        sb.append(" top_abs=\""+ topA + '"');
-        sb.append(" bottom_rel=\""+ bottomR + '"');
-        sb.append(" bottom_abs=\""+ bottomA + '"');
+        sb.append(" left_rel=\"" + leftR + '"');
+        sb.append(" left_abs=\"" + leftA + '"');
+        sb.append(" right_rel=\"" + rightR + '"');
+        sb.append(" right_abs=\"" + rightA + '"');
+        sb.append(" top_rel=\"" + topR + '"');
+        sb.append(" top_abs=\"" + topA + '"');
+        sb.append(" bottom_rel=\"" + bottomR + '"');
+        sb.append(" bottom_abs=\"" + bottomA + '"');
         sb.append("/>\n");
         return sb.toString();
     }

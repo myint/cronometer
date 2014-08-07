@@ -84,7 +84,7 @@ public class NutrientTable extends PrettyTable implements UserChangeListener {
         if (servings != null) {
             for (Iterator iter = servings.iterator(); iter.hasNext(); ) {
                 Serving serving = (Serving) iter.next();
-                double weight = serving.getGrams()/100.0;
+                double weight = serving.getGrams() / 100.0;
                 total += weight * serving.getFood().getNutrientAmount(ni);
             }
         }
@@ -134,7 +134,7 @@ public class NutrientTable extends PrettyTable implements UserChangeListener {
                 switch (col) {
                 case 0:
                     if (ni.getParent() != null) {
-                        return "    "+ni.getName();
+                        return "    " + ni.getName();
                     } else {
                         return ni.getName();
                     }
@@ -145,7 +145,7 @@ public class NutrientTable extends PrettyTable implements UserChangeListener {
                 case 3:
                     Target target = UserManager.getCurrentUser().getTarget(ni);
                     if (target.getMin() > 0) {
-                        return nf.format(getAmount(ni)/target.getMin());
+                        return nf.format(getAmount(ni) / target.getMin());
                     }
                 }
             }

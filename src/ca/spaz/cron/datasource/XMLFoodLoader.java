@@ -63,7 +63,7 @@ public class XMLFoodLoader {
         List measures = new ArrayList();
         measures.add(Measure.GRAM);
         NodeList nl = e.getElementsByTagName("measure");
-        for (int i=0; i<nl.getLength(); i++) {
+        for (int i = 0; i < nl.getLength(); i++) {
             Element m = (Element)nl.item(i);
             Measure measure = new Measure();
             measure.setDescription(m.getAttribute("name"));
@@ -74,7 +74,7 @@ public class XMLFoodLoader {
         f.setMeasures(measures);
 
         nl = e.getElementsByTagName("nutrient");
-        for (int i=0; i<nl.getLength(); i++) {
+        for (int i = 0; i < nl.getLength(); i++) {
             Element n = (Element)nl.item(i);
             NutrientInfo ni = NutrientInfo.getByName(n.getAttribute("name"));
             if (ni != null) {
@@ -84,7 +84,7 @@ public class XMLFoodLoader {
         }
 
         nl = e.getElementsByTagName("comments");
-        for (int i=0; i<nl.getLength(); i++) {
+        for (int i = 0; i < nl.getLength(); i++) {
             Element m = (Element)nl.item(i);
             String str = XMLNode.getTextContent(m);
             if (str != null) {
@@ -105,7 +105,7 @@ public class XMLFoodLoader {
     protected static void loadRecipe(Recipe r, Element e) {
         List list = new ArrayList();
         NodeList nl = e.getElementsByTagName("serving");
-        for (int i=0; i<nl.getLength(); i++) {
+        for (int i = 0; i < nl.getLength(); i++) {
             Serving s = new Serving((Element)nl.item(i));
             if (s.isLoaded()) {
                 list.add(s);

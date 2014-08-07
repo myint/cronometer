@@ -44,14 +44,14 @@ public class UserFoods implements FoodDataSource {
 
     private void loadIndex() throws IOException {
         Logger.debug("Loading index...");
-        map = new HashMap<String,FoodProxy>();
+        map = new HashMap<String, FoodProxy>();
         File file = new File(userDir, FOODS_INDEX);
         BufferedReader in = new BufferedReader(new FileReader(file));
         String line = in.readLine();
         while (line != null) {
             String[] parts = line.split("\\|");
             if (parts.length == 2) {
-                FoodProxy food = new FoodProxy(parts[1],this,parts[0]);
+                FoodProxy food = new FoodProxy(parts[1], this, parts[0]);
                 food.addReference();
                 int UID = Integer.parseInt(parts[0]);
                 if (UID > maxUID) {
@@ -62,7 +62,7 @@ public class UserFoods implements FoodDataSource {
             line = in.readLine();
         }
         in.close();
-        Logger.debug("Loaded " + map.size() +" foods.");
+        Logger.debug("Loaded " + map.size() + " foods.");
     }
 
     private void writeIndex() {
@@ -70,11 +70,11 @@ public class UserFoods implements FoodDataSource {
             Logger.debug("Writing out index...");
             PrintStream ps = new PrintStream(
                 new BufferedOutputStream(new FileOutputStream(
-                                             new File(userDir,FOODS_INDEX))));
+                                             new File(userDir, FOODS_INDEX))));
             Iterator iter = map.values().iterator();
             while (iter.hasNext()) {
                 FoodProxy fp = (FoodProxy)iter.next();
-                ps.println(fp.getSourceID()+"|"+fp.getDescription());
+                ps.println(fp.getSourceID() + "|" + fp.getDescription());
             }
             ps.close();
         } catch (Exception ex) {
@@ -88,8 +88,8 @@ public class UserFoods implements FoodDataSource {
     }
 
     public Food loadFood(String id) {
-        Logger.debug("loadFood("+id+")");
-        Food food = XMLFoodLoader.loadFood(new File(userDir, id+".xml"));
+        Logger.debug("loadFood(" + id + ")");
+        Food food = XMLFoodLoader.loadFood(new File(userDir, id + ".xml"));
         food.setDataSource(this);
         food.setSourceUID(id);
         return food;
@@ -102,7 +102,7 @@ public class UserFoods implements FoodDataSource {
             FoodProxy food = (FoodProxy)iter.next();
             String desc = food.getDescription().toUpperCase();
             boolean match = true;
-            for (int i=0; match && i<keys.length; i++) {
+            for (int i = 0; match && i < keys.length; i++) {
                 if (desc.indexOf(keys[i].toUpperCase()) == -1) {
                     match = false;
                 }
@@ -139,7 +139,7 @@ public class UserFoods implements FoodDataSource {
     }
 
     public void updateFood(Food f) {
-        File file = new File(userDir, f.getSourceUID()+".xml");
+        File file = new File(userDir, f.getSourceUID() + ".xml");
         try {
             PrintStream ps = new PrintStream(
                 new BufferedOutputStream(new FileOutputStream(file)));
@@ -170,7 +170,7 @@ public class UserFoods implements FoodDataSource {
     }
 
     public void removeFood(Food f) {
-        File file = new File(userDir, f.getSourceUID()+".xml");
+        File file = new File(userDir, f.getSourceUID() + ".xml");
         file.delete();
         map.remove(f.getSourceUID());
         writeIndex();

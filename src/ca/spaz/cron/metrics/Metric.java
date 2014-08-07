@@ -74,17 +74,17 @@ public class Metric implements Comparable, Record {
 
     public XMLNode toXML() {
         XMLNode node = new XMLNode("metric");
-        node.addAttribute("name",getName());
-        node.addAttribute("date",getDate().getTime());
-        node.addAttribute("value",getValue().doubleValue());
+        node.addAttribute("name", getName());
+        node.addAttribute("date", getDate().getTime());
+        node.addAttribute("value", getValue().doubleValue());
         if (name.equals("Weight") && WEIGHT_UNIT != null) {
-            node.addAttribute("unit",WEIGHT_UNIT);
+            node.addAttribute("unit", WEIGHT_UNIT);
         }
         return node;
     }
 
     public String toString() {
-        return getName()+"-"+getDate()+"-"+getValue();
+        return getName() + "-" + getDate() + "-" + getValue();
     }
 
     public Record copy() {

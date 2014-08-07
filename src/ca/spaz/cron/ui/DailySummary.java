@@ -64,7 +64,7 @@ public class DailySummary extends JPanel implements UserChangeListener {
     boolean asked = false;
 
     public DailySummary() {
-        setPreferredSize(new Dimension(580,640));
+        setPreferredSize(new Dimension(580, 640));
         initialize();
         setDate(curDate, false);
         UserManager.getUserManager().addUserChangeListener(this);
@@ -205,7 +205,7 @@ public class DailySummary extends JPanel implements UserChangeListener {
             dietPanel = new JSplitPane(JSplitPane.VERTICAL_SPLIT,
                                        getServingTable(), getNutritionSummaryPanel());
             dietPanel.setDividerLocation(300);
-            dietPanel.setBorder(BorderFactory.createEmptyBorder(3,3,3,3));
+            dietPanel.setBorder(BorderFactory.createEmptyBorder(3, 3, 3, 3));
         }
         return dietPanel;
     }

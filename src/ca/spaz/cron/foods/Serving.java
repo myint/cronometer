@@ -67,7 +67,7 @@ public class Serving implements Record {
 
         // load the food if stored as a child
         NodeList nl = e.getChildNodes();
-        for (int i=0; i<nl.getLength(); i++) {
+        for (int i = 0; i < nl.getLength(); i++) {
             if (nl.item(i).getNodeName().equals("food") ||
                     nl.item(i).getNodeName().equals("recipe")) {
                 Food f = XMLFoodLoader.loadFood((Element)nl.item(i));
@@ -83,7 +83,7 @@ public class Serving implements Record {
 
         setFood(proxy);
         if (proxy == null) {
-            System.err.println("Failed to load food ["+source+":"+e.getAttribute("food")+"]");
+            System.err.println("Failed to load food [" + source + ":" + e.getAttribute("food") + "]");
             /*ErrorReporter.showError(
                   "Failed to load food ["+source+":"+e.getAttribute("food")+"]",
                   Cronometer.getInstance());*/
@@ -152,7 +152,7 @@ public class Serving implements Record {
 
     public double getAmount() {
         assert (getMeasure() != null);
-        return getGrams()/getMeasure().getGrams();
+        return getGrams() / getMeasure().getGrams();
     }
 
     public void setAmount(double val) {
@@ -243,7 +243,7 @@ public class Serving implements Record {
             return;
         }
         List measures = getFoodProxy().getFood().getMeasures();
-        for (int i=0; i<measures.size(); i++) {
+        for (int i = 0; i < measures.size(); i++) {
             Measure m = (Measure)measures.get(i);
             if (m.getDescription().equals(measureName)) {
                 setMeasure(m);

@@ -44,22 +44,22 @@ public class MacroChart extends JComponent {
         double total = protein + carbs + fat;
         int w = getWidth();
         int h = getHeight();
-        int min = w<h ? w : h;
+        int min = w < h ? w : h;
         g.setColor(Color.BLACK);
 
         g.setColor(Color.GREEN);
         int amount = 0;
-        g.fillArc(2,2,min-4,min-4, amount, (int)(360*(protein/total)));
-        amount += (int)(360*(protein/total));
+        g.fillArc(2, 2, min - 4, min - 4, amount, (int)(360 * (protein / total)));
+        amount += (int)(360 * (protein / total));
 
         g.setColor(Color.BLUE);
-        g.fillArc(2,2,min-4,min-4, amount, (int)(360*(carbs/total)));
-        amount += (int)(360*(carbs/total));
+        g.fillArc(2, 2, min - 4, min - 4, amount, (int)(360 * (carbs / total)));
+        amount += (int)(360 * (carbs / total));
 
         g.setColor(Color.RED);
-        g.fillArc(2,2,min-4,min-4, amount, (int)(360*(fat/total)));
+        g.fillArc(2, 2, min - 4, min - 4, amount, (int)(360 * (fat / total)));
 
         g.setColor(Color.GREEN);
-        g.drawString(Integer.toString((int)(100*(protein/total))), 5, h/2);
+        g.drawString(Integer.toString((int)(100 * (protein / total))), 5, h / 2);
     }
 }

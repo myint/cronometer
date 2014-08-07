@@ -44,13 +44,13 @@ public class HyperLabel extends JLabel implements MouseListener {
 
     public void setText(String text, boolean doBold) {
         this.text = text;
-        super.setText("<html>" + (doBold ? "<b>" : "") + "<u><font color=\""+color+"\">"+text+"</font></u>"+(doBold ? "</b>" : "")+"</html>");
+        super.setText("<html>" + (doBold ? "<b>" : "") + "<u><font color=\"" + color + "\">" + text + "</font></u>" + (doBold ? "</b>" : "") + "</html>");
     }
 
     public void mouseClicked(MouseEvent e) {
         if (isEnabled()) {
             ActionEvent ae = new ActionEvent(this, 0, null);
-            for (int i=0; i<listeners.size(); i++) {
+            for (int i = 0; i < listeners.size(); i++) {
                 ActionListener al = (ActionListener)listeners.get(i);
                 al.actionPerformed(ae);
             }

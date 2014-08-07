@@ -27,7 +27,7 @@ public class PrettyTable extends JXTable implements TableCellRenderer {
     public String getToolTipText(MouseEvent e) {
         PrettyTableModel ptm = getPrettyTableModel();
         if (ptm != null) {
-            return ptm.getToolTipText(rowAtPoint(e.getPoint()),columnAtPoint(e.getPoint()));
+            return ptm.getToolTipText(rowAtPoint(e.getPoint()), columnAtPoint(e.getPoint()));
         }
         return null;
     }
@@ -106,10 +106,10 @@ public class PrettyTable extends JXTable implements TableCellRenderer {
 
         public void paintIcon(Component c, Graphics g, int x, int y) {
             Color color = c == null ? Color.GRAY : c.getBackground();
-            int dx = (size/2);
+            int dx = (size / 2);
             int dy = descending ? dx : -dx;
             // Align icon (roughly) with font baseline.
-            y = y + 5*size/6 + (descending ? -dy : 0);
+            y = y + 5 * size / 6 + (descending ? -dy : 0);
             int shift = descending ? 1 : -1;
             g.translate(x, y);
 

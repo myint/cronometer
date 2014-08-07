@@ -26,10 +26,10 @@ public abstract class RecordTable extends JPanel {
     private String title = "Untitled";
 
     public RecordTable(RecordTableModel entryModel) {
-        setMinimumSize(new Dimension(400,250));
-        setPreferredSize(new Dimension(560,300));
+        setMinimumSize(new Dimension(400, 250));
+        setPreferredSize(new Dimension(560, 300));
         model = entryModel;
-        setLayout(new BorderLayout(4,4));
+        setLayout(new BorderLayout(4, 4));
         add(getToolBar(), BorderLayout.NORTH);
         add(makeJScrollPane(), BorderLayout.CENTER);
     }
@@ -72,7 +72,7 @@ public abstract class RecordTable extends JPanel {
             toolBar.setRollover(true);
             toolBar.setOrientation(JToolBar.HORIZONTAL);
             toolBar.setFloatable(false);
-            toolBar.setBorder(BorderFactory.createEmptyBorder(1,1,1,1));
+            toolBar.setBorder(BorderFactory.createEmptyBorder(1, 1, 1, 1));
             toolBar.add(getAddButton());
             toolBar.add(Box.createHorizontalStrut(10));
             toolBar.add(getDeleteButton());
@@ -205,7 +205,7 @@ public abstract class RecordTable extends JPanel {
      * @param list
      */
     public void addEntries(Record[] list) {
-        for (int i=0; i<list.length; i++) {
+        for (int i = 0; i < list.length; i++) {
             add(list[i].copy());
         }
     }
@@ -256,7 +256,7 @@ public abstract class RecordTable extends JPanel {
                 if (e.getButton() == MouseEvent.BUTTON3 || e.isControlDown()) {
                     if (index >= 0) {
                         if (!table.isRowSelected(index)) {
-                            table.getSelectionModel().setSelectionInterval(index,index);
+                            table.getSelectionModel().setSelectionInterval(index, index);
                         }
                         handleMouseClick(e);
                     }
@@ -316,7 +316,7 @@ public abstract class RecordTable extends JPanel {
         List entries = new ArrayList();
         if (table.getSelectedRow() != -1) {
             int[] rows = table.getSelectedRows();
-            for (int i=0; i<rows.length; i++) {
+            for (int i = 0; i < rows.length; i++) {
                 entries.add(model.getUserEntry(rows[i]));
             }
         }

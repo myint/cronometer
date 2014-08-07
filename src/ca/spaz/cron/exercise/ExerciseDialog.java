@@ -33,13 +33,13 @@ public class ExerciseDialog extends JDialog implements ExerciseEditorListener {
 
         // Add escape listener to dismiss window.
         getRootPane().registerKeyboardAction(
-            new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    dispose();
-                }
-            },
-            KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0),
-            JComponent.WHEN_IN_FOCUSED_WINDOW);
+        new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+            }
+        },
+        KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0),
+        JComponent.WHEN_IN_FOCUSED_WINDOW);
     }
 
     public void display(boolean addable) {
@@ -56,7 +56,7 @@ public class ExerciseDialog extends JDialog implements ExerciseEditorListener {
 
     public JPanel getMainPanel() {
         if (null == mainPanel) {
-            mainPanel = new JPanel(new BorderLayout(4,4));
+            mainPanel = new JPanel(new BorderLayout(4, 4));
             mainPanel.setBorder(BorderFactory.createEmptyBorder(4, 4, 4, 4));
             mainPanel.add(getExerciseEditor(), BorderLayout.CENTER);
         }
@@ -66,7 +66,7 @@ public class ExerciseDialog extends JDialog implements ExerciseEditorListener {
     public ExerciseEditor getExerciseEditor() {
         if (exerciseEditor == null) {
             exerciseEditor = new ExerciseEditor();
-            exerciseEditor.setBorder(BorderFactory.createEmptyBorder(12,12,12,12));
+            exerciseEditor.setBorder(BorderFactory.createEmptyBorder(12, 12, 12, 12));
             exerciseEditor.addExerciseEditorListener(this);
         }
         return exerciseEditor;

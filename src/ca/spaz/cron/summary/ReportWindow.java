@@ -92,7 +92,7 @@ public class ReportWindow extends WrappedPanel {
     private JPanel getToolbar() {
         if (toolbar == null) {
             toolbar = new JPanel();
-            toolbar.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
+            toolbar.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
             toolbar.setLayout(new BoxLayout(toolbar, BoxLayout.X_AXIS));
 
             toolbar.add(Box.createHorizontalStrut(5));
@@ -204,7 +204,7 @@ public class ReportWindow extends WrappedPanel {
             saveBtn.setBorderPainted(false);
             saveBtn.setFocusable(false);
             saveBtn.setRolloverEnabled(true);
-            saveBtn.setMargin(new Insets(1,1,1,1));
+            saveBtn.setMargin(new Insets(1, 1, 1, 1));
             saveBtn.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     doSaveReport();
@@ -218,7 +218,7 @@ public class ReportWindow extends WrappedPanel {
         if (htmlViewer == null) {
             htmlViewer = new WebViewer();
             htmlViewer.setExternal(true);
-            htmlViewer.setPreferredSize(new Dimension(450,450));
+            htmlViewer.setPreferredSize(new Dimension(450, 450));
             htmlViewer.getHTMLPane().setFont(new Font("Courier",  Font.PLAIN, 12));
         }
         return htmlViewer;
@@ -261,7 +261,7 @@ public class ReportWindow extends WrappedPanel {
             xtn = ".html";
         }
         JFileChooser fd = new JFileChooser();
-        fd.setSelectedFile(new File("report"+xtn));
+        fd.setSelectedFile(new File("report" + xtn));
         if (fd.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
             File f = fd.getSelectedFile();
             if (f != null) {

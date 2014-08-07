@@ -240,7 +240,7 @@ public class USDAImporter implements Task {
             try {
                 Food f = (Food)iter.next();
                 fixOmegaFats(f);
-                File file = new File("usda_sr26/"+f.getSourceUID()+".xml");
+                File file = new File("usda_sr26/" + f.getSourceUID() + ".xml");
                 PrintStream ps = new PrintStream(
                     new BufferedOutputStream(new FileOutputStream(file)));
                 f.writeXML(ps, false);
@@ -261,7 +261,7 @@ public class USDAImporter implements Task {
             Iterator iter = foods.values().iterator();
             while (iter.hasNext()) {
                 Food f = (Food)iter.next();
-                ps.println(f.getSourceUID()+"|"+f.getDescription());
+                ps.println(f.getSourceUID() + "|" + f.getDescription());
             }
             ps.close();
         } catch (IOException ie) {
@@ -346,7 +346,7 @@ public class USDAImporter implements Task {
                 break;
             }
             offs += read;
-            progress = (int)(progressPortion * (offs/(double)contentLength));
+            progress = (int)(progressPortion * (offs / (double)contentLength));
         }
         in.close();
         if (offs != contentLength) {

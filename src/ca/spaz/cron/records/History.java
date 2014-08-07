@@ -65,7 +65,7 @@ public abstract class History {
 
     public synchronized List getEntriesOn(Date curDate) {
         ArrayList res = new ArrayList();
-        for (int i=0; i<entries.size(); i++) {
+        for (int i = 0; i < entries.size(); i++) {
             Record entry = (Record)entries.get(i);
             if (ToolBox.isSameDay(entry.getDate(), curDate)) {
                 res.add(entry);
@@ -124,7 +124,7 @@ public abstract class History {
 
     public synchronized XMLNode toXML() {
         XMLNode node = new XMLNode(getBaseName());
-        for (int i=0; i<entries.size(); i++) {
+        for (int i = 0; i < entries.size(); i++) {
             Record entry = (Record)entries.get(i);
             if (entry.isLoaded()) {
                 try {
@@ -155,7 +155,7 @@ public abstract class History {
             load(in);
             in.close();
             long end = System.currentTimeMillis();
-            Logger.debug("  --> Loaded in: " + (end-start) + " msec");
+            Logger.debug("  --> Loaded in: " + (end - start) + " msec");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (Exception e) {
@@ -180,7 +180,7 @@ public abstract class History {
         Element e = d.getDocumentElement();
 
         NodeList nl = e.getElementsByTagName(getEntryTagName());
-        for (int i=0; i<nl.getLength(); i++) {
+        for (int i = 0; i < nl.getLength(); i++) {
             try {
                 Record entry = loadUserEntry((Element)nl.item(i));
                 if (entry != null) {
@@ -196,7 +196,7 @@ public abstract class History {
 
     private void backupFile(File f) {
         try {
-            ToolBox.copyFile(f, new File(f.getParent(), System.currentTimeMillis() + "-"+f.getName()));
+            ToolBox.copyFile(f, new File(f.getParent(), System.currentTimeMillis() + "-" + f.getName()));
         } catch (IOException e) {
             e.printStackTrace();
         }

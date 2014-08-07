@@ -116,7 +116,7 @@ public class MeasureEditor extends JPanel {
             toolBar.setRollover(true);
             toolBar.setOrientation(JToolBar.VERTICAL);
             toolBar.setFloatable(false);
-            toolBar.setBorder(BorderFactory.createEmptyBorder(1,1,1,1));
+            toolBar.setBorder(BorderFactory.createEmptyBorder(1, 1, 1, 1));
             toolBar.add(getAddButton());
             toolBar.add(getDeleteButton());
             toolBar.add(Box.createGlue());

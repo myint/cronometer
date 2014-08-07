@@ -22,7 +22,7 @@ public class XMLNode {
 
     public XMLNode(Element e) {
         XMLNode node = new XMLNode(e.getNodeName());
-        for (int i=0; i<e.getAttributes().getLength(); i++) {
+        for (int i = 0; i < e.getAttributes().getLength(); i++) {
             String name = e.getAttributes().item(i).getNodeName();
             String value = e.getAttributes().item(i).getNodeValue();
             node.addAttribute(name, value);
@@ -342,7 +342,7 @@ public class XMLNode {
     public static String getTextContent(Node e) {
         StringBuffer sb = new StringBuffer();
         NodeList nl = e.getChildNodes();
-        for (int n = 0; n<nl.getLength(); n++) {
+        for (int n = 0; n < nl.getLength(); n++) {
             if (nl.item(n).getNodeValue() != null) {
                 sb.append(nl.item(n).getNodeValue());
             }

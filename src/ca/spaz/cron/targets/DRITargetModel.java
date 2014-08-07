@@ -25,7 +25,7 @@ public class DRITargetModel implements TargetModel {
     public double getTargetMaximum(User user, NutrientInfo ni) {
         if (ni.getUSDA() != null) {
             if (ni.getUSDA().equals("208")) {
-                return Math.round(getCalories(user)*1.25);
+                return Math.round(getCalories(user) * 1.25);
             }
         }
         DRI dri = findMatch(user, ni.getDRIs());
@@ -33,7 +33,7 @@ public class DRITargetModel implements TargetModel {
             double TUL = dri.getTUL();
             return TUL > 0 ? TUL : dri.getRDA() * 5;
         }
-        return ni.getReferenceDailyIntake()*3;
+        return ni.getReferenceDailyIntake() * 3;
     }
 
     public DRI findMatch(User user, List DRIs) {
@@ -103,7 +103,7 @@ public class DRITargetModel implements TargetModel {
         }
 
         double cm = user.getHeightInCM();
-        int height = Math.abs(cm-150) < Math.abs(cm-165) ? 0 : ((Math.abs(cm-165) < Math.abs(cm-180) ? 1 : 2));
+        int height = Math.abs(cm - 150) < Math.abs(cm - 165) ? 0 : ((Math.abs(cm - 165) < Math.abs(cm - 180) ? 1 : 2));
         int sex = user.isMale() ? 0 : 1;
         double BMI = user.getBMI();
 
@@ -111,13 +111,13 @@ public class DRITargetModel implements TargetModel {
         int calories_BMI_H = CALORIES[height][sex][1][PAL];
         double calories = calories_BMI_L;
         if (BMI > 18.5 && BMI < 25) {
-            double blend = Math.abs(BMI-18.5)/6.5;
-            calories = calories_BMI_L*(1.0-blend) + calories_BMI_H*(blend);
+            double blend = Math.abs(BMI - 18.5) / 6.5;
+            calories = calories_BMI_L * (1.0 - blend) + calories_BMI_H * (blend);
         }
         if (BMI >= 25) {
             calories = calories_BMI_H;
         }
-        calories += (user.isMale() ? 10 : 7)*(30 - user.getAge());
+        calories += (user.isMale() ? 10 : 7) * (30 - user.getAge());
         return Math.round(calories);
     }
 }

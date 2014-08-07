@@ -59,7 +59,7 @@ public class FoodHistory extends History {
 
     public synchronized List getServings(FoodProxy fp) {
         ArrayList res = new ArrayList();
-        for (int i=0; i<entries.size(); i++) {
+        for (int i = 0; i < entries.size(); i++) {
             Serving s = (Serving)entries.get(i);
             if (s.getFoodProxy().equals(fp)) {
                 res.add(s);

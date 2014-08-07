@@ -52,13 +52,13 @@ public class HelpBrowser extends JFrame {
 
         // Add escape listener to dismiss window.
         getRootPane().registerKeyboardAction(
-            new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    setVisible(false);
-                }
-            },
-            KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0),
-            JComponent.WHEN_IN_FOCUSED_WINDOW);
+        new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+            }
+        },
+        KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0),
+        JComponent.WHEN_IN_FOCUSED_WINDOW);
     }
 
     /**
@@ -72,14 +72,14 @@ public class HelpBrowser extends JFrame {
     private JScrollPane makeHTMLScrollPane() {
         JScrollPane jsp = new JScrollPane(getViewer());
         jsp.setBorder(new BevelBorder(BevelBorder.LOWERED));
-        jsp.setPreferredSize(new Dimension(600,500));
+        jsp.setPreferredSize(new Dimension(600, 500));
         return jsp;
     }
 
     public JEditorPane getViewer() {
         if (htmlPane == null) {
             htmlPane = new JEditorPane();
-            htmlPane.setPreferredSize(new Dimension(600,500));
+            htmlPane.setPreferredSize(new Dimension(600, 500));
             htmlPane.setContentType("text/html");
             htmlPane.setEditable(false);
             htmlPane.setBorder(new EmptyBorder(8, 8, 8, 8));
@@ -112,7 +112,7 @@ public class HelpBrowser extends JFrame {
     private JSplitPane getSplitPane() {
         if (splitPane == null) {
             splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, getContentsPanel(), makeHTMLScrollPane());
-            splitPane.setBorder(BorderFactory.createEmptyBorder(6,6,6,6));
+            splitPane.setBorder(BorderFactory.createEmptyBorder(6, 6, 6, 6));
         }
         return splitPane;
     }
@@ -120,7 +120,7 @@ public class HelpBrowser extends JFrame {
     private JScrollPane getContentsPanel() {
         if (contentsScrollPane == null) {
             contentsScrollPane = new JScrollPane(getContents());
-            contentsScrollPane.setPreferredSize(new Dimension(200,500));
+            contentsScrollPane.setPreferredSize(new Dimension(200, 500));
         }
         return contentsScrollPane;
     }
@@ -128,7 +128,7 @@ public class HelpBrowser extends JFrame {
     private JTree getContents() {
         if (contents == null) {
             contents = new JTree(getHelpContentsModel());
-            contents.setBorder(BorderFactory.createEmptyBorder(6,6,6,6));
+            contents.setBorder(BorderFactory.createEmptyBorder(6, 6, 6, 6));
             contents.getSelectionModel().setSelectionMode( TreeSelectionModel.SINGLE_TREE_SELECTION);
             contents.expandPath(new TreePath(getHelpContentsModel()));
             int row = 0;
@@ -151,7 +151,7 @@ public class HelpBrowser extends JFrame {
             getViewer().setPage(f);
         } catch (IOException e) {
             getViewer().setContentType("text/html");
-            getViewer().setText("<html><h3 align=\"center\">File Not Found: "+name+"</h3></html>");
+            getViewer().setText("<html><h3 align=\"center\">File Not Found: " + name + "</h3></html>");
             e.printStackTrace();
         }
     }
@@ -217,7 +217,7 @@ public class HelpBrowser extends JFrame {
         if (parent.getUrl().equals(url)) {
             return parent;
         }
-        for (int i=0; i<parent.getChildCount(); i++) {
+        for (int i = 0; i < parent.getChildCount(); i++) {
             Page child = findPage(url, (Page)parent.getChildAt(i));
             if (child != null) {
                 return child;
@@ -234,7 +234,7 @@ public class HelpBrowser extends JFrame {
         if (url != null && parent.getURL().equals(url)) {
             return parent;
         }
-        for (int i=0; i<parent.getChildCount(); i++) {
+        for (int i = 0; i < parent.getChildCount(); i++) {
             Page child = findPage(url, (Page)parent.getChildAt(i));
             if (child != null) {
                 return child;
@@ -290,8 +290,8 @@ public class HelpBrowser extends JFrame {
             title = e.getAttribute("title");
             url = e.getAttribute("url");
             NodeList nl = e.getChildNodes();
-            for (int i=0; i<nl.getLength(); i++) {
-                if (nl.item(i).getNodeType()== Node.ELEMENT_NODE) {
+            for (int i = 0; i < nl.getLength(); i++) {
+                if (nl.item(i).getNodeType() == Node.ELEMENT_NODE) {
                     if (((Element)nl.item(i)).getTagName().equals("page")) {
                         add(new Page((Element)nl.item(i)));
                     }

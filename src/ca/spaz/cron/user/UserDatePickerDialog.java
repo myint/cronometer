@@ -39,14 +39,14 @@ public class UserDatePickerDialog extends WrappedPanel implements ListSelectionL
     private boolean cancelled = false;
 
     public UserDatePickerDialog() {
-        JPanel cp = new JPanel(new RiverLayout(1,1));
+        JPanel cp = new JPanel(new RiverLayout(1, 1));
         cp.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
         cp.add("p center hfill", getDatePicker());
         cp.add("p center hfill", getUserListPanel());
         cp.add("p center vfill", Box.createVerticalBox());
 
         setBorder(BorderFactory.createEmptyBorder(6, 6, 6, 6));
-        setLayout(new BorderLayout(12,12));
+        setLayout(new BorderLayout(12, 12));
 
         add(cp, BorderLayout.CENTER);
         selectDefaultUser();
@@ -82,7 +82,7 @@ public class UserDatePickerDialog extends WrappedPanel implements ListSelectionL
         return BorderFactory.createCompoundBorder(
                    BorderFactory.createTitledBorder(
                        BorderFactory.createEmptyBorder(), str),
-                   BorderFactory.createEmptyBorder(2,26,2,26));
+                   BorderFactory.createEmptyBorder(2, 26, 2, 26));
     }
 
     public void addChangeListener(ChangeListener cl) {
@@ -113,7 +113,7 @@ public class UserDatePickerDialog extends WrappedPanel implements ListSelectionL
         userList = new JList(userListModel);
         userList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         userList.addListSelectionListener(this);
-        userListPanel = new JPanel(new GridLayout(1,1));
+        userListPanel = new JPanel(new GridLayout(1, 1));
         userListPanel.setPreferredSize(new Dimension(150, 100));
         userListPanel.setBorder(makeTitle("User:"));
         JScrollPane listScrollPane = new JScrollPane(userList);

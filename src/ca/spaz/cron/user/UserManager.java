@@ -175,7 +175,7 @@ public class UserManager {
         File userDir = getUserDirectory(user);
         if (userDir.exists()) {
             int i;
-            for (i=0; i<userFileList.length; i++) {
+            for (i = 0; i < userFileList.length; i++) {
                 File userFile = new File(userDir.getAbsolutePath(), userFileList[i]);
                 if (userFile.exists()) {
                     if (!userFile.delete()) {
@@ -324,7 +324,7 @@ public class UserManager {
             }
 
             int i;
-            for (i=0; i<userFileList.length; i++) {
+            for (i = 0; i < userFileList.length; i++) {
                 File oldUserFile = new File(oldUserDir.getAbsolutePath(), userFileList[i]);
                 File newUserFile = new File(newUserDir.getAbsolutePath(), userFileList[i]);
                 if (oldUserFile.renameTo(newUserFile)) {
@@ -390,10 +390,10 @@ public class UserManager {
     public void saveWindow(JFrame frame) {
         try {
             frame.setVisible(true);
-            settings.set(MAIN_WINDOW +".width", frame.getWidth());
-            settings.set(MAIN_WINDOW +".height", frame.getHeight());
-            settings.set(MAIN_WINDOW +".x", frame.getLocationOnScreen().x);
-            settings.set(MAIN_WINDOW +".y", frame.getLocationOnScreen().y);
+            settings.set(MAIN_WINDOW + ".width", frame.getWidth());
+            settings.set(MAIN_WINDOW + ".height", frame.getHeight());
+            settings.set(MAIN_WINDOW + ".x", frame.getLocationOnScreen().x);
+            settings.set(MAIN_WINDOW + ".y", frame.getLocationOnScreen().y);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -402,14 +402,14 @@ public class UserManager {
     public void restoreWindow(JFrame frame, Point p) {
         Toolkit defaultToolkit = Toolkit.getDefaultToolkit();
         Dimension screen = defaultToolkit.getScreenSize();
-        int x = settings.getInt(MAIN_WINDOW +".x", p.x);
-        int y = settings.getInt(MAIN_WINDOW +".y", p.y);
-        int w = settings.getInt(MAIN_WINDOW +".width", frame.getWidth());
-        int h = settings.getInt(MAIN_WINDOW +".height", frame.getHeight());
-        if (x < 0 || x+w*0.10 > screen.width) {
+        int x = settings.getInt(MAIN_WINDOW + ".x", p.x);
+        int y = settings.getInt(MAIN_WINDOW + ".y", p.y);
+        int w = settings.getInt(MAIN_WINDOW + ".width", frame.getWidth());
+        int h = settings.getInt(MAIN_WINDOW + ".height", frame.getHeight());
+        if (x < 0 || x + w * 0.10 > screen.width) {
             x = p.x;
         }
-        if (y < 0 || y+h*0.10 > screen.height) {
+        if (y < 0 || y + h * 0.10 > screen.height) {
             y = p.y;
         }
         frame.setLocation(x, y);

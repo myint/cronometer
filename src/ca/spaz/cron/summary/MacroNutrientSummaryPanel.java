@@ -12,7 +12,7 @@ import ca.spaz.cron.foods.Serving;
 public class MacroNutrientSummaryPanel extends AbstractNutrientSummaryPanel {
     public MacroNutrientSummaryPanel() {
         setLayout(new BorderLayout());
-        setBorder(BorderFactory.createEmptyBorder(4,4,4,4));
+        setBorder(BorderFactory.createEmptyBorder(4, 4, 4, 4));
         add(getNutrientTablePane(), BorderLayout.CENTER);
     }
 
@@ -28,7 +28,7 @@ public class MacroNutrientSummaryPanel extends AbstractNutrientSummaryPanel {
         double total = 0;
         for (Iterator iter = servings.iterator(); iter.hasNext(); ) {
             Serving serving = (Serving) iter.next();
-            double weight = serving.getGrams()/100.0;
+            double weight = serving.getGrams() / 100.0;
             total += weight * serving.getFood().getNutrientAmount(ni);
         }
         return total;

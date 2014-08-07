@@ -44,7 +44,7 @@ public class SQLUpdate extends SQLSelectableStatement implements Columns {
         sb.append(" SET ");
         List names = cols.getNames();
         List terms = cols.getValues();
-        for (int i=0; i<names.size(); i++) {
+        for (int i = 0; i < names.size(); i++) {
             Object name = names.get(i);
             Object term = terms.get(i);
             if (term == null) {

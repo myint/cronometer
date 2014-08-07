@@ -40,20 +40,20 @@ public class WrapperDialog extends JDialog {
 
         // Add escape listener to dismiss window.
         getRootPane().registerKeyboardAction(
-            new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    dispose();
-                }
-            },
-            KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0),
-            JComponent.WHEN_IN_FOCUSED_WINDOW);
+        new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+            }
+        },
+        KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0),
+        JComponent.WHEN_IN_FOCUSED_WINDOW);
     }
 
     private void init(WrappedPanel wp) {
         this.wrappedPanel = wp;
         setModal(true);
         setTitle(wp.getTitle());
-        getContentPane().setLayout(new BorderLayout(4,4));
+        getContentPane().setLayout(new BorderLayout(4, 4));
         getContentPane().add(getMainPanel(), BorderLayout.CENTER);
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         pack();
@@ -82,8 +82,8 @@ public class WrapperDialog extends JDialog {
 
     private JPanel getMainPanel() {
         if (mainPanel == null) {
-            mainPanel = new JPanel(new BorderLayout(4,4));
-            mainPanel.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
+            mainPanel = new JPanel(new BorderLayout(4, 4));
+            mainPanel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
             if (getWrappedPanel().showSidebar()) {
                 mainPanel.add(getOutlinePanel(), BorderLayout.WEST);
             }
@@ -99,7 +99,7 @@ public class WrapperDialog extends JDialog {
 
     private JPanel getCenterPanel() {
         if (centerPanel == null) {
-            centerPanel = new JPanel(new BorderLayout(4,4));
+            centerPanel = new JPanel(new BorderLayout(4, 4));
             centerPanel.setBorder(BorderFactory.createEtchedBorder());
             if (getWrappedPanel().getSubtitle() != null) {
                 centerPanel.add(getTitlePanel(), BorderLayout.NORTH);
@@ -112,11 +112,11 @@ public class WrapperDialog extends JDialog {
     private JPanel getTitlePanel() {
         if (titlePanel == null) {
             JLabel titleLabel = new JLabel(getWrappedPanel().getSubtitle(), JLabel.CENTER);
-            titleLabel.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
+            titleLabel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
             titleLabel.setFont(titleLabel.getFont().deriveFont(Font.BOLD));
             titleLabel.setForeground(Color.WHITE);
 
-            titlePanel = new JPanel(new BorderLayout(4,4));
+            titlePanel = new JPanel(new BorderLayout(4, 4));
             titlePanel.setBackground(Color.GRAY);
             titlePanel.setBorder(BorderFactory.createEtchedBorder());
             titlePanel.add(titleLabel, BorderLayout.CENTER);
@@ -127,11 +127,11 @@ public class WrapperDialog extends JDialog {
     private JPanel getOutlinePanel() {
         if (outlinePanel == null) {
             outlinePanel = new JPanel();
-            outlinePanel.setLayout(new BorderLayout(8,8));
+            outlinePanel.setLayout(new BorderLayout(8, 8));
             outlinePanel.setBackground(Color.LIGHT_GRAY);
             outlinePanel.setBorder(BorderFactory.createCompoundBorder(
                                        BorderFactory.createEtchedBorder(),
-                                       BorderFactory.createEmptyBorder(8,8,8,8) ));
+                                       BorderFactory.createEmptyBorder(8, 8, 8, 8) ));
             outlinePanel.add(getLogo(), BorderLayout.NORTH);
         }
         return outlinePanel;
@@ -140,8 +140,8 @@ public class WrapperDialog extends JDialog {
     private JLabel getLogo() {
         if (logo == null) {
             logo = new JLabel(
-                "<html><div align=\"center\">"+
-                getWrappedPanel().getInfoString()+"</div></html>",
+                "<html><div align=\"center\">" +
+                getWrappedPanel().getInfoString() + "</div></html>",
                 getWrappedPanel().getIcon(),
                 JLabel.CENTER);
             logo.setVerticalTextPosition(JLabel.BOTTOM);
@@ -190,7 +190,7 @@ public class WrapperDialog extends JDialog {
         if (navPanel == null) {
             navPanel = new JPanel();
             navPanel.setLayout(new BoxLayout(navPanel, BoxLayout.X_AXIS));
-            navPanel.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
+            navPanel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
             navPanel.add(Box.createHorizontalGlue());
             if (getWrappedPanel().isCancellable()) {
                 navPanel.add(getCancelButton());

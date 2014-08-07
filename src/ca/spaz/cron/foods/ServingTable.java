@@ -37,10 +37,10 @@ public class ServingTable extends JPanel {
     private static ServingTable instance;
 
     public ServingTable() {
-        setMinimumSize(new Dimension(400,250));
-        setPreferredSize(new Dimension(400,300));
+        setMinimumSize(new Dimension(400, 250));
+        setPreferredSize(new Dimension(400, 300));
         model = new ServingTableModel(this);
-        setLayout(new BorderLayout(4,4));
+        setLayout(new BorderLayout(4, 4));
         add(getToolBar(), BorderLayout.NORTH);
         add(makeJScrollPane(), BorderLayout.CENTER);
     }
@@ -91,7 +91,7 @@ public class ServingTable extends JPanel {
             toolBar.setRollover(true);
             toolBar.setOrientation(JToolBar.HORIZONTAL);
             toolBar.setFloatable(false);
-            toolBar.setBorder(BorderFactory.createEmptyBorder(1,1,1,1));
+            toolBar.setBorder(BorderFactory.createEmptyBorder(1, 1, 1, 1));
             toolBar.add(getAddButton());
             toolBar.add(Box.createHorizontalStrut(10));
             toolBar.add(getDeleteButton());
@@ -251,7 +251,7 @@ public class ServingTable extends JPanel {
 
     public void addServingsToUser(Serving[] list, User user, Date date) {
         DailySummary ds = Cronometer.getDailySummary();
-        for (int i=0; i<list.length; i++) {
+        for (int i = 0; i < list.length; i++) {
             ds.addServingToUser(new Serving(list[i]), user, date);
         }
     }
@@ -334,7 +334,7 @@ public class ServingTable extends JPanel {
                 if (e.getButton() == MouseEvent.BUTTON3 || e.isControlDown()) {
                     if (index >= 0) {
                         if (!table.isRowSelected(index)) {
-                            table.getSelectionModel().setSelectionInterval(index,index);
+                            table.getSelectionModel().setSelectionInterval(index, index);
                         }
                         handleMouseClick(e);
                     }
@@ -364,7 +364,7 @@ public class ServingTable extends JPanel {
         if (s != null) {
             measureBox.removeAllItems();
             List measures = s.getFood().getMeasures();
-            for (int i=0; i<measures.size(); i++) {
+            for (int i = 0; i < measures.size(); i++) {
                 measureBox.addItem(measures.get(i));
             }
             measureBox.setSelectedItem(s.getMeasure());
@@ -412,7 +412,7 @@ public class ServingTable extends JPanel {
         List servings = new ArrayList();
         if (table.getSelectedRow() != -1) {
             int[] rows = table.getSelectedRows();
-            for (int i=0; i<rows.length; i++) {
+            for (int i = 0; i < rows.length; i++) {
                 servings.add(model.getServing(rows[i]));
             }
         }

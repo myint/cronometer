@@ -58,8 +58,8 @@ public class RecipeEditor extends FoodEditor {
         getVitaminsTable().setFood(food);
         getAminoAcidsTable().setFood(food);
         getLipidsTable().setFood(food);
-        getGramsLabel().setText("Recipe Weight: "+
-                                Math.round(getRecipe().getTotalGrams()*10)/10.0+"g");
+        getGramsLabel().setText("Recipe Weight: " +
+                                Math.round(getRecipe().getTotalGrams() * 10) / 10.0 + "g");
     }
 
     private Recipe getRecipe() {
@@ -77,7 +77,7 @@ public class RecipeEditor extends FoodEditor {
         JTabbedPane jp = new JTabbedPane();
         jp.add("Recipe", getServingPanel());
         jp.add("Nutrients", getNutrientPanel());
-        getNutrientPanel().setBorder(BorderFactory.createEmptyBorder(3,3,3,3));
+        getNutrientPanel().setBorder(BorderFactory.createEmptyBorder(3, 3, 3, 3));
         return jp;
     }
 
@@ -105,16 +105,16 @@ public class RecipeEditor extends FoodEditor {
                 public void servingSelected(Serving s) {
                 }
             });
-            servingTable.setTitle("Recipe '"+food.getDescription()+"'");
+            servingTable.setTitle("Recipe '" + food.getDescription() + "'");
         }
         return servingTable;
     }
 
     private JPanel getServingPanel() {
         if (null == servingPanel) {
-            servingPanel = new JPanel(new BorderLayout(4,4));
+            servingPanel = new JPanel(new BorderLayout(4, 4));
             servingPanel.setBorder(BorderFactory.createEmptyBorder(4, 4, 4, 4));
-            servingPanel.add(getServingTable(),BorderLayout.CENTER);
+            servingPanel.add(getServingTable(), BorderLayout.CENTER);
             getServingTable().getToolBar().add(Box.createGlue());
             getServingTable().getToolBar().add(getGramsLabel());
         }

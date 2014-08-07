@@ -163,8 +163,8 @@ public class User {
     }
 
     public void setTarget(NutrientInfo nutrient, Target target) {
-        settings.set(CU_TARGET + nutrient.getName()+".min", target.getMin());
-        settings.set(CU_TARGET + nutrient.getName()+".max", target.getMax());
+        settings.set(CU_TARGET + nutrient.getName() + ".min", target.getMin());
+        settings.set(CU_TARGET + nutrient.getName() + ".max", target.getMax());
         UserManager.getUserManager().notifyUserChangeListeners();
     }
 
@@ -172,9 +172,9 @@ public class User {
         if (nutrient == null) {
             return null;
         }
-        double min = settings.getDouble(CU_TARGET+nutrient.getName()+".min", 0);
-        double max = settings.getDouble(CU_TARGET+nutrient.getName()+".max", 0);
-        return new Target(min,max);
+        double min = settings.getDouble(CU_TARGET + nutrient.getName() + ".min", 0);
+        double max = settings.getDouble(CU_TARGET + nutrient.getName() + ".max", 0);
+        return new Target(min, max);
     }
 
     public boolean isCustomTargets(NutrientInfo ni) {
@@ -187,11 +187,11 @@ public class User {
     }
 
     public boolean isTracking(NutrientInfo ni) {
-        return settings.getBoolean(CU_TRACK+ni.getName(), ni.getDefaultTracking());
+        return settings.getBoolean(CU_TRACK + ni.getName(), ni.getDefaultTracking());
     }
 
     public void setTracking(NutrientInfo ni, boolean b) {
-        settings.set(CU_TRACK+ni.getName(), b);
+        settings.set(CU_TRACK + ni.getName(), b);
         UserManager.getUserManager().notifyUserChangeListeners();
     }
 
@@ -230,12 +230,12 @@ public class User {
     }
 
     public double getWeightInKilograms() {
-        return settings.getDouble(CU_WEIGHT, 150/2.2);
+        return settings.getDouble(CU_WEIGHT, 150 / 2.2);
     }
 
     public double getBMI() {
-        double meters = getHeightInCM()/100.0;
-        return getWeightInKilograms() / (meters*meters);
+        double meters = getHeightInCM() / 100.0;
+        return getWeightInKilograms() / (meters * meters);
     }
 
     public int getActivityLevel() {
@@ -275,12 +275,12 @@ public class User {
     }
 
     public static String removeCharAt(String s, int pos) {
-        return s.substring(0,pos)+s.substring(pos+1);
+        return s.substring(0, pos) + s.substring(pos + 1);
     }
 
     public List<NutrientInfo> getTracked(List<NutrientInfo> list) {
         List<NutrientInfo> tracked = new ArrayList<NutrientInfo>();
-        for (int i=0; i<list.size(); i++) {
+        for (int i = 0; i < list.size(); i++) {
             NutrientInfo ni = list.get(i);
             if (isTracking(ni)) {
                 tracked.add(ni);

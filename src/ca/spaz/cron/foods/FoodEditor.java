@@ -88,13 +88,13 @@ public class FoodEditor extends JPanel {
 
             // Add escape listener to dismiss window.
             dialog.getRootPane().registerKeyboardAction(
-                new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        doCancel();
-                    }
-                },
-                KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0),
-                JComponent.WHEN_IN_FOCUSED_WINDOW);
+            new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    doCancel();
+                }
+            },
+            KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0),
+            JComponent.WHEN_IN_FOCUSED_WINDOW);
         }
         return dialog;
     }
@@ -123,7 +123,7 @@ public class FoodEditor extends JPanel {
                        BorderFactory.createEtchedBorder(),
                        //BorderFactory.createBevelBorder(BevelBorder.RAISED),
                        str),
-                   BorderFactory.createEmptyBorder(8,8,8,8));
+                   BorderFactory.createEmptyBorder(8, 8, 8, 8));
     }
 
     protected JPanel getNutrientPanel() {
@@ -157,7 +157,7 @@ public class FoodEditor extends JPanel {
         int rc = JOptionPane.YES_OPTION;
         if (food.getSource() != null && food.getSource() != Datasources.getUserFoods()) {
             rc = JOptionPane.showConfirmDialog(this,
-                                               "The "+food.getSource().getName()+" Database cannot be modified.\n" +
+                                               "The " + food.getSource().getName() + " Database cannot be modified.\n" +
                                                "Would you like to save a copy of this modified\n" +
                                                "food in your custom foods?");
             if (rc == JOptionPane.CANCEL_OPTION) {
@@ -172,7 +172,7 @@ public class FoodEditor extends JPanel {
             if (rc == JOptionPane.YES_OPTION) {
                 Datasources.getUserFoods().addFood(food);
                 JOptionPane.showMessageDialog(this,
-                                              "'"+food.getDescription()+"' has been added to your foods.",
+                                              "'" + food.getDescription() + "' has been added to your foods.",
                                               "Food Added", JOptionPane.INFORMATION_MESSAGE);
             }
         } else {
@@ -241,7 +241,7 @@ public class FoodEditor extends JPanel {
 
     private JLabel getSourceLabel() {
         if (food.getSource() != null) {
-            return new JLabel(food.getSource().getName()+":"+food.getSourceUID());
+            return new JLabel(food.getSource().getName() + ":" + food.getSourceUID());
         } else {
             return new JLabel("unsaved");
         }
@@ -310,7 +310,7 @@ public class FoodEditor extends JPanel {
         commentsPanel = new JPanel(new BorderLayout());
         commentsPanel.setBorder(makeTitleBorder("Comments"));
         JScrollPane jsp = new JScrollPane(getCommentEditor());
-        jsp.setPreferredSize(new Dimension(150,80));
+        jsp.setPreferredSize(new Dimension(150, 80));
         commentsPanel.add(jsp, BorderLayout.CENTER);
         return commentsPanel;
     }

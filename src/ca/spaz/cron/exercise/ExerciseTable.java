@@ -35,10 +35,10 @@ public class ExerciseTable extends JPanel {
     private static ExerciseTable instance;
 
     public ExerciseTable() {
-        setMinimumSize(new Dimension(400,250));
-        setPreferredSize(new Dimension(400,300));
+        setMinimumSize(new Dimension(400, 250));
+        setPreferredSize(new Dimension(400, 300));
         model = new ExerciseTableModel(this);
-        setLayout(new BorderLayout(4,4));
+        setLayout(new BorderLayout(4, 4));
         add(getToolBar(), BorderLayout.NORTH);
         add(makeJScrollPane(), BorderLayout.CENTER);
     }
@@ -81,7 +81,7 @@ public class ExerciseTable extends JPanel {
             toolBar.setRollover(true);
             toolBar.setOrientation(JToolBar.HORIZONTAL);
             toolBar.setFloatable(false);
-            toolBar.setBorder(BorderFactory.createEmptyBorder(1,1,1,1));
+            toolBar.setBorder(BorderFactory.createEmptyBorder(1, 1, 1, 1));
             toolBar.add(getAddButton());
             toolBar.add(Box.createHorizontalStrut(10));
             toolBar.add(getDeleteButton());
@@ -237,7 +237,7 @@ public class ExerciseTable extends JPanel {
 
     public void addExercisesToUser(Exercise[] list, User user, Date date) {
         DailySummary ds = Cronometer.getDailySummary();
-        for (int i=0; i<list.length; i++) {
+        for (int i = 0; i < list.length; i++) {
             ds.addExerciseToUser(new Exercise(list[i]), user, date);
         }
     }
@@ -328,7 +328,7 @@ public class ExerciseTable extends JPanel {
                 if (e.getButton() == MouseEvent.BUTTON3 || e.isControlDown()) {
                     if (index >= 0) {
                         if (!table.isRowSelected(index)) {
-                            table.getSelectionModel().setSelectionInterval(index,index);
+                            table.getSelectionModel().setSelectionInterval(index, index);
                         }
                         handleMouseClick(e);
                     }
@@ -356,7 +356,7 @@ public class ExerciseTable extends JPanel {
         List exercises = new ArrayList();
         if (table.getSelectedRow() != -1) {
             int[] rows = table.getSelectedRows();
-            for (int i=0; i<rows.length; i++) {
+            for (int i = 0; i < rows.length; i++) {
                 exercises.add(model.getExercise(rows[i]));
             }
         }

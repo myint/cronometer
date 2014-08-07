@@ -98,7 +98,7 @@ public class SearchDialog extends JDialog implements ServingEditorListener, Food
 
     public JPanel getMainPanel() {
         if (null == mainPanel) {
-            mainPanel = new JPanel(new BorderLayout(4,4));
+            mainPanel = new JPanel(new BorderLayout(4, 4));
             mainPanel.setBorder(BorderFactory.createEmptyBorder(4, 4, 4, 4));
             mainPanel.add(getToolBar(), BorderLayout.NORTH);
             mainPanel.add(getServingEditor(), BorderLayout.SOUTH);
@@ -115,7 +115,7 @@ public class SearchDialog extends JDialog implements ServingEditorListener, Food
             toolBar.setRollover(true);
             toolBar.setLayout(new BoxLayout(toolBar, BoxLayout.X_AXIS));
             toolBar.setOpaque(false);
-            toolBar.setBorder(BorderFactory.createEmptyBorder(4,2,4,2));
+            toolBar.setBorder(BorderFactory.createEmptyBorder(4, 2, 4, 2));
             toolBar.add(Box.createHorizontalStrut(4));
             toolBar.add(getAddButton());
             toolBar.add(Box.createHorizontalStrut(4));
@@ -139,7 +139,7 @@ public class SearchDialog extends JDialog implements ServingEditorListener, Food
     public ServingEditor getServingEditor() {
         if (servingEditor == null) {
             servingEditor = new ServingEditor();
-            servingEditor.setBorder(BorderFactory.createEmptyBorder(12,12,12,12));
+            servingEditor.setBorder(BorderFactory.createEmptyBorder(12, 12, 12, 12));
             servingEditor.addServingEditorListener(this);
             servingEditor.linkToSearchResults(getSearchPanel());
         }

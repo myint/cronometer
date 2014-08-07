@@ -41,10 +41,10 @@ public class SearchPanel extends JPanel implements ItemListener {
 
     public SearchPanel() {
         listeners = new Vector();
-        setLayout(new BorderLayout(6,6));
+        setLayout(new BorderLayout(6, 6));
         setBorder(new CompoundBorder(
                       BorderFactory.createEtchedBorder(),
-                      BorderFactory.createEmptyBorder(8,8,8,8)));
+                      BorderFactory.createEmptyBorder(8, 8, 8, 8)));
         add(makeQueryPanel(), BorderLayout.NORTH);
         add(makeResultPanel(), BorderLayout.CENTER);
         queryField.requestFocusInWindow();
@@ -56,7 +56,7 @@ public class SearchPanel extends JPanel implements ItemListener {
     }
 
     private JPanel makeQueryPanel() {
-        JPanel jp = new JPanel(new RiverLayout(3,3));
+        JPanel jp = new JPanel(new RiverLayout(3, 3));
         jp.add(RiverLayout.CENTER, new JLabel("Search: "));
         jp.add(RiverLayout.CENTER, getSourceBox());
         jp.add(RiverLayout.HFILL, getQueryField());
@@ -178,7 +178,7 @@ public class SearchPanel extends JPanel implements ItemListener {
                 if (e.getButton() == MouseEvent.BUTTON3 || e.isControlDown()) {
                     int index = resultTable.rowAtPoint(e.getPoint());
                     if (index >= 0) {
-                        resultTable.getSelectionModel().setSelectionInterval(index,index);
+                        resultTable.getSelectionModel().setSelectionInterval(index, index);
                         handleMouseClick(e);
                     }
                 }
@@ -195,13 +195,13 @@ public class SearchPanel extends JPanel implements ItemListener {
 
     public void arrowUp() {
         if (resultTable.getSelectedRow() > 0) {
-            resultTable.changeSelection(resultTable.getSelectedRow()-1, 0, false, false);
+            resultTable.changeSelection(resultTable.getSelectedRow() - 1, 0, false, false);
         }
     }
 
     public void arrowDown() {
-        if (resultTable.getSelectedRow() < resultTable.getRowCount()-1) {
-            resultTable.changeSelection(resultTable.getSelectedRow()+1, 0, false, false);
+        if (resultTable.getSelectedRow() < resultTable.getRowCount() - 1) {
+            resultTable.changeSelection(resultTable.getSelectedRow() + 1, 0, false, false);
         }
     }
 
@@ -325,7 +325,7 @@ public class SearchPanel extends JPanel implements ItemListener {
 
         public SearchHit getSearchHit(int i) {
             synchronized (result) {
-                if (i< 0 || i >= result.size()) {
+                if (i < 0 || i >= result.size()) {
                     return null;
                 }
                 return (SearchHit) result.get(i);
@@ -373,7 +373,7 @@ public class SearchPanel extends JPanel implements ItemListener {
                     if (c == 0) {
                         return "<html><table width=\"220\"><tr><td align=\"center\">" +
                                f.getDescription() +
-                               "<br>["+f.getSource()+"]" +
+                               "<br>[" + f.getSource() + "]" +
                                (f.isDeprecated() ? "<br><font color=\"red\">This Food is Obsolete</font>" : "") +
                                "</td></tr></table></html>";
                     }
@@ -390,7 +390,7 @@ public class SearchPanel extends JPanel implements ItemListener {
             if (getSortOnColumn() == 0) {
                 Collections.sort(result, new Comparator() {
                     public int compare(Object a, Object b) {
-                        return dir*((SearchHit)a).compareByName((SearchHit)b);
+                        return dir * ((SearchHit)a).compareByName((SearchHit)b);
                     }
                 });
             } else {

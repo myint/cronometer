@@ -32,7 +32,7 @@ public class ExportFoodAction extends AbstractAction {
 
     public static void doExportFood(FoodProxy fp, Component parent) {
         JFileChooser fd = new JFileChooser();
-        fd.setSelectedFile(new File(fp.getDescription()+".xml"));
+        fd.setSelectedFile(new File(fp.getDescription() + ".xml"));
         if (fd.showSaveDialog(parent) == JFileChooser.APPROVE_OPTION) {
             File f = fd.getSelectedFile();
             if (f != null) {

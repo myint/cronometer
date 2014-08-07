@@ -75,7 +75,7 @@ public class Cronometer extends JFrame implements MRJQuitHandler, MRJAboutHandle
             setIconImage(getWindowIcon());
             setTitle(getFullTitleWithUser());
             if (!UserManager.getSubdirectory().equalsIgnoreCase("cronometer")) {
-                setTitle(getFullTitleWithUser() + " ["+UserManager.getSubdirectory()+"]");
+                setTitle(getFullTitleWithUser() + " [" + UserManager.getSubdirectory() + "]");
             }
             getContentPane().add(getMainPanel());
             setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -139,7 +139,7 @@ public class Cronometer extends JFrame implements MRJQuitHandler, MRJAboutHandle
     }
 
     private void makeAutoSaveTimer() {
-        Timer t = new Timer(6000*5, new ActionListener() {
+        Timer t = new Timer(6000 * 5, new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 UserManager.getCurrentUser().saveUserData();
                 getDailySummary().refreshTime();
@@ -321,7 +321,7 @@ public class Cronometer extends JFrame implements MRJQuitHandler, MRJAboutHandle
                 }
 
                 JOptionPane.showMessageDialog(this,
-                                              foods.length +" food(s) have been added to your foods.",
+                                              foods.length + " food(s) have been added to your foods.",
                                               "Food(s) Added", JOptionPane.INFORMATION_MESSAGE);
                 refreshDisplays();
             }

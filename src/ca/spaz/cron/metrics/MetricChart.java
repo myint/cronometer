@@ -66,13 +66,13 @@ public class MetricChart extends JFrame {
 
         // Add escape listener to dismiss window.
         getRootPane().registerKeyboardAction(
-            new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    dispose();
-                }
-            },
-            KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0),
-            JComponent.WHEN_IN_FOCUSED_WINDOW);
+        new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+            }
+        },
+        KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0),
+        JComponent.WHEN_IN_FOCUSED_WINDOW);
     }
 
     public void setBiomarker(Biomarker biomarker) {
@@ -97,7 +97,7 @@ public class MetricChart extends JFrame {
         List metrics = UserManager.getCurrentUser().getBiometricsHistory().getMetricsOfType(metricName);
         // Sort by date
         Collections.sort(metrics);
-        for (int i=0; i<metrics.size(); i++) {
+        for (int i = 0; i < metrics.size(); i++) {
             Metric m = (Metric)metrics.get(i);
             // If the initial start date has not been changed, assume we want to start from the beginning
             if (i == 0 && startDate.equals(curDate)) {
@@ -166,7 +166,7 @@ public class MetricChart extends JFrame {
     private JPanel getToolbar() {
         if (toolbar == null) {
             toolbar = new JPanel();
-            toolbar.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
+            toolbar.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
             toolbar.setLayout(new BoxLayout(toolbar, BoxLayout.X_AXIS));
 
             toolbar.add(getStartDateButton());

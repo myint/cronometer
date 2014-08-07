@@ -58,7 +58,7 @@ public class ServingTableModel extends PrettyTableModel {
     }
 
     public Serving getServing(int i) {
-        if (i<0 || i >= servings.size()) {
+        if (i < 0 || i >= servings.size()) {
             return null;
         }
         return (Serving) servings.get(i);
@@ -80,7 +80,7 @@ public class ServingTableModel extends PrettyTableModel {
                 return c.getFoodProxy().getDescription();
             case CALORIES_COL:
                 double kcals = c.getFood().getCalories();
-                return kcalf.format(kcals * c.getGrams()/100.0);
+                return kcalf.format(kcals * c.getGrams() / 100.0);
             case AMOUNT_COL:
                 return amountf.format(c.getAmount());
             case MEASURE_COL:
@@ -94,7 +94,7 @@ public class ServingTableModel extends PrettyTableModel {
         Serving c = getServing(row);
         if (c != null) {
             return "<html><table width=\"250\"><tr><td align=\"center\">" +
-                   amountf.format(c.getAmount()) + " " +c.getMeasure()+  " of " +
+                   amountf.format(c.getAmount()) + " " + c.getMeasure() +  " of " +
                    c.getFoodProxy().getDescription() +
                    "</td></tr></table></html>";
         }
@@ -134,7 +134,7 @@ public class ServingTableModel extends PrettyTableModel {
                 // if enter calories, computes proper amount
                 double val = Double.parseDouble((String)value);
                 double kcals = s.getFood().getCalories();
-                double grams = val / (kcals/100.0);
+                double grams = val / (kcals / 100.0);
                 s.setGrams(grams);
             } catch (NumberFormatException e) {}
         }

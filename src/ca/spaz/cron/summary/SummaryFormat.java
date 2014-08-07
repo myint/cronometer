@@ -28,7 +28,7 @@ public abstract class SummaryFormat {
         double total = 0;
         for (Iterator iter = servings.iterator(); iter.hasNext(); ) {
             Serving serving = (Serving) iter.next();
-            double weight = serving.getGrams()/100.0;
+            double weight = serving.getGrams() / 100.0;
             total += weight * serving.getFood().getNutrientAmount(ni);
         }
         return total;
@@ -49,9 +49,9 @@ public abstract class SummaryFormat {
             Target target = UserManager.getCurrentUser().getTarget(ni);
             if (target.getMin() > 0 && UserManager.getCurrentUser().isTracking(ni)) {
                 double amount = getAmount(servings, ni) / (double) days;
-                valueFull += amount/target.getMin();
+                valueFull += amount / target.getMin();
                 if (amount < target.getMin()) {
-                    value += amount/target.getMin();
+                    value += amount / target.getMin();
                 } else {
                     value++;
                 }

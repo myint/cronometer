@@ -121,7 +121,7 @@ public class MetricEditor extends JPanel {
 
     public DoubleField getValueField() {
         if (multiplier == null) {
-            multiplier = new DoubleField(0,8);
+            multiplier = new DoubleField(0, 8);
         }
         return multiplier;
     }
@@ -163,7 +163,7 @@ public class MetricEditor extends JPanel {
      */
     private String fixString(String str) {
         if (str.length() > 53) {
-            return str.substring(0, 50)+"...";
+            return str.substring(0, 50) + "...";
         } else {
             return str;
         }
@@ -179,7 +179,7 @@ public class MetricEditor extends JPanel {
 
     private synchronized void fireMetricChosenEvent() {
         cur.setValue(getValueField().getText());
-        for (int i=0; i<listeners.size(); i++) {
+        for (int i = 0; i < listeners.size(); i++) {
             MetricSelectionListener sel = (MetricSelectionListener)listeners.get(i);
             sel.metricChosen(cur);
         }

@@ -43,7 +43,7 @@ public class BiometricsHistory extends History {
 
     public List getMetricsOfType(String type) {
         ArrayList res = new ArrayList();
-        for (int i=0; i<entries.size(); i++) {
+        for (int i = 0; i < entries.size(); i++) {
             Metric m = (Metric)entries.get(i);
             if (m.getName().equals(type)) {
                 res.add(m);

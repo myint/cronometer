@@ -33,7 +33,7 @@ public class BiomarkerPanel extends JPanel {
 
     public BiomarkerPanel() {
         biomarkers = UserManager.getCurrentUser().getBiomarkerDefinitions().getEnabledBiomarkers();
-        setBorder(BorderFactory.createEmptyBorder(3,3,3,3));
+        setBorder(BorderFactory.createEmptyBorder(3, 3, 3, 3));
         setLayout(new BorderLayout());
         add(getSplitPane(), BorderLayout.CENTER);
     }
@@ -43,7 +43,7 @@ public class BiomarkerPanel extends JPanel {
             splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT,
                                        getMetricTable(), getChartPanel());
             splitPane.setDividerLocation(300);
-            splitPane.setBorder(BorderFactory.createEmptyBorder(3,3,3,3));
+            splitPane.setBorder(BorderFactory.createEmptyBorder(3, 3, 3, 3));
         }
         return splitPane;
     }
@@ -86,7 +86,7 @@ public class BiomarkerPanel extends JPanel {
         // Sort by date
         Collections.sort(metrics);
         actualData.clear();
-        for (int i=0; i<metrics.size(); i++) {
+        for (int i = 0; i < metrics.size(); i++) {
             Metric m = (Metric)metrics.get(i);
             actualData.addOrUpdate(new Day(m.getDate()), m.getValue());
         }

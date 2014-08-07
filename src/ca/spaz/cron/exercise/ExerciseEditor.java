@@ -138,7 +138,7 @@ public class ExerciseEditor extends JPanel {
      */
     private String fixString(String str) {
         if (str.length() > 53) {
-            return str.substring(0, 50)+"...";
+            return str.substring(0, 50) + "...";
         } else {
             return str;
         }
@@ -160,7 +160,7 @@ public class ExerciseEditor extends JPanel {
         cur.setName(getNameInput().getText());
         cur.setMinutes(getMinutesInput().getValue());
         cur.setCalories(getCaloriesInput().getValue());
-        for (int i=0; i<listeners.size(); i++) {
+        for (int i = 0; i < listeners.size(); i++) {
             ExerciseEditorListener sel = (ExerciseEditorListener)listeners.get(i);
             sel.exerciseChosen(cur);
         }

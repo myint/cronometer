@@ -112,7 +112,7 @@ public class MetricEditorOld extends JPanel {
 
     public DoubleField getEntryField() {
         if (entryField == null) {
-            entryField = new DoubleField(0,8);
+            entryField = new DoubleField(0, 8);
             entryField.setColumns(8);
             entryField.addFocusListener(new FocusListener() {
                 public void focusGained(FocusEvent e) {

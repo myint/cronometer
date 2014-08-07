@@ -10,7 +10,7 @@ public class StatusBar extends JPanel  {
     private JLabel statusLabel, hoverLabel;
 
     public StatusBar() {
-        setBorder(BorderFactory.createEmptyBorder(1,1,1,1));
+        setBorder(BorderFactory.createEmptyBorder(1, 1, 1, 1));
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         setForeground(Color.LIGHT_GRAY);
         add(Box.createHorizontalStrut(10));
@@ -27,7 +27,7 @@ public class StatusBar extends JPanel  {
 
     private JSeparator makeSeparator() {
         JSeparator sep = new JSeparator(JSeparator.VERTICAL);
-        sep.setMaximumSize(new Dimension(3,12));
+        sep.setMaximumSize(new Dimension(3, 12));
         return sep;
     }
 

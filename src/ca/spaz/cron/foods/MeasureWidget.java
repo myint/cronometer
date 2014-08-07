@@ -26,7 +26,7 @@ public class MeasureWidget extends JPanel implements ItemListener, ActionListene
     private JComboBox measures = new JComboBox();
 
     // multiplier (amount) of currently showing weight
-    private DoubleField multiplier = new DoubleField(0,8);
+    private DoubleField multiplier = new DoubleField(0, 8);
 
     // action listeners
     private Vector listeners = new Vector();
@@ -39,7 +39,7 @@ public class MeasureWidget extends JPanel implements ItemListener, ActionListene
      * Construct a new measure widget
      */
     public MeasureWidget() {
-        multiplier.setRange(0,1000000);
+        multiplier.setRange(0, 1000000);
         multiplier.setValue(1);
 
         measures.setOpaque(false);
@@ -48,7 +48,7 @@ public class MeasureWidget extends JPanel implements ItemListener, ActionListene
         multiplier.addKeyListener(this);
 
         setOpaque(false);
-        setLayout(new BorderLayout(4,4));
+        setLayout(new BorderLayout(4, 4));
         add(multiplier, BorderLayout.WEST);
         add(measures, BorderLayout.CENTER);
     }
@@ -68,7 +68,7 @@ public class MeasureWidget extends JPanel implements ItemListener, ActionListene
      * @param mult the multiplier for that measure
      */
     public void setMeasure(Measure w, double mult) {
-        for (int i=0; i<measures.getItemCount(); i++) {
+        for (int i = 0; i < measures.getItemCount(); i++) {
             Measure m = (Measure)measures.getItemAt(i);
             if (m.equals(w)) {
                 measures.setSelectedIndex(i);
@@ -89,7 +89,7 @@ public class MeasureWidget extends JPanel implements ItemListener, ActionListene
             double mult = w.getAmount();
             if (curMeasure != null) {
                 double grams = curMeasure.getGrams() * multiplier.getValue();
-                mult = grams/w.getGrams();
+                mult = grams / w.getGrams();
             }
             multiplier.setValue(mult);
         }

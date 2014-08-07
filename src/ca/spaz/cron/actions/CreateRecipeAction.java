@@ -31,7 +31,7 @@ public class CreateRecipeAction extends AbstractAction {
         Recipe r = new Recipe();
         r.addServings(servings);
         r.setDescription("New Recipe");
-        r.setSourceUID("a"+servings.size()+"-"+r.getCalories());
+        r.setSourceUID("a" + servings.size() + "-" + r.getCalories());
         FoodEditor.editFood(r);
     }
 }

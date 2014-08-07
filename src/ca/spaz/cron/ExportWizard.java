@@ -52,9 +52,9 @@ public class ExportWizard extends JFrame {
 
         text = new JTextPane();
 
-        panel = new JPanel(new BorderLayout(4,4));
+        panel = new JPanel(new BorderLayout(4, 4));
         panel.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
-        panel.setPreferredSize(new Dimension(600,300));
+        panel.setPreferredSize(new Dimension(600, 300));
 
         importBtn = new JButton("Upload Data");
         importBtn.addActionListener(new ActionListener() {
@@ -70,7 +70,7 @@ public class ExportWizard extends JFrame {
         });
 
         panel.add(new JScrollPane(text), BorderLayout.CENTER);
-        panel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
+        panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         getContentPane().setLayout(new BorderLayout());
         getContentPane().add(getLoginPanel(), BorderLayout.SOUTH);
@@ -92,7 +92,7 @@ public class ExportWizard extends JFrame {
         if (loginPanel == null) {
             loginPanel = new JPanel();
             loginPanel.setBorder(new EmptyBorder(8, 8, 18, 8));
-            loginPanel.setLayout(new GridLayout(4,3,4,4));
+            loginPanel.setLayout(new GridLayout(4, 3, 4, 4));
 
             loginPanel.add(importDiary);
             loginPanel.add(Box.createGlue());
@@ -124,8 +124,8 @@ public class ExportWizard extends JFrame {
 
     private void doLogin() {
         try {
-            println("Logging in as '" + username.getText()+"'");
-            URL url = new URL("http://"+hostname+"/migrate");
+            println("Logging in as '" + username.getText() + "'");
+            URL url = new URL("http://" + hostname + "/migrate");
             URLConnection conn = url.openConnection();
             conn.setDoOutput(true);
             OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
@@ -183,7 +183,7 @@ public class ExportWizard extends JFrame {
     }
 
     private void println(final String str) {
-        print(str+"\n");
+        print(str + "\n");
     }
 
     private void print(final String str) {
@@ -208,14 +208,14 @@ public class ExportWizard extends JFrame {
             }
         });
 
-        println("Connecting to "+hostname+"...");
+        println("Connecting to " + hostname + "...");
         Socket sock = new Socket(hostname, port);
 
         // Send header
-        String path = "http://"+hostname+"/migrate?token="+token;
+        String path = "http://" + hostname + "/migrate?token=" + token;
         OutputStreamWriter wr = new OutputStreamWriter(new BufferedOutputStream(sock.getOutputStream()), "UTF-8");
         wr.write("POST " + path + " HTTP/1.0\r\n");
-        wr.write("Content-Length: " +xml.length() + "\r\n");
+        wr.write("Content-Length: " + xml.length() + "\r\n");
         wr.write("Content-Type: text/xml; charset=\"utf-8\"\r\n");
         wr.write("\r\n");
 
@@ -285,7 +285,7 @@ public class ExportWizard extends JFrame {
     public static String getTextContent(Node e) {
         StringBuffer sb = new StringBuffer();
         NodeList nl = e.getChildNodes();
-        for (int n = 0; n<nl.getLength(); n++) {
+        for (int n = 0; n < nl.getLength(); n++) {
             sb.append(nl.item(n).getTextContent());
         }
         return sb.toString();

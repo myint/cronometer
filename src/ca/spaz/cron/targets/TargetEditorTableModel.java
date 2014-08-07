@@ -73,7 +73,7 @@ public class TargetEditorTableModel extends PrettyTableModel {
             case TRACK_COLUMN:
                 return new Boolean(user.isTracking(ni));
             case NAME_COLUMN:
-                return (ni.getParent() != null) ? ("   "+ni.getName()) : ni.getName();
+                return (ni.getParent() != null) ? ("   " + ni.getName()) : ni.getName();
             case TARGET_MIN:
                 return new Double(target.getMin());
             case TARGET_MAX:
@@ -120,7 +120,7 @@ public class TargetEditorTableModel extends PrettyTableModel {
                 val = promptForSparseData(ni);
             }
             user.setTracking(ni, val);
-            fireTableRowsUpdated(row,row);
+            fireTableRowsUpdated(row, row);
         }
     }
 
@@ -132,7 +132,7 @@ public class TargetEditorTableModel extends PrettyTableModel {
         int rc = JOptionPane.showConfirmDialog(Cronometer.mainFrame,
                                                ni.getName() + data + " in the USDA food database.\n" +
                                                "Are you sure you want to track it?",
-                                               "Track " + ni.getName()+"?",
+                                               "Track " + ni.getName() + "?",
                                                JOptionPane.YES_NO_OPTION);
         return rc == JOptionPane.YES_OPTION;
     }

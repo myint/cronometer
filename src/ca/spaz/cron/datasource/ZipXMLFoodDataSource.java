@@ -22,7 +22,7 @@ public abstract class ZipXMLFoodDataSource implements FoodDataSource {
             zip = new ZipFile(getZipFileName());
             loadIndex();
             loadDeprecatedIndex();
-            Logger.debug("Loaded " + map.size() +" foods.");
+            Logger.debug("Loaded " + map.size() + " foods.");
         } catch (IOException e) {
             Logger.error("Error Initliazing DataSource", e);
             ErrorReporter.showError("Error Initliazing DataSource", e, Cronometer.getInstance());
@@ -39,7 +39,7 @@ public abstract class ZipXMLFoodDataSource implements FoodDataSource {
         String line = in.readLine();
         while (line != null) {
             String[] parts = line.split("\\|");
-            FoodProxy food = new FoodProxy(parts[1],this,parts[0]);
+            FoodProxy food = new FoodProxy(parts[1], this, parts[0]);
             map.put(parts[0], food);
             line = in.readLine();
         }
@@ -55,7 +55,7 @@ public abstract class ZipXMLFoodDataSource implements FoodDataSource {
             String line = in.readLine();
             while (line != null) {
                 String[] parts = line.split("\\|");
-                DeprecatedFoodProxy food = new DeprecatedFoodProxy(parts[1],this,parts[0]);
+                DeprecatedFoodProxy food = new DeprecatedFoodProxy(parts[1], this, parts[0]);
                 map.put(parts[0], food);
                 line = in.readLine();
             }
@@ -64,7 +64,7 @@ public abstract class ZipXMLFoodDataSource implements FoodDataSource {
     }
 
     public Food loadFood(String id) {
-        Food food = loadFood(zip.getEntry(id+".xml"));
+        Food food = loadFood(zip.getEntry(id + ".xml"));
         food.setDataSource(this);
         food.setSourceUID(id);
         return food;
@@ -81,8 +81,8 @@ public abstract class ZipXMLFoodDataSource implements FoodDataSource {
             f = XMLFoodLoader.loadFood(zIn);
             zIn.close();
         } catch (Exception e) {
-            Logger.error("Error loading: "+entry, e);
-            ErrorReporter.showError("Error loading: "+entry, e, Cronometer.getInstance());
+            Logger.error("Error loading: " + entry, e);
+            ErrorReporter.showError("Error loading: " + entry, e, Cronometer.getInstance());
             f = null;
         }
         return f;
@@ -95,7 +95,7 @@ public abstract class ZipXMLFoodDataSource implements FoodDataSource {
             FoodProxy food = (FoodProxy)iter.next();
             String desc = food.getDescription().toUpperCase();
             boolean match = true;
-            for (int i=0; match && i<keys.length; i++) {
+            for (int i = 0; match && i < keys.length; i++) {
                 if (desc.indexOf(keys[i].toUpperCase()) == -1) {
                     match = false;
                 }
@@ -131,8 +131,8 @@ public abstract class ZipXMLFoodDataSource implements FoodDataSource {
             while (e.hasMoreElements()) {
                 Food f = loadFood((ZipEntry)e.nextElement());
                 if (f != null) {
-                    Logger.error(f.getSourceUID()+"|"+f.getDescription());
-                    ps.println(f.getSourceUID()+"|"+f.getDescription());
+                    Logger.error(f.getSourceUID() + "|" + f.getDescription());
+                    ps.println(f.getSourceUID() + "|" + f.getDescription());
                 }
             }
             ps.close();

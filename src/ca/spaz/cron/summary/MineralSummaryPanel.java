@@ -11,7 +11,7 @@ public class MineralSummaryPanel extends AbstractNutrientSummaryPanel {
 
     public MineralSummaryPanel() {
         setLayout(new BorderLayout());
-        setBorder(BorderFactory.createEmptyBorder(4,4,4,4));
+        setBorder(BorderFactory.createEmptyBorder(4, 4, 4, 4));
         add(getNutrientTablePane(), BorderLayout.CENTER);
     }
 

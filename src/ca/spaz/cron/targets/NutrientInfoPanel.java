@@ -31,9 +31,9 @@ public class NutrientInfoPanel extends WrappedPanel {
     public NutrientInfoPanel(NutrientInfo ni) {
         this.ni = ni;
         target = UserManager.getCurrentUser().getTarget(ni);
-        setLayout(new BorderLayout(8,8));
+        setLayout(new BorderLayout(8, 8));
         add(getTargetPanel(), BorderLayout.CENTER);
-        setBorder(BorderFactory.createEmptyBorder(12,12,12,12));
+        setBorder(BorderFactory.createEmptyBorder(12, 12, 12, 12));
     }
 
     public String getTitle() {
@@ -103,7 +103,7 @@ public class NutrientInfoPanel extends WrappedPanel {
 
             targetPanel.add("p center", getResetButton());
 
-            targetPanel.add("p", Box.createRigidArea(new Dimension(150,10)));
+            targetPanel.add("p", Box.createRigidArea(new Dimension(150, 10)));
         }
         return targetPanel;
     }

@@ -11,7 +11,7 @@ public class AminoAcidSummaryPanel extends AbstractNutrientSummaryPanel {
 
     public AminoAcidSummaryPanel() {
         setLayout(new BorderLayout());
-        setBorder(BorderFactory.createEmptyBorder(4,4,4,4));
+        setBorder(BorderFactory.createEmptyBorder(4, 4, 4, 4));
         add(getNutrientTablePane(), BorderLayout.CENTER);
     }
 

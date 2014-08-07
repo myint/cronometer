@@ -34,10 +34,10 @@ public class SearchHit implements Comparable {
         }
 
         // penalize longer strings. We're usually searching for short, simple foods.
-        score -= 3*getFoodProxy().getDescription().length();
+        score -= 3 * getFoodProxy().getDescription().length();
 
         // add bonus for search terms being early in the description
-        for (int i=0; i<query.length; i++) {
+        for (int i = 0; i < query.length; i++) {
             score += 50 * (1.0 - (fp.getDescription().indexOf(query[i]) / (double)fp.getDescription().length()));
         }
 

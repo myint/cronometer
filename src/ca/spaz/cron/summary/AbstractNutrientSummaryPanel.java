@@ -56,9 +56,9 @@ public abstract class AbstractNutrientSummaryPanel extends JPanel {
             Target target = UserManager.getCurrentUser().getTarget(ni);
             if (target.getMin() > 0 && UserManager.getCurrentUser().isTracking(ni)) {
                 double amount = getNutrientTable().getAmount(ni);
-                valueFull += amount/target.getMin();
+                valueFull += amount / target.getMin();
                 if (amount < target.getMin()) {
-                    value += amount/target.getMin();
+                    value += amount / target.getMin();
                 } else {
                     value++;
                 }
@@ -66,7 +66,7 @@ public abstract class AbstractNutrientSummaryPanel extends JPanel {
             }
         }
         if (average) {
-            return valueFull/total;
+            return valueFull / total;
         } else {
             return value / total;
         }

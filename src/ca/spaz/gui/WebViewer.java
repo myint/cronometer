@@ -89,7 +89,7 @@ public class WebViewer extends JPanel {
                              "</body></html>");
                 } catch (ConnectException ex) {
                     setHTML( "<html><body>" +
-                             "<h2 align=\"center\">Connect Exception:"+ex.getLocalizedMessage()+"</h2>" +
+                             "<h2 align=\"center\">Connect Exception:" + ex.getLocalizedMessage() + "</h2>" +
                              "<h3 align=\"center\">'" + url.getHost() + "'</h3>" +
                              "</body></html>");
                 } catch (Exception e) {
@@ -119,7 +119,7 @@ public class WebViewer extends JPanel {
     public void clearAll() {
         try {
             Document doc = htmlPane.getDocument();
-            doc.remove(0,doc.getLength());
+            doc.remove(0, doc.getLength());
         } catch (Exception e) {
             e.printStackTrace();
         }

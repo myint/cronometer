@@ -171,7 +171,7 @@ public class RiverLayout
                 x = 0;
                 tabIndex = 0;
             } else {
-                x+= hgap;
+                x += hgap;
             }
             if (hasConstraint(m, TAB_STOP)) {
                 ruler.setTab(tabIndex, x); // Will only increase
@@ -209,7 +209,7 @@ public class RiverLayout
                     dim.width = Math.max(dim.width, rowDim.width);
                     dim.height += rowDim.height + vgap;
                     if (hasConstraint(m, PARAGRAPH_BREAK)) {
-                        dim.height += 2*vgap;
+                        dim.height += 2 * vgap;
                     }
                     rowDim = new Dimension(0, 0);
                 }
@@ -261,7 +261,7 @@ public class RiverLayout
                     dim.width = Math.max(dim.width, rowDim.width);
                     dim.height += rowDim.height + vgap;
                     if (hasConstraint(m, PARAGRAPH_BREAK)) {
-                        dim.height += 2*vgap;
+                        dim.height += 2 * vgap;
                     }
                     rowDim = new Dimension(0, 0);
                 }
@@ -415,7 +415,7 @@ public class RiverLayout
                     x = d.width;
                     y += vgap + rowh;
                     if (hasConstraint(m, PARAGRAPH_BREAK)) {
-                        y += 2*vgap;
+                        y += 2 * vgap;
                     }
                     rowh = d.height;
                     start = i;
@@ -446,7 +446,7 @@ public class RiverLayout
             }
             moveComponents(target, insets.left, y, maxwidth - x, rowh,
                            start, nmembers, ltr, ruler);
-            int yslack = maxheight - (y+rowh);
+            int yslack = maxheight - (y + rowh);
             if (yslack > 0 && toVfill != null) {
                 toVfill.setSize(toVfill.getWidth(), yslack + toVfill.getHeight());
                 relMove(target, 0, yslack, moveDownStart, nmembers);
@@ -478,9 +478,9 @@ class Ruler {
 
     public String toString() {
         StringBuffer ret = new StringBuffer(getClass().getName() + " {");
-        for (int i=0; i<tabs.size(); i++) {
+        for (int i = 0; i < tabs.size(); i++) {
             ret.append(tabs.get(i));
-            if (i < tabs.size()-1) {
+            if (i < tabs.size() - 1) {
                 ret.append(',');
             }
         }
@@ -490,11 +490,11 @@ class Ruler {
 
     public static void main(String[] args) {
         Ruler r = new Ruler();
-        r.setTab(0,10);
-        r.setTab(1,20);
-        r.setTab(2,30);
+        r.setTab(0, 10);
+        r.setTab(1, 20);
+        r.setTab(2, 30);
         System.out.println(r);
-        r.setTab(1,25);
+        r.setTab(1, 25);
         System.out.println(r);
         System.out.println(r.getTab(0));
     }

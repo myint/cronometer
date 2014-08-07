@@ -13,8 +13,8 @@ public class ExercisePanel extends JPanel {
     private ExerciseTable exerciseTable;
 
     public ExercisePanel() {
-        setLayout(new BorderLayout(4,4));
-        setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
+        setLayout(new BorderLayout(4, 4));
+        setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         add(getExerciseTable(),  BorderLayout.CENTER);
     }
 

@@ -41,8 +41,8 @@ public class TargetEditor extends WrappedPanel {
 
     public TargetEditor(User user) {
         this.user = user;
-        this.setLayout(new BorderLayout(8,8));
-        this.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
+        this.setLayout(new BorderLayout(8, 8));
+        this.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         this.add(getDefaultsPanel(), BorderLayout.NORTH);
         this.add(getTabPanel(), BorderLayout.CENTER);
         this.add(getRatioPanel(), BorderLayout.SOUTH);
@@ -129,7 +129,7 @@ public class TargetEditor extends WrappedPanel {
         if (UserSettingsDialog.showDialog(UserManager.getUserManager(), setDefaultsBtn)) {
             int rc = JOptionPane.showConfirmDialog(this,
                                                    "Are you sure you want to replace the current targets with" +
-                                                   " '"+ model.toString()+"'?",
+                                                   " '" + model.toString() + "'?",
                                                    "Replace Targets?", JOptionPane.YES_NO_OPTION);
             if (rc != JOptionPane.YES_OPTION) {
                 return;
@@ -224,9 +224,9 @@ public class TargetEditor extends WrappedPanel {
         int total = protein + carbs + fat;
         if (total != 100) {
             Toolkit.getDefaultToolkit().beep();
-            protein = 100*protein / total;
-            carbs = 100*carbs / total;
-            fat = 100*fat / total;
+            protein = 100 * protein / total;
+            carbs = 100 * carbs / total;
+            fat = 100 * fat / total;
             total = protein + carbs + fat;
             if (total < 100) {
                 carbs += 100 - total;
@@ -238,14 +238,14 @@ public class TargetEditor extends WrappedPanel {
 
         Target t = user.getTarget(NutrientInfo.getCalories());
         double calories = t.getMin();
-        double pGrams = Math.round((calories * (protein/100.0)) / 4);
-        double cGrams = Math.round((calories * ((carbs)/100.0)) / 4);
-        double fGrams = Math.round((calories * (fat/100.0)) / 9);
+        double pGrams = Math.round((calories * (protein / 100.0)) / 4);
+        double cGrams = Math.round((calories * ((carbs) / 100.0)) / 4);
+        double fGrams = Math.round((calories * (fat / 100.0)) / 9);
         cGrams += user.getTarget(NutrientInfo.getFiber()).getMin();
 
-        user.setTarget(NutrientInfo.getProtein(), new Target(pGrams, Math.round(pGrams*1.25)));
-        user.setTarget(NutrientInfo.getCarbs(), new Target(cGrams, Math.round(cGrams*1.25)));
-        user.setTarget(NutrientInfo.getFat(), new Target(fGrams, Math.round(fGrams*1.25)));
+        user.setTarget(NutrientInfo.getProtein(), new Target(pGrams, Math.round(pGrams * 1.25)));
+        user.setTarget(NutrientInfo.getCarbs(), new Target(cGrams, Math.round(cGrams * 1.25)));
+        user.setTarget(NutrientInfo.getFat(), new Target(fGrams, Math.round(fGrams * 1.25)));
         user.setProteinPercentage(protein);
         user.setCarbPercentage(carbs);
         user.setFatPercentage(fat);

@@ -38,7 +38,7 @@ public class Wizard extends JDialog {
         this.title = title;
         setModal(true);
         setTitle(getTitle());
-        getContentPane().setLayout(new BorderLayout(4,4));
+        getContentPane().setLayout(new BorderLayout(4, 4));
         getContentPane().add(getMainPanel(), BorderLayout.CENTER);
     }
 
@@ -94,9 +94,9 @@ public class Wizard extends JDialog {
             getCurrentPanelTitleLabel().setText(wp.getWizardPanelTitle());
         }
         curPanel = i;
-        getPrevButton().setEnabled(i>0);
-        getNextButton().setEnabled(getWizardPanels().size() > i+1);
-        getFinishButton().setEnabled(getWizardPanels().size() == i+1);
+        getPrevButton().setEnabled(i > 0);
+        getNextButton().setEnabled(getWizardPanels().size() > i + 1);
+        getFinishButton().setEnabled(getWizardPanels().size() == i + 1);
         JLabel label = (JLabel)getTitleMap().get(wp);
         if (label != null) {
             label.setForeground(Color.BLACK);
@@ -117,20 +117,20 @@ public class Wizard extends JDialog {
 
     private void showNext() {
         if (curPanel < getNumPanels() - 1) {
-            showPanel(curPanel+1);
+            showPanel(curPanel + 1);
         }
     }
 
     private void showPrevious() {
         if (curPanel > 0) {
-            showPanel(curPanel-1);
+            showPanel(curPanel - 1);
         }
     }
 
     private JPanel getMainPanel() {
         if (mainPanel == null) {
-            mainPanel = new JPanel(new BorderLayout(4,4));
-            mainPanel.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
+            mainPanel = new JPanel(new BorderLayout(4, 4));
+            mainPanel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
             mainPanel.add(getTitlePanel(), BorderLayout.NORTH);
             mainPanel.add(getOutlinePanel(), BorderLayout.WEST);
             mainPanel.add(getWizardPanel(), BorderLayout.CENTER);
@@ -142,7 +142,7 @@ public class Wizard extends JDialog {
     private JLabel getCurrentPanelTitleLabel() {
         if (curPanelTitle == null) {
             curPanelTitle = new JLabel("", JLabel.CENTER);
-            curPanelTitle.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
+            curPanelTitle.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
             curPanelTitle.setFont(curPanelTitle.getFont().deriveFont(Font.BOLD));
             curPanelTitle.setForeground(Color.WHITE);
         }
@@ -153,11 +153,11 @@ public class Wizard extends JDialog {
         if (titlePanel == null) {
 
             JLabel titleLabel = new JLabel(getTitle());
-            titleLabel.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
+            titleLabel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
             titleLabel.setFont(titleLabel.getFont().deriveFont(Font.BOLD));
             titleLabel.setForeground(Color.WHITE);
 
-            titlePanel = new JPanel(new BorderLayout(4,4));
+            titlePanel = new JPanel(new BorderLayout(4, 4));
             titlePanel.setBackground(Color.BLACK);
             titlePanel.setBorder(BorderFactory.createRaisedBevelBorder());
             titlePanel.add(titleLabel, BorderLayout.WEST);
@@ -173,8 +173,8 @@ public class Wizard extends JDialog {
             outlinePanel.setBackground(Color.LIGHT_GRAY);
             outlinePanel.setBorder(BorderFactory.createCompoundBorder(
                                        BorderFactory.createEtchedBorder(),
-                                       BorderFactory.createEmptyBorder(8,8,8,8) ));
-            outlinePanel.add(Box.createRigidArea(new Dimension(120,10)), BorderLayout.CENTER);
+                                       BorderFactory.createEmptyBorder(8, 8, 8, 8) ));
+            outlinePanel.add(Box.createRigidArea(new Dimension(120, 10)), BorderLayout.CENTER);
         }
         return outlinePanel;
     }
@@ -183,7 +183,7 @@ public class Wizard extends JDialog {
         if (contentPanel == null) {
             contentPanel = new JPanel(getContentCards());
             contentPanel.setBorder(BorderFactory.createLoweredBevelBorder());
-            contentPanel.add(Box.createRigidArea(new Dimension(400,300)), BorderLayout.CENTER);
+            contentPanel.add(Box.createRigidArea(new Dimension(400, 300)), BorderLayout.CENTER);
         }
         return contentPanel;
     }
@@ -198,7 +198,7 @@ public class Wizard extends JDialog {
     private JPanel getNavPanel() {
         if (navPanel == null) {
             navPanel = new JPanel();
-            navPanel.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
+            navPanel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
             navPanel.setLayout(new BoxLayout(navPanel, BoxLayout.X_AXIS));
             navPanel.add(getCancelButton());
             navPanel.add(Box.createGlue());

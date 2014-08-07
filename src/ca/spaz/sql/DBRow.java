@@ -21,7 +21,7 @@ public abstract class DBRow {
      */
     public static void load(ResultSet row, Object obj)  throws SQLException, IllegalArgumentException, IllegalAccessException {
         Field[] fields = obj.getClass().getFields();
-        for (int i=0; i<fields.length; i++) {
+        for (int i = 0; i < fields.length; i++) {
             String name = fields[i].getName();
             Class type = fields[i].getType();
 

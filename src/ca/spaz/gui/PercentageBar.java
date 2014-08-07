@@ -10,7 +10,7 @@ public class PercentageBar extends JComponent {
     private float alpha = 0.65f;
 
     public PercentageBar() {
-        setForeground(new Color(50,120,160));
+        setForeground(new Color(50, 120, 160));
         setPreferredSize(new Dimension(50, 8));
     }
 
@@ -41,16 +41,16 @@ public class PercentageBar extends JComponent {
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
         g.setColor(getBackground());
-        g.fillRect(xo,yo,w,h);
+        g.fillRect(xo, yo, w, h);
 
         g.setColor(getForeground());
-        int bar = (int)Math.round(w*value);
+        int bar = (int)Math.round(w * value);
         if (bar > 1) {
             if (bar > w) {
                 bar = w;
                 g.setColor(getForeground().brighter());
             }
-            g.fill3DRect(xo,yo,bar,h-1,true);
+            g.fill3DRect(xo, yo, bar, h - 1, true);
         }
 
         g.setColor(Color.BLACK);

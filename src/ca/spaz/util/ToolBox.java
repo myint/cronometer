@@ -91,7 +91,7 @@ public class ToolBox {
         Inflater decompresser = new Inflater();
         decompresser.setInput(data);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        byte[] buffer=new byte[1024];
+        byte[] buffer = new byte[1024];
         while (!decompresser.finished()) {
             try {
                 int cnt = decompresser.inflate(buffer);
@@ -291,11 +291,11 @@ public class ToolBox {
     }
 
     public static final int makeIntFromByte4(byte[] b) {
-        return b[0]<<24 | (b[1]&0xff)<<16 | (b[2]&0xff)<<8 | (b[3]&0xff);
+        return b[0] << 24 | (b[1] & 0xff) << 16 | (b[2] & 0xff) << 8 | (b[3] & 0xff);
     }
 
     public static final byte[] makeByte4FromInt(int i) {
-        return new byte[] { (byte)(i>>24), (byte)(i>>16), (byte)(i>>8), (byte)i };
+        return new byte[] { (byte)(i >> 24), (byte)(i >> 16), (byte)(i >> 8), (byte)i };
     }
 
     /**
@@ -311,7 +311,7 @@ public class ToolBox {
      * @return a/b, or 0 if b == 0.
      */
     public static double safeDivide(double a, double b) {
-        return safeDivide(a,b,0);
+        return safeDivide(a, b, 0);
     }
 
     /**
@@ -320,7 +320,7 @@ public class ToolBox {
      * @return a/b, or divByZeroResult if b == 0.
      */
     public static double safeDivide(double a, double b, double divByZeroResult) {
-        return (b!=0) ? a/b : divByZeroResult;
+        return (b != 0) ? a / b : divByZeroResult;
     }
 
     /**
@@ -365,15 +365,15 @@ public class ToolBox {
         }
         try {
             if (ToolBox.isOlderWindows()) {
-                Runtime.getRuntime().exec("command.com /e:4096 /c start \""+url+"\"");
+                Runtime.getRuntime().exec("command.com /e:4096 /c start \"" + url + "\"");
             } else {
-                Runtime.getRuntime().exec("start \""+url+"\"");
+                Runtime.getRuntime().exec("start \"" + url + "\"");
             }
             return;
         } catch (IOException e) {
             Logger.error(e);
         }
-        ErrorReporter.showError("Could not load URL:\n"+url, parent);
+        ErrorReporter.showError("Could not load URL:\n" + url, parent);
     }
 
     public static void changeFontSizes(Border b, float delta) {
@@ -384,14 +384,14 @@ public class ToolBox {
                 changeFontSizes(cb.getOutsideBorder(), delta);
             } else if (b instanceof TitledBorder) {
                 TitledBorder tb = (TitledBorder)b;
-                tb.setTitleFont(tb.getTitleFont().deriveFont(tb.getTitleFont().getSize2D()+delta));
+                tb.setTitleFont(tb.getTitleFont().deriveFont(tb.getTitleFont().getSize2D() + delta));
             }
         }
     }
 
     public static void changeFontSizes(JComponent c, float delta) {
-        c.setFont(c.getFont().deriveFont(c.getFont().getSize2D()+delta));
-        for (int i=0; i<c.getComponentCount(); i++) {
+        c.setFont(c.getFont().deriveFont(c.getFont().getSize2D() + delta));
+        for (int i = 0; i < c.getComponentCount(); i++) {
             Component jc = c.getComponent(i);
             if (jc instanceof JComponent) {
                 changeFontSizes((JComponent) jc, delta);

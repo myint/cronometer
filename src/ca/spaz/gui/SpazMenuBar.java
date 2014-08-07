@@ -73,7 +73,7 @@ public class SpazMenuBar extends JMenuBar implements ActionListener {
         try {
             Element e = d.getDocumentElement();
             NodeList nl = e.getElementsByTagName("menu");
-            for (int n=0; n<nl.getLength(); n++) {
+            for (int n = 0; n < nl.getLength(); n++) {
                 Element elm = (Element)(nl.item(n));
                 loadXMLMenu(elm);
             }
@@ -109,7 +109,7 @@ public class SpazMenuBar extends JMenuBar implements ActionListener {
                     JMenu submenu = new JMenu(title);
                     menu.add(submenu);
                     loadXMLMenuItems(e, submenu);
-                    actions.put(submenu, "SUBMENU_"+title);
+                    actions.put(submenu, "SUBMENU_" + title);
                 }
             }
         }
@@ -202,7 +202,7 @@ public class SpazMenuBar extends JMenuBar implements ActionListener {
                 Object[] params2 = null;
                 m.invoke(listener, params2);
             } catch (NoSuchMethodException me) {
-                JOptionPane.showMessageDialog(null, "No Menu Handler for  '"+methodName+"'");
+                JOptionPane.showMessageDialog(null, "No Menu Handler for  '" + methodName + "'");
             } catch (Exception ex) {
                 ex.printStackTrace();
             }

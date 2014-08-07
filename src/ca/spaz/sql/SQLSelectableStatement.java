@@ -23,7 +23,7 @@ public abstract class SQLSelectableStatement extends SQLStatement {
 
     private boolean and;
 
-    protected SQLSelectableStatement(String table, boolean and, boolean querySupport, boolean executeSupport) {
+    protected SQLSelectableStatement(String table, boolean and , boolean querySupport, boolean executeSupport) {
         super(table, querySupport, executeSupport);
         this.and = and;
     }
@@ -97,7 +97,7 @@ public abstract class SQLSelectableStatement extends SQLStatement {
                 Object w = where.get(i);
                 sb.append(w.toString());
                 if (i < where.size() - 1) {
-                    sb.append(and ? " AND " : " OR ");
+                    sb.append( and ? " AND " : " OR ");
                 }
             }
         }

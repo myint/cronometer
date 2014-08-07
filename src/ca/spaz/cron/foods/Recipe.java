@@ -18,7 +18,7 @@ public class Recipe extends Food {
         super.copy(r);
         if (r.servings != null) {
             getServings().clear();
-            for (int i=0; i<r.servings.size(); i++) {
+            for (int i = 0; i < r.servings.size(); i++) {
                 getServings().add(new Serving((Serving)r.servings.get(i)));
             }
         }
@@ -84,7 +84,7 @@ public class Recipe extends Food {
 
         boolean found = false;
         List list = getMeasures();
-        for (int i=0; i<list.size(); i++) {
+        for (int i = 0; i < list.size(); i++) {
             Measure m = (Measure)list.get(i);
             if (m.getDescription().equals("full recipe")) {
                 m.setGrams(total);
@@ -114,7 +114,7 @@ public class Recipe extends Food {
         for (Iterator iter = getServings().iterator(); iter.hasNext(); ) {
             Serving serving = (Serving) iter.next();
             if (serving.getFood() != null) {
-                double weight = (serving.getGrams()/totalGrams);
+                double weight = (serving.getGrams() / totalGrams);
                 total += weight * serving.getFood().getNutrientAmount(ni);
             }
         }

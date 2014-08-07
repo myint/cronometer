@@ -16,7 +16,7 @@ public class ReadMe extends WrappedPanel {
         this.title = title;
         setLayout(new BorderLayout());
         WebViewer wv = new WebViewer(url);
-        wv.setPreferredSize(new Dimension(600,400));
+        wv.setPreferredSize(new Dimension(600, 400));
         add(wv, BorderLayout.CENTER);
         WrapperDialog.showDialog(parent, this);
     }

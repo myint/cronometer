@@ -18,7 +18,7 @@ public abstract class JarXMLFoodDataSource implements FoodDataSource {
         try {
             loadIndex();
             loadDeprecatedIndex();
-            Logger.debug("Loaded " + map.size() +" foods.");
+            Logger.debug("Loaded " + map.size() + " foods.");
         } catch (IOException e) {
             Logger.error("Error Initliazing DataSource", e);
             ErrorReporter.showError("Error Initliazing DataSource", e, Cronometer.getInstance());
@@ -26,7 +26,7 @@ public abstract class JarXMLFoodDataSource implements FoodDataSource {
     }
 
     private InputStream getStream(String name) {
-        return getClass().getResourceAsStream("/"+getBaseName()+"/"+name);
+        return getClass().getResourceAsStream("/" + getBaseName() + "/" + name);
     }
 
     private void loadIndex() throws IOException {
@@ -38,7 +38,7 @@ public abstract class JarXMLFoodDataSource implements FoodDataSource {
             String line = bIn.readLine();
             while (line != null) {
                 String[] parts = line.split("\\|");
-                map.put(parts[0], new FoodProxy(parts[1],this,parts[0]));
+                map.put(parts[0], new FoodProxy(parts[1], this, parts[0]));
                 line = bIn.readLine();
             }
             bIn.close();
@@ -53,7 +53,7 @@ public abstract class JarXMLFoodDataSource implements FoodDataSource {
             String line = bIn.readLine();
             while (line != null) {
                 String[] parts = line.split("\\|");
-                map.put(parts[0], new DeprecatedFoodProxy(parts[1],this,parts[0]));
+                map.put(parts[0], new DeprecatedFoodProxy(parts[1], this, parts[0]));
                 line = bIn.readLine();
             }
             bIn.close();
@@ -62,7 +62,7 @@ public abstract class JarXMLFoodDataSource implements FoodDataSource {
 
     public Food loadFood(String id) {
         Food food = null;
-        InputStream in = getStream(id+".xml");
+        InputStream in = getStream(id + ".xml");
         if (in != null) {
             try {
                 food = XMLFoodLoader.loadFood(in);
@@ -70,8 +70,8 @@ public abstract class JarXMLFoodDataSource implements FoodDataSource {
                 food.setDataSource(this);
                 food.setSourceUID(id);
             } catch (Exception e) {
-                Logger.error("Error loading: "+id, e);
-                ErrorReporter.showError("Error loading: "+id, e, Cronometer.getInstance());
+                Logger.error("Error loading: " + id, e);
+                ErrorReporter.showError("Error loading: " + id, e, Cronometer.getInstance());
                 food = null;
             }
         }
@@ -89,7 +89,7 @@ public abstract class JarXMLFoodDataSource implements FoodDataSource {
             FoodProxy food = (FoodProxy)iter.next();
             String desc = food.getDescription().toUpperCase();
             boolean match = true;
-            for (int i=0; match && i<keys.length; i++) {
+            for (int i = 0; match && i < keys.length; i++) {
                 if (desc.indexOf(keys[i].toUpperCase()) == -1) {
                     match = false;
                 }

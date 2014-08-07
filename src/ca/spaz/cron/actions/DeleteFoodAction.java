@@ -36,13 +36,13 @@ public class DeleteFoodAction extends AbstractAction {
         int rc = 0;
         if (servings.size() == 0) {
             rc = JOptionPane.showConfirmDialog(parent,
-                                               "Are you sure you want to delete '"+
+                                               "Are you sure you want to delete '" +
                                                fp.getDescription() + "'?",
                                                "Delete Food?", JOptionPane.YES_NO_OPTION);
         } else {
             rc = JOptionPane.showConfirmDialog(parent,
-                                               "Are you sure you want to delete '"+
-                                               fp.getDescription() + "' and the "+servings.size()+" references to it?",
+                                               "Are you sure you want to delete '" +
+                                               fp.getDescription() + "' and the " + servings.size() + " references to it?",
                                                "Delete Food?", JOptionPane.YES_NO_OPTION);
         }
         if (rc == JOptionPane.YES_OPTION) {

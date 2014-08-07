@@ -31,7 +31,7 @@ public class TargetEditorTable extends JScrollPane {
             nutrientTable.getSelectionModel().setSelectionMode(
                 ListSelectionModel.SINGLE_SELECTION);
             nutrientTable.getTableHeader().setReorderingAllowed(false);
-            for (int i=0; i<model.getColumnCount(); i++) {
+            for (int i = 0; i < model.getColumnCount(); i++) {
                 TableColumn tc = nutrientTable.getTableHeader().getColumnModel().getColumn(i);
                 tc.setPreferredWidth(model.getColumnMaxWidth(i));
             }

@@ -59,7 +59,7 @@ public class UserSettingsDialog extends WrappedPanel {
         this.userMan = userMan;
         currentUser = UserManager.getCurrentUser();
 
-        JPanel cp = new JPanel(new RiverLayout(1,1));
+        JPanel cp = new JPanel(new RiverLayout(1, 1));
         cp.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
         cp.add("p center hfill", getUsernamePanel());
         cp.add("p center hfill", getGenderPanel());
@@ -70,7 +70,7 @@ public class UserSettingsDialog extends WrappedPanel {
         cp.add("p center vfill", Box.createVerticalBox());
 
         setBorder(BorderFactory.createEmptyBorder(6, 6, 6, 6));
-        setLayout(new BorderLayout(12,12));
+        setLayout(new BorderLayout(12, 12));
 
         add(cp, BorderLayout.CENTER);
 
@@ -116,7 +116,7 @@ public class UserSettingsDialog extends WrappedPanel {
         return BorderFactory.createCompoundBorder(
                    BorderFactory.createTitledBorder(
                        BorderFactory.createEmptyBorder(), str),
-                   BorderFactory.createEmptyBorder(2,26,2,26));
+                   BorderFactory.createEmptyBorder(2, 26, 2, 26));
     }
 
     private JPanel getUsernamePanel() {
@@ -167,7 +167,7 @@ public class UserSettingsDialog extends WrappedPanel {
         if (yearSpinner == null) {
             Calendar calendar = Calendar.getInstance();
             yearSpinner = new JYearChooser();
-            yearSpinner.setStartYear(calendar.get(Calendar.YEAR)-120);
+            yearSpinner.setStartYear(calendar.get(Calendar.YEAR) - 120);
             yearSpinner.setEndYear(calendar.get(Calendar.YEAR));
             calendar.setTime(currentUser.getBirthDate());
             yearSpinner.setYear(calendar.get(Calendar.YEAR));
@@ -251,7 +251,7 @@ public class UserSettingsDialog extends WrappedPanel {
 
     private JLabel getBMILabel() {
         if (bmiLabel == null) {
-            bmiLabel = new JLabel("BMI: " + Math.round(currentUser.getBMI()*10.0)/10.0, JLabel.CENTER);
+            bmiLabel = new JLabel("BMI: " + Math.round(currentUser.getBMI() * 10.0) / 10.0, JLabel.CENTER);
         }
         return bmiLabel;
     }

@@ -14,18 +14,18 @@ public class ErrorReporter extends WrappedPanel {
         StringBuffer sb = new StringBuffer();
         if (e != null) {
             sb.append("<html><div align=\"center\" width=\"600\">");
-            sb.append("<u>"+e.toString()+"</u><br><br>");
+            sb.append("<u>" + e.toString() + "</u><br><br>");
             sb.append("<div align=\"left\"><code>");
-            for (int i=0; i<e.getStackTrace().length && i < 8; i++) {
-                sb.append(e.getStackTrace()[i].toString() +"<br>");
+            for (int i = 0; i < e.getStackTrace().length && i < 8; i++) {
+                sb.append(e.getStackTrace()[i].toString() + "<br>");
             }
             sb.append("</code></div>");
             sb.append("</div></html>");
         }
 
-        JLabel lbl = new JLabel(sb.toString(),JLabel.CENTER);
-        setBorder(BorderFactory.createEmptyBorder(6,6,6,6));
-        setLayout(new BorderLayout(4,4));
+        JLabel lbl = new JLabel(sb.toString(), JLabel.CENTER);
+        setBorder(BorderFactory.createEmptyBorder(6, 6, 6, 6));
+        setLayout(new BorderLayout(4, 4));
         add(lbl, BorderLayout.CENTER);
     }
 

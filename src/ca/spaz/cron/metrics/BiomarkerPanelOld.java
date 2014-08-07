@@ -32,15 +32,15 @@ public class BiomarkerPanelOld extends JPanel {
         }
 
         JPanel fp = new JPanel(new GridLayout(4, 4));
-        fp.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
+        fp.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         // Note: the grid bag layout is all done here rather than in Metric Editor so that the
         // column alignment works properly across the entire grid.
         JPanel ed = new JPanel(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
         c.fill = GridBagConstraints.NONE;
         c.weightx = 0.0;
-        c.insets = new Insets(8,8,8,8);
-        for (int i=0; i<editors.length; i++) {
+        c.insets = new Insets(8, 8, 8, 8);
+        for (int i = 0; i < editors.length; i++) {
             c.gridx = 0;
             c.gridy = i;
             ed.add(editors[i].getLabel(), c);
@@ -59,7 +59,7 @@ public class BiomarkerPanelOld extends JPanel {
         }
         JPanel x = new JPanel(new BorderLayout());
         x.add(ed, BorderLayout.NORTH);
-        setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
+        setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         setLayout(new BorderLayout(4, 4));
         add(x, BorderLayout.WEST);
 
@@ -72,7 +72,7 @@ public class BiomarkerPanelOld extends JPanel {
     public void setDate(Date d) {
         this.curDate = d;
         curMetrics = null;
-        for (int i=0; i<editors.length; i++) {
+        for (int i = 0; i < editors.length; i++) {
             editors[i].setMetrics(getMetrics());
         }
     }

@@ -57,7 +57,7 @@ public class ExerciseTableModel extends PrettyTableModel {
     }
 
     public Exercise getExercise(int i) {
-        if (i<0 || i >= exercises.size()) {
+        if (i < 0 || i >= exercises.size()) {
             return null;
         }
         return (Exercise) exercises.get(i);

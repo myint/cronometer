@@ -37,7 +37,7 @@ public class StringUtil {
             }
             break;
         case PAD_CENTER:
-            int n = (num - len)/2;
+            int n = (num - len) / 2;
             while (n-- >= 0) {
                 sb.append(pad);
             }

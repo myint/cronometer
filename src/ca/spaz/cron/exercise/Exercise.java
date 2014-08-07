@@ -112,7 +112,7 @@ public class Exercise implements Record {
     }
 
     public void setDate(Date d) {
-        this.date = d == null ? 0: d.getTime();
+        this.date = d == null ? 0 : d.getTime();
     }
 
     public Record copy() {

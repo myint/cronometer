@@ -60,7 +60,7 @@ public class NutrientInfo {
         Document d = db.parse(in);
         Element root = d.getDocumentElement();
         NodeList nl = root.getElementsByTagName("nutrient");
-        for (int i=0; i<nl.getLength(); i++) {
+        for (int i = 0; i < nl.getLength(); i++) {
             NutrientInfo ni = new NutrientInfo((Element)nl.item(i));
             if (ni != null) {
                 NutrientInfo.nutrients.put(ni.getName(), ni);
@@ -107,14 +107,14 @@ public class NutrientInfo {
         if (e.hasAttribute("usda")) {
             this.usda = e.getAttribute("usda");
             String[] parts = this.usda.split(",");
-            for (int i=0; i<parts.length; i++) {
+            for (int i = 0; i < parts.length; i++) {
                 getUSDANutrientMap().put(parts[i], this);
             }
         }
 
         // load any RDA values
         NodeList nl = e.getElementsByTagName("rda");
-        for (int j=0; j<nl.getLength(); j++) {
+        for (int j = 0; j < nl.getLength(); j++) {
             DRI dri = new DRI((Element)nl.item(j));
             getDRIs().add(dri);
         }

@@ -18,7 +18,7 @@ public class Food {
     private String sourceUID;
     private boolean dirty;
     private String comment;
-    private double pCF=4, fCF=9, cCF=4; // calories per gram conversion factors
+    private double pCF = 4, fCF = 9, cCF = 4; // calories per gram conversion factors
 
     public Food() {}
 
@@ -286,7 +286,7 @@ public class Food {
             return false;
         }
         List nutrients = NutrientInfo.getGlobalList();
-        for (int i=0; i<nutrients.size(); i++) {
+        for (int i = 0; i < nutrients.size(); i++) {
             NutrientInfo ni = (NutrientInfo)nutrients.get(i);
             if (f.getNutrientAmount(ni) != getNutrientAmount(ni)) {
                 return false;

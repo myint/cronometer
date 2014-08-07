@@ -104,7 +104,7 @@ public class BiomarkerDefinitions {
 
     public synchronized void writeXML(PrintStream out) {
         XMLNode node = new XMLNode("biomarkers");
-        for (int i=0; i<biomarkers.size(); i++) {
+        for (int i = 0; i < biomarkers.size(); i++) {
             Biomarker biomarker = (Biomarker)biomarkers.get(i);
             node.addChild(biomarker.toXML());
         }
@@ -151,7 +151,7 @@ public class BiomarkerDefinitions {
             Element e = d.getDocumentElement();
 
             NodeList nl = e.getElementsByTagName("biomarker");
-            for (int i=0; i<nl.getLength(); i++) {
+            for (int i = 0; i < nl.getLength(); i++) {
                 Biomarker biomarker = new Biomarker((Element)nl.item(i));
                 addBiomarker(biomarker);
             }

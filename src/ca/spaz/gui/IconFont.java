@@ -12,7 +12,7 @@ public class IconFont {
     private static Font iconFont;
 
     public static JButton createIconFontButton(String code,
-                                               Component component) {
+            Component component) {
         JButton button = new JButton(code);
         button.setFont(getIconFont(component));
         return button;
@@ -23,7 +23,7 @@ public class IconFont {
         {
             try {
                 InputStream in = component.getClass().getResourceAsStream(
-                    "/fontawesome.tff");
+                                     "/fontawesome.tff");
 
                 Font base = Font.createFont(Font.TRUETYPE_FONT, in);
                 iconFont = base.deriveFont(Font.PLAIN, 16);

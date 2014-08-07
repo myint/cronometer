@@ -282,7 +282,7 @@ public class ServingEditor extends JPanel {
      */
     private String fixString(String str) {
         if (str.length() > 53) {
-            return str.substring(0, 50)+"...";
+            return str.substring(0, 50) + "...";
         } else {
             return str;
         }
@@ -333,7 +333,7 @@ public class ServingEditor extends JPanel {
     private synchronized void fireServingChosenEvent() {
         cur.setGrams(getMeasure().getGrams());
         cur.setMeasure(getMeasure().getSelectedMeasure());
-        for (int i=0; i<listeners.size(); i++) {
+        for (int i = 0; i < listeners.size(); i++) {
             ServingEditorListener sel = (ServingEditorListener)listeners.get(i);
             sel.servingChosen(cur);
         }
