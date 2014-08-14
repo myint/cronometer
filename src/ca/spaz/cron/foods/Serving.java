@@ -84,9 +84,6 @@ public class Serving implements Record {
         setFood(proxy);
         if (proxy == null) {
             System.err.println("Failed to load food [" + source + ":" + e.getAttribute("food") + "]");
-            /*ErrorReporter.showError(
-                  "Failed to load food ["+source+":"+e.getAttribute("food")+"]",
-                  Cronometer.getInstance());*/
             return;
         }
 
