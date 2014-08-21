@@ -8,7 +8,7 @@
   </application>
   <executable name="CRON-O-METER" type="2" iconSet="true" iconFile="icon.ico" executableDir="." redirectStderr="false" stderrFile="error.log" redirectStdout="false" stdoutFile="output.log" failOnStderrOutput="true" executableMode="1" changeWorkingDirectory="true" workingDirectory="." singleInstance="true" serviceStartType="2" serviceDependencies="" serviceDescription="" jreLocation="" executionLevel="asInvoker" amd64="false">
     <messageSet />
-    <versionInfo include="true" fileVersion="0.9.9.0" fileDescription="CRON-O-METER Application" legalCopyright="Copyright 2005 - 2011" internalName="CRON-O-METER" companyName="spaz.ca" productVersion="0.9.9.0" />
+    <versionInfo include="true" fileVersion="1.2" fileDescription="CRON-O-METER Application" legalCopyright="Copyright 2005 - 2011" internalName="CRON-O-METER" companyName="spaz.ca" productVersion="1.2" />
   </executable>
   <splashScreen show="false" autoOff="true" alwaysOnTop="true" width="0" height="0" bitmapFile="" java6SplashScreen="false">
     <text>
