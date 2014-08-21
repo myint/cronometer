@@ -29,7 +29,7 @@
       <archive location="../../lib/jcommon-1.0.10.jar" failOnError="false" />
       <archive location="../../lib/jfreechart-1.0.6.jar" failOnError="false" />
       <archive location="../../lib/swingx-core-1.6.2.jar" failOnError="false" />
-      <archive location="../../lib/usda_sr24.jar" failOnError="false" />
+      <archive location="../../lib/usda_sr26.jar" failOnError="false" />
     </classPath>
     <nativeLibraryDirectories />
   </java>
