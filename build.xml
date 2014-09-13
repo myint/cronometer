@@ -1,59 +1,50 @@
+<?xml version="1.0"?>
 <project name="Cronometer" default="cronometer.jar" basedir=".">
-
-    <description>
-        Builds the Cronometer application.
-    </description>
-
-    <property name="name"  value="Cronometer"/>
-    <property name="source" location="src/"/>
-    <property name="build" location="bin"/>
-    <property name="lib" location="lib"/>
-
-    <target name="compile" description="compile the source">
-        <javac source="1.6" srcdir="${source}" destdir="${build}"
-            includeantruntime="false">
-            <compilerarg line= "-Xlint:all -Xlint:-serial -Xlint:-unchecked"/>
-            <classpath>
-                <fileset dir="${lib}">
-                    <include name="*.jar"/>
-                    <exclude name="cronometer.jar"/>
-                </fileset>
-            </classpath>
-        </javac>
-    </target>
-
-    <target name="docs.jar" description="create the documentation jar file" >
-        <jar jarfile="lib/docs.jar" compress="true">
-            <fileset dir="docs">
-                <include name="**"/>
-            </fileset>
-            <manifest>
-                <attribute name="Built-By" value="${user.name}"/>
-            </manifest>
-        </jar>
-    </target>
-
-    <target name="cronometer.jar" depends="docs.jar,compile"
-        description="generate the distribution jar" >
-        <jar jarfile="lib/cronometer.jar" compress="true">
-            <fileset dir="${build}">
-                <include name="*.*"/>
-                <include name="ca/**"/>
-                <include name="com/**"/>
-                <include name="se/**"/>
-                <include name="img/**"/>
-                <include name="docs/**"/>
-            </fileset>
-            <fileset dir="${source}">
-                <include name="*.*"/>
-                <include name="img/**"/>
-                <include name="docs/**"/>
-            </fileset>
-            <manifest>
-                <attribute name="Built-By" value="${user.name}"/>
-                <attribute name="Main-Class" value="ca.spaz.cron.Cronometer"/>
-            </manifest>
-        </jar>
-    </target>
-
+  <description>Builds the Cronometer application.</description>
+  <property name="name" value="Cronometer"/>
+  <property name="source" location="src/"/>
+  <property name="build" location="bin"/>
+  <property name="lib" location="lib"/>
+  <target name="compile" description="compile the source">
+    <javac source="1.6" srcdir="${source}" destdir="${build}" includeantruntime="false">
+      <compilerarg line="-Xlint:all -Xlint:-serial -Xlint:-unchecked"/>
+      <classpath>
+        <fileset dir="${lib}">
+          <include name="*.jar"/>
+          <exclude name="cronometer.jar"/>
+        </fileset>
+      </classpath>
+    </javac>
+  </target>
+  <target name="docs.jar" description="create the documentation jar file">
+    <jar jarfile="lib/docs.jar" compress="true">
+      <fileset dir="docs">
+        <include name="**"/>
+      </fileset>
+      <manifest>
+        <attribute name="Built-By" value="${user.name}"/>
+      </manifest>
+    </jar>
+  </target>
+  <target name="cronometer.jar" depends="docs.jar,compile" description="generate the distribution jar">
+    <jar jarfile="lib/cronometer.jar" compress="true">
+      <fileset dir="${build}">
+        <include name="*.*"/>
+        <include name="ca/**"/>
+        <include name="com/**"/>
+        <include name="se/**"/>
+        <include name="img/**"/>
+        <include name="docs/**"/>
+      </fileset>
+      <fileset dir="${source}">
+        <include name="*.*"/>
+        <include name="img/**"/>
+        <include name="docs/**"/>
+      </fileset>
+      <manifest>
+        <attribute name="Built-By" value="${user.name}"/>
+        <attribute name="Main-Class" value="ca.spaz.cron.Cronometer"/>
+      </manifest>
+    </jar>
+  </target>
 </project>
