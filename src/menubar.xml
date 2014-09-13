@@ -31,4 +31,7 @@
     <item separator="true"/>
     <item title="About Cronometer" key="a" action="doAbout"/>
   </menu>
+  <menu title="Window">
+    <item title="Minimize" key="m" acc="VK_M" action="doMinimize"/>
+  </menu>
 </menubar>

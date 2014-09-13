@@ -204,6 +204,10 @@ public class Cronometer extends JFrame implements MRJQuitHandler, MRJAboutHandle
         doReportBug();
     }
 
+    public void doMinimize() {
+        setState(Frame.ICONIFIED);
+    }
+
     public static String getFullTitle() {
         return TITLE;
     }
