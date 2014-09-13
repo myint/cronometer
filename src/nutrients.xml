@@ -1,855 +1,812 @@
+<?xml version="1.0"?>
 <nutrients>
-
-	<nutrient name="Energy" unit="kcal" dv="2000" usda="208" category="General">
+  <nutrient name="Energy" unit="kcal" dv="2000" usda="208" category="General">
 	</nutrient>
-
-	<nutrient name="Protein" unit="g"  dv="50" usda="203" category="General">
-		<rda min_age="0"   max_age="0.5" gender="all"    amount="9.1"/>
-		<rda min_age="0.5" max_age="1"   gender="all"    amount="11"/>
-		<rda min_age="1"   max_age="3"   gender="all"    amount="12"/>
-		<rda min_age="4"   max_age="8"   gender="all"    amount="19"/>
-		<rda min_age="9"   max_age="13"  gender="male"   amount="34"/>
-		<rda min_age="14"  max_age="18"  gender="male"   amount="52"/>
-		<rda min_age="19"  max_age="30"  gender="male"   amount="56"/>
-		<rda min_age="31"  max_age="50"  gender="male"   amount="56"/>
-		<rda min_age="51"  max_age="70"  gender="male"   amount="56"/>
-		<rda min_age="71"                gender="male"   amount="56"/>
-		<rda min_age="9"   max_age="13"  gender="female" amount="34"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="46"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="46"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="46"/>
-		<rda min_age="51"  max_age="70"  gender="female" amount="46"/>
-		<rda min_age="71"                gender="female" amount="46"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="71" status="pregnant"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="71" status="pregnant"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="71" status="pregnant"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="71" status="lactating"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="71" status="lactating"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="71" status="lactating"/>
+  <nutrient name="Protein" unit="g" dv="50" usda="203" category="General">
+    <rda min_age="0" max_age="0.5" gender="all" amount="9.1"/>
+    <rda min_age="0.5" max_age="1" gender="all" amount="11"/>
+    <rda min_age="1" max_age="3" gender="all" amount="12"/>
+    <rda min_age="4" max_age="8" gender="all" amount="19"/>
+    <rda min_age="9" max_age="13" gender="male" amount="34"/>
+    <rda min_age="14" max_age="18" gender="male" amount="52"/>
+    <rda min_age="19" max_age="30" gender="male" amount="56"/>
+    <rda min_age="31" max_age="50" gender="male" amount="56"/>
+    <rda min_age="51" max_age="70" gender="male" amount="56"/>
+    <rda min_age="71" gender="male" amount="56"/>
+    <rda min_age="9" max_age="13" gender="female" amount="34"/>
+    <rda min_age="14" max_age="18" gender="female" amount="46"/>
+    <rda min_age="19" max_age="30" gender="female" amount="46"/>
+    <rda min_age="31" max_age="50" gender="female" amount="46"/>
+    <rda min_age="51" max_age="70" gender="female" amount="46"/>
+    <rda min_age="71" gender="female" amount="46"/>
+    <rda min_age="14" max_age="18" gender="female" amount="71" status="pregnant"/>
+    <rda min_age="19" max_age="30" gender="female" amount="71" status="pregnant"/>
+    <rda min_age="31" max_age="50" gender="female" amount="71" status="pregnant"/>
+    <rda min_age="14" max_age="18" gender="female" amount="71" status="lactating"/>
+    <rda min_age="19" max_age="30" gender="female" amount="71" status="lactating"/>
+    <rda min_age="31" max_age="50" gender="female" amount="71" status="lactating"/>
+  </nutrient>
+  <nutrient name="Carbs" unit="g" dv="300" usda="205" category="General">
+    <rda min_age="0" max_age="0.5" gender="all" amount="60"/>
+    <rda min_age="0.5" max_age="1" gender="all" amount="95"/>
+    <rda min_age="1" max_age="3" gender="all" amount="130"/>
+    <rda min_age="4" max_age="8" gender="all" amount="130"/>
+    <rda min_age="9" max_age="13" gender="male" amount="130"/>
+    <rda min_age="14" max_age="18" gender="male" amount="130"/>
+    <rda min_age="19" max_age="30" gender="male" amount="130"/>
+    <rda min_age="31" max_age="50" gender="male" amount="130"/>
+    <rda min_age="51" max_age="70" gender="male" amount="130"/>
+    <rda min_age="71" gender="male" amount="130"/>
+    <rda min_age="9" max_age="13" gender="female" amount="130"/>
+    <rda min_age="14" max_age="18" gender="female" amount="130"/>
+    <rda min_age="19" max_age="30" gender="female" amount="130"/>
+    <rda min_age="31" max_age="50" gender="female" amount="130"/>
+    <rda min_age="51" max_age="70" gender="female" amount="130"/>
+    <rda min_age="71" gender="female" amount="130"/>
+    <rda min_age="14" max_age="18" gender="female" amount="175" status="pregnant"/>
+    <rda min_age="19" max_age="30" gender="female" amount="175" status="pregnant"/>
+    <rda min_age="31" max_age="50" gender="female" amount="175" status="pregnant"/>
+    <rda min_age="14" max_age="18" gender="female" amount="210" status="lactating"/>
+    <rda min_age="19" max_age="30" gender="female" amount="210" status="lactating"/>
+    <rda min_age="31" max_age="50" gender="female" amount="210" status="lactating"/>
+  </nutrient>
+  <nutrient name="Fiber" unit="g" dv="25" parent="Carbs" usda="291" category="General">
+    <rda min_age="1" max_age="3" gender="all" amount="19"/>
+    <rda min_age="4" max_age="8" gender="all" amount="25"/>
+    <rda min_age="9" max_age="13" gender="male" amount="31"/>
+    <rda min_age="14" max_age="18" gender="male" amount="38"/>
+    <rda min_age="19" max_age="30" gender="male" amount="38"/>
+    <rda min_age="31" max_age="50" gender="male" amount="38"/>
+    <rda min_age="51" max_age="70" gender="male" amount="30"/>
+    <rda min_age="71" gender="male" amount="30"/>
+    <rda min_age="9" max_age="13" gender="female" amount="26"/>
+    <rda min_age="14" max_age="18" gender="female" amount="26"/>
+    <rda min_age="19" max_age="30" gender="female" amount="25"/>
+    <rda min_age="31" max_age="50" gender="female" amount="25"/>
+    <rda min_age="51" max_age="70" gender="female" amount="21"/>
+    <rda min_age="71" gender="female" amount="21"/>
+    <rda min_age="14" max_age="18" gender="female" amount="28" status="pregnant"/>
+    <rda min_age="19" max_age="30" gender="female" amount="28" status="pregnant"/>
+    <rda min_age="31" max_age="50" gender="female" amount="28" status="pregnant"/>
+    <rda min_age="14" max_age="18" gender="female" amount="29" status="lactating"/>
+    <rda min_age="19" max_age="30" gender="female" amount="29" status="lactating"/>
+    <rda min_age="31" max_age="50" gender="female" amount="29" status="lactating"/>
+  </nutrient>
+  <nutrient name="Starch" unit="g" parent="Carbs" usda="209" category="General"/>
+  <nutrient name="Sugars" unit="g" parent="Carbs" usda="269" category="General"/>
+  <nutrient name="Fat" unit="g" dv="65" usda="204" category="General">
 	</nutrient>
-
-	<nutrient name="Carbs" unit="g" dv="300" usda="205" category="General">
-		<rda min_age="0"   max_age="0.5" gender="all"    amount="60"/>
-		<rda min_age="0.5" max_age="1"   gender="all"    amount="95"/>
-		<rda min_age="1"   max_age="3"   gender="all"    amount="130"/>
-		<rda min_age="4"   max_age="8"   gender="all"    amount="130"/>
-		<rda min_age="9"   max_age="13"  gender="male"   amount="130"/>
-		<rda min_age="14"  max_age="18"  gender="male"   amount="130"/>
-		<rda min_age="19"  max_age="30"  gender="male"   amount="130"/>
-		<rda min_age="31"  max_age="50"  gender="male"   amount="130"/>
-		<rda min_age="51"  max_age="70"  gender="male"   amount="130"/>
-		<rda min_age="71"                gender="male"   amount="130"/>
-		<rda min_age="9"   max_age="13"  gender="female" amount="130"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="130"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="130"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="130"/>
-		<rda min_age="51"  max_age="70"  gender="female" amount="130"/>
-		<rda min_age="71"                gender="female" amount="130"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="175" status="pregnant"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="175" status="pregnant"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="175" status="pregnant"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="210" status="lactating"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="210" status="lactating"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="210" status="lactating"/>
-	</nutrient>
-
-	<nutrient name="Fiber" unit="g" dv="25" parent="Carbs" usda="291" category="General">
-		<rda min_age="1"   max_age="3"   gender="all"    amount="19"/>
-		<rda min_age="4"   max_age="8"   gender="all"    amount="25"/>
-		<rda min_age="9"   max_age="13"  gender="male"   amount="31"/>
-		<rda min_age="14"  max_age="18"  gender="male"   amount="38"/>
-		<rda min_age="19"  max_age="30"  gender="male"   amount="38"/>
-		<rda min_age="31"  max_age="50"  gender="male"   amount="38"/>
-		<rda min_age="51"  max_age="70"  gender="male"   amount="30"/>
-		<rda min_age="71"                gender="male"   amount="30"/>
-		<rda min_age="9"   max_age="13"  gender="female" amount="26"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="26"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="25"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="25"/>
-		<rda min_age="51"  max_age="70"  gender="female" amount="21"/>
-		<rda min_age="71"                gender="female" amount="21"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="28" status="pregnant"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="28" status="pregnant"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="28" status="pregnant"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="29" status="lactating"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="29" status="lactating"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="29" status="lactating"/>
-	</nutrient>
-
-	<nutrient name="Starch" unit="g" parent="Carbs" usda="209" category="General"/>
-	<nutrient name="Sugars" unit="g" parent="Carbs" usda="269" category="General"/>
-
-	<nutrient name="Fat" unit="g" dv="65" usda="204" category="General">
-	</nutrient>
-
-	<nutrient name="Alcohol" unit="g" usda="221" category="General"/>
-	<nutrient name="Caffeine" unit="mg" usda="262" category="General"/>
-
-  	<nutrient name="Water" unit="g" dv="1500" usda="255" category="General">
-		<rda min_age="0"   max_age="0.5" gender="all"    amount="700"/>
-		<rda min_age="0.5" max_age="1"   gender="all"    amount="800"/>
-  		<rda min_age="1"   max_age="3"   gender="all"    amount="1300"/>
-		<rda min_age="4"   max_age="8"   gender="all"    amount="1700"/>
-		<rda min_age="9"   max_age="13"  gender="male"   amount="2400"/>
-		<rda min_age="14"  max_age="18"  gender="male"   amount="3300"/>
-		<rda min_age="19"  max_age="30"  gender="male"   amount="3700"/>
-		<rda min_age="31"  max_age="50"  gender="male"   amount="3700"/>
-		<rda min_age="51"  max_age="70"  gender="male"   amount="3700"/>
-		<rda min_age="71"                gender="male"   amount="3700"/>
-		<rda min_age="9"   max_age="13"  gender="female" amount="2100"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="2300"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="2700"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="2700"/>
-		<rda min_age="51"  max_age="70"  gender="female" amount="2700"/>
-		<rda min_age="71"                gender="female" amount="2700"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="3000" status="pregnant"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="3000" status="pregnant"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="3000" status="pregnant"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="3800" status="lactating"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="3800" status="lactating"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="3800" status="lactating"/>
-	</nutrient>
-
-  	<nutrient name="Ash" unit="g" usda="207" category="General" track="false"/>
-
-
-	<nutrient name="Calcium" unit="mg" dv="1000" usda="301" category="Minerals">
-		<rda min_age="0"   max_age="0.5" gender="all"    amount="210"/>
-		<rda min_age="0.5" max_age="1"   gender="all"    amount="270"/>
-		<rda min_age="1"   max_age="3"   gender="all"    amount="500"		tul="2500"/>
-		<rda min_age="4"   max_age="8"   gender="all"    amount="800"		tul="2500"/>
-		<rda min_age="9"   max_age="13"  gender="male"   amount="1300"		tul="2500"/>
-		<rda min_age="14"  max_age="18"  gender="male"   amount="1300"		tul="2500"/>
-		<rda min_age="19"  max_age="30"  gender="male"   amount="1000"		tul="2500"/>
-		<rda min_age="31"  max_age="50"  gender="male"   amount="1000"		tul="2500"/>
-		<rda min_age="51"  max_age="70"  gender="male"   amount="1200"		tul="2500"/>
-		<rda min_age="71"                gender="male"   amount="1200"		tul="2500"/>
-		<rda min_age="9"   max_age="13"  gender="female" amount="1300"		tul="2500"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="1300"		tul="2500"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="1000"		tul="2500"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="1000"		tul="2500"/>
-		<rda min_age="51"  max_age="70"  gender="female" amount="1200"		tul="2500"/>
-		<rda min_age="71"                gender="female" amount="1200"		tul="2500"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="1300" 	tul="2500" status="pregnant"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="1000" 	tul="2500" status="pregnant"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="1000" 	tul="2500" status="pregnant"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="1300" 	tul="2500" status="lactating"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="1000" 	tul="2500" status="lactating"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="1000" 	tul="2500" status="lactating"/>
-	</nutrient>
-
-	<nutrient name="Chromium" unit="&#181;g" category="Minerals" sparse="true" track="false">
-		<rda min_age="0"   max_age="0.5" gender="all"    amount="0.2"/>
-		<rda min_age="0.5" max_age="1"   gender="all"    amount="5.5"/>
-		<rda min_age="1"   max_age="3"   gender="all"    amount="11"/>
-		<rda min_age="4"   max_age="8"   gender="all"    amount="15"/>
-		<rda min_age="9"   max_age="13"  gender="male"   amount="25"/>
-		<rda min_age="14"  max_age="18"  gender="male"   amount="35"/>
-		<rda min_age="19"  max_age="30"  gender="male"   amount="35"/>
-		<rda min_age="31"  max_age="50"  gender="male"   amount="35"/>
-		<rda min_age="51"  max_age="70"  gender="male"   amount="30"/>
-		<rda min_age="71"                gender="male"   amount="30"/>
-		<rda min_age="9"   max_age="13"  gender="female" amount="21"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="24"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="25"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="25"/>
-		<rda min_age="51"  max_age="70"  gender="female" amount="20"/>
-		<rda min_age="71"                gender="female" amount="20"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="29"  status="pregnant"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="30"  status="pregnant"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="30"  status="pregnant"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="44"  status="lactating"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="45"  status="lactating"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="45"  status="lactating"/>
-	</nutrient>
-
-	<nutrient name="Copper" unit="mg" dv="2" usda="312" category="Minerals">
-		<rda min_age="0"   max_age="0.5" gender="all"    amount="0.200"/>
-		<rda min_age="0.5" max_age="1"   gender="all"    amount="0.220"/>
-		<rda min_age="1"   max_age="3"   gender="all"    amount="0.340"		tul="1.000"/>
-		<rda min_age="4"   max_age="8"   gender="all"    amount="0.440"		tul="3.000"/>
-		<rda min_age="9"   max_age="13"  gender="male"   amount="0.700"		tul="5.000"/>
-		<rda min_age="14"  max_age="18"  gender="male"   amount="0.890"		tul="8.000"/>
-		<rda min_age="19"  max_age="30"  gender="male"   amount="0.900"		tul="10.000"/>
-		<rda min_age="31"  max_age="50"  gender="male"   amount="0.900"		tul="10.000"/>
-		<rda min_age="51"  max_age="70"  gender="male"   amount="0.900"		tul="10.000"/>
-		<rda min_age="71"                gender="male"   amount="0.900"		tul="10.000"/>
-		<rda min_age="9"   max_age="13"  gender="female" amount="0.700"		tul="5.000"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="0.890"		tul="8.000"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="0.900"		tul="10.000"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="0.900"		tul="10.000"/>
-		<rda min_age="51"  max_age="70"  gender="female" amount="0.900"		tul="10.000"/>
-		<rda min_age="71"                gender="female" amount="0.900"		tul="10.000"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="1.000" 	tul="8.000"  status="pregnant"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="1.000" 	tul="10.000" status="pregnant"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="1.000" 	tul="10.000" status="pregnant"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="1.300" 	tul="8.000"  status="lactating"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="1.300" 	tul="10.000" status="lactating"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="1.300" 	tul="10.000" status="lactating"/>
-	</nutrient>
-
-  <nutrient name="Fluoride" unit="&#181;g" usda="313" category="Minerals" sparse="true" track="false">
-		<rda min_age="0"   max_age="0.5" gender="all"    amount="10"	tul="700"/>
-		<rda min_age="0.5" max_age="1"   gender="all"    amount="500"	tul="900"/>
-		<rda min_age="1"   max_age="3"   gender="all"    amount="700"		tul="1300"/>
-		<rda min_age="4"   max_age="8"   gender="all"    amount="1000"	tul="2200"/>
-		<rda min_age="9"   max_age="13"  gender="male"   amount="2000"		tul="10000"/>
-		<rda min_age="14"  max_age="18"  gender="male"   amount="3000"	tul="10000"/>
-		<rda min_age="19"  max_age="30"  gender="male"   amount="4000"		tul="10000"/>
-		<rda min_age="31"  max_age="50"  gender="male"   amount="4000"		tul="10000"/>
-		<rda min_age="51"  max_age="70"  gender="male"   amount="4000"		tul="10000"/>
-		<rda min_age="71"                              gender="male"   amount="4000"		tul="10000"/>
-		<rda min_age="9"   max_age="13"  gender="female" amount="2000"		tul="10000"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="3000"	tul="10000"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="3000"	tul="10000"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="3000"	tul="10000"/>
-		<rda min_age="51"  max_age="70"  gender="female" amount="3000"		tul="10000"/>
-		<rda min_age="71"                              gender="female" amount="3000"		tul="10000"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="3000" 	tul="10000" status="pregnant"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="3000" 	tul="10000" status="pregnant"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="3000" 	tul="10000" status="pregnant"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="3000" 	tul="10000" status="lactating"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="3000"  	tul="10000" status="lactating"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="3000"  	tul="10000" status="lactating"/>
-	</nutrient>
-
-	<nutrient name="Iron" unit="mg" dv="18" usda="303" category="Minerals">
-		<rda min_age="0"   max_age="0.5" gender="all"    amount="0.27"	tul="40"/>
-		<rda min_age="0.5" max_age="1"   gender="all"    amount="11"	tul="40"/>
-		<rda min_age="1"   max_age="3"   gender="all"    amount="7"		tul="40"/>
-		<rda min_age="4"   max_age="8"   gender="all"    amount="10"	tul="40"/>
-		<rda min_age="9"   max_age="13"  gender="male"   amount="8"		tul="40"/>
-		<rda min_age="14"  max_age="18"  gender="male"   amount="11"	tul="45"/>
-		<rda min_age="19"  max_age="30"  gender="male"   amount="8"		tul="45"/>
-		<rda min_age="31"  max_age="50"  gender="male"   amount="8"		tul="45"/>
-		<rda min_age="51"  max_age="70"  gender="male"   amount="8"		tul="45"/>
-		<rda min_age="71"                gender="male"   amount="8"		tul="45"/>
-		<rda min_age="9"   max_age="13"  gender="female" amount="8"		tul="40"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="15"	tul="45"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="18"	tul="45"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="18"	tul="45"/>
-		<rda min_age="51"  max_age="70"  gender="female" amount="8"		tul="45"/>
-		<rda min_age="71"                gender="female" amount="8"		tul="45"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="27" 	tul="45" status="pregnant"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="27" 	tul="45" status="pregnant"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="27" 	tul="45" status="pregnant"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="10" 	tul="45" status="lactating"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="9"  	tul="45" status="lactating"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="9"  	tul="45" status="lactating"/>
-	</nutrient>
-
-	<nutrient name="Magnesium" unit="mg" dv="400" usda="304" category="Minerals">
-		<rda min_age="0"   max_age="0.5" gender="all"    amount="30"/>
-		<rda min_age="0.5" max_age="1"   gender="all"    amount="75"/>
-		<rda min_age="1"   max_age="3"   gender="all"    amount="80"/>
-		<rda min_age="4"   max_age="8"   gender="all"    amount="130"/>
-		<rda min_age="9"   max_age="13"  gender="male"   amount="240"/>
-		<rda min_age="14"  max_age="18"  gender="male"   amount="410"/>
-		<rda min_age="19"  max_age="30"  gender="male"   amount="400"/>
-		<rda min_age="31"  max_age="50"  gender="male"   amount="420"/>
-		<rda min_age="51"  max_age="70"  gender="male"   amount="420"/>
-		<rda min_age="71"                gender="male"   amount="420"/>
-		<rda min_age="9"   max_age="13"  gender="female" amount="240"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="360"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="310"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="320"/>
-		<rda min_age="51"  max_age="70"  gender="female" amount="320"/>
-		<rda min_age="71"                gender="female" amount="320"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="400"  status="pregnant"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="350"  status="pregnant"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="360"  status="pregnant"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="360"  status="lactating"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="310"  status="lactating"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="320"  status="lactating"/>
-	</nutrient>
-
-	<nutrient name="Manganese" unit="mg" dv="2" usda="315" category="Minerals">
-		<rda min_age="0"   max_age="0.5" gender="all"    amount="0.003"/>
-		<rda min_age="0.5" max_age="1"   gender="all"    amount="0.6"/>
-		<rda min_age="1"   max_age="3"   gender="all"    amount="1.2"		tul="2"/>
-		<rda min_age="4"   max_age="8"   gender="all"    amount="1.5"		tul="3"/>
-		<rda min_age="9"   max_age="13"  gender="male"   amount="1.9"		tul="6"/>
-		<rda min_age="14"  max_age="18"  gender="male"   amount="2.2"		tul="9"/>
-		<rda min_age="19"  max_age="30"  gender="male"   amount="2.3"		tul="11"/>
-		<rda min_age="31"  max_age="50"  gender="male"   amount="2.3"		tul="11"/>
-		<rda min_age="51"  max_age="70"  gender="male"   amount="2.3"		tul="11"/>
-		<rda min_age="71"                gender="male"   amount="2.3"		tul="11"/>
-		<rda min_age="9"   max_age="13"  gender="female" amount="1.6"		tul="6"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="1.6"		tul="9"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="1.8"		tul="11"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="1.8"		tul="11"/>
-		<rda min_age="51"  max_age="70"  gender="female" amount="1.8"		tul="11"/>
-		<rda min_age="71"                gender="female" amount="1.8"		tul="11"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="2.0" 		tul="9"  status="pregnant"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="2.0" 		tul="11" status="pregnant"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="2.0" 		tul="11" status="pregnant"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="2.6" 		tul="9"  status="lactating"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="2.6" 		tul="11" status="lactating"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="2.6" 		tul="11" status="lactating"/>
-	</nutrient>
-
-	<nutrient name="Phosphorus" unit="mg" dv="1000" usda="305" category="Minerals">
-		<rda min_age="0"   max_age="0.5" gender="all"    amount="100"/>
-		<rda min_age="0.5" max_age="1"   gender="all"    amount="275"/>
-		<rda min_age="1"   max_age="3"   gender="all"    amount="460"		tul="3000"/>
-		<rda min_age="4"   max_age="8"   gender="all"    amount="500"		tul="3000"/>
-		<rda min_age="9"   max_age="13"  gender="male"   amount="1250"		tul="4000"/>
-		<rda min_age="14"  max_age="18"  gender="male"   amount="1250"		tul="4000"/>
-		<rda min_age="19"  max_age="30"  gender="male"   amount="700"		tul="4000"/>
-		<rda min_age="31"  max_age="50"  gender="male"   amount="700"		tul="4000"/>
-		<rda min_age="51"  max_age="70"  gender="male"   amount="700"		tul="4000"/>
-		<rda min_age="71"                gender="male"   amount="700"		tul="3000"/>
-		<rda min_age="9"   max_age="13"  gender="female" amount="1250"		tul="4000"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="1250"		tul="4000"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="700"		tul="4000"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="700"		tul="4000"/>
-		<rda min_age="51"  max_age="70"  gender="female" amount="700"		tul="4000"/>
-		<rda min_age="71"                gender="female" amount="700"		tul="3000"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="1250" 	tul="3500" status="pregnant"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="700" 		tul="3500" status="pregnant"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="700" 		tul="3500" status="pregnant"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="1250" 	tul="4000" status="lactating"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="700" 		tul="4000" status="lactating"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="700" 		tul="4000" status="lactating"/>
-	</nutrient>
-
-	<nutrient name="Potassium" unit="mg" dv="3500" usda="306" category="Minerals">
-		<rda min_age="0"   max_age="0.5" gender="all"    amount="400"/>
-		<rda min_age="0.5" max_age="1"   gender="all"    amount="700"/>
-		<rda min_age="1"   max_age="3"   gender="all"    amount="3000"/>
-		<rda min_age="4"   max_age="8"   gender="all"    amount="3800"/>
-		<rda min_age="9"   max_age="13"  gender="male"   amount="4500"/>
-		<rda min_age="14"  max_age="18"  gender="male"   amount="4700"/>
-		<rda min_age="19"  max_age="30"  gender="male"   amount="4700"/>
-		<rda min_age="31"  max_age="50"  gender="male"   amount="4700"/>
-		<rda min_age="51"  max_age="70"  gender="male"   amount="4700"/>
-		<rda min_age="71"                gender="male"   amount="4700"/>
-		<rda min_age="9"   max_age="13"  gender="female" amount="4500"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="4700"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="4700"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="4700"/>
-		<rda min_age="51"  max_age="70"  gender="female" amount="4700"/>
-		<rda min_age="71"                gender="female" amount="4700"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="4700"  status="pregnant"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="4700"  status="pregnant"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="4700"  status="pregnant"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="5100"  status="lactating"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="5100"  status="lactating"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="5100"  status="lactating"/>
-	</nutrient>
-
-	<nutrient name="Selenium" unit="&#181;g" dv="70" usda="317" category="Minerals">
-		<rda min_age="0"   max_age="0.5" gender="all"    amount="15"		tul="45"/>
-		<rda min_age="0.5" max_age="1"   gender="all"    amount="20"		tul="60"/>
-		<rda min_age="1"   max_age="3"   gender="all"    amount="20"		tul="90"/>
-		<rda min_age="4"   max_age="8"   gender="all"    amount="30"		tul="150"/>
-		<rda min_age="9"   max_age="13"  gender="male"   amount="40"		tul="280"/>
-		<rda min_age="14"  max_age="18"  gender="male"   amount="55"		tul="400"/>
-		<rda min_age="19"  max_age="30"  gender="male"   amount="55"		tul="400"/>
-		<rda min_age="31"  max_age="50"  gender="male"   amount="55"		tul="400"/>
-		<rda min_age="51"  max_age="70"  gender="male"   amount="55"		tul="400"/>
-		<rda min_age="71"                gender="male"   amount="55"		tul="400"/>
-		<rda min_age="9"   max_age="13"  gender="female" amount="40"		tul="280"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="55"		tul="400"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="55"		tul="400"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="55"		tul="400"/>
-		<rda min_age="51"  max_age="70"  gender="female" amount="55"		tul="400"/>
-		<rda min_age="71"                gender="female" amount="55"		tul="400"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="60" 		tul="400" status="pregnant"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="60" 		tul="400" status="pregnant"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="60" 		tul="400" status="pregnant"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="70" 		tul="400" status="lactating"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="70" 		tul="400" status="lactating"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="70" 		tul="400" status="lactating"/>
-	</nutrient>
-
-	<nutrient name="Sodium" unit="mg" dv="2400" usda="307" category="Minerals">
-		<rda min_age="0"   max_age="0.5" gender="all"    amount="120"/>
-		<rda min_age="0.5" max_age="1"   gender="all"    amount="370"/>
-		<rda min_age="1"   max_age="3"   gender="all"    amount="1000"		tul="1500"/>
-		<rda min_age="4"   max_age="8"   gender="all"    amount="1200"		tul="1900"/>
-		<rda min_age="9"   max_age="13"  gender="male"   amount="1500"		tul="2200"/>
-		<rda min_age="14"  max_age="18"  gender="male"   amount="1500"		tul="2300"/>
-		<rda min_age="19"  max_age="30"  gender="male"   amount="1500"		tul="2300"/>
-		<rda min_age="31"  max_age="50"  gender="male"   amount="1500"		tul="2300"/>
-		<rda min_age="51"  max_age="70"  gender="male"   amount="1300"		tul="2300"/>
-		<rda min_age="71"                gender="male"   amount="1200"		tul="2300"/>
-		<rda min_age="9"   max_age="13"  gender="female" amount="1500"		tul="2200"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="1500"		tul="2300"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="1500"		tul="2300"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="1500"		tul="2300"/>
-		<rda min_age="51"  max_age="70"  gender="female" amount="1300"		tul="2300"/>
-		<rda min_age="71"                gender="female" amount="1200"		tul="2300"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="1500"		tul="2300" status="pregnant"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="1500" 	tul="2300" status="pregnant"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="1500" 	tul="2300" status="pregnant"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="1500" 	tul="2300" status="lactating"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="1500" 	tul="2300" status="lactating"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="1500" 	tul="2300" status="lactating"/>
-	</nutrient>
-
-	<nutrient name="Zinc" unit="mg" dv="15" usda="309" category="Minerals">
-		<rda min_age="0"   max_age="0.5" gender="all"    amount="2"		tul="4"/>
-		<rda min_age="0.5" max_age="1"   gender="all"    amount="3"		tul="5"/>
-		<rda min_age="1"   max_age="3"   gender="all"    amount="3"		tul="7"/>
-		<rda min_age="4"   max_age="8"   gender="all"    amount="5"		tul="12"/>
-		<rda min_age="9"   max_age="13"  gender="male"   amount="8"		tul="23"/>
-		<rda min_age="14"  max_age="18"  gender="male"   amount="11"	tul="34"/>
-		<rda min_age="19"  max_age="30"  gender="male"   amount="11"	tul="40"/>
-		<rda min_age="31"  max_age="50"  gender="male"   amount="11"	tul="40"/>
-		<rda min_age="51"  max_age="70"  gender="male"   amount="11"	tul="40"/>
-		<rda min_age="71"                gender="male"   amount="11"	tul="40"/>
-		<rda min_age="9"   max_age="13"  gender="female" amount="8"		tul="23"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="9"		tul="34"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="8"		tul="40"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="8"		tul="40"/>
-		<rda min_age="51"  max_age="70"  gender="female" amount="8"		tul="40"/>
-		<rda min_age="71"                gender="female" amount="8"		tul="40"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="12" 	tul="34" status="pregnant"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="11" 	tul="40" status="pregnant"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="11" 	tul="40" status="pregnant"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="13" 	tul="34" status="lactating"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="12" 	tul="40" status="lactating"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="12" 	tul="40" status="lactating"/>
-	</nutrient>
-
-	<nutrient name="Vitamin A" unit="IU" dv="5000" usda="318" category="Vitamins">
-		<rda min_age="0"   max_age="0.5" gender="all"    amount="1333"		tul="2000"/>
-		<rda min_age="0.5" max_age="1"   gender="all"    amount="1666"		tul="2000"/>
-		<rda min_age="1"   max_age="3"   gender="all"    amount="1000"		tul="2000"/>
-		<rda min_age="4"   max_age="8"   gender="all"    amount="1333"		tul="3000"/>
-		<rda min_age="9"   max_age="13"  gender="male"   amount="2000"		tul="5667"/>
-		<rda min_age="14"  max_age="18"  gender="male"   amount="3000"		tul="9333"/>
-		<rda min_age="19"  max_age="30"  gender="male"   amount="3000"		tul="10000"/>
-		<rda min_age="31"  max_age="50"  gender="male"   amount="3000"		tul="10000"/>
-		<rda min_age="51"  max_age="70"  gender="male"   amount="3000"		tul="10000"/>
-		<rda min_age="71"                gender="male"   amount="3000"		tul="10000"/>
-		<rda min_age="9"   max_age="13"  gender="female" amount="2000"		tul="5667"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="2333"		tul="9333"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="2333"		tul="10000"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="2333"		tul="10000"/>
-		<rda min_age="51"  max_age="70"  gender="female" amount="2333"		tul="10000"/>
-		<rda min_age="71"                gender="female" amount="2333"		tul="10000"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="2500"  	tul="9333" status="pregnant"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="2567"  	tul="10000" status="pregnant"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="2567"  	tul="10000" status="pregnant"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="4000" 	tul="9333" status="lactating"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="4333" 	tul="10000" status="lactating"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="4333" 	tul="10000" status="lactating"/>
-	</nutrient>
-
-	<nutrient name="Retinol" unit="&#181;g" parent="Vitamin A" usda="319" category="Vitamins" track="false"/>
-	<nutrient name="Alpha-carotene" unit="&#181;g" parent="Vitamin A" usda="322" category="Vitamins" track="false"/>
-	<nutrient name="Beta-carotene" unit="&#181;g" parent="Vitamin A" usda="321" category="Vitamins" track="false"/>
-	<nutrient name="Beta-cryptoxanthin" unit="&#181;g" parent="Vitamin A" usda="334" category="Vitamins" track="false"/>
-	<nutrient name="Lycopene" unit="&#181;g" parent="Vitamin A" usda="337" category="Vitamins" track="false"/>
-	<nutrient name="Lutein+Zeaxanthin" unit="&#181;g" parent="Vitamin A" usda="338" category="Vitamins" track="false"/>
-
-	<nutrient name="Folate" unit="&#181;g" dv="400" usda="417" category="Vitamins">
-		<rda min_age="0"   max_age="0.5" gender="all"    amount="65"/>
-		<rda min_age="0.5" max_age="1"   gender="all"    amount="80"/>
-		<rda min_age="1"   max_age="3"   gender="all"    amount="150"		tul="300"/>
-		<rda min_age="4"   max_age="8"   gender="all"    amount="200"		tul="400"/>
-		<rda min_age="9"   max_age="13"  gender="male"   amount="300"		tul="600"/>
-		<rda min_age="14"  max_age="18"  gender="male"   amount="400"		tul="800"/>
-		<rda min_age="19"  max_age="30"  gender="male"   amount="400"		tul="1000"/>
-		<rda min_age="31"  max_age="50"  gender="male"   amount="400"		tul="1000"/>
-		<rda min_age="51"  max_age="70"  gender="male"   amount="400"		tul="1000"/>
-		<rda min_age="71"                gender="male"   amount="400"		tul="1000"/>
-		<rda min_age="9"   max_age="13"  gender="female" amount="300"		tul="600"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="400"		tul="800"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="400"		tul="1000"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="400"		tul="1000"/>
-		<rda min_age="51"  max_age="70"  gender="female" amount="400"		tul="1000"/>
-		<rda min_age="71"                gender="female" amount="400"		tul="1000"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="600" 		tul="800"  status="pregnant"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="600" 		tul="1000" status="pregnant"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="600" 		tul="1000" status="pregnant"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="500" 		tul="800"  status="lactating"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="500" 		tul="1000" status="lactating"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="500" 		tul="1000" status="lactating"/>
-	</nutrient>
-
-	<nutrient name="B1 (Thiamine)" unit="mg" dv="1.5" usda="404" category="Vitamins">
-		<rda min_age="0"   max_age="0.5" gender="all"    amount="0.2"/>
-		<rda min_age="0.5" max_age="1"   gender="all"    amount="0.3"/>
-		<rda min_age="1"   max_age="3"   gender="all"    amount="0.5"/>
-		<rda min_age="4"   max_age="8"   gender="all"    amount="0.6"/>
-		<rda min_age="9"   max_age="13"  gender="male"   amount="0.9"/>
-		<rda min_age="14"  max_age="18"  gender="male"   amount="1.2"/>
-		<rda min_age="19"  max_age="30"  gender="male"   amount="1.2"/>
-		<rda min_age="31"  max_age="50"  gender="male"   amount="1.2"/>
-		<rda min_age="51"  max_age="70"  gender="male"   amount="1.2"/>
-		<rda min_age="71"                gender="male"   amount="1.2"/>
-		<rda min_age="9"   max_age="13"  gender="female" amount="0.9"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="1.0"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="1.1"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="1.1"/>
-		<rda min_age="51"  max_age="70"  gender="female" amount="1.1"/>
-		<rda min_age="71"                gender="female" amount="1.1"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="1.4"  status="pregnant"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="1.4"  status="pregnant"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="1.4"  status="pregnant"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="1.4"  status="lactating"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="1.4"  status="lactating"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="1.4"  status="lactating"/>
-	</nutrient>
-
-	<nutrient name="B2 (Riboflavin)" unit="mg" dv="1.7" usda="405" category="Vitamins">
-		<rda min_age="0"   max_age="0.5" gender="all"    amount="0.3"/>
-		<rda min_age="0.5" max_age="1"   gender="all"    amount="0.4"/>
-		<rda min_age="1"   max_age="3"   gender="all"    amount="0.5"/>
-		<rda min_age="4"   max_age="8"   gender="all"    amount="0.6"/>
-		<rda min_age="9"   max_age="13"  gender="male"   amount="0.9"/>
-		<rda min_age="14"  max_age="18"  gender="male"   amount="1.3"/>
-		<rda min_age="19"  max_age="30"  gender="male"   amount="1.3"/>
-		<rda min_age="31"  max_age="50"  gender="male"   amount="1.3"/>
-		<rda min_age="51"  max_age="70"  gender="male"   amount="1.3"/>
-		<rda min_age="71"                gender="male"   amount="1.3"/>
-		<rda min_age="9"   max_age="13"  gender="female" amount="0.9"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="1.0"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="1.1"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="1.1"/>
-		<rda min_age="51"  max_age="70"  gender="female" amount="1.1"/>
-		<rda min_age="71"                gender="female" amount="1.1"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="1.4"  status="pregnant"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="1.4"  status="pregnant"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="1.4"  status="pregnant"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="1.6"  status="lactating"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="1.6"  status="lactating"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="1.6"  status="lactating"/>
-	</nutrient>
-
-	<nutrient name="B3 (Niacin)" unit="mg" dv="20" usda="406" category="Vitamins">
-		<rda min_age="0"   max_age="0.5" gender="all"    amount="2"/>
-		<rda min_age="0.5" max_age="1"   gender="all"    amount="4"/>
-		<rda min_age="1"   max_age="3"   gender="all"    amount="6"		tul="10"/>
-		<rda min_age="4"   max_age="8"   gender="all"    amount="8"		tul="15"/>
-		<rda min_age="9"   max_age="13"  gender="male"   amount="12"	tul="20"/>
-		<rda min_age="14"  max_age="18"  gender="male"   amount="16"	tul="30"/>
-		<rda min_age="19"  max_age="30"  gender="male"   amount="16"	tul="35"/>
-		<rda min_age="31"  max_age="50"  gender="male"   amount="16"	tul="35"/>
-		<rda min_age="51"  max_age="70"  gender="male"   amount="16"	tul="35"/>
-		<rda min_age="71"                gender="male"   amount="16"	tul="35"/>
-		<rda min_age="9"   max_age="13"  gender="female" amount="12"	tul="20"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="14"	tul="30"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="14"	tul="35"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="14"	tul="35"/>
-		<rda min_age="51"  max_age="70"  gender="female" amount="14"	tul="35"/>
-		<rda min_age="71"                gender="female" amount="14"	tul="35"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="18" 	tul="30" status="pregnant"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="18" 	tul="35" status="pregnant"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="18" 	tul="35" status="pregnant"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="17" 	tul="30" status="lactating"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="17" 	tul="35" status="lactating"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="17" 	tul="35" status="lactating"/>
-	</nutrient>
-
-	<nutrient name="B5 (Pantothenic Acid)" unit="mg" dv="10" usda="410" category="Vitamins">
-		<rda min_age="0"   max_age="0.5" gender="all"    amount="1.7"/>
-		<rda min_age="0.5" max_age="1"   gender="all"    amount="1.8"/>
-		<rda min_age="1"   max_age="3"   gender="all"    amount="2"/>
-		<rda min_age="4"   max_age="8"   gender="all"    amount="3"/>
-		<rda min_age="9"   max_age="13"  gender="male"   amount="4"/>
-		<rda min_age="14"  max_age="18"  gender="male"   amount="5"/>
-		<rda min_age="19"  max_age="30"  gender="male"   amount="5"/>
-		<rda min_age="31"  max_age="50"  gender="male"   amount="5"/>
-		<rda min_age="51"  max_age="70"  gender="male"   amount="5"/>
-		<rda min_age="71"                gender="male"   amount="5"/>
-		<rda min_age="9"   max_age="13"  gender="female" amount="4"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="5"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="5"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="5"/>
-		<rda min_age="51"  max_age="70"  gender="female" amount="5"/>
-		<rda min_age="71"                gender="female" amount="5"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="6"  status="pregnant"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="6"  status="pregnant"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="6"  status="pregnant"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="7"  status="lactating"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="7"  status="lactating"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="7"  status="lactating"/>
-	</nutrient>
-
-	<nutrient name="B6 (Pyridoxine)" unit="mg" dv="2" usda="415" category="Vitamins">
-		<rda min_age="0"   max_age="0.5" gender="all"    amount="0.1"/>
-		<rda min_age="0.5" max_age="1"   gender="all"    amount="0.3"/>
-		<rda min_age="1"   max_age="3"   gender="all"    amount="0.5"		tul="30"/>
-		<rda min_age="4"   max_age="8"   gender="all"    amount="0.6"		tul="40"/>
-		<rda min_age="9"   max_age="13"  gender="male"   amount="1.0"		tul="60"/>
-		<rda min_age="14"  max_age="18"  gender="male"   amount="1.3"		tul="80"/>
-		<rda min_age="19"  max_age="30"  gender="male"   amount="1.3"		tul="100"/>
-		<rda min_age="31"  max_age="50"  gender="male"   amount="1.3"		tul="100"/>
-		<rda min_age="51"  max_age="70"  gender="male"   amount="1.7"		tul="100"/>
-		<rda min_age="71"                gender="male"   amount="1.7"		tul="100"/>
-		<rda min_age="9"   max_age="13"  gender="female" amount="1.0"		tul="60"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="1.2"		tul="80"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="1.3"		tul="100"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="1.3"		tul="100"/>
-		<rda min_age="51"  max_age="70"  gender="female" amount="1.5"		tul="100"/>
-		<rda min_age="71"                gender="female" amount="1.5"		tul="100"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="1.9" 		tul="80"  status="pregnant"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="1.9" 		tul="100" status="pregnant"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="1.9" 		tul="100" status="pregnant"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="2.0" 		tul="80"  status="lactating"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="2.0" 		tul="100" status="lactating"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="2.0" 		tul="100" status="lactating"/>
-	</nutrient>
-
-	<nutrient name="B12 (Cyanocobalamin)" unit="&#181;g" dv="6" usda="418" category="Vitamins">
-		<rda min_age="0"   max_age="0.5" gender="all"    amount="0.4"/>
-		<rda min_age="0.5" max_age="1"   gender="all"    amount="0.5"/>
-		<rda min_age="1"   max_age="3"   gender="all"    amount="0.9"/>
-		<rda min_age="4"   max_age="8"   gender="all"    amount="1.2"/>
-		<rda min_age="9"   max_age="13"  gender="male"   amount="1.8"/>
-		<rda min_age="14"  max_age="18"  gender="male"   amount="2.4"/>
-		<rda min_age="19"  max_age="30"  gender="male"   amount="2.4"/>
-		<rda min_age="31"  max_age="50"  gender="male"   amount="2.4"/>
-		<rda min_age="51"  max_age="70"  gender="male"   amount="2.4"/>
-		<rda min_age="71"                gender="male"   amount="2.4"/>
-		<rda min_age="9"   max_age="13"  gender="female" amount="1.8"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="2.4"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="2.4"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="2.4"/>
-		<rda min_age="51"  max_age="70"  gender="female" amount="2.4"/>
-		<rda min_age="71"                gender="female" amount="2.4"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="2.6"  status="pregnant"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="2.6"  status="pregnant"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="2.6"  status="pregnant"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="2.8"  status="lactating"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="2.8"  status="lactating"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="2.8"  status="lactating"/>
-	</nutrient>
-
-	<nutrient name="Vitamin C" unit="mg" dv="60" usda="401" category="Vitamins">
-		<rda min_age="0"   max_age="0.5" gender="all"    amount="40"/>
-		<rda min_age="0.5" max_age="1"   gender="all"    amount="50"/>
-		<rda min_age="1"   max_age="3"   gender="all"    amount="15"		tul="400"/>
-		<rda min_age="4"   max_age="8"   gender="all"    amount="25"		tul="650"/>
-		<rda min_age="9"   max_age="13"  gender="male"   amount="45"		tul="1200"/>
-		<rda min_age="14"  max_age="18"  gender="male"   amount="75"		tul="1800"/>
-		<rda min_age="19"  max_age="30"  gender="male"   amount="90"		tul="2000"/>
-		<rda min_age="31"  max_age="50"  gender="male"   amount="90"		tul="2000"/>
-		<rda min_age="51"  max_age="70"  gender="male"   amount="90"		tul="2000"/>
-		<rda min_age="71"                gender="male"   amount="90"		tul="2000"/>
-		<rda min_age="9"   max_age="13"  gender="female" amount="45"		tul="1200"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="65"		tul="1800"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="75"		tul="2000"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="75"		tul="2000"/>
-		<rda min_age="51"  max_age="70"  gender="female" amount="75"		tul="2000"/>
-		<rda min_age="71"                gender="female" amount="75"		tul="2000"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="80" 		tul="1800" status="pregnant"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="85" 		tul="2000" status="pregnant"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="85" 		tul="2000" status="pregnant"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="115"		tul="1800" status="lactating"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="120" 		tul="2000" status="lactating"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="120" 		tul="2000" status="lactating"/>
-	</nutrient>
-
-	<nutrient name="Vitamin D" unit="IU" dv="400" usda="324" category="Vitamins">
-		<rda min_age="0"   max_age="0.5" gender="all"    amount="200"	tul="1000"/>
-		<rda min_age="0.5" max_age="1"   gender="all"    amount="200"	tul="1000"/>
-		<rda min_age="1"   max_age="3"   gender="all"    amount="200"	tul="2000"/>
-		<rda min_age="4"   max_age="8"   gender="all"    amount="200"	tul="2000"/>
-		<rda min_age="9"   max_age="13"  gender="male"   amount="200"	tul="2000"/>
-		<rda min_age="14"  max_age="18"  gender="male"   amount="200"	tul="2000"/>
-		<rda min_age="19"  max_age="30"  gender="male"   amount="200"	tul="2000"/>
-		<rda min_age="31"  max_age="50"  gender="male"   amount="200"	tul="2000"/>
-		<rda min_age="51"  max_age="70"  gender="male"   amount="400"	tul="2000"/>
-		<rda min_age="71"                gender="male"   amount="600"	tul="2000"/>
-		<rda min_age="9"   max_age="13"  gender="female" amount="200"	tul="2000"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="200"	tul="2000"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="200"	tul="2000"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="200"	tul="2000"/>
-		<rda min_age="51"  max_age="70"  gender="female" amount="400"	tul="2000"/>
-		<rda min_age="71"                gender="female" amount="600"	tul="2000"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="200" 	tul="2000" status="pregnant"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="200" 	tul="2000" status="pregnant"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="200" 	tul="2000" status="pregnant"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="200" 	tul="2000" status="lactating"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="200" 	tul="2000" status="lactating"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="200" 	tul="2000" status="lactating"/>
-	</nutrient>
-
-	<nutrient name="Vitamin E" unit="mg" dv="20.134" usda="323" category="Vitamins">
-		<rda min_age="0"   max_age="0.5" gender="all"    amount="4"/>
-		<rda min_age="0.5" max_age="1"   gender="all"    amount="5"/>
-		<rda min_age="1"   max_age="3"   gender="all"    amount="6"		tul="200"/>
-		<rda min_age="4"   max_age="8"   gender="all"    amount="7"		tul="300"/>
-		<rda min_age="9"   max_age="13"  gender="male"   amount="11"	tul="600"/>
-		<rda min_age="14"  max_age="18"  gender="male"   amount="15"	tul="800"/>
-		<rda min_age="19"  max_age="30"  gender="male"   amount="15"	tul="1000"/>
-		<rda min_age="31"  max_age="50"  gender="male"   amount="15"	tul="1000"/>
-		<rda min_age="51"  max_age="70"  gender="male"   amount="15"	tul="1000"/>
-		<rda min_age="71"                gender="male"   amount="15"	tul="1000"/>
-		<rda min_age="9"   max_age="13"  gender="female" amount="11"	tul="800"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="15"	tul="1000"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="15"	tul="1000"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="15"	tul="1000"/>
-		<rda min_age="51"  max_age="70"  gender="female" amount="15"	tul="1000"/>
-		<rda min_age="71"                gender="female" amount="15"	tul="1000"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="15" 	tul="800"  status="pregnant"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="15" 	tul="1000" status="pregnant"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="15" 	tul="1000" status="pregnant"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="19" 	tul="800"  status="lactating"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="19" 	tul="1000" status="lactating"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="19" 	tul="1000" status="lactating"/>
-	</nutrient>
-
-	<nutrient name="Beta Tocopherol" unit="mg" parent="Vitamin E" usda="341" category="Vitamins" track="false"/>
-	<nutrient name="Delta Tocopherol" unit="mg" parent="Vitamin E" usda="343" category="Vitamins" track="false"/>
-	<nutrient name="Gamma Tocopherol" unit="mg" parent="Vitamin E" usda="342" category="Vitamins" track="false"/>
-
-	<nutrient name="Vitamin K" unit="&#181;g" dv="80" usda="430" category="Vitamins">
-		<rda min_age="0"   max_age="0.5" gender="all"    amount="2"/>
-		<rda min_age="0.5" max_age="1"   gender="all"    amount="2.5"/>
-		<rda min_age="1"   max_age="3"   gender="all"    amount="30"/>
-		<rda min_age="4"   max_age="8"   gender="all"    amount="55"/>
-		<rda min_age="9"   max_age="13"  gender="male"   amount="60"/>
-		<rda min_age="14"  max_age="18"  gender="male"   amount="75"/>
-		<rda min_age="19"  max_age="30"  gender="male"   amount="120"/>
-		<rda min_age="31"  max_age="50"  gender="male"   amount="120"/>
-		<rda min_age="51"  max_age="70"  gender="male"   amount="120"/>
-		<rda min_age="71"                gender="male"   amount="120"/>
-		<rda min_age="9"   max_age="13"  gender="female" amount="60"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="75"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="90"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="90"/>
-		<rda min_age="51"  max_age="70"  gender="female" amount="90"/>
-		<rda min_age="71"                gender="female" amount="90"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="75"  status="pregnant"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="90"  status="pregnant"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="90"  status="pregnant"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="75"  status="lactating"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="90"  status="lactating"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="90"  status="lactating"/>
-	</nutrient>
-
-	<nutrient name="Biotin" unit="&#181;g" dv="300" category="Vitamins" sparse="true"  track="false">
-		<rda min_age="0"   max_age="0.5" gender="all"    amount="5"/>
-		<rda min_age="0.5" max_age="1"   gender="all"    amount="6"/>
-		<rda min_age="1"   max_age="3"   gender="all"    amount="8"/>
-		<rda min_age="4"   max_age="8"   gender="all"    amount="12"/>
-		<rda min_age="9"   max_age="13"  gender="male"   amount="20"/>
-		<rda min_age="14"  max_age="18"  gender="male"   amount="25"/>
-		<rda min_age="19"  max_age="30"  gender="male"   amount="30"/>
-		<rda min_age="31"  max_age="50"  gender="male"   amount="30"/>
-		<rda min_age="51"  max_age="70"  gender="male"   amount="30"/>
-		<rda min_age="71"                gender="male"   amount="30"/>
-		<rda min_age="9"   max_age="13"  gender="female" amount="20"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="25"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="30"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="30"/>
-		<rda min_age="51"  max_age="70"  gender="female" amount="30"/>
-		<rda min_age="71"                gender="female" amount="30"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="30"  status="pregnant"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="30"  status="pregnant"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="30"  status="pregnant"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="35"  status="lactating"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="35"  status="lactating"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="35"  status="lactating"/>
-	</nutrient>
-
-	<nutrient name="Choline" unit="mg" usda="421" category="Vitamins" sparse="true"  track="false">
-		<rda min_age="0"   max_age="0.5" gender="all"    amount="125"/>
-		<rda min_age="0.5" max_age="1"   gender="all"    amount="150"/>
-		<rda min_age="1"   max_age="3"   gender="all"    amount="200"		tul="1000"/>
-		<rda min_age="4"   max_age="8"   gender="all"    amount="250"		tul="1000"/>
-		<rda min_age="9"   max_age="13"  gender="male"   amount="375"		tul="2000"/>
-		<rda min_age="14"  max_age="18"  gender="male"   amount="550"		tul="3000"/>
-		<rda min_age="19"  max_age="30"  gender="male"   amount="550"		tul="3500"/>
-		<rda min_age="31"  max_age="50"  gender="male"   amount="550"		tul="3500"/>
-		<rda min_age="51"  max_age="70"  gender="male"   amount="550"		tul="3500"/>
-		<rda min_age="71"                gender="male"   amount="550"		tul="3500"/>
-		<rda min_age="9"   max_age="13"  gender="female" amount="375"		tul="2000"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="400"		tul="3000"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="425"		tul="3500"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="425"		tul="3500"/>
-		<rda min_age="51"  max_age="70"  gender="female" amount="425"		tul="3500"/>
-		<rda min_age="71"                gender="female" amount="425"		tul="3500"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="450" 		tul="3000" status="pregnant"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="450" 		tul="3500" status="pregnant"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="450" 		tul="3500" status="pregnant"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="550" 		tul="3000" status="lactating"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="550" 		tul="3500" status="lactating"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="550" 		tul="3500" status="lactating"/>
-	</nutrient>
-
-	<nutrient name="Saturated" unit="g" dv="20" usda="606" category="Lipids"/>
-	<nutrient name="Monounsaturated" unit="g" usda="645" category="Lipids"/>
-	<nutrient name="Polyunsaturated" unit="g" usda="646" category="Lipids"/>
-
-	<nutrient name="Omega-3" unit="g" parent="Polyunsaturated" usda="621,629,631,851,852" category="Lipids">
-		<rda min_age="0"   max_age="0.5" gender="all"    amount="0.5"/>
-		<rda min_age="0.5" max_age="1"   gender="all"    amount="0.5"/>
-		<rda min_age="1"   max_age="3"   gender="all"    amount="0.7"/>
-		<rda min_age="4"   max_age="8"   gender="all"    amount="0.9"/>
-		<rda min_age="9"   max_age="13"  gender="male"   amount="1.2"/>
-		<rda min_age="14"  max_age="18"  gender="male"   amount="1.6"/>
-		<rda min_age="19"  max_age="30"  gender="male"   amount="1.6"/>
-		<rda min_age="31"  max_age="50"  gender="male"   amount="1.6"/>
-		<rda min_age="51"  max_age="70"  gender="male"   amount="1.6"/>
-		<rda min_age="71"                gender="male"   amount="1.6"/>
-		<rda min_age="9"   max_age="13"  gender="female" amount="1.0"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="1.1"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="1.1"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="1.1"/>
-		<rda min_age="51"  max_age="70"  gender="female" amount="1.1"/>
-		<rda min_age="71"                gender="female" amount="1.1"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="1.4"  status="pregnant"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="1.4"  status="pregnant"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="1.4"  status="pregnant"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="1.3"  status="lactating"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="1.3"  status="lactating"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="1.3"  status="lactating"/>
-	</nutrient>
-
-	<nutrient name="Omega-6" unit="g" parent="Polyunsaturated" usda="672,675,685,853,855" category="Lipids">
-		<rda min_age="0"   max_age="0.5" gender="all"    amount="4.4"/>
-		<rda min_age="0.5" max_age="1"   gender="all"    amount="4.6"/>
-		<rda min_age="1"   max_age="3"   gender="all"    amount="7"/>
-		<rda min_age="4"   max_age="8"   gender="all"    amount="10"/>
-		<rda min_age="9"   max_age="13"  gender="male"   amount="12"/>
-		<rda min_age="14"  max_age="18"  gender="male"   amount="16"/>
-		<rda min_age="19"  max_age="30"  gender="male"   amount="17"/>
-		<rda min_age="31"  max_age="50"  gender="male"   amount="17"/>
-		<rda min_age="51"  max_age="70"  gender="male"   amount="14"/>
-		<rda min_age="71"                gender="male"   amount="14"/>
-		<rda min_age="9"   max_age="13"  gender="female" amount="10"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="11"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="11"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="12"/>
-		<rda min_age="51"  max_age="70"  gender="female" amount="12"/>
-		<rda min_age="71"                gender="female" amount="11"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="13"  status="pregnant"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="13"  status="pregnant"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="13"  status="pregnant"/>
-		<rda min_age="14"  max_age="18"  gender="female" amount="13"  status="lactating"/>
-		<rda min_age="19"  max_age="30"  gender="female" amount="13"  status="lactating"/>
-		<rda min_age="31"  max_age="50"  gender="female" amount="13"  status="lactating"/>
-	</nutrient>
-
-	<nutrient name="Trans-Fats" unit="g" dv="0" usda="605" category="Lipids"/>
-	<nutrient name="Cholesterol" unit="mg" dv="300" usda="601" category="Lipids"/>
-	<nutrient name="Phytosterol" unit="mg" usda="636" category="Lipids"/>
-
-	<nutrient name="ALA" unit="g" usda="513" category="Amino Acids"/>
-	<nutrient name="ARG" unit="g" usda="511" category="Amino Acids"/>
-	<nutrient name="ASP" unit="g" usda="514" category="Amino Acids"/>
-	<nutrient name="CYS" unit="g" usda="507" category="Amino Acids"/>
-	<nutrient name="GLU" unit="g" usda="515" category="Amino Acids"/>
-	<nutrient name="GLY" unit="g" usda="516" category="Amino Acids"/>
-	<nutrient name="HIS" unit="g" usda="512" category="Amino Acids"/>
-	<nutrient name="HYP" unit="g" usda="521" category="Amino Acids"/>
-	<nutrient name="ILE" unit="g" usda="503" category="Amino Acids"/>
-	<nutrient name="LEU" unit="g" usda="504" category="Amino Acids"/>
-	<nutrient name="LYS" unit="g" usda="505" category="Amino Acids"/>
-	<nutrient name="MET" unit="g" usda="506" category="Amino Acids"/>
-	<nutrient name="PHE" unit="g" usda="508" category="Amino Acids"/>
-	<nutrient name="PRO" unit="g" usda="517" category="Amino Acids"/>
-	<nutrient name="SER" unit="g" usda="518" category="Amino Acids"/>
-	<nutrient name="THR" unit="g" usda="502" category="Amino Acids"/>
-	<nutrient name="TRP" unit="g" usda="501" category="Amino Acids"/>
-	<nutrient name="TYR" unit="g" usda="509" category="Amino Acids"/>
-	<nutrient name="VAL" unit="g" usda="510" category="Amino Acids"/>
-
+  <nutrient name="Alcohol" unit="g" usda="221" category="General"/>
+  <nutrient name="Caffeine" unit="mg" usda="262" category="General"/>
+  <nutrient name="Water" unit="g" dv="1500" usda="255" category="General">
+    <rda min_age="0" max_age="0.5" gender="all" amount="700"/>
+    <rda min_age="0.5" max_age="1" gender="all" amount="800"/>
+    <rda min_age="1" max_age="3" gender="all" amount="1300"/>
+    <rda min_age="4" max_age="8" gender="all" amount="1700"/>
+    <rda min_age="9" max_age="13" gender="male" amount="2400"/>
+    <rda min_age="14" max_age="18" gender="male" amount="3300"/>
+    <rda min_age="19" max_age="30" gender="male" amount="3700"/>
+    <rda min_age="31" max_age="50" gender="male" amount="3700"/>
+    <rda min_age="51" max_age="70" gender="male" amount="3700"/>
+    <rda min_age="71" gender="male" amount="3700"/>
+    <rda min_age="9" max_age="13" gender="female" amount="2100"/>
+    <rda min_age="14" max_age="18" gender="female" amount="2300"/>
+    <rda min_age="19" max_age="30" gender="female" amount="2700"/>
+    <rda min_age="31" max_age="50" gender="female" amount="2700"/>
+    <rda min_age="51" max_age="70" gender="female" amount="2700"/>
+    <rda min_age="71" gender="female" amount="2700"/>
+    <rda min_age="14" max_age="18" gender="female" amount="3000" status="pregnant"/>
+    <rda min_age="19" max_age="30" gender="female" amount="3000" status="pregnant"/>
+    <rda min_age="31" max_age="50" gender="female" amount="3000" status="pregnant"/>
+    <rda min_age="14" max_age="18" gender="female" amount="3800" status="lactating"/>
+    <rda min_age="19" max_age="30" gender="female" amount="3800" status="lactating"/>
+    <rda min_age="31" max_age="50" gender="female" amount="3800" status="lactating"/>
+  </nutrient>
+  <nutrient name="Ash" unit="g" usda="207" category="General" track="false"/>
+  <nutrient name="Calcium" unit="mg" dv="1000" usda="301" category="Minerals">
+    <rda min_age="0" max_age="0.5" gender="all" amount="210"/>
+    <rda min_age="0.5" max_age="1" gender="all" amount="270"/>
+    <rda min_age="1" max_age="3" gender="all" amount="500" tul="2500"/>
+    <rda min_age="4" max_age="8" gender="all" amount="800" tul="2500"/>
+    <rda min_age="9" max_age="13" gender="male" amount="1300" tul="2500"/>
+    <rda min_age="14" max_age="18" gender="male" amount="1300" tul="2500"/>
+    <rda min_age="19" max_age="30" gender="male" amount="1000" tul="2500"/>
+    <rda min_age="31" max_age="50" gender="male" amount="1000" tul="2500"/>
+    <rda min_age="51" max_age="70" gender="male" amount="1200" tul="2500"/>
+    <rda min_age="71" gender="male" amount="1200" tul="2500"/>
+    <rda min_age="9" max_age="13" gender="female" amount="1300" tul="2500"/>
+    <rda min_age="14" max_age="18" gender="female" amount="1300" tul="2500"/>
+    <rda min_age="19" max_age="30" gender="female" amount="1000" tul="2500"/>
+    <rda min_age="31" max_age="50" gender="female" amount="1000" tul="2500"/>
+    <rda min_age="51" max_age="70" gender="female" amount="1200" tul="2500"/>
+    <rda min_age="71" gender="female" amount="1200" tul="2500"/>
+    <rda min_age="14" max_age="18" gender="female" amount="1300" tul="2500" status="pregnant"/>
+    <rda min_age="19" max_age="30" gender="female" amount="1000" tul="2500" status="pregnant"/>
+    <rda min_age="31" max_age="50" gender="female" amount="1000" tul="2500" status="pregnant"/>
+    <rda min_age="14" max_age="18" gender="female" amount="1300" tul="2500" status="lactating"/>
+    <rda min_age="19" max_age="30" gender="female" amount="1000" tul="2500" status="lactating"/>
+    <rda min_age="31" max_age="50" gender="female" amount="1000" tul="2500" status="lactating"/>
+  </nutrient>
+  <nutrient name="Chromium" unit="&#xB5;g" category="Minerals" sparse="true" track="false">
+    <rda min_age="0" max_age="0.5" gender="all" amount="0.2"/>
+    <rda min_age="0.5" max_age="1" gender="all" amount="5.5"/>
+    <rda min_age="1" max_age="3" gender="all" amount="11"/>
+    <rda min_age="4" max_age="8" gender="all" amount="15"/>
+    <rda min_age="9" max_age="13" gender="male" amount="25"/>
+    <rda min_age="14" max_age="18" gender="male" amount="35"/>
+    <rda min_age="19" max_age="30" gender="male" amount="35"/>
+    <rda min_age="31" max_age="50" gender="male" amount="35"/>
+    <rda min_age="51" max_age="70" gender="male" amount="30"/>
+    <rda min_age="71" gender="male" amount="30"/>
+    <rda min_age="9" max_age="13" gender="female" amount="21"/>
+    <rda min_age="14" max_age="18" gender="female" amount="24"/>
+    <rda min_age="19" max_age="30" gender="female" amount="25"/>
+    <rda min_age="31" max_age="50" gender="female" amount="25"/>
+    <rda min_age="51" max_age="70" gender="female" amount="20"/>
+    <rda min_age="71" gender="female" amount="20"/>
+    <rda min_age="14" max_age="18" gender="female" amount="29" status="pregnant"/>
+    <rda min_age="19" max_age="30" gender="female" amount="30" status="pregnant"/>
+    <rda min_age="31" max_age="50" gender="female" amount="30" status="pregnant"/>
+    <rda min_age="14" max_age="18" gender="female" amount="44" status="lactating"/>
+    <rda min_age="19" max_age="30" gender="female" amount="45" status="lactating"/>
+    <rda min_age="31" max_age="50" gender="female" amount="45" status="lactating"/>
+  </nutrient>
+  <nutrient name="Copper" unit="mg" dv="2" usda="312" category="Minerals">
+    <rda min_age="0" max_age="0.5" gender="all" amount="0.200"/>
+    <rda min_age="0.5" max_age="1" gender="all" amount="0.220"/>
+    <rda min_age="1" max_age="3" gender="all" amount="0.340" tul="1.000"/>
+    <rda min_age="4" max_age="8" gender="all" amount="0.440" tul="3.000"/>
+    <rda min_age="9" max_age="13" gender="male" amount="0.700" tul="5.000"/>
+    <rda min_age="14" max_age="18" gender="male" amount="0.890" tul="8.000"/>
+    <rda min_age="19" max_age="30" gender="male" amount="0.900" tul="10.000"/>
+    <rda min_age="31" max_age="50" gender="male" amount="0.900" tul="10.000"/>
+    <rda min_age="51" max_age="70" gender="male" amount="0.900" tul="10.000"/>
+    <rda min_age="71" gender="male" amount="0.900" tul="10.000"/>
+    <rda min_age="9" max_age="13" gender="female" amount="0.700" tul="5.000"/>
+    <rda min_age="14" max_age="18" gender="female" amount="0.890" tul="8.000"/>
+    <rda min_age="19" max_age="30" gender="female" amount="0.900" tul="10.000"/>
+    <rda min_age="31" max_age="50" gender="female" amount="0.900" tul="10.000"/>
+    <rda min_age="51" max_age="70" gender="female" amount="0.900" tul="10.000"/>
+    <rda min_age="71" gender="female" amount="0.900" tul="10.000"/>
+    <rda min_age="14" max_age="18" gender="female" amount="1.000" tul="8.000" status="pregnant"/>
+    <rda min_age="19" max_age="30" gender="female" amount="1.000" tul="10.000" status="pregnant"/>
+    <rda min_age="31" max_age="50" gender="female" amount="1.000" tul="10.000" status="pregnant"/>
+    <rda min_age="14" max_age="18" gender="female" amount="1.300" tul="8.000" status="lactating"/>
+    <rda min_age="19" max_age="30" gender="female" amount="1.300" tul="10.000" status="lactating"/>
+    <rda min_age="31" max_age="50" gender="female" amount="1.300" tul="10.000" status="lactating"/>
+  </nutrient>
+  <nutrient name="Fluoride" unit="&#xB5;g" usda="313" category="Minerals" sparse="true" track="false">
+    <rda min_age="0" max_age="0.5" gender="all" amount="10" tul="700"/>
+    <rda min_age="0.5" max_age="1" gender="all" amount="500" tul="900"/>
+    <rda min_age="1" max_age="3" gender="all" amount="700" tul="1300"/>
+    <rda min_age="4" max_age="8" gender="all" amount="1000" tul="2200"/>
+    <rda min_age="9" max_age="13" gender="male" amount="2000" tul="10000"/>
+    <rda min_age="14" max_age="18" gender="male" amount="3000" tul="10000"/>
+    <rda min_age="19" max_age="30" gender="male" amount="4000" tul="10000"/>
+    <rda min_age="31" max_age="50" gender="male" amount="4000" tul="10000"/>
+    <rda min_age="51" max_age="70" gender="male" amount="4000" tul="10000"/>
+    <rda min_age="71" gender="male" amount="4000" tul="10000"/>
+    <rda min_age="9" max_age="13" gender="female" amount="2000" tul="10000"/>
+    <rda min_age="14" max_age="18" gender="female" amount="3000" tul="10000"/>
+    <rda min_age="19" max_age="30" gender="female" amount="3000" tul="10000"/>
+    <rda min_age="31" max_age="50" gender="female" amount="3000" tul="10000"/>
+    <rda min_age="51" max_age="70" gender="female" amount="3000" tul="10000"/>
+    <rda min_age="71" gender="female" amount="3000" tul="10000"/>
+    <rda min_age="14" max_age="18" gender="female" amount="3000" tul="10000" status="pregnant"/>
+    <rda min_age="19" max_age="30" gender="female" amount="3000" tul="10000" status="pregnant"/>
+    <rda min_age="31" max_age="50" gender="female" amount="3000" tul="10000" status="pregnant"/>
+    <rda min_age="14" max_age="18" gender="female" amount="3000" tul="10000" status="lactating"/>
+    <rda min_age="19" max_age="30" gender="female" amount="3000" tul="10000" status="lactating"/>
+    <rda min_age="31" max_age="50" gender="female" amount="3000" tul="10000" status="lactating"/>
+  </nutrient>
+  <nutrient name="Iron" unit="mg" dv="18" usda="303" category="Minerals">
+    <rda min_age="0" max_age="0.5" gender="all" amount="0.27" tul="40"/>
+    <rda min_age="0.5" max_age="1" gender="all" amount="11" tul="40"/>
+    <rda min_age="1" max_age="3" gender="all" amount="7" tul="40"/>
+    <rda min_age="4" max_age="8" gender="all" amount="10" tul="40"/>
+    <rda min_age="9" max_age="13" gender="male" amount="8" tul="40"/>
+    <rda min_age="14" max_age="18" gender="male" amount="11" tul="45"/>
+    <rda min_age="19" max_age="30" gender="male" amount="8" tul="45"/>
+    <rda min_age="31" max_age="50" gender="male" amount="8" tul="45"/>
+    <rda min_age="51" max_age="70" gender="male" amount="8" tul="45"/>
+    <rda min_age="71" gender="male" amount="8" tul="45"/>
+    <rda min_age="9" max_age="13" gender="female" amount="8" tul="40"/>
+    <rda min_age="14" max_age="18" gender="female" amount="15" tul="45"/>
+    <rda min_age="19" max_age="30" gender="female" amount="18" tul="45"/>
+    <rda min_age="31" max_age="50" gender="female" amount="18" tul="45"/>
+    <rda min_age="51" max_age="70" gender="female" amount="8" tul="45"/>
+    <rda min_age="71" gender="female" amount="8" tul="45"/>
+    <rda min_age="14" max_age="18" gender="female" amount="27" tul="45" status="pregnant"/>
+    <rda min_age="19" max_age="30" gender="female" amount="27" tul="45" status="pregnant"/>
+    <rda min_age="31" max_age="50" gender="female" amount="27" tul="45" status="pregnant"/>
+    <rda min_age="14" max_age="18" gender="female" amount="10" tul="45" status="lactating"/>
+    <rda min_age="19" max_age="30" gender="female" amount="9" tul="45" status="lactating"/>
+    <rda min_age="31" max_age="50" gender="female" amount="9" tul="45" status="lactating"/>
+  </nutrient>
+  <nutrient name="Magnesium" unit="mg" dv="400" usda="304" category="Minerals">
+    <rda min_age="0" max_age="0.5" gender="all" amount="30"/>
+    <rda min_age="0.5" max_age="1" gender="all" amount="75"/>
+    <rda min_age="1" max_age="3" gender="all" amount="80"/>
+    <rda min_age="4" max_age="8" gender="all" amount="130"/>
+    <rda min_age="9" max_age="13" gender="male" amount="240"/>
+    <rda min_age="14" max_age="18" gender="male" amount="410"/>
+    <rda min_age="19" max_age="30" gender="male" amount="400"/>
+    <rda min_age="31" max_age="50" gender="male" amount="420"/>
+    <rda min_age="51" max_age="70" gender="male" amount="420"/>
+    <rda min_age="71" gender="male" amount="420"/>
+    <rda min_age="9" max_age="13" gender="female" amount="240"/>
+    <rda min_age="14" max_age="18" gender="female" amount="360"/>
+    <rda min_age="19" max_age="30" gender="female" amount="310"/>
+    <rda min_age="31" max_age="50" gender="female" amount="320"/>
+    <rda min_age="51" max_age="70" gender="female" amount="320"/>
+    <rda min_age="71" gender="female" amount="320"/>
+    <rda min_age="14" max_age="18" gender="female" amount="400" status="pregnant"/>
+    <rda min_age="19" max_age="30" gender="female" amount="350" status="pregnant"/>
+    <rda min_age="31" max_age="50" gender="female" amount="360" status="pregnant"/>
+    <rda min_age="14" max_age="18" gender="female" amount="360" status="lactating"/>
+    <rda min_age="19" max_age="30" gender="female" amount="310" status="lactating"/>
+    <rda min_age="31" max_age="50" gender="female" amount="320" status="lactating"/>
+  </nutrient>
+  <nutrient name="Manganese" unit="mg" dv="2" usda="315" category="Minerals">
+    <rda min_age="0" max_age="0.5" gender="all" amount="0.003"/>
+    <rda min_age="0.5" max_age="1" gender="all" amount="0.6"/>
+    <rda min_age="1" max_age="3" gender="all" amount="1.2" tul="2"/>
+    <rda min_age="4" max_age="8" gender="all" amount="1.5" tul="3"/>
+    <rda min_age="9" max_age="13" gender="male" amount="1.9" tul="6"/>
+    <rda min_age="14" max_age="18" gender="male" amount="2.2" tul="9"/>
+    <rda min_age="19" max_age="30" gender="male" amount="2.3" tul="11"/>
+    <rda min_age="31" max_age="50" gender="male" amount="2.3" tul="11"/>
+    <rda min_age="51" max_age="70" gender="male" amount="2.3" tul="11"/>
+    <rda min_age="71" gender="male" amount="2.3" tul="11"/>
+    <rda min_age="9" max_age="13" gender="female" amount="1.6" tul="6"/>
+    <rda min_age="14" max_age="18" gender="female" amount="1.6" tul="9"/>
+    <rda min_age="19" max_age="30" gender="female" amount="1.8" tul="11"/>
+    <rda min_age="31" max_age="50" gender="female" amount="1.8" tul="11"/>
+    <rda min_age="51" max_age="70" gender="female" amount="1.8" tul="11"/>
+    <rda min_age="71" gender="female" amount="1.8" tul="11"/>
+    <rda min_age="14" max_age="18" gender="female" amount="2.0" tul="9" status="pregnant"/>
+    <rda min_age="19" max_age="30" gender="female" amount="2.0" tul="11" status="pregnant"/>
+    <rda min_age="31" max_age="50" gender="female" amount="2.0" tul="11" status="pregnant"/>
+    <rda min_age="14" max_age="18" gender="female" amount="2.6" tul="9" status="lactating"/>
+    <rda min_age="19" max_age="30" gender="female" amount="2.6" tul="11" status="lactating"/>
+    <rda min_age="31" max_age="50" gender="female" amount="2.6" tul="11" status="lactating"/>
+  </nutrient>
+  <nutrient name="Phosphorus" unit="mg" dv="1000" usda="305" category="Minerals">
+    <rda min_age="0" max_age="0.5" gender="all" amount="100"/>
+    <rda min_age="0.5" max_age="1" gender="all" amount="275"/>
+    <rda min_age="1" max_age="3" gender="all" amount="460" tul="3000"/>
+    <rda min_age="4" max_age="8" gender="all" amount="500" tul="3000"/>
+    <rda min_age="9" max_age="13" gender="male" amount="1250" tul="4000"/>
+    <rda min_age="14" max_age="18" gender="male" amount="1250" tul="4000"/>
+    <rda min_age="19" max_age="30" gender="male" amount="700" tul="4000"/>
+    <rda min_age="31" max_age="50" gender="male" amount="700" tul="4000"/>
+    <rda min_age="51" max_age="70" gender="male" amount="700" tul="4000"/>
+    <rda min_age="71" gender="male" amount="700" tul="3000"/>
+    <rda min_age="9" max_age="13" gender="female" amount="1250" tul="4000"/>
+    <rda min_age="14" max_age="18" gender="female" amount="1250" tul="4000"/>
+    <rda min_age="19" max_age="30" gender="female" amount="700" tul="4000"/>
+    <rda min_age="31" max_age="50" gender="female" amount="700" tul="4000"/>
+    <rda min_age="51" max_age="70" gender="female" amount="700" tul="4000"/>
+    <rda min_age="71" gender="female" amount="700" tul="3000"/>
+    <rda min_age="14" max_age="18" gender="female" amount="1250" tul="3500" status="pregnant"/>
+    <rda min_age="19" max_age="30" gender="female" amount="700" tul="3500" status="pregnant"/>
+    <rda min_age="31" max_age="50" gender="female" amount="700" tul="3500" status="pregnant"/>
+    <rda min_age="14" max_age="18" gender="female" amount="1250" tul="4000" status="lactating"/>
+    <rda min_age="19" max_age="30" gender="female" amount="700" tul="4000" status="lactating"/>
+    <rda min_age="31" max_age="50" gender="female" amount="700" tul="4000" status="lactating"/>
+  </nutrient>
+  <nutrient name="Potassium" unit="mg" dv="3500" usda="306" category="Minerals">
+    <rda min_age="0" max_age="0.5" gender="all" amount="400"/>
+    <rda min_age="0.5" max_age="1" gender="all" amount="700"/>
+    <rda min_age="1" max_age="3" gender="all" amount="3000"/>
+    <rda min_age="4" max_age="8" gender="all" amount="3800"/>
+    <rda min_age="9" max_age="13" gender="male" amount="4500"/>
+    <rda min_age="14" max_age="18" gender="male" amount="4700"/>
+    <rda min_age="19" max_age="30" gender="male" amount="4700"/>
+    <rda min_age="31" max_age="50" gender="male" amount="4700"/>
+    <rda min_age="51" max_age="70" gender="male" amount="4700"/>
+    <rda min_age="71" gender="male" amount="4700"/>
+    <rda min_age="9" max_age="13" gender="female" amount="4500"/>
+    <rda min_age="14" max_age="18" gender="female" amount="4700"/>
+    <rda min_age="19" max_age="30" gender="female" amount="4700"/>
+    <rda min_age="31" max_age="50" gender="female" amount="4700"/>
+    <rda min_age="51" max_age="70" gender="female" amount="4700"/>
+    <rda min_age="71" gender="female" amount="4700"/>
+    <rda min_age="14" max_age="18" gender="female" amount="4700" status="pregnant"/>
+    <rda min_age="19" max_age="30" gender="female" amount="4700" status="pregnant"/>
+    <rda min_age="31" max_age="50" gender="female" amount="4700" status="pregnant"/>
+    <rda min_age="14" max_age="18" gender="female" amount="5100" status="lactating"/>
+    <rda min_age="19" max_age="30" gender="female" amount="5100" status="lactating"/>
+    <rda min_age="31" max_age="50" gender="female" amount="5100" status="lactating"/>
+  </nutrient>
+  <nutrient name="Selenium" unit="&#xB5;g" dv="70" usda="317" category="Minerals">
+    <rda min_age="0" max_age="0.5" gender="all" amount="15" tul="45"/>
+    <rda min_age="0.5" max_age="1" gender="all" amount="20" tul="60"/>
+    <rda min_age="1" max_age="3" gender="all" amount="20" tul="90"/>
+    <rda min_age="4" max_age="8" gender="all" amount="30" tul="150"/>
+    <rda min_age="9" max_age="13" gender="male" amount="40" tul="280"/>
+    <rda min_age="14" max_age="18" gender="male" amount="55" tul="400"/>
+    <rda min_age="19" max_age="30" gender="male" amount="55" tul="400"/>
+    <rda min_age="31" max_age="50" gender="male" amount="55" tul="400"/>
+    <rda min_age="51" max_age="70" gender="male" amount="55" tul="400"/>
+    <rda min_age="71" gender="male" amount="55" tul="400"/>
+    <rda min_age="9" max_age="13" gender="female" amount="40" tul="280"/>
+    <rda min_age="14" max_age="18" gender="female" amount="55" tul="400"/>
+    <rda min_age="19" max_age="30" gender="female" amount="55" tul="400"/>
+    <rda min_age="31" max_age="50" gender="female" amount="55" tul="400"/>
+    <rda min_age="51" max_age="70" gender="female" amount="55" tul="400"/>
+    <rda min_age="71" gender="female" amount="55" tul="400"/>
+    <rda min_age="14" max_age="18" gender="female" amount="60" tul="400" status="pregnant"/>
+    <rda min_age="19" max_age="30" gender="female" amount="60" tul="400" status="pregnant"/>
+    <rda min_age="31" max_age="50" gender="female" amount="60" tul="400" status="pregnant"/>
+    <rda min_age="14" max_age="18" gender="female" amount="70" tul="400" status="lactating"/>
+    <rda min_age="19" max_age="30" gender="female" amount="70" tul="400" status="lactating"/>
+    <rda min_age="31" max_age="50" gender="female" amount="70" tul="400" status="lactating"/>
+  </nutrient>
+  <nutrient name="Sodium" unit="mg" dv="2400" usda="307" category="Minerals">
+    <rda min_age="0" max_age="0.5" gender="all" amount="120"/>
+    <rda min_age="0.5" max_age="1" gender="all" amount="370"/>
+    <rda min_age="1" max_age="3" gender="all" amount="1000" tul="1500"/>
+    <rda min_age="4" max_age="8" gender="all" amount="1200" tul="1900"/>
+    <rda min_age="9" max_age="13" gender="male" amount="1500" tul="2200"/>
+    <rda min_age="14" max_age="18" gender="male" amount="1500" tul="2300"/>
+    <rda min_age="19" max_age="30" gender="male" amount="1500" tul="2300"/>
+    <rda min_age="31" max_age="50" gender="male" amount="1500" tul="2300"/>
+    <rda min_age="51" max_age="70" gender="male" amount="1300" tul="2300"/>
+    <rda min_age="71" gender="male" amount="1200" tul="2300"/>
+    <rda min_age="9" max_age="13" gender="female" amount="1500" tul="2200"/>
+    <rda min_age="14" max_age="18" gender="female" amount="1500" tul="2300"/>
+    <rda min_age="19" max_age="30" gender="female" amount="1500" tul="2300"/>
+    <rda min_age="31" max_age="50" gender="female" amount="1500" tul="2300"/>
+    <rda min_age="51" max_age="70" gender="female" amount="1300" tul="2300"/>
+    <rda min_age="71" gender="female" amount="1200" tul="2300"/>
+    <rda min_age="14" max_age="18" gender="female" amount="1500" tul="2300" status="pregnant"/>
+    <rda min_age="19" max_age="30" gender="female" amount="1500" tul="2300" status="pregnant"/>
+    <rda min_age="31" max_age="50" gender="female" amount="1500" tul="2300" status="pregnant"/>
+    <rda min_age="14" max_age="18" gender="female" amount="1500" tul="2300" status="lactating"/>
+    <rda min_age="19" max_age="30" gender="female" amount="1500" tul="2300" status="lactating"/>
+    <rda min_age="31" max_age="50" gender="female" amount="1500" tul="2300" status="lactating"/>
+  </nutrient>
+  <nutrient name="Zinc" unit="mg" dv="15" usda="309" category="Minerals">
+    <rda min_age="0" max_age="0.5" gender="all" amount="2" tul="4"/>
+    <rda min_age="0.5" max_age="1" gender="all" amount="3" tul="5"/>
+    <rda min_age="1" max_age="3" gender="all" amount="3" tul="7"/>
+    <rda min_age="4" max_age="8" gender="all" amount="5" tul="12"/>
+    <rda min_age="9" max_age="13" gender="male" amount="8" tul="23"/>
+    <rda min_age="14" max_age="18" gender="male" amount="11" tul="34"/>
+    <rda min_age="19" max_age="30" gender="male" amount="11" tul="40"/>
+    <rda min_age="31" max_age="50" gender="male" amount="11" tul="40"/>
+    <rda min_age="51" max_age="70" gender="male" amount="11" tul="40"/>
+    <rda min_age="71" gender="male" amount="11" tul="40"/>
+    <rda min_age="9" max_age="13" gender="female" amount="8" tul="23"/>
+    <rda min_age="14" max_age="18" gender="female" amount="9" tul="34"/>
+    <rda min_age="19" max_age="30" gender="female" amount="8" tul="40"/>
+    <rda min_age="31" max_age="50" gender="female" amount="8" tul="40"/>
+    <rda min_age="51" max_age="70" gender="female" amount="8" tul="40"/>
+    <rda min_age="71" gender="female" amount="8" tul="40"/>
+    <rda min_age="14" max_age="18" gender="female" amount="12" tul="34" status="pregnant"/>
+    <rda min_age="19" max_age="30" gender="female" amount="11" tul="40" status="pregnant"/>
+    <rda min_age="31" max_age="50" gender="female" amount="11" tul="40" status="pregnant"/>
+    <rda min_age="14" max_age="18" gender="female" amount="13" tul="34" status="lactating"/>
+    <rda min_age="19" max_age="30" gender="female" amount="12" tul="40" status="lactating"/>
+    <rda min_age="31" max_age="50" gender="female" amount="12" tul="40" status="lactating"/>
+  </nutrient>
+  <nutrient name="Vitamin A" unit="IU" dv="5000" usda="318" category="Vitamins">
+    <rda min_age="0" max_age="0.5" gender="all" amount="1333" tul="2000"/>
+    <rda min_age="0.5" max_age="1" gender="all" amount="1666" tul="2000"/>
+    <rda min_age="1" max_age="3" gender="all" amount="1000" tul="2000"/>
+    <rda min_age="4" max_age="8" gender="all" amount="1333" tul="3000"/>
+    <rda min_age="9" max_age="13" gender="male" amount="2000" tul="5667"/>
+    <rda min_age="14" max_age="18" gender="male" amount="3000" tul="9333"/>
+    <rda min_age="19" max_age="30" gender="male" amount="3000" tul="10000"/>
+    <rda min_age="31" max_age="50" gender="male" amount="3000" tul="10000"/>
+    <rda min_age="51" max_age="70" gender="male" amount="3000" tul="10000"/>
+    <rda min_age="71" gender="male" amount="3000" tul="10000"/>
+    <rda min_age="9" max_age="13" gender="female" amount="2000" tul="5667"/>
+    <rda min_age="14" max_age="18" gender="female" amount="2333" tul="9333"/>
+    <rda min_age="19" max_age="30" gender="female" amount="2333" tul="10000"/>
+    <rda min_age="31" max_age="50" gender="female" amount="2333" tul="10000"/>
+    <rda min_age="51" max_age="70" gender="female" amount="2333" tul="10000"/>
+    <rda min_age="71" gender="female" amount="2333" tul="10000"/>
+    <rda min_age="14" max_age="18" gender="female" amount="2500" tul="9333" status="pregnant"/>
+    <rda min_age="19" max_age="30" gender="female" amount="2567" tul="10000" status="pregnant"/>
+    <rda min_age="31" max_age="50" gender="female" amount="2567" tul="10000" status="pregnant"/>
+    <rda min_age="14" max_age="18" gender="female" amount="4000" tul="9333" status="lactating"/>
+    <rda min_age="19" max_age="30" gender="female" amount="4333" tul="10000" status="lactating"/>
+    <rda min_age="31" max_age="50" gender="female" amount="4333" tul="10000" status="lactating"/>
+  </nutrient>
+  <nutrient name="Retinol" unit="&#xB5;g" parent="Vitamin A" usda="319" category="Vitamins" track="false"/>
+  <nutrient name="Alpha-carotene" unit="&#xB5;g" parent="Vitamin A" usda="322" category="Vitamins" track="false"/>
+  <nutrient name="Beta-carotene" unit="&#xB5;g" parent="Vitamin A" usda="321" category="Vitamins" track="false"/>
+  <nutrient name="Beta-cryptoxanthin" unit="&#xB5;g" parent="Vitamin A" usda="334" category="Vitamins" track="false"/>
+  <nutrient name="Lycopene" unit="&#xB5;g" parent="Vitamin A" usda="337" category="Vitamins" track="false"/>
+  <nutrient name="Lutein+Zeaxanthin" unit="&#xB5;g" parent="Vitamin A" usda="338" category="Vitamins" track="false"/>
+  <nutrient name="Folate" unit="&#xB5;g" dv="400" usda="417" category="Vitamins">
+    <rda min_age="0" max_age="0.5" gender="all" amount="65"/>
+    <rda min_age="0.5" max_age="1" gender="all" amount="80"/>
+    <rda min_age="1" max_age="3" gender="all" amount="150" tul="300"/>
+    <rda min_age="4" max_age="8" gender="all" amount="200" tul="400"/>
+    <rda min_age="9" max_age="13" gender="male" amount="300" tul="600"/>
+    <rda min_age="14" max_age="18" gender="male" amount="400" tul="800"/>
+    <rda min_age="19" max_age="30" gender="male" amount="400" tul="1000"/>
+    <rda min_age="31" max_age="50" gender="male" amount="400" tul="1000"/>
+    <rda min_age="51" max_age="70" gender="male" amount="400" tul="1000"/>
+    <rda min_age="71" gender="male" amount="400" tul="1000"/>
+    <rda min_age="9" max_age="13" gender="female" amount="300" tul="600"/>
+    <rda min_age="14" max_age="18" gender="female" amount="400" tul="800"/>
+    <rda min_age="19" max_age="30" gender="female" amount="400" tul="1000"/>
+    <rda min_age="31" max_age="50" gender="female" amount="400" tul="1000"/>
+    <rda min_age="51" max_age="70" gender="female" amount="400" tul="1000"/>
+    <rda min_age="71" gender="female" amount="400" tul="1000"/>
+    <rda min_age="14" max_age="18" gender="female" amount="600" tul="800" status="pregnant"/>
+    <rda min_age="19" max_age="30" gender="female" amount="600" tul="1000" status="pregnant"/>
+    <rda min_age="31" max_age="50" gender="female" amount="600" tul="1000" status="pregnant"/>
+    <rda min_age="14" max_age="18" gender="female" amount="500" tul="800" status="lactating"/>
+    <rda min_age="19" max_age="30" gender="female" amount="500" tul="1000" status="lactating"/>
+    <rda min_age="31" max_age="50" gender="female" amount="500" tul="1000" status="lactating"/>
+  </nutrient>
+  <nutrient name="B1 (Thiamine)" unit="mg" dv="1.5" usda="404" category="Vitamins">
+    <rda min_age="0" max_age="0.5" gender="all" amount="0.2"/>
+    <rda min_age="0.5" max_age="1" gender="all" amount="0.3"/>
+    <rda min_age="1" max_age="3" gender="all" amount="0.5"/>
+    <rda min_age="4" max_age="8" gender="all" amount="0.6"/>
+    <rda min_age="9" max_age="13" gender="male" amount="0.9"/>
+    <rda min_age="14" max_age="18" gender="male" amount="1.2"/>
+    <rda min_age="19" max_age="30" gender="male" amount="1.2"/>
+    <rda min_age="31" max_age="50" gender="male" amount="1.2"/>
+    <rda min_age="51" max_age="70" gender="male" amount="1.2"/>
+    <rda min_age="71" gender="male" amount="1.2"/>
+    <rda min_age="9" max_age="13" gender="female" amount="0.9"/>
+    <rda min_age="14" max_age="18" gender="female" amount="1.0"/>
+    <rda min_age="19" max_age="30" gender="female" amount="1.1"/>
+    <rda min_age="31" max_age="50" gender="female" amount="1.1"/>
+    <rda min_age="51" max_age="70" gender="female" amount="1.1"/>
+    <rda min_age="71" gender="female" amount="1.1"/>
+    <rda min_age="14" max_age="18" gender="female" amount="1.4" status="pregnant"/>
+    <rda min_age="19" max_age="30" gender="female" amount="1.4" status="pregnant"/>
+    <rda min_age="31" max_age="50" gender="female" amount="1.4" status="pregnant"/>
+    <rda min_age="14" max_age="18" gender="female" amount="1.4" status="lactating"/>
+    <rda min_age="19" max_age="30" gender="female" amount="1.4" status="lactating"/>
+    <rda min_age="31" max_age="50" gender="female" amount="1.4" status="lactating"/>
+  </nutrient>
+  <nutrient name="B2 (Riboflavin)" unit="mg" dv="1.7" usda="405" category="Vitamins">
+    <rda min_age="0" max_age="0.5" gender="all" amount="0.3"/>
+    <rda min_age="0.5" max_age="1" gender="all" amount="0.4"/>
+    <rda min_age="1" max_age="3" gender="all" amount="0.5"/>
+    <rda min_age="4" max_age="8" gender="all" amount="0.6"/>
+    <rda min_age="9" max_age="13" gender="male" amount="0.9"/>
+    <rda min_age="14" max_age="18" gender="male" amount="1.3"/>
+    <rda min_age="19" max_age="30" gender="male" amount="1.3"/>
+    <rda min_age="31" max_age="50" gender="male" amount="1.3"/>
+    <rda min_age="51" max_age="70" gender="male" amount="1.3"/>
+    <rda min_age="71" gender="male" amount="1.3"/>
+    <rda min_age="9" max_age="13" gender="female" amount="0.9"/>
+    <rda min_age="14" max_age="18" gender="female" amount="1.0"/>
+    <rda min_age="19" max_age="30" gender="female" amount="1.1"/>
+    <rda min_age="31" max_age="50" gender="female" amount="1.1"/>
+    <rda min_age="51" max_age="70" gender="female" amount="1.1"/>
+    <rda min_age="71" gender="female" amount="1.1"/>
+    <rda min_age="14" max_age="18" gender="female" amount="1.4" status="pregnant"/>
+    <rda min_age="19" max_age="30" gender="female" amount="1.4" status="pregnant"/>
+    <rda min_age="31" max_age="50" gender="female" amount="1.4" status="pregnant"/>
+    <rda min_age="14" max_age="18" gender="female" amount="1.6" status="lactating"/>
+    <rda min_age="19" max_age="30" gender="female" amount="1.6" status="lactating"/>
+    <rda min_age="31" max_age="50" gender="female" amount="1.6" status="lactating"/>
+  </nutrient>
+  <nutrient name="B3 (Niacin)" unit="mg" dv="20" usda="406" category="Vitamins">
+    <rda min_age="0" max_age="0.5" gender="all" amount="2"/>
+    <rda min_age="0.5" max_age="1" gender="all" amount="4"/>
+    <rda min_age="1" max_age="3" gender="all" amount="6" tul="10"/>
+    <rda min_age="4" max_age="8" gender="all" amount="8" tul="15"/>
+    <rda min_age="9" max_age="13" gender="male" amount="12" tul="20"/>
+    <rda min_age="14" max_age="18" gender="male" amount="16" tul="30"/>
+    <rda min_age="19" max_age="30" gender="male" amount="16" tul="35"/>
+    <rda min_age="31" max_age="50" gender="male" amount="16" tul="35"/>
+    <rda min_age="51" max_age="70" gender="male" amount="16" tul="35"/>
+    <rda min_age="71" gender="male" amount="16" tul="35"/>
+    <rda min_age="9" max_age="13" gender="female" amount="12" tul="20"/>
+    <rda min_age="14" max_age="18" gender="female" amount="14" tul="30"/>
+    <rda min_age="19" max_age="30" gender="female" amount="14" tul="35"/>
+    <rda min_age="31" max_age="50" gender="female" amount="14" tul="35"/>
+    <rda min_age="51" max_age="70" gender="female" amount="14" tul="35"/>
+    <rda min_age="71" gender="female" amount="14" tul="35"/>
+    <rda min_age="14" max_age="18" gender="female" amount="18" tul="30" status="pregnant"/>
+    <rda min_age="19" max_age="30" gender="female" amount="18" tul="35" status="pregnant"/>
+    <rda min_age="31" max_age="50" gender="female" amount="18" tul="35" status="pregnant"/>
+    <rda min_age="14" max_age="18" gender="female" amount="17" tul="30" status="lactating"/>
+    <rda min_age="19" max_age="30" gender="female" amount="17" tul="35" status="lactating"/>
+    <rda min_age="31" max_age="50" gender="female" amount="17" tul="35" status="lactating"/>
+  </nutrient>
+  <nutrient name="B5 (Pantothenic Acid)" unit="mg" dv="10" usda="410" category="Vitamins">
+    <rda min_age="0" max_age="0.5" gender="all" amount="1.7"/>
+    <rda min_age="0.5" max_age="1" gender="all" amount="1.8"/>
+    <rda min_age="1" max_age="3" gender="all" amount="2"/>
+    <rda min_age="4" max_age="8" gender="all" amount="3"/>
+    <rda min_age="9" max_age="13" gender="male" amount="4"/>
+    <rda min_age="14" max_age="18" gender="male" amount="5"/>
+    <rda min_age="19" max_age="30" gender="male" amount="5"/>
+    <rda min_age="31" max_age="50" gender="male" amount="5"/>
+    <rda min_age="51" max_age="70" gender="male" amount="5"/>
+    <rda min_age="71" gender="male" amount="5"/>
+    <rda min_age="9" max_age="13" gender="female" amount="4"/>
+    <rda min_age="14" max_age="18" gender="female" amount="5"/>
+    <rda min_age="19" max_age="30" gender="female" amount="5"/>
+    <rda min_age="31" max_age="50" gender="female" amount="5"/>
+    <rda min_age="51" max_age="70" gender="female" amount="5"/>
+    <rda min_age="71" gender="female" amount="5"/>
+    <rda min_age="14" max_age="18" gender="female" amount="6" status="pregnant"/>
+    <rda min_age="19" max_age="30" gender="female" amount="6" status="pregnant"/>
+    <rda min_age="31" max_age="50" gender="female" amount="6" status="pregnant"/>
+    <rda min_age="14" max_age="18" gender="female" amount="7" status="lactating"/>
+    <rda min_age="19" max_age="30" gender="female" amount="7" status="lactating"/>
+    <rda min_age="31" max_age="50" gender="female" amount="7" status="lactating"/>
+  </nutrient>
+  <nutrient name="B6 (Pyridoxine)" unit="mg" dv="2" usda="415" category="Vitamins">
+    <rda min_age="0" max_age="0.5" gender="all" amount="0.1"/>
+    <rda min_age="0.5" max_age="1" gender="all" amount="0.3"/>
+    <rda min_age="1" max_age="3" gender="all" amount="0.5" tul="30"/>
+    <rda min_age="4" max_age="8" gender="all" amount="0.6" tul="40"/>
+    <rda min_age="9" max_age="13" gender="male" amount="1.0" tul="60"/>
+    <rda min_age="14" max_age="18" gender="male" amount="1.3" tul="80"/>
+    <rda min_age="19" max_age="30" gender="male" amount="1.3" tul="100"/>
+    <rda min_age="31" max_age="50" gender="male" amount="1.3" tul="100"/>
+    <rda min_age="51" max_age="70" gender="male" amount="1.7" tul="100"/>
+    <rda min_age="71" gender="male" amount="1.7" tul="100"/>
+    <rda min_age="9" max_age="13" gender="female" amount="1.0" tul="60"/>
+    <rda min_age="14" max_age="18" gender="female" amount="1.2" tul="80"/>
+    <rda min_age="19" max_age="30" gender="female" amount="1.3" tul="100"/>
+    <rda min_age="31" max_age="50" gender="female" amount="1.3" tul="100"/>
+    <rda min_age="51" max_age="70" gender="female" amount="1.5" tul="100"/>
+    <rda min_age="71" gender="female" amount="1.5" tul="100"/>
+    <rda min_age="14" max_age="18" gender="female" amount="1.9" tul="80" status="pregnant"/>
+    <rda min_age="19" max_age="30" gender="female" amount="1.9" tul="100" status="pregnant"/>
+    <rda min_age="31" max_age="50" gender="female" amount="1.9" tul="100" status="pregnant"/>
+    <rda min_age="14" max_age="18" gender="female" amount="2.0" tul="80" status="lactating"/>
+    <rda min_age="19" max_age="30" gender="female" amount="2.0" tul="100" status="lactating"/>
+    <rda min_age="31" max_age="50" gender="female" amount="2.0" tul="100" status="lactating"/>
+  </nutrient>
+  <nutrient name="B12 (Cyanocobalamin)" unit="&#xB5;g" dv="6" usda="418" category="Vitamins">
+    <rda min_age="0" max_age="0.5" gender="all" amount="0.4"/>
+    <rda min_age="0.5" max_age="1" gender="all" amount="0.5"/>
+    <rda min_age="1" max_age="3" gender="all" amount="0.9"/>
+    <rda min_age="4" max_age="8" gender="all" amount="1.2"/>
+    <rda min_age="9" max_age="13" gender="male" amount="1.8"/>
+    <rda min_age="14" max_age="18" gender="male" amount="2.4"/>
+    <rda min_age="19" max_age="30" gender="male" amount="2.4"/>
+    <rda min_age="31" max_age="50" gender="male" amount="2.4"/>
+    <rda min_age="51" max_age="70" gender="male" amount="2.4"/>
+    <rda min_age="71" gender="male" amount="2.4"/>
+    <rda min_age="9" max_age="13" gender="female" amount="1.8"/>
+    <rda min_age="14" max_age="18" gender="female" amount="2.4"/>
+    <rda min_age="19" max_age="30" gender="female" amount="2.4"/>
+    <rda min_age="31" max_age="50" gender="female" amount="2.4"/>
+    <rda min_age="51" max_age="70" gender="female" amount="2.4"/>
+    <rda min_age="71" gender="female" amount="2.4"/>
+    <rda min_age="14" max_age="18" gender="female" amount="2.6" status="pregnant"/>
+    <rda min_age="19" max_age="30" gender="female" amount="2.6" status="pregnant"/>
+    <rda min_age="31" max_age="50" gender="female" amount="2.6" status="pregnant"/>
+    <rda min_age="14" max_age="18" gender="female" amount="2.8" status="lactating"/>
+    <rda min_age="19" max_age="30" gender="female" amount="2.8" status="lactating"/>
+    <rda min_age="31" max_age="50" gender="female" amount="2.8" status="lactating"/>
+  </nutrient>
+  <nutrient name="Vitamin C" unit="mg" dv="60" usda="401" category="Vitamins">
+    <rda min_age="0" max_age="0.5" gender="all" amount="40"/>
+    <rda min_age="0.5" max_age="1" gender="all" amount="50"/>
+    <rda min_age="1" max_age="3" gender="all" amount="15" tul="400"/>
+    <rda min_age="4" max_age="8" gender="all" amount="25" tul="650"/>
+    <rda min_age="9" max_age="13" gender="male" amount="45" tul="1200"/>
+    <rda min_age="14" max_age="18" gender="male" amount="75" tul="1800"/>
+    <rda min_age="19" max_age="30" gender="male" amount="90" tul="2000"/>
+    <rda min_age="31" max_age="50" gender="male" amount="90" tul="2000"/>
+    <rda min_age="51" max_age="70" gender="male" amount="90" tul="2000"/>
+    <rda min_age="71" gender="male" amount="90" tul="2000"/>
+    <rda min_age="9" max_age="13" gender="female" amount="45" tul="1200"/>
+    <rda min_age="14" max_age="18" gender="female" amount="65" tul="1800"/>
+    <rda min_age="19" max_age="30" gender="female" amount="75" tul="2000"/>
+    <rda min_age="31" max_age="50" gender="female" amount="75" tul="2000"/>
+    <rda min_age="51" max_age="70" gender="female" amount="75" tul="2000"/>
+    <rda min_age="71" gender="female" amount="75" tul="2000"/>
+    <rda min_age="14" max_age="18" gender="female" amount="80" tul="1800" status="pregnant"/>
+    <rda min_age="19" max_age="30" gender="female" amount="85" tul="2000" status="pregnant"/>
+    <rda min_age="31" max_age="50" gender="female" amount="85" tul="2000" status="pregnant"/>
+    <rda min_age="14" max_age="18" gender="female" amount="115" tul="1800" status="lactating"/>
+    <rda min_age="19" max_age="30" gender="female" amount="120" tul="2000" status="lactating"/>
+    <rda min_age="31" max_age="50" gender="female" amount="120" tul="2000" status="lactating"/>
+  </nutrient>
+  <nutrient name="Vitamin D" unit="IU" dv="400" usda="324" category="Vitamins">
+    <rda min_age="0" max_age="0.5" gender="all" amount="200" tul="1000"/>
+    <rda min_age="0.5" max_age="1" gender="all" amount="200" tul="1000"/>
+    <rda min_age="1" max_age="3" gender="all" amount="200" tul="2000"/>
+    <rda min_age="4" max_age="8" gender="all" amount="200" tul="2000"/>
+    <rda min_age="9" max_age="13" gender="male" amount="200" tul="2000"/>
+    <rda min_age="14" max_age="18" gender="male" amount="200" tul="2000"/>
+    <rda min_age="19" max_age="30" gender="male" amount="200" tul="2000"/>
+    <rda min_age="31" max_age="50" gender="male" amount="200" tul="2000"/>
+    <rda min_age="51" max_age="70" gender="male" amount="400" tul="2000"/>
+    <rda min_age="71" gender="male" amount="600" tul="2000"/>
+    <rda min_age="9" max_age="13" gender="female" amount="200" tul="2000"/>
+    <rda min_age="14" max_age="18" gender="female" amount="200" tul="2000"/>
+    <rda min_age="19" max_age="30" gender="female" amount="200" tul="2000"/>
+    <rda min_age="31" max_age="50" gender="female" amount="200" tul="2000"/>
+    <rda min_age="51" max_age="70" gender="female" amount="400" tul="2000"/>
+    <rda min_age="71" gender="female" amount="600" tul="2000"/>
+    <rda min_age="14" max_age="18" gender="female" amount="200" tul="2000" status="pregnant"/>
+    <rda min_age="19" max_age="30" gender="female" amount="200" tul="2000" status="pregnant"/>
+    <rda min_age="31" max_age="50" gender="female" amount="200" tul="2000" status="pregnant"/>
+    <rda min_age="14" max_age="18" gender="female" amount="200" tul="2000" status="lactating"/>
+    <rda min_age="19" max_age="30" gender="female" amount="200" tul="2000" status="lactating"/>
+    <rda min_age="31" max_age="50" gender="female" amount="200" tul="2000" status="lactating"/>
+  </nutrient>
+  <nutrient name="Vitamin E" unit="mg" dv="20.134" usda="323" category="Vitamins">
+    <rda min_age="0" max_age="0.5" gender="all" amount="4"/>
+    <rda min_age="0.5" max_age="1" gender="all" amount="5"/>
+    <rda min_age="1" max_age="3" gender="all" amount="6" tul="200"/>
+    <rda min_age="4" max_age="8" gender="all" amount="7" tul="300"/>
+    <rda min_age="9" max_age="13" gender="male" amount="11" tul="600"/>
+    <rda min_age="14" max_age="18" gender="male" amount="15" tul="800"/>
+    <rda min_age="19" max_age="30" gender="male" amount="15" tul="1000"/>
+    <rda min_age="31" max_age="50" gender="male" amount="15" tul="1000"/>
+    <rda min_age="51" max_age="70" gender="male" amount="15" tul="1000"/>
+    <rda min_age="71" gender="male" amount="15" tul="1000"/>
+    <rda min_age="9" max_age="13" gender="female" amount="11" tul="800"/>
+    <rda min_age="14" max_age="18" gender="female" amount="15" tul="1000"/>
+    <rda min_age="19" max_age="30" gender="female" amount="15" tul="1000"/>
+    <rda min_age="31" max_age="50" gender="female" amount="15" tul="1000"/>
+    <rda min_age="51" max_age="70" gender="female" amount="15" tul="1000"/>
+    <rda min_age="71" gender="female" amount="15" tul="1000"/>
+    <rda min_age="14" max_age="18" gender="female" amount="15" tul="800" status="pregnant"/>
+    <rda min_age="19" max_age="30" gender="female" amount="15" tul="1000" status="pregnant"/>
+    <rda min_age="31" max_age="50" gender="female" amount="15" tul="1000" status="pregnant"/>
+    <rda min_age="14" max_age="18" gender="female" amount="19" tul="800" status="lactating"/>
+    <rda min_age="19" max_age="30" gender="female" amount="19" tul="1000" status="lactating"/>
+    <rda min_age="31" max_age="50" gender="female" amount="19" tul="1000" status="lactating"/>
+  </nutrient>
+  <nutrient name="Beta Tocopherol" unit="mg" parent="Vitamin E" usda="341" category="Vitamins" track="false"/>
+  <nutrient name="Delta Tocopherol" unit="mg" parent="Vitamin E" usda="343" category="Vitamins" track="false"/>
+  <nutrient name="Gamma Tocopherol" unit="mg" parent="Vitamin E" usda="342" category="Vitamins" track="false"/>
+  <nutrient name="Vitamin K" unit="&#xB5;g" dv="80" usda="430" category="Vitamins">
+    <rda min_age="0" max_age="0.5" gender="all" amount="2"/>
+    <rda min_age="0.5" max_age="1" gender="all" amount="2.5"/>
+    <rda min_age="1" max_age="3" gender="all" amount="30"/>
+    <rda min_age="4" max_age="8" gender="all" amount="55"/>
+    <rda min_age="9" max_age="13" gender="male" amount="60"/>
+    <rda min_age="14" max_age="18" gender="male" amount="75"/>
+    <rda min_age="19" max_age="30" gender="male" amount="120"/>
+    <rda min_age="31" max_age="50" gender="male" amount="120"/>
+    <rda min_age="51" max_age="70" gender="male" amount="120"/>
+    <rda min_age="71" gender="male" amount="120"/>
+    <rda min_age="9" max_age="13" gender="female" amount="60"/>
+    <rda min_age="14" max_age="18" gender="female" amount="75"/>
+    <rda min_age="19" max_age="30" gender="female" amount="90"/>
+    <rda min_age="31" max_age="50" gender="female" amount="90"/>
+    <rda min_age="51" max_age="70" gender="female" amount="90"/>
+    <rda min_age="71" gender="female" amount="90"/>
+    <rda min_age="14" max_age="18" gender="female" amount="75" status="pregnant"/>
+    <rda min_age="19" max_age="30" gender="female" amount="90" status="pregnant"/>
+    <rda min_age="31" max_age="50" gender="female" amount="90" status="pregnant"/>
+    <rda min_age="14" max_age="18" gender="female" amount="75" status="lactating"/>
+    <rda min_age="19" max_age="30" gender="female" amount="90" status="lactating"/>
+    <rda min_age="31" max_age="50" gender="female" amount="90" status="lactating"/>
+  </nutrient>
+  <nutrient name="Biotin" unit="&#xB5;g" dv="300" category="Vitamins" sparse="true" track="false">
+    <rda min_age="0" max_age="0.5" gender="all" amount="5"/>
+    <rda min_age="0.5" max_age="1" gender="all" amount="6"/>
+    <rda min_age="1" max_age="3" gender="all" amount="8"/>
+    <rda min_age="4" max_age="8" gender="all" amount="12"/>
+    <rda min_age="9" max_age="13" gender="male" amount="20"/>
+    <rda min_age="14" max_age="18" gender="male" amount="25"/>
+    <rda min_age="19" max_age="30" gender="male" amount="30"/>
+    <rda min_age="31" max_age="50" gender="male" amount="30"/>
+    <rda min_age="51" max_age="70" gender="male" amount="30"/>
+    <rda min_age="71" gender="male" amount="30"/>
+    <rda min_age="9" max_age="13" gender="female" amount="20"/>
+    <rda min_age="14" max_age="18" gender="female" amount="25"/>
+    <rda min_age="19" max_age="30" gender="female" amount="30"/>
+    <rda min_age="31" max_age="50" gender="female" amount="30"/>
+    <rda min_age="51" max_age="70" gender="female" amount="30"/>
+    <rda min_age="71" gender="female" amount="30"/>
+    <rda min_age="14" max_age="18" gender="female" amount="30" status="pregnant"/>
+    <rda min_age="19" max_age="30" gender="female" amount="30" status="pregnant"/>
+    <rda min_age="31" max_age="50" gender="female" amount="30" status="pregnant"/>
+    <rda min_age="14" max_age="18" gender="female" amount="35" status="lactating"/>
+    <rda min_age="19" max_age="30" gender="female" amount="35" status="lactating"/>
+    <rda min_age="31" max_age="50" gender="female" amount="35" status="lactating"/>
+  </nutrient>
+  <nutrient name="Choline" unit="mg" usda="421" category="Vitamins" sparse="true" track="false">
+    <rda min_age="0" max_age="0.5" gender="all" amount="125"/>
+    <rda min_age="0.5" max_age="1" gender="all" amount="150"/>
+    <rda min_age="1" max_age="3" gender="all" amount="200" tul="1000"/>
+    <rda min_age="4" max_age="8" gender="all" amount="250" tul="1000"/>
+    <rda min_age="9" max_age="13" gender="male" amount="375" tul="2000"/>
+    <rda min_age="14" max_age="18" gender="male" amount="550" tul="3000"/>
+    <rda min_age="19" max_age="30" gender="male" amount="550" tul="3500"/>
+    <rda min_age="31" max_age="50" gender="male" amount="550" tul="3500"/>
+    <rda min_age="51" max_age="70" gender="male" amount="550" tul="3500"/>
+    <rda min_age="71" gender="male" amount="550" tul="3500"/>
+    <rda min_age="9" max_age="13" gender="female" amount="375" tul="2000"/>
+    <rda min_age="14" max_age="18" gender="female" amount="400" tul="3000"/>
+    <rda min_age="19" max_age="30" gender="female" amount="425" tul="3500"/>
+    <rda min_age="31" max_age="50" gender="female" amount="425" tul="3500"/>
+    <rda min_age="51" max_age="70" gender="female" amount="425" tul="3500"/>
+    <rda min_age="71" gender="female" amount="425" tul="3500"/>
+    <rda min_age="14" max_age="18" gender="female" amount="450" tul="3000" status="pregnant"/>
+    <rda min_age="19" max_age="30" gender="female" amount="450" tul="3500" status="pregnant"/>
+    <rda min_age="31" max_age="50" gender="female" amount="450" tul="3500" status="pregnant"/>
+    <rda min_age="14" max_age="18" gender="female" amount="550" tul="3000" status="lactating"/>
+    <rda min_age="19" max_age="30" gender="female" amount="550" tul="3500" status="lactating"/>
+    <rda min_age="31" max_age="50" gender="female" amount="550" tul="3500" status="lactating"/>
+  </nutrient>
+  <nutrient name="Saturated" unit="g" dv="20" usda="606" category="Lipids"/>
+  <nutrient name="Monounsaturated" unit="g" usda="645" category="Lipids"/>
+  <nutrient name="Polyunsaturated" unit="g" usda="646" category="Lipids"/>
+  <nutrient name="Omega-3" unit="g" parent="Polyunsaturated" usda="621,629,631,851,852" category="Lipids">
+    <rda min_age="0" max_age="0.5" gender="all" amount="0.5"/>
+    <rda min_age="0.5" max_age="1" gender="all" amount="0.5"/>
+    <rda min_age="1" max_age="3" gender="all" amount="0.7"/>
+    <rda min_age="4" max_age="8" gender="all" amount="0.9"/>
+    <rda min_age="9" max_age="13" gender="male" amount="1.2"/>
+    <rda min_age="14" max_age="18" gender="male" amount="1.6"/>
+    <rda min_age="19" max_age="30" gender="male" amount="1.6"/>
+    <rda min_age="31" max_age="50" gender="male" amount="1.6"/>
+    <rda min_age="51" max_age="70" gender="male" amount="1.6"/>
+    <rda min_age="71" gender="male" amount="1.6"/>
+    <rda min_age="9" max_age="13" gender="female" amount="1.0"/>
+    <rda min_age="14" max_age="18" gender="female" amount="1.1"/>
+    <rda min_age="19" max_age="30" gender="female" amount="1.1"/>
+    <rda min_age="31" max_age="50" gender="female" amount="1.1"/>
+    <rda min_age="51" max_age="70" gender="female" amount="1.1"/>
+    <rda min_age="71" gender="female" amount="1.1"/>
+    <rda min_age="14" max_age="18" gender="female" amount="1.4" status="pregnant"/>
+    <rda min_age="19" max_age="30" gender="female" amount="1.4" status="pregnant"/>
+    <rda min_age="31" max_age="50" gender="female" amount="1.4" status="pregnant"/>
+    <rda min_age="14" max_age="18" gender="female" amount="1.3" status="lactating"/>
+    <rda min_age="19" max_age="30" gender="female" amount="1.3" status="lactating"/>
+    <rda min_age="31" max_age="50" gender="female" amount="1.3" status="lactating"/>
+  </nutrient>
+  <nutrient name="Omega-6" unit="g" parent="Polyunsaturated" usda="672,675,685,853,855" category="Lipids">
+    <rda min_age="0" max_age="0.5" gender="all" amount="4.4"/>
+    <rda min_age="0.5" max_age="1" gender="all" amount="4.6"/>
+    <rda min_age="1" max_age="3" gender="all" amount="7"/>
+    <rda min_age="4" max_age="8" gender="all" amount="10"/>
+    <rda min_age="9" max_age="13" gender="male" amount="12"/>
+    <rda min_age="14" max_age="18" gender="male" amount="16"/>
+    <rda min_age="19" max_age="30" gender="male" amount="17"/>
+    <rda min_age="31" max_age="50" gender="male" amount="17"/>
+    <rda min_age="51" max_age="70" gender="male" amount="14"/>
+    <rda min_age="71" gender="male" amount="14"/>
+    <rda min_age="9" max_age="13" gender="female" amount="10"/>
+    <rda min_age="14" max_age="18" gender="female" amount="11"/>
+    <rda min_age="19" max_age="30" gender="female" amount="11"/>
+    <rda min_age="31" max_age="50" gender="female" amount="12"/>
+    <rda min_age="51" max_age="70" gender="female" amount="12"/>
+    <rda min_age="71" gender="female" amount="11"/>
+    <rda min_age="14" max_age="18" gender="female" amount="13" status="pregnant"/>
+    <rda min_age="19" max_age="30" gender="female" amount="13" status="pregnant"/>
+    <rda min_age="31" max_age="50" gender="female" amount="13" status="pregnant"/>
+    <rda min_age="14" max_age="18" gender="female" amount="13" status="lactating"/>
+    <rda min_age="19" max_age="30" gender="female" amount="13" status="lactating"/>
+    <rda min_age="31" max_age="50" gender="female" amount="13" status="lactating"/>
+  </nutrient>
+  <nutrient name="Trans-Fats" unit="g" dv="0" usda="605" category="Lipids"/>
+  <nutrient name="Cholesterol" unit="mg" dv="300" usda="601" category="Lipids"/>
+  <nutrient name="Phytosterol" unit="mg" usda="636" category="Lipids"/>
+  <nutrient name="ALA" unit="g" usda="513" category="Amino Acids"/>
+  <nutrient name="ARG" unit="g" usda="511" category="Amino Acids"/>
+  <nutrient name="ASP" unit="g" usda="514" category="Amino Acids"/>
+  <nutrient name="CYS" unit="g" usda="507" category="Amino Acids"/>
+  <nutrient name="GLU" unit="g" usda="515" category="Amino Acids"/>
+  <nutrient name="GLY" unit="g" usda="516" category="Amino Acids"/>
+  <nutrient name="HIS" unit="g" usda="512" category="Amino Acids"/>
+  <nutrient name="HYP" unit="g" usda="521" category="Amino Acids"/>
+  <nutrient name="ILE" unit="g" usda="503" category="Amino Acids"/>
+  <nutrient name="LEU" unit="g" usda="504" category="Amino Acids"/>
+  <nutrient name="LYS" unit="g" usda="505" category="Amino Acids"/>
+  <nutrient name="MET" unit="g" usda="506" category="Amino Acids"/>
+  <nutrient name="PHE" unit="g" usda="508" category="Amino Acids"/>
+  <nutrient name="PRO" unit="g" usda="517" category="Amino Acids"/>
+  <nutrient name="SER" unit="g" usda="518" category="Amino Acids"/>
+  <nutrient name="THR" unit="g" usda="502" category="Amino Acids"/>
+  <nutrient name="TRP" unit="g" usda="501" category="Amino Acids"/>
+  <nutrient name="TYR" unit="g" usda="509" category="Amino Acids"/>
+  <nutrient name="VAL" unit="g" usda="510" category="Amino Acids"/>
 </nutrients>

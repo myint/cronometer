@@ -1,40 +1,34 @@
+<?xml version="1.0"?>
 <menubar>
-
-	<menu title="File" key="f">
-		<item title="Manage Users..." key="u" index="7" acc="VK_U" action="doManageUsers" />
-		<item title="Edit Nutritional Targets..." key="," index="17" acc="VK_COMMA" action="doEditUserSettings" />
-		<item title="Today" key="t" acc="VK_T" action="doToday"/>
-		<item title="Previous Day" key="[" acc="VK_OPEN_BRACKET"
-			action="doPreviousDay"/>
-		<item title="Next Day" key="]" acc="VK_CLOSE_BRACKET"
-			action="doNextDay"/>
-		<item separator="true" macosx="false"></item>
-		<item title="Quit" key="q" acc="VK_Q"  macosx="false" action="doQuit"/>
-	</menu>
-
-	<menu title="Reports" key="r">
-		<item title="Nutrition Report" key="n" acc="VK_N" action="doNutritionReport"/>
-	</menu>
-
-	<menu title="Food" key="d">
-		<item title="Add Serving..." key="a" acc="VK_E" action="doAddServing"/>
-		<item separator="true"/>
-		<item title="Import Food..." key="i" acc="VK_I" action="doImportFood"/>
-		<item title="Create New Food" key="f" acc="VK_F" action="doCreateNewFood"/>
-		<item title="Create New Recipe" key="r" index="11" acc="VK_R" action="doCreateNewRecipe"/>
-	</menu>
-
-	<menu title="Help" key="h">
-		<item title="Help..." key="h" acc="VK_H" action="doHelp"/>
-		<item separator="true"/>
-		<item title="Report a Bug..." key="b"   action="doReportBug"/>
-		<item title="Request Features..." key="f"   action="doRequestFeature"/>
-		<item separator="true"/>
-		<item title="Release Notes..." key="r" action="doShowReleaseNotes"/>
-      <item separator="true"/>
-      <item title="Export to cronometer.com..." action="doExportToWebVersion"/>
-      <item separator="true"/>
-		<item title="About Cronometer" key="a" action="doAbout"/>
-	</menu>
-
+  <menu title="File" key="f">
+    <item title="Manage Users..." key="u" index="7" acc="VK_U" action="doManageUsers"/>
+    <item title="Edit Nutritional Targets..." key="," index="17" acc="VK_COMMA" action="doEditUserSettings"/>
+    <item title="Today" key="t" acc="VK_T" action="doToday"/>
+    <item title="Previous Day" key="[" acc="VK_OPEN_BRACKET" action="doPreviousDay"/>
+    <item title="Next Day" key="]" acc="VK_CLOSE_BRACKET" action="doNextDay"/>
+    <item separator="true" macosx="false"/>
+    <item title="Quit" key="q" acc="VK_Q" macosx="false" action="doQuit"/>
+  </menu>
+  <menu title="Reports" key="r">
+    <item title="Nutrition Report" key="n" acc="VK_N" action="doNutritionReport"/>
+  </menu>
+  <menu title="Food" key="d">
+    <item title="Add Serving..." key="a" acc="VK_E" action="doAddServing"/>
+    <item separator="true"/>
+    <item title="Import Food..." key="i" acc="VK_I" action="doImportFood"/>
+    <item title="Create New Food" key="f" acc="VK_F" action="doCreateNewFood"/>
+    <item title="Create New Recipe" key="r" index="11" acc="VK_R" action="doCreateNewRecipe"/>
+  </menu>
+  <menu title="Help" key="h">
+    <item title="Help..." key="h" acc="VK_H" action="doHelp"/>
+    <item separator="true"/>
+    <item title="Report a Bug..." key="b" action="doReportBug"/>
+    <item title="Request Features..." key="f" action="doRequestFeature"/>
+    <item separator="true"/>
+    <item title="Release Notes..." key="r" action="doShowReleaseNotes"/>
+    <item separator="true"/>
+    <item title="Export to cronometer.com..." action="doExportToWebVersion"/>
+    <item separator="true"/>
+    <item title="About Cronometer" key="a" action="doAbout"/>
+  </menu>
 </menubar>
