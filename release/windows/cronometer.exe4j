@@ -16,7 +16,7 @@
       <versionLine x="20" y="40" text="version %VERSION%" font="Arial" fontSize="8" fontColor="0,0,0" fontWeight="500" />
     </text>
   </splashScreen>
-  <java mainClass="ca.spaz.cron.CRONOMETER" vmParameters="" arguments="" allowVMPassthroughParameters="true" preferredVM="" minVersion="1.5" maxVersion="" allowBetaVM="false" jdkOnly="false">
+  <java mainClass="ca.spaz.cron.Cronometer" vmParameters="" arguments="" allowVMPassthroughParameters="true" preferredVM="" minVersion="1.5" maxVersion="" allowBetaVM="false" jdkOnly="false">
     <searchSequence>
       <registry />
       <envVar name="JAVA_HOME" />
@@ -29,7 +29,7 @@
       <archive location="../../lib/jcommon-1.0.10.jar" failOnError="false" />
       <archive location="../../lib/jfreechart-1.0.6.jar" failOnError="false" />
       <archive location="../../lib/swingx-core-1.6.2.jar" failOnError="false" />
-      <archive location="../../lib/usda_sr26.jar" failOnError="false" />
+      <archive location="../../lib/usda_sr28.jar" failOnError="false" />
     </classPath>
     <nativeLibraryDirectories />
   </java>

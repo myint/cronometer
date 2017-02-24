@@ -31,7 +31,7 @@
 		<key>Arguments</key>
 		<string></string>
 		<key>ClassPath</key>
-		<string>$JAVAROOT/cronometer.jar:$JAVAROOT/jcommon-1.0.10.jar:$JAVAROOT/jfreechart-1.0.6.jar:$JAVAROOT/swingx-core-1.6.2.jar:$JAVAROOT/docs.jar:$JAVAROOT/usda_sr26.jar:$JAVAROOT/crdb_005.jar</string>
+		<string>$JAVAROOT/cronometer.jar:$JAVAROOT/jcommon-1.0.10.jar:$JAVAROOT/jfreechart-1.0.6.jar:$JAVAROOT/swingx-core-1.6.2.jar:$JAVAROOT/docs.jar:$JAVAROOT/usda_sr28.jar:$JAVAROOT/crdb_005.jar</string>
 		<key>JVMVersion</key>
 		<string>1.5+</string>
 		<key>MainClass</key>
