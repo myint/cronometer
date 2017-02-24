@@ -5,5 +5,5 @@ before_script:
     - tar xf ant.tar.gz
 
 script:
-    - PATH="$PATH:$PWD/apache-ant-1.9.4/bin" ./build_osx.bash
+    - PATH="$PATH:$PWD/apache-ant-1.10.1/bin" ./build_osx.bash
     - ls ./CRONoMeter.app
