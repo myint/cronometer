@@ -1,7 +1,7 @@
 language: objective-c
 
 before_script:
-    - curl -o ant.tar.gz http://www.apache.org/dist/ant/binaries/apache-ant-1.9.4-bin.tar.gz
+    - curl -o ant.tar.gz https://www.apache.org/dist/ant/binaries/apache-ant-1.10.1-bin.tar.gz
     - tar xf ant.tar.gz
 
 script:
