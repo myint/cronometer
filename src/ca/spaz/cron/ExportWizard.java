@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 import java.net.*;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.List;
 
@@ -17,7 +18,6 @@ import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.w3c.dom.*;
 
-import sun.misc.BASE64Encoder;
 import ca.spaz.cron.datasource.Datasources;
 import ca.spaz.cron.datasource.FoodProxy;
 import ca.spaz.cron.metrics.Metric;
@@ -115,7 +115,7 @@ public class ExportWizard extends JFrame {
 
     private String encodeCredentials() {
         try {
-            return new BASE64Encoder().encode((username.getText() + '\n' + new String(password.getPassword())).getBytes("UTF-8"));
+            return Base64.getEncoder().encodeToString((username.getText() + '\n' + new String(password.getPassword())).getBytes(StandardCharsets.UTF_8.toString()));
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
